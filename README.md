@@ -2,9 +2,9 @@
 maximal is a program for maximal homology alignment (MHA), originally created and written by Albert Erives.
 Additional help options can be seen by running ./maximal without any options specified.
 
-Below is a guide to key files in the maximal software project and their naming schemes.
+Below is a guide to key files in the maximal software project and their naming schemes. These versioning aspect of the naming scheme will likely be updated given the recent migration to a github repository. How this is going to be done is under deliberation.
 _______________________________________________
-FILE: maximal, m272 ("272 is VERSION-SPECIFIC)
+FILE: maximal, m272 ("272" is VERSION-SPECIFIC)
 
 This is an Apple Mac executable (for now) of the gcc compiled code. Previous versions of maximal that are useful for comparing runs are named "m#").
 
