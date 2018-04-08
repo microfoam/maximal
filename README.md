@@ -24,12 +24,12 @@ Thus, this file will reflect the output performance of the latest version of max
 _______________________________________________
 FILE: solved-##-descrp_tricksy.txt ("##-descrp" is VARIABLE)
 
-Files named in this format represent short sequence text files with a tricksy microfoam nature. Typically, tricsky strings were at one point problem strings that were problematically cinched by maximal. After developing the code to conduct MHA successfully on a new tricksy string it is renamed as "solved", given a number, and a description.
+Files named in this format represent short sequence text files with a tricksy microfoam nature. Typically, tricsky strings were at one point problem strings that were problematically cinched by maximal. After developing the code to conduct MHA successfully on a new tricksy string it is renamed as "solved", given a number, and a description. These file names and sequences should rarely be modified because they are used for historical comparisons of different versions of maximal. For example, even changing the length of the sequence in order to focus on the particular microfoam knot of interest will likely result in a change in the string's width cinch ratio (WCR) post-cinching.
 
 _______________________________________________
 FILE: Dxxxx_ex3.txt, Dxxxx_NEE.txt ("xxxx" is a Drosophila species name)
 
-Files named in this format represent vnd exon 3 sequences or NEE sequences from one of several species of flies.
+Files named in this format represent vnd exon 3 sequences or NEE sequences from one of several species of flies. These file names and sequences should rarely be modified because they are used for historical comparisons of different versions of maximal. For example, even changing the length of the sequence in order to focus on the particular microfoam knot of interest will likely result in a change in the string's width cinch ratio (WCR) post-cinching.
 
 _______________________________________________
 FILE: script-testall
