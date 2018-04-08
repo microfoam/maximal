@@ -1,0 +1,166 @@
+#!/bin/bash
+./maximal -Rna
+./maximal -Rnb
+./maximal -Rnc
+./maximal -Rnd
+./maximal -Rne
+./maximal -Rnf
+./maximal -Rng
+./maximal -Rnh
+
+./maximal -Rn Danan_ex3.txt
+./maximal -Rn Dbipe_ex3.txt
+./maximal -Rn Dbiar_ex3.txt
+./maximal -Rn Derec_ex3.txt
+./maximal -Rn Dmaur_ex3.txt
+./maximal -Rn Dmela_ex3.txt
+./maximal -Rn Dsant_ex3.txt
+./maximal -Rn Dsech_ex3.txt
+./maximal -Rn Dsimu_ex3.txt
+./maximal -Rn Dsuzu_ex3.txt
+./maximal -Rn Dyaku_ex3.txt
+
+./maximal -Rn Dbiar_NEE.txt
+./maximal -Rn Derec_NEE.txt
+./maximal -Rn Dmaur_NEE.txt
+./maximal -Rn Dmela_NEE.txt
+./maximal -Rn Dsant_NEE.txt
+./maximal -Rn Dsech_NEE.txt
+./maximal -Rn Dsimu_NEE.txt
+./maximal -Rn Dsuzu_NEE.txt
+./maximal -Rn Dyaku_NEE.txt
+./maximal -Rn Dmela_DWME.txt
+
+./maximal -Rn solved-01-toslip_tricksy.txt
+./maximal -Rn solved-02-toslip_tricksy.txt
+./maximal -Rn solved-03-tosSt1_tricksy.txt
+./maximal -Rn solved-04-tos-ct_tricksy.txt
+./maximal -Rn solved-22-tosSt2_tricksy.txt
+./maximal -Rn solved-23-tosSt2_tricksy.txt
+./maximal -Rn solved-24-tosSt2_tricksy.txt
+./maximal -Rn solved-25-tosSt2_tricksy.txt
+./maximal -Rn solved-26-tosSt2_tricksy.txt
+./maximal -Rn solved-29-toslp2_tricksy.txt
+./maximal -Rn solved-30-toslp2_tricksy.txt
+./maximal -Rn solved-31-t0edge_tricksy.txt
+./maximal -Rn solved-44-tosimp_tricksy.txt
+./maximal -Rn solved-05-koshp1_tricksy.txt
+./maximal -Rn solved-06-koslip_tricksy.txt
+./maximal -Rn solved-07-koslip_tricksy.txt
+./maximal -Rn solved-08-koslp2_tricksy.txt
+./maximal -Rn solved-09-koslp3_tricksy.txt
+./maximal -Rn solved-18-koshp2_tricksy.txt
+./maximal -Rn solved-19-koslp4_tricksy.txt
+./maximal -Rn solved-45-cinky1_tricksy.txt
+./maximal -Rn solved-46-cinky2_tricksy.txt
+./maximal -Rn solved-10-cycle1_tricksy.txt
+./maximal -Rn solved-11-cycle1_tricksy.txt
+./maximal -Rn solved-12-cycle1_tricksy.txt
+./maximal -Rn solved-13-cycle2_tricksy.txt
+./maximal -Rn solved-14-cycle3_tricksy.txt
+./maximal -Rn solved-15-cycle4_tricksy.txt
+./maximal -Rn solved-17-cycle5_tricksy.txt
+./maximal -Rn solved-16-cyc3_a_tricksy.txt
+./maximal -Rn solved-20-cyc3_b_tricksy.txt
+./maximal -Rn solved-21-cyc3_c_tricksy.txt
+./maximal -Rn solved-27-cycleX_tricksy.txt
+./maximal -Rn solved-32-combo1_tricksy.txt
+./maximal -Rn solved-28-scrtch_tricksy.txt
+./maximal -Rn solved-33-imprf1_tricksy.txt
+./maximal -Rn solved-34-imprf2_tricksy.txt
+./maximal -Rn solved-35-imprf3_tricksy.txt
+./maximal -Rn solved-36-imprf4_tricksy.txt
+./maximal -Rn solved-37-imprfk_tricksy.txt
+./maximal -Rn solved-38-imprft_tricksy.txt
+./maximal -Rn solved-39-imprfk_tricksy.txt
+./maximal -Rn solved-40-imprfk_tricksy.txt
+./maximal -Rn solved-43-timprf_tricksy.txt
+./maximal -Rn solved-41-RNAnuc.txt
+./maximal -Rn solved-41-notRNA.txt
+./maximal -Rn solved-41-protin.txt
+./maximal -Rn solved-42-fasta1.txt
+./maximal -Rn solved-42-fasta2.txt
+
+./maximal -Rnxa
+./maximal -Rnxb
+./maximal -Rnxc
+./maximal -Rnxd
+./maximal -Rnxe
+./maximal -Rnxf
+./maximal -Rnxg
+./maximal -Rnxh
+
+./maximal -Rnx Danan_ex3.txt
+./maximal -Rnx Dbipe_ex3.txt
+./maximal -Rnx Dbiar_ex3.txt
+./maximal -Rnx Derec_ex3.txt
+./maximal -Rnx Dmaur_ex3.txt
+./maximal -Rnx Dmela_ex3.txt
+./maximal -Rnx Dsant_ex3.txt
+./maximal -Rnx Dsech_ex3.txt
+./maximal -Rnx Dsimu_ex3.txt
+./maximal -Rnx Dsuzu_ex3.txt
+./maximal -Rnx Dyaku_ex3.txt
+
+./maximal -Rnx Dbiar_NEE.txt
+./maximal -Rnx Derec_NEE.txt
+./maximal -Rnx Dmaur_NEE.txt
+./maximal -Rnx Dmela_NEE.txt
+./maximal -Rnx Dsant_NEE.txt
+./maximal -Rnx Dsech_NEE.txt
+./maximal -Rnx Dsimu_NEE.txt
+./maximal -Rnx Dsuzu_NEE.txt
+./maximal -Rnx Dyaku_NEE.txt
+./maximal -Rnx Dmela_DWME.txt
+
+./maximal -Rnx solved-01-toslip_tricksy.txt
+./maximal -Rnx solved-02-toslip_tricksy.txt
+./maximal -Rnx solved-03-tosSt1_tricksy.txt
+./maximal -Rnx solved-04-tos-ct_tricksy.txt
+./maximal -Rnx solved-22-tosSt2_tricksy.txt
+./maximal -Rnx solved-23-tosSt2_tricksy.txt
+./maximal -Rnx solved-24-tosSt2_tricksy.txt
+./maximal -Rnx solved-25-tosSt2_tricksy.txt
+./maximal -Rnx solved-26-tosSt2_tricksy.txt
+./maximal -Rnx solved-29-toslp2_tricksy.txt
+./maximal -Rnx solved-30-toslp2_tricksy.txt
+./maximal -Rnx solved-44-tosimp_tricksy.txt
+./maximal -Rnx solved-31-t0edge_tricksy.txt
+./maximal -Rnx solved-05-koshp1_tricksy.txt
+./maximal -Rnx solved-06-koslip_tricksy.txt
+./maximal -Rnx solved-07-koslip_tricksy.txt
+./maximal -Rnx solved-08-koslp2_tricksy.txt
+./maximal -Rnx solved-09-koslp3_tricksy.txt
+./maximal -Rnx solved-18-koshp2_tricksy.txt
+./maximal -Rnx solved-19-koslp4_tricksy.txt
+./maximal -Rnx solved-45-cinky1_tricksy.txt
+./maximal -Rnx solved-46-cinky2_tricksy.txt
+./maximal -Rnx solved-10-cycle1_tricksy.txt
+./maximal -Rnx solved-11-cycle1_tricksy.txt
+./maximal -Rnx solved-12-cycle1_tricksy.txt
+./maximal -Rnx solved-13-cycle2_tricksy.txt
+./maximal -Rnx solved-14-cycle3_tricksy.txt
+./maximal -Rnx solved-15-cycle4_tricksy.txt
+./maximal -Rnx solved-17-cycle5_tricksy.txt
+./maximal -Rnx solved-16-cyc3_a_tricksy.txt
+./maximal -Rnx solved-20-cyc3_b_tricksy.txt
+./maximal -Rnx solved-21-cyc3_c_tricksy.txt
+./maximal -Rnx solved-27-cycleX_tricksy.txt
+./maximal -Rnx solved-32-combo1_tricksy.txt
+./maximal -Rnx solved-28-scrtch_tricksy.txt
+./maximal -Rnx solved-33-imprf1_tricksy.txt
+./maximal -Rnx solved-34-imprf2_tricksy.txt
+./maximal -Rnx solved-35-imprf3_tricksy.txt
+./maximal -Rnx solved-36-imprf4_tricksy.txt
+./maximal -Rnx solved-37-imprfk_tricksy.txt
+./maximal -Rnx solved-38-imprft_tricksy.txt
+./maximal -Rnx solved-39-imprfk_tricksy.txt
+./maximal -Rnx solved-40-imprfk_tricksy.txt
+./maximal -Rnx solved-43-timprf_tricksy.txt
+./maximal -Rnx solved-41-RNAnuc.txt
+./maximal -Rnx solved-41-notRNA.txt
+./maximal -Rnx solved-41-protin.txt
+./maximal -Rnx solved-42-fasta1.txt
+./maximal -Rnx solved-42-fasta2.txt
+
+
