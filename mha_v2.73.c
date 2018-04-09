@@ -1,8 +1,8 @@
 /************************************************************************************************************/
-/***** This program called "maximal" is a maximal homology alignment (MHA) program.                     *****/
-/***** Designed and written by Dr. Albert J. Erives. 2017-2018. AGPL-3.0. 		     					*****/
-/***** Code repository located at https://github.com/microfoam/maximal. Licensed under AGPL-3.0			*****/
-/***** This program renders a 1-D DNA sequence into a 2-D "self-alignment" that rescues micro-paralogy. *****/
+/***** This program called "maximal" is a maximal homology alignment (MHA) program.						*****/
+/***** Designed and written by Dr. Albert J. Erives. 2017-2018. AGPL-3.0.								*****/
+/***** Code repository located at https://github.com/microfoam/maximal. Licensed under AGPL-3.0.		*****/
+/***** This program renders a 1-D DNA sequence into a 2-D "self-alignment" that rescues micro-paralogy.	*****/
 /************************************************************************************************************/
 
 #include <ctype.h>  	/* isalpha() */
@@ -2216,7 +2216,7 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 
 			for (l=0; l < k; l++) {
 				/* IF HANDLING NEW CONSENSUS TR W/ TRANSITION MATCHING... (nuctransit IS 2) */
-				if (nuctransit == 10 && k>2 && (letr=align2D_pass7[MAXLINE-1][n+l]) != (ltr2=align2D_pass7[MAXLINE-1][n+k+l])) {
+				if (nuctransit == 1 && k>2 && (letr=align2D_pass7[MAXLINE-1][n+l]) != (ltr2=align2D_pass7[MAXLINE-1][n+k+l])) {
 					if (     (letr == 'R') && (ltr2 == 'C' || ltr2 == 'T' || ltr2 == 'Y'))
 						break;
 					else if ((letr == 'Y') && (ltr2 == 'A' || ltr2 == 'G' || ltr2 == 'R'))
@@ -2256,7 +2256,7 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 					if (num_transits < 2)
 						imperfect_TR = 1;
 					else 
-						TR_check = num_transits = 0;
+						TR_check = num_transits = imperfect_TR = 0;
 				}
 
 			}
@@ -2275,7 +2275,6 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 						if (isalpha(align2D_pass7[m+w][x])) {
 							--tot_repeats;						/* DECREMENT COUNTER  */
 							TR_check = 0;						/* RESET BACK TO ZERO AND BREAK OUT OF FOR w LOOP */
-							imperfect_TR = 0;
 							break; 								/* BREAK OUT OF FOR x LOOP     */
 						}
 					}
@@ -2286,19 +2285,16 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 				++uniq_TRs;
 
 				/* THIS PART JUST COUNTS REPEATS ADDITIONAL REPEATS, VAR num STARTS AT 2 */
-				if (1 || imperfect_TR == 0) {
-					for (l=0; l < k; l++) {
-						if (align2D_pass7[MAXLINE-1][n+l] != align2D_pass7[MAXLINE-1][n+num*k+l]) {
-							TR_check = 0;	/* WILL BREAK OUT OF WHILE TR_check LOOP 		*/
-							break; 			/* BREAK OUT OF FOR l LOOP */
-						}
-						if (l == k-1) {
-							++num;		/* INCREMENT TR COUNT */
-							l = -1;		/* RESET TO CHECK NEXT POSSIBLE UNIT REPEAT, l SET TO -1 B/C OF UPCOMING l++ */
-						}
-					} /* END OF FOR l LOOP */
-				}
-				else TR_check = 0;
+				for (l=0; l < k; l++) {
+					if (align2D_pass7[MAXLINE-1][n+l] != align2D_pass7[MAXLINE-1][n+num*k+l]) {
+						TR_check = 0;	/* WILL BREAK OUT OF WHILE TR_check LOOP 		*/
+						break; 			/* BREAK OUT OF FOR l LOOP */
+					}
+					if (l == k-1) {
+						++num;		/* INCREMENT TR COUNT */
+						l = -1;		/* RESET TO CHECK NEXT POSSIBLE UNIT REPEAT, l SET TO -1 B/C OF UPCOMING l++ */
+					}
+				} /* END OF FOR l LOOP */
 
 				if (cinch_d_opt) {	/* cinch_d ENGINE **********************************************************************/
 					if (first_write) {
@@ -2308,13 +2304,23 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 						}
 						if (doptions[1][57])
 							printf("\nWorking on next consensus TR: %dx %d-mer at consensus position %d; 2nd unit begins on row %d.", num, k, n+1, m+1);
+						if (imperfect_TR == 1) {
+							for (l=0; l < k; l++) {
+								if ((letr=align2D_pass7[MAXLINE-1][n+l]) != align2D_pass7[MAXLINE-1][n+k+l]) {
+									if      (letr == 'A' || letr == 'G') 
+										align2D_pass7[MAXLINE-1][n+l] = 'R';
+									else if (letr == 'C' || letr == 'T') 
+										align2D_pass7[MAXLINE-1][n+l] = 'Y';
+								}
+							} 
+						}
 
 						cid_align2D[m][n+k  ] = '/';
 						cid_align2D[m][n+k+1] = '\0';
 						first_write = 0;	/* TURN OFF NEED TO WRITE REMAINING PART OF 2-D ALIGNMENT */
 						cid_mrow = 1;
 						cid_ncol = k;
-						for (i = m; letr != '>'; i++) {
+						for (i = m; letr != '>' && i < MAXLINE-1; i++) {
 							for (j = n+k; j < doptions[1][32]+1; j++) {
 								letr = cid_align2D[i+cid_mrow][j-cid_ncol] = align2D_pass7[i][j];
 								if (letr=='/' || letr==dopt_R_rght) 
@@ -2334,16 +2340,6 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 							}
 							align2D_pass7[MAXLINE-1][i] = '\0';
 						} 
-						if (imperfect_TR) {
-							for (l=0; l < k; l++) {
-								if ((letr=align2D_pass7[MAXLINE-1][n+l]) != align2D_pass7[MAXLINE-1][n+k+l]) {
-									if      (letr == 'A' || letr == 'G') 
-										align2D_pass7[MAXLINE-1][n+l] = 'R';
-									else if (letr == 'C' || letr == 'T') 
-										align2D_pass7[MAXLINE-1][n+l] = 'Y';
-								}
-							} 
-						}
 
 						if (letr == '>' && j-cid_ncol-1 < cid_new2D_width) {
 							doptions[1][32] = j-cid_ncol-1;
@@ -2374,13 +2370,19 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 	else if (cinch_d_opt) {
 		i = doptions[1][18];
 		doptions[1][i] = doptions[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS WIDTH HISTORY */
-		cid_new2D_width = doptions[1][32];
-		if (tot_repeats > 1 && doptions[1][57]) 
+		if (cid_new2D_width == doptions[1][32]) {
+			return(0);
+		}
+		else if (tot_repeats > 1 && doptions[1][57]) {
+			cid_new2D_width = doptions[1][32];
 			print_2Dseq(align2D_pass7, cid_new2D_width, dptr_Seq_name, doptions);
+		}
 		else if (tot_repeats > 1) 
 			consensus_2D(align2D_pass7, doptions, 0, doptions[1][32]);
-		else 
+		else { 
+			cid_new2D_width = doptions[1][32];
 			print_2Dseq(align2D_pass7, cid_new2D_width, dptr_Seq_name, doptions);
+		}
 	}
 	return(tot_repeats);
 }
