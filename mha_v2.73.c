@@ -87,6 +87,7 @@ int main(int argc, char *argv[])
 	int DTHR       = 101;					/* 101%. RESET IF opt_x, DIAGONAL THRESHOLD SCORES */ 
 	int DTHR_lookup[1+WIDTH/2] = {0};		/* ARRAY OF PRE-COMPUTED k-DEPENDENT DTHR VALUES */
 	short unsigned int continue_flag=0, imperfect_TR=0, Aimperfect_TR=0, nuctransit=0, seqtype=0;
+	int transit_lvl = 0;					/* USE TO STORE MODE OF TRANSITION MATCHING */
 	int alt_Did, alt_Dtr, alt_k, alt_m;		/* ALTERNATE k-MER COMPARISONS */
 	unsigned int fy_size = 800;				/* SIZE OF FISHER-YATES RANDOMIZED STRING */
 	char blank = '.';						/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
@@ -345,7 +346,7 @@ long int options[4][62] = {
 					break;
 			case 'x':						/* OPTION TO RUN ExPERIMENTAL MODULE, VERSION-SPECIFIC BETA-CODE */
 					options[0][59] = 1;		/* opt_x ON 	*/
-					++options[1][59];		/* increment opt_x */
+					++options[1][59];		/* increment opt_x: = 1 (+TRANSITION MATCHING) */
 					transition = match/2;
 					break;
 			case 'z':						/* OPTION FOR ZERO MISMATCH SCORE */
@@ -521,8 +522,10 @@ long int options[4][62] = {
 	else if (seqtype == 0)
 		strcpy(letr_unit, "char");	/* OTHER */
 
-	if (options[0][59] && seqtype == 1)	/* SET BIT VAR nuctransit IF opt_x AND DNA */
+	if (options[0][59] && seqtype == 1) {	/* SET BIT VAR nuctransit IF opt_x AND DNA */
 		nuctransit = 1;
+		transit_lvl = options[1][59];		/* SET MODE OF TRANSITION MATCHING */
+	}
 
 	if (options[0][33]) {		/* USE RANDOMIZED SEQUENCE */
 		strcpy(Seq_r, Seq);
@@ -674,10 +677,11 @@ long int options[4][62] = {
 
 		DTHR_lookup[1] = 100;
 
-		if (options[1][59] == 1)	/* opt_x INCREMENTED VALUE */
-			DTHR_lookup[2] = 100; 	/* *(transition+match)/(2*match); */
-		else if (options[1][59] > 1) {
-			DTHR_lookup[2] = 100*(match+transition)/(2*match);		
+		if (transit_lvl) {				/* opt_x options[1][59], INCREMENTED VALUE */
+			if (transit_lvl != 3)		/* NO TRANSITION MATCHING FOR k = 2        */
+				DTHR_lookup[2] = 100; 	
+			else if (transit_lvl == 3) 
+				DTHR_lookup[2] = 100*(match+transition)/(2*match);		
 		}
 
 		for (k=3; k <= WIDTH/2; k++) {
@@ -1166,9 +1170,13 @@ long int options[4][62] = {
 		i = ++options[1][18];	/* INCREMENT opt_I ++PASS NUM */
 
 		if (go_flag) {
-			if (options[1][57]) {
+			if (nuctransit) {
 				mha_head(Seq_name, options[1][32], options);
-				printf(" Pre-cinch_d report: \n");
+				printf(" Pre-cinch_d report (p = perfect; i = imperfect): \n");
+			}
+			else if (options[1][57]) {
+				mha_head(Seq_name, options[1][32], options);
+				printf(" Pre-cinch_d report:: \n");
 			}
 			intraTR_reps_tot = intraTR_reps = cinch_d(align2D, ptr_Seq_name, options, 0);
 			if (intraTR_reps_tot == 0) {
@@ -1445,7 +1453,7 @@ long int options[4][62] = {
 		fp = fopen("output.mha", "a");		/* FOPEN WRITE BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
 		fprintf(fp, "maximal v%s\t%.24s\t%3d%%\t%3d%%\t%.3f\t%.*s\tcyc: %d (k=%ld)\tSeq: %c\t%.*s\t%s (%3d %s)\n", 
 				version, ctime(&lcl_time), align2D[MAXLINE-1][MAXLINE-1], passQ[9], ratio1, 
-				(int) options[1][59]+1, "-xx", cyc_runs, options[0][5], Seq_name, (int) options[1][33]+1, "-XX", 
+				(int) options[1][59]+1, "-xxx", cyc_runs, options[0][5], Seq_name, (int) options[1][33]+1, "-XX", 
 				file_name, (int) options[1][1], letr_unit);
 		fclose(fp);
 	}
@@ -1603,10 +1611,10 @@ void               warnhead(char l);
 			nuctransit = 0;	/* THERE IS NO NEED TO KEEP LOOKING FOR TRANSITION MUTATIONS IN STRING */
 		}
 
-		if (koptions[1][59] == 1)
-			piso_nuctransit = 2;	
-		else if (koptions[1][59] > 1)
-			piso_nuctransit = 1;
+		if (koptions[1][59] != 3)
+			piso_nuctransit = 2;		/* SET THE FLOOR >2 FOR k-mer LOOP */	
+		else if (koptions[1][59] == 3)
+			piso_nuctransit = 1;		/* SET THE FLOOR >1 FOR k-mer LOOP */	
 	} 
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
@@ -2159,7 +2167,6 @@ unsigned int cinch_d(char align2D_pass7[][MAXLINE], char *dptr_Seq_name, long in
 int cid_mrow=0, cid_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, w=0, x=0;
 int tot_repeats=0, uniq_TRs=0;
 int cid_new2D_width = doptions[1][32]; 
-int next;
 unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1, n_flag=1;		/* CHECK MONO IN ORDER TO KNOW TO SKIP IT */
 unsigned short int nuctransit=0;						/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int imperfect_TR=0;
@@ -2173,20 +2180,16 @@ unsigned int       consensus_2D(char con_align2D[][MAXLINE], long int con_option
 void               mha_head(char lcl_seq_name, int lcl_width, long int lcl_options[][62]);
 void 			   mha_writecons(char align2D_one[][MAXLINE], char align2D_two[][MAXLINE], long int wroptions[][62]);
 void               mha_writeback(char lcl_align2D[][MAXLINE], char align2D_prev[][MAXLINE], long int woptions[][62]);
-int                next_transit(char lcl_align2D[][MAXLINE], int last_transit);
 short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D, char *printptr_Seq_name, long int poptions[][62]);
 
 	mha_writeback(align2D_pass7, cid_align2D, doptions); 
 	nuctype = doptions[1][13];		/* EQUALS ONE IF DNA, TWO IF RNA */
 
-	if (doptions[0][59] && nuctype == 1)	/* IF opt_x AND IF DNA */
+	if (doptions[0][59] && nuctype == 1) {	/* IF opt_x AND IF DNA */
 		nuctransit = 1;
-
-	if (nuctransit) { 
-		if ((next=next_transit(align2D_pass7, -1)) == -1) {
-			nuctransit = 0;	/* THERE IS NO NEED TO KEEP LOOKING FOR TRANSITION MUTATIONS IN STRING */
-		}
-	} 
+		if (doptions[1][59] == 2)
+			++nuctransit;
+	}
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
 	for (k = doptions[1][32]/2; k > 0; k--) {
@@ -2212,17 +2215,28 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 				num_transits = imperfect_TR = 0;
 
 			for (l=0; l < k; l++) {
-				if (nuctransit && k>2 && (letr=align2D_pass7[MAXLINE-1][n+l]) != (ltr2=align2D_pass7[MAXLINE-1][n+k+l])) {
-					if (num_transits > 1)
+				/* IF HANDLING NEW CONSENSUS TR W/ TRANSITION MATCHING... (nuctransit IS 2) */
+				if (nuctransit == 10 && k>2 && (letr=align2D_pass7[MAXLINE-1][n+l]) != (ltr2=align2D_pass7[MAXLINE-1][n+k+l])) {
+					if (     (letr == 'R') && (ltr2 == 'C' || ltr2 == 'T' || ltr2 == 'Y'))
 						break;
-					else if ((letr == 'A' || letr == 'G' || letr == 'R') && (ltr2 == 'C' || ltr2 == 'T' || ltr2 == 'Y'))
+					else if ((letr == 'Y') && (ltr2 == 'A' || ltr2 == 'G' || ltr2 == 'R'))
 						break;
-					else if ((letr == 'C' || letr == 'T' || letr == 'Y') && (ltr2 == 'A' || ltr2 == 'G' || ltr2 == 'R'))
+					else if ((ltr2 == 'R') && (letr == 'C' || letr == 'T' || letr == 'Y'))
 						break;
-					else
-						num_transits++;
+					else if ((ltr2 == 'Y') && (letr == 'A' || letr == 'G' || letr == 'R'))
+						break;
+					else ++num_transits;
 				}
-				else if ((letr=align2D_pass7[MAXLINE-1][n+l]) != (ltr2=align2D_pass7[MAXLINE-1][n+k+l]) && nuctransit == 0) 
+				else if (nuctransit == 2 && k>2 && (letr=align2D_pass7[MAXLINE-1][n+l]) != (ltr2=align2D_pass7[MAXLINE-1][n+k+l])) {
+					if (     (letr == 'A' || letr == 'G') && (ltr2 == 'C' || ltr2 == 'T'))
+						break;
+					else if ((letr == 'C' || letr == 'T') && (ltr2 == 'A' || ltr2 == 'G'))
+						break;
+					else if (letr == 'R' || letr == 'Y' || ltr2 == 'R' || ltr2 == 'Y')
+						break;
+					else ++num_transits;
+				}
+				else if (   (letr=align2D_pass7[MAXLINE-1][n+l]) != (ltr2=align2D_pass7[MAXLINE-1][n+k+l])) 
 					break; 		/* BREAK OUT OF FOR l LOOP */
 
 				if (letr == 'n' || ltr2 == 'n')
@@ -2238,11 +2252,11 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 				num = 2;		/* THIS KEEPS COUNT OF HOW MANY REPEATS. WITH ONE RE-PEAT COUNTED, THERE ARE TWO */
 				TR_check = 1;
 
-				if (num_transits > 0) {		/* ONLY POSSIBLE IF nuctransit */
+				if (num_transits) {		/* ONLY POSSIBLE IF nuctransit MODE 2 */
 					if (num_transits < 2)
 						imperfect_TR = 1;
 					else 
-						TR_check = 0;
+						TR_check = num_transits = 0;
 				}
 
 			}
@@ -2251,7 +2265,7 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 
 			/* CHECK FOR COMPLEX cinch_d REPEATS THAT SHOULD NOT BE COUNTED/WRITTEN. */
 			/*  THESE HAVE LETTERS IN NEXT ROW UNDERNEATH FIRST UNIT.                */
-			if (TR_check == 1) {
+			if (TR_check) {
 				m = 0;
 				while (isalpha(align2D_pass7[m][n+k]) == 0) {
 					m++;
@@ -2271,17 +2285,20 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 			while (TR_check) {
 				++uniq_TRs;
 
-				/* THIS PART JUST COUNTS REPEATS FROM WHAT I REMEMBER */
-				for (l=0; l < k; l++) {
-					if (align2D_pass7[MAXLINE-1][n+l] != align2D_pass7[MAXLINE-1][n+num*k+l]) {
-						TR_check = 0;	/* WILL BREAK OUT OF WHILE TR_check LOOP 		*/
-						break; 			/* BREAK OUT OF FOR l LOOP */
-					}
-					if (l == k-1) {
-						++num;		/* INCREMENT TR COUNT */
-						l = -1;		/* RESET TO CHECK NEXT POSSIBLE UNIT REPEAT, l=-1 B/C OF UPCOMING l++ */
-					}
-				} /* END OF FOR l LOOP */
+				/* THIS PART JUST COUNTS REPEATS ADDITIONAL REPEATS, VAR num STARTS AT 2 */
+				if (1 || imperfect_TR == 0) {
+					for (l=0; l < k; l++) {
+						if (align2D_pass7[MAXLINE-1][n+l] != align2D_pass7[MAXLINE-1][n+num*k+l]) {
+							TR_check = 0;	/* WILL BREAK OUT OF WHILE TR_check LOOP 		*/
+							break; 			/* BREAK OUT OF FOR l LOOP */
+						}
+						if (l == k-1) {
+							++num;		/* INCREMENT TR COUNT */
+							l = -1;		/* RESET TO CHECK NEXT POSSIBLE UNIT REPEAT, l SET TO -1 B/C OF UPCOMING l++ */
+						}
+					} /* END OF FOR l LOOP */
+				}
+				else TR_check = 0;
 
 				if (cinch_d_opt) {	/* cinch_d ENGINE **********************************************************************/
 					if (first_write) {
@@ -2310,23 +2327,23 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 							}
 						}
 
-						if (imperfect_TR) {
-							for (l=0; l < k; l++) {
-								if ((letr=align2D_pass7[MAXLINE-1][n+l]) != (ltr2=align2D_pass7[MAXLINE-1][n+k+l])) {
-									if (letr == 'A' || letr == 'G' || letr == 'R') 
-										align2D_pass7[MAXLINE-1][n+l+k] = 'R';
-									else if (letr == 'C' || letr == 'T' || letr == 'Y') 
-										align2D_pass7[MAXLINE-1][n+l+k] = 'Y';
-								}
-							} 
-						}
-						if (nuctransit) {
+						if (nuctransit > 0) {
 							/* SCOOCH CONSENSUS ROW TO THE LEFT TO REFLECT CINCHED WIDTH */
-							for (i = n; align2D_pass7[MAXLINE-1][i+k] != '\0'; i++) {
+							for (i = n+k; align2D_pass7[MAXLINE-1][i+k] != '\0'; i++) {
 								align2D_pass7[MAXLINE-1][i] = align2D_pass7[MAXLINE-1][i+k];
 							}
 							align2D_pass7[MAXLINE-1][i] = '\0';
 						} 
+						if (imperfect_TR) {
+							for (l=0; l < k; l++) {
+								if ((letr=align2D_pass7[MAXLINE-1][n+l]) != align2D_pass7[MAXLINE-1][n+k+l]) {
+									if      (letr == 'A' || letr == 'G') 
+										align2D_pass7[MAXLINE-1][n+l] = 'R';
+									else if (letr == 'C' || letr == 'T') 
+										align2D_pass7[MAXLINE-1][n+l] = 'Y';
+								}
+							} 
+						}
 
 						if (letr == '>' && j-cid_ncol-1 < cid_new2D_width) {
 							doptions[1][32] = j-cid_ncol-1;
@@ -2339,9 +2356,11 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 					} /* END OF IF first_write EQUALS ONE */
 				} /*********************************************************************************************/
 				else if (imperfect_TR && doptions[1][57])
-					printf("  %4d. iTR: %3dx %d-mer at consensus position %d with num_transits=%d.\n", uniq_TRs, num, k, n+1, num_transits);
+					printf("  %4d. i-TR: %3dx %d-mer at consensus position %d with num_transits=%d.\n", uniq_TRs, num, k, n+1, num_transits);
+				else if (nuctransit == 2 && doptions[1][57])
+					printf("  %4d. p-TR: %3dx %d-mer at consensus position %d.\n", uniq_TRs, num, k, n+1);
 				else if (doptions[1][57])
-					printf("  %4d.  TR: %3dx %d-mer at consensus position %d.\n", uniq_TRs, num, k, n+1);
+					printf("  %4d. TR: %3dx %d-mer at consensus position %d.\n", uniq_TRs, num, k, n+1);
 
 			} /* END OF WHILE TR_check EQUALS ONE LOOP */
 		} /* END OF FOR n LOOP */
@@ -2355,22 +2374,14 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 	else if (cinch_d_opt) {
 		i = doptions[1][18];
 		doptions[1][i] = doptions[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS WIDTH HISTORY */
-		if (cid_new2D_width == doptions[1][32]) {		/* IF NOTHING HAPPENED CINCH-WISE */
+		cid_new2D_width = doptions[1][32];
+		if (tot_repeats > 1 && doptions[1][57]) 
 			print_2Dseq(align2D_pass7, cid_new2D_width, dptr_Seq_name, doptions);
-		}
-		else if (tot_repeats > 1 && doptions[1][57]) {
-			cid_new2D_width = doptions[1][32];
-			print_2Dseq(align2D_pass7, cid_new2D_width, dptr_Seq_name, doptions);
-		}
-		else if (tot_repeats > 1) {
+		else if (tot_repeats > 1) 
 			consensus_2D(align2D_pass7, doptions, 0, doptions[1][32]);
-		}
-		else {
-			cid_new2D_width = doptions[1][32];
+		else 
 			print_2Dseq(align2D_pass7, cid_new2D_width, dptr_Seq_name, doptions);
-		}
 	}
-
 	return(tot_repeats);
 }
 
@@ -3786,7 +3797,9 @@ void usage(char usage_version[], unsigned int fy_size)
 							"\t\t -s [SILENCE WRITING TO NORMAL OUTPUT FILE]\n"
 							"\t\t -u [UNWRAPPED OUTPUT (ONE BLOCK); EACH '-u' IS ANOTHER BLOCK]\n"
 							"\t\t -v [VERBOSE MODE: \"maximal -FIKLRlmoprt\" + VERBOSITY. (FULLSTOP INTENTIONAL)]\n"
-							"\t\t -x [RUN ANALYSIS WITH TRANSITIONS; PARTIAL TR MATCHING), -xx OPTION]\n"
+							"\t\t -x   [RUN ANALYSIS WITH TRANSITION MATCHING OF R's AND Y's FOR CINCH-T k > 2]\n"
+							"\t\t -xx  [RUN -x ANALYSIS AS ABOVE WITH ADDITIONAL CINCH-D MATCHING OF IMPERFECT REPEATS]\n"
+							"\t\t -xxx [RUN ANALYSIS WITH TRANSITION MATCHING OF R's AND Y's FOR CINCH-T k > 1]\n"
 							"\t\t -z [ENSURE MISMATCH SCORE IS ZERO; ALTERS PATHBOX DISPLAY]\n"
 							"\t\t -B [USE BLANK SPACE FOR BLANK CHARACTER IN MHA]\n"
 							"\t\t -BB, -BBB, -BBBB, -BBBBB [-B ALSO W/O TICK MARKS, ZERO TICKLINE, RULER #'s, & RULER]\n"
