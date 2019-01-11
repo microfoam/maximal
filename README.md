@@ -2,7 +2,7 @@
 maximal is a program for maximal homology alignment (MHA), originally created and written by Albert Erives.
 Additional help options can be seen by running ./maximal without any options specified.
 
-Version v2.75 is the most recent stable version.
+Version v2.81 is the most recent stable version.
 
 Below is a guide to key files in the maximal software project and their naming schemes. The versioning aspects of the naming scheme will likely be updated given the recent migration to a github repository. How this is going to be done is under deliberation.
 _______________________________________________
@@ -27,6 +27,8 @@ _______________________________________________
 FILE: solved-##-descrp_tricksy.txt ("##-descrp" is VARIABLE)
 
 Files named in this format represent short sequence text files with a tricksy microfoam nature. Typically, tricsky strings were at one point problem strings that were problematically cinched by maximal. After developing the code to conduct MHA successfully on a new tricksy string it is renamed as "solved", given a number, and a description. These file names and sequences should rarely be modified because they are used for historical comparisons of different versions of maximal. For example, even changing the length of the sequence in order to focus on the particular microfoam knot of interest will likely result in a change in the string's width cinch ratio (WCR) post-cinching.
+
+These files are now stored in corpus/ subdirectory.
 
 _______________________________________________
 FILE: Dxxxx_ex3.txt, Dxxxx_NEE.txt ("xxxx" is a Drosophila species name)
