@@ -1,6 +1,5 @@
 # maximal
-maximal is a program for maximal homology alignment (MHA), originally created and written by Albert Erives.
-Additional help options can be seen by running ./maximal without any options specified.
+maximal is a program to begin to explore the wide open world of maximal homology alignment (MHA), originally created and written by Albert Erives. Additional help options can be seen by running ./maximal without any options specified.
 
 Version v2.81 is the most recent stable version.
 
