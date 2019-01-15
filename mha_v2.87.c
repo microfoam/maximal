@@ -2989,7 +2989,7 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 							x++;
 							i++;
 						}
-						if (1 || cyc_options[0][57]) {		/* opt_v VERBOSITY */
+						if (cyc_options[0][57]) {		/* opt_v VERBOSITY */
 							printf("\nSub-threshold (%d): "
 								   "Fudge-cyclelizing for k>2 by pushing conflict rows to right (first conflict in col=%d).", threshold, cyc_col+1);
 							printf("\nDistance from first conflict row letter (conflict row=%d) to right-most '/' in preceding rows is %d.", cyc_row+1, x);
