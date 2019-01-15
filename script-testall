@@ -124,8 +124,8 @@
 ./maximal -Rnx corpus/solved-26-tosSt2_tricksy.txt
 ./maximal -Rnx corpus/solved-29-toslp2_tricksy.txt
 ./maximal -Rnx corpus/solved-30-toslp2_tricksy.txt
-./maximal -Rnx corpus/solved-44-tosimp_tricksy.txt
 ./maximal -Rnx corpus/solved-31-t0edge_tricksy.txt
+./maximal -Rnx corpus/solved-44-tosimp_tricksy.txt
 ./maximal -Rnx corpus/solved-05-koshp1_tricksy.txt
 ./maximal -Rnx corpus/solved-06-koslip_tricksy.txt
 ./maximal -Rnx corpus/solved-07-koslip_tricksy.txt
@@ -206,8 +206,8 @@
 ./maximal -Rnxx corpus/solved-26-tosSt2_tricksy.txt
 ./maximal -Rnxx corpus/solved-29-toslp2_tricksy.txt
 ./maximal -Rnxx corpus/solved-30-toslp2_tricksy.txt
-./maximal -Rnxx corpus/solved-44-tosimp_tricksy.txt
 ./maximal -Rnxx corpus/solved-31-t0edge_tricksy.txt
+./maximal -Rnxx corpus/solved-44-tosimp_tricksy.txt
 ./maximal -Rnxx corpus/solved-05-koshp1_tricksy.txt
 ./maximal -Rnxx corpus/solved-06-koslip_tricksy.txt
 ./maximal -Rnxx corpus/solved-07-koslip_tricksy.txt
@@ -245,4 +245,166 @@
 ./maximal -Rnxx corpus/solved-42-fasta1.txt
 ./maximal -Rnxx corpus/solved-42-fasta2.txt
 
+./maximal -Rnxxxa
+./maximal -Rnxxxb
+./maximal -Rnxxxc
+./maximal -Rnxxxd
+./maximal -Rnxxxe
+./maximal -Rnxxxf
+./maximal -Rnxxxg
+./maximal -Rnxxxh
 
+./maximal -Rnxxx corpus/Danan_ex3.txt
+./maximal -Rnxxx corpus/Dbipe_ex3.txt
+./maximal -Rnxxx corpus/Dbiar_ex3.txt
+./maximal -Rnxxx corpus/Derec_ex3.txt
+./maximal -Rnxxx corpus/Dmaur_ex3.txt
+./maximal -Rnxxx corpus/Dmela_ex3.txt
+./maximal -Rnxxx corpus/Dsant_ex3.txt
+./maximal -Rnxxx corpus/Dsech_ex3.txt
+./maximal -Rnxxx corpus/Dsimu_ex3.txt
+./maximal -Rnxxx corpus/Dsuzu_ex3.txt
+./maximal -Rnxxx corpus/Dyaku_ex3.txt
+
+./maximal -Rnxxx corpus/Dbiar_NEE.txt
+./maximal -Rnxxx corpus/Derec_NEE.txt
+./maximal -Rnxxx corpus/Dmaur_NEE.txt
+./maximal -Rnxxx corpus/Dmela_NEE.txt
+./maximal -Rnxxx corpus/Dsant_NEE.txt
+./maximal -Rnxxx corpus/Dsech_NEE.txt
+./maximal -Rnxxx corpus/Dsimu_NEE.txt
+./maximal -Rnxxx corpus/Dsuzu_NEE.txt
+./maximal -Rnxxx corpus/Dyaku_NEE.txt
+./maximal -Rnxxx corpus/Dmela_DWME.txt
+
+./maximal -Rnxxx corpus/solved-01-toslip_tricksy.txt
+./maximal -Rnxxx corpus/solved-02-toslip_tricksy.txt
+./maximal -Rnxxx corpus/solved-03-tosSt1_tricksy.txt
+./maximal -Rnxxx corpus/solved-04-tos-ct_tricksy.txt
+./maximal -Rnxxx corpus/solved-22-tosSt2_tricksy.txt
+./maximal -Rnxxx corpus/solved-23-tosSt2_tricksy.txt
+./maximal -Rnxxx corpus/solved-24-tosSt2_tricksy.txt
+./maximal -Rnxxx corpus/solved-25-tosSt2_tricksy.txt
+./maximal -Rnxxx corpus/solved-26-tosSt2_tricksy.txt
+./maximal -Rnxxx corpus/solved-29-toslp2_tricksy.txt
+./maximal -Rnxxx corpus/solved-30-toslp2_tricksy.txt
+./maximal -Rnxxx corpus/solved-31-t0edge_tricksy.txt
+./maximal -Rnxxx corpus/solved-44-tosimp_tricksy.txt
+./maximal -Rnxxx corpus/solved-05-koshp1_tricksy.txt
+./maximal -Rnxxx corpus/solved-06-koslip_tricksy.txt
+./maximal -Rnxxx corpus/solved-07-koslip_tricksy.txt
+./maximal -Rnxxx corpus/solved-08-koslp2_tricksy.txt
+./maximal -Rnxxx corpus/solved-09-koslp3_tricksy.txt
+./maximal -Rnxxx corpus/solved-18-koshp2_tricksy.txt
+./maximal -Rnxxx corpus/solved-19-koslp4_tricksy.txt
+./maximal -Rnxxx corpus/solved-45-cinky1_tricksy.txt
+./maximal -Rnxxx corpus/solved-46-cinky2_tricksy.txt
+./maximal -Rnxxx corpus/solved-10-cycle1_tricksy.txt
+./maximal -Rnxxx corpus/solved-11-cycle1_tricksy.txt
+./maximal -Rnxxx corpus/solved-12-cycle1_tricksy.txt
+./maximal -Rnxxx corpus/solved-13-cycle2_tricksy.txt
+./maximal -Rnxxx corpus/solved-14-cycle3_tricksy.txt
+./maximal -Rnxxx corpus/solved-15-cycle4_tricksy.txt
+./maximal -Rnxxx corpus/solved-17-cycle5_tricksy.txt
+./maximal -Rnxxx corpus/solved-16-cyc3_a_tricksy.txt
+./maximal -Rnxxx corpus/solved-20-cyc3_b_tricksy.txt
+./maximal -Rnxxx corpus/solved-21-cyc3_c_tricksy.txt
+./maximal -Rnxxx corpus/solved-27-cycleX_tricksy.txt
+./maximal -Rnxxx corpus/solved-32-combo1_tricksy.txt
+./maximal -Rnxxx corpus/solved-28-scrtch_tricksy.txt
+./maximal -Rnxxx corpus/solved-33-imprf1_tricksy.txt
+./maximal -Rnxxx corpus/solved-34-imprf2_tricksy.txt
+./maximal -Rnxxx corpus/solved-35-imprf3_tricksy.txt
+./maximal -Rnxxx corpus/solved-36-imprf4_tricksy.txt
+./maximal -Rnxxx corpus/solved-37-imprfk_tricksy.txt
+./maximal -Rnxxx corpus/solved-38-imprft_tricksy.txt
+./maximal -Rnxxx corpus/solved-39-imprfk_tricksy.txt
+./maximal -Rnxxx corpus/solved-40-imprfk_tricksy.txt
+./maximal -Rnxxx corpus/solved-43-timprf_tricksy.txt
+./maximal -Rnxxx corpus/solved-41-RNAnuc.txt
+./maximal -Rnxxx corpus/solved-41-notRNA.txt
+./maximal -Rnxxx corpus/solved-41-protin.txt
+./maximal -Rnxxx corpus/solved-42-fasta1.txt
+./maximal -Rnxxx corpus/solved-42-fasta2.txt
+
+./maximal -Rnxxxxa
+./maximal -Rnxxxxb
+./maximal -Rnxxxxc
+./maximal -Rnxxxxd
+./maximal -Rnxxxxe
+./maximal -Rnxxxxf
+./maximal -Rnxxxxg
+./maximal -Rnxxxxh
+
+./maximal -Rnxxxx corpus/Danan_ex3.txt
+./maximal -Rnxxxx corpus/Dbipe_ex3.txt
+./maximal -Rnxxxx corpus/Dbiar_ex3.txt
+./maximal -Rnxxxx corpus/Derec_ex3.txt
+./maximal -Rnxxxx corpus/Dmaur_ex3.txt
+./maximal -Rnxxxx corpus/Dmela_ex3.txt
+./maximal -Rnxxxx corpus/Dsant_ex3.txt
+./maximal -Rnxxxx corpus/Dsech_ex3.txt
+./maximal -Rnxxxx corpus/Dsimu_ex3.txt
+./maximal -Rnxxxx corpus/Dsuzu_ex3.txt
+./maximal -Rnxxxx corpus/Dyaku_ex3.txt
+
+./maximal -Rnxxxx corpus/Dbiar_NEE.txt
+./maximal -Rnxxxx corpus/Derec_NEE.txt
+./maximal -Rnxxxx corpus/Dmaur_NEE.txt
+./maximal -Rnxxxx corpus/Dmela_NEE.txt
+./maximal -Rnxxxx corpus/Dsant_NEE.txt
+./maximal -Rnxxxx corpus/Dsech_NEE.txt
+./maximal -Rnxxxx corpus/Dsimu_NEE.txt
+./maximal -Rnxxxx corpus/Dsuzu_NEE.txt
+./maximal -Rnxxxx corpus/Dyaku_NEE.txt
+./maximal -Rnxxxx corpus/Dmela_DWME.txt
+
+./maximal -Rnxxxx corpus/solved-01-toslip_tricksy.txt
+./maximal -Rnxxxx corpus/solved-02-toslip_tricksy.txt
+./maximal -Rnxxxx corpus/solved-03-tosSt1_tricksy.txt
+./maximal -Rnxxxx corpus/solved-04-tos-ct_tricksy.txt
+./maximal -Rnxxxx corpus/solved-22-tosSt2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-23-tosSt2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-24-tosSt2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-25-tosSt2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-26-tosSt2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-29-toslp2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-30-toslp2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-31-t0edge_tricksy.txt
+./maximal -Rnxxxx corpus/solved-44-tosimp_tricksy.txt
+./maximal -Rnxxxx corpus/solved-05-koshp1_tricksy.txt
+./maximal -Rnxxxx corpus/solved-06-koslip_tricksy.txt
+./maximal -Rnxxxx corpus/solved-07-koslip_tricksy.txt
+./maximal -Rnxxxx corpus/solved-08-koslp2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-09-koslp3_tricksy.txt
+./maximal -Rnxxxx corpus/solved-18-koshp2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-19-koslp4_tricksy.txt
+./maximal -Rnxxxx corpus/solved-45-cinky1_tricksy.txt
+./maximal -Rnxxxx corpus/solved-46-cinky2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-10-cycle1_tricksy.txt
+./maximal -Rnxxxx corpus/solved-11-cycle1_tricksy.txt
+./maximal -Rnxxxx corpus/solved-12-cycle1_tricksy.txt
+./maximal -Rnxxxx corpus/solved-13-cycle2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-14-cycle3_tricksy.txt
+./maximal -Rnxxxx corpus/solved-15-cycle4_tricksy.txt
+./maximal -Rnxxxx corpus/solved-17-cycle5_tricksy.txt
+./maximal -Rnxxxx corpus/solved-16-cyc3_a_tricksy.txt
+./maximal -Rnxxxx corpus/solved-20-cyc3_b_tricksy.txt
+./maximal -Rnxxxx corpus/solved-21-cyc3_c_tricksy.txt
+./maximal -Rnxxxx corpus/solved-27-cycleX_tricksy.txt
+./maximal -Rnxxxx corpus/solved-32-combo1_tricksy.txt
+./maximal -Rnxxxx corpus/solved-28-scrtch_tricksy.txt
+./maximal -Rnxxxx corpus/solved-33-imprf1_tricksy.txt
+./maximal -Rnxxxx corpus/solved-34-imprf2_tricksy.txt
+./maximal -Rnxxxx corpus/solved-35-imprf3_tricksy.txt
+./maximal -Rnxxxx corpus/solved-36-imprf4_tricksy.txt
+./maximal -Rnxxxx corpus/solved-37-imprfk_tricksy.txt
+./maximal -Rnxxxx corpus/solved-38-imprft_tricksy.txt
+./maximal -Rnxxxx corpus/solved-39-imprfk_tricksy.txt
+./maximal -Rnxxxx corpus/solved-40-imprfk_tricksy.txt
+./maximal -Rnxxxx corpus/solved-43-timprf_tricksy.txt
+./maximal -Rnxxxx corpus/solved-41-RNAnuc.txt
+./maximal -Rnxxxx corpus/solved-41-notRNA.txt
+./maximal -Rnxxxx corpus/solved-41-protin.txt
+./maximal -Rnxxxx corpus/solved-42-fasta1.txt
+./maximal -Rnxxxx corpus/solved-42-fasta2.txt
