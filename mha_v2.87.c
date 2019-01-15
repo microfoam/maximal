@@ -3907,6 +3907,7 @@ void usage(char usage_version[], unsigned int fy_size)
 							"\t\t -R       RECOVER AND CHECK 1-D SEQUENCE FROM 2-D SELF-MHA.\n"
 							"\t\t -X       RUN ON SCRAMBLED SEQUENCE OF SAME LENGTH.\n"
 							"\t\t -XX      RUN ON FISHER-YATES SHUFFLED SEQUENCE OF LENGTH %d.\n\n", fy_size);
+	printf("Recommended usage: ./maximal -KnxxO sequence-file.txt\n\n");
 	printf("This is maximal version %s, a program for maximal homology alignment (MHA), created by Dr. A. J. Erives (2018, 2019)\n\n", usage_version);
 }
 
