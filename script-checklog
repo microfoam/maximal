@@ -1,0 +1,14 @@
+echo 'wc output.log'
+wc output.log 
+echo
+echo '# tests at 100%'
+grep -cE '\t100' output.log 
+echo
+echo 'REC:100%'
+grep -cE 'C.100' output.log 
+echo
+echo '60000'
+grep -cE '6000' output.log 
+echo
+echo 'k=3'
+grep -cE 'k=3' output.log 
