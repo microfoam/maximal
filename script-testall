@@ -7,7 +7,6 @@
 ./maximal -Rnf
 ./maximal -Rng
 ./maximal -Rnh
-
 ./maximal -Rn corpus/Danan_ex3.txt
 ./maximal -Rn corpus/Dbipe_ex3.txt
 ./maximal -Rn corpus/Dbiar_ex3.txt
@@ -19,7 +18,6 @@
 ./maximal -Rn corpus/Dsimu_ex3.txt
 ./maximal -Rn corpus/Dsuzu_ex3.txt
 ./maximal -Rn corpus/Dyaku_ex3.txt
-
 ./maximal -Rn corpus/Dbiar_NEE.txt
 ./maximal -Rn corpus/Derec_NEE.txt
 ./maximal -Rn corpus/Dmaur_NEE.txt
@@ -30,7 +28,6 @@
 ./maximal -Rn corpus/Dsuzu_NEE.txt
 ./maximal -Rn corpus/Dyaku_NEE.txt
 ./maximal -Rn corpus/Dmela_DWME.txt
-
 ./maximal -Rn corpus/solved-01-toslip_tricksy.txt
 ./maximal -Rn corpus/solved-02-toslip_tricksy.txt
 ./maximal -Rn corpus/solved-03-tosSt1_tricksy.txt
@@ -60,6 +57,7 @@
 ./maximal -Rn corpus/solved-14-cycle3_tricksy.txt
 ./maximal -Rn corpus/solved-15-cycle4_tricksy.txt
 ./maximal -Rn corpus/solved-17-cycle5_tricksy.txt
+./maximal -Rn corpus/solved-47-cycle6_tricksy.txt
 ./maximal -Rn corpus/solved-16-cyc3_a_tricksy.txt
 ./maximal -Rn corpus/solved-20-cyc3_b_tricksy.txt
 ./maximal -Rn corpus/solved-21-cyc3_c_tricksy.txt
@@ -75,6 +73,7 @@
 ./maximal -Rn corpus/solved-39-imprfk_tricksy.txt
 ./maximal -Rn corpus/solved-40-imprfk_tricksy.txt
 ./maximal -Rn corpus/solved-43-timprf_tricksy.txt
+./maximal -Rn corpus/solved-48-tbdslp_tricksy.txt
 ./maximal -Rn corpus/solved-41-RNAnuc.txt
 ./maximal -Rn corpus/solved-41-notRNA.txt
 ./maximal -Rn corpus/solved-41-protin.txt
