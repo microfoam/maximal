@@ -1184,7 +1184,7 @@ long int options[4][62] = {
 					printf("\nDEV: cyc_runs=%d, go_flag=%d", cyc_runs, go_flag);
 				if (go_flag == lastgo_flag)
 					break;
-				if (go_flag <= cycle_flag)
+				if (go_flag < cycle_flag)
 					break;
 				lastgo_flag = go_flag;
 			}
