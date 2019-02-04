@@ -106,14 +106,11 @@ int main(int argc, char *argv[])
 	FILE *fp_tricksy;						/* DEV. FILE FOR IMPERFECT 2-D ALIGNED STRINGS tricksy-output.mha */
 
 	/* Variables for time calls */
-	int delta_t;
 	time_t lcl_time = time(NULL);
-	time_t t0, t8;
-	time(&t0);		/* STORE t=0 TIME */ 
 
 	long int cit_new2D_width = 0;
 	long int a2D_n = 0;						/* NUMBER INDEX OF n FOR a2D_n */
-	int delta_to_bad1Dn = 0;					/* TO KEEP TRACK OF TIME SINCE LAST SLIP */
+	int delta_to_bad1Dn = 0;				/* TO KEEP TRACK OF TIME SINCE LAST SLIP */
 	int bad_1Dn = 0;						/* POSITION OF BAD SLIP IN a2D_n COORDINATE */
 	short unsigned int frst_badslip = 0;	/* BIT FLAG FOR FIRST BAD SLIP DECLARATION */
 	short unsigned int msa = 0;				/* BIT FLAG FOR MSA CO-INUPUT */
@@ -348,10 +345,7 @@ long int options[4][62] = {
 					options[0][53] = 1;		/* opt_r ON   */
 					break;
 			case 's':						/* OPTION TO SILENCE WRITE TO NORMAL OUTPUT FILE */
-					options[0][54] = 1;		/* opt_t ON   */
-					break;
-			case 't':						/* OPTION TO SHOW COMPUTATION TIME */
-					options[0][55] = 1;		/* opt_t ON   */
+					options[0][54] = 1;		/* opt_s ON   */
 					break;
 			case 'u':						/* OPTION TO PRINT UNWRAPPED WHERE opt_w EQUALS lenseq */
 					options[0][56] = 1;		/* opt_u ON 	*/
@@ -365,8 +359,8 @@ long int options[4][62] = {
 					options[0][15]  =options[0][21] = 1;
 					++options[0][18];		/* opt_I */
 					++options[0][27];		/* opt_R */
-					options[0][47] =options[0][50] =options[0][51] =options[0][53] =options[0][55] = 1;
-					/*      opt_l           opt_o           opt_p           opt_r           opt_t */
+					options[0][47] =options[0][50] =options[0][51] =options[0][53] = 1;
+					/*      opt_l           opt_o           opt_p           opt_r    */
 					break;
 			case 'x':						/* OPTION TO RUN ExPERIMENTAL MODULE, VERSION-SPECIFIC BETA-CODE */
 					options[0][59] = 1;		/* opt_x ON 		*/
@@ -1508,18 +1502,6 @@ long int options[4][62] = {
 	else
 		printf("\n Width cinch ratio (post cinch-k): %.3f\n\n", ratio1=ratio2=(float)options[1][4]/lenseq);
 
-
-	time(&t8);
-	delta_t = difftime(t8,t0);
-
-	if (options[0][54] != 1) {				/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
-		fp = fopen("output.log", "a");		/* FOPEN WRITE BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
-		fprintf(fp, "maximal v%s\t%.24s\t%3d%%\t%.3f\tCYC:%d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%3d%%\n", 
-				version, ctime(&lcl_time), align2D[MAXLINE-1][MAXLINE-1], ratio1, cyc_runs, options[0][5], 
-				(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[9]);
-		fclose(fp);
-	}
-
 	if (options[0][24]) {								/* OPTION TO OUTPUT 2-D ALIGNMENT & CONSENSUS STRING TO FILE */
 		align2D[MAXLINE-1][options[1][32]] = '\0';		/* MAKE SURE CONSENSUS ROW IS TERMINATED AT CORRECT POSITION */
 		fpc = fopen("consensus.mha", "a");				/* FOPEN WRITE BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING W/ OPEN FILES */
@@ -1534,25 +1516,29 @@ long int options[4][62] = {
 		fclose(fpc);
 	}
 
-	/* IF opt_s SILENCE NOT ON, AND IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
-	if (options[0][54] != 1 && (align2D[MAXLINE-1][MAXLINE-1] != 100 || cyc_runs > CYCMAX)) {
-		fp_tricksy = fopen("tricksy-output.mha", "a");
-		fprintf(fp_tricksy, "maximal v%s\t%.24s\t%3d%%\t%.3f\tCYC:%d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%3d%%\n", 
+	if (options[0][54] != 1) {				/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
+		fp = fopen("output.log", "a");		/* FOPEN WRITE BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
+		fprintf(fp, "maximal v%s\t%.24s\t%3d%%\t%.3f\tCYC:%d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%3d%%\n", 
 				version, ctime(&lcl_time), align2D[MAXLINE-1][MAXLINE-1], ratio1, cyc_runs, options[0][5], 
 				(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[9]);
-		for (j = 0; j < blocks; j++) {
-			for(n = j * options[1][58]; (n < (j+1) * options[1][58]) && (Seq[n] != '\0'); n++) {
-				if (Seq[n] != 10 && Seq[n] != 13 && Seq[n] != EOF)
-					fprintf(fp_tricksy, "%c", Seq[n]);
+		fclose(fp);
+
+		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
+		if (align2D[MAXLINE-1][MAXLINE-1] != 100 || cyc_runs > CYCMAX) {
+			fp_tricksy = fopen("tricksy-output.mha", "a");
+			fprintf(fp_tricksy, "maximal v%s\t%.24s\t%3d%%\t%.3f\tCYC:%d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%3d%%\n", 
+					version, ctime(&lcl_time), align2D[MAXLINE-1][MAXLINE-1], ratio1, cyc_runs, options[0][5], 
+					(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[9]);
+			for (j = 0; j < blocks; j++) {
+				for(n = j * options[1][58]; (n < (j+1) * options[1][58]) && (Seq[n] != '\0'); n++) {
+					if (Seq[n] != 10 && Seq[n] != 13 && Seq[n] != EOF)
+						fprintf(fp_tricksy, "%c", Seq[n]);
+				}
+				fprintf(fp_tricksy, "\n");
 			}
 			fprintf(fp_tricksy, "\n");
+			fclose(fp_tricksy);
 		}
-		fprintf(fp_tricksy, "\n");
-		fclose(fp_tricksy);
-	}
-
-	if (options[0][55]) { 	/* opt_t SHOW COMPUTATION TIME */
-		printf(" Total execution time: ~ %d seconds\n\n", delta_t);
 	}
 
 	exit(0);
@@ -3960,7 +3946,7 @@ void usage(char usage_version[], unsigned int fy_size)
 							"\t\t -t       SHOW COMPUTATION TIME.\n"
 							"\t\t -s       SILENCE WRITING TO NORMAL OUTPUT FILE.\n"
 							"\t\t -u(u...) DO NOT WRAP OUTPUT (WRAP IN ONE BLOCK); EACH '-u' WRAPS OUTPUT INTO ANOTHER BLOCK.\n"
-							"\t\t -v(v)    VERBOSE MODE: \"maximal -FLIRloprt\" + VERBOSITY. TOGGLE OFF I & R WITH -vI & -vR.\n"
+							"\t\t -v(v)    VERBOSE MODE: \"maximal -FLIRlopr\" + VERBOSITY. TOGGLE OFF I & R WITH -vI & -vR.\n"
 							"\t\t -x       RUN EXPERIMENTAL MODULE; VERSION-SPECIFIC BETA-CODE; CURRENTLY UNUSED.\n"
 							"\t\t -z       ENSURE MISMATCH SCORE IS ZERO; ALTERS PATHBOX DISPLAY.\n"
 							"\t\t -B       USE EMPTY SPACE FOR BLANK CHARACTER INSTEAD OF PERIOD.\n"
