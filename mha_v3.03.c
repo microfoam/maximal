@@ -1186,7 +1186,7 @@ long int options[4][62] = {
 				cyc_runs++;
 				if (options[1][57] > 1)
 					printf("\nDEV: cyc_runs=%d, go_flag=%d", cyc_runs, go_flag);
-				if (go_flag < cycle_flag)
+				if (go_flag <= cycle_flag)
 					break;
 			}
 			if (go_flag == 0 || go_flag > cycle_flag) {
@@ -1472,7 +1472,7 @@ long int options[4][62] = {
 					printf("%s post cyclelize [pass #5, %d runs; last fudge-cyclelized TR was of type k>2]\n", letr_unit, cyc_runs);
 			}
 			else 							/* IN WHICH CASE cyc_runs >> CYCMAX */
-				printf("%s post cyclelize [pass #5, but reverted to pass #3 due to gnarly micro-foam]\n", letr_unit);
+				printf("%s post cyclelize [pass #5, but reverted to earlier pass due to gnarly micro-foam]\n", letr_unit);
 			break;
 		case 6:	
 			if (options[0][6] == 0)
