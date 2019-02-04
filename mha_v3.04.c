@@ -1461,8 +1461,10 @@ long int options[4][62] = {
 			else if (cyc_runs == 1) {	
 				if (k == 2)
 					printf("%s post cyclelize [pass #5, %d run; cyclelized TR of type k=2]\n", letr_unit, cyc_runs);
-				else if (k > 2)
+				else if (k == 3)
 					printf("%s post cyclelize [pass #5, %d run; fudge-cyclelized TR of type k>2]\n", letr_unit, cyc_runs);
+				else if (k == 4)
+					printf("%s post cyclelize [pass #5, %d run; tip-cyclelized TR]\n", letr_unit, cyc_runs);
 			}
 			else if (cyc_runs <= CYCMAX) {	/* IN WHICH CASE k WILL BE NON-ZERO */
 				if (k == 2)
@@ -2848,6 +2850,7 @@ int top_isclear(char check_array[][MAXLINE], unsigned int at_n, unsigned int bot
 					} /* END OF ELSE (IF NOT edge0) */
 
 					/* TIP-CYCLELIZE AS SOON AS DETECTED */
+					tipcyc_flag = 0;
 					for (i = m; i < cyc_row; i++) {
 						if (cyc_align2D[i][cyc_col] != '/')
 							break;
@@ -2860,6 +2863,7 @@ int top_isclear(char check_array[][MAXLINE], unsigned int at_n, unsigned int bot
 
 						if (cyc_align2D[m][j] == cyc_align2D[m-1][cyc_col]) {
 							tipcyc_flag = 1;		
+							kmer = 4;		/* NOT ACTUAL kmer, JUST USING VAR TO CODE CYC TYPE */
 							for (a = 0; a < m-1; a++) {
 								for (b=0; (letr=cyc_align2D[a][b]) != '\0'; b++) {
 									cyc_ar[a][b] = letr;
@@ -2930,8 +2934,8 @@ int top_isclear(char check_array[][MAXLINE], unsigned int at_n, unsigned int bot
 							}
 						} /* END OF FOR k-MER LOOP */
 
-                    	if (kmer != 2)      /* HACK UNTIL cyclelize is generalized for arbitrary k */ 
-							kmer = 3;       /* IF k=3, THEN BELOW WILL FUDGE CYCLELIZE BY PUSHING RIGHT. HACK WORKS FOR ALL k */ 
+                    	if (kmer != 2)      	/* HACK UNTIL cyclelize is generalized for arbitrary k */ 
+							kmer = 3;       		/* IF k=3, THEN BELOW WILL FUDGE CYCLELIZE BY PUSHING RIGHT. HACK WORKS FOR ALL k */ 
 					}
 
 					cyc_options[0][5] = kmer;	/* USING THE 0 ROW ABOVE PASS WIDTH ROW TO STORE cyclelize kmer VAR. */
@@ -2982,7 +2986,6 @@ int top_isclear(char check_array[][MAXLINE], unsigned int at_n, unsigned int bot
 								y = 2;
 							}
 							m++;
-printf("\nDEV-103: m=%d, x=%d", m+1,x);
 		
 							while (m < cyc_row) {
 								for (n = 0; (letr=cyc_ar[m][n]) != '\0'; n++) 
