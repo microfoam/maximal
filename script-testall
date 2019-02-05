@@ -62,6 +62,10 @@
 ./maximal -Rn corpus/solved-20-cyc3_b_tricksy.txt
 ./maximal -Rn corpus/solved-21-cyc3_c_tricksy.txt
 ./maximal -Rn corpus/solved-27-cycleX_tricksy.txt
+./maximal -Rn corpus/solved-49-cyctip_tricksy.txt
+./maximal -Rn corpus/solved-50-cyctip_tricksy.txt
+./maximal -Rn corpus/solved-51-cyctip_tricksy.txt
+./maximal -Rn corpus/solved-52-cyctip_tricksy.txt
 ./maximal -Rn corpus/solved-32-combo1_tricksy.txt
 ./maximal -Rn corpus/solved-28-scrtch_tricksy.txt
 ./maximal -Rn corpus/solved-33-imprf1_tricksy.txt
