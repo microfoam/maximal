@@ -3,8 +3,8 @@ clear
 echo ' '
 echo ' Yeah! Giddy-up!'
 
-gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.04.c
-echo '  ==> gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.04.c'
+gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.05.c
+echo '  ==> gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.05.c'
 
 echo ' All done!'
 echo ' '
