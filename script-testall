@@ -77,6 +77,9 @@
 ./maximal -Rn corpus/solved-39-imprfk_tricksy.txt
 ./maximal -Rn corpus/solved-40-imprfk_tricksy.txt
 ./maximal -Rn corpus/solved-43-timprf_tricksy.txt
+./maximal -Rn corpus/solved-53-impkhp_tricksy.txt
+./maximal -Rn corpus/solved-54-impkhp_tricksy.txt
+./maximal -Rn corpus/solved-55-impkhp_tricksy.txt
 ./maximal -Rn corpus/solved-48-tbdslp_tricksy.txt
 ./maximal -Rn corpus/solved-41-RNAnuc.txt
 ./maximal -Rn corpus/solved-41-notRNA.txt
