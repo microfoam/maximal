@@ -82,6 +82,7 @@
 ./maximal -Rn corpus/solved-55-impkhp_tricksy.txt
 ./maximal -Rn corpus/solved-48-tbdslp_tricksy.txt
 ./maximal -Rn corpus/solved-56-tbslp2_tricksy.txt
+./maximal -Rn corpus/solved-57-tbslp2_tricksy.txt
 ./maximal -Rn corpus/solved-41-RNAnuc.txt
 ./maximal -Rn corpus/solved-41-notRNA.txt
 ./maximal -Rn corpus/solved-41-protin.txt
