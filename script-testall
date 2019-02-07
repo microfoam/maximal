@@ -83,6 +83,7 @@
 ./maximal -Rn corpus/solved-48-tbdslp_tricksy.txt
 ./maximal -Rn corpus/solved-56-tbslp2_tricksy.txt
 ./maximal -Rn corpus/solved-57-tbslp2_tricksy.txt
+./maximal -Rn corpus/solved-60-tbslp2_tricksy.txt 
 ./maximal -Rn corpus/solved-58-tcycle_tricksy.txt
 ./maximal -Rn corpus/solved-59-tcycle_tricksy.txt
 ./maximal -Rn corpus/solved-41-RNAnuc.txt
