@@ -1,9 +1,9 @@
-/************************************************************************************************************/
-/***** This program called "maximal" is a maximal homology alignment (MHA) program.						*****/
-/***** Designed and written by Dr. Albert J. Erives. 2017-2019. AGPL-3.0.								*****/
-/***** Code repository located at https://github.com/microfoam/maximal. Licensed under AGPL-3.0.		*****/
-/***** This program renders a 1-D DNA sequence into a 2-D "self-alignment" that rescues micro-paralogy.	*****/
-/************************************************************************************************************/
+/*******************************************************************************************************/
+/***** The program "maximal" is a maximal homology alignment (MHA) program.                        *****/
+/***** Designed and written by Dr. Albert J. Erives. 2017-2019. AGPL-3.0.                          *****/
+/***** Code repository located at https://github.com/microfoam/maximal. Licensed under AGPL-3.0.   *****/
+/***** This program renders a 1-D DNA sequence into a 2-D self-alignment to rescue micro-paralogy. *****/
+/*******************************************************************************************************/
 
 #include <ctype.h>  	/* isalpha() */
 #include <math.h>
