@@ -1,7 +1,7 @@
 # maximal
 maximal is a program to begin to explore the wide open world of maximal homology alignment (MHA), originally created and written by Albert Erives. Additional help options can be seen by running ./maximal without any options specified.
 
-Version v3.19 is the most recent, robust, and easiest version.
+Version v3.20 is the most recent, robust, and easiest version.
 
 Below is a guide to key files in the maximal software project and their naming schemes. The versioning aspects of the naming scheme will likely be updated given the recent migration to a github repository. How this is going to be done is under deliberation.
 _______________________________________________
@@ -44,4 +44,3 @@ FILE: tricksy-output.mha
 
 If this file is present it has record of newly identified "tricksy" strings with problematic cinching as identified by the associated version of maximal.
 _______________________________________________
-This readme file was last updated on Feb 2nd, 2019 (Ground Hog Day) by AJE.
