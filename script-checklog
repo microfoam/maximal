@@ -10,8 +10,8 @@ echo
 echo 'REC:1000'
 grep -cE 'C.1000' output.log 
 echo
-echo 'CYC:50000+'
-grep -cE 'CYC.500' output.log 
+echo 'CYC:60k+'
+grep -cE 'CYC.600' output.log 
 echo
 echo 'k=3'
 grep -cE 'k=3' output.log 
