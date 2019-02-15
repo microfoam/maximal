@@ -1,4 +1,5 @@
 #!/bin/bash
+./giddyup
 ./maximal -Rna
 ./maximal -Rnb
 ./maximal -Rnc
@@ -94,4 +95,5 @@
 ./maximal -Rn corpus/solved-61-tghost_tricksy.txt 
 ./maximal -Rn corpus/solved-62-tuckup_tricksy.txt
 ./maximal -Rn corpus/solved-63-cnudge_tricksy.txt
- 
+./script-checkmha
+
