@@ -2,74 +2,37 @@
 for i in {1..2500}
 do
 	./maximal -RnXX corpus/Danan_ex3.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dbipe_ex3.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dbiar_ex3.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Derec_ex3.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dmela_ex3.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dsimu_ex3.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dsuzu_ex3.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dyaku_ex3.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dbiar_NEE.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Derec_NEE.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dmela_NEE.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dsimu_NEE.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dsuzu_NEE.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dyaku_NEE.txt
-done
-
-for i in {1..2500}
-do
 	./maximal -RnXX corpus/Dmela_DWME.txt
 done
+
+./script-checkmha
+
+grep -c Danan_ex3 output.log
+grep -c Dbipe_ex3 output.log
+grep -c Dbiar_ex3 output.log
+grep -c Derec_ex3 output.log
+grep -c Dmela_ex3 output.log
+grep -c Dsimu_ex3 output.log
+grep -c Dsuzu_ex3 output.log
+grep -c Dyaku_ex3 output.log
+grep -c Dbiar_NEE output.log
+grep -c Derec_NEE output.log
+grep -c Dmela_NEE output.log
+grep -c Dsimu_NEE output.log
+grep -c Dsuzu_NEE output.log
+grep -c Dyaku_NEE output.log
+grep -c Dmela_DWME output.log
+
