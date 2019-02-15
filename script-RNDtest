@@ -1,0 +1,75 @@
+#!/bin/bash
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Danan_ex3.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dbipe_ex3.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dbiar_ex3.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Derec_ex3.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dmela_ex3.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dsimu_ex3.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dsuzu_ex3.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dyaku_ex3.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dbiar_NEE.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Derec_NEE.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dmela_NEE.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dsimu_NEE.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dsuzu_NEE.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dyaku_NEE.txt
+done
+
+for i in {1..2500}
+do
+	./maximal -RnXX corpus/Dmela_DWME.txt
+done
