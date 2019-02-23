@@ -1691,7 +1691,7 @@ short unsigned int cinchled=0;	/* BIT FLAG TO SAY cinch_l DID SOMETHING */
 /*** FUNCTION 02 ************************************************************************************/
 void cinch_k(char align2D_pass4[][MAXLINE], long int koptions[][62], int DTHR_lookie[WIDTH/2]) 
 {
-int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0; 
+int cik_row=0, i=0, j=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0; 
 int first_mwrap_start=0, last_mwrap=0;
 unsigned short int first_mwrap=0, keep_checking=1;
 unsigned short int nuctype = koptions[1][13];		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
@@ -1699,7 +1699,7 @@ unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEO
 unsigned short int homopolyflag=0, imperfect_TR=0, piso_nuctransit=0;
 int match 		= DTHR_lookie[0];
 int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
-char letr, letr2;
+char letr, letr2, letr3;
 char blnk        = (char) koptions[1][11];		/* opt_B blank character */
 int  cik_mwrap   =        koptions[1][22];		/* opt_M long_homopolymer_run */
 char kopt_Q_left = (char) koptions[1][26];		/* LHS character delimiter for homopolymer Run */
@@ -1953,8 +1953,18 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 					check_imperf = 0;			/* RESET check_imperf HERE */
 				} /* END OF IF check_imperf */
 
+				/* BREAK CHECKING IF k < 3 AND THERE ARE TRANSITIONS IN CONSENSUS ROW */
+				if (nuctransit && k < 3) {
+					for (i=0; i < 2*k; i++) {
+						if ((letr=align2D_pass4[MAXLINE-1][n-x+i])=='R' || letr=='Y') {
+							imperfect_TR = keep_checking = 0;
+							break;
+						}
+					}
+				}
+
 				/* BREAK CHECKING IF IT WILL PULL IN ADJACENT MISMATCHES */
-				if (k > 1 && (imperfect_TR || keep_checking) && n > scrimmage_line) { 
+				if (nuctransit && (imperfect_TR || keep_checking) && n > scrimmage_line) { 
 					for (l = 0; l < k; l++) {
 						letr2= align2D_pass4[m        ][n  +2*k+l];
 						letr = align2D_pass4[MAXLINE-1][n-x+2*k+l];
@@ -1962,8 +1972,6 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 							if ((i=col_isclear(align2D_pass4,n+k+l,m,-1)) > -1 && isalpha(align2D_pass4[m][n+2*k]) && 
 								align2D_pass4[i][n+k+l] != letr2 && letr != 'R' && letr != 'Y') {
 								keep_checking = imperfect_TR = 0;
-								if (koptions[0][57]) 
-									printf("\n DEV: Collapsing cinch possibility for k=%d at row=%d, column=%d",k,m+1,n+l);
 								break;
 							}
 							if (letr == 'R' && (letr2 == 'C' || letr2 == 'T')) {
@@ -1978,28 +1986,40 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 					}
 				}
 
-				if (0 && k > 0 && keep_checking && n > scrimmage_line) { 
-					if (col_isclear(align2D_pass4,n+k,m,-1) > -1) {
+				if (keep_checking && n > scrimmage_line) { 
+					if ((j=col_isclear(cik_align2D,n-x+k,m,-1)) > -1 
+						&& col_isclear(align2D_pass4,n+k,m,1)< 0) {
 
 						/* CHECK IF WILL PULL IN ADJACENT MISMATCHES AFTER RUN OF REPEATS */
 					    r = 1; 
 						i = k;  /* VAR i SET TO k ONLY TO ENTER WHILE LOOP */
 						while (i==k) {
 							for (i = 0; i < k; i++) {
-						    	if (align2D_pass4[m][n+i] != align2D_pass4[m][n+(r+1)*k+i])
+						    	if (align2D_pass4[m][n+i] != (letr2=align2D_pass4[m][n+(r+1)*k+i]) && isalpha(letr2))
 									break;
 					        }    
 					        if (i == k)
 								r++;        /* INCREMENT NUMBER OF REPEATS */
 					    }    
 
-						if (align2D_pass4[MAXLINE-1][n-x+k] != align2D_pass4[m][n+(r+1)*k]) {
-					        keep_checking = 0; 
-					    }    
+						if (nuctransit) {
+							if ((letr=cik_align2D[j][n-x+k+i]) != (letr2=align2D_pass4[m][n+(r+1)*k+i]) &&
+								 letr!='R' && letr!='Y' && 
+								 isalpha(letr) && isalpha(letr2) && (letr3=align2D_pass4[MAXLINE-1][n-x+(r+1)*k+i])!='R' && letr3!='Y') {
+						        keep_checking = 0; 
+						    }    
+						}
+						else {
+							if ((letr=cik_align2D[j][n-x+k+i]) != (letr2=align2D_pass4[m][n+(r+1)*k+i]) &&
+								 isalpha(letr) && isalpha(letr2)) {
+						        keep_checking = 0; 
+								printf("\n DEV: m=%d, n=%d, x=%d, r=%d, letr=%c, letr2=%c, i=%d", m+1, n+1, x, r, letr, letr2, i);
+						    }    
+						}
 			    	}
 				}
 
-				if (k > 1 && imperfect_TR && n > scrimmage_line && 
+				if (imperfect_TR && n > scrimmage_line && 
 					isupper(align2D_pass4[m][n]) && align2D_pass4[m+1][n] == blnk) { 
 					for (l = 0; l < k; l++) {
 						/* CHECK MISMATCHES FROM PUSHING BOTTOM ROW TO LEFT OF REPEATS AFTER SLIP */
@@ -2322,7 +2342,7 @@ unsigned int cinch_d(char align2D_pass7[][MAXLINE], char *dptr_Seq_name, long in
 int cid_mrow=0, cid_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, w=0, x=0;
 int tot_repeats=0, uniq_TRs=0;
 int cid_new2D_width = doptions[1][32]; 
-unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1, n_flag=1;		/* CHECK MONO IN ORDER TO KNOW TO SKIP IT */
+unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;		/* CHECK MONO IN ORDER TO KNOW TO SKIP IT */
 unsigned short int nuctransit=0;						/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int imperfect_TR=0;
 int num_transits=0;
@@ -2346,21 +2366,11 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
 	for (k = doptions[1][32]/2; k > 0; k--) {
-		for (n=0; isalpha(align2D_pass7[MAXLINE-1][n+2*k-1]); n++) {
+/*		for (n=0; isalpha(align2D_pass7[MAXLINE-1][n+2*k-1]); n++) {	*/
+		for (n=0; n < cid_new2D_width-2*k; n++) {	
 
 			mono_flag = 1;			/* MONOMER RUN FLAG IS SET TO 0, WHEN NO LONGER POSSIBLE (ANY n != n+1) */
 	
-			/* FAST FORWARD THROUGH RUNS OF AMBIGUOUS DNA/RNA ('n') */
-			if (nuctype == 1 || nuctype == 2) {
-				while (n_flag == 1) {
-					if (align2D_pass7[MAXLINE-1][n] == 'n')
-						n++;
-					else
-						n_flag = 0;
-				}
-				n_flag = 1;				/* RESET TO POTENTIAL 'n' CHAR */
-			}
-
 			if (TR_check == 0) 		/* RE-SET COUNTER FOR NUM */
 				num = 0;
 
@@ -2387,8 +2397,9 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 				else if (   (letr=align2D_pass7[MAXLINE-1][n+l]) != (ltr2=align2D_pass7[MAXLINE-1][n+k+l])) 
 					break; 		/* BREAK OUT OF FOR l LOOP */
 
-				if (letr == 'n' || ltr2 == 'n')
+				if (letr == 'n' || ltr2 == 'n') {
 					break;
+				}
 
 				if (l+1<k && letr!=align2D_pass7[MAXLINE-1][n+l+1]) /* mono_flag IS FOR FAILING EARLY */
 					mono_flag = 0;		/* CAN NO LONGER BE A HOMOPOLYMER RUN OF FOR THIS k-MER */
@@ -2452,10 +2463,12 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 						}
 						if (doptions[1][57])
 							printf("\nWorking on next consensus TR: %dx %d-mer at consensus position %d; 2nd unit begins on row %d.", num, k, n+1, m+1);
+
 						if (imperfect_TR == 1) {
 							for (l=0; l < k; l++) {
-								if ((letr=align2D_pass7[MAXLINE-1][n+l]) != align2D_pass7[MAXLINE-1][n+k+l]) {
-									if      (letr == 'A' || letr == 'G') 
+								letr=align2D_pass7[MAXLINE-1][n+l];
+								if (letr != align2D_pass7[MAXLINE-1][n+k+l]) {
+									if (letr == 'A' || letr == 'G') 
 										align2D_pass7[MAXLINE-1][n+l] = 'R';
 									else if (letr == 'C' || letr == 'T') 
 										align2D_pass7[MAXLINE-1][n+l] = 'Y';
@@ -2472,8 +2485,9 @@ short unsigned int print_2Dseq(char align2D_print[][MAXLINE], int print_lenseq2D
 
 						/* DEAL WITH LOOSE SLIP CONNECTIONS PRODUCED BY FUDGE-CYCLELIZING */
 						for (j = 0; j < n+k; j++) {
-							if (cid_align2D[m][j] != blnk)
+							if (cid_align2D[m][j] != blnk) {
 								break;
+							}
 						}
 						if (j == n+k) {
 							if (cid_align2D[m-1][n] == '/')
@@ -2863,6 +2877,7 @@ int consensus_ar[26][MAXLINE] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 											/* ROWS m>1 FOR VARIANTS STORAGE */
 char mha_base62(int num);
 void warnhead(char l);
+int col_isclear(char check_array[][MAXLINE], unsigned int at_n, int row, short int updown); 
 
 	n_end = n_start + n_width;
 
@@ -2938,7 +2953,10 @@ void warnhead(char l);
 	while (consensus_ar[0][m]==1) {
 		m++;
 	}
-	if (consensus_ar[0][m]==2) {
+	if (consensus_ar[0][m]==0 || consensus_ar[0][m]==3) {
+		return(0);
+	}
+	else if (consensus_ar[0][m]==2) {
 		while (consensus_ar[0][m+n]==2) {
 			n++;
 		}
@@ -2955,6 +2973,8 @@ void warnhead(char l);
 			else
 				return(0);
 		}
+		else 
+			return(0);	
 	}
 
 	/* NUDGE IT! */
@@ -2971,7 +2991,7 @@ void warnhead(char l);
 		con_align2D[MAXLINE-1][n] = consensus_ar[1][n];
 	}
 	con_options[1][32]++;
-	return(0);
+	return(1);				/* RETURN SUCCESS */
 }
 
 
@@ -2983,7 +3003,7 @@ int cyc_len   = cyc_options[1][1];
 int cyc_width = cyc_options[1][32];					/* THIS IS opt_W SLOT TO STORE CURRENT 2-D WIDTH */
 short unsigned int edge0=0, mono=0, mslip=0;
 unsigned short int nuctype = cyc_options[1][13];	/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
-unsigned short int nuctransit=0;					/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
+unsigned short int nuctransit=0, dud_nudge=0;		/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int tipcyc_flag=0;					/* BIT FLAG FOR TIP CYCLING OPPORTUNITY */
 char blnk = cyc_options[1][11];
 char letr, conletr, topletr;
@@ -3252,15 +3272,20 @@ int col_isclear(char check_array[][MAXLINE], unsigned int at_n, int row, short i
 
 					/* NUDGE-CYCLELIZE: */
 					else {	
-						if (cyc_options[0][57])
-							printf("\n DEV: Nudging instead of cycling at n=%d.", n+1); 
 						/* NUDGE-CYCLELIZE: LIKE FUDGE-CYCLELIZE BUT STEP-WISE */
-						connudge(cyc_ar, cyc_options, 0, cyc_width);
+						if (connudge(cyc_ar, cyc_options, 0, cyc_width) == 0) {
+							dud_nudge = 1;
+							i = cyc_options[1][18];
+							cyc_options[1][i] = cyc_width = cyc_options[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS x WIDTH HISTORY */
+							n = cyc_width+1; 		/* BREAK OUT OF FOR n LOOP AFTER BREAKING OUT OF FOR m LOOP */
+							break; 					/* BREAK OUT OF FOR m LOOP */
+						}
+						else if (cyc_options[0][57])
+							printf("\n DEV: Nudging instead of cycling at n=%d.", n+1); 
 
 						clear_right(cyc_ar, cyc_options);
 
 						i = cyc_options[1][18];
-
 						cyc_options[1][i] = cyc_width = cyc_options[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS x WIDTH HISTORY */
 						n = cyc_width+1; 		/* BREAK OUT OF FOR n LOOP AFTER BREAKING OUT OF FOR m LOOP */
 						break; 					/* BREAK OUT OF FOR m LOOP */
@@ -3272,7 +3297,7 @@ int col_isclear(char check_array[][MAXLINE], unsigned int at_n, int row, short i
 	} /* END OF FOR n LOOP */
 
 	/* PUSH LEFT IF EMPTY: SHOULD MOVE TO ITS OWN fUNCTION IF NEEDED ELSEWHERE */
-	if (edge0) {
+	if (edge0 && !dud_nudge) {
 		i = 0; /* COUNTER FOR AMOUNT TO PUSH LEFT */
 		for (n=0; n < cyc_width; n++) {
 			for (m=0; cyc_ar[m][n] != '\0' && m < MAXLINE-1; m++) {
@@ -3290,10 +3315,14 @@ int col_isclear(char check_array[][MAXLINE], unsigned int at_n, int row, short i
 			}
 		}
 	} /*************** END OF PUSH LEFT GIVEN edge0 **************************/
-	
-	mha_writeback(cyc_ar, cyc_align2D, cyc_options);
-	mha_writecons(cyc_ar, cyc_align2D, cyc_options);
-	return(print_2Dseq(cyc_align2D, cyc_width, cyc_Seq_name, cyc_options));
+
+	if (!dud_nudge)	{
+		mha_writeback(cyc_ar, cyc_align2D, cyc_options);
+		mha_writecons(cyc_ar, cyc_align2D, cyc_options);
+		return(print_2Dseq(cyc_align2D, cyc_width, cyc_Seq_name, cyc_options));
+	}
+	else 
+		return (0);
 }
 
 /*** FUNCTION 10 **********************************************************/
@@ -3798,6 +3827,11 @@ short unsigned int lcl_opt_F;
 					b++;
 				}
 			} /* END OF n SCAN LOOPS */
+			if (letr=='>' && cinchwidth != n) {
+				poptions[1][39] = 1;		/* FLIP DEV-FLAG: dev_notes */	
+				printf("\n DEV: cinchwidth=%d, n=%d.\n", cinchwidth, n+1);
+/*				poptions[1][32] = n;	*/
+			}
 
 			if (b == cip_linewidth) {
 				all_clear = 1;
@@ -4234,7 +4268,7 @@ void mha_writecons(char align2D_one[][MAXLINE], char align2D_two[][MAXLINE], lon
 void mha_writeback(char lcl_align2D[][MAXLINE], char align2D_prev[][MAXLINE], long int woptions[][62]);
 
 	if (tuck_options[1][57] > 1)
-		printf("\n DEV: First bad site (%c) at row=%d, column=%d.", badletr, bad_m+1, bad_n+1);
+		printf("\n DEV TUCK: First bad site (%c) at row=%d, column=%d.", badletr, bad_m+1, bad_n+1);
 
 	mha_writeback(tuckarray, lcl_align2D, tuck_options);
 	mha_writecons(tuckarray, lcl_align2D, tuck_options);
