@@ -1,4 +1,5 @@
 #!/bin/bash
+./giddyup
 ./maximal -Rna
 ./maximal -Rnb
 ./maximal -Rnc
@@ -104,6 +105,8 @@
 ./maximal -Rn corpus/solved-64-sndge7_tricksy.txt
 ./maximal -Rn corpus/solved-64-sndge8_tricksy.txt
 ./maximal -Rn corpus/solved-64-sndge9_tricksy.txt
+./maximal -Rn corpus/solved-65-consen_tricksy.txt
+./maximal -Rn corpus/solved-66-consen_tricksy.txt
 ./maximal -Rnxa
 ./maximal -Rnxb
 ./maximal -Rnxc
@@ -209,4 +212,6 @@
 ./maximal -Rnx corpus/solved-64-sndge7_tricksy.txt
 ./maximal -Rnx corpus/solved-64-sndge8_tricksy.txt
 ./maximal -Rnx corpus/solved-64-sndge9_tricksy.txt
+./maximal -Rnx corpus/solved-65-consen_tricksy.txt
+./maximal -Rnx corpus/solved-66-consen_tricksy.txt
 
