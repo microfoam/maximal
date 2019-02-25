@@ -94,6 +94,16 @@
 ./maximal -Rn corpus/solved-61-tghost_tricksy.txt 
 ./maximal -Rn corpus/solved-62-tuckup_tricksy.txt
 ./maximal -Rn corpus/solved-63-cnudge_tricksy.txt 
+./maximal -Rn corpus/solved-64-sndge0_tricksy.txt
+./maximal -Rn corpus/solved-64-sndge1_tricksy.txt
+./maximal -Rn corpus/solved-64-sndge2_tricksy.txt
+./maximal -Rn corpus/solved-64-sndge3_tricksy.txt
+./maximal -Rn corpus/solved-64-sndge4_tricksy.txt
+./maximal -Rn corpus/solved-64-sndge5_tricksy.txt
+./maximal -Rn corpus/solved-64-sndge6_tricksy.txt
+./maximal -Rn corpus/solved-64-sndge7_tricksy.txt
+./maximal -Rn corpus/solved-64-sndge8_tricksy.txt
+./maximal -Rn corpus/solved-64-sndge9_tricksy.txt
 ./maximal -Rnxa
 ./maximal -Rnxb
 ./maximal -Rnxc
@@ -189,3 +199,14 @@
 ./maximal -Rnx corpus/solved-61-tghost_tricksy.txt 
 ./maximal -Rnx corpus/solved-62-tuckup_tricksy.txt
 ./maximal -Rnx corpus/solved-63-cnudge_tricksy.txt 
+./maximal -Rnx corpus/solved-64-sndge0_tricksy.txt
+./maximal -Rnx corpus/solved-64-sndge1_tricksy.txt
+./maximal -Rnx corpus/solved-64-sndge2_tricksy.txt
+./maximal -Rnx corpus/solved-64-sndge3_tricksy.txt
+./maximal -Rnx corpus/solved-64-sndge4_tricksy.txt
+./maximal -Rnx corpus/solved-64-sndge5_tricksy.txt
+./maximal -Rnx corpus/solved-64-sndge6_tricksy.txt
+./maximal -Rnx corpus/solved-64-sndge7_tricksy.txt
+./maximal -Rnx corpus/solved-64-sndge8_tricksy.txt
+./maximal -Rnx corpus/solved-64-sndge9_tricksy.txt
+
