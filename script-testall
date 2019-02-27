@@ -119,5 +119,9 @@
 ./maximal -Rn corpus/solved-76-ktrans_tricksy.txt
 ./maximal -Rn corpus/solved-77-ktrans_tricksy.txt
 ./maximal -Rn corpus/solved-78-ktrans_tricksy.txt
+./maximal -Rn corpus/solved-79-kcheck_tricksy.txt
+./maximal -Rn corpus/solved-80-kcheck_tricksy.txt
+./maximal -Rn corpus/solved-81-kcheck_tricksy.txt
+./maximal -Rn corpus/solved-82-kcheck_tricksy.txt
 ./script-checkmha
 
