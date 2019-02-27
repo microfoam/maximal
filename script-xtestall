@@ -123,6 +123,7 @@
 ./maximal -Rn corpus/solved-80-kcheck_tricksy.txt
 ./maximal -Rn corpus/solved-81-kcheck_tricksy.txt
 ./maximal -Rn corpus/solved-82-kcheck_tricksy.txt
+./maximal -Rn corpus/solved-83-shadow_tricksy.txt
 ./maximal -Rnxa
 ./maximal -Rnxb
 ./maximal -Rnxc
@@ -246,3 +247,4 @@
 ./maximal -Rnx corpus/solved-80-kcheck_tricksy.txt
 ./maximal -Rnx corpus/solved-81-kcheck_tricksy.txt
 ./maximal -Rnx corpus/solved-82-kcheck_tricksy.txt
+./maximal -Rnx corpus/solved-83-shadow_tricksy.txt
