@@ -109,5 +109,15 @@
 ./maximal -Rn corpus/solved-66-consen_tricksy.txt
 ./maximal -Rn corpus/solved-67-bslclr_tricksy.txt 
 ./maximal -Rn corpus/solved-68-dRaggd_tricksy.txt 
+./maximal -Rn corpus/solved-69-ktrans_tricksy.txt
+./maximal -Rn corpus/solved-70-ktrans_tricksy.txt
+./maximal -Rn corpus/solved-71-ktrans_tricksy.txt
+./maximal -Rn corpus/solved-72-ktrans_tricksy.txt
+./maximal -Rn corpus/solved-73-ktrans_tricksy.txt
+./maximal -Rn corpus/solved-74-ktrans_tricksy.txt
+./maximal -Rn corpus/solved-75-ktrans_tricksy.txt
+./maximal -Rn corpus/solved-76-ktrans_tricksy.txt
+./maximal -Rn corpus/solved-77-ktrans_tricksy.txt
+./maximal -Rn corpus/solved-78-ktrans_tricksy.txt
 ./script-checkmha
 
