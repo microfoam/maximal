@@ -4,10 +4,14 @@ date
 
 # CLEAN-UP POSSIBLE DUPLICATE LINES FROM OCCASIONAL FPRINTF GLITCH
 awk '!seen[$0]++' output.mha > output.log
-awk '!seen[$0]++' tricksy-output.mha > tricksy-output.log
+if [ -f tricksy-output.mha ]; then
+	awk '!seen[$0]++' tricksy-output.mha > tricksy-output.log
+fi
 
 rm output.mha
-rm tricksy-output.mha
+if [ -f tricksy-output.mha ]; then
+	rm tricksy-output.mha
+fi
 
 echo 'wc output.log'
 wc output.log 
