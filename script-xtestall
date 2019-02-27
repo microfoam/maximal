@@ -107,6 +107,7 @@
 ./maximal -Rn corpus/solved-64-sndge9_tricksy.txt
 ./maximal -Rn corpus/solved-65-consen_tricksy.txt
 ./maximal -Rn corpus/solved-66-consen_tricksy.txt
+./maximal -Rn corpus/solved-67-bslclr_tricksy.txt 
 ./maximal -Rnxa
 ./maximal -Rnxb
 ./maximal -Rnxc
@@ -214,4 +215,5 @@
 ./maximal -Rnx corpus/solved-64-sndge9_tricksy.txt
 ./maximal -Rnx corpus/solved-65-consen_tricksy.txt
 ./maximal -Rnx corpus/solved-66-consen_tricksy.txt
+./maximal -Rnx corpus/solved-67-bslclr_tricksy.txt 
 
