@@ -125,5 +125,8 @@
 ./maximal -Rn corpus/solved-82-kcheck_tricksy.txt
 ./maximal -Rn corpus/solved-83-shadow_tricksy.txt
 ./maximal -Rn corpus/solved-84-shadow_tricksy.txt
+./maximal -Rn corpus/solved-85-adjDTH_tricksy.txt
+./maximal -Rn corpus/solved-86-adjDTH_tricksy.txt
+./maximal -Rn corpus/solved-87-adjDTH_tricksy.txt
 ./script-checkmha
 
