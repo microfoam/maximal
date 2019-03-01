@@ -126,11 +126,11 @@ int main(int argc, char *argv[])
 	char Seq_g[] = "A-Goo Goo Goo, A-Ga Ga Ga, is all I wannnnnnt to say to youuuu!";
 	char Seq_h[] = "TTGTGTTGCTGTGTGAGTGAGGTCGGATCGCTATGGGGGACCGGCTGACGAGCTANNNNNNRGATTACA";
 
-	char Seq_i[MAXLINE-1]; /* INPUT SEQUENCE INSTEAD OF BUILT-IN EXAMPLES */
-	char Seq_r[MAXLINE-1]; /* RANDOMIZED SEQUENCE */
-	char *Seq = Seq_a;		/* POINTER TO EXAMPLE SEQUENCE, DEFAULT IS Seq_a, PRE-REFORMATTED */
-	char Seq_name = 'a';	/* Example choice name */
-	char Seq_head[100];		/* FASTA HEADER */
+	char Seq_i[MAXLINE-1]; 		/* INPUT SEQUENCE INSTEAD OF BUILT-IN EXAMPLES */
+	char Seq_r[MAXLINE-1]; 		/* RANDOMIZED SEQUENCE */
+	char *Seq = Seq_a;			/* POINTER TO EXAMPLE SEQUENCE, DEFAULT IS Seq_a, PRE-REFORMATTED */
+	char Seq_name = 'a';		/* Example choice name */
+	char Seq_head[100] = {0};	/* FASTA HEADER */
 	char *ptr_Seq_name;
 
 	ptr_Seq_name = &Seq_name;
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
 						for (h = 0; Seq_i[h+1] != '\n' && Seq_i[h+1] != '\r' && h < 100; h++) {
 							Seq_head[h] = Seq_i[h+1];
 						}
-	
+
 						/* SCOOCH STRING INTO FASTA HEADER SPACE (ERASING IT) */
 						i = (int) strlen(Seq_head) + 2;
 						for (h = 0; Seq_i[h+i] != '\0'; h++)
