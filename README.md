@@ -1,7 +1,7 @@
 # maximal
 maximal is a program to explore the world of maximal homology alignment (MHA), created and written by Albert Erives. Additional help options can be seen by running ./maximal without any options specified.
 
-Version v3.37 is the most recent, robust, and easiest version.
+Version v3.39 is the most recent, robust, and easiest version.
 
 Below is a guide to key files in the maximal software project and their naming schemes. The versioning aspects of the naming scheme will likely be updated given the recent migration to a github repository. How this is going to be done is under deliberation.
 _______________________________________________
@@ -23,10 +23,11 @@ FILE: corpus/Dxxxx_ex3.txt, Dxxxx_NEE.txt ("xxxx" is a Drosophila species name)
 Files named in this format represent vnd exon 3 sequences or NEE sequences from one of several species of flies. These file names and sequences should rarely be modified because they are used for historical comparisons of different versions of maximal. For example, even changing the length of the sequence in order to focus on the particular microfoam knot of interest will likely result in a change in the string's width cinch ratio (WCR) post-cinching.
 
 _______________________________________________
-FILES: script-testall, script-xtestall
+FILES: script-testall, script-xtestall, script-check(mha|log)
 
 These are bash script files that test all of the internal sample strings (a--h), the solved-tricksy, and Drosophila example corpus. The first script runs in default mode, while the second tests in both default and -x mode, which adds extra transition squeezing. The output.mha file in the top level directory corresponds to the output dfrom the script-xtestall run.
 
+Other useful scripts are also included in the parent directory. Except for a compile script named giddyup, all others begin with "script-".
 _______________________________________________
 FILE: corpus/tricksy-output.mha
 
