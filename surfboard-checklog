@@ -1,0 +1,25 @@
+#!/bin/bash
+clear
+date
+echo 'wc surf_wavereport.log'
+wc surf_wavereport.log 
+echo
+echo '# tests at 1000'
+grep -cE '\t1000' surf_wavereport.log 
+echo
+echo 'REC:1000'
+grep -cE 'C.1000' surf_wavereport.log 
+echo
+echo 'CYC:60k+'
+grep -cE 'CYC.600' surf_wavereport.log 
+echo
+echo 'k=3'
+grep -cE 'k=3' surf_wavereport.log 
+echo
+awk -F'[\t]' '{sum+=$4} END {print "WCR AVERAGE: " sum/NR} END {print "WCR CHECKSUM: "sum}' surf_wavereport.log 
+awk -F'[\t]' '{sum+=$9} END {print "WIDTH CHECKSUM: "sum}' surf_wavereport.log 
+echo
+echo 'head surf_wavereport.log'
+head surf_wavereport.log
+echo 'tail surf_wavereport.log'
+tail surf_wavereport.log

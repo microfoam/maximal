@@ -1,0 +1,6 @@
+#!/bin/bash
+./maximal -OOn  waves/shortedge-DmauNEE.txt 
+./maximal -OOn  waves/shortedge-DsimNEE.txt 
+
+# ./maximal -OOnx waves/shortedge-DmauNEE.txt 
+# ./maximal -OOnx waves/shortedge-DsimNEE.txt 
