@@ -188,11 +188,11 @@ int main(int argc, char *argv[])
 					printf("\n*%2d. Error opening supporting file '%s'.", j, argv[i]);
 				}
 				else if (msa == 0){
-					msa = 1;		/* USING THIS SLOT TO STORE BIT VALUE INDICATING MSA.MHA CO-INPUT */
+					msa = 1;		/* USING THIS SLOT TO STORE BIT VALUE INDICATING TUBES.mha CO-INPUT */
 					char c=blank;
  					char m2Dalig[MAXLINE][MAXLINE] = {{0}};			
 
-					printf("\n*%2d. Acknowledging that use of supporting file 'tube.mha' is requested.", j);
+					printf("\n*%2d. Acknowledging requested use of supporting file 'TUBES.mha'.", j);
 
 					for (m=0; m<MAXLINE; m++) {
 					    for (n=0; n<MAXLINE; n++) {
@@ -211,8 +211,8 @@ int main(int argc, char *argv[])
 					}
 					fclose (file_ptr);
 
-					if (1) {	
-						printf("\n\nRead file 'tube.mha' into m2Dalig array as follows:\n");
+					if (0) {	
+						printf("\n\nRead file 'TUBES.mha' into m2Dalig array as follows:\n");
 						for (m=0; m2Dalig[m][0]!='\0'; m++)
 							printf("%s\n", m2Dalig[m]);
 					}
