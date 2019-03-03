@@ -2,5 +2,7 @@
 ./maximal -OOn  waves/shortedge-DmauNEE.txt 
 ./maximal -OOn  waves/shortedge-DsimNEE.txt 
 
+rm Surf_wavereport.mha
+
 # ./maximal -OOnx waves/shortedge-DmauNEE.txt 
 # ./maximal -OOnx waves/shortedge-DsimNEE.txt 
