@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
 
 	FILE *fp_out;							/* FILE FOR output.log */
 	FILE *fp_cons;							/* FILE FOR CONSENSUS STRING Surf_barrels.log */
-  	FILE *fp_msa;							/* FILE FOR MHA MSA "Tubes.mha" */
+  	FILE *fp_msa;							/* FILE FOR MHA MSA "TUBES.mha" */
 	FILE *fp_tricksy;						/* DEV. FILE FOR IMPERFECT 2-D ALIGNED STRINGS Surf_foam_and_chowder.mha */
 
 	/* Variables for time calls */
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
 	/* IS THERE A FILE NAME ARGUMENT? */
 	for (i = 1; i < argc; i++) {
 		if (*argv[i] != '-') {	
-			if (strcmp(argv[i],"Tubes.mha")) {		/* strcmp EVALUATES TO 0 ONLY IF STRINGS ARE THE SAME */
+			if (strcmp(argv[i],"TUBES.mha")) {		/* strcmp EVALUATES TO 0 ONLY IF STRINGS ARE THE SAME */
 				/* USING j BELOW AS COUNTER TO NUMBER OF TIMES USER SPECFIES DIFFERENT SEQUENCES */
 
 				if ( (file_ptr = fopen(argv[i], "r") ) == NULL) {
@@ -1637,7 +1637,7 @@ long int options[4][62] = {
 	}
 	if (options[0][24]==2) {						/* OPTION TO APPEND 2-D ALIGNMENT TO MSA FILE */
 		align2D[MAXLINE-1][options[1][32]] = '\0';	/* MAKE SURE CONSENSUS ROW IS TERMINATED AT CORRECT POSITION */
-		fp_msa = fopen("Tubes.mha", "a");			/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING W/ OPEN FILES */
+		fp_msa = fopen("TUBES.mha", "a");			/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING W/ OPEN FILES */
 			fprintf(fp_msa, "%s\n", align2D[0]);
 		for (m = 1; align2D[m][0] != '\0'; m++) {
 			fprintf(fp_msa, "%s\n", align2D[m]);
@@ -1661,7 +1661,7 @@ long int options[4][62] = {
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (options[0][10] != 1000 || cyc_runs > CYCMAX) {
-			fp_tricksy = fopen("Surf_foam_and_chowder.mha", "a");
+			fp_tricksy = fopen("waves/Surf_foam_and_chowder.mha", "a");
 			fprintf(fp_tricksy, "maximal v%s\t%.24s\t%4ld\t%.3f\t-x%d\tCYC:%2d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%4d\t%s\n", 
 					version, ctime(&lcl_time), options[0][10], ratio1, (int) options[1][59], cyc_runs, options[0][5], 
 					(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[9], dev_notes);
@@ -4284,7 +4284,7 @@ void usage(char usage_version[], unsigned int FY_size)
 							"\t\t -L       SHOW POSITION AT END OF EACH ROW.\n"
 							"\t\t -M       DOUBLE THE DEFAULT LONG HOMOMONOMER TRACT WRAP LENGTH.\n"
 							"\t\t -O       SAVE (APPEND) FORMATTED 2-D ALIGNMENT TO CONSENSUS FILE (Surf_barrels.log).\n"
-							"\t\t -OO      SAVE (APPEND) RAW 2-D ALIGNMENT TO SPECIAL 2-D INPUT FILE (Tubes.mha).\n"
+							"\t\t -OO      SAVE (APPEND) RAW 2-D ALIGNMENT TO SPECIAL 2-D INPUT FILE (TUBES.mha).\n"
 							"\t\t -P       SHOW PATHBOX.\n"
 							"\t\t -R       RECOVER AND CHECK 1-D SEQUENCE FROM 2-D SELF-MHA.\n"
 							"\t\t -X       RUN ON SCRAMBLED SEQUENCE OF SAME LENGTH.\n"
