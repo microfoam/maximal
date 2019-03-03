@@ -2,20 +2,20 @@
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
-	./maximal -Rn waves/Danan_ex3.txt
-	./maximal -Rn waves/Dbipe_ex3.txt
-	./maximal -Rn waves/Dbiar_ex3.txt
-	./maximal -Rn waves/Derec_ex3.txt
-	./maximal -Rn waves/Dmela_ex3.txt
-	./maximal -Rn waves/Dsimu_ex3.txt
-	./maximal -Rn waves/Dsuzu_ex3.txt
-	./maximal -Rn waves/Dyaku_ex3.txt
-	./maximal -Rn waves/Dbiar_NEE.txt
-	./maximal -Rn waves/Derec_NEE.txt
-	./maximal -Rn waves/Dmela_NEE.txt
-	./maximal -Rn waves/Dsimu_NEE.txt
-	./maximal -Rn waves/Dsuzu_NEE.txt
-	./maximal -Rn waves/Dyaku_NEE.txt
-	./maximal -Rn waves/Dmela_DWME.txt
+	./maximal -Rn waves/seal_vnd_ex3_Dmela.txt
+	./maximal -Rn waves/seal_vnd_ex3_Dsimu.txt
+	./maximal -Rn waves/seal_vnd_ex3_Derec.txt
+	./maximal -Rn waves/seal_vnd_ex3_Dyaku.txt
+	./maximal -Rn waves/seal_vnd_ex3_Dbiar.txt
+	./maximal -Rn waves/seal_vnd_ex3_Dsuzu.txt
+	./maximal -Rn waves/seal_vnd_ex3_Danan.txt
+	./maximal -Rn waves/seal_vnd_ex3_Dbipe.txt
+	./maximal -Rn waves/shark_vnd_NEE_Dmela.txt
+	./maximal -Rn waves/shark_vnd_NEE_Dsimu.txt
+	./maximal -Rn waves/shark_vnd_NEE_Derec.txt
+	./maximal -Rn waves/shark_vnd_NEE_Dyaku.txt
+	./maximal -Rn waves/shark_vnd_NEE_Dbiar.txt
+	./maximal -Rn waves/shark_vnd_NEE_Dsuzu.txt
+	./maximal -Rn waves/shark_nab_DWME_Dmela.txt
 
 ./surfboard-checkmha
