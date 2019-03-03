@@ -128,5 +128,5 @@
 ./maximal -Rn waves/solved-85-adjDTH_tricksy.txt
 ./maximal -Rn waves/solved-86-adjDTH_tricksy.txt
 ./maximal -Rn waves/solved-87-adjDTH_tricksy.txt
-./script-checkmha
+./surfboard-checkmha
 
