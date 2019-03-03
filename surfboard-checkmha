@@ -4,13 +4,13 @@ date
 
 # CLEAN-UP POSSIBLE DUPLICATE LINES FROM OCCASIONAL FPRINTF GLITCH
 awk '!seen[$0]++' Surf_wavereport.mha > Surf_wavereport.log
-if [ -f waves/Surf_foam_and_chowder.mha ]; then
-	awk '!seen[$0]++' waves/Surf_foam_and_chowder.mha > waves/Surf_foam_and_chowder.log
+if [ -f waves/Foam_and_chowder.mha ]; then
+	awk '!seen[$0]++' waves/Foam_and_chowder.mha > waves/Foam_and_chowder.log
 fi
 
 rm Surf_wavereport.mha
-if [ -f waves/Surf_foam_and_chowder.mha ]; then
-	rm waves/Surf_foam_and_chowder.mha
+if [ -f waves/Foam_and_chowder.mha ]; then
+	rm waves/Foam_and_chowder.mha
 fi
 
 echo 'wc Surf_wavereport.log'
