@@ -1,7 +1,7 @@
 
 clear
 echo ' '
-echo ' Cowabunga!'
+echo ' Tri-fin dawn patrol:'
 
 gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.43.c
 echo '  ==> gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.43.c'
