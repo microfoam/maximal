@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ -f Surf_wavereport.mha ]; then
+        rm Surf_wavereport.mha
+fi
+
 for i in {1..2500}
 do
 	./maximal -RnXX waves/Danan_ex3.txt
