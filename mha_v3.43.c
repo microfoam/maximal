@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
 	FILE *fp_out;							/* FILE FOR output.log */
 	FILE *fp_cons;							/* FILE FOR CONSENSUS STRING Surf_barrels.log */
   	FILE *fp_msa;							/* FILE FOR MHA MSA "TUBES.mha" */
-	FILE *fp_tricksy;						/* DEV. FILE FOR IMPERFECT 2-D ALIGNED STRINGS Foam_and_chowder.mha */
+	FILE *fp_tricksy;						/* DEV. FILE FOR IMPERFECT 2-D ALIGNED STRINGS waves/foam_and_chowder.mha */
 
 	/* Variables for time calls */
 	time_t lcl_time = time(NULL);
@@ -1661,7 +1661,7 @@ long int options[4][62] = {
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (options[0][10] != 1000 || cyc_runs > CYCMAX) {
-			fp_tricksy = fopen("waves/Foam_and_chowder.mha", "a");
+			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
 			fprintf(fp_tricksy, "maximal v%s\t%.24s\t%4ld\t%.3f\t-x%d\tCYC:%2d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%4d\t%s\n", 
 					version, ctime(&lcl_time), options[0][10], ratio1, (int) options[1][59], cyc_runs, options[0][5], 
 					(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[9], dev_notes);
