@@ -15,16 +15,16 @@ Every run of maximal appends run data to the end of this file and is a log of ru
 
 Other informational report files also begin with the "surf_" base file name.
 _______________________________________________
-FILES: surfboard-cleanup_set_(glassy|gnarly), surfboard-get_worked(_clean), surfboard-check(mha|log), surfboard-Pop_Up, surfboard-Pull_In
+FILES: surfboard-cleanup_set_(glassy|gnarly), surfboard-get_worked(_clean), surfboard-check(mha|log), surfboard-Pop_Up, surfboard-pull_in
 
 All files with the "surfboard" base name are bash script files.
-The surfboard-get_worked files test all of the internal sample strings (a--h), the solved-tricksy, and Drosophila example corpus. 
+The surfboard-get_worked files test all of the internal sample strings (-a to -h), the solved-tricksy, and Drosophila example corpus. 
 The first script runs in default mode (glassy), while the second tests in both default and -x mode (gnarly), which adds extra transition squeezing. 
 The surf_wavereport.log file in the top level directory corresponds to the output from the surfboard-cleanup_set_gnarly run.
 
 The surfboard-Pop_Up file is a compile script, while the surfboard-Pull_In file is a sample script to begin to assemble sequences for MSA runs.
 _______________________________________________
-FILE: waves/solved-##-descrp_tricksy.txt ("##-descrp" provides a historical index number and a short 6 letter description of the originating issue)
+FILE: waves/solved-##-DESCRP_tricksy.txt ("##-DESCRP" provides a historical index number and a short 6 letter description of the originating issue)
 
 Files named in this format represent short sequence text files with a tricksy microfoam nature. 
 Typically, tricsky strings were at one point problem strings that were problematically cinched by maximal. 
