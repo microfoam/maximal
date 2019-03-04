@@ -1,0 +1,75 @@
+#!/bin/bash
+
+ gcc -o maximal mha_v3.43.c
+#gcc -o maximal mha_v3.44.c
+
+if [ -f Surf_wavereport.mha ]; then
+	rm Surf_wavereport.mha
+fi
+if [ -f waves/foam_and_chowder.mha ]; then
+	rm waves/foam_and_chowder.mha
+fi
+
+./maximal -Rn chowder_v343_01.txt
+./maximal -Rn chowder_v343_02.txt
+./maximal -Rn chowder_v343_03.txt
+./maximal -Rn chowder_v343_04.txt
+./maximal -Rn chowder_v343_05.txt
+./maximal -Rn chowder_v343_06.txt
+./maximal -Rn chowder_v343_07.txt
+./maximal -Rn chowder_v343_08.txt
+./maximal -Rn chowder_v343_09.txt
+./maximal -Rn chowder_v343_10.txt
+./maximal -Rn chowder_v343_11.txt
+./maximal -Rn chowder_v343_12.txt
+./maximal -Rn chowder_v343_13.txt
+./maximal -Rn chowder_v343_14.txt
+./maximal -Rn chowder_v343_15.txt
+./maximal -Rn chowder_v343_16.txt
+./maximal -Rn chowder_v343_17.txt
+./maximal -Rn chowder_v343_18.txt
+./maximal -Rn chowder_v343_19.txt
+./maximal -Rn chowder_v343_20.txt
+./maximal -Rn chowder_v343_21.txt
+./maximal -Rn chowder_v343_22.txt
+./maximal -Rn chowder_v343_23.txt
+./maximal -Rn chowder_v343_24.txt
+./maximal -Rn chowder_v343_25.txt
+./maximal -Rn chowder_v344_01.txt
+./maximal -Rn chowder_v344_02.txt
+./maximal -Rn chowder_v344_03.txt
+./maximal -Rn chowder_v344_04.txt
+./maximal -Rn chowder_v344_05.txt
+./maximal -Rn chowder_v344_06.txt
+./maximal -Rn chowder_v344_07.txt
+./maximal -Rn chowder_v344_08.txt
+./maximal -Rn chowder_v344_09.txt
+./maximal -Rn chowder_v344_10.txt
+./maximal -Rn chowder_v344_11.txt
+./maximal -Rn chowder_v344_12.txt
+./maximal -Rn chowder_v344_13.txt
+./maximal -Rn chowder_v344_14.txt
+./maximal -Rn chowder_v344_15.txt
+./maximal -Rn chowder_v344_16.txt
+./maximal -Rn chowder_v344_17.txt
+./maximal -Rn chowder_v344_18.txt
+./maximal -Rn chowder_v344_19.txt
+./maximal -Rn chowder_v344_20.txt
+./maximal -Rn chowder_v344_21.txt
+./maximal -Rn chowder_v344_22.txt
+./maximal -Rn chowder_v344_23.txt
+./maximal -Rn chowder_v344_24.txt
+./maximal -Rn chowder_v344_25.txt
+./maximal -Rn chowder_v344_26.txt
+./maximal -Rn chowder_v344_27.txt
+./maximal -Rn chowder_v344_28.txt
+./maximal -Rn chowder_v344_29.txt
+./maximal -Rn chowder_v344_30.txt
+./maximal -Rn chowder_v344_31.txt
+./maximal -Rn chowder_v344_32.txt
+./maximal -Rn chowder_v344_33.txt
+./maximal -Rn chowder_v344_34.txt
+./maximal -Rn chowder_v344_35.txt
+./maximal -Rn chowder_v344_36.txt
+./surfboard-checkmha
+
