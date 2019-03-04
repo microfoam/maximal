@@ -131,6 +131,21 @@ fi
 ./maximal -Rn waves/tubespit/tubespit-85-adjDTH.txt
 ./maximal -Rn waves/tubespit/tubespit-86-adjDTH.txt
 ./maximal -Rn waves/tubespit/tubespit-87-adjDTH.txt
+./maximal -Rn waves/tubespit/tubespit_v343_14.txt
+./maximal -Rn waves/tubespit/tubespit_v343_19.txt
+./maximal -Rn waves/tubespit/tubespit_v344_03.txt
+./maximal -Rn waves/tubespit/tubespit_v344_05.txt
+./maximal -Rn waves/tubespit/tubespit_v344_06.txt
+./maximal -Rn waves/tubespit/tubespit_v344_11.txt
+./maximal -Rn waves/tubespit/tubespit_v344_14.txt
+./maximal -Rn waves/tubespit/tubespit_v344_15.txt
+./maximal -Rn waves/tubespit/tubespit_v344_19.txt
+./maximal -Rn waves/tubespit/tubespit_v344_20.txt
+./maximal -Rn waves/tubespit/tubespit_v344_21.txt
+./maximal -Rn waves/tubespit/tubespit_v344_31.txt
+./maximal -Rn waves/tubespit/tubespit_v344_32.txt
+./maximal -Rn waves/tubespit/tubespit_v344_35.txt
+./maximal -Rn waves/tubespit/tubespit_v344_36.txt
 ./maximal -Rnxa
 ./maximal -Rnxb
 ./maximal -Rnxc
@@ -259,5 +274,20 @@ fi
 ./maximal -Rnx waves/tubespit/tubespit-85-adjDTH.txt
 ./maximal -Rnx waves/tubespit/tubespit-86-adjDTH.txt
 ./maximal -Rnx waves/tubespit/tubespit-87-adjDTH.txt
+./maximal -Rnx waves/tubespit/tubespit_v343_14.txt
+./maximal -Rnx waves/tubespit/tubespit_v343_19.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_03.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_05.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_06.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_11.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_14.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_15.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_19.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_20.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_21.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_31.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_32.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_35.txt
+./maximal -Rnx waves/tubespit/tubespit_v344_36.txt
 ./surfboard-checkmha
 
