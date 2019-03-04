@@ -880,15 +880,6 @@ long int options[4][62] = {
 						}
 					}
 				}
-				else if (0 && imperfect_TR) {
-					/* FIND IF THERE IS A PREVIOUS TR */
-					for (i = m-1; i >= 0; i--) {
-						if (sliploc[i])
-							break;
-					} 
-					if ((i + (int) sliploc[i] * (int) sliploc_nmer[i]) > m) 
-						imperfect_TR=0;
-				}
 
 				/* SKIP CINCH IF IMPERFECT WHILE CONTAINING PERFECT TRs INSIDE */
 				if (imperfect_TR) {
@@ -1657,15 +1648,13 @@ long int options[4][62] = {
 	
 
 	if (options[0][54] != 1) {		/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
-		if (options[1][39])	/* dev_notes always written here but can flag from within functions outside of main */
+		if (options[1][39])			/* dev_notes always written here but can flag from within functions outside of main */
 			strcpy(dev_notes,"connudge");
-		else if (0)
-			strcpy(dev_notes,"-");
 
 		fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
-		fprintf(fp_out, "maximal v%s\t%.24s\t%4ld\t%.3f\t-x%d\tCYC:%2d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%4d\t%d\t%s: %d\n", 
+		fprintf(fp_out, "maximal v%s\t%.24s\t%4ld\t%.3f\t-x%d\tCYC:%2d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%4d\t%d\t%s\n", 
 				version, ctime(&lcl_time), options[0][10], ratio1, (int) options[1][59], cyc_runs, options[0][5], 
-				(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[9], (int) options[1][7], dev_notes, (int) options[1][39]);
+				(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[9], (int) options[1][7], dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
@@ -2953,7 +2942,7 @@ short unsigned int nudge_flag = 0;					/* BIT FLAG FOR PROCEEDING TO NUDGE */
 short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
 short unsigned int checktransit=0, badcol=0;
 char blnk = con_options[1][11];
-char letr=blnk, conletr=blnk, chkletr=blnk;
+char letr=blnk, conletr=blnk, chkletr=blnk, badletr=blnk;
 int con_maxrows=26;
 int consensus_ar[26][MAXLINE] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
                                        		/* ROW m=0 FOR COUNTER */
@@ -2986,13 +2975,15 @@ int col_isclear(char check_array[][MAXLINE], unsigned int at_n, int row, short i
 	for (n = n_start; n <= n_end; n++) {
 		badcol = 0;
 		if (nuctransit) {
-			chkletr = blnk;
-			plustransit = 0;
 			if ((conletr=con_align2D[MAXLINE-1][n])=='R' || conletr=='Y') {
 				consensus_ar[1][n+1] = conletr;
+				chkletr = blnk;
 				plustransit = 1;
 			}
-			else conletr = blnk;
+			else {
+				plustransit = 0;
+				conletr = blnk;
+			}
 		}
 
 		for (m = 1; con_align2D[m][0] != '\0'; m++) {
@@ -3002,15 +2993,14 @@ int col_isclear(char check_array[][MAXLINE], unsigned int at_n, int row, short i
 						chkletr = letr;
 						plustransit = 2;
 					}
-					else if (letr!=chkletr && ( (conletr=='R' && (letr=='A' || letr=='G')) ||
-							 (conletr=='Y' && (letr=='C' || letr=='T')))) {	
-							chkletr=conletr;
-							plustransit = 3;	/* THREE LETTERS SEEN: R-A-G OR Y-C-T */
+					else if (letr!=chkletr) {	
+						plustransit = 3;	/* THREE LETTERS SEEN: R-A-G OR Y-C-T */
 					}
 				}
 				else if (letr != consensus_ar[1][n+1]) {
 					if (consensus_ar[0][n+1] == 1) {	/* IF THIS IS THE FIRST CONFLICT NOTED AT THIS POSITION */
 						++badsites;						/* COUNT ADDITIONAL BAD SITE COLUMN */
+						badletr=letr;					/* THIS IS THE LETTER THAT GOES AGAINST THE TRANSITION LETTER */
 						badcol = 1;
 						++consensus_ar[0][n+1];			/* INCREMENT COUNTER FOR DIFFERENT LETTERS AT COLUMN */
 						consensus_ar[2][ 0 ] = 1;		/* TURN VARIANT ROW ON */
@@ -3054,17 +3044,13 @@ int col_isclear(char check_array[][MAXLINE], unsigned int at_n, int row, short i
 			}
 		} /* END OF FOR m=1... */
 		if (plustransit) {
-			if (plustransit==3) {
+			if (plustransit>1) {
 				++consensus_ar[0][n+1];
-			}
-			else if (badcol && col_isclear(con_align2D,n+1,nudge_row,-1)<0) {
-				if (plustransit==2) { 
+				if (plustransit==2)
 					consensus_ar[1][n+1] = chkletr;
-				}
-				else if (plustransit==1) {
-					consensus_ar[1][n+1] = letr;
-				}
 			}
+			else if (plustransit==1)
+					consensus_ar[1][n+1] = badletr;
 		}
 	} /* END OF FOR n... */
 
@@ -3074,7 +3060,6 @@ int col_isclear(char check_array[][MAXLINE], unsigned int at_n, int row, short i
 		m++;
 	}
 	if (consensus_ar[0][m]==0) {
-		con_options[1][39]=1;
 		return(0);
 	}
 	else {
@@ -3086,14 +3071,6 @@ int col_isclear(char check_array[][MAXLINE], unsigned int at_n, int row, short i
 				nudge_flag = 1;
 				nudge_span = n;
 			}
-			else {
-				con_options[1][39]=2;
-				return(0);
-			}
-		}
-		else { 
-			con_options[1][39]=3;
-			return(0);
 		}
 	}
 
@@ -3141,7 +3118,6 @@ int col_isclear(char check_array[][MAXLINE], unsigned int at_n, int row, short i
 
 	con_options[1][32]++;
 	if (checktransit) {
-		con_options[1][39]=5;
 		return(0);
 	}
 	else
