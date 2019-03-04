@@ -1,8 +1,8 @@
 #!/bin/bash
-./maximal -OOn  waves/shark_vnd_edgeNEE_Dmaur.txt 
-./maximal -OOn  waves/shark_vnd_edgeNEE_Dsimu.txt 
+./maximal -OOn  waves/animals/shark_vnd_edgeNEE_Dmaur.txt 
+./maximal -OOn  waves/animals/shark_vnd_edgeNEE_Dsimu.txt 
 
 rm Surf_wavereport.mha
 
-# ./maximal -OOnx waves/shark_vnd_edgeNEE_Dmaur.txt 
-# ./maximal -OOnx waves/shark_vnd_edgeNEE_Dsimu.txt 
+# ./maximal -OOnx waves/animals/shark_vnd_edgeNEE_Dmaur.txt 
+# ./maximal -OOnx waves/animals/shark_vnd_edgeNEE_Dsimu.txt 
