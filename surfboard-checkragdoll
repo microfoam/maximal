@@ -1,0 +1,29 @@
+wc Surf_wavereport.mha 
+echo
+echo '# tests at 1000'
+grep -cE '\t1000' Surf_wavereport.mha 
+echo
+echo 'REC:1000'
+grep -cE 'C.1000' Surf_wavereport.mha 
+echo
+echo 'CYC:60k+'
+grep -cE 'CYC.600' Surf_wavereport.mha 
+echo
+echo 'k=3'
+grep -cE 'k=3' Surf_wavereport.mha 
+echo
+grep -c ex3_Dmela Surf_wavereport.mha
+grep -c ex3_Dsimu Surf_wavereport.mha
+grep -c ex3_Derec Surf_wavereport.mha
+grep -c ex3_Dyaku Surf_wavereport.mha
+grep -c ex3_Dbiar Surf_wavereport.mha
+grep -c ex3_Dsuzu Surf_wavereport.mha
+grep -c ex3_Danan Surf_wavereport.mha
+grep -c ex3_Dbipe Surf_wavereport.mha
+grep -c NEE_Dbiar Surf_wavereport.mha
+grep -c NEE_Derec Surf_wavereport.mha
+grep -c NEE_Dmela Surf_wavereport.mha
+grep -c NEE_Dsimu Surf_wavereport.mha
+grep -c NEE_Dsuzu Surf_wavereport.mha
+grep -c NEE_Dyaku Surf_wavereport.mha
+grep -c WME_Dmela Surf_wavereport.mha
