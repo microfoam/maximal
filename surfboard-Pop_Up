@@ -1,5 +1,5 @@
 echo ' Tri-fin dawn patrol:'
-gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.44.c
-echo '  ==> gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.44.c'
+gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.45.c
+echo '  ==> gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.45.c'
 echo ' Surfs up!'
 echo ' '
