@@ -155,7 +155,8 @@ int main(int argc, char *argv[])
 					fseek(file_ptr, 0, SEEK_END);
 					lenseq = ftell(file_ptr);
 					if (lenseq > MAXLINE-1) {		/* LAST ROW OF array2D WILL STORE CONSENSUS, SO NEED TO KEEP CLEAR */
-						printf("\n %2d. Sequence (length %d) from file '%s' exceeds MAXLINE limit (%d) by %d.", ++j, lenseq, argv[i], MAXLINE, lenseq-MAXLINE+1);
+						printf("\n %2d. Sequence (length %d) from file '%s' exceeds MAXLINE limit (%d) by %d.", 
+									++j, lenseq, argv[i], MAXLINE, lenseq-MAXLINE+1);
 						printf("\n %2d. Exiting now. For help enter './maximal -H'. \n\n", ++j);
 						exit(1);
 					}
@@ -213,12 +214,9 @@ int main(int argc, char *argv[])
 					fclose (file_ptr);
 
 					if (msa) {	
-						printf("\n\nRead file 'TUBES.mha' into m2Dalig array as follows:\n");
+						printf("\n\n Read file 'TUBES.mha' into m2Dalig array as follows:\n");
 						for (m=0; m2Dalig[m][0]!='\0'; m++)	
-							printf("%s\n", m2Dalig[m]);
-/*						for (n=0; m2Dalig[m-1][n]!='>'; n++)
-							m2Dalig[m][n] = blank;
-*/
+							printf(" %s\n", m2Dalig[m]);
 					}
 				}
 			}
@@ -1655,7 +1653,7 @@ long int options[4][62] = {
 		fp_msa = fopen("TUBES.mha", "w");			/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING W/ OPEN FILES */
 			fprintf(fp_msa, "%s\n", m2Dalig[0]);
 		for (m = 1; m2Dalig[m][1] != '\0'; m++) {
-			fprintf(fp_msa, " %s\n", m2Dalig[m]);
+			fprintf(fp_msa, "%s\n", m2Dalig[m]);
 		}
 
 		fclose(fp_msa);
