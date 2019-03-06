@@ -77,6 +77,7 @@ int main(int argc, char *argv[])
 	short 
 	unsigned int user_query(unsigned int pass_num);
 	void 		 warnhead(char l); 
+	int get2Dtucknum(char arrayA[][MAXLINE], char arrayB[][MAXLINE], long int options[][62]);
 
 	char version[] = "3.45";				/* current version number */
 	char dev_notes[32] ={0};				/* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
@@ -139,6 +140,7 @@ int main(int argc, char *argv[])
 	FILE *file_ptr;
 	char file_name[255];
 	char cycle[WIDTH];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
+ 	char m2Dalig[MAXLINE][MAXLINE] = {{0}};			
 
 	/* IS THERE A FILE NAME ARGUMENT? */
 	for (i = 1; i < argc; i++) {
@@ -189,21 +191,20 @@ int main(int argc, char *argv[])
 				}
 				else if (msa == 0){
 					msa = 1;		/* USING THIS SLOT TO STORE BIT VALUE INDICATING TUBES.mha CO-INPUT */
-					char c=blank;
- 					char m2Dalig[MAXLINE][MAXLINE] = {{0}};			
+					char ch=blank;
 
 					printf("\n*%2d. Acknowledging requested use of supporting file 'TUBES.mha'.", j);
 
 					for (m=0; m<MAXLINE; m++) {
 					    for (n=0; n<MAXLINE; n++) {
-					        fscanf(file_ptr, "%c", &c);
-					        m2Dalig[m][n] = c;
-							if (c=='\r' && m2Dalig[m][n+1]=='\n') {		/* MS-DOS LINE ENDINGS */
+					        fscanf(file_ptr, "%c", &ch);
+					        m2Dalig[m][n] = ch;
+							if (ch=='\r' && m2Dalig[m][n+1]=='\n') {		/* MS-DOS LINE ENDINGS */
 								m2Dalig[m][n  ] = '\0';
 								m2Dalig[m][n+1] = '\0';
 								break;
 							}
-							else if (c=='\r' || c=='\n') {				/* macOS OR UNIX LINE ENDINGS */
+							else if (ch=='\r' || ch=='\n') {				/* macOS OR UNIX LINE ENDINGS */
 								m2Dalig[m][n] = '\0';
 								break;
 							}
@@ -211,10 +212,13 @@ int main(int argc, char *argv[])
 					}
 					fclose (file_ptr);
 
-					if (0) {	
+					if (msa) {	
 						printf("\n\nRead file 'TUBES.mha' into m2Dalig array as follows:\n");
-						for (m=0; m2Dalig[m][0]!='\0'; m++)
+						for (m=0; m2Dalig[m][0]!='\0'; m++)	
 							printf("%s\n", m2Dalig[m]);
+/*						for (n=0; m2Dalig[m-1][n]!='>'; n++)
+							m2Dalig[m][n] = blank;
+*/
 					}
 				}
 			}
@@ -250,7 +254,7 @@ int main(int argc, char *argv[])
 	unsigned int sliploc_nmer[MAXLINE-1] = {0};		/* Array of counters for slip type at all slip positions 	*/
 	char sliploc_echoes[MAXLINE-1] = {0};			/* Array of nucleotide reverb 								*/
 	char pathbox[MAXLINE][MAXLINE-1] = {{0}};
-	char align2D[MAXLINE][MAXLINE];					/* main() 2-D ARRAY MATRIX	*/
+	char align2D[MAXLINE][MAXLINE] = {{0}};			/* main() 2-D ARRAY MATRIX	*/
 	char scratch[MAXLINE][MAXLINE];					/* STILL USED CODE DEVELOPMENT BUT CURRENT TESTS HARDLY REVERT */
 	int passQ[10];									/* Array to store width cinch ratio through passes */	
 
@@ -284,7 +288,7 @@ long int options[4][62] = {
 								/*  9 EQUALS recovered 1-D from 2-D 	*/
 								/* 10 EQUALS passQ score / 1000			*/
 /* RESERVE options[1][26] (opt_Q) and options[1][27] (opt_R) for storing LEFT and RIGHT 'R'un delimiter characters */
-
+	char optR = options[1][27];
 	options[1][58] = 80;	/* opt_w IS MAXIMUM WIDTH OF 1D/2D-PRINTED BLOCK, SCREEN WRAP LENGTH */
 	int blocks;				/* Number of blocks for 1D output print */
 
@@ -1635,12 +1639,32 @@ long int options[4][62] = {
 		fprintf(fp_cons, " %s\n\n", align2D[MAXLINE-1]);
 		fclose(fp_cons);
 	}
-	if (options[0][24]==2) {						/* OPTION TO APPEND 2-D ALIGNMENT TO MSA FILE */
-		align2D[MAXLINE-1][options[1][32]] = '\0';	/* MAKE SURE CONSENSUS ROW IS TERMINATED AT CORRECT POSITION */
+	if (msa&&options[0][24]==2) {
+		char ch=blank;
+		n = get2Dtucknum(m2Dalig, align2D, options)+1;
+
+				m2Dalig[  n][0] = '>';
+		for (i=0; align2D[i][0]!='\0'; i++) {
+			if (i>0)
+				m2Dalig[i+n][0]= ' ';
+			for (j=1; (ch=align2D[i][j-1])!='/' && ch!=optR && ch!='>'; j++) {
+				m2Dalig[i+n][j] = ch;
+			}
+				m2Dalig[i+n][j] = ch;
+		}
+		fp_msa = fopen("TUBES.mha", "w");			/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING W/ OPEN FILES */
+			fprintf(fp_msa, "%s\n", m2Dalig[0]);
+		for (m = 1; m2Dalig[m][1] != '\0'; m++) {
+			fprintf(fp_msa, " %s\n", m2Dalig[m]);
+		}
+
+		fclose(fp_msa);
+	}
+	else if (options[0][24]==2) {					/* OPTION TO APPEND 2-D ALIGNMENT TO MSA FILE */
 		fp_msa = fopen("TUBES.mha", "a");			/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING W/ OPEN FILES */
-			fprintf(fp_msa, "%s\n", align2D[0]);
+			fprintf(fp_msa, ">%s\n", align2D[0]);
 		for (m = 1; align2D[m][0] != '\0'; m++) {
-			fprintf(fp_msa, "%s\n", align2D[m]);
+			fprintf(fp_msa, " %s\n", align2D[m]);
 		}
 
 		fclose(fp_msa);
@@ -2419,7 +2443,6 @@ short int tucksense(char tuckarray[][MAXLINE], long int tuck_options[0][62]);
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
 	for (k = doptions[1][32]/2; k > 0; k--) {
-/*		for (n=0; isalpha(align2D_pass7[MAXLINE-1][n+2*k-1]); n++) {	*/
 		for (n=0; n < cid_new2D_width-2*k; n++) {	
 
 			mono_flag = 1;			/* MONOMER RUN FLAG IS SET TO 0, WHEN NO LONGER POSSIBLE (ANY n != n+1) */
@@ -4378,6 +4401,88 @@ char blank = push_options[1][11];
 	}
 	else
 		return (0);		/* RETURN NOT SUCCESSFUL */
+}
+
+/**************************************************************************************/
+int get2Dtucknum(char arrayA[][MAXLINE], char arrayB[][MAXLINE], long int options[][62]) 
+{
+int i=0, j=0, height=0;
+int width = options[1][32];
+char letr, opt_R_rght = options[1][27];
+int bottom[MAXLINE] = {0};
+int    top[MAXLINE] = {0};
+char mha_base62(int num);	
+
+	for (i=0; arrayA[i][0] != '\0'; i++) {
+		;
+	}
+	height = i;
+
+	/**** FILL BOTTOM BORDER ARRAY; BOTTOM BORDER IS FOR ARRAY ON TOP ****/
+	j = width;
+	while (j>0) {
+		if (i>0 && (isalpha(arrayA[i-1][j]) || isalpha(arrayA[i-1][j+1]))) {
+			bottom[j-1] = i;
+			j--;
+		}
+		else {
+			i--;
+		}
+	}
+
+	/**** FILL TOP BORDER ARRAY; TOP BORDER IS FOR ARRAY ON BOTTOM  ****/
+	top[0] = 0;
+	for (j=0; j<width; j++) {
+		for (i=0; i<MAXLINE; i++) {
+			if (isalpha(letr=arrayB[i][j])) {
+				top[j] = i;
+				break;
+			}
+            else if (letr == '/' || letr == opt_R_rght) {
+				top[  j] = i;
+				top[++j] = i;
+				break;
+			}
+			else if ((letr=arrayB[i+1][j-1]) == '/' || letr == opt_R_rght) {
+				top[j] = i+1;
+				break;
+			}
+			else if (arrayB[i][j]=='>') {
+				i = MAXLINE;
+				break;
+			}
+		}
+	}
+
+	short unsigned int devReport=0;	/* FLIP TO REPORT */
+	/**************************************************/
+	if (devReport) {	/* CODE DEVELOPMENT REPORTING */
+		printf("\n");	
+		for (j=0; j < width; j++)
+			printf("%c", mha_base62(bottom[j]));	
+			printf(" < bottom\n");
+		for (j=0; j < width; j++)
+			printf("%c", mha_base62(top[j]));	
+			printf(" < top\n");
+	}
+	/******************************************/
+
+	bottom[0] = top[0] + height - bottom[0] - 1;
+	if (devReport)
+		printf("%c", mha_base62(bottom[0]));
+	for (j=1; j < width; j++) {
+		if ((i=top[j] + height - bottom[j] - 1) < bottom[j-1]) {
+			bottom[j] = i;
+		}
+		else
+			bottom[j] = bottom[j-1];
+		if (devReport)
+			printf("%c", mha_base62(bottom[j]));
+	}
+	if (devReport)
+		printf(" < height - bottom + top - 1\n");
+	i=bottom[j-1];
+	return(i);
 }
 
 
