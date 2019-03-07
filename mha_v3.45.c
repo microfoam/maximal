@@ -200,6 +200,9 @@ int main(int argc, char *argv[])
 					    for (n=0; n<MAXLINE; n++) {
 					        fscanf(file_ptr, "%c", &ch);
 					        m2Dalig[m][n] = ch;
+							if (ch=='>') {
+								m2Dalig[m+1][0]='\0';
+							}
 							if (ch=='\r' && m2Dalig[m][n+1]=='\n') {		/* MS-DOS LINE ENDINGS */
 								m2Dalig[m][n  ] = '\0';
 								m2Dalig[m][n+1] = '\0';
@@ -4404,9 +4407,11 @@ char blank = push_options[1][11];
 /**************************************************************************************/
 int get2Dtucknum(char arrayA[][MAXLINE], char arrayB[][MAXLINE], long int options[][62]) 
 {
-int i=0, j=0, height=0;
+int i=0, j=0, height=0, max=0;
 int width = options[1][32];
 char letr, opt_R_rght = options[1][27];
+char border = options[1][11];
+/* char border = '*'; */
 int bottom[MAXLINE] = {0};
 int    top[MAXLINE] = {0};
 char mha_base62(int num);	
@@ -4419,9 +4424,17 @@ char mha_base62(int num);
 	/**** FILL BOTTOM BORDER ARRAY; BOTTOM BORDER IS FOR ARRAY ON TOP ****/
 	j = width;
 	while (j>0) {
-		if (i>0 && (isalpha(arrayA[i-1][j]) || isalpha(arrayA[i-1][j+1]))) {
+		if (i>0 && isalpha(arrayA[i-1][j])) {
 			bottom[j-1] = i;
+			arrayA[i][j] = border;
 			j--;
+		}
+		else if (i>0 && isalpha(arrayA[i-1][j+1])) {
+			bottom[j-1] = i;
+			while (!isalpha(arrayA[i-1][j])) {
+				arrayA[i--][j] = border;
+			}
+			arrayA[i][j--] = border;
 		}
 		else {
 			i--;
@@ -4437,12 +4450,7 @@ char mha_base62(int num);
 				break;
 			}
             else if (letr == '/' || letr == opt_R_rght) {
-				top[  j] = i;
-				top[++j] = i;
-				break;
-			}
-			else if ((letr=arrayB[i+1][j-1]) == '/' || letr == opt_R_rght) {
-				top[j] = i+1;
+				top[j] = i;
 				break;
 			}
 			else if (arrayB[i][j]=='>') {
@@ -4455,32 +4463,30 @@ char mha_base62(int num);
 	short unsigned int devReport=0;	/* FLIP TO REPORT */
 	/**************************************************/
 	if (devReport) {	/* CODE DEVELOPMENT REPORTING */
-		printf("\n");	
+		printf("\n ");	
 		for (j=0; j < width; j++)
 			printf("%c", mha_base62(bottom[j]));	
-			printf(" < bottom\n");
+			printf(" < bottom\n ");
 		for (j=0; j < width; j++)
 			printf("%c", mha_base62(top[j]));	
-			printf(" < top\n");
+			printf(" < top\n ");
 	}
 	/******************************************/
 
-	bottom[0] = top[0] + height - bottom[0] - 1;
+	max = bottom[0] = bottom[0] - top[0];
 	if (devReport)
 		printf("%c", mha_base62(bottom[0]));
 	for (j=1; j < width; j++) {
-		if ((i=top[j] + height - bottom[j] - 1) < bottom[j-1]) {
-			bottom[j] = i;
+		bottom[j] = bottom[j] - top[j];
+		if (bottom[j] > max) {
+			max = bottom[j];
 		}
-		else
-			bottom[j] = bottom[j-1];
 		if (devReport)
 			printf("%c", mha_base62(bottom[j]));
 	}
 	if (devReport)
-		printf(" < height - bottom + top - 1\n");
-	i=bottom[j-1];
-	return(i);
+		printf(" < height (%d) - bottom + top (max=%d)\n\n", height, max);
+	return(max);
 }
 
 
