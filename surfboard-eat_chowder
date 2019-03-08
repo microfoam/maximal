@@ -1,6 +1,6 @@
 #!/bin/bash
 
- gcc -o maximal mha_v3.44.c
+./surfboard-Pop_Up
 
 if [ -f Surf_wavereport.mha ]; then
 	rm Surf_wavereport.mha

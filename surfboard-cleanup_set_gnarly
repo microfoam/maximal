@@ -1,8 +1,13 @@
 #!/bin/bash
+
 ./surfboard-Pop_Up
+
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
+
+
+
 ./maximal -Rna
 ./maximal -Rnb
 ./maximal -Rnc
@@ -36,34 +41,34 @@ fi
 ./maximal -Rn waves/tubespit/tubespit-02-toslip.txt
 ./maximal -Rn waves/tubespit/tubespit-03-tosSt1.txt
 ./maximal -Rn waves/tubespit/tubespit-04-tos-ct.txt
-./maximal -Rn waves/tubespit/tubespit-22-tosSt2.txt
-./maximal -Rn waves/tubespit/tubespit-23-tosSt2.txt
-./maximal -Rn waves/tubespit/tubespit-24-tosSt2.txt
-./maximal -Rn waves/tubespit/tubespit-25-tosSt2.txt
-./maximal -Rn waves/tubespit/tubespit-26-tosSt2.txt
-./maximal -Rn waves/tubespit/tubespit-29-toslp2.txt
-./maximal -Rn waves/tubespit/tubespit-30-toslp2.txt
-./maximal -Rn waves/tubespit/tubespit-31-t0edge.txt
 ./maximal -Rn waves/tubespit/tubespit-05-koshp1.txt
 ./maximal -Rn waves/tubespit/tubespit-06-koslip.txt
 ./maximal -Rn waves/tubespit/tubespit-07-koslip.txt
 ./maximal -Rn waves/tubespit/tubespit-08-koslp2.txt
 ./maximal -Rn waves/tubespit/tubespit-09-koslp3.txt
-./maximal -Rn waves/tubespit/tubespit-18-koshp2.txt
-./maximal -Rn waves/tubespit/tubespit-19-koslp4.txt
 ./maximal -Rn waves/tubespit/tubespit-10-cycle1.txt
 ./maximal -Rn waves/tubespit/tubespit-11-cycle1.txt
 ./maximal -Rn waves/tubespit/tubespit-12-cycle1.txt
 ./maximal -Rn waves/tubespit/tubespit-13-cycle2.txt
 ./maximal -Rn waves/tubespit/tubespit-14-cycle3.txt
 ./maximal -Rn waves/tubespit/tubespit-15-cycle4.txt
-./maximal -Rn waves/tubespit/tubespit-17-cycle5.txt
 ./maximal -Rn waves/tubespit/tubespit-16-cyc3_a.txt
+./maximal -Rn waves/tubespit/tubespit-17-cycle5.txt
+./maximal -Rn waves/tubespit/tubespit-18-koshp2.txt
+./maximal -Rn waves/tubespit/tubespit-19-koslp4.txt
 ./maximal -Rn waves/tubespit/tubespit-20-cyc3_b.txt
 ./maximal -Rn waves/tubespit/tubespit-21-cyc3_c.txt
+./maximal -Rn waves/tubespit/tubespit-22-tosSt2.txt
+./maximal -Rn waves/tubespit/tubespit-23-tosSt2.txt
+./maximal -Rn waves/tubespit/tubespit-24-tosSt2.txt
+./maximal -Rn waves/tubespit/tubespit-25-tosSt2.txt
+./maximal -Rn waves/tubespit/tubespit-26-tosSt2.txt
 ./maximal -Rn waves/tubespit/tubespit-27-cycleX.txt
-./maximal -Rn waves/tubespit/tubespit-32-combo1.txt
 ./maximal -Rn waves/tubespit/tubespit-28-scrtch.txt
+./maximal -Rn waves/tubespit/tubespit-29-toslp2.txt
+./maximal -Rn waves/tubespit/tubespit-30-toslp2.txt
+./maximal -Rn waves/tubespit/tubespit-31-t0edge.txt
+./maximal -Rn waves/tubespit/tubespit-32-combo1.txt
 ./maximal -Rn waves/tubespit/tubespit-33-imprf1.txt
 ./maximal -Rn waves/tubespit/tubespit-34-imprf2.txt
 ./maximal -Rn waves/tubespit/tubespit-35-imprf3.txt
@@ -179,34 +184,34 @@ fi
 ./maximal -Rnx waves/tubespit/tubespit-02-toslip.txt
 ./maximal -Rnx waves/tubespit/tubespit-03-tosSt1.txt
 ./maximal -Rnx waves/tubespit/tubespit-04-tos-ct.txt
-./maximal -Rnx waves/tubespit/tubespit-22-tosSt2.txt
-./maximal -Rnx waves/tubespit/tubespit-23-tosSt2.txt
-./maximal -Rnx waves/tubespit/tubespit-24-tosSt2.txt
-./maximal -Rnx waves/tubespit/tubespit-25-tosSt2.txt
-./maximal -Rnx waves/tubespit/tubespit-26-tosSt2.txt
-./maximal -Rnx waves/tubespit/tubespit-29-toslp2.txt
-./maximal -Rnx waves/tubespit/tubespit-30-toslp2.txt
-./maximal -Rnx waves/tubespit/tubespit-31-t0edge.txt
 ./maximal -Rnx waves/tubespit/tubespit-05-koshp1.txt
 ./maximal -Rnx waves/tubespit/tubespit-06-koslip.txt
 ./maximal -Rnx waves/tubespit/tubespit-07-koslip.txt
 ./maximal -Rnx waves/tubespit/tubespit-08-koslp2.txt
 ./maximal -Rnx waves/tubespit/tubespit-09-koslp3.txt
-./maximal -Rnx waves/tubespit/tubespit-18-koshp2.txt
-./maximal -Rnx waves/tubespit/tubespit-19-koslp4.txt
 ./maximal -Rnx waves/tubespit/tubespit-10-cycle1.txt
 ./maximal -Rnx waves/tubespit/tubespit-11-cycle1.txt
 ./maximal -Rnx waves/tubespit/tubespit-12-cycle1.txt
 ./maximal -Rnx waves/tubespit/tubespit-13-cycle2.txt
 ./maximal -Rnx waves/tubespit/tubespit-14-cycle3.txt
 ./maximal -Rnx waves/tubespit/tubespit-15-cycle4.txt
-./maximal -Rnx waves/tubespit/tubespit-17-cycle5.txt
 ./maximal -Rnx waves/tubespit/tubespit-16-cyc3_a.txt
+./maximal -Rnx waves/tubespit/tubespit-17-cycle5.txt
+./maximal -Rnx waves/tubespit/tubespit-18-koshp2.txt
+./maximal -Rnx waves/tubespit/tubespit-19-koslp4.txt
 ./maximal -Rnx waves/tubespit/tubespit-20-cyc3_b.txt
 ./maximal -Rnx waves/tubespit/tubespit-21-cyc3_c.txt
+./maximal -Rnx waves/tubespit/tubespit-22-tosSt2.txt
+./maximal -Rnx waves/tubespit/tubespit-23-tosSt2.txt
+./maximal -Rnx waves/tubespit/tubespit-24-tosSt2.txt
+./maximal -Rnx waves/tubespit/tubespit-25-tosSt2.txt
+./maximal -Rnx waves/tubespit/tubespit-26-tosSt2.txt
 ./maximal -Rnx waves/tubespit/tubespit-27-cycleX.txt
-./maximal -Rnx waves/tubespit/tubespit-32-combo1.txt
 ./maximal -Rnx waves/tubespit/tubespit-28-scrtch.txt
+./maximal -Rnx waves/tubespit/tubespit-29-toslp2.txt
+./maximal -Rnx waves/tubespit/tubespit-30-toslp2.txt
+./maximal -Rnx waves/tubespit/tubespit-31-t0edge.txt
+./maximal -Rnx waves/tubespit/tubespit-32-combo1.txt
 ./maximal -Rnx waves/tubespit/tubespit-33-imprf1.txt
 ./maximal -Rnx waves/tubespit/tubespit-34-imprf2.txt
 ./maximal -Rnx waves/tubespit/tubespit-35-imprf3.txt
