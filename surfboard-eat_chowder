@@ -1,17 +1,14 @@
 #!/bin/bash
-
 ./surfboard-Pop_Up
 
 if [ -f Surf_wavereport.mha ]; then
 	rm Surf_wavereport.mha
 fi
-if [ -f waves/foam_and_waves/chowder/chowder.log ]; then
-	rm waves/foam_and_waves/chowder/chowder.log
-fi
-if [ -f waves/foam_and_waves/chowder/chowder.mha ]; then
-	rm waves/foam_and_waves/chowder/chowder.mha
+if [ -f waves/foam_and_waves/foam_and_chowder.log ]; then
+	rm waves/foam_and_waves/foam_and_chowder.log
 fi
 
+./maximal -Rn waves/chowder/chowder_v327_52.txt
 ./maximal -Rn waves/chowder/chowder_v343_01.txt
 ./maximal -Rn waves/chowder/chowder_v343_02.txt
 ./maximal -Rn waves/chowder/chowder_v343_03.txt
@@ -25,8 +22,6 @@ fi
 ./maximal -Rn waves/chowder/chowder_v343_11.txt
 ./maximal -Rn waves/chowder/chowder_v343_12.txt
 ./maximal -Rn waves/chowder/chowder_v343_13.txt
-./maximal -Rn waves/chowder/chowder_v343_15.txt
-./maximal -Rn waves/chowder/chowder_v343_16.txt
 ./maximal -Rn waves/chowder/chowder_v343_17.txt
 ./maximal -Rn waves/chowder/chowder_v343_18.txt
 ./maximal -Rn waves/chowder/chowder_v343_20.txt
@@ -58,5 +53,6 @@ fi
 ./maximal -Rn waves/chowder/chowder_v344_30.txt
 ./maximal -Rn waves/chowder/chowder_v344_33.txt
 ./maximal -Rn waves/chowder/chowder_v344_34.txt
+
 ./surfboard-checkmha
 
