@@ -1729,7 +1729,7 @@ long int options[4][62] = {
 /*** FUNCTION 00 **** HEBR. "RAQIA": A (BEATEN OUT) EXPANDED SURFACE; I.E., A PHYSICAL FIRMAMENT UNDER AXIOMATIC LAWS ******/
 int check_raqia(struct coord raqia[MAXROW], int eM, int eN, short unsigned int dim) 
 {
-int i=0, j=0, chksum1=0, chksum2=0, lenseq=raqia[0].z, lineM=0, lineN=0, princeps=0;
+int i=0, j=0, lenseq=raqia[0].z, lineM=0, lineN=0, princeps=0;
 
 	raqia[0].z=0;	/* TEMPORARY ASSIGNMENT FOR GOOD LOOPING */
 
@@ -1765,10 +1765,16 @@ int i=0, j=0, chksum1=0, chksum2=0, lenseq=raqia[0].z, lineM=0, lineN=0, princep
 	if (princeps==0) {
 		/* ANGEL ONE: THE PRINCE OF CONTINUITY */
 		for (i=eM; i<eN; i++) {
-			chksum1 = raqia[i  ].x + raqia[i  ].y;
-			chksum2 = raqia[i+1].x + raqia[i+1].y;
+			if (     raqia[i+1].x == raqia[i].x + 1 &&
+				     raqia[i+1].y != raqia[i].y) {
+				break;
+			}
+			else if (raqia[i+1].y == raqia[i].y + 1 &&
+					 raqia[i+1].x >  raqia[i].x) {
+				break;
+			}
 		}
-		if (chksum2 == chksum1+1)
+		if (i==eN)
 			princeps++;
 	
 		/* ANGEL TWO: THE PRINCE OF EQUIVALENCE */
