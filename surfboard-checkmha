@@ -1,7 +1,4 @@
 #!/bin/bash
-clear
-date
-
 # CLEAN-UP POSSIBLE DUPLICATE LINES FROM OCCASIONAL FPRINTF GLITCH
 awk '!seen[$0]++' Surf_wavereport.mha > Surf_wavereport.log
 if [ -f waves/foam_and_chowder.mha ]; then
@@ -13,25 +10,4 @@ if [ -f waves/foam_and_chowder.mha ]; then
 	rm waves/foam_and_chowder.mha
 fi
 
-echo 'wc Surf_wavereport.log'
-wc Surf_wavereport.log 
-echo
-echo '# tests at 1000'
-grep -cE '\t1000' Surf_wavereport.log 
-echo
-echo 'REC:1000'
-grep -cE 'C.1000' Surf_wavereport.log 
-echo
-echo 'CYC:60k+'
-grep -cE 'CYC.600' Surf_wavereport.log 
-echo
-echo 'k=3'
-grep -cE 'k=3' Surf_wavereport.log 
-echo
-awk -F'[\t]' '{sum+=$4} END {print "WCR AVERAGE: " sum/NR} END {print "WCR CHECKSUM: "sum}' Surf_wavereport.log 
-awk -F'[\t]' '{sum+=$9} END {print "WIDTH CHECKSUM: "sum}' Surf_wavereport.log 
-echo
-echo 'head Surf_wavereport.log'
-head Surf_wavereport.log
-echo 'tail Surf_wavereport.log'
-tail Surf_wavereport.log
+./surfboard-checklog

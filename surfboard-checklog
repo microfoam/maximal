@@ -1,8 +1,8 @@
 #!/bin/bash
 clear
 date
-echo 'wc Surf_wavereport.log'
-wc Surf_wavereport.log 
+echo 'Line count:'
+wc -l Surf_wavereport.log 
 echo
 echo '# tests at 1000'
 grep -cE '\t1000' Surf_wavereport.log 
