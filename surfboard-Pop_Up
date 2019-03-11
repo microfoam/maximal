@@ -1,6 +1,6 @@
 clear
 echo ' Tri-fin dawn patrol:'
-gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.49.c
-echo '  ==> gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.49.c'
+gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.50.c
+echo '  ==> gcc -Wall -Wextra -Wstrict-prototypes -g -o maximal mha_v3.50.c'
 echo ' Surfs up!'
 echo ' '
