@@ -92,6 +92,10 @@ int main(int argc, char *argv[])
 	int 				get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW], long int options[][62]);
 
 	char version[] = "3.56";				/* current version number */
+	time_t lcl_time = time(NULL);			/* START TIME */
+	char time0[26];							/* START TIME STRING */
+	strcpy(time0,ctime(&lcl_time));			/* TEXT-READABLE START TIME */
+
 	char dev_notes[32] = "N/A";				/* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
 	int match      =  8;
 	int mismatch   = -1;
@@ -106,7 +110,7 @@ int main(int argc, char *argv[])
 	unsigned int FY_size = 100;				/* SIZE OF FISHER-YATES RANDOMIZED STRING */
 	char blank = '.';						/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
 											/* NEEDS TO BE SET IN options[][62] array */
-	char letr_unit[] = "alpha-characters";	/* DEFAULT STRING ALPHABET, LATER RESET TO "bp" FOR DNA AND "nt" FOR RNA */
+	char letr_unit[8] = {0};				/* DEFAULT STRING ALPHABET, LATER RESET TO "bp" FOR DNA, "nt" FOR RNA, 'aa' FOR PROTEINS, 'ch' FOR OTHER */
 
 	/* SINGLE-LETTER int'S IN ONE PLACE! */
 	int c=0, i=0, j=0, h=0, k, l=0, m=0, n=0, o,p,q, r=0, z=0;	/* DEV: RESERVE opq FOR chk_raqia */
@@ -122,7 +126,6 @@ int main(int argc, char *argv[])
   	FILE *fp_msa;							/* FILE FOR MHA MSA "TUBES.mha" */
 	FILE *fp_tricksy;						/* DEV. FILE FOR IMPERFECT 2-D ALIGNED STRINGS waves/foam_and_chowder.mha */
 
-	time_t lcl_time = time(NULL);
 	long int citwidth = 0;
 	long int a2D_n = 0;						/* NUMBER INDEX OF n FOR a2D_n */
 	int delta_to_bad1Dn = 0;				/* TO KEEP TRACK OF TIME SINCE LAST SLIP */
@@ -233,7 +236,7 @@ int main(int argc, char *argv[])
 	}	/* END OF FOR i = 1, i < argc, i++ */
 
 	if (Seq_name != 'i') {	
-		strcpy(file_name, "example sequence");
+		strcpy(file_name, "*test sequence");
 		strcpy(Seq_head, "example sequence");
 	}
 
@@ -521,7 +524,7 @@ long int options[4][62] = {
 		printf(" -u%ld", options[1][56]);
 	}
 	printf(" (version %s)\n", version);
-	printf("%s", ctime(&lcl_time));
+	printf("%s", time0);
 
 	if (options[0][51]) {		/* opt_p SHOW RUN PARAMETERS */
 		printf(" Match: %d, Transition: %d, Mismatch: %d, Threshold: %d%%, Bandwidth: %d, Default block width: %ld",  
@@ -585,7 +588,7 @@ long int options[4][62] = {
 	else if (seqtype == 3)
 		strcpy(letr_unit, "aa");	/* AMINO ACIDS */
 	else if (seqtype == 0)
-		strcpy(letr_unit, "char");	/* OTHER */
+		strcpy(letr_unit, "ch");	/* OTHER */
 
 	if (seqtype == 1) {			/* SET BIT VAR nuctransit IF DNA */
 		nuctransit = 1;
@@ -1420,7 +1423,7 @@ long int options[4][62] = {
 				warnhead('R');
 				printf("Reverting to post cinch-k due to micro-foam turbidity.\n");
 				options[1][i] = options[1][32];
-				passR[5] += CYCMAX*1000;		/* cyc runs > CYCMAX IF PASS REVERTED */
+				passR[5] = -CYCMAX;
 			}
 		}
 		else {									/* 2. NO CYCLELIZE SO WRITE scratch BACK TO align2D */
@@ -1789,10 +1792,10 @@ long int options[4][62] = {
 			strcpy(dev_notes,"missing letters");
 
 		fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
-		fprintf(fp_out, "v%s\t%.24s\t x%d\t%4ld\t%.3f\tCYC:%2d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%4d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%s: %ld\n", 
-				version, ctime(&lcl_time), (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], 
-				(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[9], (int) options[1][7], 
-				passR[2], passR[3], passR[4], passR[5], passR[6], passR[7], passR[8], dev_notes, options[1][39]);
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (k=%ld)\tRND:-%.*s\t%c %32s (%4d %s) REC:%4d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3ld: %s\n", 
+				version, time0+4, (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], 
+				(int) options[1][33], "XX", Seq_name, file_name+6, (int) options[1][1], letr_unit, passQ[9], (int) options[1][7], 
+				passR[2], passR[3], passR[4], passR[5], passR[6], passR[7], passR[8], options[1][39], dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
@@ -3680,7 +3683,8 @@ unsigned int connudge(char con_align2D[][MAXROW], long int con_options[][62], in
 							kmer = 3;       	/* IF k=9, THEN BELOW WILL FUDGE CYCLELIZE BY PUSHING RIGHT. HACK WORKS FOR ALL k */ 
 					}
 
-					cyc_options[0][5] = kmer;	/* USING THE 0 ROW ABOVE PASS WIDTH ROW TO STORE cyclelize kmer VAR. */
+					if (cyc_options[0][5]!=3)		/* GIVING PRECEDENCE TO THE MEMORY OF HAVING NUDGE-CYCLED */
+						cyc_options[0][5] = kmer;	/* USING THE 0 ROW ABOVE PASS WIDTH ROW TO STORE cyclelize kmer VAR. */
 
 					/* CYCLELIZE k=2 */	
 					if (kmer == 2) {
