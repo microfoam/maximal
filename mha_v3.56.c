@@ -39,7 +39,7 @@ int rnd;
 }
 
 struct coord {
-	int z;			/* 1D COORDINATE, BUT USED TO PASS INFORMATION TO FUNCTIONS */
+	int z;			/* 1D COORDINATE, BUT USED TO PASS INFORMATION TO FUNCTIONS. 0=lenseq; 2-->DTHR table */
 	int x;			/* 2D x-AXIS COORDINATE => COLUMN   */
 	int y;			/* 2D y-AXIS COORDINATE => ROW      */
 	int k;			/* k-MERs BY LOCATION; WAS A SLIPLOC_NMER I USED TO KNOW */
@@ -47,6 +47,7 @@ struct coord {
 	char c;			/* CHARACTER LETTER IN SEQUENCE: ASSIGN ONLY ONCE! */
 	char t;			/* AUTO-CONSENSUS LETTER; TRANSITIONS IN DNA USUALLY; IUPAC OTHERWISE */
 	char e;			/* EQUIVALENCE CLASS LETTER: ASSIGN ONLY ONCE! */
+	char echoes;	/* OLD SLIPLOC_ECHOES */
 };
 
 int assign_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW], int eL, int eM, int eN, int mode, int pointA, int pointB);
@@ -256,7 +257,6 @@ int main(int argc, char *argv[])
 	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from stringy[].r */
 	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
 	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING options ARRAY (opt_ VARs) */ 
-	char sliploc_echoes[MAXROW] = {0};
 	char pathbox[MAXROW+1][MAXROW] = {{0}};
 	char align2D[MAXROW+1][MAXROW] = {{0}};
 	char scratch[MAXROW+1][MAXROW];
@@ -623,10 +623,10 @@ long int options[4][62] = {
 	for (i = 0; i <= lenseq; i++) {
 		stringy[i].r = 0;		/* Initialize slip location array */
 		stringy[i].k = 0;
-		sliploc_echoes[i] = blank;
 		stringy[i].y = 0;
 		stringy[i].x = stringy[i].z = i;
 		stringy[i].c = stringy[i].t = Seq[i];
+		stringy[i].echoes = blank;
 		if (nuctransit) {
 			if 		(stringy[i].c=='A' || stringy[i].c=='G')
 				stringy[i].e ='R';
@@ -936,7 +936,7 @@ long int options[4][62] = {
 				/********* COMMITTING TO CINCH BELOW HERE ************************/
 				if ((Dtr==Did || imperfect_TR) && (o=push_raqia(stringy,n,m))) {
 					Dtr = imperfect_TR = 0;
-					if (options[1][57]>1) 
+					if (options[1][57]>0) 
 						printf("\n DEV: push_raqia violations=%d; skipping k=%d-mer at n=%d", o, k, n+1);
 				}
 
@@ -1017,25 +1017,27 @@ long int options[4][62] = {
 							if (cyclelen == 2*k) 	h = 1;
 							else 					h = k;
 
-							for (j = 0; j < h; j++) {
-								for (l = j; l+k <= i; l+=k) {
-									if (sliploc_echoes[n-k+l] == blank) 		sliploc_echoes[n-k+l] = '(';
-									else if (sliploc_echoes[n-k+l] == '(' ) 	sliploc_echoes[n-k+l] = '{';
-									else if (sliploc_echoes[n-k+l] == '{' ) 	sliploc_echoes[n-k+l] = '[';
-									else if (sliploc_echoes[n-k+l] == ')' ||
-											 sliploc_echoes[n-k+l] == '}' ||
-											 sliploc_echoes[n-k+l] == ']'   ) 	sliploc_echoes[n-k+l] = 'X';
-	
-									if (sliploc_echoes[n-1+l] == blank) 		sliploc_echoes[n-1+l] = ')';
-									else if (sliploc_echoes[n-1+l] == ')' ) 	sliploc_echoes[n-1+l] = '}';
-									else if (sliploc_echoes[n-1+l] == '}' ) 	sliploc_echoes[n-1+l] = ']';
-									else if (sliploc_echoes[n-1+l] == '(' ||
-											 sliploc_echoes[n-1+l] == '{' ||
-											 sliploc_echoes[n-1+l] == '['   ) 	sliploc_echoes[n-1+l] = 'X';
-								} /* END OF FOR l LOOP */
-							} /* END OF FOR j LOOP */
+							
+							if (options[0][47]) {/****************************** OPTION TO SHOW SLIP LOCATIONS */
+								for (j = 0; j < h; j++) {
+									for (l = j; l+k <= i; l+=k) {
+										if 		(stringy[n-k+l].echoes == blank)	stringy[n-k+l].echoes = '(';
+										else if (stringy[n-k+l].echoes == '('  )	stringy[n-k+l].echoes = '{';
+										else if (stringy[n-k+l].echoes == '{'  )	stringy[n-k+l].echoes = '[';
+										else if (stringy[n-k+l].echoes == ')'||
+												 stringy[n-k+l].echoes == '}'||
+												 stringy[n-k+l].echoes == ']'  )	stringy[n-k+l].echoes = 'X';
+		
+										if 		(stringy[n-1+l].echoes == blank)	stringy[n-1+l].echoes = ')';
+										else if (stringy[n-1+l].echoes == ')'  )	stringy[n-1+l].echoes = '}';
+										else if (stringy[n-1+l].echoes == '}'  )	stringy[n-1+l].echoes = ']';
+										else if (stringy[n-1+l].echoes == '('||
+												 stringy[n-1+l].echoes == '{'||
+												 stringy[n-1+l].echoes == '['  )	stringy[n-1+l].echoes = 'X';
+									}
+								}
+							}/**********************************************************************************/
 						}
-
 					} /* END OF else & TR_check = 0 PART */
 
 					/* BELOW "SHADOW" IN COMMENTS REFERS TO REGION OF FIRST UNIT. I CALL IT THE UPSTREAM SHADOW B/C */
@@ -1054,7 +1056,7 @@ long int options[4][62] = {
 								delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
 								bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
 								frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
-								sliploc_echoes[i] = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
+								stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
 								for (j=bad_1Dn; j < bad_1Dn + stringy[bad_1Dn].r * stringy[bad_1Dn].k; j++) {
 									stringy[j].y = row;
 								}
@@ -1066,7 +1068,7 @@ long int options[4][62] = {
 	                                delta_to_bad1Dn = n-i;                      /* THIS IS DISTANCE TO THE BAD SLIP */
 	                                bad_1Dn = i;                                /* STORE POSITION OF BAD SLIP */
 	                                frst_badslip = 1;                           /* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
-	                                sliploc_echoes[i] = 'o';                    /* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */   
+	                                stringy[i].echoes = 'o';                    /* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */   
 									for (j=bad_1Dn; j< bad_1Dn + stringy[i].r * stringy[bad_1Dn].k; j++) {
 										stringy[j].y = row;
 								}
@@ -1082,7 +1084,7 @@ long int options[4][62] = {
 										delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
 										bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
 										frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
-										sliploc_echoes[i] = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
+										stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
 										for (j=bad_1Dn; j< bad_1Dn + stringy[i].r * stringy[bad_1Dn].k; j++) {
 											stringy[j].y = row;
 								}
@@ -1099,7 +1101,7 @@ long int options[4][62] = {
 										delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
 										bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
 										frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
-										sliploc_echoes[i] = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
+										stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
 										for (j=bad_1Dn; j< bad_1Dn + stringy[i].r * stringy[bad_1Dn].k; j++) {
 											stringy[j].y = row;
 								}
@@ -1119,17 +1121,18 @@ long int options[4][62] = {
 						for (i = bad_1Dn-1; i>=0; i--) {
 							if (stringy[i].r) {
 								j=stringy[i].r;
-								break;
-							}
-						}
 								if (j>1 && (i + (j-1) * stringy[i].k) > m) {
 									recslips = recslips + (j-1);
 									a2D_n = a2D_n + stringy[i].k * (j-1);
 								}
 								else if (j==1 && i>m && i + stringy[i].k < bad_1Dn &&
-														i - stringy[i].k < m) {
+														i - stringy[i].k <= m) {
 									a2D_n = a2D_n - stringy[i].k;
 								}
+								else
+									break;
+							}
+						}
 					}
 
 					/* REWRITE UPSTREAM SHADOW TR AS SINGLE LINE IF ANY RECENT 'BAD' SLIPS FOUND THAT SPAN INTO NEW TR */
@@ -1224,11 +1227,11 @@ long int options[4][62] = {
 						}
 				
 						if (options[1][57]>1) {
-							i = (int) a2D_n; j = lenseq;
-							printf("\n DEV: check_raqia via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,i, 2));
-							printf("\n DEV: check_raqia via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,j, 1));
-							printf("\n DEV: print_raqia for k=%d x%d at n=%d", k, r, n);
-							print_raqia(stringy,10);
+							p = (int) a2D_n; q = lenseq;
+/*							printf("\n DEV: check_raqia via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,p, 2));
+							printf("\n DEV: check_raqia via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,q, 1));
+*/							printf("\n DEV: print_raqia for k=%d x%d at n=%d", k, r, n);
+							print_raqia(stringy,60);
 						}
 					} /* END OF FOR i LOOP OF r */
 					if (r>1) {
@@ -1245,7 +1248,6 @@ long int options[4][62] = {
 								align2D[row+i][j] = '\0';
 							}
 						}
-						stringy[bad_1Dn].r = 0;
 					}
 
 					if (imperfect_TR) {		/* FIND THE TRANSITIONS AND STORE TYPE (Y OR R) IN NEW CORRECTED POSITIONS */
@@ -1342,7 +1344,7 @@ long int options[4][62] = {
 			/**********************************************/
 			line_end(SLIPS, 0, options, 0);
 			for (i = j * options[1][58]; (i < (j+1) * options[1][58]) && (i < lenseq); i++) {
-				printf("%c", sliploc_echoes[i]);
+				printf("%c", stringy[i].echoes);
 			}
 			if (j+1 == blocks)
 				printf(" <==== (((( {  REVERB  } ))))\n");
@@ -1369,7 +1371,7 @@ long int options[4][62] = {
 	if (options[1][57]>1) {
 		printf("\n DEV: check_raqia via 1-D coords, princeps = %2d.", check_raqia(stringy,0,lenseq,  1));
 		printf("\n DEV: check_raqia via 2-D coords, princeps = %2d.", check_raqia(stringy,0,citwidth,2));
-		print_raqia(stringy,53);
+		print_raqia(stringy,72);
 	}
 	if    (passQ[2]==1000 && check_raqia(stringy,0, lenseq,1)!=3) {
 		options[1][39]=1;
@@ -1786,13 +1788,20 @@ long int options[4][62] = {
 	
 
 	if (options[0][54] != 1) {		/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
-		if (options[1][39]>2 && options[1][39]<36)		/* dev_notes always written here but can flag from within functions outside of main */
-			strcpy(dev_notes,"other");
-		else if (options[1][39]>100)
-			strcpy(dev_notes,"missing letters");
+		if (options[1][39]>3) {		/* opt_d message-passing: dev_notes written here if outside of main() */
+			i = (int) options[1][39];
+			if (i==4)		
+				strcpy(dev_notes,"connudge()");
+			else if (i> 100 && i<1000)
+				strcpy(dev_notes,"!lost ch. ( -100)");
+			else if (i>1000)
+				strcpy(dev_notes,"added ch. (-1000)");
+			else
+				strcpy(dev_notes,"other");
+		}
 
 		fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
-		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (k=%ld)\tRND:-%.*s\t%c %32s (%4d %s) REC:%4d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3ld: %s\n", 
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (k=%ld)\tRND:-%.*s\t%c %32s (%4d %s) REC:%4d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%4ld: %s\n", 
 				version, time0+4, (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], 
 				(int) options[1][33], "XX", Seq_name, file_name+6, (int) options[1][1], letr_unit, passQ[9], (int) options[1][7], 
 				passR[2], passR[3], passR[4], passR[5], passR[6], passR[7], passR[8], options[1][39], dev_notes);
@@ -1893,7 +1902,6 @@ int assign_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW], int eL, int
 {
 	int i=0, j=0, lenseq=raqia[0].z, conflict_flag=0;
 	int start=0, end=lenseq;
-	raqia[0].z=0;	/* TEMPORARY ASSIGNMENT FOR GOOD LOOPING */
 
 	if (pointB > pointA) {	/* ASSIGN LINE VALUES IF CHECKING LIMITED SPAN */
 		start = pointA;
@@ -1957,7 +1965,6 @@ int assign_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW], int eL, int
 		printf("\n DEV: undefined mode invoked");
 	}
 
-	raqia[0].z=lenseq;	/* ALWAYS RESTORE THIS! */
 	if (conflict_flag)
 		return(0);
 	else
@@ -1969,8 +1976,6 @@ int assign_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW], int eL, int
 int check_raqia(struct coord raqia[MAXROW], int eM, int eN, short unsigned int dim) 
 {
 int i=0, j=0, lenseq=raqia[0].z, lineM=0, lineN=0, princeps=0, badflag=0;
-
-	raqia[0].z=0;	/* TEMPORARY ASSIGNMENT FOR GOOD LOOPING */
 
 	if (eM>=eN) {
 		printf("\n DEV: Need to call check_raqia explicitly with %d-D positions eN > eM.", dim);
@@ -2013,14 +2018,12 @@ int i=0, j=0, lenseq=raqia[0].z, lineM=0, lineN=0, princeps=0, badflag=0;
 				;
 			}
 			else {
-				badflag++;
 				break;
 			}
 		}
 		if (i==eN)
 			princeps++;
 
-		badflag=0;	
 		/* ANGEL TWO: THE PRINCE OF EQUIVALENCE */
 		for (i=eM; i<eN-1 && !badflag; i++) {
 			for (j=i+1; j<eN; j++) {
@@ -2037,7 +2040,6 @@ int i=0, j=0, lenseq=raqia[0].z, lineM=0, lineN=0, princeps=0, badflag=0;
 			printf("\n DEV: Problem at 1-D position %d (column %d)", j+1, raqia[j].x+1);
 	}
 
-	raqia[0].z=lenseq;	/* ALWAYS RESTORE THIS! */
 	return(princeps);	/* 0 IF BOTH FAIL; 1 IF ONLY TWO FAILS; 2 IF ONLY ONE FAILS, 3 IF BOTH PASS */ 
 }
 
@@ -2070,8 +2072,6 @@ void print_raqia(struct coord raqia[MAXROW], int max)
 {
 int i=0, lenseq=raqia[0].z;
 
-	raqia[0].z=0;	/* TEMPORARY ASSIGNMENT FOR GOOD LOOPING */
-
 	if (max > lenseq)
 		max = lenseq;
 
@@ -2100,8 +2100,6 @@ int i=0, lenseq=raqia[0].z;
 		printf("%3c", raqia[i].e);
 */
 		printf("\n");
-
-	raqia[0].z=lenseq;	/* ALWAYS RESTORE THIS! */
 }
 
 /*** FUNCTION 01 ************************************************************************************/
@@ -4408,6 +4406,7 @@ short unsigned int lcl_opt_F;
 		i=poptions[0][10] = round((1000*(cinchwidth-mmsites-(c-length)))/cinchwidth);	
 		warnhead('+');
 		printf("2-D printing left %d extra letter(s)!\n", c-length);
+		poptions[1][39] = 1000 + c-length;
 		return(0);
 	}
 }
