@@ -24,3 +24,6 @@ echo
 awk -F'[\t]' '{sum+=$5} END {print "WCR AVERAGE: " sum/NR} END {print "WCR CHECKSUM: "sum}' Surf_wavereport.log 
 awk -F'[\t]' '{sum+=$9} END {print "WIDTH CHECKSUM: "sum}' Surf_wavereport.log 
 echo
+echo 'Tests w/ <1000 PASS:'
+grep -vE '\t1000' Surf_wavereport.log 
+echo
