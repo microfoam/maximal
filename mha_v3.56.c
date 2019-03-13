@@ -15,6 +15,7 @@
 #define MAXROW	 1200		/* maximum input line size  */
 #define WIDTH	  200		/* BANDWIDTH OF 2X MAX TR SIZE; 3x 100 bp MSR UNIT CEILING */ 
 #define CYCMAX	   60		/* MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER STOPGAPS */
+#define PISO		2		/* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
 #define START		0		/* FOR USE WITH line_end() */
 #define END			1		/* FOR USE WITH line_end() */
 #define RULER		2		/* FOR USE WITH line_end() */
@@ -38,11 +39,11 @@ int rnd;
 }
 
 struct coord {
-	int z;			/* 1D COORDINATE: ASSIGN ONLY ONCE! */
+	int z;			/* 1D COORDINATE, BUT USED TO PASS INFORMATION TO FUNCTIONS */
 	int x;			/* 2D x-AXIS COORDINATE => COLUMN   */
 	int y;			/* 2D y-AXIS COORDINATE => ROW      */
-	int k;			/* k-MER */
-	int r;			/* repeat number */
+	int k;			/* k-MERs BY LOCATION; WAS A SLIPLOC_NMER I USED TO KNOW */
+	int r;			/* REPEAT NUMBER ALBERT STYLE: 2 UNITS OF TR = 1 REPEAT; WAS SLIPLOC IN OLDER PRE-STRUCT CODE  */
 	char c;			/* CHARACTER LETTER IN SEQUENCE: ASSIGN ONLY ONCE! */
 	char t;			/* AUTO-CONSENSUS LETTER; TRANSITIONS IN DNA USUALLY; IUPAC OTHERWISE */
 	char e;			/* EQUIVALENCE CLASS LETTER: ASSIGN ONLY ONCE! */
@@ -74,9 +75,9 @@ int main(int argc, char *argv[])
 {
 	short unsigned int 	cleanseq(char *s, long int cloptions[][62], short unsigned int storebit);
 	short unsigned int 	cinch_l(char align2D_pass3[][MAXROW], long int loptions[][62]);  
-	void               	cinch_k(char align2D_pass4[][MAXROW], long int koptions[][62], int DTHR_lookie[WIDTH/2]);  
+	int               	cinch_k(char align2D_pass4[][MAXROW], long int koptions[][62], struct coord raqia[MAXROW]);  
 	unsigned int       	cyclelize(char cyc_align2D[][MAXROW], long int cyc_options[][62]);
-	short unsigned int 	cinch_s(char align2D_pass4[][MAXROW], long int soptions[][62]); 
+	short unsigned int 	cinch_s(char align2D_pass6[][MAXROW], long int soptions[][62]); 
 	unsigned int       	cinch_d(char align2D_pass7[][MAXROW], long int doptions[][62], short unsigned int cinch_d_opt);
 	short int			tucksense(char tuckarray[][MAXROW], long int tuck_options[0][62]);
 	void		 		relax_2D(char align2D_pass8[][MAXROW], long int roptions[0][62]);
@@ -100,7 +101,6 @@ int main(int argc, char *argv[])
 											/* FOR 0.08, ALL k < 7 ALLOW ONLY 1 TRANSITION */
 	int numtransit;
 	int DTHR       = 101;					/* 101%. RESET IF opt_x, DIAGONAL THRESHOLD SCORES */ 
-	int DTHR_lookup[1+WIDTH/2] = {0};		/* ARRAY OF PRE-COMPUTED k-DEPENDENT DTHR VALUES */
 	short unsigned int continue_flag=0, imperfect_TR=0, Aimperfect_TR=0, nuctransit=0, seqtype=0;
 	int alt_Did, alt_Dtr, alt_k, alt_m;		/* ALTERNATE k-MER COMPARISONS */
 	unsigned int FY_size = 100;				/* SIZE OF FISHER-YATES RANDOMIZED STRING */
@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
 
 	struct coord stringy[MAXROW];
 
-	int cyc_runs=0, d_runs=0, r_runs=0, homopoly_flag=0, homopolyend_flag=0, mstop=0, oldbad=0, lenseq=MAXROW, scooch=0, TRcheck=0, sloc_z=0, overslip = 0; 
+	int homopoly_flag=0, homopolyend_flag=0, mstop=0, oldbad=0, lenseq=MAXROW, scooch=0, TRcheck=0, sloc_z=0, overslip = 0; 
 	float ratio1 = 1;						/* WIDTH CINCH RATIO (W.C.R.) post cinch-d, pre relax-2D 	*/
 	float ratio2 = 1;						/* WIDTH CINCH RATIO (W.C.R.) post relax-2D 				*/
 
@@ -249,16 +249,16 @@ int main(int argc, char *argv[])
 	int Dtr = 0;				/* Counter for tandem repeat (tr) diagonal */
 	int Atr = 0;				/* Counter for additional repeats on the same diagonal */
 	int row = 0;				/* Counter for row number in align2D box */
-	int unislip = 0;			/* Counter of unique slips */
 	int badslipspan = 0;		/* Counter of length of a conflicting prior slip starting from the second unit */ 
 	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from stringy[].r */
 	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
 	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING options ARRAY (opt_ VARs) */ 
-	char       sliploc_echoes[MAXROW] = {0};
+	char sliploc_echoes[MAXROW] = {0};
 	char pathbox[MAXROW+1][MAXROW] = {{0}};
 	char align2D[MAXROW+1][MAXROW] = {{0}};
 	char scratch[MAXROW+1][MAXROW];
-	int passQ[10];
+	int passQ[10];				/* PASS QUALITY */
+	int passR[10];				/* PASS RUNS */
 
 long int options[4][62] = {
 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
@@ -752,21 +752,20 @@ long int options[4][62] = {
 */
 	/* IF NUCTRANSIT POPULATE DTHR MATRIX FOR ALL k <= WIDTH/2 */
 	if (nuctransit) {
-		DTHR_lookup[0] = match;		/* USE k=0 SLOT TO STORE MATCH VALUE */
-		DTHR_lookup[1] = 100;
-		DTHR_lookup[2] = 100;
+/*		stringy[0].z = lenseq; */		/* ASSIGNED PREVIOUSLY */
+		stringy[1].z = match;			/* USE k=1 SLOT TO STORE MATCH VALUE */
 
 		if ((options[1][59] + 2) %2) {		/* IF opt_x EXTRA SQUEEZE: ALLOWS TRANSITION MATCHING FOR LOWER k AT CINCH_T */
 										/* THE +2 IS FOR CLARITY AND ASSURANCE THAT 1%2 GOES TO 1. SO -x AND -xxx TO INVOKE */
-			for (k=3; k <= WIDTH/2; k++) {
+			for (k=PISO; k <= WIDTH/2; k++) {
 				numtransit = 1 + round(fractransit * k);
-				DTHR_lookup[k] = 100*((k-numtransit)*match + numtransit*transition)/(k*match) - 1;
+				stringy[k].z = 100*((k-numtransit)*match + numtransit*transition)/(k*match) - 1;
 			}
 		}
 		else {					/* ELSE NOT */
-			for (k=3; k <= WIDTH/2; k++) {
+			for (k=PISO; k <= WIDTH/2; k++) {
 				numtransit = 1 + round(fractransit * k);
-				DTHR_lookup[k] = 100*((k-numtransit)*match + numtransit*transition)/(k*match);
+				stringy[k].z = 100*((k-numtransit)*match + numtransit*transition)/(k*match);
 			}
 		}
 	}
@@ -775,8 +774,10 @@ long int options[4][62] = {
 		n = 30;	
 		printf("\n Diagonal threshold (DTHR values) as a function of k (first %d values) and fractransit (%.2f):\n", n, fractransit);
 
-		for (k = 1; k <= n; k++)
-			printf("\n\tFor k = %2d and numtransit = %d, DTHR = %3d%%.", k, 1 + (int) round(fractransit*k), DTHR_lookup[k]);
+		for (k = 1; k < PISO; k++)
+			printf("\n\tFor k = %2d and numtransit = %d, DTHR = %3d%%.", k, 1 + (int) round(fractransit*k), 100);
+		for (k = PISO; k <= n; k++)
+			printf("\n\tFor k = %2d and numtransit = %d, DTHR = %3d%%.", k, 1 + (int) round(fractransit*k), stringy[k].z);
 		printf("\n\n Note: DTHR values are only populated if a sequence is specified.\n\n");
 		exit(1);
 	}
@@ -798,8 +799,12 @@ long int options[4][62] = {
 				k = n-m;
 			}
 
-			if (nuctransit) {
-				DTHR = DTHR_lookup[k];
+			if (nuctransit && k>PISO) {
+				DTHR = stringy[k].z;
+				imperfect_TR = 0;
+			}
+			else if (nuctransit) {
+				DTHR = 100;
 				imperfect_TR = 0;
 			}
 
@@ -934,7 +939,7 @@ long int options[4][62] = {
 
 				if (Dtr==Did || imperfect_TR) {	/*  1st MEASUREMENT OF TANDEM REPEAT (TR) */
 												/*  TR EQ. DIMER */
-					unislip++;
+					passR[2]++;
 					r = 1;
 					stringy[n].r++;
 					stringy[n].k = k = n-m;
@@ -1216,10 +1221,11 @@ long int options[4][62] = {
 						}
 				
 						if (options[1][57]>1) {
-							printf("\n DEV: check_raqia via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,lenseq,1));
-							printf("\n DEV: check_raqia via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,a2D_n, 2));
+							i = (int) a2D_n; j = lenseq;
+							printf("\n DEV: check_raqia via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,i, 2));
+							printf("\n DEV: check_raqia via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,j, 1));
 							printf("\n DEV: print_raqia for k=%d x%d at n=%d", k, r, n);
-							print_raqia(stringy,53);
+							print_raqia(stringy,10);
 						}
 					} /* END OF FOR i LOOP OF r */
 					if (r>1) {
@@ -1275,6 +1281,16 @@ long int options[4][62] = {
 	mha_head(lenseq, options);
 
 	for (j = 0; j < blocks; j++) {
+		if (options[1][57]) {
+			line_end(SLIPS, j+1, options, 0);	
+   			for (n = j * options[1][58]; (n < (j+1) * options[1][58]) && (Seq[n] != '>') && (Seq[n] != '\0'); n++) {
+				if ((ch=stringy[n].t)=='R' || ch=='Y')
+					printf("%c", ch);
+				else
+					printf("_");
+			}
+		}
+		printf("\n");
 		line_end(START, j+1, options, 0);	
    		for (n = j * options[1][58]; (n < (j+1) * options[1][58]) && (Seq[n] != '>') && (Seq[n] != '\0'); n++) {
 			printf("%1c", Seq[n]);
@@ -1366,14 +1382,15 @@ long int options[4][62] = {
 
 	/********** 3. cinch_l MODULE: WRAPS HOMOPOLYMERIC RUNS IF >= 20 (2 * wrap VAR.) ********/
 	i = ++options[1][18];	/* INCREMENT opt_I ++PASS NUM */
-	if (cinch_l(align2D, options))
+	passR[i]=cinch_l(align2D, options);
+	if (passR[i])
 		print_2Dseq(align2D, options[1][32], options);
 	passQ[i] = options[0][10];
 
 	/********* 4. cinch_k MODULE: HANDLES k-mers FROM SIZE WIDTH/2 DOWN TO k=1 ***********/
 	i = ++options[1][18];	/* INCREMENT opt_I ++PASS NUM */
 
-	cinch_k(align2D, options, DTHR_lookup);
+	passR[i]=cinch_k(align2D, options, stringy);
 	cycle_flag = print_2Dseq(align2D, options[1][32], options);
 	passQ[i] = options[0][10];
 
@@ -1388,12 +1405,12 @@ long int options[4][62] = {
 	if (continue_flag) {
 		i = ++options[1][18];	/* INCREMENT opt_I ++PASS NUM */
 		if (cycle_flag || align2D[0][0] == blank) {
-			cyc_runs++;
+			passR[5]++;
 			mha_writeback(align2D, scratch, options);		/* 1. COPY align2D TO scratch ARRAY */
 			mha_writecons(align2D, scratch, options);
 
-			while ((go_flag=cyclelize(scratch, options)) != 0 && cyc_runs < CYCMAX) {	
-				cyc_runs++;
+			while ((go_flag=cyclelize(scratch, options)) != 0 && passR[5] < CYCMAX) {	
+				passR[5]++;
 			}
 			if (go_flag == 0 || go_flag > cycle_flag) {
 				mha_writeback(scratch, align2D, options);
@@ -1403,7 +1420,7 @@ long int options[4][62] = {
 				warnhead('R');
 				printf("Reverting to post cinch-k due to micro-foam turbidity.\n");
 				options[1][i] = options[1][32];
-				cyc_runs = cyc_runs + CYCMAX*1000;		/* cyc_runs > CYCMAX IF PASS REVERTED */
+				passR[5] += CYCMAX*1000;		/* cyc runs > CYCMAX IF PASS REVERTED */
 			}
 		}
 		else {									/* 2. NO CYCLELIZE SO WRITE scratch BACK TO align2D */
@@ -1415,7 +1432,7 @@ long int options[4][62] = {
 	/********* 6. cinch_s MODULE: HANDLES TR k-mers IN A SINGLE LINE ***********/
 	if (continue_flag) {
 		i = ++options[1][18];	/* INCREMENT opt_I ++PASS NUM */
-		if (cinch_s(align2D, options)) {
+		if ((passR[i]=cinch_s(align2D, options))) {
 			print_2Dseq(align2D, options[1][32], options); 
 		}
 		else {
@@ -1454,9 +1471,9 @@ long int options[4][62] = {
 		if (intraTR_reps_tot > 0) {
 			while (intraTR_reps > 0) {
 				intraTR_reps = cinch_d(align2D, options, 1);
-				d_runs++;
+				passR[7]++;
 			}
-			options[0][7] = --d_runs;	/* STORE d_runs in PASS SLOT IN CASE FUTURE MODULES POST CINCH-D NEED IT */
+			options[0][7] = --passR[7];	/* STORE d runs in PASS SLOT IN CASE FUTURE MODULES POST CINCH-D NEED IT */
 							/* NEED TO COUNT LIKE THIS FOR FOLLOWING REASONS: 			*/
 							/*  1. LAST RUN IS A CHECK RETURNING ZERO, SO RUNS NEED TO BE DECREMENTED BY 1. 	*/
 							/*  2. APPARENT LAST EFFECTIVE CINCH-D RUN MAY REVEAL A NEW CINCH-D OPPORTUNITY. 	*/
@@ -1473,7 +1490,7 @@ long int options[4][62] = {
 			relax_length = options[1][32] ;
 			relax_2D(align2D, options);
 			relax_length = options[1][32] - relax_length;
-			r_runs++;
+			passR[8]++;
 		}
 		while (relax_length > 0);
 	
@@ -1590,7 +1607,7 @@ long int options[4][62] = {
 
 		int k_start=2;
 
-		printf("\n Unique slips: %4d\n", unislip);
+		printf("\n Unique slips: %4d\n", passR[2]);
 
 			if (WIDTH/2 <= 20) {
 				for (i = k_start; i <= WIDTH/2; i++)
@@ -1645,15 +1662,15 @@ long int options[4][62] = {
 			printf("%s post cleanseq  [pass #1]\n", letr_unit);
 			break;
 		case 2:
-			if (unislip>1)
-				printf("%s post cinch-t   [pass #2: %d cinches]\n", letr_unit, unislip);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
-			else if (unislip)
-				printf("%s post cinch-t   [pass #2: %d cinch]\n", letr_unit, unislip);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
+			if (passR[2]>1)
+				printf("%s post cinch-t   [pass #2: %d cinches]\n", letr_unit, passR[2]);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
+			else if (passR[2])
+				printf("%s post cinch-t   [pass #2: %d cinch]\n", letr_unit, passR[2]);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
 			else
 				printf("%s post cinch-t   [pass #2: SKIPPED BY REQUEST]\n", letr_unit);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
 			break;												/*  "cinch-x" VERSUS 'cinch_x' programming calls 				*/ 
 		case 3:													/*  USEFUL FOR SEARCHING CODE.									*/
-			printf("%s post cinch-l   [pass #3]\n", letr_unit);
+			printf("%s post cinch-l   [pass #3: %d run(s)]\n", letr_unit, passR[3]);
 			break;
 		case 4:	
 			if (options[0][4] == 0)
@@ -1667,41 +1684,41 @@ long int options[4][62] = {
 			k = options[0][5];
 			if (k == 0)
 				printf("%s post cyclelize [pass #5]\n", letr_unit);
-			else if (cyc_runs == 1) {	
+			else if (passR[5] == 1) {	
 				if (k == 2)
-					printf("%s post cyclelize [pass #5: %d run; cyclelized TR of type k=2]\n", letr_unit, cyc_runs);
+					printf("%s post cyclelize [pass #5: %d run; cyclelized TR of type k=2]\n", letr_unit, passR[5]);
 				else if (k == 3)
-					printf("%s post cyclelize [pass #5: %d run; nudge-cyclelized TR of type k>2]\n", letr_unit, cyc_runs);
+					printf("%s post cyclelize [pass #5: %d run; nudge-cyclelized TR of type k>2]\n", letr_unit, passR[5]);
 				else if (k == 4)
-					printf("%s post cyclelize [pass #5: %d run; tip-cyclelized TR]\n", letr_unit, cyc_runs);
+					printf("%s post cyclelize [pass #5: %d run; tip-cyclelized TR]\n", letr_unit, passR[5]);
 			}
-			else if (cyc_runs <= CYCMAX) {	/* IN WHICH CASE k WILL BE NON-ZERO */
+			else if (passR[5] <= CYCMAX) {	/* IN WHICH CASE k WILL BE NON-ZERO */
 				if (k == 2)
-					printf("%s post cyclelize [pass #5: %d runs; last cyclelized TR was of type k=2]\n", letr_unit, cyc_runs);
+					printf("%s post cyclelize [pass #5: %d runs; last cyclelized TR was of type k=2]\n", letr_unit, passR[5]);
 				else if (k == 3)
-					printf("%s post cyclelize [pass #5: %d runs; last TR was nudge-cyclelized (k>2)]\n", letr_unit, cyc_runs);
+					printf("%s post cyclelize [pass #5: %d runs; last TR was nudge-cyclelized (k>2)]\n", letr_unit, passR[5]);
 				else if (k == 4)
-					printf("%s post cyclelize [pass #5: %d runs; last TR was tip-cyclelized]\n", letr_unit, cyc_runs);
+					printf("%s post cyclelize [pass #5: %d runs; last TR was tip-cyclelized]\n", letr_unit, passR[5]);
 			}
-			else 							/* IN WHICH CASE cyc_runs >> CYCMAX */
-				printf("%s post cyclelize [pass #5: reverted after %d runs due to gnarly micro-foam]\n", letr_unit, cyc_runs-CYCMAX*1000);
+			else 							/* IN WHICH CASE cyc runs >> CYCMAX */
+				printf("%s post cyclelize [pass #5: reverted after %d runs due to gnarly micro-foam]\n", letr_unit, passR[5]-CYCMAX*1000);
 			break;
 		case 6:	
-			if (options[0][6] == 0)
-				printf("%s post cinch-s   [pass #6]\n", letr_unit);
-			else if (options[0][6] == 1)
+			if (passR[6] == 0)
+				printf("%s post cinch-s   [pass #6: N/A]\n", letr_unit);
+			else if (passR[6] == 1)
 				printf("%s post cinch-s   [pass #6: one row added]\n", letr_unit);
-			else if (options[0][6] > 1)
-				printf("%s post cinch-s   [pass #6: %ld rows added]\n", letr_unit, options[0][6]);
+			else if (passR[6] > 1)
+				printf("%s post cinch-s   [pass #6: %d rows added]\n", letr_unit, passR[6]);
 			break;
 		case 7:	
-			if (d_runs > 0)
-				printf("%s post cinch-d   [pass #7: %d runs]\n", letr_unit, d_runs);
+			if (passR[7] > 0)
+				printf("%s post cinch-d   [pass #7: %d runs]\n", letr_unit, passR[7]);
 			else
 				printf("%s post cinch-d   [pass #7]\n", letr_unit);
 			break;
 		case 8:	
-			printf(    "%s post relax-2D  [pass #8: relaxed %d runs]\n", letr_unit, r_runs);
+			printf(    "%s post relax-2D  [pass #8: relaxed %d runs]\n", letr_unit, passR[8]);
 			break;
 		}
 	}
@@ -1766,20 +1783,23 @@ long int options[4][62] = {
 	
 
 	if (options[0][54] != 1) {		/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
-		if (options[1][39]>2)		/* dev_notes always written here but can flag from within functions outside of main */
+		if (options[1][39]>2 && options[1][39]<36)		/* dev_notes always written here but can flag from within functions outside of main */
 			strcpy(dev_notes,"other");
+		else if (options[1][39]>100)
+			strcpy(dev_notes,"missing letters");
 
 		fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
-		fprintf(fp_out, "v%s\t%.24s\t x%d\t%4ld\t%.3f\tCYC:%2d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%4d\t%d\t%s: %ld\n", 
-				version, ctime(&lcl_time), (int) options[1][59], options[0][10], ratio1, cyc_runs, options[0][5], 
-				(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[9], (int) options[1][7], dev_notes, options[1][39]);
+		fprintf(fp_out, "v%s\t%.24s\t x%d\t%4ld\t%.3f\tCYC:%2d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%4d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%s: %ld\n", 
+				version, ctime(&lcl_time), (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], 
+				(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[9], (int) options[1][7], 
+				passR[2], passR[3], passR[4], passR[5], passR[6], passR[7], passR[8], dev_notes, options[1][39]);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
-		if (options[0][10] != 1000 || cyc_runs > CYCMAX) {
+		if (options[0][10] != 1000 || passR[5] > CYCMAX) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
 			fprintf(fp_tricksy, "v%s\t%.24s\t x%d\t%4ld\t%.3f\tCYC:%2d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%4d\t%s\n", 
-					version, ctime(&lcl_time), (int) options[1][59], options[0][10], ratio1, cyc_runs, options[0][5], 
+					version, ctime(&lcl_time), (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], 
 					(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[9], dev_notes);
 			for(n = 0; Seq[n] != '\0'; n++) {
 				if (Seq[n] != 10 && Seq[n] != 13 && Seq[n] != EOF)
@@ -2052,9 +2072,9 @@ int i=0, lenseq=raqia[0].z;
 	if (max > lenseq)
 		max = lenseq;
 
-		printf("\n z:");
+		printf("\n n:");
 	for (i=0; i<=max; i++)
-		printf("%3d", raqia[i].z);
+		printf("%3d", i);
 
 		printf("\n c:");
 	for (i=0; i<=max; i++)
@@ -2113,7 +2133,7 @@ short unsigned int cinchled=0;					/* BIT FLAG TO SAY cinch_l DID SOMETHING */
 	
 			if (run == 2*cil_mwrap) {			/* TRIGGER LENGTH MEASURE OF MONOMERIC RUN	*/
 												/* AND WRITING OF (10)-MER BLOCKS			*/
-				cinchled = 1;
+				++cinchled;
 				while (align2D_pass3[m][n+run-2*cil_mwrap] == letr) {
 					run++;
 				}
@@ -2149,22 +2169,22 @@ short unsigned int cinchled=0;					/* BIT FLAG TO SAY cinch_l DID SOMETHING */
 	loptions[1][3] = loptions[1][32];
 	if (cinchled) {
 		mha_writeback(cil_align2D, align2D_pass3, loptions);
-		return(1);
+		return(cinchled);
 	}
 	else 
 		return(0);
 }
 
 /*** FUNCTION 02 ************************************************************************************/
-void cinch_k(char align2D_pass4[][MAXROW], long int koptions[][62], int DTHR_lookie[WIDTH/2]) 
+int cinch_k(char align2D_pass4[][MAXROW], long int koptions[][62], struct coord raqia[MAXROW]) 
 {
 int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0; 
 int first_mwrap_start=0, last_mwrap=0;
 unsigned short int first_mwrap=0, keep_checking=1;
 unsigned short int nuctype = koptions[1][13];		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
-unsigned short int homopolyflag=0, imperfect_TR=0, piso_nuctransit=0;
-int match 		= DTHR_lookie[0];
+unsigned short int homopolyflag=0, imperfect_TR=0;
+int match = raqia[1].z;
 int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
 char letr, letr2, letr3;
 char blnk        = (char) koptions[1][11];		/* opt_B blank character */
@@ -2176,7 +2196,6 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
-		piso_nuctransit = 2;		/* SET THE FLOOR >2 FOR k-mer LOOP */	
 	}
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
@@ -2316,13 +2335,13 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 
 								if (     (letr=align2D_pass4[MAXROW][n-x+y+l  ]) == 'R' || letr == 'Y') {
 									keep_checking = 0;
-									if (k > piso_nuctransit) {
+									if (k > PISO) {
 										check_imperf = 1;
 									}
 								}
 								else if ((letr=align2D_pass4[MAXROW][n-x+y+l+k]) == 'R' || letr == 'Y') {
 									keep_checking = 0;
-									if (k > piso_nuctransit) {
+									if (k > PISO) {
 										check_imperf = 1;
 									}
 								}
@@ -2331,7 +2350,7 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 							/* CHECK TO SEE IF THERE ARE MISMATCHES */
 							if (keep_checking && align2D_pass4[m][n+l] != align2D_pass4[m][n+k+l]) {
 								keep_checking = 0;
-								if (nuctransit && k > piso_nuctransit)
+								if (nuctransit && k > PISO)
 									check_imperf = 1;	/* THUS WILL CHECK EVEN IF NOT ANNOTATED WITH R's & Y's BEFORE */
 							}
 						}
@@ -2399,7 +2418,7 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 							sum4score += match;
 					} /* END OF FOR l SCAN LOOPS */
 
-					if (l == k && ((i=((100*sum4score)/(k*match))) > DTHR_lookie[k])) {
+					if (l == k && ((i=((100*sum4score)/(k*match))) > raqia[k].z)) {
 						imperfect_TR = 1;
 					}
 					else {
@@ -2544,6 +2563,7 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 
 	i = koptions[1][18];
 	koptions[1][i] = koptions[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS i WIDTH HISTORY */
+	return (koptions[0][4]);
 }
 
 /*** FUNCTION 03 **** CINCH sINGLE LINES ************************************************************/
@@ -2751,9 +2771,6 @@ char cis_align2D[MAXROW+1][MAXROW] = {{0}};
 			mha_writeback(cis_align2D, align2D_pass6, soptions);
 			mha_writecons(align2D_pass6, cis_align2D, soptions);
 		}
-	
-	soptions[0][6] = soptions[0][6] + cis_row;			/* STORE ROWS ADDED */
-
 	} /* END OF FOR k LOOPS */ 
 
 	i = soptions[1][18];
@@ -2762,7 +2779,7 @@ char cis_align2D[MAXROW+1][MAXROW] = {{0}};
 	if (soptions[0][6]) {
 		mha_UPPERback(cis_align2D, align2D_pass6, soptions); /* THIS ALSO SAVES 2D-WIDTH in options[1][32] */
 		mha_writecons(align2D_pass6, cis_align2D, soptions);
-		return(1);
+		return(cis_row);
 	}
 	else
 		return(0);
@@ -4380,6 +4397,7 @@ short unsigned int lcl_opt_F;
 		i=poptions[0][10] = round((1000*(cinchwidth-mmsites-(length-c)))/cinchwidth);
 		warnhead('-');
 		printf("2-D printing is missing %d letter(s)!\n", length-c); 
+		poptions[1][39] = 100 + length-c;
 		return(0);
 	}
 	else {
