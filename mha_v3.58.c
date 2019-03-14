@@ -1901,12 +1901,12 @@ int i=0, j=0, lenseq=raqia[0].z, lineM=0, lineN=0, princeps=0, badflag=0;
 		lineM = eM;	
 		lineN = eN;	
 		/* TRANSLATE 2-D COORDINATES INTO 1-D COORDINATES */
-		while (raqia[i].y != lineM)
+		while (raqia[i].y != lineM && i<lenseq)
 			i++;
 		eM = i;
 
 		j=lenseq;
-		while (raqia[j].x != lineN)
+		while (raqia[j].x != lineN && j>0)
 			j--;
 		eN = j;
 	}
