@@ -1,5 +1,5 @@
 #!/bin/bash
-# CLEAN-UP POSSIBLE DUPLICATE LINES FROM OCCASIONAL FPRINTF GLITCH
+# CLEAN-UP POSSIBLE DUPLICATE LINES FROM ALTERNATE RUNS OF SAME SEQUENCE
 awk '!seen[$0]++' Surf_wavereport.mha > Surf_wavereport.log
 if [ -f waves/foam_and_chowder.mha ]; then
 	awk '!seen[$0]++' waves/foam_and_chowder.mha > waves/foam_and_chowder.log
