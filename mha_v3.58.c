@@ -1277,7 +1277,7 @@ long int options[4][62] = {
 	print_2Dseq(align2D, citwidth, options);
 	passQ[i] = options[0][10];
 
-	if (1 || passQ[i]==1000)
+	if (passQ[i]==1000)
 		update_raqia(stringy, align2D);
 
 	if (options[1][57]>1) {
@@ -1285,16 +1285,7 @@ long int options[4][62] = {
 		printf("\n DEV: check_raqia via 2-D coords, princeps = %2d.", check_raqia(stringy,0,citwidth,2));
 		print_raqia(stringy,72);
 	}
-	if    (passQ[2]==1000 && (o=check_raqia(stringy,1, lenseq-1,1))!=3) {
-		options[1][39]=1;
-		if (o==1)
-			strcpy(dev_notes,"check_raqia1.1");
-		else if (o==2)
-			strcpy(dev_notes,"check_raqia1.2");
-		else
-			strcpy(dev_notes,"check_raqia1.x");
-	}
-	else if (passQ[2]<1000 && check_raqia(stringy,0,lenseq,1)==3) {
+	if (passQ[2]<1000 && check_raqia(stringy,0,lenseq,1)==3) {
 		options[1][39]=2;
 		strcpy(dev_notes,"check_raqia2");
 	}
@@ -1718,7 +1709,7 @@ long int options[4][62] = {
 		}
 
 		fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
-		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (k=%ld)\tRND:-%.*s\t%c %32s (%4d %s) REC:%4d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%4ld: %s\n", 
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (k=%ld)\tRND:%.*s\t%c %32s (%4d %s) REC:%4d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%4ld: %s\n", 
 				version, time0+4, (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], 
 				(int) options[1][33], "XX", Seq_name, file_name+6, (int) options[1][1], letr_unit, passQ[9], (int) options[1][7], 
 				passR[2], passR[3], passR[4], passR[5], passR[6], passR[7], passR[8], options[1][39], dev_notes);
@@ -1943,10 +1934,11 @@ int i=0, j=0, lenseq=raqia[0].z, lineM=0, lineN=0, princeps=0, badflag=0;
 			princeps++;
 
 		/* ANGEL TWO: THE PRINCE OF EQUIVALENCE */
-		for (i=eM; i<eN-1 && !badflag; i++) {
+		for (i=eM; i<eN && !badflag; i++) {
 			for (j=i+1; j<eN; j++) {
 				if (raqia[j].x == raqia[i].x && 
-					raqia[j].t != raqia[i].t) {
+					raqia[j].e != raqia[i].e) {
+					printf("\n DEV: check_raqia badflag for columns i_x=%d and j_x=%d", i, j);
 					badflag++;
 					break;		/* TO BREAK FOR j LOOP */
 				}	
@@ -1965,24 +1957,20 @@ int get_1Dz(struct coord raqia[MAXROW], int x, int y, int ignoreCheck)
 {
 	int i=0, z=0, count_check=0, lenseq=raqia[0].z;
 
-	raqia[0].z=0;	/* TEMPORARY ASSIGNMENT FOR GOOD LOOPING */
-
 	for (i=0; i<lenseq; i++) {
 		if (raqia[i].x == x && raqia[i].y == y) {
 			count_check++;
-			z = raqia[i].z;
+			z = i;
 			if (ignoreCheck)
 				break;
 		}
 	}
-
-	raqia[0].z=lenseq;	/* ALWAYS RESTORE THIS! */
-	if (count_check==1 || ignoreCheck)
+	if (count_check==1)
 		return(z);
 	else {
 		warnhead('z');
 		printf("get_1Dz count_check = %d\n", count_check);
-		return(-1);
+		return(-z);		/* KEEP NEGATIVE TO PRESERVE INFO/ AVOID RETURNED VALUE LETTING A FOR LOOP GO */
 	}
 }
 
@@ -2212,8 +2200,6 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 					}
 					break;		/* BREAK OUT OF FOR n LOOP */
 				}
-
-				o = get_1Dz(raqia,n,m,0);
 
 				/* CHECK FOR TR OF SIZE k-MER */
 				if (keep_checking) {
