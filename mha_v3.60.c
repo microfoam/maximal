@@ -930,50 +930,52 @@ long int options[4][62] = {
 					}
 				}
 
-				/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
-				TRcheck = 1;
-				reps = 1;
-				while (TRcheck) {
-					Atr = Aimperfect_TR = 0;
-					if (m + (reps+1)*k >= lenseq) { 
-						Atr = 0;
-						break;
-					}
-					else {
-						for (i = m; i < n; i++) {
-							if ( (j=pathbox[i][(i + (reps+1)*k)]) == mismatch) {
-								Atr = 0;
-								TRcheck = 0;
-								break;
-							}
-							else
-								Atr = Atr + j;
-						}
-					}
-					if (nuctransit) { 
-						if (Atr!=Did && (100*Atr)/Did > DTHR)
-							Aimperfect_TR = 1;
-						else
-							Aimperfect_TR = 0;
-					} 
-					if (Atr==Did || Atr==Dtr || Aimperfect_TR) {
-						reps++;
-						Atr = 0;
-					}
-					else break;
-				}
-
-				/* SKIP CINCH IF EXTENSIVE TR MARKED PRIOR TO m SPANS INTO PRESENT TR; ALSO COUNT REPEATS */
-				for (q=m-1; q>0; q--) {
-					if (stringy[q].r && (q + (p=span_rk(stringy,q))) >= m) {
-						if (p > reps*k) {
-							Dtr = imperfect_TR = 0;	/* SKIP PRESENT SLIP */
+				if (Dtr==Did || imperfect_TR) {
+					/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
+					TRcheck = 1;
+					reps = 1;
+					while (TRcheck) {
+						Atr = Aimperfect_TR = 0;
+						if (m + (reps+1)*k >= lenseq) { 
+							Atr = 0;
 							break;
 						}
-						else break;	/* PREV SLIP SHOULD BECOME BAD SLIP */
+						else {
+							for (i = m; i < n; i++) {
+								if ( (j=pathbox[i][(i + (reps+1)*k)]) == mismatch) {
+									Atr = 0;
+									TRcheck = 0;
+									break;
+								}
+								else
+									Atr = Atr + j;
+							}
+						}
+						if (nuctransit) { 
+							if (Atr!=Did && (100*Atr)/Did > DTHR)
+								Aimperfect_TR = 1;
+							else
+								Aimperfect_TR = 0;
+						} 
+						if (Atr==Did || Atr==Dtr || Aimperfect_TR) {
+							reps++;
+							Atr = 0;
+						}
+						else break;
 					}
-					else if (stringy[q].r && q + span_rk(stringy,q) < m)
-						break;	/* THIS PREV. TR DOESN'T MATTER ANYMORE */
+	
+					/* SKIP CINCH IF EXTENSIVE TR MARKED PRIOR TO m SPANS INTO PRESENT TR; ALSO COUNT REPEATS */
+					for (q=m-1; q>0; q--) {
+						if (stringy[q].r && (q + (p=span_rk(stringy,q))) > m) {
+							if (p > reps*k) {
+								Dtr = imperfect_TR = 0;	/* SKIP PRESENT SLIP */
+								break;
+							}
+							else break;	/* PREV SLIP SHOULD BECOME BAD SLIP */
+						}
+						else if (stringy[q].r && q + span_rk(stringy,q) <= m)
+							break;	/* THIS PREV. TR DOESN'T MATTER ANYMORE */
+					}
 				}
 
 				/********* COMMITTING TO CINCH BELOW HERE ************************/
@@ -1770,7 +1772,7 @@ int push_raqia(struct coord raqia[MAXROW], int eL2, int eL1)
 		violation++;
 
 	/* CHECK PRINCIPLE OF CONTINUITY */
-	for (i=0; i<k-1; i++) {
+	for (i=0; i<k; i++) {
 		coord_xa = raqia[eL1    + i].x;
 		coord_xb = raqia[eL1 +1 + i].x;
 		coord_ya = raqia[eL1    + i].y;
