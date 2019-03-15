@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
 	char letr_unit[8] = {0};				/* DEFAULT STRING ALPHABET, LATER RESET TO "bp" FOR DNA, "nt" FOR RNA, 'aa' FOR PROTEINS, 'ch' FOR OTHER */
 
 	/* SINGLE-LETTER int'S IN ONE PLACE! */
-	int c=0, i=0, j=0, h=0, k, l=0, m=0, n=0, o,p,q, r=0, z=0;	/* DEV: RESERVE opq FOR chk_raqia */
+	int c=0, i=0, j=0, h=0, k, l=0, m=0, n=0, o,p,q, reps=0, r=0, z=0;	/* DEV: RESERVE opq FOR chk_raqia */
 
 	struct coord stringy[MAXROW];
 
@@ -629,12 +629,14 @@ long int options[4][62] = {
 		stringy[i].echoes = blank;
 		if (nuctransit) {
 			if 		(stringy[i].c=='A' || stringy[i].c=='G')
-				stringy[i].e ='R';
+				stringy[i].e = 'R';
 			else if (stringy[i].c=='C' || stringy[i].c=='T')
-				stringy[i].e ='Y';
+				stringy[i].e = 'Y';
 			else
-				stringy[i].e =stringy[i].c;
+				stringy[i].e = stringy[i].c;
 		}
+		else
+			stringy[i].e = stringy[i].c;
 	}
 		stringy[0].z = lenseq;	/* LOOK HERE TO FIND STRING LENGTH ANYTIME */
 
@@ -752,11 +754,10 @@ long int options[4][62] = {
 
 	/* IF NUCTRANSIT POPULATE DTHR MATRIX FOR ALL k <= WIDTH/2 */
 	if (nuctransit) {
-/*		stringy[0].z = lenseq; */		/* ASSIGNED PREVIOUSLY */
-		stringy[1].z = match;			/* USE k=1 SLOT TO STORE MATCH VALUE */
+		stringy[1].z = match;				/* USE k=1 SLOT TO STORE MATCH VALUE */
 
 		if ((options[1][59] + 2) %2) {		/* IF opt_x EXTRA SQUEEZE: ALLOWS TRANSITION MATCHING FOR LOWER k AT CINCH_T */
-										/* THE +2 IS FOR CLARITY AND ASSURANCE THAT 1%2 GOES TO 1. SO -x AND -xxx TO INVOKE */
+											/* THE +2 IS FOR CLARITY AND ASSURANCE THAT 1%2 GOES TO 1. SO -x AND -xxx TO INVOKE */
 			for (k=PISO; k <= WIDTH/2; k++) {
 				numtransit = 1 + round(fractransit * k);
 				stringy[k].z = 100*((k-numtransit)*match + numtransit*transition)/(k*match) - 1;
@@ -923,110 +924,95 @@ long int options[4][62] = {
 								break;	
 						}
 						if (i==l) {
-							imperfect_TR = 0;
-							Dtr = 0;
+							Dtr = imperfect_TR = 0;
 							break;
 						}
 					}
 				}
 
-				/* SKIP CINCH IF EXTENSIVE TR MARKED PRIOR TO m SPANS INTO PRESENT TR */
-/*				for (q=m-1; q>0; q--) {
-					if (stringy[q].r && q + (p=span_rk(stringy,q)) >= m) {
-						if (p > k) {
-							TRcheck = 1;
-							while (TRcheck) {
-								r = 1;
-								if (m + (r+1)*k >= lenseq) { 
-									Atr = Dtr = Did = TRcheck = Aimperfect_TR = 0;
-									break;
-								}
-								for (i = m; i < n; i++) {
-									if ( (j=pathbox[i][(i + (r+1)*k)]) == mismatch) {
-										Atr = 0;
-										break;
-									}
-									else
-										Atr = Atr + j;
-								}
-								if (nuctransit) { 
-									if (Atr!=Did && (100*Atr)/Did > DTHR)
-										Aimperfect_TR = 1;
-									else
-										Aimperfect_TR = 0;
-								} 
-								if (Atr==Did || Atr==Dtr || Aimperfect_TR) {
-									r++;
-									Atr = 0;
-								}
-								else {
-									TRcheck = 0;
-									break;
-								}
-							}
-							if (p > r*k) {
-								Dtr = imperfect_TR = 0;
+				/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
+				TRcheck = 1;
+				reps = 1;
+				while (TRcheck) {
+					Atr = Aimperfect_TR = 0;
+					if (m + (reps+1)*k >= lenseq) { 
+						Atr = 0;
+						break;
+					}
+					else {
+						for (i = m; i < n; i++) {
+							if ( (j=pathbox[i][(i + (reps+1)*k)]) == mismatch) {
+								Atr = 0;
+								TRcheck = 0;
 								break;
 							}
-							else break;
+							else
+								Atr = Atr + j;
 						}
-						else break;
 					}
-					else if (stringy[q].r && q+p < m)
-						break;
+					if (nuctransit) { 
+						if (Atr!=Did && (100*Atr)/Did > DTHR)
+							Aimperfect_TR = 1;
+						else
+							Aimperfect_TR = 0;
+					} 
+					if (Atr==Did || Atr==Dtr || Aimperfect_TR) {
+						reps++;
+						Atr = 0;
+					}
+					else break;
 				}
-*/
+
+				/* SKIP CINCH IF EXTENSIVE TR MARKED PRIOR TO m SPANS INTO PRESENT TR; ALSO COUNT REPEATS */
+				for (q=m-1; q>0; q--) {
+					if (stringy[q].r && (q + (p=span_rk(stringy,q))) >= m) {
+						if (p > reps*k) {
+							Dtr = imperfect_TR = 0;	/* SKIP PRESENT SLIP */
+							break;
+						}
+						else break;	/* PREV SLIP SHOULD BECOME BAD SLIP */
+					}
+					else if (stringy[q].r && q + span_rk(stringy,q) < m)
+						break;	/* THIS PREV. TR DOESN'T MATTER ANYMORE */
+				}
+
 				/********* COMMITTING TO CINCH BELOW HERE ************************/
-				if (Did && (Dtr==Did || imperfect_TR) && (o=push_raqia(stringy,n,m))) {
+				if ((Dtr==Did || imperfect_TR) && (o=push_raqia(stringy,n,m))) {
 					Dtr = imperfect_TR = 0;
 					if (options[1][57]>0) 
 						printf("\n DEV: push_raqia violations=%d; skipping k=%d-mer at n=%d", o, k, n+1);
 				}
 
-				if (Did && (Dtr==Did || imperfect_TR)) {	/*  1st MEASUREMENT OF TANDEM REPEAT (TR) */
+				if (Dtr==Did || imperfect_TR) {	/*  1st MEASUREMENT OF TANDEM REPEAT (TR) */
 												/*  TR EQ. DIMER */
 					passR[2]++;
 					r = 1;
-					stringy[n].r++;
+					stringy[n].r = reps;
 					stringy[n].k = k = n-m;
 					slips[k]++;
-					TRcheck = 1;		/* FLAG TO KEEP CHECKING FOR ADD'L TRs */
+					TRcheck = 1;
 
-					/* COUNT NUMBER of ADDITIONAL TANDEM REPEATS (TR) */
 					while (TRcheck) {
-						if (m + (r+1)*k >= lenseq) {   	/* CHECK IF NEAR EDGE */
-							Atr = Did = Dtr = 0;
-							TRcheck = 0;					/* REINITIALIZE FLAG */
-							break;
+						Atr = 0;
+						if (r<reps) {
+							if (nuctransit) { 
+								for (i=m; i<n; i++) 
+									Atr = Atr + pathbox[i][(i+(r+1)*k)];
+								if (Atr!=Did && (100*Atr)/Did > DTHR) 
+									imperfect_TR = 1;
+							} 
 						}
-
-						for (i = m; i < n; i++) {
-							if ( (j=pathbox[i][(i + (r+1)*k)]) == mismatch) {	/* NEED TO BREAK IF PATHBOX POSITION IS MISMATCH =/= TRANSITION */
-								Atr = 0;
-								break;
-							}
-							else
-								Atr = Atr + j;			/* j = pathbox[i][(i + (r+1)*k)] IS SET IN ABOVE IF TEST */
-						}
-
-						if (nuctransit) { /* IF DNA AND IF CONSIDERING TRANSITIONS AS PARTIAL MATCHES */
-							if (Atr!=Did && (100*Atr)/Did > DTHR)	{	/* CHECK CASE OF IMPERFECT TR >= D THRESHOLD */
-								Aimperfect_TR = imperfect_TR = 1;
-							}
-							else
-								Aimperfect_TR = 0;
-						} /* END OF IF [CONSIDERING DNA TRANSITIONS] */
-
-						if (Atr==Did || Atr==Dtr || Aimperfect_TR) {
+						else 
+							Atr = TRcheck = 0;
+						
+						if (r<reps) {
 							z=r*k;
 							push_raqia(stringy,n+z,m+z);
 							r++;
-							stringy[n].r++;
-
-							Atr = 0;				/* RESET TO COUNT POSSIBLE NEXT ONE */
+							Atr = 0;
 						}
 						else {
-							Atr = Did = Dtr = 0;	/* RESET ALL DIAGONAL COUNTERS */
+							Atr = Did = Dtr = 0;
 							TRcheck = 0;
 
 							/* IF CYCLE REPEAT, STORE CYCLE RUN. CYCLIC REPEATS CAN BE REPEATS IN MORE THAN ONE FRAME. MUST BE >2k */
@@ -1297,7 +1283,6 @@ long int options[4][62] = {
 							}
 						} /* END OF FOR i SCAN FOR TRANSITIONS LOOP */
 					} /* END OF IF IMPERFECT TANDEM REPEAT (TR) */
-
 					n = n + r*k;
 					a2D_n = a2D_n + overslip;
 					r = 0;
@@ -1957,9 +1942,9 @@ int i=0, j=0, lenseq=raqia[0].z, lineM=0, lineN=0, princeps=0, badflag=0;
 			for (j=i+1; j<eN; j++) {
 				if (raqia[j].x == raqia[i].x && 
 					raqia[j].e != raqia[i].e) {
-					printf("\n DEV: check_raqia badflag for columns i_x=%d and j_x=%d", i, j);
 					badflag++;
 					break;		/* TO BREAK FOR j LOOP */
+					printf("\n DEV: check_raqia badflag for columns i_x=%d and j_x=%d", i, j); 
 				}	
 			}
 		}
