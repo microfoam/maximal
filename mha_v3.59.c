@@ -1222,7 +1222,7 @@ long int options[4][62] = {
 /*							printf("\n DEV: check_raqia via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,p, 2));
 							printf("\n DEV: check_raqia via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,q, 1));
 */							printf("\n DEV: print_raqia for k=%d x%d at n=%d", k, r, n);
-							print_raqia(stringy,60);
+							print_raqia(stringy,56);
 						}
 					} /* END OF FOR i LOOP OF r */
 					if (r>1) {
@@ -1275,13 +1275,17 @@ long int options[4][62] = {
 	print_2Dseq(align2D, citwidth, options);
 	passQ[i] = options[0][10];
 
+	if (options[1][57]>1) {
+		printf("\n DEV: check_raqia via 1-D coords, princeps = %2d.", check_raqia(stringy,0,lenseq,  1));
+		printf("\n DEV: check_raqia via 2-D coords, princeps = %2d.", check_raqia(stringy,0,citwidth,2));
+	}
 	if (passQ[i]==1000)
 		update_raqia(stringy, align2D);
 
 	if (options[1][57]>1) {
 		printf("\n DEV: check_raqia via 1-D coords, princeps = %2d.", check_raqia(stringy,0,lenseq,  1));
 		printf("\n DEV: check_raqia via 2-D coords, princeps = %2d.", check_raqia(stringy,0,citwidth,2));
-		print_raqia(stringy,72);
+		print_raqia(stringy,56);
 	}
 	if (passQ[2]<1000 && check_raqia(stringy,0,lenseq,1)==3) {
 		options[1][39]=2;
@@ -1681,18 +1685,17 @@ long int options[4][62] = {
 		}
 
 		fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
-		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (k=%ld)\tRND:%.*s\t%c %32s (%4d %s) REC:%4d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%3d\t%4ld: %s\n", 
-				version, time0+4, (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], 
-				(int) options[1][33], "XX", Seq_name, file_name+6, (int) options[1][1], letr_unit, passQ[8], (int) options[1][6], 
-				passR[2], passR[3], passR[4], passR[5], passR[6], passR[7], options[1][39], dev_notes);
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (k=%ld)\tRND:%.*s\t%c %32s (%4d %s) REC:%4d\t%3d\t%4ld: %s\n", 
+				version, time0+4, (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], (int) options[1][33], "XX", 
+				Seq_name, file_name+6, (int) options[1][1], letr_unit, passQ[8], (int) options[1][6], options[1][39],dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (options[0][10] != 1000 || passR[5] > CYCMAX) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.24s\t x%d\t%4ld\t%.3f\tCYC:%2d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%4d\t%4ld: %s\n", 
-					version, ctime(&lcl_time), (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], 
-					(int) options[1][33], "XX", Seq_name, file_name, (int) options[1][1], letr_unit, passQ[8], options[1][39], dev_notes);
+			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%2d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%4d\t%4ld: %s\n", 
+					version, time0+4, (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], (int) options[1][33], "XX", 
+					Seq_name, file_name, (int) options[1][1], letr_unit, passQ[8], options[1][39], dev_notes);
 			for(n = 0; Seq[n] != '\0'; n++) {
 				if (Seq[n] != 10 && Seq[n] != 13 && Seq[n] != EOF)
 					fprintf(fp_tricksy, "%c", Seq[n]);
@@ -2058,7 +2061,7 @@ short unsigned int cinchled=0;					/* BIT FLAG TO SAY cinch_l DID SOMETHING */
 /*** FUNCTION 02 ************************************************************************************/
 int cinch_k(char align2D_pass4[][MAXROW], struct coord raqia[MAXROW], long int koptions[][62]) 
 {
-int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0, o=0; 
+int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0, o=0, p=0; 
 int first_mwrap_start=0, last_mwrap=0;
 unsigned short int first_mwrap=0, keep_checking=1;
 unsigned short int nuctype = koptions[1][13];		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
@@ -2378,6 +2381,14 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 							imperfect_TR = 0;
 							break;
 						}
+					}
+				}
+				if (0) {
+					o = get_1Dz(raqia,n-x+k,n-x,1);
+					if ((keep_checking || imperfect_TR) && (p=push_raqia(raqia,o+k,o))) {
+						keep_checking = imperfect_TR = 0;
+						if (koptions[1][57]>0) 
+							printf("\n DEV: push_raqia violations=%d; skipping k=%d-mer at n=%d", p, k, n-x+1);
 					}
 				}
 
@@ -3701,17 +3712,9 @@ int lcl_pass = lcl_options[1][18];		/* opt_I VALUE COUNTER FOR NUM OF PASSES */
 	if (lcl_options[0][33])	/* opt_X == 1 */
 		h_rule = h2;
 
-	if (lcl_pass == 8) {
-		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: relax-2D [RELAXES HOMOPOLYMER RUNS THAT DID NOT AID cinch-d] (width = %d)\n\n", lcl_pass, lcl_width);
-	}
-	else if (lcl_pass == 7) {
+	if (lcl_pass == 6) {
 		printf("%.*s\n", hr_len, h_rule);
 		printf("2-D PASS #%d: cinch-d [RESCUES TR's INTERRUPTED BY DE NOVO REPEATS OF REPEATS] (width = %d)\n\n", lcl_pass, lcl_width);
-	}
-	else if (lcl_pass == 6) {
-		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: cinch_s  [CINCHES NON-COMPLEX k-mer TR's IN A SINGLE LINE] (width = %d)\n\n", lcl_pass, lcl_width);
 	}
 	else if (lcl_pass == 5) {
 		printf("%.*s\n", hr_len, h_rule);
@@ -3731,6 +3734,10 @@ int lcl_pass = lcl_options[1][18];		/* opt_I VALUE COUNTER FOR NUM OF PASSES */
 	}
 	else if (lcl_pass == 1) {
 			printf("\n\n1-D sequence:\n");
+	}
+	else if (lcl_pass == 7) {
+		printf("%.*s\n", hr_len, h_rule);
+		printf("2-D PASS #%d: relax-2D [RELAXES HOMOPOLYMER RUNS THAT DID NOT AID cinch-d] (width = %d)\n\n", lcl_pass, lcl_width);
 	}
 	else if (lcl_pass == 0) {
 		printf("\nOriginal string (length = %d):\n", lcl_width);
@@ -4649,8 +4656,11 @@ int update_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW])
 			while(!isalpha(align2D[i][j]))
 				j++;
 			while(isalpha(letr=align2D[i][j])) {
-				if (letr!=raqia[c].c)
+				if (letr!=raqia[c].c && letr!=tolower(raqia[c].c)) {
+/*					printf("\n DEV: update_raqia NOT committing, while loop; c=%d, letr=%c, i=%d, j=%d", c,letr,i+1,j+1);
+*/
 					return(c);		/* 1-D COORDINATE OF DISCREPANCY */
+				}
 				else {
 					c++; 
 					j++;
@@ -4659,9 +4669,9 @@ int update_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW])
 			break;
 		}
 	}
-/*	printf("\n DEV: update_raqia, c=%d and lenseq=%d\n", c, lenseq);
-*/
+/*	printf("\n DEV: update_raqia, c=%d and lenseq=%d\n", c, lenseq); */
 	if (c==lenseq) {
+		printf("\n DEV: update_raqia committing");
 		for (i=0; align2D[i][0]!='\0'; i++) {
 			for (j=0; align2D[i][j]!='\0'; j++) {
 				while(!isalpha(align2D[i][j]))
@@ -4685,6 +4695,9 @@ int update_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW])
 			}
 		}
 	}
+	else if (0)
+		printf("\n DEV: update_raqia NOT committing");
+
 	return(c);	/* SHOULD BE lenseq IF SUCCESSFUL */
 
 }
