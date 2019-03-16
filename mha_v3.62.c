@@ -1079,9 +1079,9 @@ long int options[4][62] = {
 					/* THEN NEED TO COUNT OTHER BAD SLIPS IN SAME REGION IN CASE THESE WERE PREVIOUSLY TREATED		*/
 
 					badslipspan = delta_to_bad1Dn = frst_badslip = bad_1Dn = overslip = recslips = scooch = oldbad = 0;
-					for (l=m-1; stringy[l].r<1 && l>0; l--) {
+					for (l=m-1; l>0; l--) {
 						if (stringy[l].r) {
-							if (l+(badslipspan=span_rk(stringy,l))>m) {
+							if (l+span_rk(stringy,l)>m) {
 								mstop = l;
 								break;
 							}
@@ -1093,8 +1093,10 @@ long int options[4][62] = {
 					}
 					if (l==0)
 						mstop = m;
+
 					mstop = m;
-					for (i = n-1; i > mstop; i--) {							/* i WILL LOOP THROUGH TR SHADOW */
+
+					for (i = n-1; i >= mstop; i--) {							/* i WILL LOOP THROUGH TR SHADOW */
 						if (stringy[i].r) {		/* DWELL ON POSITION W/ UNDAMPED SLIPS */
 							/* BAD SLIP IS CLOSEST ONE TO n NOT HANDLED YET; BAD SLIP TYPE 1 */
 							if (i>m && frst_badslip==0 && i - (int) stringy[i].k < m) {
@@ -1104,9 +1106,30 @@ long int options[4][62] = {
 								frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
 								stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
 							}
+							else if (0 && frst_badslip==0 && (i+span_rk(stringy,i)) > m) {
+								badslipspan = span_rk(stringy,i);
+								delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
+								bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
+								frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+								stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
+							}
                             /* THIS IS A BAD SLIP TYPE 2, BECAUSE OF NON-COINCIDENT TRANSITIONS  */
 							else if (imperfect_TR && frst_badslip==0) {
-	                            if (i>m && Seq[i]!=Seq[i+k] && Seq[i]==Seq[(i-stringy[i].k)]) {
+								/* THIS IS BAD SLIP TYPE 2 EXCEPT MISMATCH IS OFFSET BACK FROM stringy[i].r */
+								if (i<m && i+span_rk(stringy,i) >= m && i+span_rk(stringy,i) < n && frst_badslip==0) {
+									for (l=1; l<= stringy[i].k; l++) {
+										if ( stringy[i-l].c!=stringy[i-l+k].c && stringy[i-l].c==stringy[(i-l+stringy[i].k)].c)
+											break;	
+									}
+									if (l<= stringy[i].k) {
+										badslipspan = span_rk(stringy,i);
+										delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
+										bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
+										frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+										stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
+									}
+								}
+								else if (i>m && Seq[i]!=Seq[i+k] && Seq[i]==Seq[(i-stringy[i].k)]) {
 	                                badslipspan = span_rk(stringy,i);
 	                                delta_to_bad1Dn = n-i;                      /* THIS IS DISTANCE TO THE BAD SLIP */
 	                                bad_1Dn = i;                                /* STORE POSITION OF BAD SLIP */
@@ -1127,26 +1150,12 @@ long int options[4][62] = {
 										stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
 									}
 								}
-								/* THIS IS BAD SLIP TYPE 2 EXCEPT MISMATCH IS OFFSET BACK FROM stringy[i].r */
-								if (i<m && i+span_rk(stringy,i) >= m && i+span_rk(stringy,i) < n && frst_badslip==0) {
-									for (l=1; l<= stringy[i].k; l++) {
-										if ( stringy[i-l].c!=stringy[i-l+k].c && stringy[i-l].c==stringy[(i-l+stringy[i].k)].c)
-											break;	
-									}
-									if (l<= stringy[i].k) {
-										badslipspan = span_rk(stringy,i);
-										delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
-										bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
-										frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
-										stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
-									}
-								}
 							}
 							if (i>m && frst_badslip==0) 
 								overslip = overslip + span_rk(stringy,i);
 							else if (i<=m && frst_badslip) {
-								a2D_n += stringy[i].k;
-								--row;
+								a2D_n += span_rk(stringy,i);
+								row -= stringy[i].r - 1;
 							}
 							recslips = recslips + stringy[i].r;
 						}
@@ -2109,7 +2118,7 @@ short unsigned int cinchled=0;					/* BIT FLAG TO SAY cinch_l DID SOMETHING */
 /*** FUNCTION 02 ************************************************************************************/
 int cinch_k(char align2D_pass4[][MAXROW], struct coord raqia[MAXROW], long int koptions[][62]) 
 {
-int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0, o=0, p=0; 
+int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0, o=0, p=0, q=0; 
 int first_mwrap_start=0, last_mwrap=0;
 unsigned short int first_mwrap=0, keep_checking=1;
 unsigned short int nuctype = koptions[1][13];		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
@@ -2124,6 +2133,7 @@ char kopt_Q_left = (char) koptions[1][26];		/* LHS character delimiter for homop
 char kopt_R_rght = (char) koptions[1][27];		/* RHS character delimiter for homopolymer Run */
 char cik_align2D[MAXROW+1][MAXROW] = {{0}};
 int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n */
+/* int lenseq = raqia[0].z;*/
 
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
@@ -2265,8 +2275,11 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 								if ( (letr2=align2D_pass4[MAXROW][n-x+y+l  ]) == 'R' || letr2 == 'Y') {
 									keep_checking = 0;
 								}
-								else if ( (letr3=align2D_pass4[MAXROW][n-x+y+l+k]) == 'R' || letr3 == 'Y') {
-									keep_checking = 0;
+								else if (k>0 && ((letr3=align2D_pass4[MAXROW][(q=n-x+y+l+k)]) == 'R' || letr3 == 'Y')) {
+									if (k==1 && col_isclear(align2D_pass4,q,m,1)>0)
+										;
+									else
+										keep_checking = 0;
 								}
 							}
 							if (keep_checking && align2D_pass4[m][n+l] != align2D_pass4[m][n+k+l]) {
