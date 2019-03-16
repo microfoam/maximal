@@ -27,3 +27,7 @@ echo
 echo 'Tests w/ PASS < 1000:'
 grep -vE '\t1000' Surf_wavereport.log 
 echo
+echo 'Tests w/ REC < 1000:'
+grep -vE 'REC:1000' Surf_wavereport.log 
+echo
+
