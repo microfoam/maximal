@@ -50,14 +50,14 @@ struct coord {
 	char echoes;	/* OLD SLIPLOC_ECHOES */
 };
 
-int assign_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW], int eL, int eM, int eN, int mode, int pointA, int pointB);
-int check_raqia(struct coord raqia[MAXROW], int eM, int eN, short unsigned int dim);
+int assign_tela(struct coord tela[MAXROW], char align2D[][MAXROW], int eL, int eM, int eN, int mode, int pointA, int pointB);
+int check_tela(struct coord tela[MAXROW], int eM, int eN, short unsigned int dim);
 void clear_2D_ar(char wipe_align2D[][MAXROW]);
 void clear_right(char swipe_align2D[][MAXROW], long int croptions[][62]);
 int col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short int updown); 
 unsigned int consensus_2D(char con_align2D[][MAXROW], long int con_options[][62], int n_start, int n_width);
 int count_wrap_blocks(int lcl_width, int lcl_opt_w);	/* lcl_width IS WIDTH OF 2-D MHA ARRAY */ 
-int get_1Dz(struct coord raqia[MAXROW], int x, int y, int ignoreCheck);
+int get_1Dz(struct coord tela[MAXROW], int x, int y, int ignoreCheck);
 int lastLetter(char align2D[][MAXROW], int row, long int options[0][62]);
 void line_end(int type, int c, long int lend_options[][62], int lcl_width);
 char mha_base62(int num);
@@ -65,22 +65,22 @@ void mha_head(int lcl_width, long int lcl_options[][62]);
 void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW], long int woptions[][62]);
 void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW], long int woptions[][62]);
 void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW], long int wroptions[][62]);
-int push_raqia(struct coord raqia[MAXROW], int eL2, int eL1);
-void print1D(struct coord raqia[MAXROW], long int options[][62]);
+int push_tela(struct coord tela[MAXROW], int eL2, int eL1);
+void print1D(struct coord tela[MAXROW], long int options[][62]);
 short unsigned int print_2Dseq(char align2D_print[][MAXROW], int print_lenseq2D, long int poptions[][62]);
 void print_blockhead(int a, int b);	
-void print_raqia(struct coord raqia[MAXROW], int max);
+void print_tela(struct coord tela[MAXROW], int max);
 short int pushdown(char pusharray[][MAXROW], int push_m, int push_n, long int push_options[0][62]);
-int span_rk(struct coord raqia[MAXROW], int point);
-int update_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW]);
+int span_rk(struct coord tela[MAXROW], int point);
+int update_tela(struct coord tela[MAXROW], char align2D[][MAXROW]);
 void warnhead(char l); 
 
 int main(int argc, char *argv[])
 {
 	short unsigned int 	cleanseq(char *s, long int cloptions[][62], short unsigned int storebit);
 	short unsigned int 	cinch_l(char align2D_pass3[][MAXROW], long int loptions[][62]);  
-	int               	cinch_k(char align2D_pass4[][MAXROW], struct coord raqia[MAXROW], long int koptions[][62]);  
-	unsigned int       	cyclelize(char cyc_align2D[][MAXROW], struct coord raqia[MAXROW], long int cyc_options[][62]);
+	int               	cinch_k(char align2D_pass4[][MAXROW], struct coord tela[MAXROW], long int koptions[][62]);  
+	unsigned int       	cyclelize(char cyc_align2D[][MAXROW], struct coord tela[MAXROW], long int cyc_options[][62]);
 	unsigned int       	cinch_d(char align2D_pass7[][MAXROW], long int doptions[][62], short unsigned int cinch_d_opt);
 	short int			tucksense(char tuckarray[][MAXROW], long int tuck_options[0][62]);
 	void		 		relax_2D(char align2D_pass8[][MAXROW], long int roptions[0][62]);
@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
 	char letr_unit[8] = {0};				/* DEFAULT STRING ALPHABET, LATER RESET TO "bp" FOR DNA, "nt" FOR RNA, 'aa' FOR PROTEINS, 'ch' FOR OTHER */
 
 	/* SINGLE-LETTER int'S IN ONE PLACE! */
-	int c=0, i=0, j=0, h=0, k, l=0, m=0, n=0, o,p,q, reps=0, r=0, z=0;	/* DEV: RESERVE opq FOR chk_raqia */
+	int c=0, i=0, j=0, h=0, k, l=0, m=0, n=0, o,p,q, reps=0, r=0, z=0;	/* DEV: RESERVE opq FOR chk_tela */
 
 	struct coord stringy[MAXROW];
 
@@ -815,13 +815,13 @@ long int options[4][62] = {
 				homopoly_flag = 0;
 
 			if (k == 1) {	
-				assign_raqia(stringy, align2D, n++, row, a2D_n++, 0,0,0);
+				assign_tela(stringy, align2D, n++, row, a2D_n++, 0,0,0);
 				break;	/* GO TO NEXT n */
 			}
 			else if (stringy[n].c==stringy[m].c && stringy[n].c==stringy[n-1].c) {
 				if (options[1][57]>1)
 					printf("\n DEV: Culling out k=%2d-mer at position n=%3d.", k, n);
-				assign_raqia(stringy, align2D, n++, row, a2D_n++, 0,0,0);
+				assign_tela(stringy, align2D, n++, row, a2D_n++, 0,0,0);
                 break;	/* GO TO NEXT n */
             } 
 
@@ -847,7 +847,7 @@ long int options[4][62] = {
 				if (homopoly_flag && i == n) {
 					homopoly_flag = 1;					/* COLLAPSE BIT FOR HOMOPOLYMER RUN: DETECTED 	*/
 														/* BIT IS THERE IF NEEDED BEYOND BREAK. 		*/
-					assign_raqia(stringy, align2D, n++, row, a2D_n++, 0,0,0);
+					assign_tela(stringy, align2D, n++, row, a2D_n++, 0,0,0);
 					break;	/* GO TO NEXT n */
 				}
 
@@ -980,10 +980,10 @@ long int options[4][62] = {
 				}
 
 				/********* COMMITTING TO CINCH BELOW HERE ************************/
-				if ((Dtr==Did || imperfect_TR) && (o=push_raqia(stringy,n,m))) {
+				if ((Dtr==Did || imperfect_TR) && (o=push_tela(stringy,n,m))) {
 					Dtr = imperfect_TR = 0;
 					if (options[1][57]>0) 
-						printf("\n DEV: push_raqia violations=%d; skipping k=%d-mer at n=%d", o, k, n+1);
+						printf("\n DEV: push_tela violations=%d; skipping k=%d-mer at n=%d", o, k, n+1);
 				}
 
 				if (Dtr==Did || imperfect_TR) {	/*  1st MEASUREMENT OF TANDEM REPEAT (TR) */
@@ -1010,7 +1010,7 @@ long int options[4][62] = {
 						
 						if (r<reps) {
 							z=r*k;
-							push_raqia(stringy,n+z,m+z);
+							push_tela(stringy,n+z,m+z);
 							r++;
 							Atr = 0;
 						}
@@ -1252,7 +1252,7 @@ long int options[4][62] = {
 							align2D[row][j] = blank;
 						if (badslipspan && i==0) {			/* FLIP TO LOWERCASE IN FIRST UNIT */	
 							if (islower(align2D[(p=row-1)][(q=a2D_n - k + overslip - 1)])) {	/* IF OVERLAPPING OLD BADSLIP */
-								assign_raqia(stringy, align2D, m-1, p, q, 0, 0,0);				/* WILL REWRITE AS UPPERCASE */
+								assign_tela(stringy, align2D, m-1, p, q, 0, 0,0);				/* WILL REWRITE AS UPPERCASE */
 							}
 							for (j = 0; j < k; j++) { 
 								o=m+j;
@@ -1269,15 +1269,15 @@ long int options[4][62] = {
 						for (j = 0; j < k; j++) {
 							o = n + k*i + j;
 							q = a2D_n - k + overslip + j;
-							assign_raqia(stringy, align2D, o, row, q, 0, 0,0);
+							assign_tela(stringy, align2D, o, row, q, 0, 0,0);
 						}
 				
 						if (options[1][57]>1) {
 							p = (int) a2D_n; q = lenseq;
-/*							printf("\n DEV: check_raqia via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,p, 2));
-							printf("\n DEV: check_raqia via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_raqia(stringy,0,q, 1));
-*/							printf("\n DEV: print_raqia for k=%d x%d at n=%d", k, r, n);
-							print_raqia(stringy,56);
+/*							printf("\n DEV: check_tela via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(stringy,0,p, 2));
+							printf("\n DEV: check_tela via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(stringy,0,q, 1));
+*/							printf("\n DEV: print_tela for k=%d x%d at n=%d", k, r, n);
+							print_tela(stringy,56);
 						}
 					} /* END OF FOR i LOOP OF r */
 					if (r>1) {
@@ -1330,23 +1330,23 @@ long int options[4][62] = {
 	passQ[i] = options[0][10];
 
 	if (options[1][57]>1) {
-		printf("\n DEV: check_raqia via 1-D coords, princeps = %2d.", check_raqia(stringy,0,lenseq,  1));
-		printf("\n DEV: check_raqia via 2-D coords, princeps = %2d.", check_raqia(stringy,0,citwidth,2));
+		printf("\n DEV: check_tela via 1-D coords, princeps = %2d.", check_tela(stringy,0,lenseq,  1));
+		printf("\n DEV: check_tela via 2-D coords, princeps = %2d.", check_tela(stringy,0,citwidth,2));
 	}
 
-	if (recoverlen(align2D,options)==lenseq && update_raqia(stringy, align2D)==lenseq) {;
+	if (recoverlen(align2D,options)==lenseq && update_tela(stringy, align2D)==lenseq) {;
 		options[1][39]=1;
-		strcpy(dev_notes,"updatedraqia");
+		strcpy(dev_notes,"updatedtela");
 	}
 
 	if (options[1][57]>1) {
-		printf("\n DEV: check_raqia via 1-D coords, princeps = %2d.", check_raqia(stringy,0,lenseq,  1));
-		printf("\n DEV: check_raqia via 2-D coords, princeps = %2d.", check_raqia(stringy,0,citwidth,2));
-		print_raqia(stringy,56);
+		printf("\n DEV: check_tela via 1-D coords, princeps = %2d.", check_tela(stringy,0,lenseq,  1));
+		printf("\n DEV: check_tela via 2-D coords, princeps = %2d.", check_tela(stringy,0,citwidth,2));
+		print_tela(stringy,56);
 	}
-	if (!options[1][39] && passQ[2]<1000 && check_raqia(stringy,0,lenseq,1)==3) {
+	if (!options[1][39] && passQ[2]<1000 && check_tela(stringy,0,lenseq,1)==3) {
 		options[1][39]=2;
-		strcpy(dev_notes,"check_raqia2");
+		strcpy(dev_notes,"check_tela2");
 	}
 
 	if (options[1][48]!=0 && options[1][49]!=0)
@@ -1814,10 +1814,10 @@ int lastLetter(char align2D[][MAXROW], int row, long int options[0][62])
 }
 
 /**** FUNCTION TO TOKENIZE A 2-D ROW IF THERE ARE NO VIOLATIONS *****/
-int push_raqia(struct coord raqia[MAXROW], int eL2, int eL1) 
+int push_tela(struct coord tela[MAXROW], int eL2, int eL1) 
 {
 	int coord_xa=0, coord_xb=0, coord_ya=0, coord_yb=0, i=0, k=eL2-eL1, violation=0;
-	int lenseq=raqia[0].z;
+	int lenseq=tela[0].z;
 
 	/* CHECK VALIDITY OF THE INPUT */
 	if (k<=0 || lenseq==0)
@@ -1825,17 +1825,17 @@ int push_raqia(struct coord raqia[MAXROW], int eL2, int eL1)
 
 	/* CHECK PRINCIPLE OF CONTINUITY */
 	for (i=0; i<k; i++) {
-		coord_xa = raqia[eL1    + i].x;
-		coord_xb = raqia[eL1 +1 + i].x;
-		coord_ya = raqia[eL1    + i].y;
-		coord_yb = raqia[eL1 +1 + i].y;
+		coord_xa = tela[eL1    + i].x;
+		coord_xb = tela[eL1 +1 + i].x;
+		coord_ya = tela[eL1    + i].y;
+		coord_yb = tela[eL1 +1 + i].y;
 		if      (coord_ya == coord_yb   && coord_xa == coord_xb-1) 
 			;
 		else if (coord_ya == coord_yb-1 && coord_xa >= coord_xb  ) 
 			;	
 		else {
 			violation += 2;
-/*			printf("\n DEV: push_raqia violation = %d for raw coordinate=%d", eL1+i, violation);
+/*			printf("\n DEV: push_tela violation = %d for raw coordinate=%d", eL1+i, violation);
 */
 			break;
 		}
@@ -1843,31 +1843,31 @@ int push_raqia(struct coord raqia[MAXROW], int eL2, int eL1)
 
 	/* CHECK PRINCIPLE OF EQUIVALENCE */
 	for (i=0; i<k; i++) {
-		if (raqia[eL1 + i].x == raqia[eL1].x + i &&
-			raqia[eL1 + i].e != raqia[eL1 + i + k].e) {
+		if (tela[eL1 + i].x == tela[eL1].x + i &&
+			tela[eL1 + i].e != tela[eL1 + i + k].e) {
 			violation += 5;
 			break;	
 		}
 	}
 
-	/* UPDATE RAQIA STRUCTURE IF AND ONLY IF THERE ARE NO VIOLATIONS */
+	/* UPDATE TELA STRUCTURE IF AND ONLY IF THERE ARE NO VIOLATIONS */
 	if (!violation) {
 		for (i=0; i<k; i++) { 
-			raqia[eL2 + i].x = raqia[eL1].x;
-			raqia[eL2 + i].y++;
+			tela[eL2 + i].x = tela[eL1].x;
+			tela[eL2 + i].y++;
 		}
 		for (i=eL2+k ; i<=lenseq; i++) {
-			raqia[i].x -= k;
-			raqia[i].y++;
+			tela[i].x -= k;
+			tela[i].y++;
 		}
 	}
 	return(violation);
 
 }
 
-int assign_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW], int eL, int eM, int eN, int mode, int pointA, int pointB)
+int assign_tela(struct coord tela[MAXROW], char align2D[][MAXROW], int eL, int eM, int eN, int mode, int pointA, int pointB)
 {
-	int i=0, j=0, lenseq=raqia[0].z, conflict_flag=0;
+	int i=0, j=0, lenseq=tela[0].z, conflict_flag=0;
 	int start=0, end=lenseq;
 
 	if (pointB > pointA) {	/* ASSIGN LINE VALUES IF CHECKING LIMITED SPAN */
@@ -1880,50 +1880,50 @@ int assign_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW], int eL, int
 	}
 
 	if (!mode) {					/* MODE 0: ASSIGN SAME COLUMN TO IDENTICAL LETTERS */
-		align2D[eM][eN] = raqia[eL].c;
-		raqia[eL].y = eM;
-		raqia[eL].x = eN;
+		align2D[eM][eN] = tela[eL].c;
+		tela[eL].y = eM;
+		tela[eL].x = eN;
 	}
 	else if (mode==1) {				/* MODE 1: CHECK AND ASSIGN SAME COLUMN TO IDENTICAL LETTERS */
 		for (i=start; i<end; i++) {
-			if (raqia[i].x == eN && raqia[i].c != raqia[eN].c) {
+			if (tela[i].x == eN && tela[i].c != tela[eN].c) {
 				conflict_flag = 1;
 				break;
 				}
 		}
 		if (!conflict_flag) {
-			align2D[eM][eN] = raqia[eL].c;
-			raqia[eL].y = eM;
-			raqia[eL].x = eN;
+			align2D[eM][eN] = tela[eL].c;
+			tela[eL].y = eM;
+			tela[eL].x = eN;
 		}
 	}
 	else if (mode==2) {				/* MODE 2: ASSIGN SAME COLUMN TO EQUIVALENT LETTERS */
-		align2D[eM][eN] = raqia[eL].c;
-		raqia[eL].y = eM;
-		raqia[eL].x = eN;
+		align2D[eM][eN] = tela[eL].c;
+		tela[eL].y = eM;
+		tela[eL].x = eN;
 		for (i=start; i<=end; i++) {
-			if (raqia[i].x == eN && raqia[i].c != raqia[eL].c && raqia[i].e == raqia[eL].e) {
-				j = raqia[i].x;
-				align2D[MAXROW][j] = raqia[i].t = raqia[i].e;
+			if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e == tela[eL].e) {
+				j = tela[i].x;
+				align2D[MAXROW][j] = tela[i].t = tela[i].e;
 			}
 		}	
 	}
 	else if (mode==3) {				/* MODE 3: CHECK AND ASSIGN SAME COLUMN TO EQUIVALENT LETTERS */
 		for (i=start; i<end; i++) {
-			if (raqia[i].x == eN && raqia[i].c != raqia[eL].c && raqia[i].e != raqia[eL].e) {
+			if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e != tela[eL].e) {
 				conflict_flag = 1;
 				break;
 			}
 		}
 
 		if (!conflict_flag) {
-			align2D[eM][eN] = raqia[eL].c;
-			raqia[eL].y = eM;
-			raqia[eL].x = eN;
+			align2D[eM][eN] = tela[eL].c;
+			tela[eL].y = eM;
+			tela[eL].x = eN;
 			for (i=start; i<=end; i++) {
-				if (raqia[i].x == eN && raqia[i].c != raqia[eL].c && raqia[i].e == raqia[eL].e)
-					j = raqia[i].x;
-					align2D[MAXROW][j] = raqia[i].t = raqia[i].e;
+				if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e == tela[eL].e)
+					j = tela[i].x;
+					align2D[MAXROW][j] = tela[i].t = tela[i].e;
 			}	
 		}
 	}
@@ -1939,49 +1939,49 @@ int assign_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW], int eL, int
 }
 
 
-/*** FUNCTION 00 **** RAQIA: A (BEATEN OUT) EXPANDED SURFACE; A PHYSICAL FIRMAMENT UNDER AXIOMATIC LAWS ******/
-int check_raqia(struct coord raqia[MAXROW], int eM, int eN, short unsigned int dim) 
+/*** FUNCTION 00 **** TELA: A FABRIC, UNDER AXIOMATIC LAWS ******/
+int check_tela(struct coord tela[MAXROW], int eM, int eN, short unsigned int dim) 
 {
-int i=0, j=0, lenseq=raqia[0].z, lineM=0, lineN=0, princeps=0, badflag=0;
+int i=0, j=0, lenseq=tela[0].z, lineM=0, lineN=0, princeps=0, badflag=0;
 
 	if (eM>=eN) {
-		printf("\n DEV: Need to call check_raqia explicitly with %d-D positions eN > eM.", dim);
+		printf("\n DEV: Need to call check_tela explicitly with %d-D positions eN > eM.", dim);
 		princeps-=5;
 	}
 
 	if (dim==1) {
 		/* GET 2-D COORDINATES FROM 1-D COORDINATES */
-		lineM = raqia[eM].x;	
-		lineN = raqia[eN].x;	
+		lineM = tela[eM].x;	
+		lineN = tela[eN].x;	
 	}
 	else if (dim==2) {
 		/* SAVE 2-D COORDINATES */
 		lineM = eM;	
 		lineN = eN;	
 		/* TRANSLATE 2-D COORDINATES INTO 1-D COORDINATES */
-		while (raqia[i].y != lineM && i<lenseq)
+		while (tela[i].y != lineM && i<lenseq)
 			i++;
 		eM = i;
 
 		j=lenseq;
-		while (raqia[j].x != lineN && j>0)
+		while (tela[j].x != lineN && j>0)
 			j--;
 		eN = j;
 	}
 	else {
-		printf("\n DEV: Need to call check_raqia explicitly with dimension dim=1 or dim=2.");
+		printf("\n DEV: Need to call check_tela explicitly with dimension dim=1 or dim=2.");
 		princeps-=7;
 	}
 
 	if (princeps==0) {
 		/* ANGEL ONE: THE PRINCE OF CONTINUITY */
 		for (i=eM; i<eN; i++) {
-			if (     raqia[i+1].x == raqia[i].x + 1 &&
-				     raqia[i+1].y == raqia[i].y) {
+			if (     tela[i+1].x == tela[i].x + 1 &&
+				     tela[i+1].y == tela[i].y) {
 				;
 			}
-			else if (raqia[i+1].y == raqia[i].y + 1 &&
-					 raqia[i+1].x <=  raqia[i].x) {
+			else if (tela[i+1].y == tela[i].y + 1 &&
+					 tela[i+1].x <=  tela[i].x) {
 				;
 			}
 			else {
@@ -1994,29 +1994,29 @@ int i=0, j=0, lenseq=raqia[0].z, lineM=0, lineN=0, princeps=0, badflag=0;
 		/* ANGEL TWO: THE PRINCE OF EQUIVALENCE */
 		for (i=eM; i<eN && !badflag; i++) {
 			for (j=i+1; j<eN; j++) {
-				if (raqia[j].x == raqia[i].x && 
-					raqia[j].e != raqia[i].e) {
+				if (tela[j].x == tela[i].x && 
+					tela[j].e != tela[i].e) {
 					badflag++;
 					break;		/* TO BREAK FOR j LOOP */
-					printf("\n DEV: check_raqia badflag for columns i_x=%d and j_x=%d", i, j); 
+					printf("\n DEV: check_tela badflag for columns i_x=%d and j_x=%d", i, j); 
 				}	
 			}
 		}
 		if (!badflag) 
 			princeps+=2;
 		else
-			printf("\n DEV: Problem at 1-D position %d (column %d)", j+1, raqia[j].x+1);
+			printf("\n DEV: Problem at 1-D position %d (column %d)", j+1, tela[j].x+1);
 	}
 
 	return(princeps);	/* 0 IF BOTH FAIL; 1 IF ONLY TWO FAILS; 2 IF ONLY ONE FAILS, 3 IF BOTH PASS */ 
 }
 
-int get_1Dz(struct coord raqia[MAXROW], int x, int y, int ignoreCheck)
+int get_1Dz(struct coord tela[MAXROW], int x, int y, int ignoreCheck)
 {
-	int i=0, z=0, count_check=0, lenseq=raqia[0].z;
+	int i=0, z=0, count_check=0, lenseq=tela[0].z;
 
 	for (i=0; i<lenseq; i++) {
-		if (raqia[i].x == x && raqia[i].y == y) {
+		if (tela[i].x == x && tela[i].y == y) {
 			count_check++;
 			z = i;
 			if (ignoreCheck)
@@ -2033,9 +2033,9 @@ int get_1Dz(struct coord raqia[MAXROW], int x, int y, int ignoreCheck)
 	}
 }
 
-void print_raqia(struct coord raqia[MAXROW], int max)
+void print_tela(struct coord tela[MAXROW], int max)
 {
-int i=0, lenseq=raqia[0].z;
+int i=0, lenseq=tela[0].z;
 
 	if (max > lenseq)
 		max = lenseq;
@@ -2046,23 +2046,23 @@ int i=0, lenseq=raqia[0].z;
 
 		printf("\n c:");
 	for (i=0; i<=max; i++)
-		printf("%3c", raqia[i].c);
+		printf("%3c", tela[i].c);
 
 		printf("\n y:");
 	for (i=0; i<=max; i++)
-		printf("%3d", raqia[i].y);
+		printf("%3d", tela[i].y);
 
 		printf("\n x:");
 	for (i=0; i<=max; i++)
-		printf("%3d", raqia[i].x);
+		printf("%3d", tela[i].x);
 
 		printf("\n t:");
 	for (i=0; i<=max; i++)
-		printf("%3c", raqia[i].t);
+		printf("%3c", tela[i].t);
 
 /*		printf("\n e:");
 	for (i=0; i<=max; i++)
-		printf("%3c", raqia[i].e);
+		printf("%3c", tela[i].e);
 */
 		printf("\n");
 }
@@ -2142,7 +2142,7 @@ short unsigned int cinchled=0;					/* BIT FLAG TO SAY cinch_l DID SOMETHING */
 }
 
 /*** FUNCTION 02 ************************************************************************************/
-int cinch_k(char align2D_pass4[][MAXROW], struct coord raqia[MAXROW], long int koptions[][62]) 
+int cinch_k(char align2D_pass4[][MAXROW], struct coord tela[MAXROW], long int koptions[][62]) 
 {
 int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0, o=0, p=0, q=0; 
 int first_mwrap_start=0, last_mwrap=0;
@@ -2150,7 +2150,7 @@ unsigned short int first_mwrap=0, keep_checking=1;
 unsigned short int nuctype = koptions[1][13];		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int homopolyflag=0, imperfect_TR=0;
-int match = raqia[1].z;
+int match = tela[1].z;
 int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
 char letr, letr2, letr3;
 char blnk        = (char) koptions[1][11];		/* opt_B blank character */
@@ -2159,7 +2159,7 @@ char kopt_Q_left = (char) koptions[1][26];		/* LHS character delimiter for homop
 char kopt_R_rght = (char) koptions[1][27];		/* RHS character delimiter for homopolymer Run */
 char cik_align2D[MAXROW+1][MAXROW] = {{0}};
 int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n */
-/* int lenseq = raqia[0].z;*/
+/* int lenseq = tela[0].z;*/
 
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
@@ -2379,7 +2379,7 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 							sum4score += match;
 					} /* END OF FOR l SCAN LOOPS */
 
-					if (l == k && ((i=((100*sum4score)/(k*match))) > raqia[k].z)) {
+					if (l == k && ((i=((100*sum4score)/(k*match))) > tela[k].z)) {
 						imperfect_TR = 1;
 					}
 					else {
@@ -2457,11 +2457,11 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 					}
 				}
 				if (0) {
-					o = get_1Dz(raqia,n-x+k,n-x,1);
-					if ((keep_checking || imperfect_TR) && (p=push_raqia(raqia,o+k,o))) {
+					o = get_1Dz(tela,n-x+k,n-x,1);
+					if ((keep_checking || imperfect_TR) && (p=push_tela(tela,o+k,o))) {
 						keep_checking = imperfect_TR = 0;
 						if (koptions[1][57]>0) 
-							printf("\n DEV: push_raqia violations=%d; skipping k=%d-mer at n=%d", p, k, n-x+1);
+							printf("\n DEV: push_tela violations=%d; skipping k=%d-mer at n=%d", p, k, n-x+1);
 					}
 				}
 
@@ -3255,10 +3255,10 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 }
 
 /*** FUNCTION 10 *** CURRENTLY ONLY CYCLELIZES FOR k=2, AND FUDGES IT FOR k > 2 (PUSHES RIGHT) ******************/
-unsigned int cyclelize(char cyc_align2D[][MAXROW], struct coord raqia[MAXROW], long int cyc_options[][62])
+unsigned int cyclelize(char cyc_align2D[][MAXROW], struct coord tela[MAXROW], long int cyc_options[][62])
 {
 int cyc_col=0, cyc_row=0, a, b, i, j, k=2, kmer=0, m=0, n=0, threshold, r, s, x=0, y=0;	/* conflict_position */
-int lenseq   = raqia[0].z;
+int lenseq   = tela[0].z;
 int cyc_width = cyc_options[1][32];					/* THIS IS opt_W SLOT TO STORE CURRENT 2-D WIDTH */
 short unsigned int edge0=0, mono=0, mslip=0;
 unsigned short int nuctype = cyc_options[1][13];	/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
@@ -4655,10 +4655,10 @@ unsigned short int nuctype = tuck_options[1][13], nuctransit=0;
 }
 
 /*************************************************************************/
-void print1D(struct coord raqia[MAXROW], long int options[][62])
+void print1D(struct coord tela[MAXROW], long int options[][62])
 {
 	int i, j, n;
-	int lenseq = raqia[0].z;
+	int lenseq = tela[0].z;
 	int blocks = count_wrap_blocks(lenseq, options[1][58]);
 	int head_start = 0;			/* USE TO PASS RULER OFF-SET TO line_end() */
 	char ch;
@@ -4668,8 +4668,8 @@ void print1D(struct coord raqia[MAXROW], long int options[][62])
 	for (j = 0; j < blocks; j++) {
 		if (options[1][13] && options[1][57]) { /* IF DNA AND VERBOSITY */
 			line_end(SLIPS, j+1, options, 0);	
-   			for (n = j * options[1][58]; n < (j+1) * options[1][58] && raqia[n].c!='>' && raqia[n].c!='\0'; n++) {
-				if ((ch=raqia[n].t)=='R' || ch=='Y')
+   			for (n = j * options[1][58]; n < (j+1) * options[1][58] && tela[n].c!='>' && tela[n].c!='\0'; n++) {
+				if ((ch=tela[n].t)=='R' || ch=='Y')
 					printf("%c", ch);
 				else
 					printf("_");
@@ -4677,11 +4677,11 @@ void print1D(struct coord raqia[MAXROW], long int options[][62])
 			printf("\n");
 		}
 		line_end(START, j+1, options, 0);	
-   		for (n = j * options[1][58]; n < (j+1) * options[1][58] && raqia[n].c!='>' && raqia[n].c!='\0'; n++) {
-			printf("%1c", raqia[n].c);
+   		for (n = j * options[1][58]; n < (j+1) * options[1][58] && tela[n].c!='>' && tela[n].c!='\0'; n++) {
+			printf("%1c", tela[n].c);
 		}
-		if (raqia[n].c == '>') {
-			printf("%1c", raqia[n].c);  /* PRINTS TERMINAL CHARACTER '>' */
+		if (tela[n].c == '>') {
+			printf("%1c", tela[n].c);  /* PRINTS TERMINAL CHARACTER '>' */
 			if (options[0][21]) 
 				line_end(END, n, options, 0);
 			else
@@ -4699,10 +4699,10 @@ void print1D(struct coord raqia[MAXROW], long int options[][62])
 			/**********************************************/
 			line_end(SLIPS, 0, options, 0);
 			for (i = j * options[1][58]; i < (j+1) * options[1][58] && i<lenseq; i++) {
-				if (!raqia[i].r)
+				if (!tela[i].r)
 					printf(".");
 				else
-					printf("%c", mha_base62(raqia[i].r));
+					printf("%c", mha_base62(tela[i].r));
 			}
 			if (j+1 == blocks)
 				printf(" <==== # of TRs > 1 (base 62)\n");
@@ -4711,10 +4711,10 @@ void print1D(struct coord raqia[MAXROW], long int options[][62])
 			/**********************************************/
 			line_end(SLIPS, 0, options, 0);
 			for (i = j * options[1][58]; i < (j+1) * options[1][58] && i<lenseq; i++) {
-				if (!raqia[i].k)
+				if (!tela[i].k)
 					printf(".");
 				else {
-					printf("%c", mha_base62(raqia[i].k));
+					printf("%c", mha_base62(tela[i].k));
 				}
 			}
 			if (j+1 == blocks)
@@ -4724,7 +4724,7 @@ void print1D(struct coord raqia[MAXROW], long int options[][62])
 			/**********************************************/
 			line_end(SLIPS, 0, options, 0);
 			for (i = j * options[1][58]; i < (j+1) * options[1][58] && i<lenseq; i++) {
-				printf("%c", raqia[i].echoes);
+				printf("%c", tela[i].echoes);
 			}
 			if (j+1 == blocks)
 				printf(" <==== (((( {  REVERB  } ))))\n");
@@ -4745,9 +4745,9 @@ void print1D(struct coord raqia[MAXROW], long int options[][62])
 }
 
 /*************************** CALL ONLY IF align2D is 100% ********************/
-int update_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW])
+int update_tela(struct coord tela[MAXROW], char align2D[][MAXROW])
 {
-	int c=0, i=0, j=0, lenseq=raqia[0].z;
+	int c=0, i=0, j=0, lenseq=tela[0].z;
 	char letr;
 
 	for (i=0; align2D[i][0]!='\0'; i++) {
@@ -4755,8 +4755,8 @@ int update_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW])
 			while(!isalpha(align2D[i][j]))
 				j++;
 			while(isalpha(letr=align2D[i][j])) {
-				if (letr!=raqia[c].c && letr!=tolower(raqia[c].c)) {
-/*					printf("\n DEV: update_raqia NOT committing, while loop; c=%d, letr=%c, i=%d, j=%d", c,letr,i+1,j+1);
+				if (letr!=tela[c].c && letr!=tolower(tela[c].c)) {
+/*					printf("\n DEV: update_tela NOT committing, while loop; c=%d, letr=%c, i=%d, j=%d", c,letr,i+1,j+1);
 */
 					return(c);		/* 1-D COORDINATE OF DISCREPANCY */
 				}
@@ -4775,9 +4775,9 @@ int update_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW])
 				while(!isalpha(align2D[i][j]))
 					j++;
 				while(isalpha(letr=align2D[i][j])) {
-					if (letr==raqia[c].c) {
-						raqia[c].y = i;
-						raqia[c].x = j;
+					if (letr==tela[c].c) {
+						tela[c].y = i;
+						tela[c].x = j;
 						c++; 
 						j++;
 					}
@@ -4785,8 +4785,8 @@ int update_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW])
 						break;
 				}
 				if (letr=='>') {
-					raqia[c].y = i;
-					raqia[c].x = j;
+					tela[c].y = i;
+					tela[c].x = j;
 				}
 				else
 					break;
@@ -4794,16 +4794,16 @@ int update_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW])
 		}
 	}
 	else if (0)
-		printf("\n DEV: update_raqia NOT committing");
+		printf("\n DEV: update_tela NOT committing");
 
 	return(c);	/* SHOULD BE lenseq IF SUCCESSFUL */
 
 }
 
 /******** FUNCTION ************************/
-int span_rk(struct coord raqia[MAXROW], int point)
+int span_rk(struct coord tela[MAXROW], int point)
 {
-	int product = raqia[point].r * (raqia[point].k);
+	int product = tela[point].r * (tela[point].k);
 	return(product);
 }
 
