@@ -1458,18 +1458,41 @@ long int options[4][62] = {
 	if (options[0][27]) { /* opt_R is 1 if ON */ 
 		printf("\nChecking 1-D recovery from 2-D self-MHA:\n");
 		recover_1D(recovered, align2D, options);
-		blocks = count_wrap_blocks(lenseq, options[1][58]);
 
-		k = lenseq;
-		l = (int) strlen(recovered) - 1;
-		m = max(k,l);
+		r = (int) strlen(recovered) - 1;
+		m = max(lenseq,r);
+		blocks = count_wrap_blocks(m, options[1][58]);
 		z = 0;			/* USE TO COUNT RECOVERED LETTERS IDENTICAL TO 1D */
-
-		if (k != l) {
-			warnhead('d');
-			printf("1-D sequence differs in length from 2-D recovered 1-D sequence by %d letters.\n", k-l); 
+		if (lenseq != r) {
+			l = r - lenseq;
+			for (i=0; i < m; i++) {
+				if (stringy[i].c != recovered[i]) {
+					k = i;
+					break;
+				}
+			}
+			if (l>0) {
+				for (i=m+1; i >= k; i--)
+					Seq[i] = Seq[i-l];	/* USE Seq[i] TO STORE GAPS FOR COMPARISON; NEVER stringy[i].c */
+				for (i=k; i < k+l; i++)
+					Seq[i] = '-';
+			}
+			else {
+				for (i=m+1; i >= k; i--)
+					recovered[i] = recovered[i-l];
+				for (i=k; i < k+l; i++)
+					recovered[i] = '-';
+			}
 		}
-	
+		else
+			l = 0;
+
+		if (l) {
+			warnhead('d');
+			printf("1-D sequence differs in length from 2-D recovered 1-D sequence by %d letter(s).\n", l); 
+		}
+
+		q = 0;	/* ADJUSTS LINE NUMBERS IF SEQS DIFFERENT LENGTHS */
 		for (j = 0; j < blocks; j++) {
 			printf("\n");
 			line_end(START, j+1, options, 0);	
@@ -1479,14 +1502,17 @@ long int options[4][62] = {
 			if (Seq[n] == '>') {
 				printf("%1c", Seq[n]);  /* PRINTS TERMINAL CHARACTER '>' */
 				if (options[0][21]) 
-					line_end(END, k, options, 0);
+					line_end(END, lenseq, options, 0);
 				else
 					printf("  <== 1-D \n");
 			}
 			else {
 				printf(" ");
-				if (options[0][21]) 
-					line_end(END, n, options, 0);
+				if (options[0][21]) {
+					if (l>0 && n>k)
+						q = l;	
+					line_end(END, n-q, options, 0);
+				}
 				else 
 					printf("\n");
 			}
@@ -1496,7 +1522,7 @@ long int options[4][62] = {
 				if (seqtype == 1 || seqtype == 2) {			/* IF DNA OR RNA */
 					if (Seq[n] == 'n' || recovered[n] == 'n') {
 						printf("?");
-						z++;	/* Added in version 2.76 */
+						z++;	
 					}
 					else if (Seq[n] == recovered[n]) {
 						printf("|");
@@ -1527,7 +1553,7 @@ long int options[4][62] = {
 			if (recovered[n] == '>') {
 				printf("%1c", recovered[n]);  /* PRINTS TERMINAL CHARACTER '>' */
 				if (options[0][21]) {
-					line_end(END, l, options, 0);
+					line_end(END, r, options, 0);
 				}
 				else
 					printf("  <== 2-D\n");
@@ -4742,9 +4768,8 @@ int update_raqia(struct coord raqia[MAXROW], char align2D[][MAXROW])
 			break;
 		}
 	}
-/*	printf("\n DEV: update_raqia, c=%d and lenseq=%d\n", c, lenseq); */
+
 	if (c==lenseq) {
-		printf("\n DEV: update_raqia committing");
 		for (i=0; align2D[i][0]!='\0'; i++) {
 			for (j=0; align2D[i][j]!='\0'; j++) {
 				while(!isalpha(align2D[i][j]))
