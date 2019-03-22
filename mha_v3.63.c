@@ -240,7 +240,7 @@ int main(int argc, char *argv[])
 	}	/* END OF FOR i = 1, i < argc, i++ */
 
 	if (Seq_name != 'i') {	
-		strcpy(file_name, "*test sequence");
+		strcpy(file_name,"example sequence");
 		strcpy(Seq_head, "example sequence");
 	}
 
@@ -819,7 +819,7 @@ long int options[4][62] = {
 				break;	/* GO TO NEXT n */
 			}
 			else if (stringy[n].c==stringy[m].c && stringy[n].c==stringy[n-1].c) {
-				if (options[1][57]>1)
+				if (options[1][57]>2)
 					printf("\n DEV: Culling out k=%2d-mer at position n=%3d.", k, n);
 				assign_tela(stringy, align2D, n++, row, a2D_n++, 0,0,0);
                 break;	/* GO TO NEXT n */
@@ -1079,6 +1079,7 @@ long int options[4][62] = {
 					/* THEN NEED TO COUNT OTHER BAD SLIPS IN SAME REGION IN CASE THESE WERE PREVIOUSLY TREATED		*/
 
 					badslipspan = delta_to_bad1Dn = frst_badslip = bad_1Dn = overslip = recslips = scooch = oldbad = 0;
+					int badslip_type = 0;
 					for (l=m-1; l>0; l--) {
 						if (stringy[l].r) {
 							if (l+span_rk(stringy,l)>m) {
@@ -1093,69 +1094,65 @@ long int options[4][62] = {
 					}
 					if (l==0)
 						mstop = m;
-
 					mstop = m;
 
 					for (i = n-1; i >= mstop; i--) {							/* i WILL LOOP THROUGH TR SHADOW */
-						if (stringy[i].r) {		/* DWELL ON POSITION W/ UNDAMPED SLIPS */
-							/* BAD SLIP IS CLOSEST ONE TO n NOT HANDLED YET; BAD SLIP TYPE 1 */
-							if (i>m && frst_badslip==0 && i - (int) stringy[i].k < m) {
-								badslipspan = span_rk(stringy,i);
-								delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
-								bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
-								frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
-								stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
-							}
-							else if (0 && frst_badslip==0 && (i+span_rk(stringy,i)) > m) {
-								badslipspan = span_rk(stringy,i);
-								delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
-								bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
-								frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
-								stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
-							}
-                            /* THIS IS A BAD SLIP TYPE 2, BECAUSE OF NON-COINCIDENT TRANSITIONS  */
-							else if (imperfect_TR && frst_badslip==0) {
-								/* THIS IS BAD SLIP TYPE 2 EXCEPT MISMATCH IS OFFSET BACK FROM stringy[i].r */
-								if (i<m && i+span_rk(stringy,i) >= m && i+span_rk(stringy,i) < n && frst_badslip==0) {
-									for (l=1; l<= stringy[i].k; l++) {
-										if ( stringy[i-l].c!=stringy[i-l+k].c && stringy[i-l].c==stringy[(i-l+stringy[i].k)].c)
-											break;	
-									}
-									if (l<= stringy[i].k) {
-										badslipspan = span_rk(stringy,i);
-										delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
-										bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
-										frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
-										stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
-									}
+						if (stringy[i].r) {
+							if (frst_badslip==0) {
+								/* BAD SLIP IS CLOSEST ONE TO n NOT HANDLED YET; BAD SLIP TYPE 1 */
+								if (i>m && i - (int) stringy[i].k < m) {
+									frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+									delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
+									bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
 								}
-								else if (i>m && Seq[i]!=Seq[i+k] && Seq[i]==Seq[(i-stringy[i].k)]) {
-	                                badslipspan = span_rk(stringy,i);
-	                                delta_to_bad1Dn = n-i;                      /* THIS IS DISTANCE TO THE BAD SLIP */
-	                                bad_1Dn = i;                                /* STORE POSITION OF BAD SLIP */
-	                                frst_badslip = 1;                           /* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
-	                                stringy[i].echoes = 'o';                    /* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */   
-	                            }
-								/* THIS IS BAD SLIP TYPE 2 EXCEPT MISMATCH IS OFFSET FWRD FROM stringy[i].r */
-								else if (i>m) {
-									for (l=1; l< stringy[i].k; l++) {
-										if (Seq[i+l]!=Seq[i+l+k] && Seq[i+l]==Seq[(i+l-stringy[i].k)])
-											break;	
+								else if (0 && (i+span_rk(stringy,i)) > m && i%(stringy[i].k) != m%(stringy[i].k)) {
+									frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+									badslip_type = 2;
+									delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
+									bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
+								}
+        	                    /* THIS IS A BAD SLIP TYPE 2, BECAUSE OF NON-COINCIDENT TRANSITIONS  */
+								else if (imperfect_TR) {
+									/* THIS IS BAD SLIP TYPE 2 EXCEPT MISMATCH IS OFFSET BACK FROM stringy[i].r */
+									if (i<m && i+span_rk(stringy,i) >= m && i+span_rk(stringy,i) < n) {
+										for (l=1; l<= stringy[i].k; l++) {
+											if (stringy[i-l].c!=stringy[i-l+k].c && stringy[i-l].c==stringy[(i-l+stringy[i].k)].c)
+												break;	
+										}
+										if (l<= stringy[i].k) {
+											frst_badslip = 1;					/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+											delta_to_bad1Dn = n-i;				/* THIS IS DISTANCE	TO THE BAD SLIP */
+											bad_1Dn = i;						/* STORE POSITION OF BAD SLIP */
+										}
 									}
-									if (l< stringy[i].k) {
-										badslipspan = span_rk(stringy,i);
-										delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
-										bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
-										frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
-										stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
+									else if (i>m && Seq[i]!=Seq[i+k] && Seq[i]==Seq[(i-stringy[i].k)]) {
+										frst_badslip = 1;                       /* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+										delta_to_bad1Dn = n-i;                  /* THIS IS DISTANCE TO THE BAD SLIP */
+										bad_1Dn = i;                            /* STORE POSITION OF BAD SLIP */
+									}
+									/* THIS IS BAD SLIP TYPE 2 EXCEPT MISMATCH IS OFFSET FWRD FROM stringy[i].r */
+									else if (i>m) {
+										for (l=1; l< stringy[i].k; l++) {
+											if (Seq[i+l]!=Seq[i+l+k] && Seq[i+l]==Seq[(i+l-stringy[i].k)])
+												break;	
+										}
+										if (l< stringy[i].k) {
+											frst_badslip = 1;					/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+											delta_to_bad1Dn = n-i;				/* THIS IS DISTANCE	TO THE BAD SLIP */
+											bad_1Dn = i;						/* STORE POSITION OF BAD SLIP */
+										}
 									}
 								}
 							}
-							if (i>m && frst_badslip==0) 
+							if (frst_badslip==0 && i>m) 
 								overslip = overslip + span_rk(stringy,i);
-							else if (i<=m && frst_badslip) {
-								a2D_n += span_rk(stringy,i);
-								row -= stringy[i].r - 1;
+							else if (frst_badslip) {
+								badslipspan = span_rk(stringy,i);
+								stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
+								if (i<=m && badslip_type != 2) {
+									a2D_n += span_rk(stringy,i);
+									row -= stringy[i].r - 1; 
+								}    
 							}
 							recslips = recslips + stringy[i].r;
 						}
@@ -1272,7 +1269,7 @@ long int options[4][62] = {
 							assign_tela(stringy, align2D, o, row, q, 0, 0,0);
 						}
 				
-						if (options[1][57]>1) {
+						if (options[1][57]>2) {
 							p = (int) a2D_n; q = lenseq;
 /*							printf("\n DEV: check_tela via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(stringy,0,p, 2));
 							printf("\n DEV: check_tela via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(stringy,0,q, 1));
@@ -1339,7 +1336,7 @@ long int options[4][62] = {
 		strcpy(dev_notes,"updatedtela");
 	}
 
-	if (options[1][57]>1) {
+	if (options[1][57]>2) {
 		printf("\n DEV: check_tela via 1-D coords, princeps = %2d.", check_tela(stringy,0,lenseq,  1));
 		printf("\n DEV: check_tela via 2-D coords, princeps = %2d.", check_tela(stringy,0,citwidth,2));
 		print_tela(stringy,56);
@@ -1768,7 +1765,7 @@ long int options[4][62] = {
 		}
 
 		fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
-		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (k=%ld)\tRND:%.*s\t%c %32s (%4d %s) REC:%4d\t%3d\t%4ld: %s\n", 
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (k=%ld)\tRND:%.*s\t%c %38s (%4d %s) REC:%4d\t%3d\t%4ld: %s\n", 
 				version, time0+4, (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], (int) options[1][33], "XX", 
 				Seq_name, file_name, (int) options[1][1], letr_unit, passQ[8], (int) options[1][6], options[1][39],dev_notes);
 		fclose(fp_out);
@@ -2498,9 +2495,8 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 					x = x + k;			/* FUTURE SPACING TO BE SUBTRACTED B/C k-MER TUCKED UNDER 1st UNIT */
 					scrimmage_line = n;
 					x_history[n] = x;
-
-					++cik_row;	 	
 					n = n + k - 1;		/* ADVANCE ADJUSTMENT. NOTE UPCOMING n++ IN FOR n LOOP */
+					++cik_row;	 	
 
 				}   /* END OF TR ASSIGN LOOPS */
 				else {
