@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 	int 				get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW], long int options[][62]);
 
 	char version[] = "3.63";				/* current version number */
-	unsigned int FY_size = 1201;				/* SIZE OF FISHER-YATES RANDOMIZED STRING: 1201, 631 */
+	unsigned int FY_size = 1201;			/* SIZE OF FISHER-YATES RANDOMIZED STRING: 1201, 631 */
 	time_t lcl_time = time(NULL);			/* START TIME */
 	char time0[26];							/* START TIME STRING */
 	strcpy(time0,ctime(&lcl_time));			/* TEXT-READABLE START TIME */
@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
 	long int a2D_n = 0;						/* NUMBER INDEX OF n FOR a2D_n */
 	int delta_to_bad1Dn = 0;				/* TO KEEP TRACK OF TIME SINCE LAST SLIP */
 	int bad_1Dn = 0;						/* POSITION OF BAD SLIP IN a2D_n COORDINATE */
-	short unsigned int frst_badslip = 0;	/* BIT FLAG FOR FIRST BAD SLIP DECLARATION */
+	int badslip_type = 0;					/* BIT FLAG FOR FIRST BAD SLIP DECLARATION */
 	short unsigned int msa = 0;				/* BIT FLAG FOR MSA CO-INUPUT */
 
 	char Seq_a[] = "abcdefdefdefdefdefffffffghijkhhhijkhijhijklmnopnopxopxopxopopohyeaahhaahhopopopopxyzyzy"; 
@@ -1078,8 +1078,7 @@ long int options[4][62] = {
 					/* COUNT MOST RECENT CONFLICTING SLIP LENGTH IN UPSTREAM SHADOW OF NEW k-MER 					*/
 					/* THEN NEED TO COUNT OTHER BAD SLIPS IN SAME REGION IN CASE THESE WERE PREVIOUSLY TREATED		*/
 
-					badslipspan = delta_to_bad1Dn = frst_badslip = bad_1Dn = overslip = recslips = scooch = oldbad = 0;
-					int badslip_type = 0;
+					badslip_type = badslipspan = delta_to_bad1Dn = bad_1Dn = overslip = recslips = scooch = oldbad = 0;
 					for (l=m-1; l>0; l--) {
 						if (stringy[l].r) {
 							if (l+span_rk(stringy,l)>m) {
@@ -1098,16 +1097,19 @@ long int options[4][62] = {
 
 					for (i = n-1; i >= mstop; i--) {							/* i WILL LOOP THROUGH TR SHADOW */
 						if (stringy[i].r) {
-							if (frst_badslip==0) {
+							if (badslip_type==0) {
 								/* BAD SLIP IS CLOSEST ONE TO n NOT HANDLED YET; BAD SLIP TYPE 1 */
-								if (i>m && i - (int) stringy[i].k < m) {
-									frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+								if (i>m && i - stringy[i].k < m && i%stringy[i].k != m%stringy[i].k) {
+									badslip_type = 1;
+		options[1][39]=1;
+		strcpy(dev_notes,"bslip type 1");
 									delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
 									bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
 								}
-								else if (0 && (i+span_rk(stringy,i)) > m && i%(stringy[i].k) != m%(stringy[i].k)) {
-									frst_badslip = 1;							/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+								else if (0 && i<m && (i+span_rk(stringy,i)) > m && i%(stringy[i].k) != m%(stringy[i].k)) {
 									badslip_type = 2;
+		options[1][39]=1;
+		strcpy(dev_notes,"bslip type 2");
 									delta_to_bad1Dn = n-i;						/* THIS IS DISTANCE	TO THE BAD SLIP */
 									bad_1Dn = i;								/* STORE POSITION OF BAD SLIP */
 								}
@@ -1120,13 +1122,17 @@ long int options[4][62] = {
 												break;	
 										}
 										if (l<= stringy[i].k) {
-											frst_badslip = 1;					/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+											badslip_type = 3;
+		options[1][39]=1;
+		strcpy(dev_notes,"bslip type 3");
 											delta_to_bad1Dn = n-i;				/* THIS IS DISTANCE	TO THE BAD SLIP */
 											bad_1Dn = i;						/* STORE POSITION OF BAD SLIP */
 										}
 									}
 									else if (i>m && Seq[i]!=Seq[i+k] && Seq[i]==Seq[(i-stringy[i].k)]) {
-										frst_badslip = 1;                       /* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+										badslip_type = 4;
+		options[1][39]=1;
+		strcpy(dev_notes,"bslip type 4");
 										delta_to_bad1Dn = n-i;                  /* THIS IS DISTANCE TO THE BAD SLIP */
 										bad_1Dn = i;                            /* STORE POSITION OF BAD SLIP */
 									}
@@ -1137,26 +1143,28 @@ long int options[4][62] = {
 												break;	
 										}
 										if (l< stringy[i].k) {
-											frst_badslip = 1;					/* TO MAKE SURE BADSLIPS ARE NOT COUNTED AGAIN LATER, */
+											badslip_type = 5;
+		options[1][39]=1;
+		strcpy(dev_notes,"bslip type 5");
 											delta_to_bad1Dn = n-i;				/* THIS IS DISTANCE	TO THE BAD SLIP */
 											bad_1Dn = i;						/* STORE POSITION OF BAD SLIP */
 										}
 									}
 								}
 							}
-							if (frst_badslip==0 && i>m) 
+							if (badslip_type==0 && i>m) 
 								overslip = overslip + span_rk(stringy,i);
-							else if (frst_badslip) {
+							else if (badslip_type) {
 								badslipspan = span_rk(stringy,i);
 								stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
-								if (i<=m && badslip_type != 2) {
+								if (i<=m && imperfect_TR) {
 									a2D_n += span_rk(stringy,i);
 									row -= stringy[i].r - 1; 
 								}    
 							}
 							recslips = recslips + stringy[i].r;
-						}
-					}
+						} /* END OF IF stringy[i].r */
+					} /* END OF FOR LOOP BACK TO MSTOP */
 
 					/* DEAL WITH OVERSLIPS NOT MARKED IN SHADOW */
 					j=l=0;
@@ -1332,8 +1340,9 @@ long int options[4][62] = {
 	}
 
 	if (recoverlen(align2D,options)==lenseq && update_tela(stringy, align2D)==lenseq) {;
-		options[1][39]=1;
+/*		options[1][39]=1;
 		strcpy(dev_notes,"updatedtela");
+*/
 	}
 
 	if (options[1][57]>2) {
@@ -1342,8 +1351,9 @@ long int options[4][62] = {
 		print_tela(stringy,56);
 	}
 	if (!options[1][39] && passQ[2]<1000 && check_tela(stringy,0,lenseq,1)==3) {
-		options[1][39]=2;
+/*		options[1][39]=2;
 		strcpy(dev_notes,"check_tela2");
+*/
 	}
 
 	if (options[1][48]!=0 && options[1][49]!=0)
@@ -1752,7 +1762,7 @@ long int options[4][62] = {
 	
 
 	if (options[0][54] != 1) {		/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
-		if (options[1][39]>3) {		/* opt_d message-passing: dev_notes written here if outside of main() */
+		if (0 && options[1][39]>3) {		/* opt_d message-passing: dev_notes written here if outside of main() */
 			i = (int) options[1][39];
 			if (i==4)		
 				strcpy(dev_notes,"connudge()");
@@ -4141,7 +4151,7 @@ short unsigned int lcl_opt_F;
 		i=poptions[0][10] = round((1000*(cinchwidth-mmsites-(length-c)))/cinchwidth);
 		warnhead('-');
 		printf("2-D printing is missing %d letter(s)!\n", length-c); 
-		if (poptions[1][39]!=3)
+		if (0 && poptions[1][39]!=3)
 			poptions[1][39] = 100 + length-c;
 		return(0);
 	}
@@ -4149,7 +4159,7 @@ short unsigned int lcl_opt_F;
 		i=poptions[0][10] = round((1000*(cinchwidth-mmsites-(c-length)))/cinchwidth);	
 		warnhead('+');
 		printf("2-D printing left %d extra letter(s)!\n", c-length);
-		if (poptions[1][39]!=3)
+		if (0 && poptions[1][39]!=3)
 			poptions[1][39] = 1000 + c-length;
 		return(0);
 	}
