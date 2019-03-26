@@ -1720,7 +1720,7 @@ long int options[4][62] = {
 		align2D[MAXROW][options[1][32]] = '\0';		/* MAKE SURE CONSENSUS ROW IS TERMINATED AT CORRECT POSITION */
 		fp_cons = fopen("Surf_barrels.log", "a");	/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING W/ OPEN FILES */
 		fprintf(fp_cons,">%s (%d > %d %s) x%d\n", 
-			file_name, (int) options[1][1], (int) options[1][7], letr_unit, (int) options[1][59]);	
+			file_name, (int) options[1][1], (int) options[1][6], letr_unit, (int) options[1][59]);	
 
 		for (m = 0; align2D[m][0] != '\0'; m++) {
 			fprintf(fp_cons, " %s\n", align2D[m]);
