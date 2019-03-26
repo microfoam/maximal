@@ -2562,7 +2562,7 @@ char cid_align2D[MAXROW+1][MAXROW];
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
 	for (k = doptions[1][32]/2; k > 0; k--) {
-		for (n=0; n < cidwidth-2*k; n++) {	
+		for (n=0; n <= cidwidth-2*k; n++) {	
 
 			mono_flag = 1;			/* MONOMER RUN FLAG IS SET TO 0, WHEN NO LONGER POSSIBLE (ANY n != n+1) */
 	
