@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 	int 				get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW], long int options[][62]);
 
 	char version[] = "3.64";				/* current version number */
-	unsigned int FY_size = 1201;			/* SIZE OF FISHER-YATES RANDOMIZED STRING: 1201, 631 */
+	unsigned int FY_size = 1201;			/* DEFAULT SIZE OF FISHER-YATES RANDOMIZED STRING */
 	time_t lcl_time = time(NULL);			/* START TIME */
 	char time0[26];							/* START TIME STRING */
 	strcpy(time0,ctime(&lcl_time));			/* TEXT-READABLE START TIME */
@@ -158,11 +158,28 @@ int main(int argc, char *argv[])
 	char cycle[WIDTH];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
  	char m2Dalig[MAXROW+1][MAXROW] = {{0}};			
 	char ch=blank;
+	char numstring[8] = {0};
+	int number = 0;
 
 	/* IS THERE A FILE NAME ARGUMENT? */
 	for (i = 1; i < argc; i++) {
 		if (*argv[i] != '-') {	
-			if (strcmp(argv[i],"TUBES.mha")) {		/* strcmp EVALUATES TO 0 ONLY IF STRINGS ARE THE SAME */
+			if (*argv[i] > '0' && *argv[i] <= '9') {
+				strcpy(numstring, argv[i]);
+				l = strlen(numstring);
+				for (r=0; r<l; r++) {
+					if (!isdigit(numstring[r])) {
+						warnhead('d');
+						printf("Command line arguments starting with numbers need to be strings with digits-only.\n\n");
+						usage(version, FY_size);
+						exit(1);
+					}
+					else
+						number = number * 10 + (numstring[r]-'0');
+				}
+				printf("\n %2d. Reading an argument as the number %d. ", j, number);
+			}
+			else if (strcmp(argv[i],"TUBES.mha")) {		/* strcmp EVALUATES TO 0 ONLY IF STRINGS ARE THE SAME */
 				/* USING j BELOW AS COUNTER TO NUMBER OF TIMES USER SPECFIES DIFFERENT SEQUENCES */
 
 				if ( (file_ptr = fopen(argv[i], "r") ) == NULL) {
@@ -446,6 +463,24 @@ long int options[4][62] = {
 					options[0][33] = 1;		/* opt_X ON 							 */
 					++options[1][33];		/* INCREMENT opt_X to desired level 	 */
 					break;					/*  X = rand() cheese, XX = FISHER-YATES */
+			case 'Y':						/* OPTION TO SPECIFY FY_size	*/
+					options[0][34] = 1;
+					if (number) {
+						if (number < MAXROW)
+							FY_size = number;
+						else {
+							warnhead('Y');
+							printf("Option 'Y' to specify FY_size, but it must be less than %d.", MAXROW);
+						}
+					}
+					else {
+						warnhead('Y');
+						printf("Option 'Y' to specify FY_size, but none specified; using default FY_size = %d.", FY_size);
+					}
+					break;
+			case 1 ... 10:
+					printf("\n DEV: Got to here for %c", opt);
+					break;
 			default:
 					printf("maximal: Illegal option %c\n", opt);
 					argc = 0;
@@ -4407,8 +4442,11 @@ void usage(char usage_version[], unsigned int FY_size)
 							"\t\t -P       SHOW PATHBOX.\n"
 							"\t\t -R       RECOVER AND CHECK 1-D SEQUENCE FROM 2-D SELF-MHA.\n"
 							"\t\t -X       RUN ON SCRAMBLED SEQUENCE OF SAME LENGTH.\n"
-							"\t\t -XX      RUN ON FISHER-YATES SHUFFLED SEQUENCE OF LENGTH %d.\n", FY_size);
-	printf("Example usage: ./maximal -KnO sequence-file.txt\n\n");
+							"\t\t -XX      RUN ON FISHER-YATES SHUFFLED SEQUENCE OF LENGTH %d.\n"
+							"\t\t -Y       USE NUMBER ARGUMENT AS FY_SIZE INSTEAD OF DEFAULT (%d).\n\n", FY_size, FY_size);
+	printf("Example usages: ./maximal -a\n");
+	printf("                ./maximal -KnO sequence-file.txt\n");
+	printf("                ./maximal -KnXXY 1201 sequence-file.txt\n\n");
 }
 
 /*** FUNCTION 30 *** RETURNS 1 FOR EARLY EXIT OPTIONED BY USER REQUEST ***********/
