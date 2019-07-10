@@ -1,12 +1,14 @@
 # maximal
-maximal is a program to explore the world of maximal homology alignment (MHA), created and written by Albert Erives. 
-Additional help options can be seen by running ./maximal without any options specified.
+maximal is a prototype program designed to explore the world of maximal homology alignment (MHA), and created and written by Albert Erives (albert-erives@uiowa.edu).
+MHA methodology is philosophically-distinct from gapped alignment in embracing local microparalogy as a fundamental feature of biological sequence.
 
-Version v3.64 is currently the most recent, robust, and easiest version.
-Version v3.64 is also the version associated with a manuscript submitted on March 28th, 2019.
+As a prototype implementation of MHA, the current versions of maximal feature a rich set of run options in order to encourage a free, open-minded, heuristics-friendly development cycle.
+Program options can be seen by running ./maximal without any options specified.
+
+Version v3.66 is currently the most recent, robust, and easiest version.
+Version v3.64 is the version associated with the most recently available preprint.
 
 The file "maximal" currently corresponds to a MAC OS-compatible executible.
-The file "mha_v3.57.c" corresponds to the most recent C code.
 Older code versions are saved in the "pointbreak" directory.
 
 _______________________________________________
