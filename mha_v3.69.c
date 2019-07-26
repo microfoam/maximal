@@ -280,7 +280,6 @@ int main(int argc, char *argv[])
 	char scratch[MAXROW+1][MAXROW];
 	int passQ[10];				/* PASS QUALITY */
 	int passR[10];				/* PASS RUNS */
-	int tPass=2;				/* FLAG FOR CINCH-T PRE-PASS (2), CINCH-PASS (1), AND SKIP PASS (0) */					
 
 long int options[4][62] = {
 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
@@ -823,18 +822,14 @@ long int options[4][62] = {
 		exit(1);
 	}
 
-	tPass = 2;			/* ALREADY SET AT DECLARATION; HERE AGAIN ONLY FOR CLARITY */
-	while (tPass) {		/* TPASS = 2 FOR PRE-PASS; TPASS = 1 FOR CINCH-PASS; TPASS = 0 */
 	for (n = 1; n<=lenseq; ) {
 		if (options[1][59]>1) {		/* IF opt_x > 1, SKIP CINCH-T */
 			strcpy(align2D[0],Seq);
-			tPass = 0;
 			break;
 		}
 		for (m = 0; m < n; m++) {
 			if (stringy[n].c == '>') {
 				citwidth = a2D_n;
-				tPass = 0;
 			}
 
 			if (n-m > WIDTH+1) 
@@ -1009,7 +1004,6 @@ long int options[4][62] = {
 					}
 	
 					/* SKIP CINCH IF EXTENSIVE TR MARKED PRIOR TO m SPANS INTO PRESENT TR; ALSO COUNT REPEATS */
-					if (tPass) {
 					for (q=m-1; q>0; q--) {
 						if (stringy[q].r && (q + (p=span_rk(stringy,q))) > m) {
 							if (p > reps*k) {
@@ -1022,7 +1016,6 @@ long int options[4][62] = {
 						}
 						else if (stringy[q].r && q + span_rk(stringy,q) <= m)
 							break;	/* THIS PREV. TR DOESN'T MATTER ANYMORE */
-					}
 					}
 				}
 
@@ -1355,7 +1348,6 @@ long int options[4][62] = {
 			}
 		} /* END OF "for m" LOOP */
 	} /* END OF "for n" LOOP => cinch_t PASS COMPLETE */
-	} /* END OF tPASS WHILE LOOP */
 
 	/**********************************************/
 	/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
