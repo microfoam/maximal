@@ -43,11 +43,11 @@ struct coord {
 	int x;			/* 2D x-AXIS COORDINATE => COLUMN   */
 	int y;			/* 2D y-AXIS COORDINATE => ROW      */
 	int k;			/* k-MERs BY LOCATION; WAS A SLIPLOC_NMER I USED TO KNOW */
-	int r;			/* REPEAT NUMBER ALBERT STYLE: 2 UNITS OF TR = 1 REPEAT; WAS SLIPLOC IN OLDER PRE-STRUCT CODE  */
+	int r;			/* REPEAT NUMBER ALBERT-STYLE: 2nd UNIT OF TR = 1st REPEAT; r+1=TOTAL # OF UNITS */
 	char c;			/* CHARACTER LETTER IN SEQUENCE: ASSIGN ONLY ONCE! */
 	char t;			/* AUTO-CONSENSUS LETTER; TRANSITIONS IN DNA USUALLY; IUPAC OTHERWISE */
 	char e;			/* EQUIVALENCE CLASS LETTER: ASSIGN ONLY ONCE! */
-	char echoes;	/* OLD SLIPLOC_ECHOES */
+	char echoes;	/* OLD PICTOGRAPHIC SLIPLOC_ECHOES */
 };
 
 int assign_tela(struct coord tela[MAXROW], char align2D[][MAXROW], int eL, int eM, int eN, int mode, int pointA, int pointB);
@@ -2178,7 +2178,7 @@ short unsigned int cinchled=0;					/* BIT FLAG TO SAY cinch_l DID SOMETHING */
 /*** FUNCTION 02 ************************************************************************************/
 int cinch_k(char align2D_pass4[][MAXROW], struct coord tela[MAXROW], long int koptions[][62]) 
 {
-int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0, o=0, p=0, q=0; 
+int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0, q=0; 
 int first_mwrap_start=0, last_mwrap=0;
 unsigned short int first_mwrap=0, keep_checking=1;
 unsigned short int nuctype = koptions[1][13];		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
@@ -2497,14 +2497,6 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 							imperfect_TR = 0;
 							break;
 						}
-					}
-				}
-				if (0) {
-					o = get_1Dz(tela,n-x+k,n-x,1);
-					if ((keep_checking || imperfect_TR) && (p=push_tela(tela,o+k,o))) {
-						keep_checking = imperfect_TR = 0;
-						if (koptions[1][57]>0) 
-							printf("\n DEV: push_tela violations=%d; skipping k=%d-mer at n=%d", p, k, n-x+1);
 					}
 				}
 
@@ -3485,16 +3477,6 @@ unsigned int connudge(char con_align2D[][MAXROW], long int con_options[][62], in
 
 					/* CYCLELIZE k=2 */	
 					if (kmer == 2) {
-						if (0 && nuctransit) {	/* SEEMS TO BE BETTER TO LET IT RIDE THAN TO SKIP, FOR NOW */
-							for (j=0; j < kmer; j++) {	
-								if ((letr=cyc_align2D[MAXROW][n+j]) == 'R' || letr == 'Y') {
-									m = lenseq+1;		/* BREAKS OUT OF FOR m LOOP */
-									n = n+j;			/* ADVANCE n */
-									cyc_options[1][5] = cyc_options[1][32] = cyc_width;	/* ASSIGN [32] CURRENT WIDTH and PASS x WIDTH HISTORY */
-									break;				/* BREAKS OUT OF FOR j LOOP */
-								}
-							}
-						}
 						if (m != lenseq+1) {
 							/* CYCLELIZE FOR k=2 */
 							for (i = (threshold/2 - 1); i > 0; i--) {
@@ -3536,7 +3518,7 @@ unsigned int connudge(char con_align2D[][MAXROW], long int con_options[][62], in
 								m++;
 							}
 	
-							for (n = 0; cyc_align2D[cyc_row][n] != blnk; n++)
+							for (n = 0; cyc_align2D[cyc_row][n+1] != blnk; n++)
 								cyc_ar[cyc_row][n] = blnk;
 	
 							while (cyc_align2D[m][0] != '\0') {
@@ -3597,7 +3579,7 @@ unsigned int connudge(char con_align2D[][MAXROW], long int con_options[][62], in
 		} /* END OF FOR m LOOP */
 	} /* END OF FOR n LOOP */
 
-	/* PUSH LEFT IF EMPTY: SHOULD MOVE TO ITS OWN fUNCTION IF NEEDED ELSEWHERE */
+	/* PUSH LEFT IF EMPTY: SHOULD MOVE TO ITS OWN FUNCTION IF NEEDED ELSEWHERE */
 	if (edge0 && !dud_nudge) {
 		i = 0; /* COUNTER FOR AMOUNT TO PUSH LEFT */
 		for (n=0; n < cyc_width; n++) {
