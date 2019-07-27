@@ -3518,7 +3518,7 @@ unsigned int connudge(char con_align2D[][MAXROW], long int con_options[][62], in
 								m++;
 							}
 	
-							for (n = 0; cyc_align2D[cyc_row][n+1] != blnk; n++)
+							for (n = 0; (letr=cyc_align2D[cyc_row][n+1])!=blnk && letr!='\0'; n++)
 								cyc_ar[cyc_row][n] = blnk;
 	
 							while (cyc_align2D[m][0] != '\0') {
