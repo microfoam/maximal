@@ -3279,10 +3279,11 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 		for (n = n_end+2; n > 0; n--) {
 			con_align2D[m][n] = con_align2D[m][n-1];
 		}
+		con_align2D[m][0] = blnk;
 	}
 
 	/* ASSIGN CONSENSUS ROW LETTERS BUT VERIFY POST-NUDGE */
-	for (n = n_end+1; n>=nudge_col+nudge_span; n--) {
+	for (n = n_end+2; n>=nudge_col+nudge_span; n--) {
 		con_align2D[MAXROW][n] = consensus_ar[1][n];
 	}
 	con_align2D[MAXROW][n] = blnk;
@@ -4176,16 +4177,12 @@ short unsigned int lcl_opt_F;
 		i=poptions[0][10] = round((1000*(cinchwidth-mmsites-(length-c)))/cinchwidth);
 		warnhead('-');
 		printf("2-D printing is missing %d letter(s)!\n", length-c); 
-		if (0 && poptions[1][39]!=3)
-			poptions[1][39] = 100 + length-c;
 		return(0);
 	}
 	else {
 		i=poptions[0][10] = round((1000*(cinchwidth-mmsites-(c-length)))/cinchwidth);	
 		warnhead('+');
 		printf("2-D printing left %d extra letter(s)!\n", c-length);
-		if (0 && poptions[1][39]!=3)
-			poptions[1][39] = 1000 + c-length;
 		return(0);
 	}
 }
@@ -4608,7 +4605,9 @@ short int tuckcall=0;
 char lcl_align2D[MAXROW+1][MAXROW] = {{0}};
 unsigned short int nuctype = tuck_options[1][13], nuctransit=0;
 
-	if (nuctype == 1)		/* IF DNA */
+	if (bad_n == 0)
+		return(0);
+	else if (nuctype == 1)		/* IF DNA */
 		nuctransit = 1;
 
 	if (tuck_options[1][57] > 1)
@@ -4845,8 +4844,6 @@ int update_tela(struct coord tela[MAXROW], char align2D[][MAXROW])
 			}
 		}
 	}
-	else if (0)
-		printf("\n DEV: update_tela NOT committing");
 
 	return(c);	/* SHOULD BE lenseq IF SUCCESSFUL */
 
