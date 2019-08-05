@@ -136,6 +136,7 @@ fi
 ./maximal -Rn waves/tubespit/tubespit-85-adjDTH.txt
 ./maximal -Rn waves/tubespit/tubespit-86-adjDTH.txt
 ./maximal -Rn waves/tubespit/tubespit-87-adjDTH.txt
+./maximal -Rn waves/tubespit/tubespit-88-ndgLst.txt
 ./maximal -Rn waves/tubespit/tubespit_v343_14.txt
 ./maximal -Rn waves/tubespit/tubespit_v343_19.txt
 ./maximal -Rn waves/tubespit/tubespit_v344_03.txt
@@ -324,6 +325,7 @@ fi
 ./maximal -Rnx waves/tubespit/tubespit-85-adjDTH.txt
 ./maximal -Rnx waves/tubespit/tubespit-86-adjDTH.txt
 ./maximal -Rnx waves/tubespit/tubespit-87-adjDTH.txt
+./maximal -Rnx waves/tubespit/tubespit-88-ndgLst.txt
 ./maximal -Rnx waves/tubespit/tubespit_v343_14.txt
 ./maximal -Rnx waves/tubespit/tubespit_v343_19.txt
 ./maximal -Rnx waves/tubespit/tubespit_v344_03.txt
