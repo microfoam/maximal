@@ -1829,7 +1829,7 @@ long int options[4][62] = {
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
-		if (options[0][10] != 1000 || passR[5] >= CYCMAX) {
+		if (options[0][10] != 1000 || passR[5] > CYCMAX) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
 			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%2d (k=%ld)\tRND:-%.*s\t%c %s (%d %s) REC:%4d\t%4ld: %s\n", 
 					version, time0+4, (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], (int) options[1][33], "XX", 
@@ -3310,9 +3310,8 @@ char blnk = cyc_options[1][11], letr, conletr, topletr;
 char cyc_ar[MAXROW+1][MAXROW] = {{0}};
 unsigned int connudge(char con_align2D[][MAXROW], long int con_options[][62], int n_start, int n_width);
 
-	if (nuctype == 1) {	/* IF DNA */
+	if (nuctype == 1)	/* IF DNA */
 		nuctransit = 1;
-	}
 
 	mha_writeback(cyc_align2D, cyc_ar, cyc_options);
 	mha_writecons(cyc_align2D, cyc_ar, cyc_options);
@@ -3451,7 +3450,7 @@ unsigned int connudge(char con_align2D[][MAXROW], long int con_options[][62], in
 								/* BREAK OUT OF FOR j LOOP IF ROW NOT A k=2 TR ROW */
 								if (j==n && (cyc_align2D[ i ][ n ] == blnk ||
 											 cyc_align2D[i+s][n-1] != blnk || 
-											 cyc_align2D[i+r][n+2] != '/'  ) ) {
+											 cyc_align2D[i+r][n+2] != '/' ) ) {
 									break;
 								}
 
@@ -3930,7 +3929,7 @@ void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW], long 
 int i=0;
 
 	/* COPY CONSENSUS ROW FROM ARRAY ONE TO ARRAY TWO */
-	for (i = 0; i <= wroptions[1][32]; i++) {
+	for (i = 0; i < wroptions[1][32]; i++) {
 		align2D_two[MAXROW][i] = align2D_one[MAXROW][i];
 	}
 }
