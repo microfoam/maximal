@@ -7,7 +7,7 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 
-
+# TESTS START ON LINE 11
 ./maximal -Rna
 ./maximal -Rnb
 ./maximal -Rnc
