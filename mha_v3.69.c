@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 	int 				get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW], long int options[][62]);
 
 	char version[] = "3.69";				/* current version number */
-	unsigned int FY_size = 1201;			/* DEFAULT SIZE OF FISHER-YATES RANDOMIZED STRING */
+	unsigned int FY_size = 100;				/* DEFAULT SIZE OF FISHER-YATES RANDOMIZED STRING */
 	time_t lcl_time = time(NULL);			/* START TIME */
 	char time0[26];							/* START TIME STRING */
 	strcpy(time0,ctime(&lcl_time));			/* TEXT-READABLE START TIME */
@@ -4417,7 +4417,7 @@ void usage(char usage_version[], unsigned int FY_size)
 							"\t\t -Y       USE NUMBER ARGUMENT AS FY_SIZE INSTEAD OF DEFAULT (%d).\n\n", FY_size, FY_size);
 	printf("Example usages: ./maximal -a\n");
 	printf("                ./maximal -KnO sequence-file.txt\n");
-	printf("                ./maximal -KnXXY 1201 sequence-file.txt\n\n");
+	printf("                ./maximal -KnXXY 1200 sequence-file.txt\n\n");
 }
 
 /*** FUNCTION 30 *** RETURNS 1 FOR EARLY EXIT OPTIONED BY USER REQUEST ***********/
