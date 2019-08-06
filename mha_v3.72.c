@@ -398,11 +398,9 @@ long int options[4][62] = {
 			case 'v':						/* OPTION FOR VERBOSITY */
 					options[0][57] = 1;		/* opt_v ON 	*/
 					++options[1][57];		/* opt_v INCREMENTED */
-
-					/*      opt_F            opt_L    */
-					options[0][15]  =options[0][21] = 1;
 					++options[0][18];		/* opt_I */
 					++options[0][27];		/* opt_R */
+					options[0][15]=options[0][21] = 1; /* opt_F, opt_L */
 					options[0][47] =options[0][50] =options[0][51] =options[0][53] = 1;
 					/*      opt_l           opt_o           opt_p           opt_r    */
 					break;
@@ -441,7 +439,7 @@ long int options[4][62] = {
 					options[0][20] = 1;		/* opt_K ON */
 					++options[1][20];		/* INCREMENT opt_K */
 					break;
-			case 'L':						/* OPTION TO SHOW LETTER #'s AT END OF LINES */
+			case 'L':						/* OPTION TO SHOW POSITIONS AT END OF LINES */
 					options[0][21] = 1;		/* opt_L ON */
 					break;
 			case 'M':						/* OPTION TO DOUBLE LONG HOMOMONO WRAP */
@@ -476,9 +474,6 @@ long int options[4][62] = {
 						warnhead('Y');
 						printf("Option 'Y' to specify FY_size, but none specified; using default FY_size = %d.", FY_size);
 					}
-					break;
-			case 1 ... 10:
-					printf("\n DEV: Got to here for %c", opt);
 					break;
 			default:
 					printf("maximal: Illegal option %c\n", opt);
@@ -1307,7 +1302,7 @@ long int options[4][62] = {
 							printf("\n DEV: check_tela via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(stringy,0,p, 2));
 							printf("\n DEV: check_tela via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(stringy,0,q, 1));
 							printf("\n DEV: print_tela for k=%d x%d at n=%d", k, r, n);
-							print_tela(stringy,50,78);
+							print_tela(stringy,0,20);
 						}
 					} /* END OF FOR i LOOP OF r */
 					if (r>1) {
@@ -1406,7 +1401,7 @@ long int options[4][62] = {
 	if (options[1][57]>2) {
 		printf("\n DEV: check_tela via 1-D coords, princeps = %2d.", check_tela(stringy,0,lenseq,  1));
 		printf("\n DEV: check_tela via 2-D coords, princeps = %2d.", check_tela(stringy,0,citwidth,2));
-		print_tela(stringy,50,78);
+		print_tela(stringy,0,72);
 	}
 	if (!options[1][39] && passQ[2]<1000 && check_tela(stringy,0,lenseq,1)==3) {
 /*		options[1][39]=2; strcpy(dev_notes,"check_tela2");
@@ -2554,7 +2549,7 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 				printf("\nk = %d:", k);
 			}
 
-			if (koptions[0][57] && k > 1)	/* opt_v VERBOSITY, k=1 WILL PRINT FROM MAIN */
+			if (k > 1)	/* k=1 WILL PRINT FROM MAIN */
 				print_2Dseq(align2D_pass4, koptions[1][32], koptions);
 		}
 
