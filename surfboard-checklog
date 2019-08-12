@@ -30,4 +30,6 @@ echo
 echo 'Tests w/ REC < 1000:'
 grep -vE 'REC:1000' Surf_wavereport.log 
 echo
-
+echo 'Line counts:'
+wc -l mha_v*.c
+echo
