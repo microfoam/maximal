@@ -2529,10 +2529,10 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 						}
 					}
 					x = x + k;			/* FUTURE SPACING TO BE SUBTRACTED B/C k-MER TUCKED UNDER 1st UNIT */
-					scrimmage_line = n;
 					x_history[n] = x;
+					scrimmage_line = n;
 					n = n + k - 1;		/* ADVANCE ADJUSTMENT. NOTE UPCOMING n++ IN FOR n LOOP */
-					++cik_row;	 	
+					++cik_row;
 
 				}   /* END OF TR ASSIGN LOOPS */
 				else {
@@ -2545,9 +2545,7 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 
 		if (cik_row > 0) {
 			mha_writeback(cik_align2D, align2D_pass4, koptions); 
-			if (koptions[0][57]) {			/* opt_v VERBOSITY */
-				printf("\nk = %d:", k);
-			}
+			printf("\n k = %d:", k);
 
 			if (k > 1)	/* k=1 WILL PRINT FROM MAIN */
 				print_2Dseq(align2D_pass4, koptions[1][32], koptions);
