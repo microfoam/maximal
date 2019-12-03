@@ -39,11 +39,12 @@ int rnd;
 }
 
 struct coord {
-	int z;			/* 1D COORDINATE, BUT USED TO PASS INFORMATION TO FUNCTIONS. 0=lenseq; 2-->DTHR table */
 	int x;			/* 2D x-AXIS COORDINATE => COLUMN   */
 	int y;			/* 2D y-AXIS COORDINATE => ROW      */
 	int k;			/* k-MERs BY LOCATION; WAS A SLIPLOC_NMER I USED TO KNOW */
 	int r;			/* REPEAT NUMBER ALBERT-STYLE: 2nd UNIT OF TR = 1st REPEAT; r+1=TOTAL # OF UNITS */
+	int o;			/* CYCLE LENGTH; FOR CYCLELIZATION FUNCTIONS */
+	int m;			/* MEMORY, USED TO PASS INFORMATION TO FUNCTIONS. 0=lenseq; 2-->DTHR table */
 	char c;			/* CHARACTER LETTER IN SEQUENCE: ASSIGN ONLY ONCE! */
 	char t;			/* AUTO-CONSENSUS LETTER; TRANSITIONS IN DNA USUALLY; IUPAC OTHERWISE */
 	char e;			/* EQUIVALENCE CLASS LETTER: ASSIGN ONLY ONCE! */
@@ -263,7 +264,6 @@ int main(int argc, char *argv[])
 	char recovered[MAXROW] = {0};
 	short unsigned int go_flag=0, cycle_flag=0;			/* USE THIS TYPE FOR TRUE BIT FLAG VARIABLES */
 	unsigned int recovery_flag = 0;
-	int cyclelen=0;
 	int relax_length=0;			/* FOR USE WITH relax_2D CALL */
 	int intraTR_reps_tot = 0; 	/* STORES INITIAL RETURN VALUE FROM cinch-d() */
 	int intraTR_reps = 0;	 	/* STORES CURRENT RETURN VALUE FROM cinch-d() */
@@ -648,13 +648,13 @@ long int options[4][62] = {
 	passQ[1] = 1000;
 
 	stringy[lenseq  ].c = stringy[lenseq  ].t = Seq[lenseq  ] = '>';
-	stringy[lenseq+1].x = stringy[lenseq+1].y = stringy[lenseq+1].z = stringy[lenseq+1].c = stringy[lenseq+1].t = Seq[lenseq+1] = '\0';   
+	stringy[lenseq+1].x = stringy[lenseq+1].y = stringy[lenseq+1].m = stringy[lenseq+1].c = stringy[lenseq+1].t = Seq[lenseq+1] = '\0';   
 
 	for (i = 0; i <= lenseq; i++) {
 		stringy[i].r = 0;		/* Initialize slip location array */
 		stringy[i].k = 0;
 		stringy[i].y = 0;
-		stringy[i].x = stringy[i].z = i;
+		stringy[i].x = i;
 		stringy[i].c = stringy[i].t = Seq[i];
 		stringy[i].echoes = blank;
 		if (nuctransit) {
@@ -668,7 +668,7 @@ long int options[4][62] = {
 		else
 			stringy[i].e = stringy[i].c;
 	}
-		stringy[0].z = lenseq;	/* LOOK HERE TO FIND STRING LENGTH ANYTIME */
+		stringy[0].m = lenseq;	/* LOOK HERE TO FIND STRING LENGTH ANYTIME */
 
 	/************************************************************************************/
 	/* INITIALIZE PATHBOX FOR SELF-MHA  *************************************************/
@@ -789,19 +789,19 @@ long int options[4][62] = {
 
 	/* IF NUCTRANSIT POPULATE DTHR MATRIX FOR ALL k <= WIDTH */
 	if (nuctransit) {
-		stringy[1].z = match;				/* USE k=1 SLOT TO STORE PASSABLE MATCH VALUE */
+		stringy[1].m = match;				/* USE k=1 SLOT TO STORE PASSABLE MATCH VALUE */
 
 		if ((options[1][59] + 2) %2) {		/* IF opt_x EXTRA SQUEEZE: ALLOWS TRANSITION MATCHING FOR LOWER k AT CINCH_T */
 											/* THE +2 IS FOR CLARITY AND ASSURANCE THAT 1%2 GOES TO 1. SO -x AND -xxx TO INVOKE */
 			for (k=PISO; k <= WIDTH; k++) {
 				numtransit = 1 + round(fractransit * k);
-				stringy[k].z = 100*((k-numtransit)*match + numtransit*transition)/(k*match) - 1;
+				stringy[k].m = 100*((k-numtransit)*match + numtransit*transition)/(k*match) - 1;
 			}
 		}
 		else {	
 			for (k=PISO; k <= WIDTH; k++) {
 				numtransit = 1 + round(fractransit * k);
-				stringy[k].z = 100*((k-numtransit)*match + numtransit*transition)/(k*match);
+				stringy[k].m = 100*((k-numtransit)*match + numtransit*transition)/(k*match);
 			}
 		}
 	}
@@ -812,7 +812,7 @@ long int options[4][62] = {
 		for (k = 1; k < PISO; k++)
 			printf("\n\tFor k = %2d and numtransit = %d, DTHR = %3d%%.", k, 1 + (int) round(fractransit*k), 100);
 		for (k = PISO; k <= WIDTH; k++)
-			printf("\n\tFor k = %2d and numtransit = %d, DTHR = %3d%%.", k, 1 + (int) round(fractransit*k), stringy[k].z);
+			printf("\n\tFor k = %2d and numtransit = %d, DTHR = %3d%%.", k, 1 + (int) round(fractransit*k), stringy[k].m);
 		printf("\n\n Note: DTHR values are only populated if a sequence is specified.\n\n");
 		exit(1);
 	}
@@ -834,7 +834,7 @@ long int options[4][62] = {
 
 			if (nuctransit) {
 				if (k > PISO) {
-					DTHR = stringy[k].z;
+					DTHR = stringy[k].m;
 				}
 				else {
 					DTHR = 100;
@@ -1071,12 +1071,12 @@ long int options[4][62] = {
 									break;
 							}
 							cycle[i] = '\0';
-							cyclelen = i;
+							stringy[n].o = i;	/* STORE CYCLE LENGTH */
 
-							if (cyclelen > 2*k) {
+							if (stringy[n].o > 2*k) {
 								cycle_flag = 1;		/* THIS BIT CAN BE USED TO ADD CYCLE NOTATION TO END OF LINE */
 								if (options[0][57]) {
-									printf("\n DEV: %2d-mer cycle sequence of length %2d starting at %4d: %s.", k, cyclelen, n-k+1, cycle);
+									printf("\n DEV: %2d-mer cycle sequence of length %2d starting at %4d: %s.", k, stringy[n].o, n-k+1, cycle);
 								}
 							}
 							else {
@@ -1085,8 +1085,8 @@ long int options[4][62] = {
 							}
 
 							/* RECORD DNA "REVERB" IN SLIPLOC_ECHOES FOR ALL TR FRAMES */
-							if (cyclelen == 2*k) 	h = 1;
-							else 					h = k;
+							if (stringy[n].o == 2*k) 	h = 1;
+							else 						h = k;
 
 							
 							if (options[0][47]) {/****************************** OPTION TO SHOW SLIP LOCATIONS */
@@ -1302,7 +1302,7 @@ long int options[4][62] = {
 							printf("\n DEV: check_tela via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(stringy,0,p, 2));
 							printf("\n DEV: check_tela via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(stringy,0,q, 1));
 							printf("\n DEV: print_tela for k=%d x%d at n=%d", k, r, n);
-							print_tela(stringy,0,20);
+							print_tela(stringy,0,40);
 						}
 					} /* END OF FOR i LOOP OF r */
 					if (r>1) {
@@ -1401,7 +1401,7 @@ long int options[4][62] = {
 	if (options[1][57]>2) {
 		printf("\n DEV: check_tela via 1-D coords, princeps = %2d.", check_tela(stringy,0,lenseq,  1));
 		printf("\n DEV: check_tela via 2-D coords, princeps = %2d.", check_tela(stringy,0,citwidth,2));
-		print_tela(stringy,0,72);
+		print_tela(stringy,0,40);
 	}
 	if (!options[1][39] && passQ[2]<1000 && check_tela(stringy,0,lenseq,1)==3) {
 /*		options[1][39]=2; strcpy(dev_notes,"check_tela2");
@@ -1847,7 +1847,7 @@ long int options[4][62] = {
 int push_tela(struct coord tela[MAXROW], int eL2, int eL1) 
 {
 	int coord_xa=0, coord_xb=0, coord_ya=0, coord_yb=0, i=0, k=eL2-eL1, violation=0;
-	int lenseq=tela[0].z;
+	int lenseq=tela[0].m;
 
 	/* CHECK VALIDITY OF THE INPUT */
 	if (k<=0 || lenseq==0)
@@ -1897,7 +1897,7 @@ int push_tela(struct coord tela[MAXROW], int eL2, int eL1)
 
 int assign_tela(struct coord tela[MAXROW], char align2D[][MAXROW], int eL, int eM, int eN, int mode, int pointA, int pointB)
 {
-	int i=0, j=0, lenseq=tela[0].z, conflict_flag=0;
+	int i=0, j=0, lenseq=tela[0].m, conflict_flag=0;
 	int start=0, end=lenseq;
 
 	if (pointB > pointA) {	/* ASSIGN LINE VALUES IF CHECKING LIMITED SPAN */
@@ -1972,7 +1972,7 @@ int assign_tela(struct coord tela[MAXROW], char align2D[][MAXROW], int eL, int e
 /*** FUNCTION 00 **** TELA: A FABRIC, UNDER AXIOMATIC LAWS ******/
 int check_tela(struct coord tela[MAXROW], int eM, int eN, short unsigned int dim) 
 {
-int i=0, j=0, lenseq=tela[0].z, lineM=0, lineN=0, princeps=0, badflag=0;
+int i=0, j=0, lenseq=tela[0].m, lineM=0, lineN=0, princeps=0, badflag=0;
 
 	if (eM>=eN) {
 		printf("\n DEV: Need to call check_tela explicitly with %d-D positions eN > eM.", dim);
@@ -2043,7 +2043,7 @@ int i=0, j=0, lenseq=tela[0].z, lineM=0, lineN=0, princeps=0, badflag=0;
 
 int get_1Dz(struct coord tela[MAXROW], int x, int y, int ignoreCheck)
 {
-	int i=0, z=0, count_check=0, lenseq=tela[0].z;
+	int i=0, z=0, count_check=0, lenseq=tela[0].m;
 
 	for (i=0; i<lenseq; i++) {
 		if (tela[i].x == x && tela[i].y == y) {
@@ -2066,7 +2066,7 @@ int get_1Dz(struct coord tela[MAXROW], int x, int y, int ignoreCheck)
 /* PRINT TELA FROM a TO b */
 void print_tela(struct coord tela[MAXROW], int a, int b)
 {
-int i=0, lenseq=tela[0].z;
+int i=0, lenseq=tela[0].m;
 
 	if (a < 0 || a > b)
 		a = 0;
@@ -2100,6 +2100,10 @@ int i=0, lenseq=tela[0].z;
 	printf("\n r:");
 	for (i=a; i<=b; i++)
 		printf("%3d", tela[i].r);
+
+	printf("\n o:");
+	for (i=a; i<=b; i++)
+		printf("%3d", tela[i].o);
 
 	printf("\n E:");
 	for (i=a; i<=b; i++)
@@ -2191,7 +2195,7 @@ unsigned short int first_mwrap=0, keep_checking=1;
 unsigned short int nuctype = koptions[1][13];		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int homopolyflag=0, imperfect_TR=0;
-int match = tela[1].z;
+int match = tela[1].m;
 int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
 char letr, letr2, letr3;
 char blnk        = (char) koptions[1][11];		/* opt_B blank character */
@@ -2200,7 +2204,7 @@ char kopt_Q_left = (char) koptions[1][26];		/* LHS character delimiter for homop
 char kopt_R_rght = (char) koptions[1][27];		/* RHS character delimiter for homopolymer Run */
 char cik_align2D[MAXROW+1][MAXROW] = {{0}};
 int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n */
-/* int lenseq = tela[0].z;*/
+/* int lenseq = tela[0].m;*/
 
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
@@ -2433,7 +2437,7 @@ int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n *
 							sum4score += match;
 					} /* END OF FOR l SCAN LOOPS */
 
-					if (l == k && (i=100*sum4score/(k*match)) > tela[k].z ) {
+					if (l == k && (i=100*sum4score/(k*match)) > tela[k].m ) {
 						imperfect_TR = 1;
 					}
 					else {
@@ -3308,7 +3312,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 unsigned int cyclelize(char cyc_align2D[][MAXROW], struct coord tela[MAXROW], long int cyc_options[][62])
 {
 int cyc_col=0, cyc_row=0, a, b, i, j, k=2, kmer=0, m=0, n=0, threshold, r, s, x=0, y=0;	/* conflict_position */
-int lenseq   = tela[0].z;
+int lenseq   = tela[0].m;
 int cyc_width = cyc_options[1][32];					/* THIS IS opt_W SLOT TO STORE CURRENT 2-D WIDTH */
 short unsigned int edge0=0, mono=0, mslip=0;
 unsigned short int nuctype = cyc_options[1][13];	/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
@@ -4717,7 +4721,7 @@ unsigned short int nuctype = tuck_options[1][13], nuctransit=0;
 void print1D(struct coord tela[MAXROW], long int options[][62])
 {
 	int i, j, n;
-	int lenseq = tela[0].z;
+	int lenseq = tela[0].m;
 	int blocks = count_wrap_blocks(lenseq, options[1][58]);
 	int head_start = 0;			/* USE TO PASS RULER OFF-SET TO line_end() */
 	char ch;
@@ -4806,7 +4810,7 @@ void print1D(struct coord tela[MAXROW], long int options[][62])
 /*************************** CALL ONLY IF align2D is 100% ********************/
 int update_tela(struct coord tela[MAXROW], char align2D[][MAXROW])
 {
-	int c=0, i=0, j=0, lenseq=tela[0].z;
+	int c=0, i=0, j=0, lenseq=tela[0].m;
 	char letr;
 
 	for (i=0; align2D[i][0]!='\0'; i++) {
