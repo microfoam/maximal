@@ -42,18 +42,23 @@ int rnd;
 struct coord {
 	int x;			/* 2D x-AXIS COORDINATE => COLUMN   */
 	int y;			/* 2D y-AXIS COORDINATE => ROW      */
+	char c;			/* CHARACTER LETTER IN SEQUENCE: ASSIGN ONLY ONCE! */
 	/*************************************************************************************************/
 	int k;			/* k-MERs BY LOCATION; WAS A SLIPLOC_NMER I USED TO KNOW */
 	int r;			/* REPEAT NUMBER ALBERT-STYLE: 2nd UNIT OF TR = 1st REPEAT; r+1=TOTAL # OF UNITS */
+	char t;			/* AUTO-CONSENSUS LETTER; TRANSITIONS IN DNA USUALLY; IUPAC OTHERWISE */
 	/*************************************************************************************************/
 	int o;			/* CYCLE LENGTH; FOR CYCLELIZATION FUNCTIONS */
 	int m;			/* MEMORY, USED TO PASS INFORMATION TO FUNCTIONS. 0=lenseq; 2-->DTHR table */
+	char e;			/* EQUIVALENCE CLASS LETTER: ASSIGN ONLY ONCE! */
 	/*************************************************************************************************/
 	int cyc_k;		/* k-mer size indicated for each cyclelizable option */
 	int cyc_r;		/* repeat number for each frame of cyclelizable option */
+	char echoes;	/* OLD PICTOGRAPHIC SLIPLOC_ECHOES */
 	/*************************************************************************************************/
 	int cyc_P;		/* product of cyc_k * cyc_r for all cycleling options */
 	int cyc_S;		/* sum of compatible products for all cycleling options */
+	char cyc_o;		/* x => cinched; o => untaken cyclelizable option; ? => transient decision state */
 	/*************************************************************************************************/
 	int cyc_Lt;		/* Left-side overlapping TR */
 	int cyc_Rt;		/* Right-side overlapping TR */
@@ -63,16 +68,6 @@ struct coord {
 	/*************************************************************************************************/
 	int  cyc_F[FRAME_ROWS];	/* cycling frames; count-off column positions per unit; */
 							/* one row/frame; row zero is row # locator; FRAME_ROWS IS MULT. OF 8 */
-	/*************************************************************************************************/
-	char c;			/* CHARACTER LETTER IN SEQUENCE: ASSIGN ONLY ONCE! */
-	char u1, v1, w1;	/* DUMMY BUFFER */
-	char t;			/* AUTO-CONSENSUS LETTER; TRANSITIONS IN DNA USUALLY; IUPAC OTHERWISE */
-	char u2, v2, w2;	/* DUMMY BUFFER */
-	char e;			/* EQUIVALENCE CLASS LETTER: ASSIGN ONLY ONCE! */
-	char u3, v3, w3;	/* DUMMY BUFFER */
-	char echoes;	/* OLD PICTOGRAPHIC SLIPLOC_ECHOES */
-	char u4, v4, w4;	/* DUMMY BUFFER */
-	char cyc_o;		/* x => cinched; o => untaken cyclelizable option; ? => transient decision state */
 	/*************************************************************************************************/
 };
 
