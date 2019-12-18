@@ -2111,7 +2111,7 @@ int cyclelize_tela(struct coord tela[MAXROW], int cpos, int delta, int npos, cha
 			tela[j].y = m; 
 		}
 
-		tela[cpos].k = tela[cpos].r = 0;
+		tela[cpos].r = 0;
 		tela[cpos      ].cyc_o = tela[cpos].echoes = 'o';
 		tela[cpos+delta].cyc_o = 'x';
 		return (1);		/* EVENTUALLY ADD A CHECK_TELA CALL IN HERE */
