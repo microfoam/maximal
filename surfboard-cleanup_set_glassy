@@ -198,6 +198,10 @@ fi
 ./maximal -Rn waves/tubespit/tubespit_v344_34.txt
 ./maximal -Rn waves/tubespit/tubespit_v344_35.txt
 ./maximal -Rn waves/tubespit/tubespit_v344_36.txt
+./maximal -Rn waves/tubespit/tubespit_v377_cycAB_01.txt
+./maximal -Rn waves/tubespit/tubespit_v377_cycAB_02.txt
+./maximal -Rn waves/tubespit/tubespit_v377_cycAB_03.txt
+./maximal -Rn waves/tubespit/tubespit_v377_cycAB_04.txt
 
 ./surfboard-checkmha
 
