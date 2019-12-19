@@ -958,19 +958,10 @@ long int options[4][62] = {
 				/* SKIP CINCH IF CAN AVOID CONFLICT WITH A LATER CYCLE & CYCLING PREVIOUS TR NOT AN OPTION */
 				if (Dtr && (Dtr==Did || imperfect_TR)) {
 					for (i = n-1; i > 1; i--) {
-						if (stringy[i].r) {
-							p = stringy[i].r - 1;
-							q = stringy[i].k;
-							if      (i>=m && (i + p*q) > n) {
-								if (options[1][57])
-									printf("\n DEV-0954: Setting stringy.X at n=%d to i=%d for m=%d. Dtr=%d, imperfect_TR=%d.", n, i, m, Dtr, imperfect_TR);
-								stringy[n].X = i;	/* UPDATE LEFT-MOST OVERLAPPING TR */
-							}
-							else if (i< m && (i + p*q) > m) {
-								if (options[1][57])
-									printf("\n DEV-0954: Setting stringy.X at n=%d to i=%d for m=%d. Dtr=%d, imperfect_TR=%d.", n, i, m, Dtr, imperfect_TR);
-								stringy[n].X = i;	/* UPDATE LEFT-MOST OVERLAPPING TR */
-							}
+						if (stringy[i].r && i + stringy[i].k * (stringy[i].r - 1) > m) {
+							if (options[1][57])
+								printf("\n DEV-0954: Setting stringy.X at n=%d to i=%d for m=%d. Dtr=%d, imperfect_TR=%d.", n, i, m, Dtr, imperfect_TR);
+							stringy[n].X = i;	/* UPDATE LEFT-MOST OVERLAPPING TR */
 						}
 					} 
 					if (stringy[n].X != n) {
