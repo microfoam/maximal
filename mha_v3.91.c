@@ -1220,10 +1220,10 @@ if (!badslip_type) {
 									for (f = stringy[z+j].cyc_F[0] - 1 - j; f > 0; f--) {
 										l=z+j-k;
 										if      (stringy[l].cyc_F[f] == 1) {
-											while (stringy[l].cyc_o != 'x' && stringy[l].cyc_o != 'o') {
+											while (stringy[l].cyc_o != 'x' && stringy[l].cyc_o != 'o' && l>0) {
 												l--;
 											}
-											while (stringy[l].cyc_F[f] != 1)
+											while (stringy[l].cyc_F[f] != 1 && l>0)
 												l--;
 											stringy[z+j].cyc_S = stringy[z+j].cyc_P + stringy[l].cyc_P;	
 											stringy[l  ].cyc_Rt = z+j;
@@ -1265,7 +1265,7 @@ if (!badslip_type) {
 									stringy[l].o = stringy[l].cyc_k * (stringy[l].cyc_r+1);
 								}
 								else if (l == z && stringy[(j=stringy[l].cyc_Lf)].cyc_o == 'o') {	/* SMALL FRY: SECOND CONDITION HERE SHOULD NOT BE NECESSARY */
-									i = j-1;	/* SAVE VAR j AS POSITION THAT NEEDS TO BE CYCLED TO; USE VAR i TO COUNT DOWN TO POSITION THAT NEEDS TO BE CYCLED AWAY FROM */
+									i = j-1;	/* SAVE VAR j, POSITION THAT NEEDS BE CYCLED TO; VAR i TO COUNT DOWN TO POSITION THAT NEEDS TO BE CYCLED AWAY FROM */
 									while (stringy[i].cyc_o != 'x' && stringy[i].cyc_o != blank) 
 										i--;
 									if (stringy[i].cyc_o == 'x') {
