@@ -8,15 +8,15 @@ fi
 
 
 # TESTS START ON LINE 11
-./maximal -Rna
-./maximal -Rnb
-./maximal -Rnc
-./maximal -Rnd
-./maximal -Rne
-./maximal -Rnf
-./maximal -Rng
-./maximal -Rnh
 ./maximal -Rn waves/animals/seal_vnd_ex3_Dmela.txt
+./maximal -Rn waves/tubespit/tubespit-00-orig_a.txt
+./maximal -Rn waves/tubespit/tubespit-00-orig_b.txt
+./maximal -Rn waves/tubespit/tubespit-00-orig_c.txt
+./maximal -Rn waves/tubespit/tubespit-00-orig_d.txt
+./maximal -Rn waves/tubespit/tubespit-00-orig_e.txt
+./maximal -Rn waves/tubespit/tubespit-00-orig_f.txt
+./maximal -Rn waves/tubespit/tubespit-00-orig_g.txt
+./maximal -Rn waves/tubespit/tubespit-00-orig_h.txt
 ./maximal -Rn waves/animals/seal_vnd_ex3_Dmaur.txt
 ./maximal -Rn waves/animals/seal_vnd_ex3_Dsech.txt
 ./maximal -Rn waves/animals/seal_vnd_ex3_Dsimu.txt
@@ -202,14 +202,14 @@ fi
 ./maximal -Rn waves/tubespit/tubespit_v377_cycAB_02.txt
 ./maximal -Rn waves/tubespit/tubespit_v377_cycAB_03.txt
 ./maximal -Rn waves/tubespit/tubespit_v377_cycAB_04.txt
-./maximal -Rnx -a
-./maximal -Rnx -b
-./maximal -Rnx -c
-./maximal -Rnx -d
-./maximal -Rnx -e
-./maximal -Rnx -f
-./maximal -Rnx -g
-./maximal -Rnx -h
+./maximal -Rnx waves/tubespit/tubespit-00-orig_a.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_b.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_c.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_d.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_e.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_f.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_g.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_h.txt
 ./maximal -Rnx waves/animals/seal_vnd_ex3_Dmela.txt
 ./maximal -Rnx waves/animals/seal_vnd_ex3_Dmaur.txt
 ./maximal -Rnx waves/animals/seal_vnd_ex3_Dsech.txt

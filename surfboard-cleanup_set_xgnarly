@@ -8,14 +8,14 @@ fi
 
 
 # TESTS START ON LINE 11
-./maximal -Rnx -a
-./maximal -Rnx -b
-./maximal -Rnx -c
-./maximal -Rnx -d
-./maximal -Rnx -e
-./maximal -Rnx -f
-./maximal -Rnx -g
-./maximal -Rnx -h
+./maximal -Rnx waves/tubespit/tubespit-00-orig_a.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_b.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_c.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_d.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_e.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_f.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_g.txt
+./maximal -Rnx waves/tubespit/tubespit-00-orig_h.txt
 ./maximal -Rnx waves/animals/seal_vnd_ex3_Dmela.txt
 ./maximal -Rnx waves/animals/seal_vnd_ex3_Dmaur.txt
 ./maximal -Rnx waves/animals/seal_vnd_ex3_Dsech.txt
@@ -204,4 +204,5 @@ fi
 ./maximal -Rnx waves/tubespit/tubespit_v377_cycAB_04.txt
 
 ./surfboard-checkmha
+echo -ne '\007'
 
