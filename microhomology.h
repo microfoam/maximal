@@ -1,3 +1,5 @@
+/* microhomology.h: header file for mha_v#.##.c */
+
 #define MAXROW   1250       /* maximum input line size  */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
 #define MATCH       8       /* MATCH SCORE */
@@ -43,6 +45,8 @@ struct coord {
 	/*************************************************************************************************/
 };
 
+char align2D[MAXROW+1][MAXROW] = {{0}};
+
 /***********************************************/
 void signal_callback_handler(int signum) 
 {
@@ -63,10 +67,10 @@ int rnd;
     return rnd % n;
 }
 
-int assign_tela(struct coord tela[], char align2D[][MAXROW], int eL, int eM, int eN, int mode, int pointA, int pointB);
+int assign_tela(struct coord tela[], int eL, int eM, int eN, int mode, int pointA, int pointB);
 int assign_transit(struct coord tela[MAXROW], int n);
 int check_tela(struct coord tela[MAXROW], int eM, int eN, short unsigned int dim);
-int cyclelize_tela(struct coord tela[MAXROW], int cpos, int delta, int npos, char align2D[][MAXROW], long int options[][62]);
+int cyclelize_tela(struct coord tela[MAXROW], int cpos, int delta, int npos, long int options[][62]);
 void clear_2D_ar(char wipe_align2D[][MAXROW]);
 void clear_right(char swipe_align2D[][MAXROW], long int croptions[][62]);
 int col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short int updown); 
@@ -81,28 +85,28 @@ void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW], long
 void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW], long int wroptions[][62]);
 int push_tela(struct coord tela[MAXROW], int n2, int n1);
 void print1D(struct coord tela[MAXROW], long int options[][62]);
-short unsigned int print_2Dseq(char align2D_print[][MAXROW], int print_lenseq2D, long int poptions[][62]);
+short unsigned int print_2Dseq(int print_lenseq2D, long int poptions[][62]);
 void print_blockhead(int a, int b);	
 void print_tela(struct coord tela[MAXROW], int a, int b);
 short int pushdown(char pusharray[][MAXROW], int push_m, int push_n, long int push_options[0][62]);
 int score_DTHR(int kmer, int squeeze);
 int span_rk(struct coord tela[MAXROW], int point);
-int update_tela(struct coord tela[MAXROW], char align2D[][MAXROW]);
+int update_tela(struct coord tela[MAXROW]);
 void warnhead(char l); 
 
 short unsigned int 	user_query(unsigned int pass_num);
 
-int               	cinch_k(char align2D_pass4[][MAXROW], struct coord tela[MAXROW], long int koptions[][62]);  
-int 				recover_1D(char recovered_1D[MAXROW], char rec_align2D[][MAXROW], long int rec_options[][62]);
-int 				recoverlen(char rec_align2D[][MAXROW], long int rec_options[][62]);
+int               	cinch_k(struct coord tela[MAXROW], long int koptions[][62]);  
+int 				recover_1D(char recovered_1D[MAXROW], long int rec_options[][62]);
+int 				recoverlen(long int rec_options[][62]);
 short unsigned int 	cleanseq(char *s);
 
 int 				get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW], long int options[][62]);
 unsigned int       	nudgelize(char cyc_align2D[][MAXROW], struct coord tela[MAXROW], long int cyc_options[][62]);
-unsigned int       	cinch_d(char align2D_pass6[][MAXROW], long int doptions[][62], short unsigned int cinch_d_opt);
-short unsigned int 	cinch_l(char align2D_pass3[][MAXROW], long int loptions[][62]);  
+unsigned int       	cinch_d(long int doptions[][62], short unsigned int cinch_d_opt);
+short unsigned int 	cinch_l(long int loptions[][62]);  
 
-void		 		relax_2D(char align2D_pass8[][MAXROW], long int roptions[0][62]);
+void		 		relax_2D(long int roptions[0][62]);
 void 				mha_randomize1(char input_seq[MAXROW]);
 void 				mha_randomize2(char input_seq[MAXROW], int rsize);
 void 				print_base62_table(long int boptions[][62]);
