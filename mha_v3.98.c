@@ -17,8 +17,6 @@
 
 int main(int argc, char *argv[])
 {
-	struct coord stringy[MAXROW] = {0};
-
 	int match      =  MATCH;
 	int transition =  match/2;			
 	int mismatch   = -1;
@@ -195,7 +193,7 @@ int main(int argc, char *argv[])
 	int Atr = 0;				/* Counter for additional repeats on the same diagonal */
 	int row = 0;				/* Counter for row number in align2D box */
 	int badslipspan = 0;		/* Counter of length of a conflicting prior slip starting from the second unit */ 
-	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from stringy[].r */
+	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from tela[].r */
 	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
 	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING options ARRAY (opt_ VARs) */ 
 	char pathbox[MAXROW+1][MAXROW] = {{0}};
@@ -545,25 +543,25 @@ long int options[4][62] = {
 	passQ[0] = 1000*options[1][0]/lenseq;
 	passQ[1] = 1000;
 
-	stringy[lenseq].c = stringy[lenseq].t = Seq[lenseq] = '>';
+	tela[lenseq].c = tela[lenseq].t = Seq[lenseq] = '>';
 
 	for (i = 0; i <= lenseq; i++) {
-		stringy[i].x = stringy[i].X = i;
-		stringy[i].c = stringy[i].t = Seq[i];
-		stringy[i].cyc_o = stringy[i].echoes = blank;
+		tela[i].x = tela[i].X = i;
+		tela[i].c = tela[i].t = Seq[i];
+		tela[i].cyc_o = tela[i].echoes = blank;
 
 		if (nuctransit) {
-			if 		(stringy[i].c=='A' || stringy[i].c=='G')
-				stringy[i].e = 'R';
-			else if (stringy[i].c=='C' || stringy[i].c=='T')
-				stringy[i].e = 'Y';
+			if 		(tela[i].c=='A' || tela[i].c=='G')
+				tela[i].e = 'R';
+			else if (tela[i].c=='C' || tela[i].c=='T')
+				tela[i].e = 'Y';
 			else
-				stringy[i].e = stringy[i].c;
+				tela[i].e = tela[i].c;
 		}
 		else
-			stringy[i].e = stringy[i].c;
+			tela[i].e = tela[i].c;
 	}
-		stringy[0].cyc_Lf = lenseq;	/* LOOK HERE OR IN options[1][1] AT ANYTIME TO GET LENSEQ */
+		tela[0].cyc_Lf = lenseq;	/* LOOK HERE OR IN options[1][1] AT ANYTIME TO GET LENSEQ */
 
 	/************************************************************************************/
 	/* INITIALIZE PATHBOX FOR SELF-MHA  *************************************************/
@@ -707,13 +705,13 @@ long int options[4][62] = {
 		for (m = 0; m < n; m++) {
 
 			/* FOR ROW m LOOP 1/6: UPDATE VAR CITWIDTH AT END */
-			if (stringy[n].c == '>') {
+			if (tela[n].c == '>') {
 				citwidth = a2D_n;
 				align2D[row+1][0] = '\0';
 				options[1][17] = row+1;
 			}
-			else if (stringy[n].cyc_o == 'o') {	/* IF THIS POSITION HAD A BIGGER k-MER SQUASHED HERE (E.G., FOR LATER CYCLING) */
-				assign_tela(stringy, n++, row, a2D_n++, 0,0,0);
+			else if (tela[n].cyc_o == 'o') {	/* IF THIS POSITION HAD A BIGGER k-MER SQUASHED HERE (E.G., FOR LATER CYCLING) */
+				assign_tela(n++, row, a2D_n++, 0,0,0);
 				break;	/* GO TO NEXT n */
 			}
 
@@ -730,13 +728,13 @@ long int options[4][62] = {
 
 			/* FOR ROW m LOOP 4/6: SKIP k=ONE */
 			if (k == 1) {	
-				assign_tela(stringy, n++, row, a2D_n++, 0,0,0);
+				assign_tela(n++, row, a2D_n++, 0,0,0);
 				break;	/* GO TO NEXT n */
 			}
 
 			/* FOR ROW m LOOP 5/6: SET HOMOPOLYMER RUN STATUS UNKNOWN; USED TO RULE OUT k>1 MONONUCLEOTIDE "REPEATS" */
 			homopoly_flag = 2;
-			if (stringy[n].c != stringy[n-1].c)
+			if (tela[n].c != tela[n-1].c)
 				homopoly_flag = 0;
 
 			/* FOR ROW m LOOP 6/6: START COUNTING SCORE IF PATHBOX POSITION HAS VALUE > MISMATCH */
@@ -754,14 +752,14 @@ long int options[4][62] = {
 						Dtr = Dtr + pathbox[i][i+k];	/* COMPUTE SUM OF TANDEM REPEAT UNIT LINE */
 
 					/* SET HOMOPOLYMERIC RUN BIT TO FALSE IF NOT A POSSIBILITY */
-					if (homopoly_flag && i > m && stringy[i].c != stringy[i-1].c)
+					if (homopoly_flag && i > m && tela[i].c != tela[i-1].c)
 						homopoly_flag = 0;
 				}
 
 				/* IF SUMMING PATHBOX DIAGONAL 2/: SET HOMOPOLYMERIC RUN BIT TO TRUE IF DETECTED 	*/
 				if (homopoly_flag && i == n) {
 					homopoly_flag = 1;				/* BIT IS THERE IF NEEDED BEYOND BREAK. 		*/
-					assign_tela(stringy, n++, row, a2D_n++, 0,0,0);
+					assign_tela(n++, row, a2D_n++, 0,0,0);
 					Dtr = 0;
 					break;							/* GO TO NEXT n */
 				}
@@ -771,7 +769,7 @@ long int options[4][62] = {
 					if (k>PISO && 100*Dtr/Did > DTHR)	{	
 						imperfect_TR = 1;		/* CALLING TR W/ TRANSITIONS FOR n BLOCK VS m BLOCK */
 
-						if (stringy[m].c != stringy[n].c && stringy[n].c == stringy[n+k].c)	{ 
+						if (tela[m].c != tela[n].c && tela[n].c == tela[n+k].c)	{ 
 							imperfect_TR = 0;	/* IMPERFECT TR AT n, BUT LESS IMPERFECT TR AT n+1 */
 							if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
 								printf("\n DEV-0888: Skipping imperfect TR at n=%d for better match at n=%d.", n+1, n+2);
@@ -788,23 +786,23 @@ long int options[4][62] = {
 				/* SKIP CINCH IF CAN AVOID CONFLICT WITH A LATER CYCLE & CYCLING PREVIOUS TR NOT AN OPTION */
 				if (Dtr && (Dtr==Did || imperfect_TR)) {
 					for (i = n-1; i > 1; i--) {
-						if (stringy[i].r && i + stringy[i].k * (stringy[i].r - 1) > m) {
-							stringy[n].X = i;		/* UPDATE LEFT-MOST OVERLAPPING TR */
+						if (tela[i].r && i + tela[i].k * (tela[i].r - 1) > m) {
+							tela[n].X = i;		/* UPDATE LEFT-MOST OVERLAPPING TR */
 
 							if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-								printf("\n DEV-0930: Setting stringy[%d].X to i=%d. m=%d, k=%d, Dtr=%d, imperfect_TR=%d.", n, i, m, k, Dtr, imperfect_TR);
+								printf("\n DEV-0930: Setting tela[%d].X to i=%d. m=%d, k=%d, Dtr=%d, imperfect_TR=%d.", n, i, m, k, Dtr, imperfect_TR);
 						}
 					} 
-					if (stringy[n].X != n) {
-						q = stringy[n].X;
-						if (stringy[q+1].cyc_o != 'o') {
-							alt_k = stringy[q].k;
-							j = q + alt_k*(stringy[q].r - 1);
+					if (tela[n].X != n) {
+						q = tela[n].X;
+						if (tela[q+1].cyc_o != 'o') {
+							alt_k = tela[q].k;
+							j = q + alt_k*(tela[q].r - 1);
 							for (l = n; l+k <= lenseq && l+k <= m+WIDTH; l++) {
 								if (Seq[l] == Seq[l+k]) { 
 									if (j <= l+1) {
 										Dtr = imperfect_TR = 0;
-										stringy[n].cyc_o = 'o';
+										tela[n].cyc_o = 'o';
 										if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
 											printf("\n DEV-0945: Skipping cinch here to use later cycling frame at %d.", l+1);
 										}
@@ -821,7 +819,7 @@ long int options[4][62] = {
 				if (imperfect_TR) {
 					for (l=k/2; l>1; l--) {
 						for (i=0; i<l; i++) {
-							if (stringy[n-l+i].c != stringy[n+i].c)
+							if (tela[n-l+i].c != tela[n+i].c)
 								break;	
 						}
 						if (i==l) {
@@ -865,16 +863,16 @@ long int options[4][62] = {
 						}
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
 							if (reps > 1)
-								stringy[n].cyc_l = k;		/* STORE # OF FRAMES CAN CYCLE THROUGH: AN ENTIRE UNIT-LENGTH */
+								tela[n].cyc_l = k;		/* STORE # OF FRAMES CAN CYCLE THROUGH: AN ENTIRE UNIT-LENGTH */
 							break;
 						}
 					}
 
 					badslip_type = 0;
 					/* SKIP CINCH IF TR PRIOR TO m SPANS INTO PRESENT TR */
-					if (stringy[n].X != n) {
-						for (l=n-1; l>=stringy[n].X; l--) {
-							if ((q=stringy[l].k) && (l + (p=span_rk(stringy,l)) - q) > m) { 
+					if (tela[n].X != n) {
+						for (l=n-1; l>=tela[n].X; l--) {
+							if ((q=tela[l].k) && (l + (p=span_rk(l)) - q) > m) { 
 								if (p > reps*k) {
 									badslip_type = 1;					/* FROM SEQUENCE IN TYPES: (1) -3-5-10-30-50-100-300-500 */
 									options[1][50] += badslip_type;
@@ -885,7 +883,7 @@ long int options[4][62] = {
 									Dtr = imperfect_TR = 0; /* SKIP PRESENT SLIP */
 									break;
 								}
-								else if (imperfect_TR && Dtr - stringy[l].Dtr < MATCH) {
+								else if (imperfect_TR && Dtr - tela[l].Dtr < MATCH) {
 									badslip_type = 3;					/* FROM SEQUENCE IN TYPES: 1- (3) -5-10-30-50-100-300-500 */
 									options[1][50] += badslip_type;
 									options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
@@ -896,28 +894,28 @@ long int options[4][62] = {
 									break;
 								}
 								/* THEN IF BOTH ARE NON-CYCLELIZABLE, AND PRESENT TR HAS HIGHER SCORE, ERASE PREVIOUS TR */
-								else if (stringy[l].cyc_l==1 && stringy[n].c != stringy[n+k].c) {	
+								else if (tela[l].cyc_l==1 && tela[n].c != tela[n+k].c) {	
 									badslip_type = 5;					/* FROM SEQUENCE IN TYPES: 1-3- (5) -10-30-50-100-300-500 */
 									options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 									if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
 										printf("\n DEV-1037: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
-									r = stringy[l].r;
-									stringy[l].r = 0;
-									stringy[l].echoes = stringy[l].cyc_o = 'o';
+									r = tela[l].r;
+									tela[l].r = 0;
+									tela[l].echoes = tela[l].cyc_o = 'o';
 
-									row   = stringy[l-1].y;
-									a2D_n = stringy[l-1].x + 1;
+									row   = tela[l-1].y;
+									a2D_n = tela[l-1].x + 1;
 
 									/* REWRITE FIRST k UNIT OF TR B */
 									for (i=l; i<n; i++) {
-										align2D[row][a2D_n] = tolower(stringy[i].c);
-										stringy[i].y = row;
-										stringy[i].x = a2D_n++;
+										align2D[row][a2D_n] = tolower(tela[i].c);
+										tela[i].y = row;
+										tela[i].x = a2D_n++;
 									}
 									
 									/* REMOVE PREVIOUS TR's SLIP CHARACTERS FROM 2D */
-									for (i=1; i < (stringy[l].r - 1); i++) {
+									for (i=1; i < (tela[l].r - 1); i++) {
 										for (j=0; j < lenseq; j++) {
 											align2D[row + i][j] = '\0';
 										}
@@ -930,14 +928,14 @@ long int options[4][62] = {
 				}
 
 				/* IF SUMMING PATHBOX DIAGONAL 7/: COMMITTING TO CINCH BELOW HERE ************************/
-				if (Dtr && (Dtr==Did || imperfect_TR) && (o=push_tela(stringy,n,m))) {
+				if (Dtr && (Dtr==Did || imperfect_TR) && (o=push_tela(n,m))) {
 					Dtr = imperfect_TR = 0;
 					if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
 						printf("\n DEV-1060: push_tela violations=%d; skipping k=%d-mer at n=%d", o, k, n+1);
 					}
 				}
 				else
-					stringy[n].Dtr = Dtr;		/* SAVE Dtr SCORE */
+					tela[n].Dtr = Dtr;		/* SAVE Dtr SCORE */
 
 				/* IF SUMMING PATHBOX DIAGONAL 8/:  1st MEASUREMENT OF TANDEM REPEAT (TR) */ 
 				if (Dtr==Did || imperfect_TR) {	
@@ -947,12 +945,12 @@ long int options[4][62] = {
 						pathbox[n+i][m+i] = 114; 	/* "r" */
 
 					r = 1;
-					stringy[n].r = reps;
-					stringy[n].k = k = n-m;
+					tela[n].r = reps;
+					tela[n].k = k = n-m;
 					slips[k]++;
 					TRcheck = 1;
 					if (imperfect_TR)
-						 assign_transit(stringy, n);
+						 assign_transit(n);
 
 					while (TRcheck) {
 						Atr = 0;
@@ -970,7 +968,7 @@ long int options[4][62] = {
 						
 						if (r<reps) {
 							z=r*k;
-							push_tela(stringy,n+z,m+z);
+							push_tela(n+z,m+z);
 							for (i=0; i<k; i++)
 								pathbox[n+r*k+i][m+i] = 82; 	/* "R" */
 							r++;
@@ -984,132 +982,132 @@ long int options[4][62] = {
 							cycle_flag = 0;	
 							for (j = -1; j < r; j++) {				/* r = reps BECAUSE THIS IS IN ELSE EXIT LOOP */
 								for (l = 0; l < k; l++) 
-									cycle[i++] = stringy[(n + j*k + l)].c; 	/* STORE WHOLE REPEAT */
+									cycle[i++] = tela[(n + j*k + l)].c; 	/* STORE WHOLE REPEAT */
 							}
 							for (l = 0; l < k-1; l++) {				/* STORE EXTENT OF PARTIAL REPEAT. CANNOT MATCH MORE THAN k */
-								if (cycle[l] == stringy[(o = n + r*k + l)].c) {
-									cycle[i++] = stringy[o].c;
+								if (cycle[l] == tela[(o = n + r*k + l)].c) {
+									cycle[i++] = tela[o].c;
 								}
 								else {
 									if (reps == 1) 
-										stringy[n].cyc_l = l+1;		/* STORE LENGTH OF PARTIAL REPEAT */
+										tela[n].cyc_l = l+1;		/* STORE LENGTH OF PARTIAL REPEAT */
 									else if (0)
-										stringy[n].cyc_l = k;
+										tela[n].cyc_l = k;
 									break;
 								}
 							}
 							cycle[i] = '\0';
-							stringy[n].o = i;	/* STORE CYCLE LENGTH */
+							tela[n].o = i;	/* STORE CYCLE LENGTH */
 
 							if (!badslip_type) {
 								/* NUMBER POSITIONS OF COLUMNS IN FRAME */
-								for (l = 0; l < stringy[n].cyc_l; l++) {
-									stringy[n+l].cyc_k = k;
+								for (l = 0; l < tela[n].cyc_l; l++) {
+									tela[n+l].cyc_k = k;
 
 									if (l == 0) {
 										f = 1;	/* ROW NUMBER IN FRAMES ARRAY; OTHERWISE KEEP INCREMENTING */
-										while (stringy[m+l].cyc_F[f] && f < FRAME_ROWS)		/* FIND FIRST AVAILABLE ROW */
+										while (tela[m+l].cyc_F[f] && f < FRAME_ROWS)		/* FIND FIRST AVAILABLE ROW */
 											f++;
 										if (f==1) {
-											stringy[n].cyc_o = 'x';		/* NO CONFLICT SO WILL BE TAKING THIS FRAME */
+											tela[n].cyc_o = 'x';		/* NO CONFLICT SO WILL BE TAKING THIS FRAME */
 										}
 										else {
 											conflict_flag = 1;
-											stringy[n].cyc_o = 'o';
-											sumspan = stringy[n].cyc_l;
+											tela[n].cyc_o = 'o';
+											sumspan = tela[n].cyc_l;
 											j=1;
-											while (n-j >= 0 && stringy[n-j].cyc_l == 0)
+											while (n-j >= 0 && tela[n-j].cyc_l == 0)
 												++j;
-											if (stringy[n-j].cyc_l > stringy[n].cyc_l) 
-												sumspan = -stringy[(z=n-j)].cyc_l;		/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
+											if (tela[n-j].cyc_l > tela[n].cyc_l) 
+												sumspan = -tela[(z=n-j)].cyc_l;		/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
 											else 
 												z = n;									/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
 										}
-										stringy[n].cyc_F[0] = f;	/* USE 0 ROW TO STORT LOCATION OF INDEXED UNIT TRs */	
+										tela[n].cyc_F[0] = f;	/* USE 0 ROW TO STORT LOCATION OF INDEXED UNIT TRs */	
 									}
 									else
-										stringy[n+l].cyc_F[0] = ++f;	/* USE ROW 0 TO STORE ROW # OF FRAME */
+										tela[n+l].cyc_F[0] = ++f;	/* USE ROW 0 TO STORE ROW # OF FRAME */
 
-/*									stringy[n+l].cyc_r = 1;	*/	/* IS AT LEAST ONE, INCREMENTED BELOW */
+/*									tela[n+l].cyc_r = 1;	*/	/* IS AT LEAST ONE, INCREMENTED BELOW */
 
 									for (j = 0; j < r; j++) {
 										if (j==0) {		/* WRITE FOR UNIT REPEAT STARTING AT m ONETIME */
 											for (o = 0; o < k; o++) 
-												stringy[m + l + o].cyc_F[f] = o+1;
+												tela[m + l + o].cyc_F[f] = o+1;
 											if (!conflict_flag && l>0)
-												stringy[n+l].cyc_o = 'o';
+												tela[n+l].cyc_o = 'o';
 										}
 										for (o = 0; o < k; o++) {
-											if (stringy[n+j*k+l+o].c==stringy[n-k+l+o].c) {
-												stringy[n+j*k+l+o].cyc_F[f] = o+1;
+											if (tela[n+j*k+l+o].c==tela[n-k+l+o].c) {
+												tela[n+j*k+l+o].cyc_F[f] = o+1;
 												if (o+1 == k) 
-													stringy[n+l].cyc_r++;
+													tela[n+l].cyc_r++;
 											}
-											else if (imperfect_TR && stringy[n+j*k+l+o].t==stringy[n-k+l+o].t) {
-												stringy[n+j*k+l+o].cyc_F[f] = o+1;
+											else if (imperfect_TR && tela[n+j*k+l+o].t==tela[n-k+l+o].t) {
+												tela[n+j*k+l+o].cyc_F[f] = o+1;
 												if (o+1 == k) 
-													stringy[n+l].cyc_r++;
+													tela[n+l].cyc_r++;
 											}
 											else {	/* ELSE ERASE LAST PARTIAL UNIT */
 												while (o >= 0) {
-													stringy[n + j*k + l + o].cyc_F[f] = 0;
+													tela[n + j*k + l + o].cyc_F[f] = 0;
 													o--;
 												}
 												break;
 											}
 										}
 									}
-									stringy[n+l].cyc_P = stringy[n+l].cyc_k * stringy[n+l].cyc_r;
+									tela[n+l].cyc_P = tela[n+l].cyc_k * tela[n+l].cyc_r;
 								} 
 
 								/* SUM UP COMPATIBLE TR PRODUCTS IN WINDOW OF LENGTH SUMSPAN BEGINNING AT POSITION z OF TR B */
-								if (sumspan > 0 && stringy[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
+								if (sumspan > 0 && tela[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
 									for (j = 0; j < sumspan; j++) {
-										for (f = stringy[z+j].cyc_F[0] - 1 - j; f > 0; f--) {
+										for (f = tela[z+j].cyc_F[0] - 1 - j; f > 0; f--) {
 											l=z+j-k;
-											if (stringy[l].cyc_F[f] == 1 && stringy[l-1].cyc_F[f] != 0) {
+											if (tela[l].cyc_F[f] == 1 && tela[l-1].cyc_F[f] != 0) {
 
-												while (stringy[l].cyc_o != 'x' && stringy[l].cyc_o != 'o' && l>0) 
+												while (tela[l].cyc_o != 'x' && tela[l].cyc_o != 'o' && l>0) 
 													l--;
 
-												while (stringy[l].cyc_F[f] != 1 && l>0) 
+												while (tela[l].cyc_F[f] != 1 && l>0) 
 													l--;
 
 												if (options[1][57] > 3)
 													printf("\n DEV-1211: n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
 
-												stringy[z+j].cyc_S = stringy[z+j].cyc_P + stringy[l].cyc_P;	
-												stringy[l  ].cyc_Rt = z+j;
-												stringy[z+j].cyc_Lf = l;
+												tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
+												tela[l  ].cyc_Rt = z+j;
+												tela[z+j].cyc_Lf = l;
 												break;
 											}
-											else if (stringy[l].cyc_F[f] == 1 && stringy[l-1].cyc_F[f] == 0) {
-												while ((stringy[l].cyc_F[f] != 1 || !stringy[l].k) && l<n)
+											else if (tela[l].cyc_F[f] == 1 && tela[l-1].cyc_F[f] == 0) {
+												while ((tela[l].cyc_F[f] != 1 || !tela[l].k) && l<n)
 													l++;
 
 												if (options[1][57] > 3)
 													printf("\n DEV-1222: n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
 
-												stringy[z+j].cyc_S = stringy[z+j].cyc_P + stringy[l].cyc_P;	
-												stringy[l  ].cyc_Rt = z+j;
-												stringy[z+j].cyc_Lf = l;
+												tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
+												tela[l  ].cyc_Rt = z+j;
+												tela[z+j].cyc_Lf = l;
 												break;
 											}
-											else if (stringy[l].cyc_F[f] == 0) {
-												stringy[z+j].cyc_S = stringy[z+j].cyc_P;
+											else if (tela[l].cyc_F[f] == 0) {
+												tela[z+j].cyc_S = tela[z+j].cyc_P;
 												break;
 											}		
 										}
 									}
 									/* FIND BEST CINCH SET */
-									c = stringy[(l=z)].cyc_S;	/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
+									c = tela[(l=z)].cyc_S;	/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
 									for (j = 1; j < sumspan; j++) {
-										if (stringy[z+j].cyc_S > c) {
-											c = stringy[ (l=z+j) ].cyc_S;
+										if (tela[z+j].cyc_S > c) {
+											c = tela[ (l=z+j) ].cyc_S;
 										}
 									}
-									stringy[l].cyc_o = 'x';
-									if (l != z && stringy[(stringy[l].cyc_Lf)].cyc_o == 'x') {
+									tela[l].cyc_o = 'x';
+									if (l != z && tela[(tela[l].cyc_Lf)].cyc_o == 'x') {
 										badslip_type = 10;							/* FROM SEQUENCE IN TYPES: 1-3-5- (10) -30-50-100-300-500 */
 										options[1][50] += badslip_type;
 										options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
@@ -1117,90 +1115,90 @@ long int options[4][62] = {
 											printf("\n DEV-1250: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
 										if (imperfect_TR)
-							 				assign_transit(stringy, l);
+							 				assign_transit(l);
 
-										assign_tela(stringy, n, row, a2D_n, 4, 0,0);
+										assign_tela(n, row, a2D_n, 4, 0,0);
 										for (j = n; j < l; j++) {
-											assign_tela(stringy, n++, row, a2D_n++, 0, 0,0);
+											assign_tela(n++, row, a2D_n++, 0, 0,0);
 										}
-										o = push_tela(stringy,l,l-k);
-										reps = stringy[l].r = stringy[l].cyc_r;
-										stringy[l].k = k;
-										stringy[l].o = stringy[l].cyc_k * (stringy[l].cyc_r+1);
-										for (p=0; p<stringy[z].cyc_l; p++) {
+										o = push_tela(l,l-k);
+										reps = tela[l].r = tela[l].cyc_r;
+										tela[l].k = k;
+										tela[l].o = tela[l].cyc_k * (tela[l].cyc_r+1);
+										for (p=0; p<tela[z].cyc_l; p++) {
 											if (z+p != l) {
-												stringy[z+p].r = 0;
-												stringy[z+p].cyc_o = 'o';
+												tela[z+p].r = 0;
+												tela[z+p].cyc_o = 'o';
 											}
 										}
 									}
-									else if (l == z && stringy[(j=stringy[l].cyc_Lf)].cyc_o == 'o') {	
+									else if (l == z && tela[(j=tela[l].cyc_Lf)].cyc_o == 'o') {	
 										i = j-1;	/* SAVE VAR j, CYCLING POSITION; VAR i TO COUNT DOWN TO POSITION THAT NEEDS TO BE CYCLED AWAY FROM */
-										while (stringy[i].cyc_o != 'x' && stringy[i].cyc_o != blank) 
+										while (tela[i].cyc_o != 'x' && tela[i].cyc_o != blank) 
 											i--;
-										if (stringy[i].cyc_o == 'x') {
-											if (cyclelize_tela(stringy, i, j-i, n, options)) {
+										if (tela[i].cyc_o == 'x') {
+											if (cyclelize_tela(i, j-i, n, options)) {
 												badslip_type = 30;					/* FROM SEQUENCE IN TYPES: 1-3-5-10- (30) -50-100-300-500 */
 												options[1][50] += badslip_type;
 												options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 												if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
 													printf("\n DEV-1280: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
-												a2D_n = stringy[n].x+k; 
-												row   = stringy[n].y-1;
+												a2D_n = tela[n].x+k; 
+												row   = tela[n].y-1;
 											}
 										}
 									}
 								}
-								else if (sumspan < 0 && stringy[n].X != n) {
+								else if (sumspan < 0 && tela[n].X != n) {
 									for (j = 0; j < -sumspan; j++) {
-										l = z+j + stringy[z+j].cyc_k * (stringy[z+j].cyc_r - 1);	/* VAR l IS POSITION 1 OF LAST UNIT OF REPEAT A */
-										for (i = stringy[n].cyc_F[0]; i < FRAME_ROWS; i++) {
-											if (stringy[l].cyc_F[i] == 1) {
-												stringy[z+j].cyc_S = stringy[z+j].cyc_P + stringy[z+j+k].cyc_P;	
-												stringy[z+j].cyc_Rt = l+k;
-												stringy[l+k].cyc_Lf = z+j;
-												stringy[l+k].cyc_o = 'x';
+										l = z+j + tela[z+j].cyc_k * (tela[z+j].cyc_r - 1);	/* VAR l IS POSITION 1 OF LAST UNIT OF REPEAT A */
+										for (i = tela[n].cyc_F[0]; i < FRAME_ROWS; i++) {
+											if (tela[l].cyc_F[i] == 1) {
+												tela[z+j].cyc_S = tela[z+j].cyc_P + tela[z+j+k].cyc_P;	
+												tela[z+j].cyc_Rt = l+k;
+												tela[l+k].cyc_Lf = z+j;
+												tela[l+k].cyc_o = 'x';
 												break;
 											}
-											else if (stringy[l].cyc_F[i] == 0) { 					/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */
-												stringy[z+j].cyc_S = stringy[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
+											else if (tela[l].cyc_F[i] == 0) { 					/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */
+												tela[z+j].cyc_S = tela[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
 												break;
 											}
 											else if (i == FRAME_ROWS-1) {
-												stringy[z+j].cyc_S = stringy[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
+												tela[z+j].cyc_S = tela[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
 												break;
 											}
 										}
 									}
 									/* FIND BEST CINCH SET */
-									c = stringy[z].cyc_S;				/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
+									c = tela[z].cyc_S;				/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
 									for (j = 1; j < -sumspan; j++) {
-										if (stringy[z+j].cyc_S > c) {
-											c = stringy[(q=z+j)].cyc_S;
+										if (tela[z+j].cyc_S > c) {
+											c = tela[(q=z+j)].cyc_S;
 										}
 									}
 									if (q != z) {
-										if (cyclelize_tela(stringy, z, q-z, n, options)) {
+										if (cyclelize_tela(z, q-z, n, options)) {
 											badslip_type = 50;				/* FROM SEQUENCE IN TYPES: 1-3-5-10-30- (50) -100-300-500 */
 											options[1][50] += badslip_type;
 											options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 											if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
 												printf("\n DEV-1322: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
-											a2D_n = stringy[n].x+k;
-											row   = stringy[n].y-1;
+											a2D_n = tela[n].x+k;
+											row   = tela[n].y-1;
 											for (p=n; p<lenseq; p++) 
-												stringy[p].y = row;
+												tela[p].y = row;
 										}
 									}
 								}
 							}
 
-							if (stringy[n].o > 2*k) {
+							if (tela[n].o > 2*k) {
 								cycle_flag = 1;		/* THIS BIT CAN BE USED TO ADD CYCLE NOTATION TO END OF LINE */
 								if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-									printf("\n DEV-1315: %2d-mer cycle sequence of length %2d starting at %4d (n=%d): %s.", k, stringy[n].o, n-k, n, cycle);
+									printf("\n DEV-1315: %2d-mer cycle sequence of length %2d starting at %4d (n=%d): %s.", k, tela[n].o, n-k, n, cycle);
 							}
 							else {
 								for (l = 0; l <= WIDTH; l++)
@@ -1208,27 +1206,27 @@ long int options[4][62] = {
 							}
 
 							/* RECORD DNA "REVERB" IN SLIPLOC_ECHOES FOR ALL TR FRAMES */
-							if (options[0][47] && stringy[n].o) {    /********** OPTION TO SHOW SLIP LOCATIONS */
-								if (stringy[n].o > 2*k)
+							if (options[0][47] && tela[n].o) {    /********** OPTION TO SHOW SLIP LOCATIONS */
+								if (tela[n].o > 2*k)
 									h = k;
 								else
 									h = 1;
 
 								for (j = 0; j < h; j++) {
-									for (l = j; l+k <= stringy[n].o; l+=k) {
-										if 		(stringy[n-k+l].echoes == blank)	stringy[n-k+l].echoes = '(';
-										else if (stringy[n-k+l].echoes == '('  )	stringy[n-k+l].echoes = '{';
-										else if (stringy[n-k+l].echoes == '{'  )	stringy[n-k+l].echoes = '[';
-										else if (stringy[n-k+l].echoes == ')'||
-												 stringy[n-k+l].echoes == '}'||
-												 stringy[n-k+l].echoes == ']'  )	stringy[n-k+l].echoes = 'X';
+									for (l = j; l+k <= tela[n].o; l+=k) {
+										if 		(tela[n-k+l].echoes == blank)	tela[n-k+l].echoes = '(';
+										else if (tela[n-k+l].echoes == '('  )	tela[n-k+l].echoes = '{';
+										else if (tela[n-k+l].echoes == '{'  )	tela[n-k+l].echoes = '[';
+										else if (tela[n-k+l].echoes == ')'||
+												 tela[n-k+l].echoes == '}'||
+												 tela[n-k+l].echoes == ']'  )	tela[n-k+l].echoes = 'X';
 		
-										if 		(stringy[n-1+l].echoes == blank)	stringy[n-1+l].echoes = ')';
-										else if (stringy[n-1+l].echoes == ')'  )	stringy[n-1+l].echoes = '}';
-										else if (stringy[n-1+l].echoes == '}'  )	stringy[n-1+l].echoes = ']';
-										else if (stringy[n-1+l].echoes == '('||
-												 stringy[n-1+l].echoes == '{'||
-												 stringy[n-1+l].echoes == '['  )	stringy[n-1+l].echoes = 'X';
+										if 		(tela[n-1+l].echoes == blank)	tela[n-1+l].echoes = ')';
+										else if (tela[n-1+l].echoes == ')'  )	tela[n-1+l].echoes = '}';
+										else if (tela[n-1+l].echoes == '}'  )	tela[n-1+l].echoes = ']';
+										else if (tela[n-1+l].echoes == '('||
+												 tela[n-1+l].echoes == '{'||
+												 tela[n-1+l].echoes == '['  )	tela[n-1+l].echoes = 'X';
 									}
 								}
 							}/**********************************************************************************/
@@ -1246,10 +1244,10 @@ long int options[4][62] = {
 
 					if (!badslip_type) {
                         for (i = n-1; i >= m; i--) {                            /* i WILL LOOP THROUGH TR SHADOW */
-                            if (stringy[i].r) {
+                            if (tela[i].r) {
                                 if (!badslip_type) {
                                     /* BAD SLIP IS CLOSEST ONE TO n NOT HANDLED YET; BAD SLIP TYPE 1 */ 
-                                    if (i>m && i - stringy[i].k < m && i%stringy[i].k != m%stringy[i].k) {
+                                    if (i>m && i - tela[i].k < m && i%tela[i].k != m%tela[i].k) {
                                         badslip_type = 100; 					/* FROM SEQUENCE IN TYPES: 1-3-5-10-30-50- (100) -300-500 */
 										options[1][50] += badslip_type;
 										options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
@@ -1261,8 +1259,8 @@ long int options[4][62] = {
                                     }    
 	        	                    /* THIS IS A BAD SLIP BECAUSE OF NON-COINCIDENT TRANSITIONS  */
 									else if (imperfect_TR && i>m) {
-										/* THIS IS BAD SLIP TYPE 3 EXCEPT MISMATCH IS OFFSET BACK FROM stringy[i].r */
-										if (Seq[i]!=Seq[i+k] && Seq[i]==Seq[(i-stringy[i].k)]) {
+										/* THIS IS BAD SLIP TYPE 3 EXCEPT MISMATCH IS OFFSET BACK FROM tela[i].r */
+										if (Seq[i]!=Seq[i+k] && Seq[i]==Seq[(i-tela[i].k)]) {
 											badslip_type = 300;				/* FROM SEQUENCE IN TYPES: 1-3-5-10-30-50-100- (300) -500 */
 											options[1][50] += badslip_type;
 											options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
@@ -1272,13 +1270,13 @@ long int options[4][62] = {
 											delta_to_bad1Dn = n-i;                  /* THIS IS DISTANCE TO THE BAD SLIP */
 											bad_1Dn = i;                            /* STORE POSITION OF BAD SLIP */
 										}
-										/* THIS IS BAD SLIP WITH MISMATCH OFFSET FWRD FROM stringy[i].r */
+										/* THIS IS BAD SLIP WITH MISMATCH OFFSET FWRD FROM tela[i].r */
 										else {
-											for (l=1; l< stringy[i].k; l++) {
-												if (Seq[i+l]!=Seq[i+l+k] && Seq[i+l]==Seq[(i+l-stringy[i].k)])
+											for (l=1; l< tela[i].k; l++) {
+												if (Seq[i+l]!=Seq[i+l+k] && Seq[i+l]==Seq[(i+l-tela[i].k)])
 													break;	
 											}
-											if (l< stringy[i].k) {
+											if (l< tela[i].k) {
 												badslip_type = 500;				/* FROM SEQUENCE IN TYPES: 1-3-5-10-30-50-100-300- (500) */
 												options[1][50] += badslip_type;
 												options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
@@ -1292,32 +1290,32 @@ long int options[4][62] = {
 									}
 								}
 								if (!badslip_type && i>m) 
-									overslip = overslip + span_rk(stringy,i);
+									overslip = overslip + span_rk(i);
 								else if (badslip_type) {
-									badslipspan = span_rk(stringy,i);
-									stringy[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
+									badslipspan = span_rk(i);
+									tela[i].echoes = 'o';					/* MAKE A MARK INDICATING THIS ECHO'S BEEN DAMPENED   */
 									if (i<=m && imperfect_TR) {
-										a2D_n += span_rk(stringy,i);
-										row -= stringy[i].r - 1; 
+										a2D_n += span_rk(i);
+										row -= tela[i].r - 1; 
 									}
 								}
-								recslips = recslips + stringy[i].r;
-							} /* END OF IF stringy[i].r */
+								recslips = recslips + tela[i].r;
+							} /* END OF IF tela[i].r */
 						} /* END OF FOR LOOP BACK TO MSTOP */
 	
 						/* DEAL WITH OVERSLIPS NOT MARKED IN SHADOW */
 						j=l=0;
 						if (badslipspan) {
 							for (i = bad_1Dn-1; i>=0; i--) {
-								if (stringy[i].r) {
-									j=stringy[i].r;
-									if (j>1 && (i + (j-1) * stringy[i].k) > m) {
+								if (tela[i].r) {
+									j=tela[i].r;
+									if (j>1 && (i + (j-1) * tela[i].k) > m) {
 										recslips = recslips + (j-1);
-										a2D_n = a2D_n + stringy[i].k * (j-1);
+										a2D_n = a2D_n + tela[i].k * (j-1);
 									}
-									else if (j==1 && i>m && i + stringy[i].k < bad_1Dn &&
-															i - stringy[i].k <= m) {
-										a2D_n = a2D_n - stringy[i].k;
+									else if (j==1 && i>m && i + tela[i].k < bad_1Dn &&
+															i - tela[i].k <= m) {
+										a2D_n = a2D_n - tela[i].k;
 									}
 									else
 										break;
@@ -1329,32 +1327,32 @@ long int options[4][62] = {
 					/* REWRITE UPSTREAM SHADOW TR AS SINGLE LINE IF ANY RECENT 'BAD' SLIPS FOUND THAT SPAN INTO NEW TR */
 					if (badslipspan && bad_1Dn != m) {
 						/* OVERWRITE THE OLD SLIP THAT IS IN THE WAY OF NEWER SLIP OF BIGGER k */
-						a2D_n = a2D_n - delta_to_bad1Dn + overslip + stringy[bad_1Dn].k*(stringy[bad_1Dn].r-1);	/* REPOSITION TO OLD TR START */
+						a2D_n = a2D_n - delta_to_bad1Dn + overslip + tela[bad_1Dn].k*(tela[bad_1Dn].r-1);	/* REPOSITION TO OLD TR START */
 						for (i = bad_1Dn-1; i > m; i--) {
-							if (stringy[i].r) {
-								a2D_n = a2D_n + stringy[i].k*(stringy[i].r+1);
+							if (tela[i].r) {
+								a2D_n = a2D_n + tela[i].k*(tela[i].r+1);
 							}
 						}
 
-						a2D_n = a2D_n + stringy[bad_1Dn].k;                  /* REPOSITION TO AFTER OLD TR START */
+						a2D_n = a2D_n + tela[bad_1Dn].k;                  /* REPOSITION TO AFTER OLD TR START */
 						row = row - recslips;
 
 						for (l = 0; l < delta_to_bad1Dn; l++) {				/* REFILL BADSLIPSPAN AS SINGLE ROW */
-							align2D[(p=row)][(q=a2D_n+l)] = stringy[(o=n-delta_to_bad1Dn + l)].c;
-							stringy[o].y = p;
-							stringy[o].x = q;
-							stringy[o].t = stringy[o].c;
+							align2D[(p=row)][(q=a2D_n+l)] = tela[(o=n-delta_to_bad1Dn + l)].c;
+							tela[o].y = p;
+							tela[o].x = q;
+							tela[o].t = tela[o].c;
 						}
 						a2D_n = a2D_n + delta_to_bad1Dn - overslip;	/* REPOSITION TO NEW STRETCHED POSITION */
 					}	/* END OF IF BADSLIP */
 
-                    if (stringy[n-k].r > 1) { 
-                        overslip = overslip + (stringy[n-k].r-1) * stringy[n-k].k;
+                    if (tela[n-k].r > 1) { 
+                        overslip = overslip + (tela[n-k].r-1) * tela[n-k].k;
                     }  
 
-                    for (l = 1; l < (z=stringy[bad_1Dn].k); l++) {
-                        if (stringy[(bad_1Dn-z+l)].r > 0) { 
-                            a2D_n = a2D_n - stringy[(bad_1Dn-z+l)].k;
+                    for (l = 1; l < (z=tela[bad_1Dn].k); l++) {
+                        if (tela[(bad_1Dn-z+l)].r > 0) { 
+                            a2D_n = a2D_n - tela[(bad_1Dn-z+l)].k;
                         }    
                     }   
 
@@ -1391,16 +1389,16 @@ long int options[4][62] = {
 							align2D[row][j] = blank;
 						if (badslipspan && i==0) {			/* FLIP TO LOWERCASE IN FIRST UNIT */	
 							if (islower(align2D[(p=row-1)][(q=a2D_n - k + overslip - 1)])) {	/* IF OVERLAPPING OLD BADSLIP */
-								assign_tela(stringy, m-1, p, q, 0, 0,0);				/* WILL REWRITE AS UPPERCASE */
+								assign_tela(m-1, p, q, 0, 0,0);				/* WILL REWRITE AS UPPERCASE */
 							}
 							for (j = 0; j < k; j++) { 
 								o=m+j;
 								p=row-1;
 								q=a2D_n - k + overslip + j;
-								stringy[o].t = stringy[o].c;						/* TO ERASE BAD SLIP TRANSITIONS */
-								stringy[o].y = p;
-								stringy[o].x = q;
-								align2D[p][q] = tolower(stringy[o].c);
+								tela[o].t = tela[o].c;						/* TO ERASE BAD SLIP TRANSITIONS */
+								tela[o].y = p;
+								tela[o].x = q;
+								align2D[p][q] = tolower(tela[o].c);
 							}
  								align2D[p][q+1] = '/';
  								align2D[p][q+2] = '\0';
@@ -1408,14 +1406,14 @@ long int options[4][62] = {
 						for (j = 0; j < k; j++) {
 							o = n + k*i + j;
 							q = a2D_n - k + overslip + j;
-							assign_tela(stringy, o, row, q, 0, 0,0);
+							assign_tela(o, row, q, 0, 0,0);
 						}
 					} /* END OF FOR i LOOP OF r */
 
 					if (r>1) {
-						for (j = n+r*k; stringy[j].y!='\0'; j++) {
-							stringy[j].y = row+1;
-							stringy[j].x -= k*(r+1);
+						for (j = n+r*k; tela[j].y!='\0'; j++) {
+							tela[j].y = row+1;
+							tela[j].x -= k*(r+1);
 						}
 					}
 
@@ -1430,8 +1428,8 @@ long int options[4][62] = {
 					if (imperfect_TR) {				/* IF IMPERFECT, WRITE TRANSITIONS TO CONSENSUS ROW */	
 						for (i=0; i < r; i++) {
 							for (j=0; j < k; j++) {
-								if (stringy[m+j].t != stringy[(o = n+i*k + j)].t) {
-									align2D[MAXROW][a2D_n-k+overslip + j] = stringy[o].e;
+								if (tela[m+j].t != tela[(o = n+i*k + j)].t) {
+									align2D[MAXROW][a2D_n-k+overslip + j] = tela[o].e;
 								}
 							}
 						} 
@@ -1439,8 +1437,8 @@ long int options[4][62] = {
 					/* NEW ALT. VERSION BELOW TO REPLACE ABOVE WHEN POSSIBLE */
 					if (0 && imperfect_TR) {		/* IF IMPERFECT, WRITE TRANSITIONS TO CONSENSUS ROW */
 						for (j=0; j < k; j++) {
-							if (stringy[n+j].t != stringy[n+j].c) {
-								align2D[MAXROW][(stringy[n+j].x)] = stringy[n+j].t;
+							if (tela[n+j].t != tela[n+j].c) {
+								align2D[MAXROW][(tela[n+j].x)] = tela[n+j].t;
 							}
 						}
 					}
@@ -1448,17 +1446,17 @@ long int options[4][62] = {
 					a2D_n = a2D_n + overslip;
 					r = 0;
 					if (badslip_type >= 100) {
-						stringy[bad_1Dn].r = 0;
+						tela[bad_1Dn].r = 0;
 					}
 				
 					if (options[1][57] > 3) {	/* opt_v ACTIVE DEV-LEVEL VERBOSITY */
 						p = (int) a2D_n; q = lenseq;
-						printf("\n DEV-1545: check_tela via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(stringy,0,p, 2));
-						printf("\n DEV-1546: check_tela via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(stringy,0,q, 1));
+						printf("\n DEV-1545: check_tela via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,p, 2));
+						printf("\n DEV-1546: check_tela via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,q, 1));
 						printf("\n DEV-1547: print_tela for k=%d and r=%d at n=%d", k, r, n);
-						print_tela(stringy, 0, 50);
-						print_tela(stringy, 51, 100);
-/*						print_tela(stringy, prtela_A, prtela_B);
+						print_tela(0, 50);
+						print_tela(51, 100);
+/*						print_tela(prtela_A, prtela_B);
 */					}
 
 					break;
@@ -1505,7 +1503,7 @@ long int options[4][62] = {
  	align2D[row][citwidth+1] = '\0';
 	options[1][2] = options[1][32] = citwidth;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND LCL CURRENT [32]	*/
 	clear_right(align2D, options);
-	print1D(stringy, options);
+	print1D(options);
 
 	/********** 2. cinch_t MODULE: WRAPS LARGEST EXACT k-mers, IGNORES INTRA-TR TRs **********/
 	i = ++options[1][18];	/* INCREMENT opt_I COUNTER (pass_num) */
@@ -1513,12 +1511,12 @@ long int options[4][62] = {
 	passQ[i] = options[0][10];
 
 	if (recoverlen(options)==lenseq)
-		update_tela(stringy);
+		update_tela();
 
 	if (options[1][57] > 3) {	/* opt_v DEV-LEVEL VERBOSITY */
-		printf("\n DEV-1604: check_tela via 1-D coords, princeps = %2d.", check_tela(stringy,0,lenseq,  1));
-		printf("\n DEV-1605: check_tela via 2-D coords, princeps = %2d.", check_tela(stringy,0,citwidth,2));
-		print_tela(stringy, prtela_A, prtela_B);
+		printf("\n DEV-1604: check_tela via 1-D coords, princeps = %2d.", check_tela(0,lenseq,  1));
+		printf("\n DEV-1605: check_tela via 2-D coords, princeps = %2d.", check_tela(0,citwidth,2));
+		print_tela(prtela_A, prtela_B);
 	}
 
 	if (options[1][48]!=0 && options[1][49]!=0)
@@ -1534,7 +1532,7 @@ long int options[4][62] = {
 	/********* 4. cinch_k MODULE: HANDLES k-mers FROM SIZE WIDTH DOWN TO k=1 ***********/
 	i = ++options[1][18];	/* INCREMENT opt_I ++PASS NUM */
 
-	passR[i]=cinch_k(stringy, options);
+	passR[i]=cinch_k(options);
 	cycle_flag = print_2Dseq(options[1][32], options);
 	passQ[i] = options[0][10];
 
@@ -1552,7 +1550,7 @@ long int options[4][62] = {
 		if (cycle_flag || align2D[0][0] == blank) {
 			passR[5]++;
 
-			while ((go_flag=nudgelize(align2D, stringy, options))!=0 && passR[5] < CYCMAX) {	
+			while ((go_flag=nudgelize(align2D, options))!=0 && passR[5] < CYCMAX) {	
 				passR[5]++;
 			}
 		}
@@ -1627,14 +1625,14 @@ long int options[4][62] = {
 		if (lenseq != r) {
 			l = r - lenseq;
 			for (i=0; i < m; i++) {
-				if (stringy[i].c != recovered[i]) {
+				if (tela[i].c != recovered[i]) {
 					k = i;
 					break;
 				}
 			}
 			if (l>0) {
 				for (i=m+l; i >= k; i--)
-					Seq[i] = Seq[i-l];	/* USE Seq[i] TO STORE GAPS FOR COMPARISON; NEVER stringy[i].c */
+					Seq[i] = Seq[i-l];	/* USE Seq[i] TO STORE GAPS FOR COMPARISON; NEVER tela[i].c */
 				for (i=k; i < k+l; i++)
 					Seq[i] = '-';
 			}
@@ -1960,7 +1958,7 @@ int score_DTHR(int kmer, int squeeze)
 }
 
 /**** FUNCTION TO CYCLELIZE REPEAT AT POSITION BY DELTA *****/
-int cyclelize_tela(struct coord tela[MAXROW], int cpos, int delta, int npos, long int options[][62])
+int cyclelize_tela(int cpos, int delta, int npos, long int options[][62])
 {
 	int    k = tela[cpos].k;
 	int reps = tela[cpos].r;
@@ -2025,7 +2023,7 @@ int cyclelize_tela(struct coord tela[MAXROW], int cpos, int delta, int npos, lon
 }
 
 /**** FUNCTION TO TOKENIZE A 2-D ROW IF THERE ARE NO VIOLATIONS *****/
-int push_tela(struct coord tela[MAXROW], int n2, int n1) 
+int push_tela(int n2, int n1) 
 {
 	int coord_xa=0, coord_xb=0;
 	int coord_ya=0, coord_yb=0;
@@ -2078,7 +2076,7 @@ int push_tela(struct coord tela[MAXROW], int n2, int n1)
 	return(violation);	/* RETURNS 1 IF CONTINUITY FAILS, 3 IF EQUIVALENCE FAILS, 4 IF BOTH FAIL */
 }
 
-int assign_tela(struct coord tela[MAXROW], int eL, int eM, int eN, int mode, int pointA, int pointB)
+int assign_tela(int eL, int eM, int eN, int mode, int pointA, int pointB)
 {
 	int i=0, j=0, l=0, lenseq=tela[0].cyc_Lf, conflict_flag=0;
 	int start=0, end=lenseq;
@@ -2173,7 +2171,7 @@ int assign_tela(struct coord tela[MAXROW], int eL, int eM, int eN, int mode, int
 
 
 /*** FUNCTION 00 **** TELA: A FABRIC, UNDER AXIOMATIC LAWS (WORK IN PROGRESS) ******/
-int check_tela(struct coord tela[MAXROW], int eM, int eN, short unsigned int dim) 
+int check_tela(int eM, int eN, short unsigned int dim) 
 {
 int i=0, j=0, lenseq=tela[0].cyc_Lf, lineM=0, lineN=0, princeps=0, badflag=0;
 
@@ -2249,7 +2247,8 @@ int i=0, j=0, lenseq=tela[0].cyc_Lf, lineM=0, lineN=0, princeps=0, badflag=0;
 	return(princeps);	/* 0 IF BOTH FAIL; +1 IF ONLY ONE PASSES; +2 IF ONLY TWO PASSES; +3 IF BOTH PASS */ 
 }
 
-int get_1Dz(struct coord tela[MAXROW], int x, int y, int ignoreCheck)
+/*****************************************/
+int get_1Dz(int x, int y, int ignoreCheck)
 {
 	int i=0, z=0, count_check=0, lenseq=tela[0].cyc_Lf;
 
@@ -2272,7 +2271,7 @@ int get_1Dz(struct coord tela[MAXROW], int x, int y, int ignoreCheck)
 }
 
 /*********** PRINT TELA FROM a TO b *********************/
-void print_tela(struct coord tela[MAXROW], int a, int b)
+void print_tela(int a, int b)
 {
 int i=0, f=0;
 int width = 50;		/* 60 x 3 = 180 COLUMNS IS A PRACTICAL DISPLAY WIDTH */
@@ -2522,7 +2521,7 @@ short unsigned int cinchled=0;					/* BIT FLAG TO SAY cinch_l DID SOMETHING */
 }
 
 /*** FUNCTION 02 ************************************************************************************/
-int cinch_k(struct coord tela[MAXROW], long int koptions[][62]) 
+int cinch_k(long int koptions[][62]) 
 {
 int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0, q=0; 
 int first_mwrap_start=0, last_mwrap=0;
@@ -3641,7 +3640,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 }
 
 /*** FUNCTION 10 *** PUSHES CONFLICT RIGHT; CONTAINS LEGACY CYCLELIZE CODE THAT CAN BE DELETED WITH CARE  ******************/
-unsigned int nudgelize(char cyc_align2D[][MAXROW], struct coord tela[MAXROW], long int cyc_options[][62])
+unsigned int nudgelize(char cyc_align2D[][MAXROW], long int cyc_options[][62])
 {
 int cyc_col=0, cyc_row=0, a, b, i, j, kmer=0, m=0, n=0;
 int lenseq   = tela[0].cyc_Lf;
@@ -4945,7 +4944,7 @@ unsigned short int nuctype = tuck_options[1][13], nuctransit=0;
 }
 
 /*************************************************************************/
-void print1D(struct coord tela[MAXROW], long int options[][62])
+void print1D(long int options[][62])
 {
 	int i, j, n;
 	int lenseq = tela[0].cyc_Lf;
@@ -5035,7 +5034,7 @@ void print1D(struct coord tela[MAXROW], long int options[][62])
 }
 
 /*************************** CALL ONLY IF align2D is 100% ********************/
-int update_tela(struct coord tela[MAXROW])
+int update_tela(void)
 {
 	int c=0, i=0, j=0;
 	int lenseq=tela[0].cyc_Lf;
@@ -5086,7 +5085,7 @@ int update_tela(struct coord tela[MAXROW])
 }
 
 /***********************************************/
-int span_rk(struct coord tela[MAXROW], int point)
+int span_rk(int point)
 {
 	int product = tela[point].r * (tela[point].k);
 	return(product);
@@ -5095,7 +5094,7 @@ int span_rk(struct coord tela[MAXROW], int point)
 /********************************************************************/
 /* ASSIGNS AND PROPAGATES TRANSITIONS TO ALL POSITIONS AT EACH UNIT */
 /* MUST SAVE k AND r BEFORE CALLING THIS FUNCTION AT n.             */
-int assign_transit(struct coord tela[MAXROW], int n)
+int assign_transit(int n)
 {
 	int i=0, j=0;
 	int k = tela[n].cyc_k;
