@@ -49,8 +49,8 @@ int main(int argc, char *argv[])
 	int homopoly_flag=0;
 	char blank = '.';						/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
 											/* NEEDS TO BE SET IN options[][62] array */
-	int homopolyend_flag=0; 
-	int sloc_z=0, overslip=0; 
+
+	int homopolyend_flag=0, overslip=0, TRcheck = 0;
 	char letr_unit[8] = {0};				/* UNIT STRING: "bp" FOR DNA, "nt" FOR RNA, 'aa' FOR PROTEINS, 'ch' FOR ALL OTHER */
 
 	int oldbad=0, lenseq=MAXROW, scooch=0;
@@ -64,14 +64,12 @@ int main(int argc, char *argv[])
 	int alt_k=0;
 	int delta_to_bad1Dn = 0;				/* TO KEEP TRACK OF TIME SINCE LAST SLIP */
 	int bad_1Dn = 0;						/* POSITION OF BAD SLIP IN a2D_n COORDINATE */
+ 	char m2Dalig[MAXROW+1][MAXROW] = {{0}};			
 
 	float fractransit = 0.08;				
 	float ratio1 = 1;						/* WIDTH CINCH RATIO (W.C.R.) post cinch-d, pre relax-2D 	*/
 	float ratio2 = 1;						/* WIDTH CINCH RATIO (W.C.R.) post relax-2D 				*/
 	short unsigned int msa = 0;				/* BIT FLAG FOR MSA CO-INUPUT */
-
-	int TRcheck = 0;
- 	char m2Dalig[MAXROW+1][MAXROW] = {{0}};			
 
 	unsigned int FY_size = 100;				/* DEFAULT SIZE OF FISHER-YATES RANDOMIZED STRING */
 	char file_name[255];
@@ -408,12 +406,12 @@ long int options[4][62] = {
 		
 	mha_head(options[1][58], options);
 	printf("maximal homology alignment (MHA)");
-	for (i = 10; i < 36; i++) {			/* UPPER-CASE LETTER OPTIONS 		*/
+	for (i = 10; i < 36; i++) {			/* UPPER-CASE LETTER OPTIONS */
 		if (options[0][i] > 0)
 			printf("%c", (char) options[3][i]);
 	}
-	for (i = 45; i < 63; i++) {			/* LOWER-CASE LETTER OPTIONS > 'i' 	*/
-		if (options[0][i] == 1)
+	for (i = 36; i < 62; i++) {			/* LOWER-CASE LETTER OPTIONS */
+		if (options[0][i])
 			printf("%c", (char) options[3][i]);
 	}
 	if (options[0][11] > 1) {			/* opt_B */
@@ -1354,7 +1352,6 @@ long int options[4][62] = {
                         overslip = overslip + (stringy[n-k].r-1) * stringy[n-k].k;
                     }  
 
-					sloc_z = stringy[bad_1Dn].r;
                     for (l = 1; l < (z=stringy[bad_1Dn].k); l++) {
                         if (stringy[(bad_1Dn-z+l)].r > 0) { 
                             a2D_n = a2D_n - stringy[(bad_1Dn-z+l)].k;
@@ -1972,7 +1969,7 @@ int cyclelize_tela(struct coord tela[MAXROW], int cpos, int delta, int npos, lon
 	char c;
 	char blnk = (char) options[1][11];		/* opt_B blank character */
 
-	if      (  cpos>lenseq ||   cpos<0 || tela[cpos].cyc_l < 2)
+	if      ( cpos>lenseq ||  cpos<0 || tela[cpos].cyc_l < 2)
 		return(0);
 	else if (delta>lenseq || delta<0 || delta > tela[cpos].cyc_l)
 		return(0);
@@ -1985,7 +1982,7 @@ int cyclelize_tela(struct coord tela[MAXROW], int cpos, int delta, int npos, lon
 				n = tela[i].x;
 
 				if (isalpha(c)) {
-					z++;		/* VAR z is 1D cycling position */
+					z++;					/* VAR z is 1D cycling position */
 				}
 
 				align2D[m][n] = blnk;
@@ -2105,7 +2102,7 @@ int assign_tela(struct coord tela[MAXROW], int eL, int eM, int eN, int mode, int
 			if (tela[i].x == eN && tela[i].c != tela[eN].c) {
 				conflict_flag = 1;
 				break;
-				}
+			}
 		}
 		if (!conflict_flag) {
 			align2D[eM][eN] = tela[eL].c;
@@ -2137,9 +2134,10 @@ int assign_tela(struct coord tela[MAXROW], int eL, int eM, int eN, int mode, int
 			tela[eL].y = eM;
 			tela[eL].x = eN;
 			for (i=start; i<=end; i++) {
-				if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e == tela[eL].e)
+				if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e == tela[eL].e) {
 					j = tela[i].x;
 					align2D[MAXROW][j] = tela[i].t = tela[i].e;
+				}
 			}	
 		}
 	}
@@ -3470,9 +3468,8 @@ int    height = con_options[1][17];
 int con_width = con_options[1][32];
 short unsigned int nuctype = con_options[1][13];	/* FOR SEQ TYPE, DNA=1, RNA=2, OTHER (NON-NA)=0 */
 short unsigned int nuctransit = 0;					/* BIT FLAG FOR HANDLING NUCLEAR TRANSITIONS */ 
-short unsigned int nudge_flag = 0;					/* BIT FLAG FOR PROCEEDING TO NUDGE */
 short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
-short unsigned int checktransit=0, badcol=0;
+short unsigned int checktransit=0;
 char blnk = con_options[1][11], letr=blnk, conletr=blnk, chkletr=blnk, badletr=blnk;
 int con_maxrows=26;
 int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
@@ -3500,7 +3497,6 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
  	consensus_ar[1][n] = '\0';		/*  & TERMINATED. NOT REDUNDANT TO COMPILER VOODOO?  */
 
 	for (n = n_start; n <= n_end; n++) {
-		badcol = 0;
 		if (nuctransit) {
 			if ((conletr=con_align2D[MAXROW][n])=='R' || conletr=='Y') {
 				consensus_ar[1][n+1] = conletr;
@@ -3528,7 +3524,6 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 					if (consensus_ar[0][n+1] == 1) {	/* IF THIS IS THE FIRST CONFLICT NOTED AT THIS POSITION */
 						++badsites;						/* COUNT ADDITIONAL BAD SITE COLUMN */
 						badletr=letr;					/* THIS IS THE LETTER THAT GOES AGAINST THE TRANSITION LETTER */
-						badcol = 1;
 						++consensus_ar[0][n+1];			/* INCREMENT COUNTER FOR DIFFERENT LETTERS AT COLUMN */
 						consensus_ar[2][ 0 ] = 1;		/* TURN VARIANT ROW ON */
 						consensus_ar[2][n+1] = letr;
@@ -3595,7 +3590,6 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 		}
 		if (consensus_ar[0][m+n]==1) {
 			if (m == nudge_col+1) {
-				nudge_flag = 1;
 				nudge_span = n;
 			}
 		}
@@ -3652,7 +3646,7 @@ unsigned int nudgelize(char cyc_align2D[][MAXROW], struct coord tela[MAXROW], lo
 int cyc_col=0, cyc_row=0, a, b, i, j, kmer=0, m=0, n=0;
 int lenseq   = tela[0].cyc_Lf;
 int cyc_width = cyc_options[1][32];					/* THIS IS opt_W SLOT TO STORE CURRENT 2-D WIDTH */
-short unsigned int edge0=0, mono=0;
+short unsigned int edge0=0;
 unsigned short int nuctype = cyc_options[1][13];	/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 unsigned short int nuctransit=0, dud_nudge=0;		/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int tipcyc_flag=0;					/* BIT FLAG FOR TIP CYCLING OPPORTUNITY */
@@ -3708,7 +3702,6 @@ unsigned int connudge(char con_align2D[][MAXROW], long int con_options[][62], in
 							while (cyc_align2D[m][cyc_col+1] == '/') {
 								m++;
 							}
-							mono = 1;
 						}
 						else {
 							while (cyc_align2D[m+1][n] != blnk && cyc_align2D[m+1][n] != '\0') {	/* MOVE DOWN ****/
@@ -3925,7 +3918,7 @@ int next_foamfree(char check_array[][MAXROW], int row, int at_n)
 /*** FUNCTION 14 **** RETURN -1 IF ALL CLEAR ABOVE OR BELOW ROW, OTHERWISE RETURN CLOSEST ROW WITH ALPHA **********************/
 int col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short int updown) 
 {
-int m = 0;
+	int m = 0;
 
 	/* INVOKE updown AS -1 OR 1 TO CHECK BELOW OR ABOVE row, RESPECTIVELY */
     for (m = row + updown; m >= 0; m = m + updown) {
@@ -3941,30 +3934,30 @@ int m = 0;
 /*** FUNCTION 15 **** FOR UNIFORM FORMATTING OF 2-D LINE STARTS AND ENDS ****/
 void line_end(int type, int c, long int lend_options[][62], int lcl_width)
 {
-char rule1[] = "_________|_________|_________|_________|_________|_________|_________|_________|"
-			   "_________|_________|_________|_________|_________|_________|_________|_________|"
-			   "_________|_________|_________|_________|_________|_________|_________|_________|"
-			   "_________|_________|_________|_________|_________|_________|_________|_________|";
-char rule2[] = "---------|---------|---------|---------|---------|---------|---------|---------|"
-			   "---------|---------|---------|---------|---------|---------|---------|---------|"
-			   "---------|---------|---------|---------|---------|---------|---------|---------|"
-			   "---------|---------|---------|---------|---------|---------|---------|---------|";
-/* START		type=0 */
-/* END			type=1 */
-/* RULER		type=2 */
-/* SLIPS		type=3 */
-/* PATHBOXHEAD	type=4 */
-/* BLOCKHEAD	type=5 */
-/* SLIPRULER	type=6 */
+	char rule1[] = "_________|_________|_________|_________|_________|_________|_________|_________|"
+				   "_________|_________|_________|_________|_________|_________|_________|_________|"
+				   "_________|_________|_________|_________|_________|_________|_________|_________|"
+				   "_________|_________|_________|_________|_________|_________|_________|_________|";
+	char rule2[] = "---------|---------|---------|---------|---------|---------|---------|---------|"
+				   "---------|---------|---------|---------|---------|---------|---------|---------|"
+				   "---------|---------|---------|---------|---------|---------|---------|---------|"
+				   "---------|---------|---------|---------|---------|---------|---------|---------|";
+	/* START		type=0 */
+	/* END			type=1 */
+	/* RULER		type=2 */
+	/* SLIPS		type=3 */
+	/* PATHBOXHEAD	type=4 */
+	/* BLOCKHEAD	type=5 */
+	/* SLIPRULER	type=6 */
+	
+	char *ruler = rule1;	/* USE TO CHANGE RULE STYLE */
+	char zero_tick = (char) lend_options[1][35];	/* opt_Z, Zero tick mark, default = 32 = ' ' */
+	int lcl_opt_r  = lend_options[0][53];
 
-char *ruler = rule1;	/* USE TO CHANGE RULE STYLE */
-char zero_tick = (char) lend_options[1][35];	/* opt_Z, Zero tick mark, default = 32 = ' ' */
-int lcl_opt_r  = lend_options[0][53];
+	if (lend_options[0][11]==2 && lend_options[1][18]>1)	/* opt_B LEVELS FOR BLANKNESS IN FILLER & opt_I PASS NUM */
+		zero_tick = '|';			/* 124 = '|'							*/
 
-if (lend_options[0][11]==2 && lend_options[1][18]>1)	/* opt_B LEVELS FOR BLANKNESS IN FILLER & opt_I PASS NUM */
-	zero_tick = '|';				/* 124 = '|'							*/
-
-	if (type == 1)						/* FORMAT FOR LINE END. c IS CHAR. NUMBER */
+	if (type == 1)					/* FORMAT FOR LINE END. c IS CHAR. NUMBER */
 		printf("%5d\n", c);
 
 	if (lcl_opt_r == 1) {			/* FORMAT WITH LINE NUMBERING. DEFAULT */
@@ -4244,7 +4237,8 @@ short unsigned int print_2Dseq(int print_lenseq2D, long int poptions[][62])
 {
 unsigned int foam_2D(char foam_align2D[][MAXROW], long int foam_options[][62], int n_start, int n_width);
 int all_clear;		/* COUNTER VARIABLE USED FOR CHECKING NEED TO PRINT BOTTOM ROWS */ 
-int blocks2D=0, b=0, c=0, carry_over=0, d=0, fudge=0, g, h, i, j, j_start, j_end, m, m_start=0, n, mmsites=0, max_n=0;
+int blocks2D=0, b=0, c=0, carry_over=0, d=0, fudge=0, g, h, i, j, j_start, j_end, m, m_start=0, n;
+int mmsites=0, max_n=0;
 char letr = 'B', next = 'B';			/* Begin the Beguine */
 char blnk  = poptions[1][11];			/* opt_B blank character */
 int cinchwidth = (int) poptions[1][32];		
