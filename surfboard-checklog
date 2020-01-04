@@ -15,9 +15,6 @@ echo
 echo '# of tests with perfect 1-D recovery (REC:1000):'
 grep -cE 'C.1000' Surf_wavereport.log 
 echo
-echo '# of tests reverted midway (CYC: 60):'
-grep -cE 'CYC. 60\s' Surf_wavereport.log 
-echo
 echo '# of tests using nudging (k=3):'
 grep -cE 'k=3' Surf_wavereport.log 
 echo
