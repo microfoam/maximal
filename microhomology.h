@@ -44,7 +44,9 @@ struct coord {
 	char cyc_o;		/* x => cinched; o => untaken cyclelizable option; !,** => CHECK_TELA VIOLATIONS */
 	/*************************************************************************************************/
 } tela[MAXROW] = {0};
-
+/*struct coord *coordptr;
+coordptr = &tela;
+*/
 char align2D[MAXROW+1][MAXROW] = {{0}};
 
 /***********************************************/
