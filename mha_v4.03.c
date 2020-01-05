@@ -1873,17 +1873,17 @@ int main(int argc, char *argv[])
 
 	if (options[0][54] != 1) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
-		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (k=%ld)\tRND:%.*s\t%38s (%4d %s) REC:%4d\t%3d\t%s\n", 
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (k=%ld)\tRND:%.*s\t%38s -%ld (%4d %s) REC:%4d\t%3d\t%s\n", 
 				version, time0+4, (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], (int) options[1][33], "XX", 
-				file_name, (int) options[1][1], letr_unit, passQ[8], (int) options[1][6], dev_notes);
+				file_name, options[0][38], (int) options[1][1], letr_unit, passQ[8], (int) options[1][6], dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (options[0][10] != 1000 || passR[5] > CYCMAX) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%2d (k=%ld)\tRND:-%.*s\t%s (%d %s) REC:%4d\t%s\n", 
+			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%2d (k=%ld)\tRND:-%.*s\t%s -%ld (%d %s) REC:%4d\t%s\n", 
 					version, time0+4, (int) options[1][59], options[0][10], ratio1, passR[5], options[0][5], (int) options[1][33], "XX", 
-					file_name, (int) options[1][1], letr_unit, passQ[8], dev_notes);
+					file_name, options[0][38], (int) options[1][1], letr_unit, passQ[8], dev_notes);
 			for(n = 0; tela[n].c != '\0'; n++) {
 				if (tela[n].c != 10 && tela[n].c != 13 && tela[n].c != EOF)
 					fprintf(fp_tricksy, "%c", tela[n].c);

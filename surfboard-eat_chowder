@@ -8,12 +8,11 @@ if [ -f waves/foam_and_waves/foam_and_chowder.log ]; then
 	rm waves/foam_and_waves/foam_and_chowder.log
 fi
 
-./maximal -Rn  waves/chowder/chowder_v369_02.txt
-./maximal -Rnx waves/chowder/chowder_v369_02.txt
-./maximal -Rn  waves/chowder/chowder_v369_03.txt
-./maximal -Rnx waves/chowder/chowder_v369_03.txt
-./maximal -Rn  waves/chowder/chowder_v369_04.txt
-./maximal -Rnx waves/chowder/chowder_v369_04.txt
+./maximal -Rnx  waves/tubespit/tubespit-59-tcycle.txt
+./maximal -Rnx  waves/tubespit/tubespit_v344_22.txt
+./maximal -Rnxc waves/tubespit/tubespit_v343_23.txt
+./maximal -Rnxc waves/tubespit/tubespit_v344_01.txt
 
 ./surfboard-checkmha
+
 
