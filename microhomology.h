@@ -1,4 +1,4 @@
-/* microhomology.h: header file for mha_v3.97.c */
+/* microhomology.h: header file since mha_v3.97.c */
 
 #define MAXROW   2000       /* maximum input line size  */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
@@ -45,8 +45,7 @@ struct coord {
 	/*************************************************************************************************/
 } tela[MAXROW] = {0};
 char    align2D[MAXROW+1][MAXROW] = {{0}};
-char lclalign2D[MAXROW+1][MAXROW] = {{0}};
-char    pathbox[MAXROW+1][MAXROW] = {{0}};
+char    pathbox[MAXROW  ][MAXROW] = {{0}};
 
 /***********************************************/
 void signal_callback_handler(int signum) 
@@ -111,7 +110,6 @@ void line_end(int type, int c, int lcl_width);
 char mha_base62(int num);
 void mha_head(int lcl_width);
 void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
-void mha_writebackLITE(void);
 void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
 void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW]);
 int push_tela(int n2, int n1);
