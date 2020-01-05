@@ -5,7 +5,7 @@ MHA methodology is philosophically-distinct from gapped alignment in embracing l
 As a prototype implementation of MHA, the current versions of maximal feature a rich set of run options in order to encourage a free, open-minded, heuristics-friendly development cycle.
 Program options can be seen by running ./maximal without any options specified.
 
-Version v3.80 is the most recent stable version.
+Version v4.02 is the most recent stable version.
 Version v3.64 is the version associated with the most recent preprint.
 This is getting a bit exciting if you think about what is transpiring here.
 

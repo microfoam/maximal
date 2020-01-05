@@ -1,6 +1,6 @@
-/* microhomology.h: header file for mha_v#.##.c */
+/* microhomology.h: header file for mha_v3.97.c */
 
-#define MAXROW   1600       /* maximum input line size  */
+#define MAXROW   2000       /* maximum input line size  */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
 #define MATCH       8       /* MATCH SCORE */
 #define CYCMAX     60       /* MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER STOPGAPS */
@@ -44,7 +44,9 @@ struct coord {
 	char cyc_o;		/* x => cinched; o => untaken cyclelizable option; !,** => CHECK_TELA VIOLATIONS */
 	/*************************************************************************************************/
 } tela[MAXROW] = {0};
-char align2D[MAXROW+1][MAXROW] = {{0}};
+char    align2D[MAXROW+1][MAXROW] = {{0}};
+char lclalign2D[MAXROW+1][MAXROW] = {{0}};
+char    pathbox[MAXROW+1][MAXROW] = {{0}};
 
 /***********************************************/
 void signal_callback_handler(int signum) 
@@ -66,28 +68,58 @@ int rnd;
     return rnd % n;
 }
 
+
+long int options[4][62] = {
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,46, 0, 0, 0, 0, 0, 0,-1, 0, 0, 0,10, 0, 0, 0,40,41, 0, 4, 0, 0, 0, 0, 0,32, 0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
+{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61},
+/*s->cl>t->l->k->c->s->d->r        B  C  D     F     H  I     K  L  M     O  P  Q  R     T        W  X     Z  a--b--c---d---e---f---g---h   i       k   l   m   n   o   p       r   s   t   u   v   w   x       z*/
+{48,49,50,51,52,53,54,55,56,57,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122}
+}; /*                    |                                            |  |     |        |         |= Zero tick mark, default ' '= 32   */
+                     /* 46 = "." (FULLSTOP) */					   /* (  ) */	   /* options[1][32] opt_W WILL STORE CURRENT CINCH-WIDTH */
+                     /* 32 = " " (SPACE)    */ 					   /* L  R */	   /* options[1][0--9] WILL PERMANENTLY STORE 2-D WIDTH HISTORY */
+/* options array rows */
+/* options[0][n] = BIT MASK. 1 = OPTION CALLED AS ARG. W/ SOME EXCEPTIONS */
+/* options[1][n] = OPTIONS VALUE */
+/* options[2][n] = BASE 62 NUM VALUE, WILL USE AS opt_# INDEX */
+/* options[3][n] = DECIMAL CHARACTER CODE OF LETTER SHOWN IN COMMENTS */
+/* opt_M replaces long_homopolywrap = mwrap = 10 FOR WRAPPING LONG MONONUCLEOTIDE TRACTS */
+								/* options[1][18] COUNTER OF INITIAL PASSES THROUGH MHA */
+								/*  0 EQUALS ORIGINAL STRING			*/
+								/*  1 EQUALS cleanseq PASS (1-D)    	*/
+								/*  2 EQUALS cinch_t 2-D PASS MAIN()	*/
+								/*  3 EQUALS cinch_l 2-D PASS			*/
+								/*  4 EQUALS cinch_k 2-D PASS			*/
+								/*  5 EQUALS nudgelize 2-D PASS			*/
+								/*  6 EQUALS cinch_d  2-D PASS			*/
+								/*  7 EQUALS relax_2D 2-D PASS			*/
+								/*  8 EQUALS recovered 1-D from 2-D 	*/
+								/* 10 EQUALS passQ score / 1000			*/
+/* RESERVE options[1][26] (opt_Q) and options[1][27] (opt_R) for storing LEFT and RIGHT 'R'un delimiter characters */
+
 int assign_tela(int eL, int eM, int eN, int mode, int pointA, int pointB);
 int assign_transit(int n);
 int check_tela(int eM, int eN, short unsigned int dim);
-int cyclelize_tela(int cpos, int delta, int npos, long int options[][62]);
+int cyclelize_tela(int cpos, int delta, int npos);
 void clear_2D_ar(char wipe_align2D[][MAXROW]);
-void clear_right(char swipe_align2D[][MAXROW], long int croptions[][62]);
+void clear_right(char swipe_align2D[][MAXROW]);
 int col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short int updown); 
-unsigned int consensus_2D(char con_align2D[][MAXROW], long int con_options[][62], int n_start, int n_width);
+unsigned int consensus_2D(int n_start, int n_width);
 int count_wrap_blocks(int lcl_width, int lcl_opt_w);	/* lcl_width IS WIDTH OF 2-D MHA ARRAY */ 
 int get_1Dz(int x, int y, int ignoreCheck);
-void line_end(int type, int c, long int lend_options[][62], int lcl_width);
+void line_end(int type, int c, int lcl_width);
 char mha_base62(int num);
-void mha_head(int lcl_width, long int lcl_options[][62]);
-void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW], long int woptions[][62]);
-void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW], long int woptions[][62]);
-void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW], long int wroptions[][62]);
+void mha_head(int lcl_width);
+void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
+void mha_writebackLITE(void);
+void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
+void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW]);
 int push_tela(int n2, int n1);
-void print1D(long int options[][62]);
-short unsigned int print_2Dseq(int print_lenseq2D, long int poptions[][62]);
+void print1D(void);
+short unsigned int print_2Dseq(int print_lenseq2D);
 void print_blockhead(int a, int b);	
 void print_tela(int a, int b);
-short int pushdown(char pusharray[][MAXROW], int push_m, int push_n, long int push_options[0][62]);
+short int pushdown(char pusharray[][MAXROW], int push_m, int push_n); 
 int score_DTHR(int kmer, int squeeze);
 int span_rk(int point);
 int update_tela(void);
@@ -95,22 +127,22 @@ void warnhead(char l);
 
 short unsigned int 	user_query(unsigned int pass_num);
 
-int               	cinch_k(long int koptions[][62]);  
-int 				recover_1D(char recovered_1D[MAXROW], long int rec_options[][62]);
-int 				recoverlen(long int rec_options[][62]);
+int               	cinch_k(void);  
+int 				recover_1D(char recovered_1D[MAXROW]);
+int 				recoverlen(void);
 short unsigned int 	cleanseq(char *s);
 
-int 				get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW], long int options[][62]);
-unsigned int       	nudgelize(char cyc_align2D[][MAXROW], long int cyc_options[][62]);
-unsigned int       	cinch_d(long int doptions[][62], short unsigned int cinch_d_opt);
-short unsigned int 	cinch_l(long int loptions[][62]);  
+int 				get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW]);
+int					cinch_l(void);  
+unsigned int       	nudgelize(void);
+unsigned int       	cinch_d(short unsigned int cinch_d_opt);
 
-void		 		relax_2D(long int roptions[0][62]);
+void		 		relax_2D(void);
 void 				mha_randomize1(char input_seq[MAXROW]);
 void 				mha_randomize2(char input_seq[MAXROW], int rsize);
-void 				print_base62_table(long int boptions[][62]);
+void 				print_base62_table(void);
 void 				shuffle(int *array, int n);
 void 				usage(char usage_version[], unsigned int FY_size);			/* FOR PRINTING UNIFORM USAGE INFORMATION */
-short int			tucksense(char tuckarray[][MAXROW], long int tuck_options[0][62]);
+short int			tucksense(void);
 char 				*nmer_prefix(int i);			/* CONVERTS INTEGER TO N-MER PREFIX WRITTEN NAME */
 
