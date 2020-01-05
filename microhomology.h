@@ -46,6 +46,7 @@ struct coord {
 } tela[MAXROW] = {0};
 char    align2D[MAXROW+1][MAXROW] = {{0}};
 char    pathbox[MAXROW  ][MAXROW] = {{0}};
+char	consensus[MAXROW] = {0};
 
 /***********************************************/
 void signal_callback_handler(int signum) 
@@ -112,6 +113,7 @@ void mha_head(int lcl_width);
 void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
 void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
 void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW]);
+void mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW]);
 int push_tela(int n2, int n1);
 void print1D(void);
 short unsigned int print_2Dseq(int print_lenseq2D);
