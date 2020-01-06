@@ -2420,7 +2420,7 @@ char lopt_R_rght = (char) options[1][27];		/* RHS character delimiter for homopo
 char blnk        = (char) options[1][11];		/* opt_B blank character		*/
 int cil_mwrap    = (char) options[1][22];		/* opt_M long_homopolymer_run	*/
 int cinchled=0;					/* BIT FLAG TO SAY cinch_l DID SOMETHING */
-char lclalign2D[MAXROW+1][MAXROW] = {{0}};
+char lclalign2D[MAXROW][MAXROW] = {{0}};
 
 	for (m = 0; align2D[m][0] != '\0'; m++) {
 		for (n = 0; align2D[m][n] != '\0'; n++) {
@@ -2496,7 +2496,7 @@ char blnk        = (char) options[1][11];		/* opt_B blank character */
 int  cik_mwrap   =        options[1][22];		/* opt_M long_homopolymer_run */
 char kopt_Q_left = (char) options[1][26];		/* LHS character delimiter for homopolymer Run */
 char kopt_R_rght = (char) options[1][27];		/* RHS character delimiter for homopolymer Run */
-char cik_align2D[MAXROW+1][MAXROW] = {{0}};
+char cik_align2D[MAXROW][MAXROW] = {{0}};
 int x_history[MAXROW] = {0};					/* STORE HISTORY OF x VARIABLE VIA POSITION n */
 int lenseq = options[1][1];
 
@@ -3310,9 +3310,9 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 		}
 	}
 	consensus_ar[0][0] = 1;			/* COUNTER ROW ON */
-	consensus_ar[0][n] = '\0';		/*  & TERMINATED. THOUGH ARRAY INITIALIZED ABOVE, COMPILER MAKES FASTER CODE WITH THIS! */
+	consensus_ar[0][n] = '\0';
 	consensus_ar[1][0] = 1;			/* CONSENSUS ROW ON */
-	consensus_ar[1][n] = '\0';		/*  & TERMINATED. NOT REDUNDANT TO COMPILER VOODOO?  */
+	consensus_ar[1][n] = '\0';
 
 	for (n = n_start; n <= n_end; n++) {
 		if (nuctransit) {
@@ -3421,6 +3421,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width)
 {
 int badsites=0, m=0, n=0, n_end, x=1, nudge_row=0, nudge_col=0, nudge_span=0, frstletr;
+int    lenseq = options[1][ 1];
 int    height = options[1][17];
 int con_width = options[1][32];
 short unsigned int nuctype = options[1][13];	/* FOR SEQ TYPE, DNA=1, RNA=2, OTHER (NON-NA)=0 */
@@ -3440,7 +3441,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 
 	/* FILL CONSENSUS ARRAY WITH FIRST LETTER IN EACH COL */
 	for (n = 0; n <= con_width; n++) {
-		for (m = 0; m < MAXROW; m++) {
+		for (m = 0; m < lenseq; m++) {
 			if ( (isalpha(letr=con_align2D[m][n]))) {
 				consensus_ar[0][n+1]++;
 				consensus_ar[1][n+1] = letr;
@@ -3449,9 +3450,9 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 		}
 	}
 	consensus_ar[0][0] = 1;			/* COUNTER ROW ON */
- 	consensus_ar[0][n] = '\0';		/*  & TERMINATED. THOUGH ARRAY INITIALIZED ABOVE, COMPILER MAKES FASTER CODE WITH THIS! */
+ 	consensus_ar[0][n] = '\0';
 	consensus_ar[1][0] = 1;			/* CONSENSUS ROW ON */
- 	consensus_ar[1][n] = '\0';		/*  & TERMINATED. NOT REDUNDANT TO COMPILER VOODOO?  */
+ 	consensus_ar[1][n] = '\0';
 
 	for (n = n_start; n <= n_end; n++) {
 		if (nuctransit) {
@@ -4710,9 +4711,6 @@ char letr, opt_R_rght = options[1][27];
 int bottom[MAXROW] = {0};
 int    top[MAXROW] = {0};
 short unsigned int devReport=options[1][57];
-
-	if (devReport>2)	/* opt_v VERBOSITY, DEVELOPMENT-LEVEL */
-		printf("\n DEV-4700: width = %d", width);
 
 	if (arrayA[MAXROW][width]!='\0') {
 		for (j=width; arrayA[MAXROW][j]!='\0' && j < MAXROW; j++)

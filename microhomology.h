@@ -44,9 +44,9 @@ struct coord {
 	char cyc_o;		/* x => cinched; o => untaken cyclelizable option; !,** => CHECK_TELA VIOLATIONS */
 	/*************************************************************************************************/
 } tela[MAXROW] = {0};
-char    align2D[MAXROW+1][MAXROW] = {{0}};
-char    pathbox[MAXROW  ][MAXROW] = {{0}};
-char	consensus[MAXROW] = {0};
+char  align2D[MAXROW][MAXROW] = {{0}};
+char  pathbox[MAXROW][MAXROW] = {{0}};
+char  consensus[MAXROW] = {0};
 
 /***********************************************/
 void signal_callback_handler(int signum) 
