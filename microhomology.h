@@ -98,7 +98,7 @@ long int options[4][62] = {
 /* RESERVE options[1][26] (opt_Q) and options[1][27] (opt_R) for storing LEFT and RIGHT 'R'un delimiter characters */
 
 int assign_tela(int eL, int eM, int eN, int mode, int pointA, int pointB);
-int assign_transit(int n);
+void assign_transit(int n, int kr_src);
 int check_tela(int eM, int eN, short unsigned int dim);
 int cyclelize_tela(int cpos, int delta, int npos);
 void clear_2D_ar(char wipe_align2D[][MAXROW]);
@@ -115,6 +115,7 @@ void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
 void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW]);
 void mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW]);
 int push_tela(int n2, int n1);
+void pull_tela(int n);
 void print1D(void);
 short unsigned int print_2Dseq(int print_lenseq2D);
 void print_blockhead(int a, int b);	

@@ -745,7 +745,7 @@ int main(int argc, char *argv[])
 						if (tela[m].c != tela[n].c && tela[n].c == tela[n+k].c)	{ 
 							imperfect_TR = 0;	/* IMPERFECT TR AT n, BUT LESS IMPERFECT TR AT n+1 */
 							if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-								printf("\n DEV-0748: Skipping imperfect TR at n=%d for better match at n=%d.", n+1, n+2);
+								printf("\nDEV-0748: Skipping imperfect TR at n=%d for better match at n=%d.", n+1, n+2);
 						}
 					}
 					else 
@@ -753,7 +753,7 @@ int main(int argc, char *argv[])
 				} 
 
 				if (options[1][57] > 3 && Dtr)	/* VERBOSITY */
-					printf(" DEV-0756: n=%3d, m=%3d.", n, m);
+					printf("\nDEV-0756: n=%3d, m=%3d.", n, m);
 
 				/* IF SUMMING PATHBOX DIAGONAL 4/: FIND AND STORE POSITION OF LEFT-MOST OVERLAPPING TRs */
 				/* SKIP CINCH IF CAN AVOID CONFLICT WITH A LATER CYCLE & CYCLING PREVIOUS TR NOT AN OPTION */
@@ -763,7 +763,7 @@ int main(int argc, char *argv[])
 							tela[n].X = i;		/* UPDATE LEFT-MOST OVERLAPPING TR */
 
 							if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-								printf("\n DEV-0766: Setting tela[%d].X to i=%d. m=%d, k=%d, Dtr=%d, imperfect_TR=%d.", n, i, m, k, Dtr, imperfect_TR);
+								printf("\nDEV-0766: Setting tela[%d].X to i=%d. m=%d, k=%d, Dtr=%d, imperfect_TR=%d.", n, i, m, k, Dtr, imperfect_TR);
 						}
 					} 
 					if (tela[n].X != n) {
@@ -777,7 +777,7 @@ int main(int argc, char *argv[])
 										Dtr = imperfect_TR = 0;
 										tela[n].cyc_o = 'o';
 										if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
-											printf("\n DEV-0780: Skipping cinch here to use later cycling frame at %d.", l+1);
+											printf("\nDEV-0780: Skipping cinch here to use later cycling frame at %d.", l+1);
 										}
 										break;
 									}
@@ -830,7 +830,7 @@ int main(int argc, char *argv[])
 							else
 								Aimperfect_TR = 0;
 						} 
-						if (Atr==Did || Atr==Dtr || Aimperfect_TR) {
+						if (Atr==Did || Aimperfect_TR) {
 							reps++;
 							Atr = 0;
 						}
@@ -851,7 +851,7 @@ int main(int argc, char *argv[])
 									options[1][50] += badslip_type;
 									options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 									if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-										printf("\n DEV-0854: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+										printf("\nDEV-0854: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
 									Dtr = imperfect_TR = 0; /* SKIP PRESENT SLIP */
 									break;
@@ -861,7 +861,7 @@ int main(int argc, char *argv[])
 									options[1][50] += badslip_type;
 									options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 									if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-										printf("\n DEV-0864: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+										printf("\nDEV-0864: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
 									Dtr = imperfect_TR = 0; /* SKIP PRESENT SLIP */
 									break;
@@ -872,7 +872,7 @@ int main(int argc, char *argv[])
 									options[1][50] += badslip_type;
 									options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 									if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-										printf("\n DEV-0875: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+										printf("\nDEV-0875: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
 									l = tela[n].X;
 									r = tela[l].r;
@@ -906,7 +906,7 @@ int main(int argc, char *argv[])
 				if (Dtr && (Dtr==Did || imperfect_TR) && (o=push_tela(n,m))) {
 					Dtr = imperfect_TR = 0;
 					if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
-						printf("\n DEV-0909: push_tela violations=%d; skipping k=%d-mer at n=%d", o, k, n+1);
+						printf("\nDEV-0909: push_tela violations=%d; skipping k=%d-mer at n=%d", o, k, n+1);
 					}
 				}
 				else
@@ -924,8 +924,6 @@ int main(int argc, char *argv[])
 					tela[n].k = k = n-m;
 					slips[k]++;
 					TRcheck = 1;
-					if (imperfect_TR)
-						 assign_transit(n);
 
 					while (TRcheck) {
 						Atr = 0;
@@ -996,14 +994,12 @@ int main(int argc, char *argv[])
 											if (tela[n-j].cyc_l > tela[n].cyc_l) 
 												sumspan = -tela[(z=n-j)].cyc_l;		/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
 											else 
-												z = n;									/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
+												z = n;								/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
 										}
 										tela[n].cyc_F[0] = f;	/* USE 0 ROW TO STORT LOCATION OF INDEXED UNIT TRs */	
 									}
 									else
 										tela[n+l].cyc_F[0] = ++f;	/* USE ROW 0 TO STORE ROW # OF FRAME */
-
-/*									tela[n+l].cyc_r = 1;	*/	/* IS AT LEAST ONE, INCREMENTED BELOW */
 
 									for (j = 0; j < r; j++) {
 										if (j==0) {		/* WRITE FOR UNIT REPEAT STARTING AT m ONETIME */
@@ -1049,7 +1045,7 @@ int main(int argc, char *argv[])
 													l--;
 
 												if (options[1][57] > 3)
-													printf("\n DEV-1052: n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
+													printf("\nDEV-1052: n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
 
 												tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
 												tela[l  ].cyc_Rt = z+j;
@@ -1061,7 +1057,7 @@ int main(int argc, char *argv[])
 													l++;
 
 												if (options[1][57] > 3)
-													printf("\n DEV-1065: n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
+													printf("\nDEV-1065: n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
 
 												tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
 												tela[l  ].cyc_Rt = z+j;
@@ -1087,18 +1083,19 @@ int main(int argc, char *argv[])
 										options[1][50] += badslip_type;
 										options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 										if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
-											printf("\n DEV-1090: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
-											printf("\n DEV-1091: Before--->");
+											printf("\nDEV-1090: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+											printf("\nDEV-1091: Before--->");
 											print_tela(prtela_A, prtela_B);
 										}
-
-										if (imperfect_TR)
-							 				assign_transit(l);
-
 										assign_tela(n, row, a2D_n, 4, 0,0);
+										pull_tela(tela[n].X);
+										if (imperfect_TR)
+											assign_transit(l,1);
+
 										for (j = n; j < l; j++) {
 											assign_tela(n++, row, a2D_n++, 0, 0,0);
 										}
+
 										o = push_tela(l,l-k);
 										reps = tela[l].r = tela[l].cyc_r;
 										tela[l].k = k;
@@ -1110,7 +1107,7 @@ int main(int argc, char *argv[])
 											}
 										}
 										if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
-											printf("\n DEV-1113: After--->");
+											printf("\nDEV-1113: After--->");
 											print_tela(prtela_A, prtela_B);
 										}
 									}
@@ -1124,7 +1121,7 @@ int main(int argc, char *argv[])
 												options[1][50] += badslip_type;
 												options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 												if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-													printf("\n DEV-1127: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+													printf("\nDEV-1127: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
 												a2D_n = tela[n].x+k; 
 												row   = tela[n].y-1;
@@ -1166,7 +1163,7 @@ int main(int argc, char *argv[])
 											options[1][50] += badslip_type;
 											options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 											if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-												printf("\n DEV-1169: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+												printf("\nDEV-1169: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
 											a2D_n = tela[n].x+k;
 											row   = tela[n].y-1;
@@ -1180,7 +1177,7 @@ int main(int argc, char *argv[])
 							if (tela[n].o > 2*k) {
 								cycle_flag = 1;		/* THIS BIT CAN BE USED TO ADD CYCLE NOTATION TO END OF LINE */
 								if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-									printf("\n DEV-1183: %2d-mer cycle sequence of length %2d starting at %4d (n=%d): %s.", k, tela[n].o, n-k, n, cycle);
+									printf("\nDEV-1183: %2d-mer cycle sequence of length %2d starting at %4d (n=%d): %s.", k, tela[n].o, n-k, n, cycle);
 							}
 							else {
 								for (l = 0; l <= WIDTH; l++)
@@ -1234,7 +1231,7 @@ int main(int argc, char *argv[])
 										options[1][50] += badslip_type;
 										options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 										if (options[1][57] > 3)  /* opt_v DEV-LEVEL VERBOSITY */
-											printf("\n DEV-1237: badslip type %d at n=%d for k=%d with TR at i=%d.", badslip_type, n, k, i);
+											printf("\nDEV-1237: badslip type %d at n=%d for k=%d with TR at i=%d.", badslip_type, n, k, i);
 
                                         delta_to_bad1Dn = n-i;                      /* THIS IS DISTANCE TO THE BAD SLIP */
                                         bad_1Dn = i;                                /* STORE POSITION OF BAD SLIP */
@@ -1247,7 +1244,7 @@ int main(int argc, char *argv[])
 											options[1][50] += badslip_type;
 											options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 											if (options[1][57] > 3)  /* opt_v DEV-LEVEL VERBOSITY */
-												printf("\n DEV-1250: badslip type %d at n=%d for k=%d with TR at i=%d.", badslip_type, n, k, i); 
+												printf("\nDEV-1250: badslip type %d at n=%d for k=%d with TR at i=%d.", badslip_type, n, k, i); 
 
 											delta_to_bad1Dn = n-i;                  /* THIS IS DISTANCE TO THE BAD SLIP */
 											bad_1Dn = i;                            /* STORE POSITION OF BAD SLIP */
@@ -1263,7 +1260,7 @@ int main(int argc, char *argv[])
 												options[1][50] += badslip_type;
 												options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 												if (options[1][57] > 3) 
-													printf("\n DEV-1266: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+													printf("\nDEV-1266: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
 												delta_to_bad1Dn = n-i;				/* THIS IS DISTANCE	TO THE BAD SLIP */
 												bad_1Dn = i;						/* STORE POSITION OF BAD SLIP */
@@ -1349,7 +1346,7 @@ int main(int argc, char *argv[])
 
                         if ((z = k - overslip - (int) a2D_n) > 0) { 
 							if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
-    	                        printf("\n DEV-1352: 2D-printing into upstream region by %d.", z);
+    	                        printf("\nDEV-1352: 2D-printing into upstream region by %d.", z);
 							}
                             for (m = 0; m < row; m++) {
                                 for (l=lenseq; l >= 0; l--) {				/* CAN SAVE TIME IF l=lenseq REPLACED BY SHORTER LIMIT */
@@ -1426,9 +1423,9 @@ int main(int argc, char *argv[])
 				
 					if (options[1][57] > 3) {	/* opt_v ACTIVE DEV-LEVEL VERBOSITY */
 						p = (int) a2D_n; q = lenseq;
-						printf("\n DEV-1429: check_tela via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,p, 2));
-						printf("\n DEV-1430: check_tela via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,q, 1));
-						printf("\n DEV-1431: print_tela for k=%d and r=%d at n=%d", k, r, n);
+						printf("\nDEV-1429: check_tela via 2-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,p, 2));
+						printf("\nDEV-1430: check_tela via 1-D, princeps =%2d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,q, 1));
+						printf("\nDEV-1431: print_tela for k=%d and r=%d at n=%d", k, r, n);
 						print_tela(prtela_A, prtela_B);
 					}
 
@@ -1487,8 +1484,8 @@ int main(int argc, char *argv[])
 		update_tela();
 
 	if (options[1][57] > 3) {	/* opt_v DEV-LEVEL VERBOSITY */
-		printf("\n DEV-1490: check_tela via 1-D coords, princeps = %2d.", check_tela(0,lenseq,  1));
-		printf("\n DEV-1491: check_tela via 2-D coords, princeps = %2d.", check_tela(0,citwidth,2));
+		printf("\nDEV-1490: check_tela via 1-D coords, princeps = %2d.", check_tela(0,lenseq,  1));
+		printf("\nDEV-1491: check_tela via 2-D coords, princeps = %2d.", check_tela(0,citwidth,2));
 		print_tela(prtela_A, prtela_B);
 	}
 
@@ -2022,7 +2019,7 @@ int push_tela(int n2, int n1)
 			;	
 		else {
 			violation = 1;
-			printf("\n DEV-2025: push_tela() viol1 at i=%d, k=%d, n2=%d, xa=%d xb=%d, ya=%d yb=%d.", i, k, n2, coord_xa, coord_xb, coord_ya, coord_yb); 
+			printf("\nDEV-2025: push_tela() viol1 at i=%d, k=%d, n2=%d, xa=%d xb=%d, ya=%d yb=%d.", i, k, n2, coord_xa, coord_xb, coord_ya, coord_yb); 
 			break;
 		}
 	}
@@ -2135,7 +2132,7 @@ int assign_tela(int eL, int eM, int eN, int mode, int pointA, int pointB)
 	}
 	else {
 		warnhead('m');
-		printf("\n DEV-2138: undefined mode invoked");
+		printf("\nDEV-2138: undefined mode invoked");
 	}
 
 	if (conflict_flag)
@@ -2152,7 +2149,7 @@ int i=0, j=0, lineM=0, lineN=0, princeps=0, badflag=0;
 int lenseq = options[1][1];
 
 	if (eM>=eN) {
-		printf("\n DEV-2155: Need to call check_tela explicitly with %d-D positions eN > eM.", dim);
+		printf("\nDEV-2155: Need to call check_tela explicitly with %d-D positions eN > eM.", dim);
 		princeps-=5;
 	}
 
@@ -2176,7 +2173,7 @@ int lenseq = options[1][1];
 		eN = j;
 	}
 	else {
-		printf("\n DEV-2179: Need to call check_tela explicitly with dimension dim=1 or dim=2.");
+		printf("\nDEV-2179: Need to call check_tela explicitly with dimension dim=1 or dim=2.");
 		princeps-=7;
 	}
 
@@ -2199,7 +2196,7 @@ int lenseq = options[1][1];
 		if (i==eN)
 			princeps = 1;
 		else
-			printf("\n DEV-2202: check_tela(): Problem of continuity at 1-D positions %d --> %d (columns %d and %d)", i, i+1, tela[i].x, tela[i+1].x);
+			printf("\nDEV-2202: check_tela(): Problem of continuity at 1-D positions %d --> %d (columns %d and %d)", i, i+1, tela[i].x, tela[i+1].x);
 
 		/* ANGEL TWO: THE PRINCE OF EQUIVALENCE */
 		for (i=eM; i<eN && !badflag; i++) {
@@ -2217,7 +2214,7 @@ int lenseq = options[1][1];
 		if (!badflag) 
 			princeps+=2;
 		else
-			printf("\n DEV-2220: check_tela(): Problem of equivalence at 1-D positions %d and %d (both in column %d)", i, j, tela[i].x);
+			printf("\nDEV-2220: check_tela(): Problem of equivalence at 1-D positions %d and %d (both in column %d)", i, j, tela[i].x);
 	}
 
 	return(princeps);	/* 0 IF BOTH FAIL; +1 IF ONLY ONE PASSES; +2 IF ONLY TWO PASSES; +3 IF BOTH PASS */ 
@@ -2276,6 +2273,22 @@ int lenseq = options[1][1];
 			b = width;
 	}
 
+	/******************** BEGIN PRINTING LINES *******************/
+	printf("\n t:");
+	for (i=a; i<=b; i++) {
+		if (tela[i].c != tela[i].t)
+			printf("%3c", tela[i].t);
+		else
+			printf("  .");
+	}
+	printf("\n c:");
+	for (i=a; i<=b; i++)
+		printf("%3c", tela[i].c);
+
+	printf("\n n:");
+	for (i=a; i<=b; i++)
+		printf("%3d", i);
+
 	printf("\nLf:");
 	for (i=a; i<=b; i++) {
 		if (tela[i].cyc_Lf)
@@ -2298,22 +2311,6 @@ int lenseq = options[1][1];
 		else
 			printf("  .");
 	}
-	printf("\n n:");
-	for (i=a; i<=b; i++)
-		printf("%3d", i);
-
-	printf("\n c:");
-	for (i=a; i<=b; i++)
-		printf("%3c", tela[i].c);
-
-	printf("\n t:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].c != tela[i].t)
-			printf("%3c", tela[i].t);
-		else
-			printf("  .");
-	}
-
 	printf("\n y:");
 	for (i=a; i<=b; i++)
 		printf("%3d", tela[i].y);
@@ -2353,6 +2350,9 @@ int lenseq = options[1][1];
 	for (i=a; i<=b; i++)
 		printf("%3c", tela[i].echoes);
 
+	printf("\ncO:");
+	for (i=a; i<=b; i++)
+		printf("%3c", tela[i].cyc_o);
 
 	printf("\ncL:");
 	for (i=a; i<=b; i++) {
@@ -2394,12 +2394,12 @@ int lenseq = options[1][1];
 			printf("  .");
 	}
 
-	printf("\ncO:");
+	printf("\n   ");
 	for (i=a; i<=b; i++)
-		printf("%3c", tela[i].cyc_o);
+		printf(" --");
 
 	/* PRINT TOP FRAME ROWS */
-	for (f=0; f<9; f++) {
+	for (f=1; f<9; f++) {
 		printf("\nf%d:", f);
 		for (i=a; i<=b; i++) {
 			if (tela[i].cyc_F[f])
@@ -3032,7 +3032,7 @@ char cid_align2D[MAXROW+1][MAXROW];
 							m++;
 						}
 						if (options[1][57] > 3)	/* opt_v DEV-LEVEL VERBOSITY */
-							printf("\n DEV-3035 Working on %d-mer consensus TR (%dx) at position %d; 2nd unit begins on row %d.", k, num, n+1, m+1);
+							printf("\nDEV-3035 Working on %d-mer consensus TR (%dx) at position %d; 2nd unit begins on row %d.", k, num, n+1, m+1);
 
 						if (imperfect_TR == 1) {
 							for (l=0; l < k; l++) {
@@ -3726,7 +3726,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 							}
 							cyc_ar[MAXROW][cyc_col] = align2D[cyc_row][cyc_col];
 							if (options[1][57] > 3)	/* opt_v DEV-LEVEL VERBOSITY */
-								printf("\n DEV-3729: TIP CYCLING OPPORTUNITY FOR cyc_col = %d; j=%d.", cyc_col+1, j+1);
+								printf("\nDEV-3729: TIP CYCLING OPPORTUNITY FOR cyc_col = %d; j=%d.", cyc_col+1, j+1);
 						}
 					}
 
@@ -3749,7 +3749,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 					if (1) {	
 						if (connudge(cyc_ar, 0, cyc_width) == 0) {
 							if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-								printf("\n DEV-3752: dud_nudge");
+								printf("\nDEV-3752: dud_nudge");
 							dud_nudge = 1;
 							i = options[1][18];
 							options[1][i] = cyc_width = options[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS x WIDTH HISTORY */
@@ -3983,10 +3983,10 @@ char c;
 void mha_head(int lcl_width)
 {
 			 /*0123456789*/
-char h1[]=	"\nMHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//_"
-			  "MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//_"
-			  "MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//_"
-			  "MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//_";
+char h1[]=	"\n_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
+			  "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
+			  "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
+			  "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//";
 char h2[]=	"\n\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
 			  "\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
 			  "\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
@@ -3999,7 +3999,7 @@ int hr_len = min_len;					/* DEFAULT LENGTH OF HEADER BANNER */
 int lcl_pass = options[1][18];			/* opt_I VALUE COUNTER FOR NUM OF PASSES */
 
 	if (lcl_width > MAXROW) 
-		printf("\n DEV-4002: Bad news bears: Unexpectedly, lcl_width > MAXROW. lcl_pass=%d, lcl_width=%d.\n", lcl_pass, lcl_width);
+		printf("\nDEV-4002: Bad news bears: Unexpectedly, lcl_width > MAXROW. lcl_pass=%d, lcl_width=%d.\n", lcl_pass, lcl_width);
 
 	if (lcl_width+8 > hr_len && lcl_width+8 < (int) options[1][58])
 		hr_len = med_len;
@@ -4228,10 +4228,10 @@ short unsigned int lcl_opt_F;
 		tick = blnk;
 
 	if (cinchwidth > MAXROW) {
-		printf("\n DEV-4231: Bad news bears: Unexpectedly, cinchwidth > MAXROW. cinchwidth=%d", cinchwidth);
+		printf("\nDEV-4231: Bad news bears: Unexpectedly, cinchwidth > MAXROW. cinchwidth=%d", cinchwidth);
 	}
 	if (print_lenseq2D > MAXROW) 
-		printf("\n DEV-4234 Bad news bears: Unexpectedly, print_lenseq2D > MAXROW. print_lenseq2D=%d.", print_lenseq2D);
+		printf("\nDEV-4234 Bad news bears: Unexpectedly, print_lenseq2D > MAXROW. print_lenseq2D=%d.", print_lenseq2D);
 	mha_head(print_lenseq2D);
 
 	blocks2D = count_wrap_blocks(print_lenseq2D, cip_linewidth);
@@ -4822,7 +4822,7 @@ unsigned short int nuctype = options[1][13], nuctransit=0;
 		nuctransit = 1;
 
 	if (options[1][57] > 3)	/* opt_v DEV-LEVEL VERBOSITY */
-		printf("\n DEV-4825: TUCKSENSE: First bad site (%c) at row=%d, column=%d.", badletr, bad_m+1, bad_n+1);
+		printf("\nDEV-4825: TUCKSENSE: First bad site (%c) at row=%d, column=%d.", badletr, bad_m+1, bad_n+1);
 
 	mha_writeback(align2D, lcl_align2D);
 	for (j=0; j <= options[1][1]; j++)
@@ -5065,30 +5065,51 @@ int span_rk(int point)
 
 /********************************************************************/
 /* ASSIGNS AND PROPAGATES TRANSITIONS TO ALL POSITIONS AT EACH UNIT */
-/* MUST SAVE k AND r BEFORE CALLING THIS FUNCTION AT n.             */
-int assign_transit(int n)
+/* MUST SAVE k AND r AT SOURCE BEFORE CALLING THIS FUNCTION AT n.   */
+void assign_transit(int n, int kr_src)
 {
 	int i=0, j=0;
-	int k = tela[n].cyc_k;
+	int k, r;
+	
+	if (!kr_src) {
+		k = tela[n].k;
+		r = tela[n].r;
+	}
+	else {
+		k = tela[n].cyc_k;
+		r = tela[n].cyc_r;
+	}
+	int m = n - k;
 
-	/* ASSIGN TRANSITIONS TO .t IF IMPERFECT_TR */
-	for (i=0; i<tela[n].cyc_r; i++) {
+	/* ASSIGN TRANSITIONS TO .t IF IMPERFECT_TR, ALL IN REFERENCE TO FIRST UNIT STARTING AT m */
+	for (i=0; i<r; i++) {
 		for (j=0; j<k; j++) {	/* 1ST TIME TO NOTE THE TRANSITION POSITIONS BY DIFFERENCES */
-			if (tela[n+j+i*k].c != tela[n-k+j].c) {
-				tela[n+j+i*k].t = tela[n-k+j+i*k].e;
-				tela[n-k+j].t = tela[n-k+j].e;
+			if (tela[n+i*k+j].c != tela[m+j].c && tela[n+i*k+j].e == tela[m+j].e) {
+				tela[n+i*k+j].t = tela[m+j].t = tela[m+j].e;
 			}
 		}
 	}
-	for (i=0; i<tela[n].cyc_r; i++) {
-		for (j=0; j<k; j++) {	/* 2ND TIME TO PROPAGATE TRANSITIONS TO ALL UNITS */
-			if (tela[n+j+i*k].t != tela[n-k+j].t) {
-				tela[n+j+i*k].t = tela[n+j+i*k].e;
-				tela[n-k+j].t = tela[n-k+j].e;
+	for (i=0; i<r; i++) {
+		for (j=0; j<k; j++) {	/* 2ND TIME TO PROPAGATE TRANSITIONS TO ALL PARALAGOUS POSITIONS */
+			if (tela[n+i*k+j].t != tela[m+j].t) {
+				tela[n+i*k+j].t = tela[m+j].t;
 			}
 		}
 	}
-	return(n+1);
+}
+
+/*************** GENERIC FUNCTION TO ERASE REPEAT AT n, INCLUDING ANY TRANSITIONS, LEAVES k MARK */
+void pull_tela(int n)
+{
+	int i=0;
+	int k = tela[n].k;
+	int r = tela[n].r;
+	int m = n-k;
+
+	for (i=m; i<(n+k*r); i++)
+		tela[i].t = tela[i].c;
+
+	tela[n].r = 0;
 }
 
 /**************************************************************** END OF MHA fUNCTIONS **********************************/
