@@ -4,7 +4,7 @@
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
 #define MATCH       8       /* MATCH SCORE */
 #define CYCMAX     60       /* MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER STOPGAPS */
-#define FRAME_ROWS 26       /* NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
+#define FRAME_ROWS 24       /* NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
 #define PISO        2       /* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
 #define START       0       /* FOR USE WITH line_end() */
 #define END         1       /* FOR USE WITH line_end() */
@@ -36,11 +36,13 @@ struct coord {
 	int Dtr;		/* CUMULATIVE SUM OF DIAGONAL TANDEM REPEAT (DTR) SCORES BY POSITION */
 	char t;			/* IUPAC TRANSITIONS IN DNA USUALLY (RY) IN "IMPERFECT" TANDEM REPEATS */
 	/*************************************************************************************************/
-	int  cyc_F[FRAME_ROWS];	/* cycling frames; count-off column positions per unit; 32 - 6 = 26 */
+	int  cyc_F[FRAME_ROWS];	/* cycling frames; count-off column positions per unit; 32 - 8 = 24 */
 							/* one row/frame; row 0 is row # locator; FRAME_ROWS IS BASED ON MEM AL. */
-	int all_k;
-	int all_r;
-	int all_S;
+	int all_k;		/* ALL SERIES: PRE-CINCH-T: k-MER SIZE                        */
+	int all_r;		/* ALL SERIES: PRE-CINCH-T: REPEAT NUMBER                     */
+	int all_S;		/* ALL SERIES: PRE-CINCH-T: SUM OF SCORES OVER ALL UNITS      */
+	int all_R;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON RHS */
+	int all_L;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON LHS */
 	/*************************************************************************************************/
 	int cyc_Lf;		/* Left-side overlapping TR; 0=lenseq, which is also stored in options[1][1]     */
 	int cyc_Rt;		/* Right-side overlapping TR */
