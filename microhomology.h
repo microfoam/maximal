@@ -4,7 +4,7 @@
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
 #define MATCH       8       /* MATCH SCORE */
 #define CYCMAX     60       /* MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER STOPGAPS */
-#define FRAME_ROWS 29       /* NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
+#define FRAME_ROWS 26       /* NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
 #define PISO        2       /* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
 #define START       0       /* FOR USE WITH line_end() */
 #define END         1       /* FOR USE WITH line_end() */
@@ -33,25 +33,34 @@ struct coord {
 	/*************************************************************************************************/
 	int cyc_S;		/* sum of compatible products for all cycleling options */
 	int o;			/* CYCLE LENGTH; FOR CYCLELIZATION FUNCTIONS */
-	int Dtr;		/* DIAGONAL TANDEM REPEAT (DTR) SCORE BY POSITION */
+	int Dtr;		/* CUMULATIVE SUM OF DIAGONAL TANDEM REPEAT (DTR) SCORES BY POSITION */
 	char t;			/* IUPAC TRANSITIONS IN DNA USUALLY (RY) IN "IMPERFECT" TANDEM REPEATS */
 	/*************************************************************************************************/
-	int  cyc_F[FRAME_ROWS];	/* cycling frames; count-off column positions per unit; 32 - 3 = 29 */
+	int  cyc_F[FRAME_ROWS];	/* cycling frames; count-off column positions per unit; 32 - 6 = 26 */
 							/* one row/frame; row 0 is row # locator; FRAME_ROWS IS BASED ON MEM AL. */
+	int all_k;
+	int all_r;
+	int all_S;
 	/*************************************************************************************************/
 	int cyc_Lf;		/* Left-side overlapping TR; 0=lenseq, which is also stored in options[1][1]     */
 	int cyc_Rt;		/* Right-side overlapping TR */
 	char cyc_o;		/* x => cinched; o => untaken cyclelizable option; !,** => CHECK_TELA VIOLATIONS */
 	/*************************************************************************************************/
 } tela[MAXROW] = {0};
-char  align2D[MAXROW][MAXROW] = {{0}};
-char  pathbox[MAXROW][MAXROW] = {{0}};
-char  consensus[MAXROW] = {0};
+char align2D[MAXROW][MAXROW] = {{0}};
+char pathbox[MAXROW][MAXROW] = {{0}};
+char consensus[MAXROW] = {0};
+char file_name[255];
+FILE *fp_out;                           /* FILE FOR output.log */
+char dev_notes[32] = "N/A";             /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
 
 /***********************************************/
 void signal_callback_handler(int signum) 
 {
 	printf("  )--- I caught signal %d before exiting (2=SIGINT, 11=SIGSEGV).\n\n",signum);
+	fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
+	fprintf(fp_out, "---->\tCanceled run for %s with signal=%d (2=SIGINT, 11=SIGSEGV). dev_notes: %s.\n", file_name, signum, dev_notes);
+	fclose(fp_out);
 	exit(signum);
 }
 
@@ -108,6 +117,7 @@ unsigned int consensus_2D(int n_start, int n_width);
 int count_wrap_blocks(int lcl_width, int lcl_opt_w);	/* lcl_width IS WIDTH OF 2-D MHA ARRAY */ 
 int get_1Dz(int x, int y, int ignoreCheck);
 void line_end(int type, int c, int lcl_width);
+void mark_all(void);
 char mha_base62(int num);
 void mha_head(int lcl_width);
 void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
@@ -121,7 +131,7 @@ short unsigned int print_2Dseq(int print_lenseq2D);
 void print_blockhead(int a, int b);	
 void print_tela(int a, int b);
 short int pushdown(char pusharray[][MAXROW], int push_m, int push_n); 
-int score_DTHR(int kmer, int squeeze);
+int score_DTHR(int kmer);
 int span_rk(int point);
 int update_tela(void);
 void warnhead(char l); 
@@ -144,6 +154,5 @@ void 				mha_randomize2(char input_seq[MAXROW], int rsize);
 void 				print_base62_table(void);
 void 				shuffle(int *array, int n);
 void 				usage(char usage_version[], unsigned int FY_size);			/* FOR PRINTING UNIFORM USAGE INFORMATION */
-short int			tucksense(void);
 char 				*nmer_prefix(int i);			/* CONVERTS INTEGER TO N-MER PREFIX WRITTEN NAME */
 

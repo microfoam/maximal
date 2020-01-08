@@ -1,32 +1,35 @@
 #!/bin/bash
 clear
-date
+echo 'Number of tests initiated:'
+grep -c waves Surf_wavereport.log
+echo
+echo 'Number of tests completed:'
+grep -cE '^v' Surf_wavereport.log
+echo
+echo 'Number of tests with PASS 1000:'
+grep -cE '\t1000' Surf_wavereport.log 
+echo
+echo 'Number of tests with perfect 1-D recovery (REC:1000):'
+grep -cE 'C.1000' Surf_wavereport.log 
+echo
+echo 'Number of tests using nudging (k=3):'
+grep -cE 'k=3' Surf_wavereport.log 
+echo
+awk -F'[\t]' '{sum+=$5} END {print "WCR AVERAGE: " sum/NR}' Surf_wavereport.log 
 echo
 echo 'First and last runs:'
 head -n 1 Surf_wavereport.log
 tail -n 1 Surf_wavereport.log
 echo
-echo '# of tests completed:'
-grep -c v Surf_wavereport.log
+echo 'Tests with PASS < 1000:'
+grep ^v Surf_wavereport.log | grep -vE '\t1000' 
 echo
-echo '# of tests with PASS 1000:'
-grep -cE '\t1000' Surf_wavereport.log 
+echo 'Tests with REC < 1000:'
+grep ^v Surf_wavereport.log | grep -vE 'REC:1000' 
 echo
-echo '# of tests with perfect 1-D recovery (REC:1000):'
-grep -cE 'C.1000' Surf_wavereport.log 
-echo
-echo '# of tests using nudging (k=3):'
-grep -cE 'k=3' Surf_wavereport.log 
-echo
-awk -F'[\t]' '{sum+=$5} END {print "WCR AVERAGE: " sum/NR} END {print "WCR CHECKSUM: "sum}' Surf_wavereport.log 
-awk -F'[\t]' '{sum+=$9} END {print "WIDTH CHECKSUM: "sum}' Surf_wavereport.log 
-echo
-echo 'Tests w/ PASS < 1000:'
-grep -vE '\t1000' Surf_wavereport.log 
-echo
-echo 'Tests w/ REC < 1000:'
-grep -vE 'REC:1000' Surf_wavereport.log 
+echo 'Tests canceled (shown with preceding runs for context):'
+grep -B1 Canceled Surf_wavereport.log | sed '/^--$/d'
 echo
 echo 'Line counts:'
-wc -l mha_v*.c
+wc -l mha_v*.c | grep -v total
 echo
