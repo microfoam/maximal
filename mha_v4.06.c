@@ -1485,8 +1485,12 @@ printf("\nDEV-1140: Setting cyc_Lf at l+k=%d to z+j=%d.", l+k, z+j);
 		update_tela();
 
 	if (options[1][57] > 3) {	/* opt_v DEV-LEVEL VERBOSITY */
-		printf("\nDEV-1490: check_tela via 1-D coords, princeps = %2d.", check_tela(0,lenseq,  1));
-		printf("\nDEV-1491: check_tela via 2-D coords, princeps = %2d.", check_tela(0,citwidth,2));
+		n = check_tela(0,lenseq,  1);
+		if (n!=3)
+			printf("\nDEV-1490: check_tela via 1-D coords, princeps = %2d (<3).", n);
+		n = check_tela(0,citwidth,2);
+		if (n!=3)
+			printf("\nDEV-1491: check_tela via 2-D coords, princeps = %2d (<3).", n);
 		print_tela(prtela_A, prtela_B);
 	}
 
@@ -4991,8 +4995,10 @@ void assign_transit(int n, int kr_src)
 		}
 	}
 	/* WRITE TRANSITIONS TO CONSENSUS ROW OF ALIGN2D */
-	for (i=0; i<k; i++)
-		consensus[(tela[m+i].x)] = tela[m+i].t;
+	for (i=0; i<k; i++) {
+		if (consensus[tela[m+i].x] != 'R' && consensus[tela[m+i].x] != 'Y')
+			consensus[tela[m+i].x] = tela[m+i].t;
+	}
 }
 
 /*************** GENERIC FUNCTION TO ERASE REPEAT AT n, INCLUDING ANY TRANSITIONS, LEAVES k MARK */
