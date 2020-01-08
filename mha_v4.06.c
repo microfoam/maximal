@@ -4673,41 +4673,6 @@ void usage(char usage_version[], unsigned int FY_size)
 	printf("                ./maximal -KnXXY 1200 sequence-file.txt\n\n");
 }
 
-/*** FUNCTION 30 *** RETURNS 1 FOR EARLY EXIT OPTIONED BY USER REQUEST ***********/
-short unsigned int user_query(unsigned int pass_num)
-{
-char key_input[100], letr;
-int i=0;
-
-	printf("\n MAXIMAL: May I continue to the next pass (PASS #%d)?\tYOU: ", pass_num+1);
-	scanf("%s", key_input);
-
-	while (key_input[i] == ' ') {
-		i++;
-	}
-	if((letr=key_input[i]) == 'N' || letr == 'n' || letr == 'Q' || letr == 'q' || letr == 'I' || letr == 'i' || letr == 'F' || letr == 'f') {
-		printf(" MAXIMAL: Okay. I'll finish up nicely right away.\n");
-		return(0);
-	}
-	else if (letr=='Y'||letr=='y'||
-			 letr=='S'||letr=='s'||
-			 letr=='C'||letr=='C'||
-			 letr=='X'||letr=='x'||
-			 letr=='K'||letr=='k'||
-			 letr=='H'||letr=='h'||
-			 letr=='O'||letr=='o'||
-			 letr=='D'||letr=='d'||
-			 letr=='A'||letr=='a') {
-		/* YES, SURE, CONTINUE, SHI DE, XING, KE YI, HAO DE, MEI CUO, HAI, OUI, DA, ORALE, OK, K, SI, ALLRIGHT */ 
-		printf(" MAXIMAL: Great! I will continue on to the next passes.\n");
-		return(1);
-	}
-	else {
-		printf(" MAXIMAL: I do not understand you, so I will continue to fulfill my purpose in life.\n");
-		return(1);
-	}
-}
-
 /*** FUNCTION 31 *************************************/
 void warnhead(char l)
 { 

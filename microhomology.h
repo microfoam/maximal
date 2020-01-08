@@ -136,8 +136,6 @@ int span_rk(int point);
 int update_tela(void);
 void warnhead(char l); 
 
-short unsigned int 	user_query(unsigned int pass_num);
-
 int               	cinch_k(void);  
 int 				recover_1D(char recovered_1D[MAXROW]);
 int 				recoverlen(void);

@@ -32,4 +32,5 @@ grep -B1 Canceled Surf_wavereport.log | sed '/^--$/d'
 echo
 echo 'Line counts:'
 wc -l mha_v*.c | grep -v total
+wc -l microhomology.h
 echo
