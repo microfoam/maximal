@@ -126,7 +126,7 @@ void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
 void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
 void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW]);
 void mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW]);
-int push_tela(int n2, int n1);
+int push_tela(int n2, int n1, short unsigned int axioms);
 void pull_tela(int n);
 void print1D(void);
 short unsigned int print_2Dseq(int print_lenseq2D);
@@ -155,4 +155,4 @@ void 				print_base62_table(void);
 void 				shuffle(int *array, int n);
 void 				usage(char usage_version[], unsigned int FY_size);			/* FOR PRINTING UNIFORM USAGE INFORMATION */
 char 				*nmer_prefix(int i);			/* CONVERTS INTEGER TO N-MER PREFIX WRITTEN NAME */
-
+void 				free_2D(int **p2D, int lenseq);
