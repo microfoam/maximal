@@ -12,12 +12,12 @@ The file "maximal" currently corresponds to a MAC OS-compatible executible.
 Older code versions are saved in the "pointbreak" directory.
 
 _______________________________________________
-FILE: surf_wavereport.(log|mha)
+FILE: Surf_wavereport.(log|mha)
 
 This is the standard ouput report to which maximal writes. 
 Every run of maximal appends run data to the end of this file and is a log of run-time information and performance.
 
-Other informational report files also begin with the "surf_" base file name.
+Other informational report files also begin with the "Surf_" base file name.
 _______________________________________________
 FILES: surfboard-cleanup_set_(all|glassy|gnarly +/- RC), surfboard-get_worked(_clean), surfboard-check(mha|log), surfboard-Pop_Up, surfboard-pull_in
 
@@ -34,8 +34,10 @@ Files named in this format represent short sequence text files with a tricksy mi
 Typically, tricsky strings were at one point problem strings that were problematically cinched by maximal. 
 After developing the code to conduct MHA successfully on a new tricksy string it is renamed as "solved", given a number, and a description. 
 These file names and sequences should never be modified because they are used for historical comparisons of different versions of maximal. 
-
 These files are now stored in waves/ subdirectory.
+
+UPDATE FOR RECENT VERSIONS (surf-themed): Solved synthetic sequences in the example corpus are saved in the waves/tubespit/ sub-directory. Solved
+natural sequences are saved in the waves/animals sub-directory. Unsolved tricksy sequences are saved in the waves/chowder/ sub-directory.
 
 _______________________________________________
 FILE: waves/Dxxxx_ex3.txt, Dxxxx_NEE.txt ("xxxx" is a Drosophila species name)
