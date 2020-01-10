@@ -1,13 +1,12 @@
 # maximal
-maximal is a prototype program designed to explore the world of maximal homology alignment (MHA), created and written by Albert Erives (albert-erives@uiowa.edu).
+maximal is a prototype program designed to explore the world of micro-homology alignment (MHA), created and written by Albert Erives (albert-erives@uiowa.edu).
 MHA methodology is philosophically-distinct from gapped alignment in embracing local microparalogy as a fundamental feature of biological sequence.
 
 As a prototype implementation of MHA, the current versions of maximal feature a rich set of run options in order to encourage a free, open-minded, heuristics-friendly development cycle.
 Program options can be seen by running ./maximal without any options specified.
 
-Version v4.02 is the most recent stable version.
-Version v3.64 is the version associated with the most recent preprint.
-This is getting a bit exciting if you think about what is transpiring here.
+Version v4.11 is the most recent stable version.
+Version v3.64 is the version associated with the most recent preprint (see 'Pointbreak/' sub-directory).
 
 The file "maximal" currently corresponds to a MAC OS-compatible executible.
 Older code versions are saved in the "pointbreak" directory.
@@ -20,7 +19,7 @@ Every run of maximal appends run data to the end of this file and is a log of ru
 
 Other informational report files also begin with the "surf_" base file name.
 _______________________________________________
-FILES: surfboard-cleanup_set_(glassy|gnarly), surfboard-get_worked(_clean), surfboard-check(mha|log), surfboard-Pop_Up, surfboard-pull_in
+FILES: surfboard-cleanup_set_(all|glassy|gnarly +/- RC), surfboard-get_worked(_clean), surfboard-check(mha|log), surfboard-Pop_Up, surfboard-pull_in
 
 All files with the "surfboard" base name are bash script files.
 The surfboard-get_worked files test all of the internal sample strings (-a to -h), the solved-tricksy, and Drosophila example corpus. 
@@ -52,4 +51,3 @@ If this file is present it has record of newly identified "tricksy" strings with
 Typically, this file is committed after a -XX Fischer-Yates run and is named with additional version and run information.
 _______________________________________________
 
-This file is a work in progress.
