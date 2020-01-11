@@ -52,6 +52,9 @@ int assign_tela(int eL, int eM, int eN, int pointA, int pointB, int mode)
 				conflict_flag++;
 			
 			if (!conflict_flag) {		
+				if (dev_print(TELA,__LINE__)) {
+					printf("assign_tela() flat-lining tela starting at n=%d.", eL);
+				}
 				for (l = eL; l <= lenseq; l++) { 
 					tela[l].y = i;
 					tela[l].x = j++;
@@ -102,9 +105,8 @@ int assign_tela(int eL, int eM, int eN, int pointA, int pointB, int mode)
 				}	
 			}
 		}
-		else {
-			warnhead('m');
-			printf("\nDEV-tela-0093: Undefined mode invoked.");
+		else if (dev_print(TELA,__LINE__)) {
+			printf("Undefined mode invoked.");
 		}
 	
 		if (conflict_flag)
@@ -175,8 +177,10 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 		int lenseq = options[1][1];
 	
 		if (eM>=eN) {
-			printf("\nDEV-tela-0110: Need to call check_tela explicitly with %d-D positions eN > eM.", mode_dim);
 			axioms-=5;
+			if (dev_print(TELA,__LINE__)) {
+				printf("Need to call check_tela explicitly with %d-D positions eN > eM.", mode_dim);
+			}
 		}
 	
 		if (mode_dim==1) {
@@ -199,8 +203,10 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 			eN = j;
 		}
 		else {
-			printf("\nDEV-tela-0134: Need to call check_tela explicitly with dimension dim=1 or dim=2.");
 			axioms-=7;
+			if (dev_print(TELA,__LINE__)) {
+				printf("Need to call check_tela explicitly with dimension dim=1 or dim=2.");
+			}
 		}
 	
 		if (axioms==0) {
@@ -221,9 +227,10 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 			}
 			if (i==eN)
 				axioms = 1;
-			else
-				printf("\nDEV-tela-0225: check_tela(mode_dim=%d): Problem of continuity at 1-D positions %d --> %d (columns %d and %d)", 
-													mode_dim, i, i+1, tela[i].x, tela[i+1].x);
+			else if (dev_print(TELA,__LINE__)) {
+				printf("check_tela(mode_dim=%d): Problem of continuity at 1-D positions %d --> %d (columns %d and %d)", 
+									mode_dim, i, i+1, tela[i].x, tela[i+1].x);
+			}
 	
 			/* AXIOM TWO: EQUIVALENCE */
 			for (i=eM; i<eN && !badflag; i++) {
@@ -240,9 +247,10 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 			}
 			if (!badflag) 
 				axioms+=2;
-			else
-				printf("\nDEV-tela-0244: check_tela(mode_dim=%d): Problem of equivalence at 1-D positions %d and %d (both in column %d)", 
-													mode_dim, i, j, tela[i].x);
+			else if (dev_print(TELA,__LINE__)) {
+				printf("check_tela(mode_dim=%d): Problem of equivalence at 1-D positions %d and %d (both in column %d)", 
+									mode_dim, i, j, tela[i].x);
+			}
 		}
 		return(axioms);	/* 0 IF BOTH FAIL; +1 IF ONLY ONE PASSES; +2 IF ONLY TWO PASSES; +3 IF BOTH PASS */ 
 	}
@@ -868,8 +876,10 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 				;	
 			else {
 				violation = 1;
-				printf("\nDEV-tela-0521: push_tela() viol-1 for n2=%d k=%d (i=%d): A_x=%d, A_y=%d, B_x=%d, B_y=%d.", 
-														n2, k, i, coord_A_x, coord_A_y, coord_B_x, coord_B_y); 
+				if (dev_print(TELA,__LINE__)) {
+					printf("push_tela() viol-1 for n2=%d k=%d (i=%d): A_x=%d, A_y=%d, B_x=%d, B_y=%d.", 
+												n2, k, i, coord_A_x, coord_A_y, coord_B_x, coord_B_y); 
+				}
 				break;
 			}
 		}
@@ -892,7 +902,9 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 			}
 			else {
 				violation += 2;
-				printf("\nDEV-tela-0895: push_tela() viol-2 at %d and %d for k=%d.", n1+i, n2+i, k);
+				if (dev_print(TELA,__LINE__)) {
+					printf("push_tela() viol-2 at %d and %d for k=%d.", n1+i, n2+i, k);
+				}
 				break;	
 			}
 		}

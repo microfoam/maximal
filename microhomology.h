@@ -20,6 +20,8 @@
 #define PATHBOXHEAD 4       /* FOR USE WITH line_end() */
 #define BLOCKHEAD   5       /* FOR USE WITH line_end() */
 #define SLIPRULER   6       /* FOR USE WITH line_end() */
+#define MAIN		1		/* FOR USE WITH dev_print() */
+#define TELA		2		/* FOR USE WITH dev_print() */
 #define max(a,b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a > _b ? _a : _b; })
 
 struct coord {
@@ -129,7 +131,7 @@ void 				mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
 void 				mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW]);
 void 				mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW]);
 void 				print1D(void);
-short unsigned int print_2Dseq(int print_lenseq2D);
+short unsigned int	print_2Dseq(int print_lenseq2D);
 void 				print_blockhead(int a, int b);	
 short int 			pushdown(char pusharray[][MAXROW], int push_m, int push_n); 
 int 				span_rk(int point);
@@ -137,7 +139,7 @@ void 				warnhead(char l);
 int               	cinch_k(void);  
 int 				recover_1D(char recovered_1D[MAXROW]);
 int 				recoverlen(void);
-short unsigned int 	cleanseq(char *s);
+short unsigned int	cleanseq(char *s);
 int 				get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW]);
 int					cinch_l(void);  
 unsigned int       	nudgelize(void);
@@ -150,3 +152,5 @@ void 				shuffle(int *array, int n);
 void 				usage(char usage_version[], unsigned int FY_size);			/* FOR PRINTING UNIFORM USAGE INFORMATION */
 char 				*nmer_prefix(int i);			/* CONVERTS INTEGER TO N-MER PREFIX WRITTEN NAME */
 void 				free_2D(int **p2D, int lenseq);
+short unsigned int	dev_print(short unsigned int mode, int line_no);
+
