@@ -759,7 +759,7 @@ int main(int argc, char *argv[])
 				} 
 
 				if (options[1][57] > 3 && Dtr) {	/* VERBOSITY */
-					printf("\nmain-DEV-0770: At m=%d and n=%d, k=%d, all_r=%d, imperfect_TR=%d.", m, n, k, tela[n].all_r, imperfect_TR);
+					printf("\nDEV-main-0770: At m=%d and n=%d, k=%d, all_r=%d, imperfect_TR=%d.", m, n, k, tela[n].all_r, imperfect_TR);
 				}
 
 				/* IF SUMMING PATHBOX DIAGONAL 4/: FIND AND STORE POSITION OF LEFT-MOST OVERLAPPING TRs */
@@ -770,7 +770,7 @@ int main(int argc, char *argv[])
 							tela[n].X = i;		/* UPDATE LEFT-MOST OVERLAPPING TR */
 
 							if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-								printf("\nmain-DEV-0773: Setting tela[%d].X to i=%d. m=%d, k=%d, Dtr=%d, imperfect_TR=%d.", n, i, m, k, Dtr, imperfect_TR);
+								printf("\nDEV-main-0773: Setting tela[%d].X to i=%d. m=%d, k=%d, Dtr=%d, imperfect_TR=%d.", n, i, m, k, Dtr, imperfect_TR);
 						}
 					} 
 					if (!imperfect_TR && (l=tela[n].X) > m && l + span_rk(l) < n)
@@ -786,7 +786,7 @@ int main(int argc, char *argv[])
 										Dtr = imperfect_TR = 0;
 										tela[n].cyc_o = 'o';
 										if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
-											printf("\nmain-DEV-0789: Skipping cinch here to use later cycling frame at %d.", l+1);
+											printf("\nDEV-main-0789: Skipping cinch here to use later cycling frame at %d.", l+1);
 										}
 										break;
 									}
@@ -860,7 +860,7 @@ int main(int argc, char *argv[])
 									options[1][50] += badslip_type;
 									options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 									if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-										printf("\nmain-DEV-0863: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+										printf("\nDEV-main-0863: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
 									Dtr = imperfect_TR = 0; /* SKIP PRESENT SLIP */
 									break;
@@ -873,7 +873,7 @@ int main(int argc, char *argv[])
 									options[1][50] += badslip_type;
 									options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 									if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-										printf("\nmain-DEV-0876: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+										printf("\nDEV-main-0876: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
 									Dtr = imperfect_TR = 0; /* SKIP PRESENT SLIP */
 									break;
@@ -886,7 +886,7 @@ int main(int argc, char *argv[])
 									options[1][50] += badslip_type;
 									options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 									if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-										printf("\nmain-DEV-0889: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+										printf("\nDEV-main-0889: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
 									l = tela[n].X;
 									r = tela[l].r;
@@ -922,7 +922,7 @@ int main(int argc, char *argv[])
 				/* IF SUMMING PATHBOX DIAGONAL 7/: COMMITTING TO CINCH AFTER AXIOMATIC TEST BY PUSH_TELA  ************************/
 				if (Dtr && (o=push_tela(n,m,3))) {	
 					if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
-						printf("\nmain-DEV-0926: push_tela violations=%d (+1 CONT, +2 EQUIV). Skipping k=%d-mer at n=%d.", o, k, n+1);
+						printf("\nDEV-main-0926: push_tela violations=%d (+1 CONT, +2 EQUIV). Skipping k=%d-mer at n=%d.", o, k, n+1);
 						print_tela(prtela_A, prtela_B);
 					}
 					Dtr = imperfect_TR = 0;
@@ -1061,7 +1061,7 @@ int main(int argc, char *argv[])
 													l--;
 
 												if (options[1][57] > 3)
-													printf("\nmain-DEV-1077: n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
+													printf("\nDEV-main-1077: n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
 
 												tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
 												tela[l  ].cyc_Rt = z+j;
@@ -1073,7 +1073,7 @@ int main(int argc, char *argv[])
 													l++;
 
 												if (options[1][57] > 3)
-													printf("\nmain-DEV-1089: n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
+													printf("\nDEV-main-1089: n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
 
 												tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
 												tela[l  ].cyc_Rt = z+j;
@@ -1099,8 +1099,8 @@ int main(int argc, char *argv[])
 										options[1][50] += badslip_type;
 										options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 										if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
-											printf("\nmain-DEV-1115: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
-											printf("\nmain-DEV-1116: Before--->");
+											printf("\nDEV-main-1115: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+											printf("\nDEV-main-1116: Before--->");
 											print_tela(prtela_A, prtela_B);
 										}
 										assign_tela(n, row, a2D_n, 0,0, ONE);	/* MODES O-F-F, ONE--FIVE: ONE=FLATLINE AT N, TWO=ASSIGN  */
@@ -1111,13 +1111,13 @@ int main(int argc, char *argv[])
 											assign_tela(n++, row, a2D_n++, 0,0, TWO);	/* MODES O-F-F, ONE--FIVE: ONE=FLATLINE AT N, TWO=ASSIGN  */
 										}
 										if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
-											printf("\nmain-DEV-1127: Midway--->");
+											printf("\nDEV-main-1127: Midway--->");
 											print_tela(prtela_A, prtela_B);
 										}
 
 										o = push_tela(l,l-k, 3);
 										if (options[1][57] > 3)  /* opt_v DEV-LEVEL VERBOSITY */
-											printf("\nmain-DEV-1133: push_tela violations = %d.", o);
+											printf("\nDEV-main-1133: push_tela violations = %d.", o);
 										reps = tela[l].r = tela[l].cyc_r;
 										tela[l].k = k;
 										tela[l].o = tela[l].cyc_k * (tela[l].cyc_r+1);
@@ -1128,7 +1128,7 @@ int main(int argc, char *argv[])
 											}
 										}
 										if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
-											printf("\nmain-DEV-1144: After--->");
+											printf("\nDEV-main-1144: After--->");
 											print_tela(prtela_A, prtela_B);
 										}
 									}
@@ -1142,7 +1142,7 @@ int main(int argc, char *argv[])
 												options[1][50] += badslip_type;
 												options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 												if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-													printf("\nmain-DEV-1158: badslip type %d at n=%d for k=%d with TR at l=%d, delta=%d.", badslip_type, n, k, l, j-i);
+													printf("\nDEV-main-1158: badslip type %d at n=%d for k=%d with TR at l=%d, delta=%d.", badslip_type, n, k, l, j-i);
 
 												a2D_n = tela[n].x+k; 
 												row   = tela[n].y-1;
@@ -1152,7 +1152,7 @@ int main(int argc, char *argv[])
 												options[1][50] += badslip_type;
 												options[1][39] = 1; sprintf(dev_notes, "bslip %d", (int) options[1][50]);
 												if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-													printf("\nmain-DEV-1170: badslip type 10000 at n=%d; failed cyclelize_tela().", n);
+													printf("\nDEV-main-1170: badslip type 10000 at n=%d; failed cyclelize_tela().", n);
 											}
 										}
 									}
@@ -1192,7 +1192,7 @@ int main(int argc, char *argv[])
 											options[1][50] += badslip_type;
 											options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 											if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-												printf("\nmain-DEV-1210: badslip type %d at n=%d for k=%d with TR at cycto=%d, z=%d.", badslip_type, n, k, cycto, z);
+												printf("\nDEV-main-1210: badslip type %d at n=%d for k=%d with TR at cycto=%d, z=%d.", badslip_type, n, k, cycto, z);
 
 											a2D_n = tela[n].x+k; 
 											row   = tela[n].y-1; 
@@ -1204,7 +1204,7 @@ int main(int argc, char *argv[])
 											options[1][50] += badslip_type;
 											options[1][39] = 1; sprintf(dev_notes, "bslip %d", (int) options[1][50]);
 											if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-												printf("\nmain-DEV-1221: badslip type 10000 at n=%d; failed cyclelize_tela().", n);
+												printf("\nDEV-main-1221: badslip type 10000 at n=%d; failed cyclelize_tela().", n);
 
 										}
 									}
@@ -1214,7 +1214,7 @@ int main(int argc, char *argv[])
 							if (tela[n].o > 2*k) {
 								cycle_flag = 1;		/* THIS BIT CAN BE USED TO ADD CYCLE NOTATION TO END OF LINE */
 								if (options[1][57] > 3) /* opt_v DEV-LEVEL VERBOSITY */
-									printf("\nmain-DEV-1232: %2d-mer cycle sequence of length %2d starting at %4d (n=%d): %s.", k, tela[n].o, n-k, n, cycle);
+									printf("\nDEV-main-1232: %2d-mer cycle sequence of length %2d starting at %4d (n=%d): %s.", k, tela[n].o, n-k, n, cycle);
 							}
 							else {
 								for (l = 0; l <= WIDTH; l++)
@@ -1268,7 +1268,7 @@ int main(int argc, char *argv[])
 										options[1][50] += badslip_type;
 										options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 										if (options[1][57] > 3)  /* opt_v DEV-LEVEL VERBOSITY */
-											printf("\nmain-DEV-1286: badslip type %d at n=%d for k=%d with TR at i=%d.", badslip_type, n, k, i);
+											printf("\nDEV-main-1286: badslip type %d at n=%d for k=%d with TR at i=%d.", badslip_type, n, k, i);
 
                                         delta_to_bad1Dn = n-i;                      /* THIS IS DISTANCE TO THE BAD SLIP */
                                         bad_1Dn = i;                                /* STORE POSITION OF BAD SLIP */
@@ -1281,7 +1281,7 @@ int main(int argc, char *argv[])
 											options[1][50] += badslip_type;
 											options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 											if (options[1][57] > 3)  /* opt_v DEV-LEVEL VERBOSITY */
-												printf("\nmain-DEV-1299: badslip type %d at n=%d for k=%d with TR at i=%d.", badslip_type, n, k, i); 
+												printf("\nDEV-main-1299: badslip type %d at n=%d for k=%d with TR at i=%d.", badslip_type, n, k, i); 
 
 											delta_to_bad1Dn = n-i;                  /* THIS IS DISTANCE TO THE BAD SLIP */
 											bad_1Dn = i;                            /* STORE POSITION OF BAD SLIP */
@@ -1297,7 +1297,7 @@ int main(int argc, char *argv[])
 												options[1][50] += badslip_type;
 												options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
 												if (options[1][57] > 3) 
-													printf("\nmain-DEV-1315: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
+													printf("\nDEV-main-1315: badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 
 												delta_to_bad1Dn = n-i;				/* THIS IS DISTANCE	TO THE BAD SLIP */
 												bad_1Dn = i;						/* STORE POSITION OF BAD SLIP */
@@ -1382,7 +1382,7 @@ int main(int argc, char *argv[])
 
                         if ((z = k - overslip - (int) a2D_n) > 0) { 
 							if (options[1][57] > 3) { /* opt_v DEV-LEVEL VERBOSITY */
-    	                        printf("\nmain-DEV-1400: 2D-printing into upstream region by %d.", z);
+    	                        printf("\nDEV-main-1400: 2D-printing into upstream region by %d.", z);
 							}
                             for (m = 0; m < row; m++) {
                                 for (l=lenseq; l >= 0; l--) {				/* CAN SAVE TIME IF l=lenseq REPLACED BY SHORTER LIMIT */
@@ -1435,9 +1435,9 @@ int main(int argc, char *argv[])
 
 					if (options[1][57] > 2) {	/* opt_v ACTIVE DEV-LEVEL VERBOSITY */
 						p = (int) a2D_n; q = lenseq;
-						printf("\nmain-DEV-1456: check_tela via 2-D = %2d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,p, TWO));
-						printf("\nmain-DEV-1457: check_tela via 1-D = %2d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,q, ONE));
-						printf("\nmain-DEV-1458: print_tela for k=%d and r=%d at n=%d, overslip=%d.", k, r, n, overslip);
+						printf("\nDEV-main-1456: check_tela via 2-D = %2d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,p, TWO));
+						printf("\nDEV-main-1457: check_tela via 1-D = %2d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,q, ONE));
+						printf("\nDEV-main-1458: print_tela for k=%d and r=%d at n=%d, overslip=%d.", k, r, n, overslip);
 						print_tela(0,55);
 						print_tela(55,110);
 /*						print_tela(prtela_A, prtela_B);
@@ -1507,10 +1507,10 @@ int main(int argc, char *argv[])
 	if (options[1][57] > 3) {	/* opt_v DEV-LEVEL VERBOSITY */
 		n = check_tela(0,lenseq, ONE);
 		if (n!=3)
-			printf("\nmain-DEV-1526: check_tela via 1-D coords, axioms = %2d (<3).", n);
+			printf("\nDEV-main-1526: check_tela via 1-D coords, axioms = %2d (<3).", n);
 		n = check_tela(0,citwidth, TWO);
 		if (n!=3)
-			printf("\nmain-DEV-1529: check_tela via 2-D coords, axioms = %2d (<3).", n);
+			printf("\nDEV-main-1529: check_tela via 2-D coords, axioms = %2d (<3).", n);
 		print_tela(prtela_A, prtela_B);
 	}
 
