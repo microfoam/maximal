@@ -4,9 +4,9 @@
 /* or verb_object(), where object is related to tela struct.      */
 /******************************************************************/
 
-int  assign_tela(int eL, int eM, int eN, int mode, int pointA, int pointB);
+int  assign_tela(int eL, int eM, int eN, int pointA, int pointB, int mode);
 void assign_transit(int n, int kr_src);
-int  check_tela(int eM, int eN, short unsigned int dim);
+int  check_tela(int eM, int eN, short unsigned int mode_dim);
 void clearall_tela(int n, int span, int max_score, int mode);
 int  cyclelize_tela(int cpos, int delta, int npos);
 void mark_tela(void);
@@ -16,59 +16,62 @@ int  push_tela(int n2, int n1, short unsigned int axioms);
 int  settle_tiescores(int n, int span, int max_score, int iteration);
 int  update_tela(void);
 
-int assign_tela(int eL, int eM, int eN, int mode, int pointA, int pointB)
+int assign_tela(int eL, int eM, int eN, int pointA, int pointB, int mode)
 {
-	int i=0, j=0, l=0, conflict_flag=0;
-	int lenseq = options[1][1];
-	int start=0, end=lenseq;
-
-	if (pointB > pointA) {	/* ASSIGN LINE VALUES IF CHECKING LIMITED SPAN */
-		start = pointA;
-		end   = pointB;
-	}
+	if (!mode)
+		return(0);
 	else {
-		start = 0;
-		end   = lenseq;
-	}
+		int i=0, j=0, l=0, conflict_flag=0;
+		int lenseq = options[1][1];
+		int start=0, end=lenseq;
 
-	if (!mode) {					/* MODE 0: ASSIGN SAME COLUMN TO IDENTICAL LETTERS */
-		align2D[eM][eN] = tela[eL].c;
-		tela[eL].y = eM;
-		tela[eL].x = eN;
-	}
-	else if (mode==1) {				/* MODE 1: CHECK AND ASSIGN SAME COLUMN TO IDENTICAL LETTERS */
-		for (i=start; i<end; i++) {
-			if (tela[i].x == eN && tela[i].c != tela[eN].c) {
-				conflict_flag = 1;
-				break;
-			}
+		if (pointB > pointA) {	/* ASSIGN LINE VALUES IF CHECKING LIMITED SPAN */
+			start = pointA;
+			end   = pointB;
 		}
-		if (!conflict_flag) {
+		else {
+			start = 0;
+			end   = lenseq;
+		}
+	
+		if (mode==2) {					/* MODE 2: ASSIGN SAME COLUMN TO IDENTICAL LETTERS */
 			align2D[eM][eN] = tela[eL].c;
 			tela[eL].y = eM;
 			tela[eL].x = eN;
 		}
-	}
-	else if (mode==2) {				/* MODE 2: ASSIGN SAME COLUMN TO EQUIVALENT LETTERS */
-		align2D[eM][eN] = tela[eL].c;
-		tela[eL].y = eM;
-		tela[eL].x = eN;
-		for (i=start; i<=end; i++) {
-			if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e == tela[eL].e) {
-				j = tela[i].x;
-				consensus[j] = tela[i].t = tela[i].e;
+		else if (mode==1) {				/* MODE 1: FLAT-LINE TELA STARTING AT POINT eL */
+			if (eL > 0 && eL <= lenseq) {
+				i = tela[eL-1].y;
+				j = tela[eL-1].x + 1; 
 			}
-		}	
-	}
-	else if (mode==3) {				/* MODE 3: CHECK AND ASSIGN SAME COLUMN TO EQUIVALENT LETTERS */
-		for (i=start; i<end; i++) {
-			if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e != tela[eL].e) {
-				conflict_flag = 1;
-				break;
+			else if (eL == 0) {
+				i = tela[eL].y;
+				j = 0;
+			}
+			else
+				conflict_flag++;
+			
+			if (!conflict_flag) {		
+				for (l = eL; l <= lenseq; l++) { 
+					tela[l].y = i;
+					tela[l].x = j++;
+				}
 			}
 		}
-
-		if (!conflict_flag) {
+		else if (mode==3) {				/* MODE 3: CHECK AND ASSIGN SAME COLUMN TO IDENTICAL LETTERS */
+			for (i=start; i<end; i++) {
+				if (tela[i].x == eN && tela[i].c != tela[eN].c) {
+					conflict_flag = 1;
+					break;
+				}
+			}
+			if (!conflict_flag) {
+				align2D[eM][eN] = tela[eL].c;
+				tela[eL].y = eM;
+				tela[eL].x = eN;
+			}
+		}
+		else if (mode==4) {				/* MODE 4: ASSIGN SAME COLUMN TO EQUIVALENT LETTERS */
 			align2D[eM][eN] = tela[eL].c;
 			tela[eL].y = eM;
 			tela[eL].x = eN;
@@ -79,35 +82,36 @@ int assign_tela(int eL, int eM, int eN, int mode, int pointA, int pointB)
 				}
 			}	
 		}
-	}
-	else if (mode==4) {			/* MODE 4: FLAT-LINE TELA STARTING AT POINT eL */
-		if (eL > 0 && eL <= lenseq) {
-			i = tela[eL-1].y;
-			j = tela[eL-1].x + 1; 
-		}
-		else if (eL == 0) {
-			i = tela[eL].y;
-			j = 0;
-		}
-		else
-			conflict_flag++;
-		
-		if (!conflict_flag) {		
-			for (l = eL; l <= lenseq; l++) { 
-				tela[l].y = i;
-				tela[l].x = j++;
+		else if (mode==5) {				/* MODE 5: CHECK AND ASSIGN SAME COLUMN TO EQUIVALENT LETTERS */
+			for (i=start; i<end; i++) {
+				if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e != tela[eL].e) {
+					conflict_flag = 1;
+					break;
+				}
+			}
+	
+			if (!conflict_flag) {
+				align2D[eM][eN] = tela[eL].c;
+				tela[eL].y = eM;
+				tela[eL].x = eN;
+				for (i=start; i<=end; i++) {
+					if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e == tela[eL].e) {
+						j = tela[i].x;
+						consensus[j] = tela[i].t = tela[i].e;
+					}
+				}	
 			}
 		}
+		else {
+			warnhead('m');
+			printf("\ntela-DEV-0093: Undefined mode invoked.");
+		}
+	
+		if (conflict_flag)
+			return(0);
+		else
+			return(1);
 	}
-	else {
-		warnhead('m');
-		printf("\ntela-DEV-0093: undefined mode invoked");
-	}
-
-	if (conflict_flag)
-		return(0);
-	else
-		return(1);
 }
 
 
@@ -162,81 +166,86 @@ void assign_transit(int n, int kr_src)
 
 
 /****** TELA: A FABRIC, UNDER AXIOMATIC LAWS **********************/
-int check_tela(int eM, int eN, short unsigned int dim) 
+int check_tela(int eM, int eN, short unsigned int mode_dim) 
 {
-int i=0, j=0, lineM=0, lineN=0, princeps=0, badflag=0;
-int lenseq = options[1][1];
-
-	if (eM>=eN) {
-		printf("\ntela-DEV-0110: Need to call check_tela explicitly with %d-D positions eN > eM.", dim);
-		princeps-=5;
-	}
-
-	if (dim==1) {
-		/* GET 2-D COORDINATES FROM 1-D COORDINATES */
-		lineM = tela[eM].x;	
-		lineN = tela[eN].x;	
-	}
-	else if (dim==2) {
-		/* SAVE 2-D COORDINATES */
-		lineM = eM;	
-		lineN = eN;	
-		/* TRANSLATE 2-D COORDINATES INTO 1-D COORDINATES */
-		while (tela[i].y != lineM && i<lenseq)
-			i++;
-		eM = i;
-
-		j=lenseq;
-		while (tela[j].x != lineN && j>0)
-			j--;
-		eN = j;
-	}
+	if (!mode_dim)	/* check_tela called in OFF mode, but will return 1+2 = success */
+		return(3);
 	else {
-		printf("\ntela-DEV-0134: Need to call check_tela explicitly with dimension dim=1 or dim=2.");
-		princeps-=7;
-	}
-
-	if (princeps==0) {
-		/* ANGEL ONE: THE PRINCE OF CONTINUITY */
-		for (i=eM; i<eN; i++) {
-			if (     tela[i+1].x == tela[i].x + 1 &&
-				     tela[i+1].y == tela[i].y) {
-				;
-			}
-			else if (tela[i+1].y == tela[i].y + 1 &&
-					 tela[i+1].x <=  tela[i].x) {
-				;
-			}
-			else {
-				tela[i].cyc_o = '!';						/* MARK EDGE OF DISCONTINUITY */
-				break;
-			}
+		int i=0, j=0, lineM=0, lineN=0, axioms=0, badflag=0;
+		int lenseq = options[1][1];
+	
+		if (eM>=eN) {
+			printf("\ntela-DEV-0110: Need to call check_tela explicitly with %d-D positions eN > eM.", mode_dim);
+			axioms-=5;
 		}
-		if (i==eN)
-			princeps = 1;
-		else
-			printf("\ntela-DEV-0157: check_tela(): Problem of continuity at 1-D positions %d --> %d (columns %d and %d)", i, i+1, tela[i].x, tela[i+1].x);
-
-		/* ANGEL TWO: THE PRINCE OF EQUIVALENCE */
-		for (i=eM; i<eN && !badflag; i++) {
-			for (j=i+1; j<eN; j++) {
-				if (tela[j].x == tela[i].x && 
-					tela[j].e != tela[i].e) {
-					tela[j].cyc_o = tela[i].cyc_o = '*';	/* MARK PAIR OF NON-EQUIVALENT SITES SHARING SAME COLUMN */
-					badflag++;
-					break;		/* TO BREAK FOR j LOOP */
-				}	
-			}
-			if (badflag)
-				break;
+	
+		if (mode_dim==1) {
+			/* GET 2-D COORDINATES FROM 1-D COORDINATES */
+			lineM = tela[eM].x;	
+			lineN = tela[eN].x;	
 		}
-		if (!badflag) 
-			princeps+=2;
-		else
-			printf("\ntela-DEV-0175: check_tela(): Problem of equivalence at 1-D positions %d and %d (both in column %d)", i, j, tela[i].x);
+		else if (mode_dim==2) {
+			/* SAVE 2-D COORDINATES */
+			lineM = eM;	
+			lineN = eN;	
+			/* TRANSLATE 2-D COORDINATES INTO 1-D COORDINATES */
+			while (tela[i].y != lineM && i<lenseq)
+				i++;
+			eM = i;
+	
+			j=lenseq;
+			while (tela[j].x != lineN && j>0)
+				j--;
+			eN = j;
+		}
+		else {
+			printf("\ntela-DEV-0134: Need to call check_tela explicitly with dimension dim=1 or dim=2.");
+			axioms-=7;
+		}
+	
+		if (axioms==0) {
+			/* AXIOM ONE: CONTINUITY */
+			for (i=eM; i<eN; i++) {
+				if (     tela[i+1].x == tela[i].x + 1 &&
+					     tela[i+1].y == tela[i].y) {
+					;
+				}
+				else if (tela[i+1].y == tela[i].y + 1 &&
+						 tela[i+1].x <=  tela[i].x) {
+					;
+				}
+				else {
+					tela[i].cyc_o = '!';						/* MARK EDGE OF DISCONTINUITY */
+					break;
+				}
+			}
+			if (i==eN)
+				axioms = 1;
+			else
+				printf("\ntela-DEV-0225: check_tela(mode_dim=%d): Problem of continuity at 1-D positions %d --> %d (columns %d and %d)", 
+													mode_dim, i, i+1, tela[i].x, tela[i+1].x);
+	
+			/* AXIOM TWO: EQUIVALENCE */
+			for (i=eM; i<eN && !badflag; i++) {
+				for (j=i+1; j<eN; j++) {
+					if (tela[j].x == tela[i].x && 
+						tela[j].e != tela[i].e) {
+						tela[j].cyc_o = tela[i].cyc_o = '*';	/* MARK PAIR OF NON-EQUIVALENT SITES SHARING SAME COLUMN */
+						badflag++;
+						break;		/* TO BREAK FOR j LOOP */
+					}	
+				}
+				if (badflag)
+					break;
+			}
+			if (!badflag) 
+				axioms+=2;
+			else
+				printf("\ntela-DEV-0244: check_tela(mode_dim=%d): Problem of equivalence at 1-D positions %d and %d (both in column %d)", 
+													mode_dim, i, j, tela[i].x);
+		}
+		return(axioms);	/* 0 IF BOTH FAIL; +1 IF ONLY ONE PASSES; +2 IF ONLY TWO PASSES; +3 IF BOTH PASS */ 
 	}
-
-	return(princeps);	/* 0 IF BOTH FAIL; +1 IF ONLY ONE PASSES; +2 IF ONLY TWO PASSES; +3 IF BOTH PASS */ 
 }
 
 
@@ -505,8 +514,11 @@ void mark_tela(void)
 			}
 			if (!checkconflict) 
 				;
-			else if (span==1)
+			else if (span==1) {
 				tela[n].all_Z = tela[n].all_S;
+				if (tela[n].all_S != tela[n].r*k*MATCH)
+					assign_transit(n,OFF);	/* OFF; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
+			}
 			else {
 				for (i=n; i<n+span; i++) {
 					if (tela[i].all_S == max_score && tela[i].all_k == min_k) {
@@ -520,7 +532,7 @@ void mark_tela(void)
 						max_count = settle_tiescores(n, span, max_score, j++);
 				}
 				else
-					clearall_tela(n, span, max_score, 1);
+					clearall_tela(n, span, max_score, ONE);			/* OFF, ONE, OR TWO */
 			}
 			n = n + span - 1;
 		}
@@ -581,7 +593,7 @@ int max_count=0, ratchet=0;
 			max_count++;
 	}
 	if (max_count == 1) 				/* THERE IS ONE OPTIMAL CINCH LOCATION AND NO CONFLICT SO ERASE ALL OTHERS */
-		clearall_tela(n, span, max_score, 2);
+		clearall_tela(n, span, max_score, TWO);		/* OFF, ONE, OR TWO */
 
 	return(max_count);
 }
@@ -804,19 +816,6 @@ int lenseq = options[1][1];
 }
 
 
-/* PROPAGATE NEW TELA COORDINATES TO THE RIGHT FROM GIVEN START ***/
-void propagate_tela(int start, int row, int a2D_n) 
-{
-	int i=0;
-	int lenseq = options[1][1];
-
-	for (i=start; i<=lenseq; i++) {
-		tela[i].y = row;
-		tela[i].x = a2D_n++;
-	}
-}
-
-
 /* ERASE REPEAT AT n, INCLUDING ANY TRANSITIONS, LEAVES k MARK ****/
 void pull_tela(int n)
 {
@@ -893,7 +892,7 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 			}
 			else {
 				violation += 2;
-				printf("\ntela-DEV-0543: push_tela() viol-2 at %d and %d for k=%d.", n1+i, n2+i, k);
+				printf("\ntela-DEV-0895: push_tela() viol-2 at %d and %d for k=%d.", n1+i, n2+i, k);
 				break;	
 			}
 		}
@@ -919,7 +918,7 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 			tela[n2 + i].x = tela[n1+i].x;
 			tela[n2 + i].y++;
 		}
-		for (i=n2+k ; i<=lenseq; i++) {
+		for (i=n2+k; i<=lenseq; i++) {
 			tela[i].x -= k;
 			tela[i].y++;
 		}
