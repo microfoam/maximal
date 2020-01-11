@@ -1,11 +1,13 @@
+/**************************************************/
 /* microhomology.h: header file since mha_v3.97.c */
+/**************************************************/
 
 #define MAXROW   2000       /* maximum input line size  */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
-#define MATCH       8       /* MATCH SCORE */
 #define CYCMAX     60       /* MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER STOPGAPS */
-#define FRAME_ROWS 24       /* NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
+#define FRAME_ROWS 23       /* NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
 #define PISO        2       /* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
+#define OFF			0		/* FOR CLARITY OF MODE ARGUMENTS */
 #define START       0       /* FOR USE WITH line_end() */
 #define END         1       /* FOR USE WITH line_end() */
 #define RULER       2       /* FOR USE WITH line_end() */
@@ -36,11 +38,12 @@ struct coord {
 	int Dtr;		/* CUMULATIVE SUM OF DIAGONAL TANDEM REPEAT (DTR) SCORES BY POSITION */
 	char t;			/* IUPAC TRANSITIONS IN DNA USUALLY (RY) IN "IMPERFECT" TANDEM REPEATS */
 	/*************************************************************************************************/
-	int  cyc_F[FRAME_ROWS];	/* cycling frames; count-off column positions per unit; 32 - 8 = 24 */
+	int  cyc_F[FRAME_ROWS];	/* cycling frames; count-off column positions per unit; 32 - 8 = 23 */
 							/* one row/frame; row 0 is row # locator; FRAME_ROWS IS BASED ON MEM AL. */
 	int all_k;		/* ALL SERIES: PRE-CINCH-T: k-MER SIZE                        */
 	int all_r;		/* ALL SERIES: PRE-CINCH-T: REPEAT NUMBER                     */
 	int all_S;		/* ALL SERIES: PRE-CINCH-T: SUM OF SCORES OVER ALL UNITS      */
+	int all_Z;		/* ALL SERIES: PRE-CINCH-T: ALL_S + TIE-BREAKERS			  */
 	int all_R;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON RHS */
 	int all_L;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON LHS */
 	/*************************************************************************************************/
@@ -79,7 +82,6 @@ int rnd;
     return rnd % n;
 }
 
-
 long int options[4][62] = {
 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,46, 0, 0, 0, 0, 0, 0,-1, 0, 0, 0,10, 0, 0, 0,40,41, 0, 4, 0, 0, 0, 0, 0,32, 0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
@@ -108,46 +110,33 @@ long int options[4][62] = {
 								/* 10 EQUALS passQ score / 1000			*/
 /* RESERVE options[1][26] (opt_Q) and options[1][27] (opt_R) for storing LEFT and RIGHT 'R'un delimiter characters */
 
-int assign_tela(int eL, int eM, int eN, int mode, int pointA, int pointB);
-void assign_transit(int n, int kr_src);
-int check_tela(int eM, int eN, short unsigned int dim);
-int cyclelize_tela(int cpos, int delta, int npos);
-void clear_2D_ar(char wipe_align2D[][MAXROW]);
-void clear_right(char swipe_align2D[][MAXROW]);
-int col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short int updown); 
-unsigned int consensus_2D(int n_start, int n_width);
-int count_wrap_blocks(int lcl_width, int lcl_opt_w);	/* lcl_width IS WIDTH OF 2-D MHA ARRAY */ 
-int get_1Dz(int x, int y, int ignoreCheck);
-void line_end(int type, int c, int lcl_width);
-void mark_all(void);
-char mha_base62(int num);
-void mha_head(int lcl_width);
-void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
-void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
-void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW]);
-void mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW]);
-int push_tela(int n2, int n1, short unsigned int axioms);
-void pull_tela(int n);
-void print1D(void);
+void 				clear_2D_ar(char wipe_align2D[][MAXROW]);
+void 				clear_right(char swipe_align2D[][MAXROW]);
+int 				col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short int updown); 
+unsigned int 		consensus_2D(int n_start, int n_width);
+int 				count_wrap_blocks(int lcl_width, int lcl_opt_w);	/* lcl_width IS WIDTH OF 2-D MHA ARRAY */ 
+int 				get_1Dz(int x, int y, int ignoreCheck);
+void 				line_end(int type, int c, int lcl_width);
+char 				mha_base62(int num);
+void 				mha_head(int lcl_width);
+void 				mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
+void 				mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
+void 				mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW]);
+void 				mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW]);
+void 				print1D(void);
 short unsigned int print_2Dseq(int print_lenseq2D);
-void print_blockhead(int a, int b);	
-void print_tela(int a, int b);
-short int pushdown(char pusharray[][MAXROW], int push_m, int push_n); 
-int score_DTHR(int kmer);
-int span_rk(int point);
-int update_tela(void);
-void warnhead(char l); 
-
+void 				print_blockhead(int a, int b);	
+short int 			pushdown(char pusharray[][MAXROW], int push_m, int push_n); 
+int 				span_rk(int point);
+void 				warnhead(char l); 
 int               	cinch_k(void);  
 int 				recover_1D(char recovered_1D[MAXROW]);
 int 				recoverlen(void);
 short unsigned int 	cleanseq(char *s);
-
 int 				get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW]);
 int					cinch_l(void);  
 unsigned int       	nudgelize(void);
 unsigned int       	cinch_d(short unsigned int cinch_d_opt);
-
 void		 		relax_2D(void);
 void 				mha_randomize1(char input_seq[MAXROW]);
 void 				mha_randomize2(char input_seq[MAXROW], int rsize);

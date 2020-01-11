@@ -4,6 +4,17 @@
 /* or verb_object(), where object is related to tela struct.      */
 /******************************************************************/
 
+int  assign_tela(int eL, int eM, int eN, int mode, int pointA, int pointB);
+void assign_transit(int n, int kr_src);
+int  check_tela(int eM, int eN, short unsigned int dim);
+void clearall_tela(int n, int span, int max_score, int mode);
+int  cyclelize_tela(int cpos, int delta, int npos);
+void mark_tela(void);
+void print_tela(int a, int b);
+void pull_tela(int n);
+int  push_tela(int n2, int n1, short unsigned int axioms);
+int  settle_tiescores(int n, int span, int max_score, int iteration);
+int  update_tela(void);
 
 int assign_tela(int eL, int eM, int eN, int mode, int pointA, int pointB)
 {
@@ -100,6 +111,56 @@ int assign_tela(int eL, int eM, int eN, int mode, int pointA, int pointB)
 }
 
 
+/********************************************************************/
+/* ASSIGNS AND PROPAGATES TRANSITIONS TO ALL POSITIONS AT EACH UNIT */
+/* MUST SAVE k AND r AT SOURCE BEFORE CALLING THIS FUNCTION AT n.   */
+void assign_transit(int n, int kr_src)
+{
+	int i=0, j=0;
+	int k, r;
+	
+	if (kr_src) {
+		if      (kr_src == 1) {		/* kr_src = ONE */
+			k = tela[n].all_k;
+			r = tela[n].all_r;
+		}
+		else if (kr_src == 2) {		/* kr_src = TWO */
+			k = tela[n].cyc_k;
+			r = tela[n].cyc_r;
+		}
+		else {
+			k = tela[n].k;			/* kr_src = THREE (OR > TWO) */
+			r = tela[n].r;
+		}
+	}
+	else 							/* kr_src = ZERO */
+		return;						/* THIS IS A DEVELOPMENT FEATURE: EASY TO TURN OFF */
+
+	int m = n - k;
+
+	/* ASSIGN TRANSITIONS TO .t IF IMPERFECT_TR, ALL IN REFERENCE TO FIRST UNIT STARTING AT m */
+	for (i=0; i<r; i++) {
+		for (j=0; j<k; j++) {	/* 1ST TIME TO NOTE THE TRANSITION POSITIONS BY DIFFERENCES */
+			if (tela[n+i*k+j].c != tela[m+j].c && tela[n+i*k+j].e == tela[m+j].e) {
+				tela[n+i*k+j].t = tela[m+j].t = tela[m+j].e;
+			}
+		}
+	}
+	for (i=0; i<r; i++) {
+		for (j=0; j<k; j++) {	/* 2ND TIME TO PROPAGATE TRANSITIONS TO ALL PARALAGOUS POSITIONS */
+			if (tela[n+i*k+j].t != tela[m+j].t) {
+				tela[n+i*k+j].t = tela[m+j].t;
+			}
+		}
+	}
+	/* WRITE TRANSITIONS TO CONSENSUS ROW OF ALIGN2D */
+	for (i=0; i<k; i++) {
+		if (consensus[tela[m+i].x] != 'R' && consensus[tela[m+i].x] != 'Y')
+			consensus[tela[m+i].x] = tela[m+i].t;
+	}
+}
+
+
 /****** TELA: A FABRIC, UNDER AXIOMATIC LAWS **********************/
 int check_tela(int eM, int eN, short unsigned int dim) 
 {
@@ -179,6 +240,24 @@ int lenseq = options[1][1];
 }
 
 
+/* FUNCTION TO CLEAR _ALL ELEMENTS IN TELA WITHIN A NON-CONFLICTED CYCLING ISLAND W/ A SINGLE MAX-SCORE */
+void clearall_tela(int n, int span, int max_score, int mode)
+{
+	int i;
+
+	if (!mode)				/* MODE 0=OFF, 1=CLEAR S ONLY; 2=CLEAR ALL */
+		return;
+
+	for (i=n; i< n+span; i++) {
+		if (tela[i].all_Z != max_score) {
+			tela[i].all_S = 0; 
+			if (mode>1)
+				tela[i].all_k = tela[i].all_r = tela[i].all_Z = 0; 
+		}
+	}
+}
+
+
 /**** FUNCTION TO CYCLELIZE REPEAT AT POSITION BY DELTA *****/
 int cyclelize_tela(int cpos, int delta, int npos)
 {
@@ -243,6 +322,269 @@ int cyclelize_tela(int cpos, int delta, int npos)
 		return (0);
 }
 
+
+/**************** FUNCTION TO MARK ALL POSSIBLE k-MERs BEFORE LEGACY CINCH-T PASS ******************************/
+void mark_tela(void) 
+{
+	int i, j, m, n, k, reps, span; 
+	int threshold=0, max_score=0, max_count=0, min_k;
+	int lenseq = options[1][1];
+	unsigned short int nuctype = options[1][13], nuctransit=0, TRcheck=0, imperfect_TR=0, Aimperfect_TR=0, gapcheck=0;
+	int homopoly_flag=0, Did=0, Dtr=0, Atr=0;
+	int mismatch   = -1;	/* MOVE ME TO HEADER FILE */
+	unsigned short int checkconflict=0;
+
+	if (nuctype == 1)		/* IF DNA */
+		nuctransit = 1;
+
+	for (n = 1; n<=lenseq; n++) {
+		for (m = 0; m < n; m++) {
+			/* FOR ROW m LOOP 1/5: SLIDE DOWN TO ROW WITHIN POPULATED HEMIDIAGONAL */
+			if (n-m > WIDTH+1) 
+				m = n-WIDTH;
+
+			/* FOR ROW m LOOP 2/5: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
+			k = n-m;
+			if (nuctransit) {
+				threshold = score_DTHR(k);
+			}
+
+			/* FOR ROW m LOOP 3/5: SKIP k=ONE */
+			if (k == 1) {
+				break;	/* GO TO NEXT n */
+			}
+
+			/* FOR ROW m LOOP 4/5: SET HOMOPOLYMER RUN STATUS UNKNOWN; USED TO RULE OUT k>1 MONONUCLEOTIDE "REPEATS" */
+			homopoly_flag = 2;
+			if (tela[n].c != tela[n-1].c)
+				homopoly_flag = 0;
+
+			/* FOR ROW m LOOP 5/5: START COUNTING SCORE IF PATHBOX POSITION HAS VALUE > MISMATCH */
+			if (pathbox[m][n] > mismatch && n+k <= lenseq) {
+				Dtr = 0;
+
+				/* IF SUMMING PATHBOX DIAGONAL 1/4: COMPUTE SCORES OF IDENTITY LINE AND REPEAT DIAGONAL*/
+				Did = k*MATCH;
+				for (i = m; i < n; i++) {
+					if (pathbox[i][i+k] == mismatch) {	/* STOP SHORT IF MISMATCH IS FOUND 		 		*/
+						Dtr =  0;						/* B/C CURRENTLY ONLY CONSIDERING TRANSITIONS 	*/
+						break;							
+					}
+					else
+						Dtr = Dtr + pathbox[i][i+k];	/* COMPUTE SUM OF TANDEM REPEAT UNIT LINE */
+
+					/* SET HOMOPOLYMERIC RUN BIT TO FALSE IF NOT A POSSIBILITY */
+					if (homopoly_flag && i > m && tela[i].c != tela[i-1].c)
+						homopoly_flag = 0;
+				}
+
+				/* IF SUMMING PATHBOX DIAGONAL 2/4: SET HOMOPOLYMERIC RUN BIT TO TRUE IF DETECTED 	*/
+				if (homopoly_flag && i == n) {
+					homopoly_flag = 1;				/* BIT IS THERE IF NEEDED BEYOND BREAK. 		*/
+					Dtr = 0;
+					break;							/* GO TO NEXT n */
+				}
+
+				/* IF SUMMING PATHBOX DIAGONAL 3/4: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
+				if (nuctransit && Dtr && Dtr!=Did) { 
+					if (k>PISO && 100*Dtr/Did > threshold)	{	
+						imperfect_TR = 1;		/* CALLING TR W/ TRANSITIONS FOR n BLOCK VS m BLOCK */
+					}
+					else 
+						Dtr = 0;
+				} 
+
+				/* IF SUMMING PATHBOX DIAGONAL 4/4: START COUNTING REPEATS */
+				if (Dtr && (Dtr==Did || imperfect_TR)) {
+					/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
+					TRcheck = 1;
+					reps = 1;
+					tela[n].all_k = k;
+					tela[n].all_r = reps;
+					tela[n].all_S = Dtr;	/* SAVE INITIAL UNIT SCORE */
+					while (TRcheck) {
+						Atr = 0;
+						if (m + (reps+1)*k >= lenseq) { 
+							Atr = 0;
+							break;
+						}
+						else {
+							for (i = m; i < n  ; i++) {		/* COMPARE TO FIRST UNIT */
+								if ( (j=pathbox[i][(i + (reps+1)*k)]) == mismatch) {
+									Atr = 0;
+									TRcheck = 0;
+									break;
+								}
+								else
+									Atr = Atr + j;
+							}
+						}
+						if (nuctransit) { 
+							if (Atr!=Did && (100*Atr)/Did > threshold)
+								Aimperfect_TR = 1;
+							else
+								Aimperfect_TR = 0;
+						} 
+						if (Atr==Did || Aimperfect_TR) {
+							reps++;
+							tela[n].all_S += Atr;
+							Atr = 0;
+						}
+						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
+							tela[n].all_r = reps;
+							break;
+						}
+					}
+					break;		/* OTHERWISE MAY OVERWRITE TR WITH ONE OF SMALLER K */
+				}
+			}
+		} /* END OF FOR m */
+	} /* END OF FOR n */
+
+	/* FILL IN CYCLING GAPS CAUSED BY BELOW THRESHOLD FRAMES: THIS SUPPRESSES INTRA-TR CONFLICT REPORTING */
+	for (n=0; n<=lenseq; n++) {
+		if (tela[n].all_k && !tela[n+1].all_k) {
+			k = tela[n].all_k;
+			gapcheck = 0;
+			for (i=n+2; i <= n + k * tela[n].all_r; i++) {
+				if (tela[i].all_k && tela[i].all_k != k) {
+					gapcheck = 0;
+					break;
+				}
+				else if (tela[i].all_k == k) {
+					gapcheck = 1;
+					break;
+				}
+			}
+			if (gapcheck) {
+				for (j=i-1; j>n; j--) {
+					tela[j].all_k = k;
+					tela[j].all_r = 0;
+				}
+			}
+		}
+	}
+
+	/* NOW MARK ALL CONFLICTING TRs */
+	for (n=lenseq; n>0; n--) {
+		if (tela[n].all_k) {
+			k = tela[n].all_k;
+			m = n - k;
+			j = n - 1;
+			while (tela[j].all_k)		/* SKIP CYCLE COLUMNS OF SAME K-MER */
+				j--;
+			for (i=j; i>0; i--) {
+				if (tela[i].all_k && (i + tela[i].all_k * (tela[i].all_r-1)) > m) {
+					tela[n].all_L = i;		/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
+					tela[i].all_R = n;		/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
+				}
+			}
+		}
+	}
+
+	/* IDENTIFY CYCLING ISLANDS WITHOUT CONFLICT AND DETERMINE TIE-BREAKER SCENARIOS */
+	for (n=0; n<=lenseq; n++) {
+		if (tela[n].all_S) {
+			checkconflict = span = 1;
+			max_count = 0;
+			min_k = k = tela[n].all_k;
+			max_score = tela[n].all_S;
+			for (i=n+1; tela[i].all_k; i++) {
+				span++;
+				if (checkconflict) {
+					if (tela[i].all_L || tela[i].all_R) {
+						checkconflict = 0;
+					}
+					else {
+						if (tela[i].all_S > max_score) 
+							max_score = tela[i].all_S;
+						if (tela[i].all_k < min_k) 
+							min_k= tela[i].all_k;
+					}
+				}
+			}
+			if (!checkconflict) 
+				;
+			else if (span==1)
+				tela[n].all_Z = tela[n].all_S;
+			else {
+				for (i=n; i<n+span; i++) {
+					if (tela[i].all_S == max_score && tela[i].all_k == min_k) {
+						max_count++;
+						tela[i].all_Z = tela[i].all_S;
+					}
+				}
+				if (max_count > 1) {
+					j=1;	/* VAR j WILL COUNT ITERATIONS REQUIRED TO BREAK TIES */
+					while (max_count > 1)
+						max_count = settle_tiescores(n, span, max_score, j++);
+				}
+				else
+					clearall_tela(n, span, max_score, 1);
+			}
+			n = n + span - 1;
+		}
+	}
+}
+
+/**** FUNCTION TO CONSIDER GHOST FLANKING REPEAT UNITS AS TIE-BREAKERS */
+/**** -GHOST --> SO-NAMED B/C THESE ARE VIRTUAL SUB-THRESHOLD TR UNITS */
+/**** RETURNS THE NUMBER OF TIES (MAX_COUNT)                           */
+int settle_tiescores(int n, int span, int max_score, int iteration)
+{
+int i=0, j=0, k=0, up, dn, m, o;
+int match = MATCH;
+int transition = TRANSITION;
+int lenseq = options[1][1];
+int max_count=0, ratchet=0;
+
+	for (i=n; i<n+span; i++) {
+		if (tela[i].all_S == max_score) {
+			k = tela[i].all_k;
+			m = i-k;					/* DEFINES START OF FIRST REPEAT UNIT */
+			o = i+k*(tela[i].all_r-1);	/* DEFINES START OF LAST REPEAT UNIT */
+			up = m - k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AT m-1 */
+			dn = o + k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AFTER REPEATS */
+			for (j=0; j<k; j++) {
+				if (up+j >= 0 && tela[up+j].e == tela[m+j].e) {
+					if (tela[up+j].c == tela[m+j].c) {
+						tela[i].all_Z += match;
+						ratchet++;
+					}
+					else {
+						tela[i].all_Z += transition;
+						ratchet++;
+					}
+				}
+				if (dn+j<=lenseq && tela[dn+j].e == tela[o+j].e) {
+					if (tela[dn+j].c == tela[o+j].c) {
+						tela[i].all_Z += match;
+						ratchet++;
+					}
+					else {
+						tela[i].all_Z += transition;
+						ratchet++;
+					}
+				}
+			}
+		}
+	}
+	if (!ratchet)		/* IF NO RATCHETING, THEN GHOST ITERATIONS ARE OUT-OF-BOUNDS AND UNEFFECTIVE TIE-BREAKERS */
+		return(0);
+	max_score = tela[n].all_Z;
+	for (i=n+1; i<n+span; i++) {
+		if (tela[i].all_Z > max_score)
+			max_score = tela[i].all_Z;
+	}
+	for (i=n; i< n+span; i++) {
+		if (tela[i].all_Z == max_score)
+			max_count++;
+	}
+	if (max_count == 1) 				/* THERE IS ONE OPTIMAL CINCH LOCATION AND NO CONFLICT SO ERASE ALL OTHERS */
+		clearall_tela(n, span, max_score, 2);
+
+	return(max_count);
+}
 
 /********************* PRINT TELA FROM a TO b *********************/
 void print_tela(int a, int b)
@@ -340,6 +682,13 @@ int lenseq = options[1][1];
 	for (i=a; i<=b; i++) {
 		if (tela[i].all_S)
 			printf("%3d", tela[i].all_S);
+		else
+			printf(" __");
+	}
+	printf("\naZ:");
+	for (i=a; i<=b; i++) {
+		if (tela[i].all_Z)
+			printf("%3d", tela[i].all_Z);
 		else
 			printf(" __");
 	}
