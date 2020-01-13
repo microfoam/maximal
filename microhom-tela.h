@@ -4,10 +4,10 @@
 /* or verb_object(), where object is related to tela struct.      */
 /******************************************************************/
 
-int  assign_tela(int eL, int eM, int eN, int pointA, int pointB, int mode);
+int  assign_tela(int eL, int eM, int eN, int mode);
 void assign_transit(int n, int kr_src);
 int  check_tela(int eM, int eN, short unsigned int mode_dim);
-void clearall_tela(int n, int span, int max_score, int mode);
+void clearall_tela(int n, int span, int keep_score, int mode);
 int  cyclelize_tela(int cpos, int delta, int npos);
 void mark_tela(void);
 void print_tela(int a, int b);
@@ -16,7 +16,7 @@ int  push_tela(int n2, int n1, short unsigned int axioms);
 int  settle_tiescores(int n, int span, int max_score, int iteration);
 int  update_tela(void);
 
-int assign_tela(int eL, int eM, int eN, int pointA, int pointB, int mode)
+int assign_tela(int eL, int eM, int eN, int mode)
 {
 	if (!mode)
 		return(0);
@@ -25,14 +25,8 @@ int assign_tela(int eL, int eM, int eN, int pointA, int pointB, int mode)
 		int lenseq = options[1][1];
 		int start=0, end=lenseq;
 
-		if (pointB > pointA) {	/* ASSIGN LINE VALUES IF CHECKING LIMITED SPAN */
-			start = pointA;
-			end   = pointB;
-		}
-		else {
-			start = 0;
-			end   = lenseq;
-		}
+		start = 0;
+		end   = lenseq;
 	
 		if (mode==2) {					/* MODE 2: ASSIGN SAME COLUMN TO IDENTICAL LETTERS */
 			align2D[eM][eN] = tela[eL].c;
@@ -61,52 +55,9 @@ int assign_tela(int eL, int eM, int eN, int pointA, int pointB, int mode)
 				}
 			}
 		}
-		else if (mode==3) {				/* MODE 3: CHECK AND ASSIGN SAME COLUMN TO IDENTICAL LETTERS */
-			for (i=start; i<end; i++) {
-				if (tela[i].x == eN && tela[i].c != tela[eN].c) {
-					conflict_flag = 1;
-					break;
-				}
-			}
-			if (!conflict_flag) {
-				align2D[eM][eN] = tela[eL].c;
-				tela[eL].y = eM;
-				tela[eL].x = eN;
-			}
-		}
-		else if (mode==4) {				/* MODE 4: ASSIGN SAME COLUMN TO EQUIVALENT LETTERS */
-			align2D[eM][eN] = tela[eL].c;
-			tela[eL].y = eM;
-			tela[eL].x = eN;
-			for (i=start; i<=end; i++) {
-				if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e == tela[eL].e) {
-					j = tela[i].x;
-					consensus[j] = tela[i].t = tela[i].e;
-				}
-			}	
-		}
-		else if (mode==5) {				/* MODE 5: CHECK AND ASSIGN SAME COLUMN TO EQUIVALENT LETTERS */
-			for (i=start; i<end; i++) {
-				if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e != tela[eL].e) {
-					conflict_flag = 1;
-					break;
-				}
-			}
-	
-			if (!conflict_flag) {
-				align2D[eM][eN] = tela[eL].c;
-				tela[eL].y = eM;
-				tela[eL].x = eN;
-				for (i=start; i<=end; i++) {
-					if (tela[i].x == eN && tela[i].c != tela[eL].c && tela[i].e == tela[eL].e) {
-						j = tela[i].x;
-						consensus[j] = tela[i].t = tela[i].e;
-					}
-				}	
-			}
-		}
 		else if (dev_print(TELA,__LINE__)) {
 			printf("Undefined mode invoked.");
+			return(0);
 		}
 	
 		if (conflict_flag)
@@ -122,25 +73,25 @@ int assign_tela(int eL, int eM, int eN, int pointA, int pointB, int mode)
 /* MUST SAVE k AND r AT SOURCE BEFORE CALLING THIS FUNCTION AT n.   */
 void assign_transit(int n, int kr_src)
 {
+	if (!kr_src) {					/* kr_src = ZERO MODE */
+		return;						/* THIS IS A DEVELOPMENT FEATURE: EASY TO TURN O-F-F */
+	}
+
 	int i=0, j=0;
 	int k, r;
-	
-	if (kr_src) {
-		if      (kr_src == 1) {		/* kr_src = ONE */
-			k = tela[n].all_k;
-			r = tela[n].all_r;
-		}
-		else if (kr_src == 2) {		/* kr_src = TWO */
-			k = tela[n].cyc_k;
-			r = tela[n].cyc_r;
-		}
-		else {
-			k = tela[n].k;			/* kr_src = THREE (OR > TWO) */
-			r = tela[n].r;
-		}
+
+	if      (kr_src == 1) {		/* kr_src = ONE */
+		k = tela[n].all_k;
+		r = tela[n].all_r;
 	}
-	else 							/* kr_src = ZERO */
-		return;						/* THIS IS A DEVELOPMENT FEATURE: EASY TO TURN OFF */
+	else if (kr_src == 2) {		/* kr_src = TWO */
+		k = tela[n].cyc_k;
+		r = tela[n].cyc_r;
+	}
+	else {
+		k = tela[n].k;			/* kr_src = THREE (OR > TWO) */
+		r = tela[n].r;
+	}
 
 	int m = n - k;
 
@@ -170,7 +121,7 @@ void assign_transit(int n, int kr_src)
 /****** TELA: A FABRIC, UNDER AXIOMATIC LAWS **********************/
 int check_tela(int eM, int eN, short unsigned int mode_dim) 
 {
-	if (!mode_dim)	/* check_tela called in OFF mode, but will return 1+2 = success */
+	if (!mode_dim)	/* check_tela called in O-F-F mode, but will return 1+2 = success */
 		return(3);
 	else {
 		int i=0, j=0, lineM=0, lineN=0, axioms=0, badflag=0;
@@ -258,18 +209,20 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 
 
 /* FUNCTION TO CLEAR _ALL ELEMENTS IN TELA WITHIN A NON-CONFLICTED CYCLING ISLAND W/ A SINGLE MAX-SCORE */
-void clearall_tela(int n, int span, int max_score, int mode)
+void clearall_tela(int n, int span, int keep_score, int mode)
 {
 	int i;
 
-	if (!mode)				/* MODE 0=OFF, 1=CLEAR S ONLY; 2=CLEAR ALL */
+	if (!mode)				/* MODE 0=O-F-F, 1=CLEAR S ONLY; 2=CLEAR ALL */
 		return;
 
 	for (i=n; i< n+span; i++) {
-		if (tela[i].all_Z != max_score) {
+		if (tela[i].all_Z != keep_score) {
 			tela[i].all_S = 0; 
-			if (mode>1)
+			if (mode>1) {
 				tela[i].all_k = tela[i].all_r = tela[i].all_Z = 0; 
+				tela[i].all_L = tela[i].all_R = 0;
+			}
 		}
 	}
 }
@@ -500,12 +453,16 @@ void mark_tela(void)
 	}
 
 	/* IDENTIFY CYCLING ISLANDS WITHOUT CONFLICT AND DETERMINE TIE-BREAKER SCENARIOS */
+	/* IDENTIFY CYCLING ISLANDS WITH SOME TYPES OF CONFLICT AND RESOLVE PICK */
 	for (n=0; n<=lenseq; n++) {
 		if (tela[n].all_S) {
 			checkconflict = span = 1;
 			max_count = 0;
 			min_k = k = tela[n].all_k;
 			max_score = tela[n].all_S;
+			if (tela[n].all_L || tela[n].all_R) {
+				checkconflict = 0;
+			}
 			for (i=n+1; tela[i].all_k; i++) {
 				span++;
 				if (checkconflict) {
@@ -520,12 +477,31 @@ void mark_tela(void)
 					}
 				}
 			}
-			if (!checkconflict) 
-				;
+			if (!checkconflict) {
+				/* CONFLICT SCENARIO ONE */
+				if (span==1 && !(tela[n].all_L) && tela[n].all_R) {
+					j = tela[n].all_R;
+					int k2 = tela[j].all_k;
+					for (i=j+1; tela[i].all_k == k2; i++) {
+						if (!tela[i].all_L && !tela[i].all_R && tela[i].all_S > tela[j].all_S) {
+							clearall_tela(j, i-j, tela[i].all_S, TWO);		/* O-F-F, ONE, OR TWO */
+							tela[i].all_Z = tela[i].all_S;
+							tela[n].all_Z = tela[n].all_S;
+							tela[n].all_R = 0;
+						}
+					}
+				}
+				/* CONFLICT SCENARIO TWO */
+				else if (span>1 && tela[n].all_L && !(tela[n].all_R) && tela[n+1].all_k < tela[n].all_k &&
+							!(tela[n+1].all_L) && !(tela[n+1].all_R) && tela[n].all_k % tela[n+1].all_k==0) {
+					clearall_tela(n, 2, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
+					/* POSSIBLE THIS CASE COULD BE GENERALIZED...FOR A RAINY DAY */
+				}
+			}
 			else if (span==1) {
 				tela[n].all_Z = tela[n].all_S;
 				if (tela[n].all_S != tela[n].r*k*MATCH)
-					assign_transit(n,OFF);	/* OFF; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
+					assign_transit(n,OFF);	/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
 			}
 			else {
 				for (i=n; i<n+span; i++) {
@@ -540,7 +516,7 @@ void mark_tela(void)
 						max_count = settle_tiescores(n, span, max_score, j++);
 				}
 				else
-					clearall_tela(n, span, max_score, ONE);			/* OFF, ONE, OR TWO */
+					clearall_tela(n, span, max_score, ONE);			/* O-F-F, ONE, OR TWO */
 			}
 			n = n + span - 1;
 		}
@@ -601,7 +577,7 @@ int max_count=0, ratchet=0;
 			max_count++;
 	}
 	if (max_count == 1) 				/* THERE IS ONE OPTIMAL CINCH LOCATION AND NO CONFLICT SO ERASE ALL OTHERS */
-		clearall_tela(n, span, max_score, TWO);		/* OFF, ONE, OR TWO */
+		clearall_tela(n, span, max_score, TWO);		/* O-F-F, ONE, OR TWO */
 
 	return(max_count);
 }
@@ -888,17 +864,12 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 	if (axioms==2 || axioms==3) {
 		/* CHECK PRINCIPLE OF EQUIVALENCE */
 		for (i=0; i<k; i++) {
-			if (0 && tela[n1+i].t != tela[n2+i].t && tela[n1+i].c == tela[n2+i].c) {
-				tela[n1+i].t = tela[n1+i].e;
-				tela[n2+i].t = tela[n2+i].e;
-			}
-			else if (tela[n1+i].c == tela[n2+i].c)
+			if      (tela[n1+i].c == tela[n2+i].c)
 				;
 			else if (tela[n1+i].t == tela[n2+i].t) 
 				;
-			else if (0 && tela[n1+i].e == tela[n2+i].e) { 
-				tela[n1+i].t = tela[n1+i].e;
-				tela[n2+i].t = tela[n2+i].e;
+			else if (OFF && tela[n1+i].e == tela[n2+i].e) { 
+				;
 			}
 			else {
 				violation += 2;
