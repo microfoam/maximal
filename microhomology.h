@@ -2,6 +2,7 @@
 /* microhomology.h: header file since mha_v3.97.c */
 /**************************************************/
 
+#define DEVBIT		0		/* FOR CLARITY OF MODE ARGUMENTS; USED TO COORDINATE SWITCHING NEW CODE ACROSS FUNCTIONS & FILES */
 #define MAXROW   2000       /* maximum input line size  */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
 #define CYCMAX     60       /* MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER STOPGAPS */
