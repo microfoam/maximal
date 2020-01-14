@@ -523,64 +523,6 @@ void mark_tela(void)
 	}
 }
 
-/**** FUNCTION TO CONSIDER GHOST FLANKING REPEAT UNITS AS TIE-BREAKERS */
-/**** -GHOST --> SO-NAMED B/C THESE ARE VIRTUAL SUB-THRESHOLD TR UNITS */
-/**** RETURNS THE NUMBER OF TIES (MAX_COUNT)                           */
-int settle_tiescores(int n, int span, int max_score, int iteration)
-{
-int i=0, j=0, k=0, up, dn, m, o;
-int match = MATCH;
-int transition = TRANSITION;
-int lenseq = options[1][1];
-int max_count=0, ratchet=0;
-
-	for (i=n; i<n+span; i++) {
-		if (tela[i].all_S == max_score) {
-			k = tela[i].all_k;
-			m = i-k;					/* DEFINES START OF FIRST REPEAT UNIT */
-			o = i+k*(tela[i].all_r-1);	/* DEFINES START OF LAST REPEAT UNIT */
-			up = m - k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AT m-1 */
-			dn = o + k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AFTER REPEATS */
-			for (j=0; j<k; j++) {
-				if (up+j >= 0 && tela[up+j].e == tela[m+j].e) {
-					if (tela[up+j].c == tela[m+j].c) {
-						tela[i].all_Z += match;
-						ratchet++;
-					}
-					else {
-						tela[i].all_Z += transition;
-						ratchet++;
-					}
-				}
-				if (dn+j<=lenseq && tela[dn+j].e == tela[o+j].e) {
-					if (tela[dn+j].c == tela[o+j].c) {
-						tela[i].all_Z += match;
-						ratchet++;
-					}
-					else {
-						tela[i].all_Z += transition;
-						ratchet++;
-					}
-				}
-			}
-		}
-	}
-	if (!ratchet)		/* IF NO RATCHETING, THEN GHOST ITERATIONS ARE OUT-OF-BOUNDS AND UNEFFECTIVE TIE-BREAKERS */
-		return(0);
-	max_score = tela[n].all_Z;
-	for (i=n+1; i<n+span; i++) {
-		if (tela[i].all_Z > max_score)
-			max_score = tela[i].all_Z;
-	}
-	for (i=n; i< n+span; i++) {
-		if (tela[i].all_Z == max_score)
-			max_count++;
-	}
-	if (max_count == 1) 				/* THERE IS ONE OPTIMAL CINCH LOCATION AND NO CONFLICT SO ERASE ALL OTHERS */
-		clearall_tela(n, span, max_score, TWO);		/* O-F-F, ONE, OR TWO */
-
-	return(max_count);
-}
 
 /********************* PRINT TELA FROM a TO b *********************/
 void print_tela(int a, int b)
@@ -808,16 +750,13 @@ void pull_tela(int n)
 	int r = tela[n].r;
 	int m = n-k;
 
-	for (i=m; i<(n+k*r); i++) {
-		consensus[(tela[i].x)] = tela[i].t = tela[i].c;
+	/* IF IMPERFECT REPEAT, ERASE. THIS IS MOSTLY RIGHT, BUT EVENTUALLY NEED TO CHECK OVERLAPPING TRANSITIONS */
+	if (k*r > tela[n].all_S) {	
+		for (i=m; i<(n+k*r); i++) {
+			consensus[(tela[i].x)] = tela[i].t = tela[i].c;
+		}
 	}
 
-/* THIS CAUSED ME LOTS OF PAIN AND I LEAVE IT HERE TO REMIND ME. -AJE */
-/*	for (i=0; i<k*r; i++) {				
-		tela[n+i].y = tela[m    ].y;
-		tela[n+i].x = tela[m+k+i].x;
-	}
-*/
 	tela[n].r = 0;
 	tela[n].echoes = tela[n].cyc_o = 'o';
 }
@@ -907,6 +846,66 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 		}
 	}
 	return(violation);	/* RETURNS 1 IF CONTINUITY FAILS, 3 IF EQUIVALENCE FAILS, 4 IF BOTH FAIL */
+}
+
+
+/**** FUNCTION TO CONSIDER GHOST FLANKING REPEAT UNITS AS TIE-BREAKERS */
+/**** -GHOST --> SO-NAMED B/C THESE ARE VIRTUAL SUB-THRESHOLD TR UNITS */
+/**** RETURNS THE NUMBER OF TIES (MAX_COUNT)                           */
+int settle_tiescores(int n, int span, int max_score, int iteration)
+{
+int i=0, j=0, k=0, up, dn, m, o;
+int match = MATCH;
+int transition = TRANSITION;
+int lenseq = options[1][1];
+int max_count=0, ratchet=0;
+
+	for (i=n; i<n+span; i++) {
+		if (tela[i].all_S == max_score) {
+			k = tela[i].all_k;
+			m = i-k;					/* DEFINES START OF FIRST REPEAT UNIT */
+			o = i+k*(tela[i].all_r-1);	/* DEFINES START OF LAST REPEAT UNIT */
+			up = m - k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AT m-1 */
+			dn = o + k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AFTER REPEATS */
+			for (j=0; j<k; j++) {
+				if (up+j >= 0 && tela[up+j].e == tela[m+j].e) {
+					if (tela[up+j].c == tela[m+j].c) {
+						tela[i].all_Z += match;
+						ratchet++;
+					}
+					else {
+						tela[i].all_Z += transition;
+						ratchet++;
+					}
+				}
+				if (dn+j<=lenseq && tela[dn+j].e == tela[o+j].e) {
+					if (tela[dn+j].c == tela[o+j].c) {
+						tela[i].all_Z += match;
+						ratchet++;
+					}
+					else {
+						tela[i].all_Z += transition;
+						ratchet++;
+					}
+				}
+			}
+		}
+	}
+	if (!ratchet)		/* IF NO RATCHETING, THEN GHOST ITERATIONS ARE OUT-OF-BOUNDS AND UNEFFECTIVE TIE-BREAKERS */
+		return(0);
+	max_score = tela[n].all_Z;
+	for (i=n+1; i<n+span; i++) {
+		if (tela[i].all_Z > max_score)
+			max_score = tela[i].all_Z;
+	}
+	for (i=n; i< n+span; i++) {
+		if (tela[i].all_Z == max_score)
+			max_count++;
+	}
+	if (max_count == 1) 				/* THERE IS ONE OPTIMAL CINCH LOCATION AND NO CONFLICT SO ERASE ALL OTHERS */
+		clearall_tela(n, span, max_score, TWO);		/* O-F-F, ONE, OR TWO */
+
+	return(max_count);
 }
 
 

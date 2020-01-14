@@ -1,7 +1,7 @@
 clear
-echo 'Tri-fin dawn patrol: Compiling maximal from mha_v4.16.c.'
+echo 'Tri-fin dawn patrol: Compiling maximal from mha_v4.17.c.'
 echo ' '
-gcc -o maximal -Wall -Wextra -Wstrict-prototypes -O2 mha_v4.16.c -lm
+gcc -o maximal -Wall -Wextra -Wstrict-prototypes -O2 mha_v4.17.c -lm
 echo ' '
 echo 'Surfs up! '
 echo ' '
