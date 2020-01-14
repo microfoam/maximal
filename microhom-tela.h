@@ -4,17 +4,18 @@
 /* or verb_object(), where object is related to tela struct.      */
 /******************************************************************/
 
-int  assign_tela(int eL, int eM, int eN, int mode);
-void assign_transit(int n, int kr_src);
-int  check_tela(int eM, int eN, short unsigned int mode_dim);
-void clearall_tela(int n, int span, int keep_score, int mode);
-int  cyclelize_tela(int cpos, int delta, int npos);
-void mark_tela(void);
-void print_tela(int a, int b);
-void pull_tela(int n);
-int  push_tela(int n2, int n1, short unsigned int axioms);
-int  settle_tiescores(int n, int span, int max_score, int iteration);
-int  update_tela(void);
+int  	assign_tela(int eL, int eM, int eN, int mode);
+void 	assign_transit(int n, int kr_src);
+int  	check_tela(int eM, int eN, short unsigned int mode_dim);
+void 	clearall_tela(int n, int span, int keep_score, int mode);
+int  	cyclelize_tela(int cpos, int delta, int npos);
+void 	mark_tela(void);
+void 	print_tela(int a, int b);
+void 	pull_tela(int n);
+int  	push_tela(int n2, int n1, short unsigned int axioms);
+int 	score_kmer(int n, int k, short unsigned int mode);
+int  	settle_tiescores(int n, int span, int max_score, int iteration);
+int		update_tela(void);
 
 int assign_tela(int eL, int eM, int eN, int mode)
 {
@@ -368,9 +369,8 @@ void mark_tela(void)
 				if (Dtr && (Dtr==Did || imperfect_TR)) {
 					/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
 					TRcheck = 1;
-					reps = 1;
+					tela[n].all_r = reps = 1;
 					tela[n].all_k = k;
-					tela[n].all_r = reps;
 					tela[n].all_S = Dtr;	/* SAVE INITIAL UNIT SCORE */
 					while (TRcheck) {
 						Atr = 0;
@@ -378,27 +378,21 @@ void mark_tela(void)
 							Atr = 0;
 							break;
 						}
-						else {
-							for (i = m; i < n  ; i++) {		/* COMPARE TO FIRST UNIT */
-								if ( (j=pathbox[i][(i + (reps+1)*k)]) == mismatch) {
-									Atr = 0;
-									TRcheck = 0;
-									break;
-								}
-								else
-									Atr = Atr + j;
-							}
-						}
-						if (nuctransit) { 
-							if (Atr!=Did && (100*Atr)/Did > threshold)
+
+						if (nuctransit) {
+							Atr = score_kmer(n+k*reps,k,TWO);
+							if (Atr!=Did && (100*Atr)/Did > threshold) {
 								Aimperfect_TR = 1;
+							}
 							else
 								Aimperfect_TR = 0;
-						} 
+						}
+						else
+							Atr = score_kmer(n+k*reps,k,ONE);
+
 						if (Atr==Did || Aimperfect_TR) {
 							reps++;
 							tela[n].all_S += Atr;
-							Atr = 0;
 						}
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
 							tela[n].all_r = reps;
@@ -846,6 +840,46 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 		}
 	}
 	return(violation);	/* RETURNS 1 IF CONTINUITY FAILS, 3 IF EQUIVALENCE FAILS, 4 IF BOTH FAIL */
+}
+
+/*********************************************/
+int score_kmer(int n, int k, short unsigned int mode)
+{
+	if (!mode) {
+		return(0);		/* O-F-F MODE */
+	}
+	else {
+		int i;
+		int score = 0;
+		int match = MATCH;
+		int transition = TRANSITION;
+
+		if (mode == 2) {
+			for (i=0; i<k; i++) {
+				if      (tela[n+i].c == tela[n-k+i].c)
+					score += match;
+				else if (tela[n+i].e == tela[n-k+i].e)
+					score += transition;
+				else {
+					score = 0;
+					break;
+				}
+			}
+			return(score);
+		}
+		else {
+			for (i=0; i<k; i++) {
+				if      (tela[n+i].c == tela[n-k+i].c)
+					score += match;
+				else {
+					score = 0;
+					break;
+				}
+			}
+			return(score);
+		}
+		return(score);
+	}
 }
 
 

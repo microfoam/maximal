@@ -5,6 +5,7 @@
 /******************************************************************/
 
 #define MATCH       8       /* MATCH SCORE */
+#define MISMATCH   -1		/* MISMATCH SCORE */
 #define TRANSITION	4		/* TRANSITION = HALF MATCH SCORE */
 #define PISO        5       /* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
 
