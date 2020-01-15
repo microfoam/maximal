@@ -464,6 +464,43 @@ void mark_tela(void)
 		}
 	}
 
+	/* IDENTIFY CYCLING MARKS FOR PERFECT REPEATS LAID OVER INTERNAL REPEATS WITH r>1 */
+	/* CAN CLEAN UP HOW THESE LOOK (PERHAPS...TESTING) AND THEN ACT ON THEM PRIOR TO CINCH-K */
+	for (n = 1; n<=lenseq; n++) {
+		if (tela[n].all_r > 1 && (!nuctransit || tela[n].all_S == tela[n].all_k * tela[n].all_r)) {
+			k    = tela[n].all_k;
+			reps = tela[n].all_r;
+			m = n-k;
+
+			/* CHECK FIRST AND LAST REPEATS FOR CONFLICTS */
+			for (j=0; j<k; j++) {
+				if (tela[m+j].all_L || tela[m+reps*k+j].all_R)
+					break;
+				else if (tela[m+j].all_R && tela[m+j].all_R != n)
+					break;
+			}
+			if (j==k) {		/* IF THERE IS NO CONFLICT ON EDGE REPEATS, THEN CONTINUE */
+				for (j=1; j<k; j++) {
+					tela[n+j].all_k = tela[m+j].all_k;
+					tela[n+j].all_r = tela[m+j].all_r;
+					tela[n+j].all_S = tela[m+j].all_S;
+					tela[n+j].all_Z = tela[m+j].all_Z;
+					tela[n+j].all_L = tela[m+j].all_L;
+				}
+				for (j=0; j<k; j++) {
+					for (i=1; i<reps; i++) {
+						tela[n+i*k+j].all_k = tela[m+j].all_k;
+						tela[n+i*k+j].all_r = tela[m+j].all_r;
+						tela[n+i*k+j].all_S = tela[m+j].all_S;
+						tela[n+i*k+j].all_Z = tela[m+j].all_Z;
+						tela[n+i*k+j].all_L = tela[m+j].all_L;
+					}
+				}
+				n = n + k*reps - 1; 	/* NEED TO ADVANCE BEYOND CONFLICT-FREE LAST UNIT */
+			}
+		}
+	}
+
 	/* IDENTIFY CYCLING ISLANDS WITHOUT CONFLICT AND DETERMINE TIE-BREAKER SCENARIOS */
 	/* IDENTIFY CYCLING ISLANDS WITH SOME TYPES OF CONFLICT AND RESOLVE PICK */
 	for (n=0; n<=lenseq; n++) {
@@ -514,6 +551,17 @@ void mark_tela(void)
 					if (dev_print(TELA,__LINE__)) {
 						printf("mark_tela() at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
 								"and n+1 has smaller k that is a multiple of k-size at n with no conflicts.", n, span, tela[n].all_L);
+					}
+				}
+				/* CONFLICT SCENARIO THREE: FIRST TR CAN BE CYCLED BUT NOT THE SECOND, WHICH HAS HIGHER SCORE ANYWAYS */
+				else if (span>1 && tela[(j=tela[n].all_R)].all_S > tela[n].all_S && !tela[j+1].all_S) {
+					k = tela[n].all_k;
+					for (j=n+1; j<n+span; j++) {
+						if (tela[j].all_k == k && !tela[j].all_R && !tela[j].all_L) {
+							for (i=j-1; i>=n; i--) {
+								clearall_tela(i, j-n, -1, TWO);		/* O-F-F, ONE, OR TWO */
+							}
+						}
 					}
 				}
 			}
@@ -756,7 +804,7 @@ int lenseq = options[1][1];
 		printf(" --");
 
 	/* PRINT TOP FRAME ROWS */
-	for (f=1; f<9; f++) {
+	for (f=0; f<9; f++) {
 		printf("\nf%d:", f);
 		for (i=a; i<=b; i++) {
 			if (tela[i].cyc_F[f])
