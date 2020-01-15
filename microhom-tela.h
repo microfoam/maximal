@@ -297,7 +297,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 /**************** FUNCTION TO MARK ALL POSSIBLE k-MERs BEFORE LEGACY CINCH-T PASS ******************************/
 void mark_tela(void) 
 {
-	int i, j, m, n, k, reps, span; 
+	int i, j, l, m, n, k, reps, span; 
 	int threshold=0, max_score=0, max_count=0, min_k;
 	int lenseq = options[1][1];
 	unsigned short int nuctype = options[1][13], nuctransit=0, TRcheck=0, imperfect_TR=0, Aimperfect_TR=0, gapcheck=0;
@@ -465,7 +465,7 @@ void mark_tela(void)
 	}
 
 	/* IDENTIFY CYCLING MARKS FOR PERFECT REPEATS LAID OVER INTERNAL REPEATS WITH r>1 */
-	/* CAN CLEAN UP HOW THESE LOOK (PERHAPS...TESTING) AND THEN ACT ON THEM PRIOR TO CINCH-K */
+	/* CAN CLEAN UP HOW THESE LOOK AND PERHAPS ACT ON THEM PRIOR TO CINCH-K */
 	for (n = 1; n<=lenseq; n++) {
 		if (tela[n].all_r > 1 && (!nuctransit || tela[n].all_S == tela[n].all_k * tela[n].all_r)) {
 			k    = tela[n].all_k;
@@ -554,21 +554,24 @@ void mark_tela(void)
 					}
 				}
 				/* CONFLICT SCENARIO THREE: FIRST TR CAN BE CYCLED BUT NOT THE SECOND, WHICH HAS HIGHER SCORE ANYWAYS */
-				else if (span>1 && tela[(j=tela[n].all_R)].all_S > tela[n].all_S && !tela[j+1].all_S) {
+				else if (span>1 && tela[(l=tela[n].all_R)].all_S > tela[n].all_S && !tela[l+1].all_S) {
 					k = tela[n].all_k;
 					for (j=n+1; j<n+span; j++) {
 						if (tela[j].all_k == k && !tela[j].all_R && !tela[j].all_L) {
 							for (i=j-1; i>=n; i--) {
 								clearall_tela(i, j-n, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							}
+							for (i=j+1; i<n+span; i++) {
+								if (tela[i].all_k == k && tela[i].all_R == l) {
+									clearall_tela(i,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
+								}
+							}
 						}
 					}
 				}
 			}
 			else if (span==1) {
-				tela[n].all_Z = tela[n].all_S;
-				if (tela[n].all_S != tela[n].r*k*MATCH)
-					assign_transit(n,OFF);	/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
+				tela[n].all_Z = tela[n].all_S;	
 			}
 			else {
 				for (i=n; i<n+span; i++) {
@@ -590,6 +593,25 @@ void mark_tela(void)
 				}
 			}
 			n = n + span - 1;
+		}
+	}
+
+	/* CHECK TO SEE IF THERE ARE CYCLING DIFFERENCES BETWEEN INTERNAL REPEATS */
+	for (n=2; n+1<lenseq; n++) {
+		if (!tela[n-1].all_k && tela[n].all_k && !tela[n+1].all_k) {
+			int p,q;
+			k = tela[n].all_k;
+			m = n - k;
+			for (i=0; i<tela[n].all_r; i++) {
+				for (j = 1; j < tela[n].all_k-1; j++) {
+					if (tela[(p=m+i*k+j)].all_k != tela[(q=n+i*k+j)].all_k) {
+						if (tela[p].all_k)
+							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
+						if (tela[q].all_k)
+							clearall_tela(q,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
+					}
+				}
+			}
 		}
 	}
 
@@ -804,8 +826,8 @@ int lenseq = options[1][1];
 		printf(" --");
 
 	/* PRINT TOP FRAME ROWS */
-	for (f=0; f<9; f++) {
-		printf("\nf%d:", f);
+	for (f=1; f<=12; f++) {
+		printf("\nf%c:", mha_base62(f));
 		for (i=a; i<=b; i++) {
 			if (tela[i].cyc_F[f])
 				printf("%3d", tela[i].cyc_F[f]);
