@@ -546,7 +546,7 @@ void mark_tela(void)
 				/* CONFLICT SCENARIO TWO */
 				else if (span>1 && tela[n].all_L && !(tela[n].all_R) && tela[n+1].all_k < tela[n].all_k &&
 							!(tela[n+1].all_L) && !(tela[n+1].all_R) && tela[n].all_k % tela[n+1].all_k==0) {
-					clearall_tela(n, 2, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
+					clearall_tela(n, 1, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
 					/* POSSIBLE THIS CASE COULD BE GENERALIZED...FOR A RAINY DAY */
 					if (dev_print(TELA,__LINE__)) {
 						printf("mark_tela() at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
@@ -617,7 +617,9 @@ void mark_tela(void)
 
 	if (dev_print(TELA,__LINE__)) {
 		printf("                     Finishing. print_tela() follows.");
-		print_tela(0, 55);
+		print_tela( 0,  56);
+/*		print_tela(57, 112);
+*/
 	}
 }
 
@@ -992,11 +994,15 @@ int score_kmer(int n, int k, short unsigned int mode)
 /**** RETURNS THE NUMBER OF TIES (MAX_COUNT)                           */
 int settle_tiescores(int n, int span, int max_score, int iteration)
 {
-int i=0, j=0, k=0, up, dn, m, o;
-int match = MATCH;
-int transition = TRANSITION;
-int lenseq = options[1][1];
-int max_count=0, ratchet=0;
+	int i=0, j=0, k=0, up, dn, m, o;
+	int match = MATCH;
+	int transition = TRANSITION;
+	int lenseq = options[1][1];
+	int max_count=0, ratchet=0;
+
+	if (dev_print(TELA,__LINE__)) {
+		printf("settle_tiescores() engaged at n=%d, max_score=%d, iteration=%d.", n, max_score, iteration);
+	}
 
 	for (i=n; i<n+span; i++) {
 		if (tela[i].all_S == max_score) {
@@ -1006,8 +1012,8 @@ int max_count=0, ratchet=0;
 			up = m - k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AT m-1 */
 			dn = o + k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AFTER REPEATS */
 			for (j=0; j<k; j++) {
-				if (up+j >= 0 && tela[up+j].e == tela[m+j].e) {
-					if (tela[up+j].c == tela[m+j].c) {
+				if (up+j >= 0 && tela[up+j].e == tela[m-k*(iteration-1)+j].e) {
+					if (tela[up+j].c == tela[m-k*(iteration-1)+j].c) {
 						tela[i].all_Z += match;
 						ratchet++;
 					}
@@ -1016,8 +1022,8 @@ int max_count=0, ratchet=0;
 						ratchet++;
 					}
 				}
-				if (dn+j<=lenseq && tela[dn+j].e == tela[o+j].e) {
-					if (tela[dn+j].c == tela[o+j].c) {
+				if (dn+j<=lenseq && tela[dn+j].e == tela[o+k*(iteration-1)+j].e) {
+					if (tela[dn+j].c == tela[o+k*(iteration-1)+j].c) {
 						tela[i].all_Z += match;
 						ratchet++;
 					}
