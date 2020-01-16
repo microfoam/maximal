@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 	int bad_1Dn = 0;						/* POSITION OF BAD SLIP IN a2D_n COORDINATE */
  	char m2Dalig[MAXROW+1][MAXROW] = {{0}};			
 
-	float pi = 3.1428;				
+	int m2Da_height = 1;				
 	float ratio1 = 1;						/* WIDTH CINCH RATIO (W.C.R.) post cinch-d, pre relax-2D 	*/
 	float ratio2 = 1;						/* WIDTH CINCH RATIO (W.C.R.) post relax-2D 				*/
 	short unsigned int msa = 0;				/* BIT FLAG FOR MSA CO-INUPUT */
@@ -180,8 +180,10 @@ int main(int argc, char *argv[])
 
 					if (msa) {	
 						printf("\n\nRead file 'TUBES.mha' into m2Dalig array as follows:\n");
-						for (m=0; m2Dalig[m][0]!='\0'; m++)	
+						for (m=0; m2Dalig[m][0]!='\0'; m++)	{
 							printf("%s\n", m2Dalig[m]);
+						}
+						m2Da_height = m;
 					}
 				}
 			}
@@ -1873,16 +1875,22 @@ int main(int argc, char *argv[])
 	}
 	if (msa && options[0][24]==2) {
 		char ch=blank;
-		n = get2Dtucknum(m2Dalig, align2D);
-
-				m2Dalig[  n][0] = '>';
+		int tuck;
+		tuck = get2Dtucknum(m2Dalig, align2D);
+		if (tuck<0) {
+			tuck = m2Da_height;	/* GET2DTUCKNUM IS BUST AND MUST BE DEBUGGED, USE ZERO TUCK */
+			warnhead('t');
+			printf("There was a problem computing 2Dtucknum, so it was set to height = %d.\n\n", tuck);
+		}
+		/* SUPERIMPOSE SECOND 2D ARRAY OVER FIRST FOR COMPARISON */
+		m2Dalig[tuck][0] = '>';
 		for (i=0; align2D[i][0]!='\0'; i++) {
 			if (i>0)
-				m2Dalig[i+n][0]= ' ';
+				m2Dalig[tuck+i][0]= ' ';
 			for (j=1; (ch=align2D[i][j-1])!='/' && ch!=optR && ch!='>'; j++) {
-				m2Dalig[i+n][j] = ch;
+				m2Dalig[tuck+i][j] = ch;
 			}
-				m2Dalig[i+n][j] = ch;
+				m2Dalig[tuck+i][j] = ch;
 		}
 		fp_msa = fopen("TUBES.mha", "w");
 			fprintf(fp_msa, "%s\n", m2Dalig[0]);
@@ -2925,7 +2933,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 							checktransit = 0;
 					}
 				}
-				else if (letr!='n' && (letr=toupper(letr)) && letr != consensus_ar[1][n+1]) {
+				else if (letr!='n' && letr != consensus_ar[1][n+1]) {
 					if (consensus_ar[0][n+1] == 1) {	/* IF THIS IS THE FIRST CONFLICT NOTED AT THIS POSITION */
 						++badsites;						/* COUNT ADDITIONAL BAD SITE COLUMN */
 						++consensus_ar[0][n+1];			/* INCREMENT COUNTER FOR DIFFERENT LETTERS AT COLUMN */
@@ -4271,21 +4279,24 @@ char blank = options[1][11];
 /*** arrayA WILL USUALLY BE m2Dalig[] AND arrayB WILL BE align2D[] ********************/
 int get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW]) 
 {
-int i=0, j=0, heightAB=0, heightA=0, heightB=0, width=options[1][32]; 
-char letr, opt_R_rght = options[1][27];
-int bottom[MAXROW] = {0};
-int    top[MAXROW] = {0};
-short unsigned int devReport=options[1][57];
+	int i=0, j=0, heightAB=0, heightA=0, heightB=0;
+	int  width = options[1][32]; 
+	char opt_R_rght = options[1][27];
+	char letr; 
+	int bottom[MAXROW] = {0};
+	int    top[MAXROW] = {0};
+	short unsigned int devReport=options[1][57];
 
 	if (arrayA[MAXROW][width]!='\0') {
-		for (j=width; arrayA[MAXROW][j]!='\0' && j < MAXROW; j++)
+		for (j=width; (arrayA[MAXROW][j])!='\0' && j < MAXROW; j++) {
 			;
+		}
 		width = j;
-	}	
+	}
 
-	for (i=0; arrayA[i][0] != '\0'; i++) 
+	for (i=0; arrayA[i][0] != '\0' && i<MAXROW; i++) 
 		;
-	for (j=0; arrayB[j][0] != '\0'; j++) 
+	for (j=0; arrayB[j][0] != '\0' && j<MAXROW; j++) 
 		;
 	heightA = i;
 	heightB = j;
@@ -4295,12 +4306,12 @@ short unsigned int devReport=options[1][57];
 	bottom[width+1] = heightA;
 	bottom[width  ] = heightA;
 	j = width;
-	while (isalpha(arrayA[heightA-1][j])) {
+	while (isalpha(arrayA[heightA-1][j]) && j>=0) {
 		bottom[j] = heightA;
 		j--;
 	}
-	while (j>=0) {
-		if (i>0 && (isalpha(arrayA[i-1][j]) || isalpha(arrayA[i-1][j+1]))) {
+	while (j>=0 && i>0) {
+		if (isalpha(arrayA[i-1][j]) || isalpha(arrayA[i-1][j+1])) {
 			bottom[j] = i;
 			j--;
 		}
@@ -4363,7 +4374,10 @@ short unsigned int devReport=options[1][57];
 	i = heightA - bottom[j-1] + 1;
 	if (devReport>2)
 		printf("\n 2Dtucknum = %d\n", i);
-	return(i);
+	if (i>0)
+		return(i);
+	else
+		return(-1);
 }
 
 /*************************************************************************/

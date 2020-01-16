@@ -949,7 +949,10 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 			if      (tela[n1+i].c == tela[n2+i].c) {
 				;
 			}
-			else if (tela[n1+i].t == tela[n2+i].t) {
+			else if (OFF && tela[n1+i].e == tela[n2+i].e) {
+				;
+			}
+			else if (tela[n1+i].t == tela[n2+i].t) {	/* THIS IS REDUNDANT IF ].e IS EVALUATED BUT HERE FOR TESTING PURPOSES */
 				;
 			}
 			else {
@@ -961,7 +964,8 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 			}
 		}
 	}
-	else if (!violation) {		/* ELSE ASSIGN EQUIVALENCE HERE PROVIDED AXIOM OF CONTINUITY CHECKED OUT (1) OR WAS NOT CHECKED (0) */
+
+	if (!violation) {		/* ELSE ASSIGN EQUIVALENCE HERE PROVIDED AXIOM OF CONTINUITY CHECKED OUT (1) OR WAS NOT CHECKED (0) */
 		for (i=0; i<k; i++) {
 			if (tela[n1+i].c != tela[n2+i].c &&			/* ASSIGN SAME TRANSITS */
 				tela[n1+i].e == tela[n2+i].e) {
