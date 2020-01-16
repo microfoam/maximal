@@ -9,11 +9,12 @@
 #define TRANSITION	4		/* TRANSITION = HALF MATCH SCORE */
 #define PISO        5       /* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
 
-int score_DTHR(int kmer);
+int 	score_DTHR(int kmer);
+void 	show_DTHR_table(void);
 
-/**** FUNCTION TO RETURN SCORE THRESHOLDS FOR K-MER (NUMBER OF ALLOWED TRANSITIONS) *****/
+/***********************/
 int score_DTHR(int kmer)
-{
+{	/* RETURNS SCORE THRESHOLDS FOR K-MER FOR ALLOWED TRANSITIONS) */
 	int k=0, numtransit = 0;
 	float fractransit = 0.08;	/* SETS NUMBER OF ADDITIONAL ALLOWED TRANSITIONS FOR GIVEN k-MER */
 	int transition = TRANSITION; 
@@ -40,4 +41,38 @@ int score_DTHR(int kmer)
 
 	return(thr_table[kmer]);   
 }
+/***********************/
+
+
+/*************************/
+void show_DTHR_table(void)
+{	
+	int k, maxtransits, max_score, table_score;
+	int match = MATCH;
+	int transition = TRANSITION;
+	short unsigned int seqtype = options[1][13];
+
+	printf("\n Diagonal thresholds as a function of k (must exceed threshold):\n");
+
+	printf("\n k-mer\t Max. trans.\t Threshold\t Score with maximum transitions"); 
+	for (k = 1; k <= WIDTH; k++) {
+		if (seqtype==1 && k>PISO) {
+			maxtransits = (int) round(0.32*log2((float) k));
+			table_score = score_DTHR(k);
+			max_score = (int) 100*((k-maxtransits)*match + maxtransits*transition)/(k*match);
+		}
+		else {
+			maxtransits = 0;
+			table_score = max_score = 100;
+		}
+		printf("\n %3d\t %d\t %12d\t\t %d", k, maxtransits, table_score, max_score);
+		if (max_score>table_score)
+			printf("\t* Above threshold");
+		else
+			printf("\t (< threshold)");
+	}
+	printf("\n\n Note: DTHR values are only populated if a sequence is specified.\n\n");
+	exit(EXIT_EARLY);
+}
+/*************************/
 

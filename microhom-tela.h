@@ -129,10 +129,10 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 		int lenseq = options[1][1];
 	
 		if (eM>=eN) {
-			axioms-=5;
 			if (dev_print(TELA,__LINE__)) {
 				printf("Need to call check_tela explicitly with %d-D positions eN > eM.", mode_dim);
 			}
+			exit(1);
 		}
 	
 		if (mode_dim==1) {
@@ -155,55 +155,57 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 			eN = j;
 		}
 		else {
-			axioms-=7;
 			if (dev_print(TELA,__LINE__)) {
-				printf("Need to call check_tela explicitly with dimension dim=1 or dim=2.");
+				printf("Need to call check_tela() explicitly with dimension dim=1 or dim=2.\n");
 			}
+			exit(1);
 		}
 	
-		if (axioms==0) {
-			/* AXIOM ONE: CONTINUITY */
-			for (i=eM; i<eN; i++) {
-				if (     tela[i+1].x == tela[i].x + 1 &&
-					     tela[i+1].y == tela[i].y) {
-					;
-				}
-				else if (tela[i+1].y == tela[i].y + 1 &&
-						 tela[i+1].x <=  tela[i].x) {
-					;
-				}
-				else {
-					tela[i].cyc_o = '!';						/* MARK EDGE OF DISCONTINUITY */
-					break;
-				}
+		/* AXIOM ONE: CONTINUITY */
+		for (i=eM; i<eN; i++) {
+			if (     tela[i+1].x == tela[i].x + 1 &&
+				     tela[i+1].y == tela[i].y) {
+				;
 			}
-			if (i==eN)
-				axioms = 1;
-			else if (dev_print(TELA,__LINE__)) {
-				printf("check_tela(mode_dim=%d): Problem of continuity at 1-D positions %d --> %d (columns %d and %d)", 
-									mode_dim, i, i+1, tela[i].x, tela[i+1].x);
+			else if (tela[i+1].y == tela[i].y + 1 &&
+					 tela[i+1].x <=  tela[i].x) {
+				;
 			}
-	
-			/* AXIOM TWO: EQUIVALENCE */
-			for (i=eM; i<eN && !badflag; i++) {
-				for (j=i+1; j<eN; j++) {
-					if (tela[j].x == tela[i].x && 
-						tela[j].e != tela[i].e) {
-						tela[j].cyc_o = tela[i].cyc_o = '*';	/* MARK PAIR OF NON-EQUIVALENT SITES SHARING SAME COLUMN */
-						badflag++;
-						break;		/* TO BREAK FOR j LOOP */
-					}	
+			else {
+				tela[i].cyc_o = '>';						/* MARK EDGE OF DISCONTINUITY */
+				if (dev_print(TELA,__LINE__)) {
+					printf("check_tela() marking edge of discontinuity at i=%d.", i);
 				}
-				if (badflag)
-					break;
-			}
-			if (!badflag) 
-				axioms+=2;
-			else if (dev_print(TELA,__LINE__)) {
-				printf("check_tela(mode_dim=%d): Problem of equivalence at 1-D positions %d and %d (both in column %d)", 
-									mode_dim, i, j, tela[i].x);
+				break;
 			}
 		}
+		if (i==eN)
+			axioms = 1;
+		else if (dev_print(TELA,__LINE__)) {
+			printf("check_tela(mode_dim=%d): Problem of continuity at 1-D positions %d --> %d (columns %d and %d)", 
+								mode_dim, i, i+1, tela[i].x, tela[i+1].x);
+		}
+
+		/* AXIOM TWO: EQUIVALENCE */
+		for (i=eM; i<eN && !badflag; i++) {
+			for (j=i+1; j<eN; j++) {
+				if (tela[j].x == tela[i].x && 
+					tela[j].e != tela[i].e) {
+					tela[j].cyc_o = tela[i].cyc_o = '*';	/* MARK PAIR OF NON-EQUIVALENT SITES SHARING SAME COLUMN */
+					badflag++;
+					break;		/* TO BREAK FOR j LOOP */
+				}	
+			}
+			if (badflag)
+				break;
+		}
+		if (!badflag) 
+			axioms+=2;
+		else if (dev_print(TELA,__LINE__)) {
+			printf("check_tela(mode_dim=%d): Problem of equivalence at 1-D positions %d and %d (both in column %d)", 
+								mode_dim, i, j, tela[i].x);
+		}
+
 		return(axioms);	/* 0 IF BOTH FAIL; +1 IF ONLY ONE PASSES; +2 IF ONLY TWO PASSES; +3 IF BOTH PASS */ 
 	}
 }
@@ -297,8 +299,8 @@ int cyclelize_tela(int cpos, int delta, int npos)
 /**************** FUNCTION TO MARK ALL POSSIBLE k-MERs BEFORE LEGACY CINCH-T PASS ******************************/
 void mark_tela(void) 
 {
-	int i, j, l, m, n, k, reps, span; 
-	int threshold=0, max_score=0, max_count=0, min_k;
+	int i, j, l, m, n, k, reps, span, min_k; 
+	int threshold=0, max_score=0, max_count=0, projection=0;
 	int lenseq = options[1][1];
 	unsigned short int nuctype = options[1][13], nuctransit=0, TRcheck=0, imperfect_TR=0, Aimperfect_TR=0, gapcheck=0;
 	int homopoly_flag=0, Did=0, Dtr=0, Atr=0;
@@ -403,6 +405,17 @@ void mark_tela(void)
 						}
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
 							tela[n].all_r = reps;
+							if (n+k*reps > projection) {
+								projection = n + k*reps;
+							}
+							else {
+								if (tela[n-1].all_k == k) {
+									tela[n].stat = 'c';		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
+								}
+								else {
+									tela[n].stat = 'f';		/* FRACTAL REPEAT = EMBEDDED IN ANOTHER REPEAT */
+								}
+							}
 							TRcheck = 0;
 							break;
 						}
@@ -558,6 +571,9 @@ void mark_tela(void)
 					k = tela[n].all_k;
 					for (j=n+1; j<n+span; j++) {
 						if (tela[j].all_k == k && !tela[j].all_R && !tela[j].all_L) {
+							if (dev_print(TELA,__LINE__)) {
+								printf("mark_tela() at n=%d, scenario three", n);
+							}
 							for (i=j-1; i>=n; i--) {
 								clearall_tela(i, j-n, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							}
@@ -604,7 +620,20 @@ void mark_tela(void)
 			m = n - k;
 			for (i=0; i<tela[n].all_r; i++) {
 				for (j = 1; j < tela[n].all_k-1; j++) {
-					if (tela[(p=m+i*k+j)].all_k != tela[(q=n+i*k+j)].all_k) {
+					if (i==0 && tela[(p=m+j)].all_k != tela[(q=n+j)].all_k 
+								&& tela[p].stat == 'f' && tela[n].stat != 'f') {
+						clearall_tela(n,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
+						tela[n].stat = '-';
+						if (dev_print(TELA,__LINE__)) {
+							printf("mark_tela() at n=%d evaluating cycling differences "
+									"but calling clearall only at n to save fractal TR at p=%d.", n, p);
+						}
+					}
+					else if (tela[(p=m+i*k+j)].all_k != tela[(q=n+i*k+j)].all_k) { 
+						if (dev_print(TELA,__LINE__)) {
+							printf("mark_tela() at n=%d evaluating cycling differences "
+									"and calling clearall at p=%d and q=%d.", n, p, q);
+						}
 						if (tela[p].all_k)
 							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
 						if (tela[q].all_k)
@@ -615,11 +644,18 @@ void mark_tela(void)
 		}
 	}
 
+	/* FIND AND RECORD MAX_K SIZE */
+	int max_k = 0;
+	for (n=0; n<lenseq; n++) {
+		if (tela[n].all_k > max_k) {
+			max_k = tela[n].all_k;
+		}
+	}
+	options[1][46] = max_k;  
+
 	if (dev_print(TELA,__LINE__)) {
 		printf("                     Finishing. print_tela() follows.");
 		print_tela( 0,  56);
-/*		print_tela(57, 112);
-*/
 	}
 }
 
@@ -702,6 +738,13 @@ int lenseq = options[1][1];
 	for (i=a; i<=b; i++)
 		printf("%3d", tela[i].x);
 
+	printf("\nst:");
+	for (i=a; i<=b; i++) {
+		if (tela[i].stat)
+			printf("%3c", tela[i].stat);
+		else
+			printf("  .");
+	}
 	printf("\nak:");
 	for (i=a; i<=b; i++) {
 		if (tela[i].all_k)
@@ -903,11 +946,10 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 	if (axioms==2 || axioms==3) {
 		/* CHECK PRINCIPLE OF EQUIVALENCE */
 		for (i=0; i<k; i++) {
-			if      (tela[n1+i].c == tela[n2+i].c)
+			if      (tela[n1+i].c == tela[n2+i].c) {
 				;
-			else if (tela[n1+i].t == tela[n2+i].t) 
-				;
-			else if (OFF && tela[n1+i].e == tela[n2+i].e) { 
+			}
+			else if (tela[n1+i].t == tela[n2+i].t) {
 				;
 			}
 			else {

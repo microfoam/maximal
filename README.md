@@ -5,8 +5,11 @@ MHA methodology is philosophically-distinct from gapped alignment in embracing l
 As a prototype implementation of MHA, the current versions of maximal feature a rich set of run options in order to encourage a free, open-minded, heuristics-friendly development cycle.
 Program options can be seen by running ./maximal without any options specified.
 
-Version v4.22 is the most recent stable version.
+Version v4.23 is the most recent stable version.
 Version v3.64 is the version associated with the most recent preprint (see 'Pointbreak/' sub-directory).
+Version numbers represent convenient prototype program development versions that increase in steps of 0.01.
+Version 4.00 is simply version the 400th version in the repository.
+
 
 The file "maximal" currently corresponds to a MAC OS-compatible executible.
 Older code versions are saved in the "pointbreak" directory.

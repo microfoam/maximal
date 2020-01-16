@@ -1,19 +1,13 @@
-/**************************************************/
-/* microhomology.h: header file since mha_v3.97.c */
-/**************************************************/
+/******************************************************************/
+/* maximal's microhomology.h: header file since mha_v3.97.c       */
+/******************************************************************/
+/******************************************************************/
+/******************************************************************/
 
-#define DEVBIT		0		/* FOR CLARITY OF MODE ARGUMENTS; USED TO COORDINATE SWITCHING NEW CODE ACROSS FUNCTIONS & FILES */
 #define MAXROW   2000       /* maximum input line size  */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
 #define CYCMAX     60       /* MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER STOPGAPS */
-#define FRAME_ROWS 23       /* NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
-#define OFF			0		/* FOR CLARITY OF MODE ARGUMENTS */
-#define ON 			1		/* FOR CLARITY OF MODE ARGUMENTS */
-#define ONE			1		/* USE ONLY FOR FUNCTIONS THAT CAN BE TURNED OFF WITH MODE OFF */
-#define TWO			2		/* USE ONLY FOR FUNCTIONS THAT CAN BE TURNED OFF WITH MODE OFF */
-#define THREE		3		/* USE ONLY FOR FUNCTIONS THAT CAN BE TURNED OFF WITH MODE OFF */
-#define FOUR		4		/* USE ONLY FOR FUNCTIONS THAT CAN BE TURNED OFF WITH MODE OFF */
-#define FIVE		5		/* USE ONLY FOR FUNCTIONS THAT CAN BE TURNED OFF WITH MODE OFF */
+#define FRAME_ROWS 25       /* NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
 #define START       0       /* FOR USE WITH line_end() */
 #define END         1       /* FOR USE WITH line_end() */
 #define RULER       2       /* FOR USE WITH line_end() */
@@ -21,8 +15,9 @@
 #define PATHBOXHEAD 4       /* FOR USE WITH line_end() */
 #define BLOCKHEAD   5       /* FOR USE WITH line_end() */
 #define SLIPRULER   6       /* FOR USE WITH line_end() */
-#define MAIN		1		/* FOR USE WITH dev_print() */
-#define TELA		2		/* FOR USE WITH dev_print() */
+#define EXIT_GOOD	0		/* FOR STANDARD EXIT ERRORS */
+#define EXIT_ERROR	1		/* FOR STANDARD EXIT ERRORS */
+#define EXIT_EARLY	2		/* FOR STANDARD EXIT ERRORS */
 #define max(a,b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a > _b ? _a : _b; })
 
 struct coord {
@@ -46,7 +41,7 @@ struct coord {
 	int Dtr;		/* CUMULATIVE SUM OF DIAGONAL TANDEM REPEAT (DTR) SCORES BY POSITION */
 	char t;			/* IUPAC TRANSITIONS IN DNA USUALLY (RY) IN "IMPERFECT" TANDEM REPEATS */
 	/*************************************************************************************************/
-	int  cyc_F[FRAME_ROWS];	/* cycling frames; count-off column positions per unit; 32 - 8 = 23 */
+	int  cyc_F[FRAME_ROWS];	/* cycling frames; count-off column positions per unit; 32 - 7 = 25 */
 							/* one row/frame; row 0 is row # locator; FRAME_ROWS IS BASED ON MEM AL. */
 	int all_k;		/* ALL SERIES: PRE-CINCH-T: k-MER SIZE                        */
 	int all_r;		/* ALL SERIES: PRE-CINCH-T: REPEAT NUMBER                     */
@@ -54,6 +49,7 @@ struct coord {
 	int all_Z;		/* ALL SERIES: PRE-CINCH-T: ALL_S + TIE-BREAKERS			  */
 	int all_R;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON RHS */
 	int all_L;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON LHS */
+	char stat;		/* ALL SERIES: PRE-CINCH-T: STATUS                            */
 	/*************************************************************************************************/
 	int cyc_Lf;		/* Left-side overlapping TR; 0=lenseq, which is also stored in options[1][1]     */
 	int cyc_Rt;		/* Right-side overlapping TR */
@@ -153,5 +149,4 @@ void 				shuffle(int *array, int n);
 void 				usage(char usage_version[], unsigned int FY_size);			/* FOR PRINTING UNIFORM USAGE INFORMATION */
 char 				*nmer_prefix(int i);			/* CONVERTS INTEGER TO N-MER PREFIX WRITTEN NAME */
 void 				free_2D(int **p2D, int lenseq);
-short unsigned int	dev_print(short unsigned int mode, int line_no);
 
