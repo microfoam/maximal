@@ -18,6 +18,10 @@
 void 				dev_linehead(int mode, int line_no);
 short unsigned int	dev_print(short unsigned int mode, int line_no);
 void 				dev_prompt(short unsigned int mode, int line_no, char *filename);
+void 				signal_callback_handler(int signum);
+
+int prtela_A =   0;		/* DEVELOPMENT VARIABLE TO GLOBALLY SET PRINT TELA START AND END POINT FOR DIAGNOSTICS */
+int prtela_B =  56;		/* SET TO SOMETHING APPROPRIATE FOR GIVEN COMPUTER SCREEN */	
 
 /*****************************************************************/
 short unsigned int dev_print(short unsigned int mode, int line_no)
@@ -67,4 +71,17 @@ void dev_linehead(int mode, int line_no)
 
 }
 /***************************************/
+
+
+/***************************************/
+void signal_callback_handler(int signum) 
+{
+	printf("  )--- I caught signal %d before exiting (2=SIGINT, 10=SIGBUS, 11=SIGSEGV).\n\n",signum);
+	fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
+	fprintf(fp_out, "---->\tCanceled run for %s with signal=%d (2=SIGINT, 10=SIGBUS, 11=SIGSEGV). dev_notes: %s.\n", file_name, signum, dev_notes);
+	fclose(fp_out);
+	exit(signum);
+}
+/***************************************/
+
 

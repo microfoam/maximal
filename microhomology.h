@@ -56,22 +56,14 @@ struct coord {
 	char cyc_o;		/* x => cinched; o => untaken cyclelizable option; !,** => CHECK_TELA VIOLATIONS */
 	/*************************************************************************************************/
 } tela[MAXROW] = {0};
+
 char align2D[MAXROW][MAXROW] = {{0}};
 char pathbox[MAXROW][MAXROW] = {{0}};
 char consensus[MAXROW] = {0};
 char file_name[255];
-FILE *fp_out;                           /* FILE FOR output.log */
 char dev_notes[32] = "N/A";             /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
+FILE *fp_out;                           /* FILE FOR output.log */
 
-/***********************************************/
-void signal_callback_handler(int signum) 
-{
-	printf("  )--- I caught signal %d before exiting (2=SIGINT, 11=SIGSEGV).\n\n",signum);
-	fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
-	fprintf(fp_out, "---->\tCanceled run for %s with signal=%d (2=SIGINT, 11=SIGSEGV). dev_notes: %s.\n", file_name, signum, dev_notes);
-	fclose(fp_out);
-	exit(signum);
-}
 
 static int random_i(int n) 
 {
