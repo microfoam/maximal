@@ -1,7 +1,7 @@
 /******************************************************************/
 /* microhom-devl.h header file, since mha_v4.23.c                 */
 /* This file has MHA functions related to program development,    */
-/* testing, and evaluation.                                       */
+/* testing, error emission, and evaluation.                       */
 /******************************************************************/
 
 #define DEVBIT1		0		/* TURN ON dev_prompt()'s IF ON */
@@ -14,6 +14,10 @@
 #define FIVE		5		/* USE ONLY FOR FUNCTIONS THAT CAN BE TURNED OFF WITH MODE OFF */
 #define MAIN		1		/* FOR USE WITH dev_print() */
 #define TELA		2		/* FOR USE WITH dev_print() */
+#define COOL		1		/* SETS MELT TEMPERATURE; SO CAN USE SCRIPTS TO SAME METRICS; SETS LOWER BOUND FOR MELTAGE */
+#define EXIT_GOOD	0		/* FOR STANDARD EXIT ERRORS */
+#define EXIT_ERROR	1		/* FOR STANDARD EXIT ERRORS */
+#define EXIT_EARLY	2		/* FOR STANDARD EXIT ERRORS */
 
 void 				dev_linehead(int mode, int line_no);
 short unsigned int	dev_print(short unsigned int mode, int line_no);

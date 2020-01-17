@@ -4,9 +4,10 @@
 /******************************************************************/
 /******************************************************************/
 
-#define MAXROW   2000       /* maximum input line size  */
+#define COOL		1		/* SETS MAGIC MELT TEMPERATURE; SETS LOWER BOUND FOR MELTAGE */
+#define CYCMAX     60       /* SEMI-MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER EMBEDDED DECISIONS */
+#define MAXROW   2000       /* maximum input line size; NOT M-A-G-I-C JUST WHAT MY 'PUTERS CAN DO AS IS */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
-#define CYCMAX     60       /* MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER STOPGAPS */
 #define FRAME_ROWS 25       /* NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
 #define START       0       /* FOR USE WITH line_end() */
 #define END         1       /* FOR USE WITH line_end() */
@@ -15,9 +16,6 @@
 #define PATHBOXHEAD 4       /* FOR USE WITH line_end() */
 #define BLOCKHEAD   5       /* FOR USE WITH line_end() */
 #define SLIPRULER   6       /* FOR USE WITH line_end() */
-#define EXIT_GOOD	0		/* FOR STANDARD EXIT ERRORS */
-#define EXIT_ERROR	1		/* FOR STANDARD EXIT ERRORS */
-#define EXIT_EARLY	2		/* FOR STANDARD EXIT ERRORS */
 #define max(a,b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a > _b ? _a : _b; })
 
 struct coord {
@@ -62,6 +60,8 @@ char pathbox[MAXROW][MAXROW] = {{0}};
 char consensus[MAXROW] = {0};
 char file_name[255];
 char dev_notes[32] = "N/A";             /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
+short unsigned int cinchled=0;			/* BIT FLAG FOR CINCH-L WRAPS */
+
 FILE *fp_out;                           /* FILE FOR output.log */
 
 
