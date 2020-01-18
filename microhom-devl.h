@@ -4,6 +4,9 @@
 /* testing, error emission, and evaluation.                       */
 /******************************************************************/
 
+#ifndef FILE_DEVL_SEEN
+#define FILE_DEVL_SEEN
+
 #define DEVBIT1		0		/* TURN ON dev_prompt()'s IF ON */
 #define OFF			0		/* FOR CLARITY OF MODE ARGUMENTS */
 #define ON 			1		/* FOR CLARITY OF MODE ARGUMENTS */
@@ -14,6 +17,7 @@
 #define FIVE		5		/* USE ONLY FOR FUNCTIONS THAT CAN BE TURNED OFF WITH MODE OFF */
 #define MAIN		1		/* FOR USE WITH dev_print() */
 #define TELA		2		/* FOR USE WITH dev_print() */
+#define CINCH		3		/* FOR USE WITH dev_print() */
 #define COOL		1		/* SETS MELT TEMPERATURE; SO CAN USE SCRIPTS TO SAME METRICS; SETS LOWER BOUND FOR MELTAGE */
 #define EXIT_GOOD	0		/* FOR STANDARD EXIT ERRORS */
 #define EXIT_ERROR	1		/* FOR STANDARD EXIT ERRORS */
@@ -70,6 +74,8 @@ void dev_linehead(int mode, int line_no)
 		strcpy(section_label, "main");
 	else if (mode == 2)
 		strcpy(section_label, "tela");
+	else if (mode == 3)
+		strcpy(section_label, "cinc");
 
 	printf("\nDEV-%s-%4d: ", section_label, line_no);
 
@@ -88,4 +94,8 @@ void signal_callback_handler(int signum)
 }
 /***************************************/
 
+#endif		/* !FILE_DEVL_SEEN */
 
+/*************************************************************************************************************/
+/* WRITTEN BY DR. ALBERT J. ERIVES, AGPL-3.0 license. Code available at https://github.com/microfoam/maximal */
+/*************************************************************************************************************/

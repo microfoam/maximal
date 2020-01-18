@@ -4,6 +4,9 @@
 /* or verb_object(), where object is related to tela struct.      */
 /******************************************************************/
 
+#ifndef FILE_TELA_SEEN
+#define FILE_TELA_SEEN
+
 int  	assign_tela(int eL, int eM, int eN, int mode);
 void 	assign_transit(int n, int kr_src);
 int  	check_tela(int eM, int eN, short unsigned int mode_dim);
@@ -463,8 +466,9 @@ void mark_tela(void)
 			k = tela[n].all_k;
 			m = n - k;
 			j = n - 1;
-			while (tela[j].all_k)		/* SKIP CYCLE COLUMNS OF SAME K-MER */
+			while (tela[j].all_k) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
 				j--;
+			}
 			for (i=j; i>0; i--) {
 				if (tela[i].all_k && (i + tela[i].all_k * (tela[i].all_r-1)) > m) {
 					tela[n].all_L = i;		/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
@@ -689,16 +693,12 @@ int lenseq = options[1][1];
 			b = width;
 	}
 	/************* BEGIN PRINTING LINES *******************/
-	printf("\n e:");
-	for (i=a; i<=b; i++) {
-		printf("%3c", tela[i].e);
-	}
 	printf("\n t:");
 	for (i=a; i<=b; i++) {
 		if (tela[i].c != tela[i].t)
-			printf("%3c", tela[i].t);
+			printf("__%c", tela[i].t);
 		else
-			printf("  .");
+			printf("___");
 	}
 	printf("\n c:");
 	for (i=a; i<=b; i++)
@@ -871,7 +871,7 @@ int lenseq = options[1][1];
 		printf(" --");
 
 	/* PRINT TOP FRAME ROWS */
-	for (f=1; f<=12; f++) {
+	for (f=1; f<=10; f++) {
 		printf("\nf%c:", mha_base62(f));
 		for (i=a; i<=b; i++) {
 			if (tela[i].cyc_F[f])
@@ -1150,4 +1150,8 @@ int update_tela(void)
 	return(c);	/* SHOULD BE lenseq IF SUCCESSFUL */
 }
 
+#endif		/*!FILE_TELA_SEEN */
 
+/*************************************************************************************************************/
+/* WRITTEN BY DR. ALBERT J. ERIVES, AGPL-3.0 license. Code available at https://github.com/microfoam/maximal */
+/*************************************************************************************************************/

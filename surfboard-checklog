@@ -33,6 +33,8 @@ echo
 echo 'Line counts:'
 wc -l mha_v*.c | grep -v total
 wc -l microhomology.h
+wc -l microhom-devl.h
 wc -l microhom-skor.h
 wc -l microhom-tela.h
+wc -l microhom-cinc.h
 echo
