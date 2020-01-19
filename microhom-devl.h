@@ -17,6 +17,7 @@
 #define MAIN		1		/* FOR USE WITH dev_print() */
 #define TELA		2		/* FOR USE WITH dev_print() */
 #define CINCH		3		/* FOR USE WITH dev_print() */
+#define LOGY		4		/* FOR USE WITH dev_print() */
 #define COOL		1		/* SETS MELT TEMPERATURE; SO CAN USE SCRIPTS TO SAME METRICS; SETS LOWER BOUND FOR MELTAGE */
 #define EXIT_GOOD	0		/* FOR STANDARD EXIT ERRORS */
 #define EXIT_ERROR	1		/* FOR STANDARD EXIT ERRORS */
@@ -77,6 +78,8 @@ void dev_linehead(int mode, int line_no)
 		strcpy(section_label, "tela");
 	else if (mode == 3)
 		strcpy(section_label, "cinc");
+	else if (mode == 4)
+		strcpy(section_label, "logy");
 
 	printf("\nDEV-%s-%4d: ", section_label, line_no);
 

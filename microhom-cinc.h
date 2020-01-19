@@ -602,7 +602,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 			printf("\n Next: cinch-k for k = %d...", k);
 
 			if (k > 1)	/* k=1 WILL PRINT FROM MAIN */
-				print_2Dseq(options[1][32]);
+				print_2Dseq();
 		}
 
 		options[0][4] = options[0][4] + cik_row;			/* STORE ROWS ADDED */
@@ -821,7 +821,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 	if (!dud_nudge)	{
 		mha_writeback(cyc_ar, align2D);
 		mha_writeconsensus(cyc_ar, consensus);
-		return(print_2Dseq(cyc_width));
+		return(print_2Dseq());
 	}
 	else {
 		return (0);
@@ -1102,7 +1102,7 @@ char cid_align2D[MAXROW][MAXROW];
 		i = options[1][18];
 		options[1][i] = options[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS WIDTH HISTORY */
 		if (cidwidth == options[1][32]) {
-			print_2Dseq(cidwidth);
+			print_2Dseq();
 			return(0);
 		}
 		else if (tot_repeats > 1 && options[0][20]) {
@@ -1117,7 +1117,7 @@ char cid_align2D[MAXROW][MAXROW];
 		}
 		else { 
 			cidwidth = options[1][32];
-			print_2Dseq(cidwidth);
+			print_2Dseq();
 		}
 	}
 	return(tot_repeats);

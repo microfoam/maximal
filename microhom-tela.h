@@ -7,19 +7,20 @@
 #ifndef FILE_TELA_SEEN
 #define FILE_TELA_SEEN
 
-int  	assign_tela(int pos, int eM, int eN, int mode);
-void 	assign_transit(int n, int kr_src);
-int  	check_tela(int eM, int eN, short unsigned int mode_dim);
-void 	clearall_tela(int n, int span, int keep_score, int mode);
-int  	cyclelize_tela(int cpos, int delta, int npos);
-void 	flatline_after_TR(int pos);
-void 	mark_tela(void);
-void 	print_tela(int a, int b);
-void 	pull_tela(int n);
-int  	push_tela(int n2, int n1, short unsigned int axioms);
-int 	score_kmer(int n, int k, short unsigned int mode);
-int  	settle_tiescores(int n, int span, int max_score, int iteration);
-int		update_tela(void);
+int  		assign_tela(int pos, int eM, int eN, int mode);
+void 		assign_transit(int n, int kr_src);
+short int 	check_solo(int pos);
+int  		check_tela(int eM, int eN, short unsigned int mode_dim);
+void 		clearall_tela(int n, int span, int keep_score, int mode);
+int  		cyclelize_tela(int cpos, int delta, int npos);
+void 		flatline_after_TR(int pos);
+void 		mark_tela(void);
+void 		print_tela(int a, int b);
+void 		pull_tela(int n);
+int  		push_tela(int n2, int n1, short unsigned int axioms);
+int 		score_kmer(int n, int k, short unsigned int mode);
+int  		settle_tiescores(int n, int span, int max_score, int iteration);
+int			update_tela(void);
 
 int assign_tela(int pos, int eM, int eN, int mode)
 {
@@ -472,12 +473,11 @@ void mark_tela(void)
 						tela[i].stat = tela[i+k].stat = tela[n].stat = 'f';
 						tela[n].all_L = i;		/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;		/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-						recslips = span_allrk(i); 
+						recslips += span_allrk(i); 
 					}
 					else {
 						tela[n].all_L = i;		/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;		/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-						tela[i].stat = '!';
 						if (dev_print(TELA,__LINE__)) {
 							printf("         mark_tela() marking conflict between i=%d and n=%d.", i,n);
 						}
@@ -485,6 +485,31 @@ void mark_tela(void)
 				}
 			}
 		}
+	}
+	/* NOW MARK ALL CONFLICTING TRs AT m's W.R.T. n's */
+	for (n=lenseq; n>0; n--) {
+		if (tela[n].all_k && tela[(m=(n-(k=tela[n].all_k)))].all_k) {
+			short unsigned int check_shadow = 2;
+			int recslips = 0;
+			j = n - 1;
+			while (tela[j].all_k) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
+				j--;
+			}
+			for (i=j; i>=m; i--) {
+				if (tela[i].all_k) {
+					check_shadow = 1;
+					recslips += span_allrk(i);
+				}
+			}
+			if (recslips == 0) {
+				check_shadow = 0;
+			}
+			else if ( m + tela[m].all_k * tela[m].all_r >= m - recslips && tela[m].stat != 'f' && 
+						tela[n-tela[m].all_k].all_k != tela[n].all_k && check_solo(m) && check_solo(n) ) {
+				tela[m].stat = '_';
+				clearall_tela(m, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+			}
+		}	
 	}
 
 	/* IDENTIFY CYCLING MARKS FOR PERFECT REPEATS LAID OVER INTERNAL REPEATS WITH r>1 */
@@ -677,6 +702,19 @@ void mark_tela(void)
 	}
 }
 
+short int check_solo(int pos)
+{
+	if (!tela[pos].all_k) {
+		return(-1);					/* NEGATIVE SIGNALS NO REPEAT AT GIVEN POSITION */
+	}
+	else if ( tela[pos-1].all_k || 
+			  tela[pos+1].all_k ) {
+		return(0);					/* ZERO SIGNALS NOT SOLO REPEAT POSITION */
+	}
+	else {
+		return(1);					/* POSITIVE SIGNALS IS SOLO */
+	}
+}
 
 /********************* PRINT TELA FROM a TO b *********************/
 void print_tela(int a, int b)

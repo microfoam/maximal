@@ -120,13 +120,13 @@ void 				mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
 void 				mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW]);
 void 				mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW]);
 void 				print1D(void);
-short unsigned int	print_2Dseq(int print_lenseq2D);
+short unsigned int	print_2Dseq(void);
 void 				print_blockhead(int a, int b);	
 short int 			pushdown(char pusharray[][MAXROW], int push_m, int push_n); 
 int 				span_allrk(int point);
 int 				span_rk(int point);
 void 				warnhead(char l); 
-int 				recoverlen(void);
+short unsigned int 	recoverlen(void);
 short unsigned int	cleanseq(char *s);
 int 				get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW]);
 void 				mha_randomize1(char *input_seq);
@@ -321,7 +321,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 			plustransit = 0;
 			if (options[1][18]) { /* IF PASS NUMBER */
 				options[1][39] = 1; sprintf(dev_notes, "checktransit=%d at n=%d", checktransit, n);
-				if (dev_print(MAIN,__LINE__)) {
+				if (dev_print(LOGY,__LINE__)) {
 					printf("checktransit=%d at n=%d.\n", checktransit, n);
 				}
 			}
@@ -760,7 +760,7 @@ int max_len = options[1][58]+8;			/* MAXIMUM LENGTH */
 int hr_len = min_len;					/* DEFAULT LENGTH OF HEADER BANNER */
 int lcl_pass = options[1][18];			/* opt_I VALUE COUNTER FOR NUM OF PASSES */
 
-	if (lcl_width > MAXROW && dev_print(MAIN, __LINE__)) {
+	if (lcl_width > MAXROW && dev_print(LOGY, __LINE__)) {
 		printf("Bad news bears: Unexpectedly, lcl_width > MAXROW. lcl_pass=%d, lcl_width=%d.\n", lcl_pass, lcl_width);
 	}
 
@@ -986,7 +986,7 @@ char *nmer_prefix(int p)
 }
 
 /*****************************************************************************************/
-short unsigned int print_2Dseq(int print_lenseq2D)
+short unsigned int print_2Dseq(void)
 {
 unsigned int foam_2D(int n_start, int n_width);
 int all_clear;		/* COUNTER VARIABLE USED FOR CHECKING NEED TO PRINT BOTTOM ROWS */ 
@@ -998,25 +998,26 @@ int cinchwidth = (int) options[1][32];
 int cip_linewidth = options[1][58];
 char popt_Q_left = options[1][26]; 	/* LHS character delimiter for homopolymer Run */
 char popt_R_rght = options[1][27];		/* RHS character delimiter for homopolymer Run */
+int blnk_lvl = options[0][11];			/* USE TO STORE DEGREE OF BLANKNESS */
+int   lenseq = options[1][1];
+int   height = options[1][17];
 int head_start;							/* USE TO PASS RULER O-F-F-SET TO line_end() */
 int scrimmageline;						/* USE TO INCREMENT AND TEST IF FILLER IS NEEDED, CAN BE OPTION TO DO SO */
-int blnk_lvl = options[0][11];			/* USE TO STORE DEGREE OF BLANKNESS */
-int   length = options[1][1];
 char tick = ':'; 						/* OTHER POSSIBILITIES: |, ^ */
 short unsigned int lcl_opt_F;
 
 	if (options[0][11] > 1)
 		tick = blnk;
 
-	if (cinchwidth > MAXROW && dev_print(MAIN,__LINE__)) {
+	if (cinchwidth > MAXROW && dev_print(LOGY,__LINE__)) {
 		printf("Bad news bears: Unexpectedly, cinchwidth > MAXROW. cinchwidth=%d", cinchwidth);
 	}
-	if (print_lenseq2D > MAXROW && dev_print(MAIN,__LINE__)) {
-		printf("Bad news bears: Unexpectedly, print_lenseq2D > MAXROW. print_lenseq2D=%d.", print_lenseq2D);
+	if (cinchwidth > MAXROW && dev_print(LOGY,__LINE__)) {
+		printf("Bad news bears: Unexpectedly, cinchwidth > MAXROW. cinchwidth=%d.", cinchwidth);
 	}
-	mha_head(print_lenseq2D);
+	mha_head(cinchwidth);
 
-	blocks2D = count_wrap_blocks(print_lenseq2D, cip_linewidth);
+	blocks2D = count_wrap_blocks(cinchwidth, cip_linewidth);
 
 	for (j = 0; j < blocks2D; j++) {
 		if (blocks2D != 1)
@@ -1153,26 +1154,60 @@ short unsigned int lcl_opt_F;
 		}
 	} /* END OF FOR j PRINTING LOOP */
 
-	if (c == length && mmsites == 0) {
+	if (c == lenseq && mmsites == 0) {
 		options[0][10] = 1000;	
 		printf("\n Successfully 2-D self-aligned all %d letters from formatted sequence. \n", c);
 		return(0);
 	}
-	else if (c == length) {
+	else if (c == lenseq) {
 		i=options[0][10] = round((1000*(cinchwidth-mmsites))/cinchwidth);	
 		printf("\n 2-D self-aligned all %d letters from formatted sequence, but consensus indicates more cinching required. \n", c);
 		return(i);
 	}
-	else if (c < length) {
-		i=options[0][10] = round((1000*(cinchwidth-mmsites-(length-c)))/cinchwidth);
+	else if (c < lenseq) {
+		i=options[0][10] = round((1000*(cinchwidth-mmsites-(lenseq-c)))/cinchwidth);
 		warnhead('-');
-		printf(" 2-D printing is missing %d letter(s)!\n\n", length-c); 
+		printf(" 2-D printing is missing %d letter(s)!\n\n", lenseq-c); 
+
+		/* ENSURE THERE ARE NO MISSING MHA ROW TERMINATORS */
+		for (m=0; m<height; m++) {
+			for (n=0; n<cinchwidth; n++) {
+				while (align2D[m][n]==blnk) {
+					n++;
+				}
+				if (align2D[m][n]==popt_Q_left) {
+					n++;
+				}
+				while (isalpha(align2D[m][n])) {
+					n++;
+				}
+				if (m<height-1 && (letr=align2D[m][n]) != '/' && letr!=popt_R_rght) {
+					align2D[m][n  ] = '/';
+					align2D[m][n+1] = '\0';
+					if (dev_print(LOGY,__LINE__)) {
+						printf("print_2Dseq() adding missing line terminator at row=%d, col=%d.", m,n);
+					}
+					break;
+				}
+				else if (m==height-1 && align2D[m][n] != '>') {
+					align2D[m  ][n] = '>';
+					align2D[m+1][0] = '\0';
+					if (dev_print(LOGY,__LINE__)) {
+						printf("print_2Dseq() adding missing final terminator at row=%d, col=%d.", m,n);
+					}
+					break;
+				}
+				else {
+					break;
+				}
+			}
+		}
 		return(0);
 	}
 	else {
-		i=options[0][10] = round((1000*(cinchwidth-mmsites-(c-length)))/cinchwidth);	
+		i=options[0][10] = round((1000*(cinchwidth-mmsites-(c-lenseq)))/cinchwidth);	
 		warnhead('+');
-		printf(" 2-D printing left %d extra letter(s)!\n\n", c-length);
+		printf(" 2-D printing left %d extra letter(s)!\n\n", c-lenseq);
 		return(0);
 	}
 }
@@ -1209,26 +1244,61 @@ void print_blockhead(int a, int b)              /**/
 /**************************************************/
 
 /*****************************************************************************************/
-int recoverlen(void) 
+short unsigned int recoverlen(void) 
 {
-int m=0, n=0, x=0;
-int rec_lenseq = options[1][32];
-char rec_R_rght = options[1][27], letr;
+int m=0, n=0;
+int alpha_count=0;
+char  blnk = options[1][11];
+int  width = options[1][32];
+int lenseq = options[1][ 1];
+int height = options[1][17];
+char monoL = options[1][26];
+char monoR = options[1][27];
+char letr;
 
-	for (m=0; (align2D[m][0] != '\0') || (m < MAXROW); ) {
-		for (n=0; (letr=align2D[m][n]) != '/' && letr!=rec_R_rght && letr!='>' && n < rec_lenseq; n++) {
-			if (isalpha(letr)) {
-				x++;
+	/* CHECK BASIC ASSUMPTIONS */
+	if (lenseq>MAXROW || height>MAXROW || width>lenseq || height>lenseq) {
+		return(0);
+	}
+
+	for (m=0; m<height; m++) {
+		for (n=0; n<width; n++) {
+			while (align2D[m][n]==blnk) {
+				n++;
 			}
-		} /* END OF FOR n LOOP */
-		if (letr=='/' || letr==rec_R_rght)
-			m++;
-		else if (letr=='>') {
-			return(x);
-		}
-	} /* END OF FOR m LOOP */
-	return(0);
+			if (align2D[m][n]==monoL) {
+				n++;
+			}
+			while(isalpha(align2D[m][n])) {
+				n++;
+				alpha_count++;
+			}
+			if (m<height-1 && ((letr=align2D[m][n]) != '/' && letr!=monoR)) {
+				align2D[m][n  ] = '/';
+				align2D[m][n+1] = '\0';
+				if (dev_print(LOGY,__LINE__)) {
+					printf("recoverlen() is adding a missing line terminator at m=%d, n=%d.", m,n);
+				}
+				break;
+			}
+			else if (m==height-1 && align2D[m][n] != '>') {
+				align2D[m][n  ] = '>';
+				align2D[m][n+1] = '\0';
+				if (dev_print(LOGY,__LINE__)) {
+					printf("recoverlen() is adding a missing final terminator at m=%d, n=%d.", m,n);
+				}
+				return(alpha_count);
+			}
+			else if (align2D[m][n] == '>') {
+				return(alpha_count);
+			}
+			else {
+				break;
+			}
+		} 
+	}
 
+	return(alpha_count);
 }
 
 

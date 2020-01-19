@@ -1,11 +1,12 @@
 #!/bin/bash
 
+echo
 echo 'Surf wave report summary: '
-echo 
-echo 'M.'
-echo '\\H.'
-echo '\\\\A.________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.__.~"~._.~"~._.~"~._.~"~._'
-echo '``````````````'
+echo '._                                                                                                                            '
+echo '\\\_M                                                                                                                         '
+echo '\\\\\_H                                                                                            \v/                        '
+echo '\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._'
+echo '```````^:^````````                                                                                 /|\                        '
 echo 'Number of tests initiated:'
 grep -c waves Surf_wavereport.log
 echo
@@ -23,6 +24,9 @@ grep -cE 't=3' Surf_wavereport.log
 echo
 echo 'Number of tests using nudging type 2:'
 grep -cE 't=4' Surf_wavereport.log 
+echo
+echo 'Number of tests with checktransits:'
+grep -cE 'checktransit' Surf_wavereport.log 
 echo
 awk -F'[\t]' '{sum+=$5} END {print "WCR AVERAGE: " sum/NR}' Surf_wavereport.log 
 echo
