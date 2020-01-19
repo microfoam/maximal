@@ -8,18 +8,18 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 # FAVE TESTS START ON LINE 11
-./maximal -DKnvvv  waves/tubespit/tubespit-17-cycle5.txt 
-./maximal -DKnvvvc waves/tubespit/tubespit-17-cycle5.txt 
-./maximal -DKnvvv waves/tubespit/tubespit_v377_cycAB_01.txt 
-./maximal -DKnvvv waves/tubespit/tubespit_v377_cycAB_02.txt 
-./maximal -DKnvvv waves/tubespit/tubespit_v377_cycAB_03.txt 
-./maximal -DKnvvv waves/tubespit/tubespit_v377_cycAB_04.txt 
-./maximal -DKnvvv waves/tubespit/tubespit_v427_cycAB-knots.txt
-./maximal -DKnvvv waves/tubespit/tubespit-00-orig_b.txt 
-./maximal -DKnvvv waves/tubespit/tubespit-00-orig_c.txt 
-./maximal -DKnvvv waves/tubespit/tubespit-00-orig_d.txt 
-./maximal -DKnvvv waves/tubespit/tubespit-00-orig_e.txt 
-./maximal -DKnvvvx waves/tubespit/tubespit-33-imprf1.txt 
+./maximal -DRKn  waves/tubespit/tubespit-17-cycle5.txt 
+./maximal -DRKnC waves/tubespit/tubespit-17-cycle5.txt 
+./maximal -DRKn waves/tubespit/tubespit_v377_cycAB_01.txt 
+./maximal -DRKn waves/tubespit/tubespit_v377_cycAB_02.txt 
+./maximal -DRKn waves/tubespit/tubespit_v377_cycAB_03.txt 
+./maximal -DRKn waves/tubespit/tubespit_v377_cycAB_04.txt 
+./maximal -DRKn waves/tubespit/tubespit_v427_cycAB-knots.txt
+./maximal -DRKn waves/tubespit/tubespit-00-orig_b.txt 
+./maximal -DRKn waves/tubespit/tubespit-00-orig_c.txt 
+./maximal -DRKn waves/tubespit/tubespit-00-orig_d.txt 
+./maximal -DRKn waves/tubespit/tubespit-00-orig_e.txt 
+./maximal -DRKnx waves/tubespit/tubespit-33-imprf1.txt 
 
 ./surfboard-checkmha
 

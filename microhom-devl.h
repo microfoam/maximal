@@ -60,10 +60,18 @@ void dev_prompt(short unsigned int mode, int line_no, char *filename)
 		return;
 	}
 	else if (options[0][13]) {	/* opt_D DEV_PROMPTS IF ON */
-		dev_linehead(mode, line_no);		
-		printf("Press <enter> to continue with %s. ", filename);
-		getchar();
-		return;
+		if (!options[0][12]) { 
+			dev_linehead(mode, line_no);		
+			printf("Press <enter> to continue with '-x%ld' run of %s (+). ", options[1][59], filename);
+			getchar();
+			return;
+		}
+		else {
+			dev_linehead(mode, line_no);		
+			printf("Press <enter> to continue with '-x%ld' run of %s (-). ", options[1][59], filename);
+			getchar();
+			return;
+		}
 	}
 }
 /****************************************************/
