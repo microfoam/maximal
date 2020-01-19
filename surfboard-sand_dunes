@@ -1,25 +1,25 @@
 #!/bin/bash
 
+echo 'sand dunes' >> corduroy.log
 ./surfboard-Pop_Up
 
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
-
 # FAVE TESTS START ON LINE 11
-./maximal -Knvvv  waves/tubespit/tubespit-17-cycle5.txt 
-./maximal -Knvvvc waves/tubespit/tubespit-17-cycle5.txt 
-./maximal -Knvvv waves/tubespit/tubespit_v377_cycAB_01.txt 
-./maximal -Knvvv waves/tubespit/tubespit_v377_cycAB_02.txt 
-./maximal -Knvvv waves/tubespit/tubespit_v377_cycAB_03.txt 
-./maximal -Knvvv waves/tubespit/tubespit_v377_cycAB_04.txt 
-./maximal -Knvvv waves/tubespit/tubespit-00-orig_b.txt 
-./maximal -Knvvv waves/tubespit/tubespit-00-orig_c.txt 
-./maximal -Knvvv waves/tubespit/tubespit-00-orig_d.txt 
-./maximal -Knvvv waves/tubespit/tubespit-00-orig_e.txt 
-./maximal -Knvvvx waves/tubespit/tubespit-33-imprf1.txt 
-
+./maximal -DKnvvv  waves/tubespit/tubespit-17-cycle5.txt 
+./maximal -DKnvvvc waves/tubespit/tubespit-17-cycle5.txt 
+./maximal -DKnvvv waves/tubespit/tubespit_v377_cycAB_01.txt 
+./maximal -DKnvvv waves/tubespit/tubespit_v377_cycAB_02.txt 
+./maximal -DKnvvv waves/tubespit/tubespit_v377_cycAB_03.txt 
+./maximal -DKnvvv waves/tubespit/tubespit_v377_cycAB_04.txt 
+./maximal -DKnvvv waves/tubespit/tubespit_v427_cycAB-knots.txt
+./maximal -DKnvvv waves/tubespit/tubespit-00-orig_b.txt 
+./maximal -DKnvvv waves/tubespit/tubespit-00-orig_c.txt 
+./maximal -DKnvvv waves/tubespit/tubespit-00-orig_d.txt 
+./maximal -DKnvvv waves/tubespit/tubespit-00-orig_e.txt 
+./maximal -DKnvvvx waves/tubespit/tubespit-33-imprf1.txt 
 
 ./surfboard-checkmha
 

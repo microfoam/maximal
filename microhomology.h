@@ -54,12 +54,12 @@ struct coord {
 	int cyc_Rt;		/* Right-side overlapping TR */
 	char cyc_o;		/* x => cinched; o => untaken cyclelizable option; !,** => CHECK_TELA VIOLATIONS */
 	/*************************************************************************************************/
-} tela[MAXROW] = {0};
+} tela[MAXROW];
 
 char align2D[MAXROW][MAXROW] = {{0}};
 char pathbox[MAXROW][MAXROW] = {{0}};
 char consensus[MAXROW] = {0};
-char file_name[255];
+char file_name[255] = "internal_default";
 char dev_notes[32] = "N/A";             /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
 short unsigned int cinchled=0;			/* BIT FLAG FOR CINCH-L WRAPS */
 FILE *fp_out;                           /* FILE FOR OUTPUT.LOG */
@@ -123,6 +123,7 @@ void 				print1D(void);
 short unsigned int	print_2Dseq(int print_lenseq2D);
 void 				print_blockhead(int a, int b);	
 short int 			pushdown(char pusharray[][MAXROW], int push_m, int push_n); 
+int 				span_allrk(int point);
 int 				span_rk(int point);
 void 				warnhead(char l); 
 int 				recoverlen(void);
@@ -1236,7 +1237,7 @@ void usage(char *usage_version, unsigned int FY_size)
 {
 	printf("\nRunning maximal version %s, a program for micro-homology alignment (MHA).\n", usage_version);
 	printf("\nUsage: ./maximal -[OPTIONS] sequence.txt (OPTIONAL FASTA HEADER AND NON-ALPHA SEQUENCE CHARACTERS ARE IGNORED.)\n"
-							"\t\t -c       USE REVERSE COMPLEMENT.\n"
+							"\t\t -c       SHOW BASE 62, SINGLE-DIGIT SYMBOLS (USED FOR REPEAT NUMBER AND K-MER SIZE).\n"
 							"\t\t -d       SKIP CINCH-D MODULE.\n"
 							"\t\t -f       SHOW FOAM-FREE SEGMENTS (REQUIRES ALLOWING DEFAULT RELAX OPTION).\n"
 							"\t\t -m       GEL UP (COUNTERACT DEFAULT MELT).\n"
@@ -1256,8 +1257,8 @@ void usage(char *usage_version, unsigned int FY_size)
 							"\t\t -z       ENSURE MISMATCH SCORE IS ZERO; ALTERS PATHBOX DISPLAY.\n"
 							"\t\t -B       USE EMPTY SPACE FOR BLANK CHARACTER INSTEAD OF PERIOD.\n"
 							"\t\t -B(BBBB) DO NOT SHOW TICK MARKS, ZERO TICKLINE, RULER #'s, & RULER, RESPECTIVELY.\n"
-							"\t\t -C       SHOW BASE 62 SINGLE-LETTER CODE (USED FOR REPEAT #'s).\n"
-							"\t\t -D       SHOW DIAGNONAL THRESHOLD VALUES FOR TRANSITIONS HANDLING.\n"
+							"\t\t -C       USE REVERSE COMPLEMENT.\n"
+							"\t\t -D       TURN ON DEVELOPMENT PROMPTS.\n"
 							"\t\t -F       DO NOT FILL SHORT LINE ENDS TO SCRIMMAGE LINE.\n"
 							"\t\t -H       SHOW HELP, USAGE.\n"
 							"\t\t -I       SHOW INITIAL PASSES.\n"
@@ -1268,6 +1269,7 @@ void usage(char *usage_version, unsigned int FY_size)
 							"\t\t -OO      SAVE (APPEND) RAW 2-D ALIGNMENT TO SPECIAL 2-D INPUT FILE (TUBES.mha).\n"
 							"\t\t -P       SHOW PATHBOX.\n"
 							"\t\t -R       RECOVER AND CHECK 1-D SEQUENCE FROM 2-D SELF-MHA.\n"
+							"\t\t -T       SHOW DIAGNONAL THRESHOLD VALUES FOR TRANSITIONS HANDLING.\n"
 							"\t\t -X       RUN ON SCRAMBLED SEQUENCE OF SAME LENGTH.\n"
 							"\t\t -XX      RUN ON FISHER-YATES SHUFFLED SEQUENCE OF LENGTH %d.\n"
 							"\t\t -Y       USE NUMBER ARGUMENT AS FY_SIZE INSTEAD OF DEFAULT (%d).\n\n", FY_size, FY_size);
@@ -1508,7 +1510,14 @@ void print1D(void)
 	} /* END OF FOR j LOOP */
 }
 
-/*********************/
+/*************************/
+int span_allrk(int point)
+{
+	int product = tela[point].all_r * (tela[point].all_k);
+	return(product);
+}
+
+/**********************/
 int span_rk(int point)
 {
 	int product = tela[point].r * (tela[point].k);

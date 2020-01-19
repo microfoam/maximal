@@ -1,16 +1,12 @@
 #!/bin/bash
-# CLEAN-UP POSSIBLE DUPLICATE LINES FROM ALTERNATE RUNS OF SAME SEQUENCE; 
-# COMMENT OUT IF SHUFFLING JUST ONE SHORT SEQUENCE OR ELSE WILL LOSE THOSE WITH SAME TIME STAMP!
-# awk '!seen[$0]++' Surf_wavereport.mha > Surf_wavereport.log
-cp Surf_wavereport.mha Surf_wavereport.log
 
 if [ -f waves/foam_and_chowder.mha ]; then
-	awk '!seen[$0]++' waves/foam_and_chowder.mha > waves/foam_and_chowder.log
+	mv waves/foam_and_chowder.mha waves/foam_and_chowder.log
 fi
 
-rm Surf_wavereport.mha
-if [ -f waves/foam_and_chowder.mha ]; then
-	rm waves/foam_and_chowder.mha
+if [ -f Surf_wavereport.mha ]; then
+	mv Surf_wavereport.mha Surf_wavereport.log
 fi
 
-./surfboard-checklog
+./surfboard-checklog | tee -a corduroy.log
+

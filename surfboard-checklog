@@ -1,5 +1,12 @@
 #!/bin/bash
+
 clear
+echo 'Surf wave report summary: '
+echo 
+echo 'M.'
+echo '\\H.'
+echo '\\\\A.________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.__.~"~._.~"~._.~"~._.~"~._'
+echo '``````````````'
 echo 'Number of tests initiated:'
 grep -c waves Surf_wavereport.log
 echo
@@ -12,8 +19,11 @@ echo
 echo 'Number of tests with perfect 1-D recovery (REC:1000):'
 grep -cE 'C.1000' Surf_wavereport.log 
 echo
-echo 'Number of tests using nudging (k=3):'
-grep -cE 'k=3' Surf_wavereport.log 
+echo 'Number of tests using nudging type 1:'
+grep -cE 't=3' Surf_wavereport.log 
+echo
+echo 'Number of tests using nudging type 2:'
+grep -cE 't=4' Surf_wavereport.log 
 echo
 awk -F'[\t]' '{sum+=$5} END {print "WCR AVERAGE: " sum/NR}' Surf_wavereport.log 
 echo
@@ -38,3 +48,4 @@ wc -l microhom-skor.h
 wc -l microhom-tela.h
 wc -l microhom-cinc.h
 echo
+

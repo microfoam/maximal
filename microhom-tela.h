@@ -7,11 +7,12 @@
 #ifndef FILE_TELA_SEEN
 #define FILE_TELA_SEEN
 
-int  	assign_tela(int eL, int eM, int eN, int mode);
+int  	assign_tela(int pos, int eM, int eN, int mode);
 void 	assign_transit(int n, int kr_src);
 int  	check_tela(int eM, int eN, short unsigned int mode_dim);
 void 	clearall_tela(int n, int span, int keep_score, int mode);
 int  	cyclelize_tela(int cpos, int delta, int npos);
+void 	flatline_after_TR(int pos);
 void 	mark_tela(void);
 void 	print_tela(int a, int b);
 void 	pull_tela(int n);
@@ -20,54 +21,18 @@ int 	score_kmer(int n, int k, short unsigned int mode);
 int  	settle_tiescores(int n, int span, int max_score, int iteration);
 int		update_tela(void);
 
-int assign_tela(int eL, int eM, int eN, int mode)
+int assign_tela(int pos, int eM, int eN, int mode)
 {
 	if (!mode)
 		return(0);
 	else {
-		int i=0, j=0, l=0, conflict_flag=0;
-		int lenseq = options[1][1];
-		int start=0, end=lenseq;
-
-		start = 0;
-		end   = lenseq;
 	
-		if (mode==2) {					/* MODE 2: ASSIGN SAME COLUMN TO IDENTICAL LETTERS */
-			align2D[eM][eN] = tela[eL].c;
-			tela[eL].y = eM;
-			tela[eL].x = eN;
-		}
-		else if (mode==1) {				/* MODE 1: FLAT-LINE TELA STARTING AT POINT eL */
-			if (eL > 0 && eL <= lenseq) {
-				i = tela[eL-1].y;
-				j = tela[eL-1].x + 1; 
-			}
-			else if (eL == 0) {
-				i = tela[eL].y;
-				j = 0;
-			}
-			else
-				conflict_flag++;
-			
-			if (!conflict_flag) {		
-				if (dev_print(TELA,__LINE__)) {
-					printf("assign_tela() flat-lining tela starting at n=%d.", eL);
-				}
-				for (l = eL; l <= lenseq; l++) { 
-					tela[l].y = i;
-					tela[l].x = j++;
-				}
-			}
-		}
-		else if (dev_print(TELA,__LINE__)) {
-			printf("Undefined mode invoked.");
-			return(0);
-		}
+		/* MODE >=1: ASSIGN COORDINATES */
+		align2D[eM][eN] = tela[pos].c;
+		tela[pos].y = eM;
+		tela[pos].x = eN;
 	
-		if (conflict_flag)
-			return(0);
-		else
-			return(1);
+		return(1);
 	}
 }
 
@@ -176,17 +141,19 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 			}
 			else {
 				tela[i].cyc_o = '>';						/* MARK EDGE OF DISCONTINUITY */
-				if (dev_print(TELA,__LINE__)) {
+				if (dev_count < dev_limit && dev_print(TELA,__LINE__)) {
 					printf("check_tela() marking edge of discontinuity at i=%d.", i);
+					dev_count++;
 				}
 				break;
 			}
 		}
 		if (i==eN)
 			axioms = 1;
-		else if (dev_print(TELA,__LINE__)) {
+		else if (dev_count < dev_limit && dev_print(TELA,__LINE__)) {
 			printf("check_tela(mode_dim=%d): Problem of continuity at 1-D positions %d --> %d (columns %d and %d)", 
 								mode_dim, i, i+1, tela[i].x, tela[i+1].x);
+			dev_count++;
 		}
 
 		/* AXIOM TWO: EQUIVALENCE */
@@ -204,9 +171,10 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 		}
 		if (!badflag) 
 			axioms+=2;
-		else if (dev_print(TELA,__LINE__)) {
+		else if (dev_count < dev_limit && dev_print(TELA,__LINE__)) {
 			printf("check_tela(mode_dim=%d): Problem of equivalence at 1-D positions %d and %d (both in column %d)", 
 								mode_dim, i, j, tela[i].x);
+			dev_count++;
 		}
 
 		return(axioms);	/* 0 IF BOTH FAIL; +1 IF ONLY ONE PASSES; +2 IF ONLY TWO PASSES; +3 IF BOTH PASS */ 
@@ -250,8 +218,6 @@ int cyclelize_tela(int cpos, int delta, int npos)
 		return(0);
 
 	if (k && reps && tela[cpos].cyc_o == 'x') {
-		pull_tela(cpos);
-		pull_tela(npos);
 		z = cpos;
 		for (r=0; r<reps; r++) {
 			for (j=0; j<delta; j++) {
@@ -285,17 +251,46 @@ int cyclelize_tela(int cpos, int delta, int npos)
 		}	
 		for (j=0; j<lenseq; j++)
 			align2D[m][j] = '\0';
-		
-		for (j=npos+1; j<=lenseq; j++) {
-			tela[j].x = ++n; 
-			tela[j].y = m; 
-		}
+
+		flatline_after_TR(npos);	
 
 		tela[cpos+delta].cyc_o = 'x';
 		return (1);		/* RETURN SUCCESS, BUT EVENTUALLY ADD A CHECK_TELA CALL IN HERE */
 	}
 	else
 		return (0);
+}
+
+/******************************/
+void flatline_after_TR(int pos)
+{
+	int lenseq = options[1][1];
+	int i, start, x, y;
+
+	if (!tela[pos].all_k) {
+		for (i=pos-1; i>0; i--) {
+			if (tela[i].all_k) {
+				pos = i;
+				break;
+			}
+		}
+		if (i==0) {
+			return;
+		}
+	}
+
+	x = tela[pos].x + tela[pos].all_k;						/* START OF FIRST COLUMN AFTER REPEAT */
+	y = tela[pos].y + tela[pos].all_r - 1;					/* FINISHING ROW */
+
+	start = pos + tela[pos].all_k * tela[pos].all_r;		/* 1D-POINT TO START */
+
+	for (i=start; i<=lenseq; i++) {
+		tela[i].x = x++; 
+		tela[i].y = y; 
+	}
+	if (dev_print(TELA,__LINE__)) {
+		printf("Function cyclelize_tela() finished by flat-lining tela at position=%d with coordinates (x,y) = (%d,%d).", i,x,y);
+	}
 }
 
 
@@ -470,11 +465,22 @@ void mark_tela(void)
 				j--;
 			}
 			for (i=j; i>0; i--) {
-				if (tela[i].all_k && (i + tela[i].all_k * (tela[i].all_r-1)) > m) {
-					tela[n].all_L = i;		/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
-					tela[i].all_R = n;		/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-					if (dev_print(TELA,__LINE__)) {
-						printf("         mark_tela() marking conflict between i=%d and n=%d.", i,n);
+				int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
+				if (tela[i].all_k && (i + tela[i].all_k * (tela[i].all_r-1)) > m-recslips) {
+					/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
+					if (i>=m && i<n && tela[i].all_S == tela[i+k].all_S) {
+						tela[i].stat = tela[i+k].stat = tela[n].stat = 'f';
+						tela[n].all_L = i;		/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
+						tela[i].all_R = n;		/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
+						recslips = span_allrk(i); 
+					}
+					else {
+						tela[n].all_L = i;		/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
+						tela[i].all_R = n;		/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
+						tela[i].stat = '!';
+						if (dev_print(TELA,__LINE__)) {
+							printf("         mark_tela() marking conflict between i=%d and n=%d.", i,n);
+						}
 					}
 				}
 			}
@@ -546,17 +552,25 @@ void mark_tela(void)
 			if (!checkconflict) {
 				/* CONFLICT SCENARIO ONE */
 				if (span==1 && !(tela[n].all_L) && tela[n].all_R) {
-					j = tela[n].all_R;
-					int k2 = tela[j].all_k;
-					if (dev_print(TELA,__LINE__)) {
-						printf("mark_tela() at n=%d, span=%d with no left-conflict, but right_conflict=%d.", n, span, tela[n].all_R);
+					if (OFF && tela[n].stat == '!') {	/* SO MARKED IN THE CONFLICT TR LOOP */
+						clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+						if (dev_print(TELA,__LINE__)) {
+							printf("mark_tela() calling clearall_tela at n=%d.", n);
+						}
 					}
-					for (i=j+1; tela[i].all_k == k2; i++) {
-						if (!tela[i].all_L && !tela[i].all_R && tela[i].all_S > tela[j].all_S) {
-							clearall_tela(j, i-j, tela[i].all_S, TWO);		/* O-F-F, ONE, OR TWO */
-							tela[i].all_Z = tela[i].all_S;
-							tela[n].all_Z = tela[n].all_S;
-							tela[n].all_R = 0;
+					else {
+						j = tela[n].all_R;
+						int k2 = tela[j].all_k;
+						if (dev_print(TELA,__LINE__)) {
+							printf("mark_tela() at n=%d, span=%d with no left-conflict, but right_conflict=%d.", n, span, tela[n].all_R);
+						}
+						for (i=j+1; tela[i].all_k == k2; i++) {
+							if (!tela[i].all_L && !tela[i].all_R && tela[i].all_S > tela[j].all_S) {
+								clearall_tela(j, i-j, tela[i].all_S, TWO);		/* O-F-F, ONE, OR TWO */
+								tela[i].all_Z = tela[i].all_S;
+								tela[n].all_Z = tela[n].all_S;
+								tela[n].all_R = 0;
+							}
 						}
 					}
 				}

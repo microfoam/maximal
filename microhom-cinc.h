@@ -633,7 +633,6 @@ int cyc_col=0, cyc_row=0, a, b, i, j, kmer=0, m=0, n=0;
 int lenseq   = options[1][1];
 int cyc_width = options[1][32];						/* THIS IS opt_W SLOT TO STORE CURRENT 2-D WIDTH */
 short unsigned int edge0=0;
-short unsigned int nudge_type=0;
 unsigned short int nuctype = options[1][13];		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 unsigned short int nuctransit=0, dud_nudge=0;		/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int tipcyc_flag=0;					/* BIT FLAG FOR TIP CYCLING OPPORTUNITY */
@@ -1007,7 +1006,7 @@ char cid_align2D[MAXROW][MAXROW];
 
 				if (cinch_d_opt && !options[0][39]) {	/* CINCH-D ENGINE IF NOT opt_d (SKIP-CINCH-D CINCHING) */
 					if (first_write) {
-						if (imperfect_TR && num_transits > translimit) {
+						if (imperfect_TR && score_transits(k,num_transits) > score_DTHR(k)) {
 							break;
 						}
 						m = 0;
