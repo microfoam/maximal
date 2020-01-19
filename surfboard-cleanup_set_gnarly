@@ -198,11 +198,14 @@ fi
 ./maximal -Rnx waves/tubespit/seq-147-v344_34.txt
 ./maximal -Rnx waves/tubespit/seq-148-v344_35.txt
 ./maximal -Rnx waves/tubespit/seq-149-v344_36.txt
+./maximal -Rnx waves/tubespit/seq-155-v369_02.txt
+./maximal -Rnx waves/tubespit/seq-156-v369_03.txt
+./maximal -Rnx waves/tubespit/seq-157-v369_04.txt
 ./maximal -Rnx waves/tubespit/seq-150-v377_cycAB1.txt
 ./maximal -Rnx waves/tubespit/seq-151-v377_cycAB2.txt
 ./maximal -Rnx waves/tubespit/seq-152-v377_cycAB3.txt
 ./maximal -Rnx waves/tubespit/seq-153-v377_cycAB4.txt
+./maximal -Rnx waves/tubespit/seq-154-v427_cycABs.txt
 
 ./surfboard-checkmha
-echo -ne '\007'
 
