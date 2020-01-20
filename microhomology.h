@@ -60,7 +60,7 @@ char align2D[MAXROW][MAXROW] = {{0}};
 char pathbox[MAXROW][MAXROW] = {{0}};
 char consensus[MAXROW] = {0};
 char file_name[255] = "internal_default";
-char dev_notes[32] = "N/A";             /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
+char dev_notes[32] = "-";             /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
 short unsigned int cinchled=0;			/* BIT FLAG FOR CINCH-L WRAPS */
 char letr_unit[4] = {0};				/* UNIT STRING: "bp" FOR DNA, "nt" FOR RNA, 'aa' FOR PROTEINS, 'ch' FOR ALL OTHER; SET IN MAIN() */
 FILE *fp_out;                           /* FILE FOR OUTPUT.LOG */
@@ -1156,12 +1156,12 @@ short unsigned int lcl_opt_F;
 
 	if (c == lenseq && mmsites == 0) {
 		options[0][10] = 1000;	
-		printf("\n This sequence (%d %s) was auto-aligned correctly for this stage.\n", c, letr_unit);
+		printf("\n This %d %s sequence was auto-aligned correctly at this stage.\n", c, letr_unit);
 		return(0);
 	}
 	else if (c == lenseq) {
 		i=options[0][10] = round((1000*(cinchwidth-mmsites))/cinchwidth);	
-		printf("\n This sequence (%d %s) was not auto-aligned correctly at this stage, but perhaps further cinching will rectify the 2-D alignment. \n", c, letr_unit);
+		printf("\n This %d %s sequence was not auto-aligned correctly at this stage, but perhaps further cinching will rectify the 2-D alignment. \n", c, letr_unit);
 		return(i);
 	}
 	else if (c < lenseq) {

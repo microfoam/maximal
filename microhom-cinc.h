@@ -548,8 +548,8 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 					if (k>1 && dev_print(CINCH,__LINE__)) {
 						printf("cinch-k taking k-mer=%2d at symbol_count=%3d (lenseq = %3d).", k, symbol_count, lenseq);
 					}
-					else if (k==1 && m<5 && dev_print(CINCH,__LINE__)) {
-						printf("cinch-k getting tired showing you the details.\n");
+					else if (k==1 && m<4 && dev_print(CINCH,__LINE__)) {
+						printf("cinch-k getting tired showing you the details.");
 					}
 
 					for (l = 0; l < k; l++) {
@@ -602,7 +602,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 
 		if (cik_row > 0) {
 			mha_writeback(cik_align2D, align2D); 
-			printf("\n Next: cinch-k for k = %d...", k);
+			printf("\n\n Next: cinch-k for k = %d...", k);
 
 			if (k > 1)	/* k=1 WILL PRINT FROM MAIN */
 				print_2Dseq();
@@ -729,6 +729,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 						}
 
 						if (align2D[m][j] == align2D[m-1][cyc_col]) {
+							
 							tipcyc_flag = 1;		
 							kmer = 4;		/* NOT ACTUAL kmer, JUST USING VAR TO CODE CYC TYPE */
 							for (a = 0; a < m-1; a++) {

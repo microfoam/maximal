@@ -789,8 +789,11 @@ int main(int argc, char *argv[])
 							}
 						}
 					} 
-					if (!imperfect_TR && (l=tela[n].X) > m && l + span_rk(l) <= n)
-						;
+					if (!imperfect_TR && (l=tela[n].X) > m && l + span_rk(l) <= n) { 
+						if (dev_print(MAIN,__LINE__)) {
+							printf("NOT A SKIP AND A LITTLE DEV THING.");
+						}
+					}
 					else if (tela[n].X != n) {
 						q = tela[n].X;
 						if (tela[q+1].cyc_o != 'o') {
@@ -1688,9 +1691,9 @@ int main(int argc, char *argv[])
 	
 	if (options[0][54] != 1) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\t x%ld\t%4ld\t%.3f\tCYC:%3d (t=%ld)\tRND:%.*s\t%38s -%ld (%4ld %s) REC:%4d\t%3ld\t%s\n", 
+		fprintf(fp_out, "v%s\t%.20s\t x%ld\t%4ld\t%.3f\tCYC:%3d (t=%ld)\tRND:%.*s\t%38s -%ld (%4ld %s) REC:%4d\t%s\n", 
 				version, time0+4, options[1][59], options[0][10], ratio1, passR[5], options[0][5], (int) options[1][33], "XX", 
-				file_name, options[0][12], options[1][1], letr_unit, passQ[8], options[1][6], dev_notes);
+				file_name, options[0][12], options[1][1], letr_unit, passQ[8], dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
