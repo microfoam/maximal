@@ -545,8 +545,11 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 				}
 
 				if (keep_checking || imperfect_TR) {
-					if (dev_print(CINCH,__LINE__)) {
+					if (k>1 && dev_print(CINCH,__LINE__)) {
 						printf("cinch-k taking k-mer=%2d at symbol_count=%3d (lenseq = %3d).", k, symbol_count, lenseq);
+					}
+					else if (k==1 && m<5 && dev_print(CINCH,__LINE__)) {
+						printf("cinch-k getting tired showing you the details.\n");
 					}
 
 					for (l = 0; l < k; l++) {
@@ -607,7 +610,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 
 		options[0][4] = options[0][4] + cik_row;			/* STORE ROWS ADDED */
 		if (dev_print(CINCH,__LINE__)) {
-			printf("Post-cinch-k for k-mers=%2d: symbol_count=%3d (lenseq = %3d).", k, symbol_count, lenseq);
+			printf("Post cinch-k k=%d loop: symbol_count=%3d (lenseq = %3d).", k, symbol_count, lenseq);
 		}
 
 		if (k > 1)	/* NOT NEEDED AFTER k EQUALS ONE */

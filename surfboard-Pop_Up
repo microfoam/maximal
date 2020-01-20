@@ -8,7 +8,7 @@ echo '.~.                                                                       
 echo '///_M                                                                                                       '
 echo '/////_H                    _     _     _     _     _     _     _     _     _     _     _     _     _     _  '
 echo '///////_A__________.~._~.~.) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `'
-echo '```````^:^`````````       m           a           x           i           m           a           l         '
+echo '```````^:^`````````          m           a           x           i           m           a           l      '
 gcc -o maximal -Wall -Wextra -Wstrict-prototypes -O2 mha_v4.28.c -lm
 #clear
 echo
