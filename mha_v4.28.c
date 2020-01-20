@@ -72,7 +72,6 @@ int main(int argc, char *argv[])
 	int passQ[16] = {0};        			/* PASS QUALITY */
 	int passR[16] = {0};        			/* PASS RUNS */
  	char m2Dalig[MAXROW+1][MAXROW] = {{0}};			
-	char letr_unit[8] = {0};				/* UNIT STRING: "bp" FOR DNA, "nt" FOR RNA, 'aa' FOR PROTEINS, 'ch' FOR ALL OTHER */
 	char cycle[WIDTH+1];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
 	char numstring[8] = {0};
 	char Seq_head[100] = {0};	/* FASTA HEADER */

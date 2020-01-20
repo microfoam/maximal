@@ -62,8 +62,8 @@ char consensus[MAXROW] = {0};
 char file_name[255] = "internal_default";
 char dev_notes[32] = "N/A";             /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
 short unsigned int cinchled=0;			/* BIT FLAG FOR CINCH-L WRAPS */
+char letr_unit[4] = {0};				/* UNIT STRING: "bp" FOR DNA, "nt" FOR RNA, 'aa' FOR PROTEINS, 'ch' FOR ALL OTHER; SET IN MAIN() */
 FILE *fp_out;                           /* FILE FOR OUTPUT.LOG */
-
 
 static int random_i(int n) 
 {
@@ -1156,18 +1156,18 @@ short unsigned int lcl_opt_F;
 
 	if (c == lenseq && mmsites == 0) {
 		options[0][10] = 1000;	
-		printf("\n Successfully 2-D self-aligned all %d letters from formatted sequence. \n", c);
+		printf("\n This sequence (%d %s) was auto-aligned correctly for this stage.\n", c, letr_unit);
 		return(0);
 	}
 	else if (c == lenseq) {
 		i=options[0][10] = round((1000*(cinchwidth-mmsites))/cinchwidth);	
-		printf("\n 2-D self-aligned all %d letters from formatted sequence, but consensus indicates more cinching required. \n", c);
+		printf("\n This sequence (%d %s) was not auto-aligned correctly at this stage, but perhaps further cinching will rectify the 2-D alignment. \n", c, letr_unit);
 		return(i);
 	}
 	else if (c < lenseq) {
 		i=options[0][10] = round((1000*(cinchwidth-mmsites-(lenseq-c)))/cinchwidth);
 		warnhead('-');
-		printf(" 2-D printing is missing %d letter(s)!\n\n", lenseq-c); 
+		printf(" 2-D auto-alignment is missing %d %s(s)!\n\n", lenseq-c, letr_unit); 
 
 		/* ENSURE THERE ARE NO MISSING MHA ROW TERMINATORS */
 		for (m=0; m<height; m++) {
@@ -1207,7 +1207,7 @@ short unsigned int lcl_opt_F;
 	else {
 		i=options[0][10] = round((1000*(cinchwidth-mmsites-(c-lenseq)))/cinchwidth);	
 		warnhead('+');
-		printf(" 2-D printing left %d extra letter(s)!\n\n", c-lenseq);
+		printf(" 2-D auto-alignment contains an extra %d %s(s)!\n\n", c-lenseq, letr_unit);
 		return(0);
 	}
 }
