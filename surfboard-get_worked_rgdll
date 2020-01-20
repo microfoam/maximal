@@ -1,25 +1,26 @@
 #!/bin/bash
+
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
 for i in {1..2500}
 do
-	./maximal -RnXX waves/animals/seal_vnd_ex3_Dmela.txt
-	./maximal -RnXX waves/animals/seal_vnd_ex3_Dsimu.txt
-	./maximal -RnXX waves/animals/seal_vnd_ex3_Derec.txt
-	./maximal -RnXX waves/animals/seal_vnd_ex3_Dyaku.txt
-	./maximal -RnXX waves/animals/seal_vnd_ex3_Dbiar.txt
-	./maximal -RnXX waves/animals/seal_vnd_ex3_Dsuzu.txt
-	./maximal -RnXX waves/animals/seal_vnd_ex3_Danan.txt
-	./maximal -RnXX waves/animals/seal_vnd_ex3_Dbipe.txt
-	./maximal -RnXX waves/animals/shark_vnd_NEE_Dmela.txt
-	./maximal -RnXX waves/animals/shark_vnd_NEE_Dsimu.txt
-	./maximal -RnXX waves/animals/shark_vnd_NEE_Derec.txt
-	./maximal -RnXX waves/animals/shark_vnd_NEE_Dyaku.txt
-	./maximal -RnXX waves/animals/shark_vnd_NEE_Dbiar.txt
-	./maximal -RnXX waves/animals/shark_vnd_NEE_Dsuzu.txt
-	./maximal -RnXX waves/animals/shark_nab_DWME_Dmela.txt
+	./maximal -RnXX waves/seals/vnd_ex3_Dmela.txt
+	./maximal -RnXX waves/seals/vnd_ex3_Dsimu.txt
+	./maximal -RnXX waves/seals/vnd_ex3_Derec.txt
+	./maximal -RnXX waves/seals/vnd_ex3_Dyaku.txt
+	./maximal -RnXX waves/seals/vnd_ex3_Dbiar.txt
+	./maximal -RnXX waves/seals/vnd_ex3_Dsuzu.txt
+	./maximal -RnXX waves/seals/vnd_ex3_Danan.txt
+	./maximal -RnXX waves/seals/vnd_ex3_Dbipe.txt
+	./maximal -RnXX waves/sharks/vnd_NEE_Dmela.txt
+	./maximal -RnXX waves/sharks/vnd_NEE_Dsimu.txt
+	./maximal -RnXX waves/sharks/vnd_NEE_Derec.txt
+	./maximal -RnXX waves/sharks/vnd_NEE_Dyaku.txt
+	./maximal -RnXX waves/sharks/vnd_NEE_Dbiar.txt
+	./maximal -RnXX waves/sharks/vnd_NEE_Dsuzu.txt
+	./maximal -RnXX waves/sharks/nab_DWME_Dmela.txt
 done
 
 ./surfboard-checkmha

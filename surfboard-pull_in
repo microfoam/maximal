@@ -9,10 +9,10 @@ if [ -f TUBES.mha ]; then
 	rm TUBES.mha
 fi
 
- ./maximal -OO  waves/animals/shark_vnd_edgeNEE_Dsimu.txt
-#./maximal -OOx waves/animals/shark_vnd_edgeNEE_Dsimu.txt
- ./maximal -OOx waves/animals/shark_vnd_edgeNEE_Dmaur.txt TUBES.mha
-#./maximal -OO  waves/animals/shark_vnd_edgeNEE_Dmaur.txt TUBES.mha
+ ./maximal -OO  waves/sharks/vnd_edgeNEE_Dsimu.txt
+#./maximal -OOx waves/sharks/vnd_edgeNEE_Dsimu.txt
+ ./maximal -OOx waves/sharks/vnd_edgeNEE_Dmaur.txt TUBES.mha
+#./maximal -OO  waves/sharks/vnd_edgeNEE_Dmaur.txt TUBES.mha
 
 mv Surf_wavereport.mha Surf_wavereport-tubes.log
 
