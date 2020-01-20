@@ -405,11 +405,11 @@ int main(int argc, char *argv[])
 	printf("micro homology alignment (MHA) -");
 	for (i = 10; i < 36; i++) {			/* UPPER-CASE LETTER OPTIONS */
 		if (options[0][i] > 0)
-			printf("%c", (char) options[3][i]);
+			printf("%c", mha_base62(i));
 	}
 	for (i = 36; i < 62; i++) {			/* LOWER-CASE LETTER OPTIONS */
 		if (options[0][i])
-			printf("%c", (char) options[3][i]);
+			printf("%c", mha_base62(i));
 	}
 	if (options[0][11] > 1) {			/* opt_B */
 		printf(" -B%ld", options[0][11]);

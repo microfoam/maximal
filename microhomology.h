@@ -56,6 +56,33 @@ struct coord {
 	/*************************************************************************************************/
 } tela[MAXROW];
 
+long int options[2][64] = {
+/* 0 0 0 0 0 0 0 0 0 0 1  1 1 1 1 1 1 1  1 1 2 2  2 2 2 2  2   2 2 2 3 3 3 3 3  3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 6 6 6 6 
+   0,1,2,3,4,5,6,7,8,9,0, 1,2,3,4,5,6,7, 8,9,0,1, 2,3,4,5, 6,  7,8,9,0,1,2,3,4, 5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3  
+   o>c>t>l>k>n>d>r>R   A  B C D E F G H  I J K L  M N O P  Q   R S T U V W X W  Z a b c d e f g h i j k l m n o p q r s t u v w x y z - - */
+ { 0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0, 0,0,0,0, 0,0,0,0, 0,  0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+ { 0,0,0,0,0,0,0,0,0,0,0,46,0,0,0,0,0,0,-1,0,0,0,10,0,0,0,40, 41,0,4,0,0,0,0,0,32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+}; /*                   |              |        |        |   |                |                                                      
+                       46 = "." (FULLSTOP)     mwrap    "(" ")"               Zero tick mark                                         
+                       32 = " " (SPACE)|       default  left/right            default = " " (SPACE)                                  
+                       blank character |                run delimiters                                                               
+                                                                                                                                     
+   options[0][  n] = OFF (0) / ON (1) SWITCH TO INDICATE OPTION DETECTED AS ARGUMENT TO MAXIMAL                                      
+   options[1][  n] = THIS VALUE IS INCREMENTED ALONGSIDE THE BIT SWITCH IN ROW ZERO FOR SOME OPTIONS                                 
+   options[1][ 18] COUNTER OF INITIAL PASSES THROUGH MHA; BEGINS COUNT WITH VALUE -1                                                 
+   options[1][0-9] WILL PERMANENTLY STORE 2-D WIDTH HISTORY AND IS THE ORIGINAL REASON OPTIONS WAS CODED AS LONG INT                 
+                0 EQUALS ORIGINAL STRING         (o)                                                                                 
+                1 EQUALS cleanseq PASS (1-D)     (c)                                                                                 
+                2 EQUALS cinch_t 2-D PASS MAIN() (t)                                                                                 
+                3 EQUALS cinch_l 2-D PASS        (l)                                                                                 
+                4 EQUALS cinch_k 2-D PASS        (k)                                                                                 
+                5 EQUALS nudgelize 2-D PASS      (n)  Some comments might refer to 'cyclelize', its original name and function.      
+                6 EQUALS cinch_d  2-D PASS       (d)                                                                                 
+                7 EQUALS relax_2D 2-D PASS       (r)                                                                                 
+                8 EQUALS recovered 1-D from 2-D  (R)                                                                                 
+               10 EQUALS passQ score / 1000      (A)                                                                                 
+*/
+
 char align2D[MAXROW][MAXROW] = {{0}};
 char pathbox[MAXROW][MAXROW] = {{0}};
 char consensus[MAXROW] = {0};
@@ -64,47 +91,6 @@ char dev_notes[32] = "-";             /* STRING WRITTEN AS LAST FIELD IN OUTPUT 
 short unsigned int cinchled=0;			/* BIT FLAG FOR CINCH-L WRAPS */
 char letr_unit[4] = {0};				/* UNIT STRING: "bp" FOR DNA, "nt" FOR RNA, 'aa' FOR PROTEINS, 'ch' FOR ALL OTHER; SET IN MAIN() */
 FILE *fp_out;                           /* FILE FOR OUTPUT.LOG */
-
-static int random_i(int n) 
-{
-int limit = RAND_MAX - RAND_MAX % n;
-int rnd;
-
-	do {
-		rnd = rand();
-    } 
-    while (rnd >= limit);
-
-    return rnd % n;
-}
-
-long int options[4][62] = {
-{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
-{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,46, 0, 0, 0, 0, 0, 0,-1, 0, 0, 0,10, 0, 0, 0,40,41, 0, 4, 0, 0, 0, 0, 0,32, 0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
-{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61},
-/*s->cl>t->l->k->c->s->d->r        B  C  D     F     H  I     K  L  M     O  P  Q  R     T        W  X     Z  a--b--c---d---e---f---g---h   i       k   l   m   n   o   p       r   s   t   u   v   w   x       z*/
-{48,49,50,51,52,53,54,55,56,57,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122}
-}; /*                    |                                            |  |     |        |         |= Zero tick mark, default ' '= 32   */
-                     /* 46 = "." (FULLSTOP) */					   /* (  ) */	   /* options[1][32] opt_W WILL STORE CURRENT CINCH-WIDTH */
-                     /* 32 = " " (SPACE)    */ 					   /* L  R */	   /* options[1][0--9] WILL PERMANENTLY STORE 2-D WIDTH HISTORY */
-/* options array rows */
-/* options[0][n] = BIT MASK. 1 = OPTION CALLED AS ARG. W/ SOME EXCEPTIONS */
-/* options[1][n] = OPTIONS VALUE */
-/* options[2][n] = BASE 62 NUM VALUE, WILL USE AS opt_# INDEX */
-/* options[3][n] = DECIMAL CHARACTER CODE OF LETTER SHOWN IN COMMENTS */
-/* opt_M replaces long_homopolywrap = mwrap = 10 FOR WRAPPING LONG MONONUCLEOTIDE TRACTS */
-								/* options[1][18] COUNTER OF INITIAL PASSES THROUGH MHA */
-								/*  0 EQUALS ORIGINAL STRING			*/
-								/*  1 EQUALS cleanseq PASS (1-D)    	*/
-								/*  2 EQUALS cinch_t 2-D PASS MAIN()	*/
-								/*  3 EQUALS cinch_l 2-D PASS			*/
-								/*  4 EQUALS cinch_k 2-D PASS			*/
-								/*  5 EQUALS nudgelize 2-D PASS			*/
-								/*  6 EQUALS cinch_d  2-D PASS			*/
-								/*  7 EQUALS relax_2D 2-D PASS			*/
-								/*  8 EQUALS recovered 1-D from 2-D 	*/
-								/* 10 EQUALS passQ score / 1000			*/
-/* RESERVE options[1][26] (opt_Q) and options[1][27] (opt_R) for storing LEFT and RIGHT 'R'un delimiter characters */
 
 void 				clear_2D_ar(char wipe_align2D[][MAXROW]);
 void 				clear_right(char swipe_align2D[][MAXROW]);
@@ -140,6 +126,20 @@ void 				free_2D(int **p2D, int lenseq);
 /*******************************************************************************************************/
  #include "microhom-devl.h"	/* maximal header: program development code, testing, and evaluation       */
 /*******************************************************************************************************/
+
+/*****************************************************************************************/
+static int random_i(int n) 
+{
+int limit = RAND_MAX - RAND_MAX % n;
+int rnd;
+
+	do {
+		rnd = rand();
+    } 
+    while (rnd >= limit);
+
+    return rnd % n;
+}
 
 /*****************************************************************************************/
 int get_1Dz(int x, int y, int ignoreCheck)
@@ -733,7 +733,7 @@ char c;
 		c = '0' + num; 
 	else if (num >=10 && num < 36) 
 		c = 'A'+ num-10;
-	else if (num >=36 && num < 58) 
+	else if (num >=36 && num < 62) 
 		c = 'A' + num-4;
 	else 
 		c = '!';
@@ -1223,13 +1223,13 @@ unsigned int i=0;
 		printf("%2d ", i);
 	printf("\n Base 62: ");
 	for (i = 0; i < 31; i++)
-		printf("%2c ", (char) options[3][i]);
+		printf("%2c ", mha_base62(i));
 	printf("\n\n Base 10: ");
 	for (i = 31; i < 62; i++)
 		printf("%2d ", i);
 	printf(">61\n Base 62: ");
 	for (i = 31; i < 62; i++)
-		printf("%2c ", (char) options[3][i]);
+		printf("%2c ", mha_base62(i));
 	printf("  !\n\n");
 }
 
