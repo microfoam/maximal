@@ -50,7 +50,7 @@ struct coord {
 	int all_L;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON LHS */
 	char stat;		/* ALL SERIES: PRE-CINCH-T: STATUS                            */
 	/*************************************************************************************************/
-	int cyc_Lf;		/* Left-side overlapping TR; 0=lenseq, which is also stored in options[1]     */
+	int cyc_Lf;		/* Left-side overlapping TR */
 	int cyc_Rt;		/* Right-side overlapping TR */
 	char cyc_o;		/* x => cinched; o => untaken cyclelizable option; !,** => CHECK_TELA VIOLATIONS */
 	/*************************************************************************************************/
@@ -149,19 +149,6 @@ long int options[64] = {
                          blank character |               run delimiters                                                                     
                                                                  |                                                                  
                                                                  Strand characters 43 = '+', 45 = '-'                               
-   options[  n] = THIS VALUE IS INCREMENTED ALONGSIDE THE BIT SWITCH IN ROW ZERO FOR SOME OPTIONS                                 
-   options[0-9] WILL PERMANENTLY STORE 2-D WIDTH HISTORY AND IS THE ORIGINAL REASON OPTIONS WAS CODED AS LONG INT                 
-                0 EQUALS ORIGINAL STRING         (o)                                                                                 
-                1 EQUALS cleanseq PASS (1-D)     (c)                                                                                 
-                2 EQUALS cinch_t 2-D PASS MAIN() (t)                                                                                 
-                3 EQUALS cinch_l 2-D PASS        (l)                                                                                 
-                4 EQUALS cinch_k 2-D PASS        (k)                                                                                 
-                5 EQUALS nudgelize 2-D PASS      (n)  Some comments might refer to 'cyclelize', its original name and function.      
-                6 EQUALS cinch_d  2-D PASS       (d)                                                                                 
-                7 EQUALS relax_2D 2-D PASS       (r)                                                                                 
-                8 EQUALS recovered 1-D from 2-D  (R)                                                                                 
-               10 EQUALS pass-Q score / 1000     (A)                                                                                 
-
 				 options[13] IS RESERVED FOR STORING SEQUENCE TYPE (DNA, RNA, PROTEIN, BABYLONIAN, etc.) 
 				 options[17] RESERVED FOR 2D-ALIGNMENT HEIGHT 	
 				 options[46] RESERVED FOR RECORDING LARGEST CINCH-T k-MER UNIT SIZE 
@@ -230,7 +217,7 @@ int rnd;
 int get_1Dz(int x, int y, int ignoreCheck)
 {
 	int i=0, z=0, count_check=0;
-	int lenseq = options[1];
+	int lenseq = Clean.pass_W;
 
 	for (i=0; i<lenseq; i++) {
 		if (tela[i].x == x && tela[i].y == y) {
@@ -252,7 +239,7 @@ int get_1Dz(int x, int y, int ignoreCheck)
 void clear_2D_ar(char wipe_align2D[][MAXROW])
 {
 int m=0, n=0;
-int lenseq = options[1];
+int lenseq = Clean.pass_W;
 
 	for (m=0; m <= lenseq; m++) {
 		for (n=0; n <= lenseq; n++)
@@ -265,7 +252,7 @@ int lenseq = options[1];
 void clear_right(char swipe_align2D[][MAXROW])
 {
 int m=0, n=0;
-int lenseq = options[1];	
+int lenseq = Clean.pass_W;	
 int height = options[17];
 char cropt_R_rght = options[27];
 char letr;
@@ -294,7 +281,7 @@ char letr;
 unsigned int consensus_2D(int n_start, int n_width)
 {
 int badsites=0, m=0, n=0, n_end, x=1;
-int con_width = options[32];
+int con_width = Current.pass_W;
 short unsigned int nuctype = options[13];		/* FOR SEQ TYPE, DNA=1, RNA=2, OTHER (NON-NA)=0 */
 short unsigned int nuctransit = 0;					/* BIT FLAG FOR HANDLING NUCLEAR TRANSITIONS */ 
 short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
@@ -466,9 +453,9 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width)
 {
 int badsites=0, m=0, n=0, n_end, x=1, nudge_row=0, nudge_col=0, nudge_span=0, frstletr;
-int    lenseq = options[ 1];
+int    lenseq = Clean.pass_W;
 int    height = options[17];
-int con_width = options[32];
+int con_width = Current.pass_W;
 short unsigned int nuctype = options[13];	/* FOR SEQ TYPE, DNA=1, RNA=2, OTHER (NON-NA)=0 */
 short unsigned int nuctransit = 0;					/* BIT FLAG FOR HANDLING NUCLEAR TRANSITIONS */ 
 short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
@@ -636,7 +623,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 	}
 	con_align2D[MAXROW][n] = blnk;
 
-	options[32]++;
+	++Current.pass_W;
 	if (checktransit) {
 		return(0);
 	}
@@ -897,7 +884,7 @@ int hr_len = min_len;					/* DEFAULT LENGTH OF HEADER BANNER */
 void mha_randomize1(char *input_seq) 
 {
     int i, rand_num;
-	int seqlen = options[1];
+	int seqlen = Clean.pass_W;
 	char *random_seq = NULL;
 
 	random_seq = (char *)calloc(seqlen, sizeof(char));
@@ -921,7 +908,7 @@ void mha_randomize1(char *input_seq)
 void mha_randomize2(char *input_seq, int rsize) 
 {
 	int i, j, tmp;
-	int seqlen = options[1];
+	int seqlen = Clean.pass_W;
 	char *random_seq = NULL;
 	int *rnumbers= NULL;
 
@@ -957,7 +944,7 @@ void mha_randomize2(char *input_seq, int rsize)
 void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW])
 {
 char letr;
-int lenseq = options[ 1];
+int lenseq = Clean.pass_W;
 char monoL = options[26];		/* LHS character delimiter for homopolymer Run */
 char monoR = options[27];		/* RHS character delimiter for homopolymer Run */
 int m=0, n=0, widest_n=0;
@@ -975,7 +962,7 @@ int m=0, n=0, widest_n=0;
 		if (n > widest_n)
 			widest_n = n;
 		if (letr == '>') {				
-			options[32] = widest_n;	/* ASSIGN 2-D WIDTH  */
+			Current.pass_W = widest_n;	/* ASSIGN 2-D WIDTH  */
 			options[17] = m+1;		/* ASSIGN 2-D HEIGHT */
 		}
 	}
@@ -987,7 +974,7 @@ void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW])
 int i=0;
 
 	/* COPY CONSENSUS ROW FROM ARRAY ONE TO ARRAY TWO */
-	for (i = 0; i < options[32]; i++) {
+	for (i = 0; i < Current.pass_W; i++) {
 		align2D_two[MAXROW][i] = align2D_one[MAXROW][i];
 	}
 }
@@ -998,7 +985,7 @@ void mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW])
 int i=0;
 
 	/* COPY CONSENSUS ROW FROM ARRAY ONE TO 1D CONSENSUS ARRAY */
-	for (i = 0; i < options[32]; i++) {
+	for (i = 0; i < Current.pass_W; i++) {
 		consensus1D[i] = align2D_one[MAXROW][i];
 	}
 }
@@ -1011,7 +998,7 @@ short unsigned
      int nuctype = options[13];				/* EQUALS ONE IF DNA, TWO IF RNA */
 char wopt_Q_left = options[26];				/* LHS character delimiter for homopolymer Run */
 char wopt_R_rght = options[27];				/* RHS character delimiter for homopolymer Run */
-int lenseq = options[1];
+int lenseq = Clean.pass_W;
 int i=0, m=0, n=0, widest_n=0;
 
 	/* WRITE BACK TO align2D_prev */
@@ -1037,7 +1024,7 @@ int i=0, m=0, n=0, widest_n=0;
 		if (n > widest_n)
 			widest_n = n;
 		if (letr == '>') {				/* ASSIGN CINCH-WIDTH TO CURRENT [32]	*/
-			options[32] = widest_n;
+			Current.pass_W = widest_n;
 		}
 	}
 
@@ -1078,11 +1065,11 @@ int blocks2D=0, b=0, c=0, carry_over=0, d=0, fudge=0, g, h, i, j, j_start, j_end
 int mmsites=0, max_n=0;
 char letr = 'B', next = 'B';			/* Begin the Beguine */
 char blnk  = options[11];			/* opt_B blank character */
-int cinchwidth = (int) options[32];		
+int cinchwidth = Current.pass_W;		
 int cip_linewidth = options[58];
 char popt_Q_left = options[26]; 	/* LHS character delimiter for homopolymer Run */
 char popt_R_rght = options[27];		/* RHS character delimiter for homopolymer Run */
-int   lenseq = options[1];
+int   lenseq = Clean.pass_W;
 int   height = options[17];
 int head_start;							/* USE TO PASS RULER O-F-F-SET TO line_end() */
 int scrimmageline;						/* USE TO INCREMENT AND TEST IF FILLER IS NEEDED, CAN BE OPTION TO DO SO */
@@ -1332,8 +1319,8 @@ short unsigned int recoverlen(void)
 int m=0, n=0;
 int alpha_count=0;
 char  blnk = options[11];
-int  width = options[32];
-int lenseq = options[ 1];
+int  width = Current.pass_W;
+int lenseq = Clean.pass_W;
 int height = options[17];
 char monoL = options[26];
 char monoR = options[27];
@@ -1446,7 +1433,7 @@ char blank = options[11];
 int get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW]) 
 {
 	int i=0, j=0, heightAB=0, heightA=0, heightB=0;
-	int  width = options[32]; 
+	int  width = Current.pass_W; 
 	char opt_R_rght = options[27];
 	char letr; 
 	int bottom[MAXROW] = {0};
@@ -1549,7 +1536,7 @@ int get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW])
 void print1D(void)
 {
 	int i, j, n;
-	int lenseq = options[1];
+	int lenseq = Clean.pass_W;
 	int blocks = count_wrap_blocks(lenseq, options[58]);
 	int head_start = 0;			/* USE TO PASS RULER O-F-F-SET TO line_end() */
 	char ch;

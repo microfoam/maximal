@@ -95,7 +95,7 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 		return(3);
 	else {
 		int i=0, j=0, lineM=0, lineN=0, axioms=0, badflag=0;
-		int lenseq = options[1];
+		int lenseq = Clean.pass_W;
 	
 		if (eM>=eN) {
 			if (dev_print(TELA,__LINE__)) {
@@ -209,7 +209,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 	int    k = tela[cpos].k;
 	int reps = tela[cpos].r;
 	int i, j, m, n, r, z=0;
-	int lenseq = options[1];
+	int lenseq = Clean.pass_W;
 	char c;
 	char blnk = (char) options[11];		/* opt_B blank character */
 
@@ -265,7 +265,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 /******************************/
 void flatline_after_TR(int pos)
 {
-	int lenseq = options[1];
+	int lenseq = Clean.pass_W;
 	int i, start, x, y;
 
 	if (!tela[pos].all_k) {
@@ -300,7 +300,7 @@ void mark_tela(void)
 {
 	int i, j, l, m, n, k, reps, span, min_k; 
 	int threshold=0, max_score=0, max_count=0, projection=0;
-	int lenseq = options[1];
+	int lenseq = Clean.pass_W;
 	unsigned short int nuctype = options[13], nuctransit=0, TRcheck=0, imperfect_TR=0, Aimperfect_TR=0, gapcheck=0;
 	int homopoly_flag=0, Did=0, Dtr=0, Atr=0;
 	int mismatch   = -1;	/* MOVE ME TO HEADER FILE */
@@ -721,7 +721,7 @@ void print_tela(int a, int b)
 {
 int i=0, f=0;
 int width = 50;	    /* 60 x 3 = 180 COLS, PRACTICAL DISPLAY WIDTH */
-int lenseq = options[1];
+int lenseq = Clean.pass_W;
 
 	if (a<0 || a>lenseq) 
 		a = 0;
@@ -964,7 +964,7 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 	int coord_A_y=0, coord_B_y=0;
 	int i = 0;
 	int k = n2 - n1;
-	int lenseq=options[1];
+	int lenseq=Clean.pass_W;
 	int violation=0;
 
 	/* CHECK VALIDITY OF THE INPUT */
@@ -1095,7 +1095,7 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 	int i=0, j=0, k=0, up, dn, m, o;
 	int match = MATCH;
 	int transition = TRANSITION;
-	int lenseq = options[1];
+	int lenseq = Clean.pass_W;
 	int max_count=0, ratchet=0;
 
 	if (dev_print(TELA,__LINE__)) {
@@ -1155,7 +1155,7 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 int update_tela(void)
 {
 	int c=0, i=0, j=0;
-	int lenseq=options[1];
+	int lenseq=Clean.pass_W;
 	char letr;
 
 	for (i=0; align2D[i][0]!='\0'; i++) {

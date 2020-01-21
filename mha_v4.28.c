@@ -473,7 +473,7 @@ int main(int argc, char *argv[])
 
 	++Current.pass_V;
 
-	options[0] = options[32] = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT [32]	*/
+	Start.pass_W = Current.pass_W = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT [32]	*/
 
 	if ((i=opt_u.val) >= 1) {			/* WILL CAUSE OUTPUT TO NOT BE WRAPPED (opt_u EQUALS 1),	*/ 
 		options[58] = (lenseq/i);	/*  OR WRAPPED INTO opt_u NUMBER OF BLOCKS.				    */
@@ -503,7 +503,7 @@ int main(int argc, char *argv[])
 	/***************************************************************************/
 	options[13] = seqtype = cleanseq(Seq);	/* opt_D: STORES SEQTYPE: 1=DNA, 2=RNA, 3=PROTEIN, 0=OTHER */
 	lenseq = strlen(Seq);
-	options[1] = options[32] = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT [32]	*/
+	Clean.pass_W = Current.pass_W = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT */
 
 	if (opt_T.bit) {			/* opt_T: SHOW DTHR VALUES */
 		show_DTHR_table();
@@ -553,7 +553,7 @@ int main(int argc, char *argv[])
 		}
 		else {
 			mha_randomize2(Seq_r, FY_size);
-			lenseq = options[1] = FY_size;
+			lenseq = Clean.pass_W = FY_size;
 		}
 
 		printf("\nRandomized sequence: \"");
@@ -1314,7 +1314,7 @@ int main(int argc, char *argv[])
 	} /* END OF OPTION TO PRINT PATHBOX */
 
  	align2D[row][citwidth+1] = '\0';
-	options[2] = options[32] = citwidth;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND LCL CURRENT [32]	*/
+	Cinch_T.pass_W = Current.pass_W = citwidth;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT */
 	clear_right(align2D);
 	print1D();
 
@@ -1371,7 +1371,7 @@ int main(int argc, char *argv[])
 			}
 		}
 		else {	
-			options[i] = options[i-1];
+			Cinches[i]->pass_W = Cinches[i-1]->pass_W;
 		}
 		Nudge.pass_Q = Current.pass_Q;
 	}
@@ -1414,9 +1414,9 @@ int main(int argc, char *argv[])
 		++Current.pass_V;
 	
 		do {
-			relax_length = options[32] ;
+			relax_length = Current.pass_W;
 			relax_2D();
-			relax_length = options[32] - relax_length;
+			relax_length = Current.pass_W - relax_length;
 			++Relax.pass_R;
 		}
 		while (relax_length > 0);
@@ -1541,7 +1541,7 @@ int main(int argc, char *argv[])
 		} /* END OF FOR j LOOP */
 		printf("\n");
 
-		options[8] = z;			/* STORE NUMBER OF RECOVERED CHARACTERS */
+		Recover.pass_W = z;			/* STORE NUMBER OF RECOVERED CHARACTERS */
 
 		if (recovery_flag) {		/* LAST ROW OF array2D WILL STORE CONSENSUS, SO NEED TO KEEP CLEAR */
 			warnhead('R');
@@ -1568,11 +1568,11 @@ int main(int argc, char *argv[])
 			printf(" %d-mers:%2d\n", i, slips[i]);
 	}
 	/***************************************************************************/
-	c   = options[1];		/* REUSING c VAR FOR FORMATTED STRING LENGTH */
+	c   = Clean.pass_W;		/* REUSING c VAR FOR FORMATTED STRING LENGTH; CAN DELETE? */
 	if (opt_X.val > 1)			/* opt_XX FISHER-YATES RANDOMIZATIAN */
 		row = FY_size;			/* USE IN PLACE OF ORIGINAL STRING LENGTH */
 	else
-		row = options[0];	/* RESUING row VAR FOR ORIGINAL STRING LENGTH */
+		row = Start.pass_W;	/* RESUING row VAR FOR ORIGINAL STRING LENGTH */
 	/***************************************************************************/
 
 	if (seqtype == 1)		
@@ -1586,8 +1586,8 @@ int main(int argc, char *argv[])
 	else
 		printf(   "\n   PASS      Width cinch history:\n");
 
-	for (i = 0; options[i] != '\0' && i < 8; i++) {
-		printf("  %5d       => %4ld ", Cinches[i]->pass_Q, options[i]);
+	for (i = 0; Cinches[i]->pass_W != '\0' && i < 8; i++) {
+		printf("  %5d       => %4d ", Cinches[i]->pass_Q, Cinches[i]->pass_W);
 		switch (i) {
 		case 0:
 			if (!opt_X.bit)
@@ -1653,24 +1653,24 @@ int main(int argc, char *argv[])
 		}
 	}
 	if (opt_R.bit) {
-		printf("  %5d       => %4ld ", Recover.pass_Q, options[8]);
+		printf("  %5d       => %4d ", Recover.pass_Q, Recover.pass_W);
 			printf(    "%s recovered 1D   [final check pass]\n", letr_unit);
 	}
 
 	if (continue_flag) {
-		printf("\n Width cinch ratio (post cinch-d):  %2.3f", ratio1=(float)options[6]/lenseq);
+		printf("\n Width cinch ratio (post cinch-d):  %2.3f", ratio1=(float)Cinch_D.pass_W/lenseq);
 		if (!opt_n.bit)
-			printf("\n Width cinch ratio (post relax-2D): %.3f\n\n", ratio2=(float)options[32]/lenseq);
+			printf("\n Width cinch ratio (post relax-2D): %.3f\n\n", ratio2=(float)Current.pass_W/lenseq);
 		else
 			printf("\n\n");
 	}
 	else
-		printf("\n Width cinch ratio (post cinch-k): %.3f\n\n", ratio1=ratio2=(float)options[4]/lenseq);
+		printf("\n Width cinch ratio (post cinch-k): %.3f\n\n", ratio1=ratio2=(float)Cinch_K.pass_W/lenseq);
 
 	if (opt_O.bit) {							/* OPTION TO OUTPUT 2-D ALIGNMENT & CONSENSUS STRING TO FILE */
 		fp_cons = fopen("Surf_barrels.log", "a");
 		fprintf(fp_cons,">%s (%d > %d %s) x%d\n", 
-			file_name, (int) options[1], (int) options[6], letr_unit, opt_x.val);	
+			file_name, Clean.pass_W, Cinch_D.pass_W, letr_unit, opt_x.val);	
 
 		for (m = 0; align2D[m][0] != '\0'; m++) {
 			fprintf(fp_cons, " %s\n", align2D[m]);
@@ -1717,17 +1717,17 @@ int main(int argc, char *argv[])
 	
 	if (!opt_s.bit) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4d\t%.3f\tCYC:%3d (t=%d)\tRND:%.*s\t%38s (%c) (%4ld %s) REC:%4d\t%s\n", 
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4d\t%.3f\tCYC:%3d (t=%d)\tRND:%.*s\t%38s (%c) (%4d %s) REC:%4d\t%s\n", 
 				version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, Nudge.pass_V, opt_X.val, "XX", 
-				file_name, (char) options[28], options[1], letr_unit, Recover.pass_Q, dev_notes);
+				file_name, (char) options[28], Clean.pass_W, letr_unit, Recover.pass_Q, dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (Current.pass_Q != 1000 || Nudge.pass_R > CYCMAX) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4d\t%.3f\tCYC:%2d (t=%d)\tRND:-%.*s\t%s (%c) (%ld %s) REC:%4d\t%s\n", 
+			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4d\t%.3f\tCYC:%2d (t=%d)\tRND:-%.*s\t%s (%c) (%d %s) REC:%4d\t%s\n", 
 					version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, Nudge.pass_V, opt_X.val, "XX", 
-					file_name, (char) options[28], options[1], letr_unit, Recover.pass_Q, dev_notes);
+					file_name, (char) options[28], Clean.pass_W, letr_unit, Recover.pass_Q, dev_notes);
 			for(n = 0; n<lenseq; n++) {
 				fprintf(fp_tricksy, "%c", tela[n].c);
 			}
