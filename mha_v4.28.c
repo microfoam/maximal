@@ -1670,7 +1670,8 @@ int main(int argc, char *argv[])
 		fclose(fp_cons);
 	}
 	if (msa && opt_O.val==2) {
-		tuck = get2Dtucknum(m2Dalig, align2D);
+/*		tuck = get2Dtucknum(m2Dalig, align2D);
+*/		tuck = m2Da_height;
 		if (tuck<0) {
 			tuck = m2Da_height;	/* GET2DTUCKNUM IS BUST AND MUST BE DEBUGGED, USE ZERO TUCK */
 			warnhead('t');
