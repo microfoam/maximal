@@ -116,8 +116,29 @@ struct stropt {
 	opt_X = {0, 0, 'X', 	"Scramble sequence with basic or Fisher-Yates randomization.**  "},
 	opt_Y = {0, 0, 'Y', 	"Set Fisher-Yates length (FY_size) specified by run argument.   "},
 	opt_Z = {0, 0, 'Z', {0}};
-                     /* ".........|.........|.........|.........|.........|.........|...X */	
+                         /* ".........|.........|.........|.........|.........|.........|...X */	
 
+struct cinch {
+	int pass_Q;					/* Pass quality score   */
+	int pass_R;					/* Pass runs count      */
+	int pass_V;					/* Pass runs value      */
+	int pass_W;					/* Pass 2-D width       */
+
+} *Cinches[10],
+	 Start  = {0, 0, 0, 0},		/* Pass to read a raw input sequence */
+	 Clean  = {0, 0, 0, 0},		/* Pass to format original input string into acceptable characters and determine sequence type */
+	Cinch_T = {0, 0, 0, 0},		/* Pass to cinch Tandem repeats using a special traversal of the pathbox */
+	Cinch_L = {0, 0, 0, 0},		/* Pass to cinch Long monomeric tracts that are of size >= 2* mrwrap */
+	Cinch_K = {0, 0, 0, 0},		/* Pass to cinch intra-repeat K-mers */
+	 Nudge  = {0, 0, 0, 0},		/* Pass to nudge correct any mistakes in previous passes, a now rare event */
+	Cinch_D = {0, 0, 0, 0},		/* Pass to cinch De novo repeat structures (fractal repeats) based on the consensus row */
+	 Relax  = {0, 0, 0, 0},		/* Pass to relax monomeric tracts that did not aid cinch-D cinches */
+	Recover = {0, 0, 0, 0},		/* Optional pass to recover and check a 1-D sequence from a 2-D alignment */
+	Current = {0, 0,-1, 0};		/* Current holds the values from the latest pass, so that generic functions can simply look here */
+								/* Current.pass_V is pass counter, initialized to -1 so that it is incremented to 0 for Start pass */
+	
+
+/* THIS IS A LEGACY OPTIONS ARRAY FROM THE FIRST TWO YEARS OF PROGRAMMING MAXIMAL; IT IS GOING AWAY EVENTUALLY (IT BECAME TOO MANY THINGS) */
 long int options[2][64] = {
 /* 0 0 0 0 0 0 0 0 0 0 1  1 1 1 1 1 1 1  1 1 2 2 2 2 2 2  2   2  2 2 3 3 3 3 3  3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 6 6 6 6   
    0,1,2,3,4,5,6,7,8,9,0, 1,2,3,4,5,6,7, 8,9,0,1,2,3,4,5, 6,  7, 8,9,0,1,2,3,4, 5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3   
@@ -130,7 +151,6 @@ long int options[2][64] = {
                          blank character |               run delimiters                                                                     
                                                                  |                                                                  
                                                                  Strand characters 43 = '+', 45 = '-'                               
-   options[0][  n] = OFF (0) / ON (1) SWITCH TO INDICATE OPTION DETECTED AS ARGUMENT TO MAXIMAL                                      
    options[1][  n] = THIS VALUE IS INCREMENTED ALONGSIDE THE BIT SWITCH IN ROW ZERO FOR SOME OPTIONS                                 
    options[1][ 18] COUNTER OF INITIAL PASSES THROUGH MHA; BEGINS COUNT WITH VALUE -1                                                 
    options[1][0-9] WILL PERMANENTLY STORE 2-D WIDTH HISTORY AND IS THE ORIGINAL REASON OPTIONS WAS CODED AS LONG INT                 
@@ -143,7 +163,7 @@ long int options[2][64] = {
                 6 EQUALS cinch_d  2-D PASS       (d)                                                                                 
                 7 EQUALS relax_2D 2-D PASS       (r)                                                                                 
                 8 EQUALS recovered 1-D from 2-D  (R)                                                                                 
-               10 EQUALS passQ score / 1000      (A)                                                                                 
+               10 EQUALS pass-Q score / 1000     (A)                                                                                 
 
 				 options[1][13] IS RESERVED FOR STORING SEQUENCE TYPE (DNA, RNA, PROTEIN, BABYLONIAN, etc.) 
 				 options[1][17] RESERVED FOR 2D-ALIGNMENT HEIGHT 	
@@ -388,7 +408,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 		if (checktransit) {		/* IF checktransit IS STILL POSITIVE THEN IT'S SUPPOSED TO NOT HAVE CHECKED OUT */
 			consensus[n] = letr;
 			plustransit = 0;
-			if (options[1][18]) { /* IF PASS NUMBER */
+			if (Current.pass_V) { /* IF PASS NUMBER */
 				options[1][39] = 1; sprintf(dev_notes, "checktransit=%d at n=%d", checktransit, n);
 				if (dev_print(LOGY,__LINE__)) {
 					printf("checktransit=%d at n=%d.\n", checktransit, n);
@@ -744,7 +764,7 @@ void line_end(int type, int c, int lcl_width)
 	char *ruler = rule1;	/* USE TO CHANGE RULE STYLE */
 	char zero_tick = (char) options[1][35];	/* opt_Z, Zero tick mark, default = 32 = ' ' */
 
-	if (opt_B.val==2 && options[1][18]>1)	/* opt_B LEVELS FOR BLANKNESS IN FILLER & opt_I PASS NUM */
+	if (opt_B.val==2 && Current.pass_V>1)	/* opt_B LEVELS FOR BLANKNESS IN FILLER & opt_I PASS NUM */
 		zero_tick = '|';			/* 124 = '|'							*/
 
 	if (type == 1)					/* FORMAT FOR LINE END. c IS CHAR. NUMBER */
@@ -828,10 +848,9 @@ int min_len = 80;						/* MINIMUM LENGTH */
 int med_len = 12*(lcl_width/10);		/* MEDIUM LENGTH, SCALING */
 int max_len = options[1][58]+8;			/* MAXIMUM LENGTH */
 int hr_len = min_len;					/* DEFAULT LENGTH OF HEADER BANNER */
-int lcl_pass = options[1][18];			/* opt_I VALUE COUNTER FOR NUM OF PASSES */
 
 	if (lcl_width > MAXROW && dev_print(LOGY, __LINE__)) {
-		printf("Bad news bears: Unexpectedly, lcl_width > MAXROW. lcl_pass=%d, lcl_width=%d.\n", lcl_pass, lcl_width);
+		printf("Bad news bears: Unexpectedly, lcl_width > MAXROW. Current.pass_V=%d, lcl_width=%d.\n", Current.pass_V, lcl_width);
 	}
 
 	if (lcl_width+8 > hr_len && lcl_width+8 < (int) options[1][58])
@@ -842,34 +861,34 @@ int lcl_pass = options[1][18];			/* opt_I VALUE COUNTER FOR NUM OF PASSES */
 	if (opt_X.bit)
 		h_rule = h2;
 
-	if (lcl_pass == 6) {
+	if (Current.pass_V == 6) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: cinch-d [RESCUES TR's INTERRUPTED BY DE NOVO REPEATS OF REPEATS] (width = %d)\n\n", lcl_pass, lcl_width);
+		printf("2-D PASS #%d: cinch-d [RESCUES TR's INTERRUPTED BY DE NOVO REPEATS OF REPEATS] (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
-	else if (lcl_pass == 5) {
+	else if (Current.pass_V == 5) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: nudgelize [RESCUES TR's OBSCURED BY INITIAL CYCLING FRAME] (width = %d)\n\n", lcl_pass, lcl_width);
+		printf("2-D PASS #%d: nudgelize [RESCUES TR's OBSCURED BY INITIAL CYCLING FRAME] (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
-	else if (lcl_pass == 4 || lcl_pass == 6) {
+	else if (Current.pass_V == 4 || Current.pass_V == 6) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: cinch-k [INTRA-REPEAT *k-MERS > 0] (width = %d)\n\n", lcl_pass, lcl_width);
+		printf("2-D PASS #%d: cinch-k [INTRA-REPEAT *k-MERS > 0] (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
-	else if (lcl_pass == 3) {
+	else if (Current.pass_V == 3) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: cinch-l [*lONG HOMOPOLYMER TRACTS] (width = %d)\n\n", lcl_pass, lcl_width);
+		printf("2-D PASS #%d: cinch-l [*lONG HOMOPOLYMER TRACTS] (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
-	else if (lcl_pass == 2) {
+	else if (Current.pass_V == 2) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: cinch-t [LONGEST *tANDEM REPEATS, k>1] (width = %d)\n\n", lcl_pass, lcl_width);
+		printf("2-D PASS #%d: cinch-t [LONGEST *tANDEM REPEATS, k>1] (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
-	else if (lcl_pass == 1) {
+	else if (Current.pass_V == 1) {
 			printf("\n\n1-D sequence:\n");
 	}
-	else if (lcl_pass == 7) {
+	else if (Current.pass_V == 7) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: relax-2D [RELAXES HOMOPOLYMER RUNS THAT DID NOT AID cinch-d] (width = %d)\n\n", lcl_pass, lcl_width);
+		printf("2-D PASS #%d: relax-2D [RELAXES HOMOPOLYMER RUNS THAT DID NOT AID cinch-d] (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
-	else if (lcl_pass == 0) {
+	else if (Current.pass_V == 0) {
 		printf("\nOriginal string (length = %d):\n", lcl_width);
 	}
 	else 
@@ -941,7 +960,7 @@ void mha_randomize2(char *input_seq, int rsize)
 void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW])
 {
 char letr;
-int lenseq       = options[1][ 1];
+int lenseq = options[1][ 1];
 char monoL = options[1][26];		/* LHS character delimiter for homopolymer Run */
 char monoR = options[1][27];		/* RHS character delimiter for homopolymer Run */
 int m=0, n=0, widest_n=0;
@@ -1216,23 +1235,23 @@ short unsigned int lcl_opt_F;
 		/* ADD TO COUNT OF MISMATCHED SITES */
 		mmsites = mmsites + consensus_2D(j_start, cip_linewidth);
 
-		if (opt_f.bit && options[1][18] > 6 && mmsites == 0) {	
+		if (opt_f.bit && Current.pass_V > 6 && mmsites == 0) {	
 			foam_2D(j_start, cip_linewidth);
 		}
 	} /* END OF FOR j PRINTING LOOP */
 
 	if (c == lenseq && mmsites == 0) {
-		options[0][10] = 1000;	
+		Current.pass_Q = 1000;	
 		printf("\n This %d %s sequence was auto-aligned correctly at this stage.\n", c, letr_unit);
 		return(0);
 	}
 	else if (c == lenseq) {
-		i=options[0][10] = round((1000*(cinchwidth-mmsites))/cinchwidth);	
+		Current.pass_Q = round((1000*(cinchwidth-mmsites))/cinchwidth);	
 		printf("\n This %d %s sequence was not auto-aligned correctly at this stage, but perhaps further cinching will rectify the 2-D alignment. \n", c, letr_unit);
-		return(i);
+		return(Current.pass_Q);
 	}
 	else if (c < lenseq) {
-		i=options[0][10] = round((1000*(cinchwidth-mmsites-(lenseq-c)))/cinchwidth);
+		Current.pass_Q = round((1000*(cinchwidth-mmsites-(lenseq-c)))/cinchwidth);
 		warnhead('-');
 		printf(" 2-D auto-alignment is missing %d %s(s)!\n\n", lenseq-c, letr_unit); 
 
@@ -1272,7 +1291,7 @@ short unsigned int lcl_opt_F;
 		return(0);
 	}
 	else {
-		i=options[0][10] = round((1000*(cinchwidth-mmsites-(c-lenseq)))/cinchwidth);	
+		Current.pass_Q = round((1000*(cinchwidth-mmsites-(c-lenseq)))/cinchwidth);	
 		warnhead('+');
 		printf(" 2-D auto-alignment contains an extra %d %s(s)!\n\n", c-lenseq, letr_unit);
 		return(0);

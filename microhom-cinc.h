@@ -606,7 +606,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 				print_2Dseq();
 		}
 
-		options[0][4] = options[0][4] + cik_row;			/* STORE ROWS ADDED */
+		Cinch_K.pass_V += cik_row;			/* STORE ROWS ADDED */
 		if (dev_print(CINCH,__LINE__)) {
 			printf("Post cinch-k k=%d loop: symbol_count=%3d (lenseq = %3d).", k, symbol_count, lenseq);
 		}
@@ -622,7 +622,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 	free(x_history);
 	/*	free_2D(cik_align2D, lenseq); */
 
-	return (options[0][4]);
+	return (Cinch_K.pass_V);
 }
 /******************************************************************/
 
@@ -649,7 +649,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 		cyc_ar[MAXROW][j] = consensus[j];
  
 	/* FLAG SPECIAL CASE OF CYCLING NEED AT n=0 COLUMN */
-	if (options[0][5] == 0 && cyc_ar[0][0] == blnk)
+	if (!Nudge.pass_V && cyc_ar[0][0] == blnk)
 		edge0 = 1;
 
 	for (n = 0; n <= cyc_width; n++) {
@@ -762,8 +762,8 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
                     if (kmer != 4)      	/* LEGACY NAMING OF VARIABLE FROM WHEN NUDGELIZE USED TO BE CYCLELIZE; NOW SEPARATE FUNC. */
 						kmer = 3;       	/* IF k=9, THEN BELOW WILL FUDGE CYCLELIZE BY PUSHING RIGHT. HACK WORKS FOR ALL k */ 
 
-					if (options[0][5]!=3)		/* GIVING PRECEDENCE TO THE MEMORY OF HAVING NUDGE-CYCLED */
-						options[0][5] = kmer;	/* USING THE 0 ROW ABOVE PASS WIDTH ROW TO STORE cyclelize kmer VAR. */
+					if (Nudge.pass_V!=3)		/* GIVING PRECEDENCE TO THE MEMORY OF HAVING NUDGE-CYCLED */
+						Nudge.pass_V = kmer;	/* USING THE 0 ROW ABOVE PASS WIDTH ROW TO STORE cyclelize kmer VAR. */
 
 					/* TIP-CYCLELIZE */
 					if (tipcyc_flag) {
@@ -775,13 +775,13 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 					}
 
 					/* NUDGE-CYCLELIZE: */
-					if (1) {	
+					if (ON) {	
 						if (connudge(cyc_ar, 0, cyc_width) == 0) {
 							if (dev_print(CINCH,__LINE__)) {
 								printf("dud_nudge");
 							}
 							dud_nudge = 1;
-							i = options[1][18];
+							i = Current.pass_V;
 							options[1][i] = cyc_width = options[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS x WIDTH HISTORY */
 							n = cyc_width+1; 		/* BREAK OUT OF FOR n LOOP AFTER BREAKING OUT OF FOR m LOOP */
 							break; 					/* BREAK OUT OF FOR m LOOP */
@@ -789,7 +789,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 
 						clear_right(cyc_ar);
 
-						i = options[1][18];
+						i = Current.pass_V;
 						options[1][i] = cyc_width = options[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS x WIDTH HISTORY */
 						n = cyc_width+1; 		/* BREAK OUT OF FOR n LOOP AFTER BREAKING OUT OF FOR m LOOP */
 						break; 					/* BREAK OUT OF FOR m LOOP */
@@ -1088,13 +1088,12 @@ char cid_align2D[MAXROW][MAXROW];
 		} /* END OF FOR n LOOP */
 	} /* END OF FOR k LOOP */
 
+	i = Current.pass_V;
 	if (cinch_d_opt == 0 && tot_repeats == 0) {
-		i = options[1][18];
 		options[1][i] = options[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS WIDTH HISTORY */
 		printf("\n");
 	}
 	else if (cinch_d_opt) {
-		i = options[1][18];
 		options[1][i] = options[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS WIDTH HISTORY */
 		if (cidwidth == options[1][32]) {
 			print_2Dseq();
@@ -1228,7 +1227,7 @@ char rlx_align2D[MAXROW][MAXROW];
 
 	mha_writeback(rlx_align2D, align2D);
 
-	i = options[1][18];
+	i = Current.pass_V;
 	options[1][i] = options[1][32];	/* ASSIGN [32] CURRENT WIDTH and PASS [9] WIDTH HISTORY */
 }
 /******************************************************************/

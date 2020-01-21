@@ -69,8 +69,6 @@ int main(int argc, char *argv[])
 	float ratio1 = 1;						/* WIDTH CINCH RATIO (W.C.R.) post cinch-d, pre relax-2D 	*/
 	float ratio2 = 1;						/* WIDTH CINCH RATIO (W.C.R.) post relax-2D 				*/
 
-	int passQ[16] = {0};        			/* PASS QUALITY */
-	int passR[16] = {0};        			/* PASS RUNS */
  	char m2Dalig[MAXROW+1][MAXROW] = {{0}};			
 	char cycle[WIDTH+1];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
 	char numstring[8] = {0};
@@ -119,6 +117,17 @@ int main(int argc, char *argv[])
 	stroptions[24] = &opt_x; stroptions[50] = &opt_X;
 	stroptions[25] = &opt_y; stroptions[51] = &opt_Y;
 	stroptions[26] = &opt_z; stroptions[52] = &opt_Z;
+
+	Cinches[0] = &Start;
+	Cinches[1] = &Clean;
+	Cinches[2] = &Cinch_T;
+	Cinches[3] = &Cinch_L;
+	Cinches[4] = &Cinch_K;
+	Cinches[5] = &Nudge;
+	Cinches[6] = &Cinch_D;
+	Cinches[7] = &Relax;
+	Cinches[8] = &Recover;
+	Cinches[9] = &Current;
 
 	/* IS THERE A FILE NAME ARGUMENT? */
 	for (i = 1; i < argc; i++) {
@@ -462,7 +471,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-	++options[1][18];	/* INCREMENT opt_I COUNTER (pass_num) */
+	++Current.pass_V;
 
 	options[1][0] = options[1][32] = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT [32]	*/
 
@@ -555,8 +564,8 @@ int main(int argc, char *argv[])
 		Seq = Seq_r;
 	}
 
-	++options[1][18];		/* INCREMENT ++pass_num */
-	passQ[0] = passQ[1] = 1000;
+	++Current.pass_V;
+	Clean.pass_Q = Start.pass_Q = 1000;
 
 	Seq[lenseq] = tela[lenseq].t = tela[lenseq].c = '>';
 
@@ -932,7 +941,7 @@ int main(int argc, char *argv[])
 				if (Dtr==Did || imperfect_TR) {	
 					tela[n].Dtr = Dtr;		/* SAVE Dtr SCORE */
 
-					passR[2]++;
+					++Cinch_T.pass_R;
 
 					if (ON || imperfect_TR) {
 						for (i=0; i<k; i++)
@@ -1310,9 +1319,10 @@ int main(int argc, char *argv[])
 	print1D();
 
 	/********** 2. cinch_t MODULE: WRAPS LARGEST EXACT k-mers, IGNORES INTRA-TR TRs **********/
-	i = ++options[1][18];	/* INCREMENT opt_I COUNTER (pass_num) */
+	++Current.pass_V;
+
 	print_2Dseq();
-	passQ[i] = options[0][10];
+	Cinch_T.pass_Q = Current.pass_Q;
 /*	dev_prompt(MAIN,__LINE__,file_name);
 */
 	if (recoverlen()==lenseq) {
@@ -1332,42 +1342,43 @@ int main(int argc, char *argv[])
 	}
 
 	/********** 3. cinch_l MODULE: WRAPS HOMOPOLYMERIC RUNS IF >= 20 (2 * wrap VAR.) ********/
-	i = ++options[1][18];	/* INCREMENT opt_I ++PASS NUM */
-	passR[i] = (int) cinch_l();
+	++Current.pass_V;
+
+	Cinch_L.pass_R = (int) cinch_l();
 	if (cinchled) {
 		print_2Dseq();
 	}
-	passQ[i] = options[0][10];
+	Cinch_L.pass_Q = Current.pass_Q;
 
 	/********* 4. cinch_k MODULE: HANDLES k-mers FROM SIZE WIDTH DOWN TO k=1 ***********/
-	i = ++options[1][18];	/* INCREMENT opt_I ++PASS NUM */
+	++Current.pass_V;
 
-	passR[i] = cinch_k();
+	Cinch_K.pass_R = cinch_k();
 	cycle_flag = print_2Dseq();
-	passQ[i] = options[0][10];
+	Cinch_K.pass_Q = Current.pass_Q;
 	dev_prompt(MAIN,__LINE__,file_name);
 
 	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT ***************/
 	continue_flag = 1;
 
 	if (continue_flag) {
-		i = ++options[1][18];	/* INCREMENT opt_I ++PASS NUM */
+		i = ++Current.pass_V;
 		if (cycle_flag || align2D[0][0] == blank) {
-			passR[5]++;
+			++Nudge.pass_R;
 
-			while ((go_flag=nudgelize())!=0 && passR[5] < CYCMAX) {	
-				passR[5]++;
+			while ((go_flag=nudgelize())!=0 && Nudge.pass_R < CYCMAX) {	
+				++Nudge.pass_R;
 			}
 		}
 		else {	
 			options[1][i] = options[1][i-1];
 		}
-		passQ[i] = options[0][10];
+		Nudge.pass_Q = Current.pass_Q;
 	}
 
 	/********* 6. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
 	if (continue_flag) {
-		i = ++options[1][18];	/* INCREMENT opt_I ++PASS NUM */
+		++Current.pass_V;
 
 		if (dev_print(MAIN,__LINE__)) {
 			if (nuctransit) {
@@ -1387,31 +1398,31 @@ int main(int argc, char *argv[])
 		if (intraTR_reps_tot > 0) {
 			while (intraTR_reps > 0) {
 				intraTR_reps = cinch_d(1);
-				passR[6]++;
+				++Cinch_D.pass_R;
 			}
-			options[0][6] = --passR[6];	/* STORE d runs in PASS SLOT IN CASE FUTURE MODULES POST CINCH-D NEED IT */
-							/* NEED TO COUNT LIKE THIS FOR FOLLOWING REASONS: 			*/
-							/*  1. LAST RUN IS A CHECK RETURNING ZERO, SO RUNS NEED TO BE DECREMENTED BY 1. 	*/
-							/*  2. APPARENT LAST EFFECTIVE CINCH-D RUN MAY REVEAL A NEW CINCH-D OPPORTUNITY. 	*/
-							/* 	OTHERWISE COULD HAVE SET WHILE LOOP TO > 1 (DON'T DO THIS. )			*/
+			Cinch_D.pass_V = --Cinch_D.pass_R;	/* STORE d runs in PASS SLOT IN CASE FUTURE MODULES POST CINCH-D NEED IT */
+												/* NEED TO COUNT LIKE THIS FOR FOLLOWING REASONS: 			*/
+												/*  1. LAST RUN IS A CHECK RETURNING ZERO, SO RUNS NEED TO BE DECREMENTED BY 1. 	*/
+												/*  2. APPARENT LAST EFFECTIVE CINCH-D RUN MAY REVEAL A NEW CINCH-D OPPORTUNITY. 	*/
+												/* 	OTHERWISE COULD HAVE SET WHILE LOOP TO > 1 (DON'T DO THIS. )			*/
 		}
-		passQ[i] = options[0][10];
+		Cinch_D.pass_Q = Current.pass_Q;
 	}
 
 	/********* 7. relax_2D MODULE: DE-CINCHES HOMOPOLYMER RUNS IF THEY DID NOT AID CINCH-D *******/
 	if (continue_flag && !opt_n.bit) {		/* opt_n DO NOT DO RELAX-2D */
-		i = ++options[1][18];		/* INCREMENT opt_I ++PASS NUM */
+		++Current.pass_V;
 	
 		do {
 			relax_length = options[1][32] ;
 			relax_2D();
 			relax_length = options[1][32] - relax_length;
-			passR[7]++;
+			++Relax.pass_R;
 		}
 		while (relax_length > 0);
 	
 		print_2Dseq();
-		passQ[i] = options[0][10];
+		Relax.pass_Q = Current.pass_Q;
 	}	
 
 	/********** 8. RECOVER_1D*************************************************/
@@ -1535,12 +1546,12 @@ int main(int argc, char *argv[])
 		if (recovery_flag) {		/* LAST ROW OF array2D WILL STORE CONSENSUS, SO NEED TO KEEP CLEAR */
 			warnhead('R');
 			printf("Imperfect recovery of 1-D sequence from 2-D self-MHA.\n");
-			passQ[8] = 1000*(lenseq-recovery_flag)/lenseq;
+			Recover.pass_Q = 1000*(lenseq-recovery_flag)/lenseq;
 		}
 		else {
 			line_end(SLIPS, 0, 0);
 			printf("Perfect recovery of 1-D sequence.\n");
-			passQ[8] = 1000; 
+			Recover.pass_Q = 1000; 
 		}
 	} /* END of opt_R */
 
@@ -1549,7 +1560,7 @@ int main(int argc, char *argv[])
 
 		int k_start=2;
 
-		printf("\n Unique slips: %4d\n", passR[2]);
+		printf("\n Unique slips: %4d\n", Cinch_T.pass_R);
 
 		for (i = k_start; i <= 10; i++)
 			printf(" %smers:%3d \n", nmer_prefix(i), slips[i]);
@@ -1576,7 +1587,7 @@ int main(int argc, char *argv[])
 		printf(   "\n   PASS      Width cinch history:\n");
 
 	for (i = 0; options[1][i] != '\0' && i < 8; i++) {
-		printf("  %5d       => %4ld ", passQ[i], options[1][i]);
+		printf("  %5d       => %4ld ", Cinches[i]->pass_Q, options[1][i]);
 		switch (i) {
 		case 0:
 			if (!opt_X.bit)
@@ -1590,60 +1601,59 @@ int main(int argc, char *argv[])
 			printf("%s post cleanseq  [pass #1]\n", letr_unit);
 			break;
 		case 2:
-			if (passR[2]>1)
-				printf("%s post cinch-t   [pass #2: %d cinches]\n", letr_unit, passR[2]);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
-			else if (passR[2])
-				printf("%s post cinch-t   [pass #2: %d cinch]\n", letr_unit, passR[2]);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
+			if (Cinch_T.pass_R > 1)
+				printf("%s post cinch-t   [pass #2: %d cinches]\n", letr_unit, Cinch_T.pass_R);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
+			else if (Cinch_T.pass_R)
+				printf("%s post cinch-t   [pass #2: %d cinch]\n", letr_unit, Cinch_T.pass_R);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
 			else if (opt_t.bit) 
 				printf("%s post cinch-t   [pass #2: SKIPPED BY REQUEST]\n", letr_unit);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
 			else 
 				printf("No effective cinch-t cinches taken.\n");
 			break;												/*  "cinch-x" VERSUS 'cinch_x' programming calls 				*/ 
 		case 3:													/*  USEFUL FOR SEARCHING CODE.									*/
-			printf("%s post cinch-l   [pass #3: %d run(s)]\n", letr_unit, passR[3]);
+			printf("%s post cinch-l   [pass #3: %d run(s)]\n", letr_unit, Cinch_L.pass_R);
 			break;
 		case 4:	
-			if (options[0][4] == 0)
+			if (!Cinch_K.pass_V)
 				printf("%s post cinch-k   [pass #4]\n", letr_unit);
-			else if (options[0][4] == 1)
+			else if (Cinch_K.pass_V == 1)
 				printf("%s post cinch-k   [pass #4: one row added]\n", letr_unit);
-			else if (options[0][4] > 1)
-				printf("%s post cinch-k   [pass #4: %ld rows added]\n", letr_unit, options[0][4]);
+			else if (Cinch_K.pass_V > 1)
+				printf("%s post cinch-k   [pass #4: %d rows added]\n", letr_unit, Cinch_K.pass_V);
 			break;
 		case 5:	
-			k = options[0][5];
-			if (k == 0)
+			if (Nudge.pass_V == 0)
 				printf("%s post nudgelize [pass #5]\n", letr_unit);
-			else if (passR[5] == 1) {	
-				if (k == 3)
-					printf("%s post nudgelize [pass #5: %d run; nudge-cyclelized TR]\n", letr_unit, passR[5]);
-				else if (k == 4)
-					printf("%s post nudgelize [pass #5: %d run; tip-cyclelized TR]\n", letr_unit, passR[5]);
+			else if (Nudge.pass_R == 1) {	
+				if (Nudge.pass_V == 3)
+					printf("%s post nudgelize [pass #5: %d run; nudge-cyclelized TR]\n", letr_unit, Nudge.pass_R);
+				else if (Nudge.pass_V == 4)
+					printf("%s post nudgelize [pass #5: %d run; tip-cyclelized TR]\n", letr_unit, Nudge.pass_R);
 			}
-			else if (passR[5] <= CYCMAX) {	/* IN WHICH CASE k WILL BE NON-ZERO */
-				if (k == 3)
-					printf("%s post nudgelize [pass #5: %d runs; last TR was nudge-cyclelized]\n", letr_unit, passR[5]);
-				else if (k == 4)
-					printf("%s post nudgelize [pass #5: %d runs; last TR was tip-cyclelized]\n", letr_unit, passR[5]);
+			else if (Nudge.pass_R <= CYCMAX) {	/* IN WHICH CASE k WILL BE NON-ZERO */
+				if (Nudge.pass_V == 3)
+					printf("%s post nudgelize [pass #5: %d runs; last TR was nudge-cyclelized]\n", letr_unit, Nudge.pass_R);
+				else if (Nudge.pass_V == 4)
+					printf("%s post nudgelize [pass #5: %d runs; last TR was tip-cyclelized]\n", letr_unit, Nudge.pass_R);
 			}
 			else 							/* IN WHICH CASE cyc runs >> CYCMAX */
-				printf("%s post nudgelize [pass #5: reverted after %d runs due to gnarly micro-foam]\n", letr_unit, passR[5]-CYCMAX*1000);
+				printf("%s post nudgelize [pass #5: reverted after %d runs due to gnarly micro-foam]\n", letr_unit, Nudge.pass_R-CYCMAX*1000);
 			break;
 		case 6:	
-			if (passR[6] > 0)
-				printf("%s post cinch-d   [pass #6: %d runs]\n", letr_unit, passR[6]);
+			if (Cinch_D.pass_R)
+				printf("%s post cinch-d   [pass #6: %d runs]\n", letr_unit, Cinch_D.pass_R);
 			else if (opt_d.bit)
 				printf("%s post cinch-d   [pass #6: SKIPPED BY REQUEST]\n", letr_unit);
 			else
 				printf("%s post cinch-d   [pass #6]\n", letr_unit);
 			break;
 		case 7:	
-			printf(    "%s post relax-2D  [pass #7: relaxed %d runs]\n", letr_unit, passR[7]);
+			printf(    "%s post relax-2D  [pass #7: relaxed %d runs]\n", letr_unit, Relax.pass_R);
 			break;
 		}
 	}
 	if (opt_R.bit) {
-		printf("  %5d       => %4ld ", passQ[8], options[1][8]);
+		printf("  %5d       => %4ld ", Recover.pass_Q, options[1][8]);
 			printf(    "%s recovered 1D   [final check pass]\n", letr_unit);
 	}
 
@@ -1707,17 +1717,17 @@ int main(int argc, char *argv[])
 	
 	if (!opt_s.bit) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (t=%ld)\tRND:%.*s\t%38s (%c) (%4ld %s) REC:%4d\t%s\n", 
-				version, time0+4, opt_x.val, options[0][10], ratio1, passR[5], options[0][5], opt_X.val, "XX", 
-				file_name, (char) options[1][28], options[1][1], letr_unit, passQ[8], dev_notes);
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4d\t%.3f\tCYC:%3d (t=%d)\tRND:%.*s\t%38s (%c) (%4ld %s) REC:%4d\t%s\n", 
+				version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, Nudge.pass_V, opt_X.val, "XX", 
+				file_name, (char) options[1][28], options[1][1], letr_unit, Recover.pass_Q, dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
-		if (options[0][10] != 1000 || passR[5] > CYCMAX) {
+		if (Current.pass_Q != 1000 || Nudge.pass_R > CYCMAX) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%2d (t=%ld)\tRND:-%.*s\t%s (%c) (%ld %s) REC:%4d\t%s\n", 
-					version, time0+4, opt_x.val, options[0][10], ratio1, passR[5], options[0][5], opt_X.val, "XX", 
-					file_name, (char) options[1][28], options[1][1], letr_unit, passQ[8], dev_notes);
+			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4d\t%.3f\tCYC:%2d (t=%d)\tRND:-%.*s\t%s (%c) (%ld %s) REC:%4d\t%s\n", 
+					version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, Nudge.pass_V, opt_X.val, "XX", 
+					file_name, (char) options[1][28], options[1][1], letr_unit, Recover.pass_Q, dev_notes);
 			for(n = 0; n<lenseq; n++) {
 				fprintf(fp_tricksy, "%c", tela[n].c);
 			}
