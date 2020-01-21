@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 	int lenseq = 0;
 	int citwidth = 0;
 	char blank = '.';						/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
-											/* NEEDS TO BE SET IN options[][62] array */
+											/* NEEDS TO BE SET IN options[64] array */
 	int badslip_type = 0;
 	int scooch = 0;
 	int alt_k = 0;
@@ -90,33 +90,33 @@ int main(int argc, char *argv[])
 	signal(SIGBUS, signal_callback_handler);	/* 10 */
 	signal(SIGSEGV, signal_callback_handler);	/* 11 */
 
-	stroptions[ 0] = &opt_a;	/* PRE-CAUTION SO THAT IT IS DEFINED BUT WILL NOT BE USED */
-	stroptions[ 1] = &opt_a; stroptions[27] = &opt_A;
-	stroptions[ 2] = &opt_b; stroptions[28] = &opt_B;
-	stroptions[ 3] = &opt_c; stroptions[29] = &opt_C;
-	stroptions[ 4] = &opt_d; stroptions[30] = &opt_D;
-	stroptions[ 5] = &opt_e; stroptions[31] = &opt_E;
-	stroptions[ 6] = &opt_f; stroptions[32] = &opt_F;
-	stroptions[ 7] = &opt_g; stroptions[33] = &opt_G;
-	stroptions[ 8] = &opt_h; stroptions[34] = &opt_H;
-	stroptions[ 9] = &opt_i; stroptions[35] = &opt_I;
-	stroptions[10] = &opt_j; stroptions[36] = &opt_J;
-	stroptions[11] = &opt_k; stroptions[37] = &opt_K;
-	stroptions[12] = &opt_l; stroptions[38] = &opt_L;
-	stroptions[13] = &opt_m; stroptions[39] = &opt_M;
-	stroptions[14] = &opt_n; stroptions[40] = &opt_N;
-	stroptions[15] = &opt_o; stroptions[41] = &opt_O;
-	stroptions[16] = &opt_p; stroptions[42] = &opt_P;
-	stroptions[17] = &opt_q; stroptions[43] = &opt_Q;
-	stroptions[18] = &opt_r; stroptions[44] = &opt_R;
-	stroptions[19] = &opt_s; stroptions[45] = &opt_S;
-	stroptions[20] = &opt_t; stroptions[46] = &opt_T;
-	stroptions[21] = &opt_u; stroptions[47] = &opt_U;
-	stroptions[22] = &opt_v; stroptions[48] = &opt_V;
-	stroptions[23] = &opt_w; stroptions[49] = &opt_W;
-	stroptions[24] = &opt_x; stroptions[50] = &opt_X;
-	stroptions[25] = &opt_y; stroptions[51] = &opt_Y;
-	stroptions[26] = &opt_z; stroptions[52] = &opt_Z;
+	Options[ 0] = &opt_a;	/* PRE-CAUTION SO THAT IT IS DEFINED BUT WILL NOT BE USED */
+	Options[ 1] = &opt_a; Options[27] = &opt_A;
+	Options[ 2] = &opt_b; Options[28] = &opt_B;
+	Options[ 3] = &opt_c; Options[29] = &opt_C;
+	Options[ 4] = &opt_d; Options[30] = &opt_D;
+	Options[ 5] = &opt_e; Options[31] = &opt_E;
+	Options[ 6] = &opt_f; Options[32] = &opt_F;
+	Options[ 7] = &opt_g; Options[33] = &opt_G;
+	Options[ 8] = &opt_h; Options[34] = &opt_H;
+	Options[ 9] = &opt_i; Options[35] = &opt_I;
+	Options[10] = &opt_j; Options[36] = &opt_J;
+	Options[11] = &opt_k; Options[37] = &opt_K;
+	Options[12] = &opt_l; Options[38] = &opt_L;
+	Options[13] = &opt_m; Options[39] = &opt_M;
+	Options[14] = &opt_n; Options[40] = &opt_N;
+	Options[15] = &opt_o; Options[41] = &opt_O;
+	Options[16] = &opt_p; Options[42] = &opt_P;
+	Options[17] = &opt_q; Options[43] = &opt_Q;
+	Options[18] = &opt_r; Options[44] = &opt_R;
+	Options[19] = &opt_s; Options[45] = &opt_S;
+	Options[20] = &opt_t; Options[46] = &opt_T;
+	Options[21] = &opt_u; Options[47] = &opt_U;
+	Options[22] = &opt_v; Options[48] = &opt_V;
+	Options[23] = &opt_w; Options[49] = &opt_W;
+	Options[24] = &opt_x; Options[50] = &opt_X;
+	Options[25] = &opt_y; Options[51] = &opt_Y;
+	Options[26] = &opt_z; Options[52] = &opt_Z;
 
 	Cinches[0] = &Start;
 	Cinches[1] = &Clean;
@@ -427,8 +427,8 @@ int main(int argc, char *argv[])
 	mha_head(options[58]);
 	printf("micro homology alignment (MHA) -");
 	for (i = 1; i < 53; i++) {			/* UPPER-CASE LETTER OPTIONS */
-		if (stroptions[i]->bit)
-			printf("%c", stroptions[i]->sym);
+		if (Options[i]->bit)
+			printf("%c", Options[i]->sym);
 	}
 	if (opt_B.val > 1) {
 		printf(" -B%d", opt_B.val);

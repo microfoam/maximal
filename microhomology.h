@@ -5,7 +5,7 @@
 #ifndef FILE_LOGY_SEEN
 #define FILE_LOGY_SEEN
 
-#define TEMP		2		/* SETS MAGIC MELT TEMPERATURE; SETS LOWER BOUND FOR MELTAGE opt_m; UNELECTED, DEFAULT ACTS AS TEMP=1 */
+#define TEMP		2		/* SETS MAGIC MELT TEMP; SETS LOWER BOUND FOR MELTAGE opt_m; UNELECTED, DEFAULT ACTS AS TEMP=1 */
 #define CYCMAX     60       /* SEMI-MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER EMBEDDED DECISIONS */
 #define MAXROW   2000       /* maximum input line size; NOT M-A-G-I-C JUST WHAT MY 'PUTERS CAN DO AS CURRENTLY WRITTEN */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
@@ -56,13 +56,13 @@ struct coord {
 	/*************************************************************************************************/
 } tela[MAXROW];
 
-struct stropt {
+struct {
 	int		bit;				/* ON/OFF bit switch    */
 	int 	val;				/* incrementable value  */
 	char	sym;				/* option letter symbol */
 	char	description[64];	/* usage description    */
 
-}	*stroptions[53] = {},
+}	*Options[53] = {},
                      /* ".........|.........|.........|.........|.........|.........|...X */	
 	opt_a = {0, 0, 'a', {0}},	
 	opt_b = {0, 0, 'b', {0}},
@@ -136,7 +136,7 @@ struct cinch {
 	Recover = {0, 0, 0, 0},		/* Optional pass to recover and check a 1-D sequence from a 2-D alignment */
 	Current = {0, 0,-1, 0};		/* Current holds the values from the latest pass, so that generic functions can simply look here */
 								/* Current.pass_V is pass counter, initialized to -1 so that it is incremented to 0 for Start pass */
-	
+
 /* THIS IS A LEGACY OPTIONS ARRAY FROM THE FIRST TWO YEARS OF PROGRAMMING MAXIMAL; IT IS GOING AWAY EVENTUALLY (IT BECAME TOO MANY THINGS) */
 long int options[64] = {
 /* 0 0 0 0 0 0 0 0 0 0 1  1 1 1 1 1 1 1  1 1 2 2 2 2 2 2  2   2  2 2 3 3 3 3 3  3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 6 6 6 6   
@@ -1380,8 +1380,8 @@ void usage(char *usage_version)
 	printf("\nRunning maximal version %s, a program for micro-homology alignment (MHA).\n", usage_version);
 	printf("\nUsage: ./maximal -[OPTIONS] sequence.txt\n");
 	for (i=1; i<53; i++) {
-		if (*stroptions[i]->description)
-			printf("\n\t\t-%c\t%s",stroptions[i]->sym, stroptions[i]->description);
+		if (*Options[i]->description)
+			printf("\n\t\t-%c\t%s",Options[i]->sym, Options[i]->description);
 	}
 	printf("\n\n");
 	printf("\t\t\t* This option has a monotonically-increasing additive effect if repeated as an argument.\n");
