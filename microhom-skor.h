@@ -74,7 +74,7 @@ void show_DTHR_table(void)
 	int k, maxtransits, max_score, table_score;
 	int match = MATCH;
 	int transition = TRANSITION;
-	short unsigned int seqtype = options[1][13];
+	short unsigned int seqtype = options[13];
 
 	printf("\n Diagonal thresholds as a function of k (must exceed threshold):\n");
 

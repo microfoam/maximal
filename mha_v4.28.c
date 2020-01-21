@@ -237,8 +237,8 @@ int main(int argc, char *argv[])
 	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from tela[].r */
 	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
 	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING options ARRAY (opt_ VARs) */ 
-    char optR = options[1][27];
-	options[1][58] = 80;    /* opt_w IS MAXIMUM WIDTH OF 1D/2D-PRINTED BLOCK, SCREEN WRAP LENGTH */
+    char optR = options[27];
+	options[58] = 80;    /* opt_w IS MAXIMUM WIDTH OF 1D/2D-PRINTED BLOCK, SCREEN WRAP LENGTH */
 	int blocks;				/* Number of blocks for 1D output print */
 
 	if (argc == 1) {
@@ -319,11 +319,11 @@ int main(int argc, char *argv[])
 			case 'B':						/* USE SPACE FOR BLANK CHARACTER IN MHA's */
 					opt_B.bit = 1;
 					opt_B.val++;
-					blank=options[1][11]=32;/* BLANK RESET TO ' ' (SPACE). DEFAULT IS '.' */
+					blank=options[11]=32;/* BLANK RESET TO ' ' (SPACE). DEFAULT IS '.' */
 					break;
 			case 'C':						/* OPTION TO USE REVERSE COMPLEMENT */
 					opt_C.bit = 1;
-					options[1][28] = 45;	/* UNICODE MINUS CHARACTER FOR NEGATAIVE STRAND '-'; DEFAULT 43 '+' */
+					options[28] = 45;	/* UNICODE MINUS CHARACTER FOR NEGATAIVE STRAND '-'; DEFAULT 43 '+' */
 					break;
 			case 'D':
 					opt_D.bit = 1;
@@ -424,7 +424,7 @@ int main(int argc, char *argv[])
 	}
 	printf("\n");
 		
-	mha_head(options[1][58]);
+	mha_head(options[58]);
 	printf("micro homology alignment (MHA) -");
 	for (i = 1; i < 53; i++) {			/* UPPER-CASE LETTER OPTIONS */
 		if (stroptions[i]->bit)
@@ -450,7 +450,7 @@ int main(int argc, char *argv[])
 
 	if (opt_p.bit) {		/* opt_p SHOW RUN PARAMETERS */
 		printf("\nParameters\n Match: %d\n Transition: %d\n Mismatch: %d\n Bandwidth: %d\n Default block width: %ld\n Transition matching floor: k-mers > %d\n",  
-				 match,     transition,     mismatch,     WIDTH,         options[1][58],           PISO);
+				 match,     transition,     mismatch,     WIDTH,         options[58],           PISO);
 		printf("\nFisher-Yates length: %d", FY_size);
 		if (opt_u.val == 1) {	/* opt_u */
 			printf("\n * Print width reset for one block of (unwrapped) sequence input.\n");
@@ -473,22 +473,22 @@ int main(int argc, char *argv[])
 
 	++Current.pass_V;
 
-	options[1][0] = options[1][32] = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT [32]	*/
+	options[0] = options[32] = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT [32]	*/
 
 	if ((i=opt_u.val) >= 1) {			/* WILL CAUSE OUTPUT TO NOT BE WRAPPED (opt_u EQUALS 1),	*/ 
-		options[1][58] = (lenseq/i);	/*  OR WRAPPED INTO opt_u NUMBER OF BLOCKS.				    */
+		options[58] = (lenseq/i);	/*  OR WRAPPED INTO opt_u NUMBER OF BLOCKS.				    */
 	}
 
 	/* OPTION TO PRINT ORIGINAL STRING IN BLOCKS *******************************/
 	if (opt_o.bit) {	/* opt_o */
-		blocks = count_wrap_blocks(lenseq, options[1][58]);
+		blocks = count_wrap_blocks(lenseq, options[58]);
 
 		mha_head(lenseq);
 		if (strlen(Seq_head) > 0)
 			printf(">%s\n", Seq_head);
 		printf("\"");
 		for (j = 0; j < blocks; j++) {
-			for(n = j * ((int) options[1][58]); (n < (j+1) * ((int) options[1][58])) && (Seq[n] != '\0'); n++) {
+			for(n = j * ((int) options[58]); (n < (j+1) * ((int) options[58])) && (Seq[n] != '\0'); n++) {
 				if (Seq[n] != 10 && Seq[n] != 13 && Seq[n] != EOF)
 					printf("%c", Seq[n]);
 				else
@@ -501,9 +501,9 @@ int main(int argc, char *argv[])
 		}
 	}
 	/***************************************************************************/
-	options[1][13] = seqtype = cleanseq(Seq);	/* opt_D: STORES SEQTYPE: 1=DNA, 2=RNA, 3=PROTEIN, 0=OTHER */
+	options[13] = seqtype = cleanseq(Seq);	/* opt_D: STORES SEQTYPE: 1=DNA, 2=RNA, 3=PROTEIN, 0=OTHER */
 	lenseq = strlen(Seq);
-	options[1][1] = options[1][32] = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT [32]	*/
+	options[1] = options[32] = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT [32]	*/
 
 	if (opt_T.bit) {			/* opt_T: SHOW DTHR VALUES */
 		show_DTHR_table();
@@ -553,7 +553,7 @@ int main(int argc, char *argv[])
 		}
 		else {
 			mha_randomize2(Seq_r, FY_size);
-			lenseq = options[1][1] = FY_size;
+			lenseq = options[1] = FY_size;
 		}
 
 		printf("\nRandomized sequence: \"");
@@ -665,19 +665,19 @@ int main(int argc, char *argv[])
 	/**********************************************/
 	/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
 	if (opt_P.bit) {	/* opt_P */
-		blocks = count_wrap_blocks(lenseq, options[1][58]);
+		blocks = count_wrap_blocks(lenseq, options[58]);
 
 		printf("\nPATHBOX FILL-IN PASS (length = width = %d)\n\n", lenseq);
 		for (j = 0; j < blocks; j++) {
 			if (blocks != 1)
 				print_blockhead(j+1, blocks);
 			line_end(PATHBOXHEAD, 9, 9);	
-			for(n = j * options[1][58]; (n < (j+1) * options[1][58]) && (tela[n].c != '\0') && tela[n].c != '>'; n++) 
+			for(n = j * options[58]; (n < (j+1) * options[58]) && (tela[n].c != '\0') && tela[n].c != '>'; n++) 
 				printf("%2c", tela[n].c);
 			printf("\n");
-			for(m = j * options[1][58]; (m < (j+1) * options[1][58]) && (tela[m].c != '\0') && tela[m].c != '>'; m++) {
+			for(m = j * options[58]; (m < (j+1) * options[58]) && (tela[m].c != '\0') && tela[m].c != '>'; m++) {
 				printf("%4d. %c ", m+1, tela[m].c);
-					for (n = j * options[1][58]; (n < (j+1) * options[1][58]) && (tela[n].c != '\0') && tela[n].c != '>'; n++) {
+					for (n = j * options[58]; (n < (j+1) * options[58]) && (tela[n].c != '\0') && tela[n].c != '>'; n++) {
 						if (m > n) {
 							if (pathbox[m][n])
 								printf("%2d", pathbox[m][n]);
@@ -726,7 +726,7 @@ int main(int argc, char *argv[])
 			if (tela[n].c == '>') {
 				citwidth = a2D_n;
 				align2D[row+1][0] = '\0';
-				options[1][17] = row+1;
+				options[17] = row+1;
 			}
 			else if (tela[n].cyc_o == 'o') {	/* IF THIS POSITION HAD A BIGGER k-MER SQUASHED HERE (E.G., FOR LATER CYCLING) */
 				assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
@@ -893,8 +893,8 @@ int main(int argc, char *argv[])
 							if ((q=tela[l].k) && (l + (p=span_rk(l)) - q) > m) { 
 								if (p > reps*k) {
 									badslip_type = 1;					/* FROM SEQUENCE IN TYPES: (1) -3-5-10-30-50-100-300-500 */
-									options[1][50] += badslip_type;
-									options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
+									options[50] += badslip_type;
+									options[39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[50]);
 									if (dev_print(MAIN,__LINE__)) {
 									  	printf("badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 									}
@@ -1120,8 +1120,8 @@ int main(int argc, char *argv[])
 										if (tela[i].cyc_o == 'x') {
 											if (cyclelize_tela(i, j-i, n)) {
 												badslip_type = 30;					/* FROM SEQUENCE IN TYPES: 1-3-5-10- (30) -50-100-300-500 */
-												options[1][50] += badslip_type;
-												options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
+												options[50] += badslip_type;
+												options[39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[50]);
 												if (dev_print(MAIN,__LINE__)) {
 													printf("badslip type %d at n=%d for k=%d with TR at l=%d, delta=%d.", badslip_type, n, k, l, j-i);
 												}
@@ -1164,8 +1164,8 @@ int main(int argc, char *argv[])
 									if (cycto != z) {
 										if (cyclelize_tela(z, cycto-z, n)) {	/* REMINDER: cyclelize_tela(int cpos, int delta, int npos) */
 											badslip_type = 50;					/* FROM SEQUENCE IN TYPES: 1-3-5-10-30- (50) -100-300-500 */
-											options[1][50] += badslip_type;
-											options[1][39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[1][50]);
+											options[50] += badslip_type;
+											options[39] = 1; sprintf(dev_notes, "bslip sum %d", (int) options[50]);
 											if (dev_print(MAIN,__LINE__)) {
 												printf("badslip type %d at n=%d for k=%d with TR at cycto=%d, z=%d.", badslip_type, n, k, cycto, z);
 											}
@@ -1284,19 +1284,19 @@ int main(int argc, char *argv[])
 	/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
 
 	if (opt_P.bit) {
-		blocks = count_wrap_blocks(lenseq, options[1][58]);
+		blocks = count_wrap_blocks(lenseq, options[58]);
 
 		printf("\n\nPATHBOX CINCH PASS (length = width = %d)\n\n", lenseq);
 		for (j = 0; j < blocks; j++) {
 			if (blocks != 1)
 				print_blockhead(j+1, blocks);
 			line_end(PATHBOXHEAD, 9, 9);	
-			for(n = j * options[1][58]; (n < (j+1) * options[1][58]) && (tela[n].c != '\0') && tela[n].c != '>'; n++) 
+			for(n = j * options[58]; (n < (j+1) * options[58]) && (tela[n].c != '\0') && tela[n].c != '>'; n++) 
 				printf("%2c", tela[n].c);
 			printf("\n");
-			for(m = j * options[1][58]; (m < (j+1) * options[1][58]) && (tela[m].c != '\0') && tela[m].c != '>'; m++) {
+			for(m = j * options[58]; (m < (j+1) * options[58]) && (tela[m].c != '\0') && tela[m].c != '>'; m++) {
 				printf("%4d. %c ", m+1, tela[m].c);
-					for (n = j * options[1][58]; (n < (j+1) * options[1][58]) && (tela[n].c != '\0') && tela[n].c != '>'; n++) {
+					for (n = j * options[58]; (n < (j+1) * options[58]) && (tela[n].c != '\0') && tela[n].c != '>'; n++) {
 						if (m > n) {
 							if (pathbox[m][n])
 								printf("%2c", (char) pathbox[m][n]);
@@ -1314,7 +1314,7 @@ int main(int argc, char *argv[])
 	} /* END OF OPTION TO PRINT PATHBOX */
 
  	align2D[row][citwidth+1] = '\0';
-	options[1][2] = options[1][32] = citwidth;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND LCL CURRENT [32]	*/
+	options[2] = options[32] = citwidth;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND LCL CURRENT [32]	*/
 	clear_right(align2D);
 	print1D();
 
@@ -1371,7 +1371,7 @@ int main(int argc, char *argv[])
 			}
 		}
 		else {	
-			options[1][i] = options[1][i-1];
+			options[i] = options[i-1];
 		}
 		Nudge.pass_Q = Current.pass_Q;
 	}
@@ -1414,9 +1414,9 @@ int main(int argc, char *argv[])
 		++Current.pass_V;
 	
 		do {
-			relax_length = options[1][32] ;
+			relax_length = options[32] ;
 			relax_2D();
-			relax_length = options[1][32] - relax_length;
+			relax_length = options[32] - relax_length;
 			++Relax.pass_R;
 		}
 		while (relax_length > 0);
@@ -1434,7 +1434,7 @@ int main(int argc, char *argv[])
 
 		r = (int) strlen(recovered) - 1;
 		m = max(lenseq,r);
-		blocks = count_wrap_blocks(m, options[1][58]);
+		blocks = count_wrap_blocks(m, options[58]);
 		z = 0;			/* USE TO COUNT RECOVERED LETTERS IDENTICAL TO 1D */
 		if (lenseq != r) {
 			l = r - lenseq;
@@ -1469,7 +1469,7 @@ int main(int argc, char *argv[])
 		for (j = 0; j < blocks; j++) {
 			printf("\n");
 			line_end(START, j+1, 0);	
-	   		for (n = j * options[1][58]; n < (j+1) * options[1][58] && tela[n].c != '>'; n++) {
+	   		for (n = j * options[58]; n < (j+1) * options[58] && tela[n].c != '>'; n++) {
 				printf("%1c", tela[n].c);
 			}
 			if (tela[n].c == '>') {
@@ -1491,7 +1491,7 @@ int main(int argc, char *argv[])
 			}
 	
 			line_end(SLIPS, j+1, 0);	
-	   		for (n = j * options[1][58]; n < (j+1) * options[1][58] && n < m; n++) {
+	   		for (n = j * options[58]; n < (j+1) * options[58] && n < m; n++) {
 				if (seqtype == 1 || seqtype == 2) {			/* IF DNA OR RNA */
 					if (tela[n].c == 'n' || recovered[n] == 'n') {
 						printf("?");
@@ -1520,7 +1520,7 @@ int main(int argc, char *argv[])
 			printf("\n");
 	
 			line_end(START, j+1, 0);	
-	   		for (n = j * options[1][58]; (n < (j+1) * options[1][58]) && recovered[n] != '>'; n++) {
+	   		for (n = j * options[58]; (n < (j+1) * options[58]) && recovered[n] != '>'; n++) {
 				printf("%1c", recovered[n]);
 			}
 			if (recovered[n] == '>') {
@@ -1541,7 +1541,7 @@ int main(int argc, char *argv[])
 		} /* END OF FOR j LOOP */
 		printf("\n");
 
-		options[1][8] = z;			/* STORE NUMBER OF RECOVERED CHARACTERS */
+		options[8] = z;			/* STORE NUMBER OF RECOVERED CHARACTERS */
 
 		if (recovery_flag) {		/* LAST ROW OF array2D WILL STORE CONSENSUS, SO NEED TO KEEP CLEAR */
 			warnhead('R');
@@ -1568,11 +1568,11 @@ int main(int argc, char *argv[])
 			printf(" %d-mers:%2d\n", i, slips[i]);
 	}
 	/***************************************************************************/
-	c   = options[1][1];		/* REUSING c VAR FOR FORMATTED STRING LENGTH */
+	c   = options[1];		/* REUSING c VAR FOR FORMATTED STRING LENGTH */
 	if (opt_X.val > 1)			/* opt_XX FISHER-YATES RANDOMIZATIAN */
 		row = FY_size;			/* USE IN PLACE OF ORIGINAL STRING LENGTH */
 	else
-		row = options[1][0];	/* RESUING row VAR FOR ORIGINAL STRING LENGTH */
+		row = options[0];	/* RESUING row VAR FOR ORIGINAL STRING LENGTH */
 	/***************************************************************************/
 
 	if (seqtype == 1)		
@@ -1586,8 +1586,8 @@ int main(int argc, char *argv[])
 	else
 		printf(   "\n   PASS      Width cinch history:\n");
 
-	for (i = 0; options[1][i] != '\0' && i < 8; i++) {
-		printf("  %5d       => %4ld ", Cinches[i]->pass_Q, options[1][i]);
+	for (i = 0; options[i] != '\0' && i < 8; i++) {
+		printf("  %5d       => %4ld ", Cinches[i]->pass_Q, options[i]);
 		switch (i) {
 		case 0:
 			if (!opt_X.bit)
@@ -1653,24 +1653,24 @@ int main(int argc, char *argv[])
 		}
 	}
 	if (opt_R.bit) {
-		printf("  %5d       => %4ld ", Recover.pass_Q, options[1][8]);
+		printf("  %5d       => %4ld ", Recover.pass_Q, options[8]);
 			printf(    "%s recovered 1D   [final check pass]\n", letr_unit);
 	}
 
 	if (continue_flag) {
-		printf("\n Width cinch ratio (post cinch-d):  %2.3f", ratio1=(float)options[1][6]/lenseq);
+		printf("\n Width cinch ratio (post cinch-d):  %2.3f", ratio1=(float)options[6]/lenseq);
 		if (!opt_n.bit)
-			printf("\n Width cinch ratio (post relax-2D): %.3f\n\n", ratio2=(float)options[1][32]/lenseq);
+			printf("\n Width cinch ratio (post relax-2D): %.3f\n\n", ratio2=(float)options[32]/lenseq);
 		else
 			printf("\n\n");
 	}
 	else
-		printf("\n Width cinch ratio (post cinch-k): %.3f\n\n", ratio1=ratio2=(float)options[1][4]/lenseq);
+		printf("\n Width cinch ratio (post cinch-k): %.3f\n\n", ratio1=ratio2=(float)options[4]/lenseq);
 
 	if (opt_O.bit) {							/* OPTION TO OUTPUT 2-D ALIGNMENT & CONSENSUS STRING TO FILE */
 		fp_cons = fopen("Surf_barrels.log", "a");
 		fprintf(fp_cons,">%s (%d > %d %s) x%d\n", 
-			file_name, (int) options[1][1], (int) options[1][6], letr_unit, opt_x.val);	
+			file_name, (int) options[1], (int) options[6], letr_unit, opt_x.val);	
 
 		for (m = 0; align2D[m][0] != '\0'; m++) {
 			fprintf(fp_cons, " %s\n", align2D[m]);
@@ -1719,7 +1719,7 @@ int main(int argc, char *argv[])
 		fp_out = fopen("Surf_wavereport.mha", "a");
 		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4d\t%.3f\tCYC:%3d (t=%d)\tRND:%.*s\t%38s (%c) (%4ld %s) REC:%4d\t%s\n", 
 				version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, Nudge.pass_V, opt_X.val, "XX", 
-				file_name, (char) options[1][28], options[1][1], letr_unit, Recover.pass_Q, dev_notes);
+				file_name, (char) options[28], options[1], letr_unit, Recover.pass_Q, dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
@@ -1727,7 +1727,7 @@ int main(int argc, char *argv[])
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
 			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4d\t%.3f\tCYC:%2d (t=%d)\tRND:-%.*s\t%s (%c) (%ld %s) REC:%4d\t%s\n", 
 					version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, Nudge.pass_V, opt_X.val, "XX", 
-					file_name, (char) options[1][28], options[1][1], letr_unit, Recover.pass_Q, dev_notes);
+					file_name, (char) options[28], options[1], letr_unit, Recover.pass_Q, dev_notes);
 			for(n = 0; n<lenseq; n++) {
 				fprintf(fp_tricksy, "%c", tela[n].c);
 			}
