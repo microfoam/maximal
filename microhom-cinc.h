@@ -125,7 +125,6 @@ char letr;
 char lopt_Q_left = (char) options[1][26];		/* LHS character delimiter for homopolymer run */
 char lopt_R_rght = (char) options[1][27];		/* RHS character delimiter for homopolymer run */
 char blnk        = (char) options[1][11];		/* opt_B blank character		*/
-int cil_mwrap    = (char) options[1][22];		/* opt_M long_homopolymer_run	*/
 char lclalign2D[MAXROW][MAXROW] = {{0}};
 
 	for (m = 0; align2D[m][0] != '\0'; m++) {
@@ -145,35 +144,35 @@ char lclalign2D[MAXROW][MAXROW] = {{0}};
 			else
 				lclalign2D[m+cil_row][n-x] = letr;		/* WRITE TERMINAL MHA CHARACTERS '/' or '>' */
 	
-			if (run == 2*cil_mwrap) {			/* TRIGGER LENGTH MEASURE OF MONOMERIC RUN	*/
+			if (run == 2*opt_M.val) {			/* TRIGGER LENGTH MEASURE OF MONOMERIC RUN	*/
 												/* AND WRITING OF (10)-MER BLOCKS			*/
 				++cinchled;
-				while (align2D[m][n+run-2*cil_mwrap] == letr) {
+				while (align2D[m][n+run-2*opt_M.val] == letr) {
 					run++;
 				}
 				
-				lclalign2D[    m+cil_row][n-x-cil_mwrap+1  ] = lopt_R_rght;	/* WRITE SLIP AFTER FIRST 10 */
-				for (l = 1; l < cil_mwrap; l++)								
-					lclalign2D[m+cil_row][n-x-cil_mwrap+1+l] = '\0';
+				lclalign2D[    m+cil_row][n-x-opt_M.val+1  ] = lopt_R_rght;	/* WRITE SLIP AFTER FIRST 10 */
+				for (l = 1; l < opt_M.val; l++)								
+					lclalign2D[m+cil_row][n-x-opt_M.val+1+l] = '\0';
 				cil_row++;														/* ADVANCE TO NEXT ROW, CONT.*/
 	
-				for (j = (run-cil_mwrap)/cil_mwrap; j > 0; j--) {
-					for (i = 0; i < n-x-2*cil_mwrap; i++)
+				for (j = (run-opt_M.val)/opt_M.val; j > 0; j--) {
+					for (i = 0; i < n-x-2*opt_M.val; i++)
 						lclalign2D[m+cil_row][i] = blnk;
 					lclalign2D[m+cil_row][i] = lopt_Q_left;					/* MARK LEFT EDGE OF MWRAP RUN */
-					for (k = 0; k < cil_mwrap; k++) {
-						lclalign2D[m+cil_row][n-x-2*cil_mwrap+1+k] = letr; /* FILL W/ MONOMER LETTER  */
+					for (k = 0; k < opt_M.val; k++) {
+						lclalign2D[m+cil_row][n-x-2*opt_M.val+1+k] = letr; /* FILL W/ MONOMER LETTER  */
 					}
 					if (j > 1) {
-						lclalign2D[m + cil_row  ][n-x-cil_mwrap+1] = lopt_R_rght;
-                        lclalign2D[m + cil_row++][n-x-cil_mwrap+2] = '\0';             /* SHOULD NOT BE NECESSARY */
+						lclalign2D[m + cil_row  ][n-x-opt_M.val+1] = lopt_R_rght;
+                        lclalign2D[m + cil_row++][n-x-opt_M.val+2] = '\0';             /* SHOULD NOT BE NECESSARY */
 					}
 					else if (j == 1) 
 						break;			/* BREAK OUT OF FOR j LOOP */
 				}
 
-				n = n + cil_mwrap*(run/cil_mwrap) - 2*cil_mwrap - 1;		/* ADVANCE n TO JUST PAST LAST 10-MER BLOCK */
-				x = x + cil_mwrap*(run/cil_mwrap) - cil_mwrap;				/* INCREMENT x TO REFLECT TUCK */
+				n = n + opt_M.val*(run/opt_M.val) - 2*opt_M.val - 1;		/* ADVANCE n TO JUST PAST LAST 10-MER BLOCK */
+				x = x + opt_M.val*(run/opt_M.val) - opt_M.val;				/* INCREMENT x TO REFLECT TUCK */
 				
 				run = 1;	/* RESET TO AVOID RETRIGGERING WRAPPING FOR REMAINDER OF RUN < mwrap */
 			}	/* END OF MONOMERIC RUN BLOCK WRITES */ 
@@ -201,7 +200,6 @@ unsigned short int homopolyflag=0, imperfect_TR=0;
 int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
 char letr, letr2, letr3;
 char blnk        = (char) options[1][11];		/* opt_B blank character */
-int  cik_mwrap   =        options[1][22];		/* opt_M long_homopolymer_run */
 char kopt_Q_left = (char) options[1][26];		/* LHS character delimiter for homopolymer Run */
 char kopt_R_rght = (char) options[1][27];		/* RHS character delimiter for homopolymer Run */
 int max_k = (int) options[1][46]/2;				/* MAX k-SIZE FROM mark_tela() */
@@ -241,7 +239,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 					if (letr == kopt_R_rght && align2D[m][i-1] != blnk) {
 						first_mwrap = 1;					/* TURN ON BIT FLAG FOR HANDLING FIRST MONO-RUN */
 						last_mwrap = 1;						/* TURN ON BIT FLAG FOR HANDLING TO LAST MONO-RUN */
-						first_mwrap_start = i-cik_mwrap;	/* SAVE POSITION OF START OF MWRAP */
+						first_mwrap_start = i-opt_M.val;	/* SAVE POSITION OF START OF MWRAP */
 						break;								/* BREAK OUT OF FOR i CHECK LOOP */
 					}
 				}
@@ -276,7 +274,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 				if (cinchled) {
 					/* CHECK FOR & DEAL WITH LONG HOMOPOLYMER RUN WRAPS (1ST ONE OR SUBSEQUENT ONES) */
 					if (first_mwrap && n == first_mwrap_start) {		
-						symbol_count += cik_mwrap;
+						symbol_count += opt_M.val;
 						for (n = first_mwrap_start; (letr=align2D[m][n]) != '\0'; n++) {
 							cik_align2D[m+cik_row][n-x] = letr;
 							if (isalpha(letr)) {
@@ -288,8 +286,8 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 						break;									/* BREAK OUT OF FOR n LOOP */
 					}
 					else if (last_mwrap) {
-						if (align2D[m][n] == kopt_Q_left && align2D[m][n+cik_mwrap+1] == kopt_R_rght) {		
-							symbol_count += cik_mwrap;
+						if (align2D[m][n] == kopt_Q_left && align2D[m][n+opt_M.val+1] == kopt_R_rght) {		
+							symbol_count += opt_M.val;
 							cik_align2D[m+cik_row][n-x] = kopt_Q_left;
 							n++;
 							while ( (letr=align2D[m][n]) != kopt_R_rght) {
@@ -297,18 +295,18 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 								n++;
 							}
 							cik_align2D[m+cik_row][n-x] = letr;			/* WILL WRITE kopt_R_rght */
-							for (i = cik_mwrap; i > 0; i--)				/* FAILSAFE:			*/
+							for (i = opt_M.val; i > 0; i--)				/* FAILSAFE:			*/
 								cik_align2D[m+cik_row][n-x+i] = '\0';	/* OVERWRITE W/ NULLS	*/
 							break;										/* BREAK OUT OF n LOOP	*/
 						}
-						else if (align2D[m][n] == kopt_Q_left && align2D[m][n+cik_mwrap+1] != kopt_R_rght) {
-							symbol_count += cik_mwrap;
+						else if (align2D[m][n] == kopt_Q_left && align2D[m][n+opt_M.val+1] != kopt_R_rght) {
+							symbol_count += opt_M.val;
 							last_mwrap = 0;
-							for (i = 0; i <= cik_mwrap; i++) {
+							for (i = 0; i <= opt_M.val; i++) {
 								cik_align2D[m+cik_row][n-x+i] = align2D[m][n+i];
 							}
 							letr = align2D[m][n+1];
-							n = n + cik_mwrap;
+							n = n + opt_M.val;
 							while (align2D[m][n] == letr) {
 								symbol_count++;
 								cik_align2D[m+cik_row][n-x] = letr;
@@ -858,8 +856,8 @@ char cid_align2D[MAXROW][MAXROW];
 	for (k = options[1][32]/2; k > 0; k--) {
 		if (nuctransit) {
 			if (k > PISO) {
-				if (options[0][48]) {						/* opt_m (OR opt_g) ELECTED MAGIC MELTAGE OR GEL */
-					translimit = options[1][48] + TEMP;
+				if (opt_m.bit || opt_g.bit) {					/* opt_m OR opt_g ELECTED MAGIC MELTAGE OR GELLING */
+					translimit = opt_m.val + TEMP;
 				}
 				else {
 					translimit = allowed_transits(k);
@@ -936,7 +934,7 @@ char cid_align2D[MAXROW][MAXROW];
 
 			if (l==k && mono_flag==0) {
 				if (nuctransit) {
-					if (options[0][48] && num_transits > translimit) { 	/* opt_m (OR opt_g) ELECTED MAGIC MELTAGE OR GEL */
+					if (opt_m.bit && num_transits > translimit) { 	/* opt_m (OR opt_g) ELECTED MAGIC MELTAGE OR GEL */
 						if (dev_print(CINCH,__LINE__)) {
 							printf("At n=%4d: Skipping k=%d, num_transits=%d, and translimit=%d as set by opt_m/g and PISO=%d.", 
 										n+1, k, num_transits, translimit, PISO);
@@ -962,13 +960,6 @@ char cid_align2D[MAXROW][MAXROW];
 			}
 			else {
 				TR_check = 0;
-			}
-
-			/* TESTING IN v3.64: CHECK FOR SUPER-SHORT k=1 HOMODINUCLEOTIDES AND SKIP */
-			if (options[1][59]==5 && TR_check && k==1) {		
-				if (isalpha(letr=align2D[m][n]) && letr!= align2D[m][n-1] && letr!=align2D[m][n+2]) {
-					TR_check = 0;
-				}
 			}
 
 			/* CHECK FOR COMPLEX cinch_d REPEATS THAT SHOULD NOT BE COUNTED/WRITTEN. */
@@ -1008,7 +999,7 @@ char cid_align2D[MAXROW][MAXROW];
 					}
 				} /* END OF FOR l LOOP */
 
-				if (cinch_d_opt && !options[0][39]) {	/* CINCH-D ENGINE IF NOT opt_d (SKIP-CINCH-D CINCHING) */
+				if (cinch_d_opt && !opt_d.bit) {	/* CINCH-D ENGINE IF NOT opt_d (SKIP-CINCH-D CINCHING) */
 					if (first_write) {
 						if (imperfect_TR && score_transits(k,num_transits) > score_DTHR(k)) {
 							break;
@@ -1109,11 +1100,11 @@ char cid_align2D[MAXROW][MAXROW];
 			print_2Dseq();
 			return(0);
 		}
-		else if (tot_repeats > 1 && options[0][20]) {
+		else if (tot_repeats > 1 && opt_K.bit) {
 			cidwidth = options[1][32];
-			options[0][20] = 0;	/* TEMPORARY ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
+			opt_K.bit = 0;					/* TEMPORARY ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
 			consensus_2D(0, options[1][32]);
-			options[0][20] = 1;	/* REASSIGN SETTING */
+			opt_K.bit = 1;					/* REASSIGN SETTING */
 		}
 		else if (tot_repeats > 1) {
 			cidwidth = options[1][32];

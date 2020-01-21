@@ -41,7 +41,7 @@ short unsigned int dev_print(short unsigned int mode, int line_no)
 		return(0);
 	}
 	/***  DEV-LEVEL VERBOSITY  ***/	
-	else if (options[1][57] > 2) {		/* opt_v: reserve 1-2 for user level verbosity */
+	else if (opt_v.val > 2) {		/* opt_v: reserve 1-2 for user level verbosity */
 		dev_linehead(mode, line_no);		
 		return(1);
 	}
@@ -59,16 +59,16 @@ void dev_prompt(short unsigned int mode, int line_no, char *filename)
 		/***  CODED O-F-F  ***/	
 		return;
 	}
-	else if (options[0][13]) {	/* opt_D DEV_PROMPTS IF ON */
-		if (!options[0][12]) { 
+	else if (opt_D.bit) {	/* IF opt_D DEV_PROMPTS ON */
+		if (!opt_C.bit) { 
 			dev_linehead(mode, line_no);		
-			printf("Press <enter> to continue with '-x%ld' run of %s (+). ", options[1][59], filename);
+			printf("Press <enter> to continue with '-x%d' run of %s (+). ", opt_x.val, filename);
 			getchar();
 			return;
 		}
 		else {
 			dev_linehead(mode, line_no);		
-			printf("Press <enter> to continue with '-x%ld' run of %s (-). ", options[1][59], filename);
+			printf("Press <enter> to continue with '-x%d' run of %s (-). ", opt_x.val, filename);
 			getchar();
 			return;
 		}

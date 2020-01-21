@@ -56,17 +56,80 @@ struct coord {
 	/*************************************************************************************************/
 } tela[MAXROW];
 
+struct stropt {
+	int		bit;				/* ON/OFF bit switch    */
+	int 	val;				/* incrementable value  */
+	char	sym;				/* option letter symbol */
+	char	description[64];	/* usage description    */
+
+}	*stroptions[53] = {},
+                     /* ".........|.........|.........|.........|.........|.........|...X */	
+	opt_a = {0, 0, 'a', {0}},	
+	opt_b = {0, 0, 'b', {0}},
+	opt_c = {0, 0, 'c', 	"Show base 62 single character code used for k-size and number. "},
+	opt_d = {0, 0, 'd',		"Skip cinch-d module. Also automatically skips relax-2D module."},
+	opt_e = {0, 0, 'e', {0}},
+	opt_f = {0, 0, 'f', 	"Show foam-free segments (requires allowing default relax-2D.   "},
+	opt_g = {0, 0, 'g', 	"Gel-up (counteract base level melt setting in cinch-d).*       "},
+	opt_h = {0, 0, 'h', 	"Show help and usage."},
+	opt_i = {0, 0, 'i', {0}},
+	opt_j = {0, 0, 'j', {0}},
+	opt_k = {0, 0, 'k', 	"Show cinch-t k-mer count.                                      "},
+	opt_l = {0, 0, 'l', 	"Show cinch-t slip locations in 1-D sequence (in base 62).      "},
+	opt_m = {0, 0, 'm', 	"Split, open, and melt for cinch-d (see also -g option).*       "},
+	opt_n = {0, 0, 'n', 	"Do not do relax-2D pass.                                       "},
+	opt_o = {0, 0, 'o', 	"Show original (pre-formatted) input sequence.                  "},
+	opt_p = {0, 0, 'p', 	"Show program run parameters.                                   "},
+	opt_q = {0, 0, 'q', {0}},
+	opt_r = {0, 0, 'r', 	"Show row numbers.                                              "},
+	opt_s = {0, 0, 's', 	"Silence writing to normal output file ('Surf_wavereport.mha'). "},
+	opt_t = {0, 0, 't', 	"Skip cinch-t module and proceed to remaining modules.          "},
+	opt_u = {0, 0, 'u', 	"Do not wrap 2-D output (wrap in one block or other).*          "},
+	opt_v = {0, 0, 'v', 	"Increment verbosity level.***                                  "},
+	opt_w = {0, 0, 'w', {0}},
+	opt_x = {0, 0, 'x', 	"Reduce thresholds for transition matching by one.*             "},
+	opt_y = {0, 0, 'y', {0}},
+	opt_z = {0, 0, 'z', 	"Set mismatch score from default to zero (visible in pathbox).  "},
+	opt_A = {0, 0, 'A', {0}},
+	opt_B = {0, 0, 'B', 	"Reset blank character (default '.') to space (' ').****        "},
+	opt_C = {0, 0, 'C', 	"Use the reverse complement (- strand) of a DNA sequence.       "},
+	opt_D = {0, 0, 'D', 	"Turn on program development prompts (user-controlled pauses).  "},
+	opt_E = {0, 0, 'E', {0}},
+	opt_F = {0, 0, 'F', 	"Fill recessed line ends with spacer marks as a visual aid.     "},
+	opt_G = {0, 0, 'G', {0}},
+	opt_H = {0, 0, 'H', 	"Show help and usage.                                           "},
+	opt_I = {0, 0, 'I', {0}},
+	opt_J = {0, 0, 'J', {0}},
+	opt_K = {0, 0, 'K', 	"Show consensus row of 2-D alignment.                           "},
+	opt_L = {0, 0, 'L', 	"Show 1-D locations at line ends.                               "},
+	opt_M = {0,10, 'M', 	"Double the default wrap length for long homomonomer tracts.*   "},
+	opt_N = {0, 0, 'N', {0}},
+	opt_O = {0, 0, 'O', 	"Append 2-D alignment to consensus file or raw input file.**    "},
+	opt_P = {0, 0, 'P', 	"Show pathbox.                                                  "},
+	opt_Q = {0, 0, 'Q', {0}},
+	opt_R = {0, 0, 'R', 	"Recover sequence from 2-D; toggled on by '-v' and off by '-vR'."},
+	opt_S = {0, 0, 'S', {0}},
+	opt_T = {0, 0, 'T', 	"Show diagonal threshold values for transitions scoring.        "},
+	opt_U = {0, 0, 'U', {0}},
+	opt_V = {0, 0, 'V', {0}},
+	opt_W = {0, 0, 'W', {0}},
+	opt_X = {0, 0, 'X', 	"Scramble sequence with basic or Fisher-Yates randomization.**  "},
+	opt_Y = {0, 0, 'Y', 	"Set Fisher-Yates length (FY_size) specified by run argument.   "},
+	opt_Z = {0, 0, 'Z', {0}};
+                     /* ".........|.........|.........|.........|.........|.........|...X */	
+
 long int options[2][64] = {
-/* 0 0 0 0 0 0 0 0 0 0 1  1 1 1 1 1 1 1  1 1 2 2  2 2 2 2  2   2 2 2 3 3 3 3 3  3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 6 6 6 6 
-   0,1,2,3,4,5,6,7,8,9,0, 1,2,3,4,5,6,7, 8,9,0,1, 2,3,4,5, 6,  7,8,9,0,1,2,3,4, 5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3  
-   o>c>t>l>k>n>d>r>R   A  B C D E F G H  I J K L  M N O P  Q   R S T U V W X W  Z a b c d e f g h i j k l m n o p q r s t u v w x y z - - */
- { 0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0, 0,0,0,0, 0,0,0,0, 0,  0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
- { 0,0,0,0,0,0,0,0,0,0,0,46,0,0,0,0,0,0,-1,0,0,0,10,0,0,0,40, 41,0,4,0,0,0,0,0,32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-}; /*                   |              |        |        |   |                |                                                      
-                       46 = "." (FULLSTOP)     mwrap    "(" ")"               Zero tick mark                                         
-                       32 = " " (SPACE)|       default  left/right            default = " " (SPACE)                                  
-                       blank character |                run delimiters                                                               
-                                                                                                                                     
+/* 0 0 0 0 0 0 0 0 0 0 1  1 1 1 1 1 1 1  1 1 2 2 2 2 2 2  2   2  2 2 3 3 3 3 3  3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 6 6 6 6   
+   0,1,2,3,4,5,6,7,8,9,0, 1,2,3,4,5,6,7, 8,9,0,1,2,3,4,5, 6,  7, 8,9,0,1,2,3,4, 5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3   
+   o>c>t>l>k>n>d>r>R   A  B C D E F G H  I J K L M N O P  Q   R  S T U V W X W  Z a b c d e f g h i j k l m n o p q r s t u v w x y z - - */
+ { 0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,  0, 0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, 
+ { 0,0,0,0,0,0,0,0,0,0,0,46,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,40, 41,43,4,0,0,0,0,0,32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, 
+}; /*                     |              |                |   |  |              |                                                           
+                         46 = "." (FULLSTOP)             "(" ")" |             Zero tick mark                                               
+                         32 = " " (SPACE)|               left/right            default = " " (SPACE)                                        
+                         blank character |               run delimiters                                                                     
+                                                                 |                                                                  
+                                                                 Strand characters 43 = '+', 45 = '-'                               
    options[0][  n] = OFF (0) / ON (1) SWITCH TO INDICATE OPTION DETECTED AS ARGUMENT TO MAXIMAL                                      
    options[1][  n] = THIS VALUE IS INCREMENTED ALONGSIDE THE BIT SWITCH IN ROW ZERO FOR SOME OPTIONS                                 
    options[1][ 18] COUNTER OF INITIAL PASSES THROUGH MHA; BEGINS COUNT WITH VALUE -1                                                 
@@ -81,6 +144,11 @@ long int options[2][64] = {
                 7 EQUALS relax_2D 2-D PASS       (r)                                                                                 
                 8 EQUALS recovered 1-D from 2-D  (R)                                                                                 
                10 EQUALS passQ score / 1000      (A)                                                                                 
+
+				 options[1][13] IS RESERVED FOR STORING SEQUENCE TYPE (DNA, RNA, PROTEIN, BABYLONIAN, etc.) 
+				 options[1][17] RESERVED FOR 2D-ALIGNMENT HEIGHT 	
+				 options[1][46] RESERVED FOR RECORDING LARGEST CINCH-T k-MER UNIT SIZE 
+				 options[1][50] RESERVED FOR RECORDING CUMULATIVE BADSLIP TYPE PER RUN 
 */
 
 char align2D[MAXROW][MAXROW] = {{0}};
@@ -119,8 +187,8 @@ void 				mha_randomize1(char *input_seq);
 void 				mha_randomize2(char *input_seq, int rsize);
 void 				print_base62_table(void);
 void 				shuffle(int *array, int n);
-void 				usage(char *usage_version, unsigned int FY_size);			/* FOR PRINTING UNIFORM USAGE INFORMATION */
-char 				*nmer_prefix(int i);			/* CONVERTS INTEGER TO N-MER PREFIX WRITTEN NAME */
+void 				usage(char *usage_version);	/* FOR PRINTING UNIFORM USAGE INFORMATION */
+char 				*nmer_prefix(int i);		/* CONVERTS INTEGER TO N-MER PREFIX WRITTEN NAME */
 void 				free_2D(int **p2D, int lenseq);
 
 /*******************************************************************************************************/
@@ -214,7 +282,8 @@ short unsigned int nuctype = options[1][13];		/* FOR SEQ TYPE, DNA=1, RNA=2, OTH
 short unsigned int nuctransit = 0;					/* BIT FLAG FOR HANDLING NUCLEAR TRANSITIONS */ 
 short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
 short unsigned int checktransit=0;					/* BIT FLAG FOR CHECKING GOOD TRANSITION MARK */
-char blnk = options[1][11], letr=blnk, ltr2=blnk, conletr=blnk;
+char blnk = options[1][11]; 
+char letr=blnk, ltr2=blnk, conletr=blnk;
 int con_maxrows=26;
 int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
                                        		/* ROW m=0 FOR COUNTER */
@@ -330,7 +399,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 			++consensus_ar[0][n+1];
 	}
 
-	if (options[0][20]) {							/* opt_K SHOW CONSENSUS ROW */	
+	if (opt_K.bit) {							/* opt_K SHOW CONSENSUS ROW */	
 		/* PRINT CONSENSUS ROWS */
 		for (m = 1; consensus_ar[m][0] != '\0' && m < con_maxrows; m++) {
 			line_end(BLOCKHEAD, 9, 9);
@@ -366,6 +435,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 	for (n = n_start; n <= n_end; n++) {
 		consensus[n] = consensus_ar[1][n+1];
 	}
+	consensus[con_width] = '\0';
 
 	if (badsites > 0) {
 		return(badsites);				/* BAD CONSENSUS, REPORT IT 	*/
@@ -386,7 +456,8 @@ short unsigned int nuctype = options[1][13];	/* FOR SEQ TYPE, DNA=1, RNA=2, OTHE
 short unsigned int nuctransit = 0;					/* BIT FLAG FOR HANDLING NUCLEAR TRANSITIONS */ 
 short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
 short unsigned int checktransit=0;
-char blnk = options[1][11], letr=blnk, conletr=blnk, chkletr=blnk, badletr=blnk;
+char blnk = options[1][11]; 
+char letr=blnk, conletr=blnk, chkletr=blnk, badletr=blnk;
 int con_maxrows=26;
 int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
                                        		/* ROW m=0 FOR COUNTER */
@@ -605,7 +676,7 @@ int foam_ar[3][MAXROW] = {{0}};	 	/* ROW m=0 FOR COLUMN LETR COUNTER 	*/
 		}
 	}
 
-	if (options[0][41]) {	/* opt_f FOAM-FREE CONSENSUS ROW */	
+	if (opt_f.bit) {	/* opt_f FOAM-FREE CONSENSUS ROW */	
 		line_end(BLOCKHEAD, 9, 9);
 		printf(" ");
 		for (n = n_start; n < n_end; n++) {
@@ -672,15 +743,14 @@ void line_end(int type, int c, int lcl_width)
 	
 	char *ruler = rule1;	/* USE TO CHANGE RULE STYLE */
 	char zero_tick = (char) options[1][35];	/* opt_Z, Zero tick mark, default = 32 = ' ' */
-	int lcl_opt_r  = options[0][53];
 
-	if (options[0][11]==2 && options[1][18]>1)	/* opt_B LEVELS FOR BLANKNESS IN FILLER & opt_I PASS NUM */
+	if (opt_B.val==2 && options[1][18]>1)	/* opt_B LEVELS FOR BLANKNESS IN FILLER & opt_I PASS NUM */
 		zero_tick = '|';			/* 124 = '|'							*/
 
 	if (type == 1)					/* FORMAT FOR LINE END. c IS CHAR. NUMBER */
 		printf("%5d\n", c);
 
-	if (lcl_opt_r == 1) {			/* FORMAT WITH LINE NUMBERING. DEFAULT */
+	if (opt_r.bit) {				/* FORMAT WITH LINE NUMBERING. DEFAULT */
 		if (type == 0) {			/* FORMAT FOR LINE BEGINNING. c is LINE NUMBER (m+1) */
 			if (c == 1)
 				printf(" %4d. >", c);
@@ -701,7 +771,7 @@ void line_end(int type, int c, int lcl_width)
 			printf("        %.*s\n", lcl_width, ruler + c);		/* DOUBLE USE OF c AS O-F-FSET FOR RULER */
 		}
 	}
-	else if (lcl_opt_r == 0) {	  	/* FORMAT WITHOUT LINE NUMBERS. r = REMOVED */
+	else {		 				 	/* FORMAT WITHOUT LINE NUMBERS. r = REMOVED */
 		if (type == 0) {		   	/* FORMAT FOR LINE BEGINNING. c is LINE NUMBER (m+1) */
 			if (c == 1)
 				printf("   >");
@@ -769,7 +839,7 @@ int lcl_pass = options[1][18];			/* opt_I VALUE COUNTER FOR NUM OF PASSES */
 	else if (lcl_width+8 >= (int) options[1][58])
 		hr_len = max_len;
 
-	if (options[0][33])	/* opt_X == 1 */
+	if (opt_X.bit)
 		h_rule = h2;
 
 	if (lcl_pass == 6) {
@@ -872,19 +942,18 @@ void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW])
 {
 char letr;
 int lenseq       = options[1][ 1];
-int wb_mwrap     = options[1][22];		/* opt_M long_homopolymer_run */
-char wopt_Q_left = options[1][26];		/* LHS character delimiter for homopolymer Run */
-char wopt_R_rght = options[1][27];		/* RHS character delimiter for homopolymer Run */
+char monoL = options[1][26];		/* LHS character delimiter for homopolymer Run */
+char monoR = options[1][27];		/* RHS character delimiter for homopolymer Run */
 int m=0, n=0, widest_n=0;
 
 	/* WRITE BACK TO align2D_prev */
 	clear_right(lcl_align2D); 
 	clear_2D_ar(align2D_prev);
 	for (m = 0; lcl_align2D[m][0] != '\0' && m <= lenseq; m++) {
-		for (n = 0; (letr=lcl_align2D[m][n]) != '/' && letr != '>' && letr != wopt_R_rght; n++) {
+		for (n = 0; (letr=lcl_align2D[m][n]) != '/' && letr != '>' && letr != monoR; n++) {
 			align2D_prev[m][n] = letr;
-			if (letr == wopt_Q_left && lcl_align2D[m][n+wb_mwrap+1] == wopt_R_rght ) 
-				align2D_prev[m][n+wb_mwrap+2] = '\0';
+			if (letr == monoL && lcl_align2D[m][n+opt_M.val+1] == monoR ) 
+				align2D_prev[m][n+opt_M.val+2] = '\0';
 		}
 		align2D_prev[m][n  ] = letr;	/* MHA-STANDARD TERMINATOR  */
 		if (n > widest_n)
@@ -924,7 +993,6 @@ void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW])
 char letr;
 short unsigned 
      int nuctype = options[1][13];				/* EQUALS ONE IF DNA, TWO IF RNA */
-int wb_mwrap     = options[1][22];				/* opt_M long_homopolymer_run */
 char wopt_Q_left = options[1][26];				/* LHS character delimiter for homopolymer Run */
 char wopt_R_rght = options[1][27];				/* RHS character delimiter for homopolymer Run */
 int lenseq = options[1][1];
@@ -946,8 +1014,8 @@ int i=0, m=0, n=0, widest_n=0;
 			else
 				align2D_prev[m][n] = letr;
 
-			if (letr == wopt_Q_left && lcl_align2D[m][n+wb_mwrap+1] == wopt_R_rght ) 
-				align2D_prev[m][n+wb_mwrap+2] = '\0';
+			if (letr == wopt_Q_left && lcl_align2D[m][n+opt_M.val+1] == wopt_R_rght ) 
+				align2D_prev[m][n+opt_M.val+2] = '\0';
 		}
 		align2D_prev[m][n  ] = letr;	/* MHA-STANDARD TERMINATOR  */
 		if (n > widest_n)
@@ -998,7 +1066,6 @@ int cinchwidth = (int) options[1][32];
 int cip_linewidth = options[1][58];
 char popt_Q_left = options[1][26]; 	/* LHS character delimiter for homopolymer Run */
 char popt_R_rght = options[1][27];		/* RHS character delimiter for homopolymer Run */
-int blnk_lvl = options[0][11];			/* USE TO STORE DEGREE OF BLANKNESS */
 int   lenseq = options[1][1];
 int   height = options[1][17];
 int head_start;							/* USE TO PASS RULER O-F-F-SET TO line_end() */
@@ -1006,7 +1073,7 @@ int scrimmageline;						/* USE TO INCREMENT AND TEST IF FILLER IS NEEDED, CAN BE
 char tick = ':'; 						/* OTHER POSSIBILITIES: |, ^ */
 short unsigned int lcl_opt_F;
 
-	if (options[0][11] > 1)
+	if (opt_B.val > 1)
 		tick = blnk;
 
 	if (cinchwidth > MAXROW && dev_print(LOGY,__LINE__)) {
@@ -1071,7 +1138,7 @@ short unsigned int lcl_opt_F;
 				if (d+b == 0) {		/* HANDLES BLOCK CONTINUATION LINES THAT HAVE ZERO CHARACTERS B/C OF ITS TUCK & LENGTH */
 					break;
 				}
-				else if ((letr=align2D[m][n]) == blnk && (n+1) % 10 == 0 && blnk_lvl < 2)		
+				else if ((letr=align2D[m][n]) == blnk && (n+1) % 10 == 0 && opt_B.val < 2)		
 					printf("%c", tick);		/* PRINT TICK MARKS AT 10 bp INTERVALS IF NOT BLANK SPACE */
 				else if (options[1][11] == 32)		/* opt_B BLANK = SPACE ' ' */	
 					printf("%c", letr);
@@ -1079,11 +1146,11 @@ short unsigned int lcl_opt_F;
 					printf("%c", letr);
 
 				/* TURN ON OPTION opt_F TO USE BLANK CHAR TO FILL < SCRIMMAGE IF EXCESSIVELY SHORT */
-				if (options[0][15] != 1 && align2D[m][n] == '/' && scrimmageline-(b+d-2) > 10)
+				if (!opt_F.bit && align2D[m][n] == '/' && scrimmageline-(b+d-2) > 10)
 					lcl_opt_F = 1; 	/* TURN ON local opt_F IN THIS CASE */
 
 				/* OPTION opt_F TO USE BLANK CHAR TO FILL < SCRIMMAGE */
-				if ((options[0][15] || lcl_opt_F) && align2D[m][n] == '/' && b+d-2 < scrimmageline) {
+				if ((opt_F.bit || lcl_opt_F) && align2D[m][n] == '/' && b+d-2 < scrimmageline) {
 					for (i = 0; b+d+i < scrimmageline; i++) {
 						if ( (b+d+2+i)%10 == 0)		/* WHY 2? +1 FOR STARTING AT 0, +1 FOR '/' CHAR */
 							printf("%c", tick);		/* PRINT TICK MARKS AT 10 bp INTERVALS IF NOT BLANK SPACE */
@@ -1105,14 +1172,14 @@ short unsigned int lcl_opt_F;
 				printf("%c", blnk);
 			else if (next == '>') {		/* LAST CHARACTER */
 				printf("%c", next);
-				if (options[0][21])	/* opt_L = LINE END NUMBERING (ON) */
+				if (opt_L.bit)	/* opt_L = LINE END NUMBERING (ON) */
 					line_end(END, c, 0);
 				else
 					printf("\n");
 				break;	/* BREAK OUT OF m=m_start FOR LOOP */
 			}
 
-			if (options[0][21])	/* opt_L = LINE END NUMBERING ON */
+			if (opt_L.bit)	/* opt_L = LINE END NUMBERING ON */
 				line_end(END, c, 0);
 			else
 				printf("\n");
@@ -1133,7 +1200,7 @@ short unsigned int lcl_opt_F;
 		/* *********** */
 
 		/* PRINT NUMBERS FOR CONSENSUS RULER */
-		if (options[0][11] < 4) {
+		if (opt_B.val < 4) {
 			line_end(SLIPS, head_start, cip_linewidth);
 			fudge = carry_over % 10;
 			printf("%.*s", 9-fudge, "          ");
@@ -1149,7 +1216,7 @@ short unsigned int lcl_opt_F;
 		/* ADD TO COUNT OF MISMATCHED SITES */
 		mmsites = mmsites + consensus_2D(j_start, cip_linewidth);
 
-		if (options[0][41] && options[1][18] > 6 && mmsites == 0) {	
+		if (opt_f.bit && options[1][18] > 6 && mmsites == 0) {	
 			foam_2D(j_start, cip_linewidth);
 		}
 	} /* END OF FOR j PRINTING LOOP */
@@ -1303,49 +1370,22 @@ char letr;
 
 
 /*****************************************************************************************/
-void usage(char *usage_version, unsigned int FY_size)
+void usage(char *usage_version)
 {
+	int i;
+
 	printf("\nRunning maximal version %s, a program for micro-homology alignment (MHA).\n", usage_version);
-	printf("\nUsage: ./maximal -[OPTIONS] sequence.txt (OPTIONAL FASTA HEADER AND NON-ALPHA SEQUENCE CHARACTERS ARE IGNORED.)\n"
-							"\t\t -c       SHOW BASE 62, SINGLE-DIGIT SYMBOLS (USED FOR REPEAT NUMBER AND K-MER SIZE).\n"
-							"\t\t -d       SKIP CINCH-D MODULE.\n"
-							"\t\t -f       SHOW FOAM-FREE SEGMENTS (REQUIRES ALLOWING DEFAULT RELAX OPTION).\n"
-							"\t\t -m       GEL UP (COUNTERACT DEFAULT MELT).\n"
-							"\t\t -h       SHOW HELP, USAGE.\n"
-							"\t\t -k       SHOW k-MER COUNT.\n"
-							"\t\t -l       SHOW CINCH-T SLIP LOCATIONS, NUMBER (BASE 62), AND K-MER SIZES (BASE 62).\n"
-							"\t\t -m       SPLIT, OPEN, AND MELT (EACH m COMES WITH MORE MELTAGE, UP TO A POINT).\n"
-							"\t\t -n       DO NOT DO RELAX-2D PASS.\n"
-							"\t\t -o       SHOW ORIGINAL INPUT STRING.\n"
-							"\t\t -p       SHOW PARAMETERS.\n"
-							"\t\t -r       SHOW ROW NUMBER.\n"
-							"\t\t -s       SILENCE WRITING TO NORMAL OUTPUT FILE (Surf_wavereport.mha).\n"
-							"\t\t -t       SKIP CINCH-T MODULE, PROCEED TO REMAINING MODULES.\n"
-							"\t\t -u(u...) DO NOT WRAP OUTPUT (WRAP IN ONE BLOCK); EACH '-u' WRAPS OUTPUT INTO ANOTHER BLOCK.\n"
-							"\t\t -v(v)    VERBOSE MODE: \"maximal -FLIRlopr\" + VERBOSITY. TOGGLE off I & R WITH -vI & -vR.\n"
-							"\t\t -x       EXTRA SQUEEZE: REDUCE CINCH-T THRESHOLDS FOR TRANSITION MATCHING BY ONE.\n"
-							"\t\t -z       ENSURE MISMATCH SCORE IS ZERO; ALTERS PATHBOX DISPLAY.\n"
-							"\t\t -B       USE EMPTY SPACE FOR BLANK CHARACTER INSTEAD OF PERIOD.\n"
-							"\t\t -B(BBBB) DO NOT SHOW TICK MARKS, ZERO TICKLINE, RULER #'s, & RULER, RESPECTIVELY.\n"
-							"\t\t -C       USE REVERSE COMPLEMENT.\n"
-							"\t\t -D       TURN ON DEVELOPMENT PROMPTS.\n"
-							"\t\t -F       DO NOT FILL SHORT LINE ENDS TO SCRIMMAGE LINE.\n"
-							"\t\t -H       SHOW HELP, USAGE.\n"
-							"\t\t -I       SHOW INITIAL PASSES.\n"
-							"\t\t -K       SHOW CONSENSUS ROW.\n"
-							"\t\t -L       SHOW POSITION AT END OF EACH ROW.\n"
-							"\t\t -M       DOUBLE THE DEFAULT LONG HOMOMONOMER TRACT WRAP LENGTH.\n"
-							"\t\t -O       SAVE (APPEND) FORMATTED 2-D ALIGNMENT TO CONSENSUS FILE (Surf_barrels.log).\n"
-							"\t\t -OO      SAVE (APPEND) RAW 2-D ALIGNMENT TO SPECIAL 2-D INPUT FILE (TUBES.mha).\n"
-							"\t\t -P       SHOW PATHBOX.\n"
-							"\t\t -R       RECOVER AND CHECK 1-D SEQUENCE FROM 2-D SELF-MHA.\n"
-							"\t\t -T       SHOW DIAGNONAL THRESHOLD VALUES FOR TRANSITIONS HANDLING.\n"
-							"\t\t -X       RUN ON SCRAMBLED SEQUENCE OF SAME LENGTH.\n"
-							"\t\t -XX      RUN ON FISHER-YATES SHUFFLED SEQUENCE OF LENGTH %d.\n"
-							"\t\t -Y       USE NUMBER ARGUMENT AS FY_SIZE INSTEAD OF DEFAULT (%d).\n\n", FY_size, FY_size);
-	printf("Example usages: ./maximal -v sequence_file.txt\n");
-	printf("                ./maximal -KnO sequence_file.txt\n");
-	printf("                ./maximal -KnXXY 800 sequence_file.txt\n\n");
+	printf("\nUsage: ./maximal -[OPTIONS] sequence.txt\n");
+	for (i=1; i<53; i++) {
+		if (*stroptions[i]->description)
+			printf("\n\t\t-%c\t%s",stroptions[i]->sym, stroptions[i]->description);
+	}
+	printf("\n\n");
+	printf("\t\t\t* This option has a monotonically-increasing additive effect if repeated as an argument.\n");
+	printf("\t\t\t  Multiple asterisks indicate the number of different option levels.\n");
+	printf("\nExample usages: ./maximal -v         sequence_file.txt");
+	printf("\n                ./maximal -KnO       sequence_file.txt");
+	printf("\n                ./maximal -KnXXY 800 sequence_file.txt\n\n");
 }
 
 /*****************************************************************************************/
@@ -1395,7 +1435,6 @@ int get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW])
 	char letr; 
 	int bottom[MAXROW] = {0};
 	int    top[MAXROW] = {0};
-	short unsigned int devReport=options[1][57];
 
 	if (arrayA[MAXROW][width]!='\0') {
 		for (j=width; (arrayA[MAXROW][j])!='\0' && j < MAXROW; j++) {
@@ -1456,7 +1495,7 @@ int get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW])
 	}
 
 	/**************************************************/
-	if (devReport>2) {	/* CODE DEVELOPMENT REPORTING */
+	if (opt_v.val>2) {	/* CODE DEVELOPMENT REPORTING */
 		printf("\n ");	
 		for (j=0; j <= width; j++)
 			printf("%c", mha_base62(bottom[j]));	
@@ -1468,7 +1507,7 @@ int get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW])
 	/******************************************/
 
 	bottom[0] = heightAB - bottom[0] - top[0];
-	if (devReport>2)
+	if (opt_v.val>2)
 		printf("%c", mha_base62(bottom[0]));
 	for (j=1; j <= width; j++) {
 		if ((i=heightAB - bottom[j] - top[j]) < bottom[j-1]) {
@@ -1476,13 +1515,13 @@ int get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW])
 		}
 		else
 			bottom[j] = bottom[j-1];
-		if (devReport)
+		if (opt_v.val>2)
 			printf("%c", mha_base62(bottom[j]));
 	}
-	if (devReport>2)
+	if (opt_v.val>2)
 		printf(" <-- MIN(heightAB - bottom edge - top edge)\n");
 	i = heightA - bottom[j-1] + 1;
-	if (devReport>2)
+	if (opt_v.val>2)
 		printf("\n 2Dtucknum = %d\n", i);
 	if (i>0)
 		return(i);
@@ -1502,7 +1541,7 @@ void print1D(void)
 	mha_head(lenseq);
 
 	for (j = 0; j < blocks; j++) {
-		if (options[1][13] && options[1][57]) { /* IF DNA AND VERBOSITY */
+		if (options[1][13] && opt_v.val) { /* IF DNA AND VERBOSITY */
 			line_end(SLIPS, j+1, 0);	
    			for (n = j * options[1][58]; n < (j+1) * options[1][58] && tela[n].c!='>' && tela[n].c!='\0'; n++) {
 				if ((ch=tela[n].t)=='R' || ch=='Y')
@@ -1518,20 +1557,20 @@ void print1D(void)
 		}
 		if (tela[n].c == '>') {
 			printf("%1c", tela[n].c);  /* PRINTS TERMINAL CHARACTER '>' */
-			if (options[0][21]) 
+			if (opt_L.bit) 
 				line_end(END, n, 0);
 			else
 				printf("\n");
 		}
 		else {
 			printf(" ");
-			if (options[0][21]) 
+			if (opt_L.bit) 
 				line_end(END, n, 0);
 			else 
 				printf("\n");
 		}
 
-		if (options[0][47]) {		   /* OPTION opt_l TO SHOW SLIP LOCATIONS */
+		if (opt_l.bit) {		   /* OPTION opt_l TO SHOW SLIP LOCATIONS */
 			/**********************************************/
 			line_end(SLIPS, 0, 0);
 			for (i = j * options[1][58]; i < (j+1) * options[1][58] && i<lenseq; i++) {

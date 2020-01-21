@@ -42,7 +42,7 @@ int score_DTHR(int kmer)
 {	/* RETURNS SCORE THRESHOLDS FOR K-MER FOR ALLOWED TRANSITIONS) */
 	int k=0, numtransit = 0;
 	static int thr_table[WIDTH+1];
-	int squeeze = (int) options[1][59];
+	int squeeze = opt_x.val;
 
 	for (k=0; k<=PISO; k++)
 		thr_table[k] = 100;

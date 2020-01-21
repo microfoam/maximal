@@ -336,7 +336,7 @@ void mark_tela(void)
 				homopoly_flag = 0;
 
 			/* FOR ROW m LOOP 5/5: START COUNTING SCORE IF PATHBOX POSITION HAS VALUE > MISMATCH */
-			if (pathbox[m][n] > mismatch && n+k <= lenseq) {
+			if (pathbox[m][n] > mismatch && n+k < lenseq) {
 				Dtr = 0;
 
 				/* IF SUMMING PATHBOX DIAGONAL 1/4: COMPUTE SCORES OF IDENTITY LINE AND REPEAT DIAGONAL*/

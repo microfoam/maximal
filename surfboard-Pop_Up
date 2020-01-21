@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clear
+#clear
 echo 'Tri-fin dawn patrol: Compiling maximal from mha_v4.28.c.'
 echo
 echo '                                                                                                            '

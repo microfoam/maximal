@@ -92,6 +92,34 @@ int main(int argc, char *argv[])
 	signal(SIGBUS, signal_callback_handler);	/* 10 */
 	signal(SIGSEGV, signal_callback_handler);	/* 11 */
 
+	stroptions[ 0] = &opt_a;	/* PRE-CAUTION SO THAT IT IS DEFINED BUT WILL NOT BE USED */
+	stroptions[ 1] = &opt_a; stroptions[27] = &opt_A;
+	stroptions[ 2] = &opt_b; stroptions[28] = &opt_B;
+	stroptions[ 3] = &opt_c; stroptions[29] = &opt_C;
+	stroptions[ 4] = &opt_d; stroptions[30] = &opt_D;
+	stroptions[ 5] = &opt_e; stroptions[31] = &opt_E;
+	stroptions[ 6] = &opt_f; stroptions[32] = &opt_F;
+	stroptions[ 7] = &opt_g; stroptions[33] = &opt_G;
+	stroptions[ 8] = &opt_h; stroptions[34] = &opt_H;
+	stroptions[ 9] = &opt_i; stroptions[35] = &opt_I;
+	stroptions[10] = &opt_j; stroptions[36] = &opt_J;
+	stroptions[11] = &opt_k; stroptions[37] = &opt_K;
+	stroptions[12] = &opt_l; stroptions[38] = &opt_L;
+	stroptions[13] = &opt_m; stroptions[39] = &opt_M;
+	stroptions[14] = &opt_n; stroptions[40] = &opt_N;
+	stroptions[15] = &opt_o; stroptions[41] = &opt_O;
+	stroptions[16] = &opt_p; stroptions[42] = &opt_P;
+	stroptions[17] = &opt_q; stroptions[43] = &opt_Q;
+	stroptions[18] = &opt_r; stroptions[44] = &opt_R;
+	stroptions[19] = &opt_s; stroptions[45] = &opt_S;
+	stroptions[20] = &opt_t; stroptions[46] = &opt_T;
+	stroptions[21] = &opt_u; stroptions[47] = &opt_U;
+	stroptions[22] = &opt_v; stroptions[48] = &opt_V;
+	stroptions[23] = &opt_w; stroptions[49] = &opt_W;
+	stroptions[24] = &opt_x; stroptions[50] = &opt_X;
+	stroptions[25] = &opt_y; stroptions[51] = &opt_Y;
+	stroptions[26] = &opt_z; stroptions[52] = &opt_Z;
+
 	/* IS THERE A FILE NAME ARGUMENT? */
 	for (i = 1; i < argc; i++) {
 		if (*argv[i] != '-') {
@@ -102,7 +130,7 @@ int main(int argc, char *argv[])
 					if (!isdigit(numstring[r])) {
 						warnhead('d');
 						printf("Command line arguments starting with numbers need to be strings with digits-only.\n\n");
-						usage(version, FY_size);
+						usage(version);
 						exit(EXIT_ERROR);
 					}
 					else
@@ -206,7 +234,7 @@ int main(int argc, char *argv[])
 
 	if (argc == 1) {
 	 	system("clear"); 
-		usage(version, FY_size);
+		usage(version);
 		exit(EXIT_EARLY);
 	}
 
@@ -216,126 +244,117 @@ int main(int argc, char *argv[])
 		while ((opt = *++argv[0])) {
 			switch (opt) {
 			case 'c':						/* SHOW BASE 62 CODE */
+					opt_c.bit = 1;
 					print_base62_table();
-					exit(EXIT_EARLY);
+					return(EXIT_EARLY);
 					break;
 			case 'd':						/* OPTION TO SKIP CINCH-D CINCHING */
-					options[0][39] = 1;		/* opt_d ON		*/
+					opt_d.bit = 1;
 					break;
 			case 'f':						/* OPTION TO SHOW FOAM-FREE SEGMENTS BELOW CONSENSUS ROW*/
-					options[0][48] = 1;		/* opt_m ON 	*/
-					options[0][41] = 1;		/* opt_f ON		*/
+					opt_f.bit = 1;
 					break;
-			case 'g':
-					options[0][42] = 1;
-					--options[1][48];		/* opt_g GEL-UP, COUNTERACT DEFAULT MELTAGE */
+			case 'g':						/* opt_g GEL-UP, COUNTERACT STARTING MELTAGE */
+					opt_g.bit = 1;
+					opt_m.val--;
 					break;
 			case 'h':						/* OPTION TO SHOW HELP */
-					options[0][43] = 1;		/* opt_h ON 	*/
+					opt_h.bit = 1;
 					break;
 			case 'k':						/* OPTION TO SHOW k-MER COUNTS */
-					options[0][46] = 1;		/* opt_k ON   */
-				/*  options[1][46] RESERVED FOR RECORDING LARGEST CINCH-T k-MER UNIT SIZE */
+					opt_k.bit = 1;
 					break;
 			case 'l':						/* OPTION TO SHOW SLIP LOCATIONS IN 1D SEQUENCE */
-					options[0][47] = 1;		/* opt_l ON   */
+					opt_l.bit = 1;
 					break;
 			case 'm':						/* OPTION TO SPLIT, OPEN, AND MELT */
-					options[0][48] = 1;		/* opt_m ON 	*/
-					++options[1][48];		/* ++opt_m VAL	*/
+					opt_m.bit = 1;
+					opt_m.val++;
 					break;
 			case 'n':						/* OPTION TO NOT DO RELAX-2D PASS */
-					options[0][49] = 1;		/* opt_n ON   */
+					opt_n.bit = 1;
 					break;
 			case 'o':						/* OPTION TO PRINT ORIGINAL STRING UNFORMATTED */
-					options[0][50] = 1;		/* opt_o ON   */
-				/*  options[1][50] RESERVED FOR RECORDING CUMULATIVE BADSLIP TYPE PER RUN */
+					opt_o.bit = 1;
 					break;
 			case 'p':						/* OPTION TO SHOW PARAMETERS */
-					options[0][51] = 1;		/* opt_p ON   */
+					opt_p.bit = 1;
 					break;
 			case 'r':						/* OPTION TO SHOW ROW NUMBERING */
-					options[0][53] = 1;		/* opt_r ON   */
+					opt_r.bit = 1;
 					break;
 			case 's':						/* OPTION TO SILENCE WRITE TO NORMAL OUTPUT FILE */
-					options[0][54] = 1;		/* opt_s ON   */
+					opt_s.bit = 1;
 					break;
 			case 't':						/* OPTION TO SKIP CINCH-T */
-					options[0][55] = 1;		/* opt_s ON   */
+					opt_t.bit = 1;
 					break;
 			case 'u':						/* OPTION TO PRINT UNWRAPPED WHERE opt_w EQUALS lenseq */
-					options[0][56] = 1;		/* opt_u ON 	*/
-					++options[1][56];		/* ++opt_u VAL	*/
+					opt_u.bit = 1;
+					opt_u.val++;
 					break;
 			case 'v':						/* OPTION FOR VERBOSITY */
-					options[0][57] = 1;		/* opt_v ON 	*/
-					++options[1][57];		/* opt_v INCREMENTED: 1-2 FOR USERS, 3-4 FOR DEVELOPERS */
-											/*   1=EXTRA INFO; 2=BUFFER; 3=DEV-ACTIVE; 4=DEV-LEGACY */
-					++options[0][18];		/* opt_I */
-					++options[0][27];		/* opt_R */
-					options[0][15]=options[0][21] = 1; /* opt_F, opt_L */
-					options[0][47] =options[0][50] =options[0][51] =options[0][53] = 1;
-					/*      opt_l           opt_o           opt_p           opt_r    */
+					opt_v.bit = 1;
+					opt_l.bit = opt_o.bit = opt_p.bit = opt_r.bit = opt_F.bit = opt_L.bit = opt_R.bit = 1;
+					opt_v.val++;			/*   1=EXTRA INFO; 2=BUFFER; 3=DEV-ACTIVE; 4=DEV-LEGACY */
+					opt_R.val++;
 					break;
-			case 'x':						/* OPTION TO SQUEEZE DTHR VALUES BY 1 FOR k > 2 */
-					options[0][59] = 1;		/* opt_x ON 		*/
-					++options[1][59];		/* increment opt_x, NOT NECESSARILY IN USE IN CURRENT VERSION	*/
+			case 'x':						/* OPTION TO SQUEEZE DTHR VALUES BY 1 FOR k > PISO */
+					opt_x.bit = 1;
+					opt_x.val++;
 					break;
 			case 'z':						/* OPTION FOR ZERO MISMATCH SCORE */
-					options[0][61] = 1;		/* opt_z ON 	*/
-					mismatch = mismatch - mismatch;
+					opt_z.bit = 1;
+					mismatch = 0;
 					break;
 			case 'B':						/* USE SPACE FOR BLANK CHARACTER IN MHA's */
-					++options[0][11];		/* opt_B ON & INCREMENTED */
-					blank=options[1][11]=32;/* blank EQUALS ' ' (SPACE) */
+					opt_B.bit = 1;
+					opt_B.val++;
+					blank=options[1][11]=32;/* BLANK RESET TO ' ' (SPACE). DEFAULT IS '.' */
 					break;
 			case 'C':						/* OPTION TO USE REVERSE COMPLEMENT */
-					options[0][12] = 1;		/* opt_C ON		*/
+					opt_C.bit = 1;
+					options[1][28] = 45;	/* UNICODE MINUS CHARACTER FOR NEGATAIVE STRAND '-'; DEFAULT 43 '+' */
 					break;
 			case 'D':
-				   	options[0][13] = 1;		/* opt_D: TURN DEV_PROMPTS ON */
-					/* options[1][13] IS RESERVED FOR STORING SEQUENCE TYPE (DNA, RNA, PROTEIN, BABYLONIAN, etc.) */
+					opt_D.bit = 1;
 					break;
 			case 'F':						/* OPTION TO USE BLANK FILL CHAR W/ SCRIMMAGELINE */
-					options[0][15] = 1;		/* opt_F ON: USE POST-TERMINATION FILLER	*/
+					opt_F.bit = 1;
 					break;
 			case 'H':						/* OPTION TO SHOW HELP */
-					options[0][43] = 1;		/* opt_h ON 	*/
-					options[0][17] = 1;		/* opt_H ON 	*/
-				/*  options[1][17] = 1 RESERVED FOR 2D-ALIGNMENT HEIGHT */	
-					break;
-			case 'I':						/* OPTION TO SHOW iNITIAL PASSES */
-					++options[0][18];		/* opt_I = 1 is ON; opt_I > 1 is O-F-F (lets you toggle off after option v) */
-				/*  options[1][18]            RESERVED FOR COUNTING iNITIAL PASSES. */
+					opt_H.bit = opt_h.bit = 1;
 					break;
 			case 'K':						/* OPTION TO SHOW CONSENSUS ROW */
-					options[0][20] = 1;		/* opt_K ON */
+					opt_K.bit = 1;
 					break;
 			case 'L':						/* OPTION TO SHOW POSITIONS AT END OF LINES */
-					options[0][21] = 1;		/* opt_L ON */
+					opt_L.bit = 1;
 					break;
 			case 'M':						/* OPTION TO DOUBLE LONG HOMOMONO WRAP */
-					options[0][22] = 1;									/* opt_M ON		*/
-					options[1][22] = options[1][22] + options[1][22];   /* DOUBLE opt_M  mwrap */
+					opt_M.bit = 1;
+					opt_M.val *=2;			/* DOUBLE opt_M  mwrap */
 					break;
 			case 'O':						/* OPTION TO OUTPUT CONSENSUS FILE */
-					++options[0][24];		/* opt_O ON 	*/
+					opt_O.bit = 1;
+					opt_O.val++;
 					break;
 			case 'P':						/* OPTION TO PRINT PATH BOX */
-					options[0][25] = 1;		/* opt_P ON 	*/
+					opt_P.bit = 1;
 					break;
 			case 'R':						/* OPTION TO PRINT RECOVERED 1-D SEQUENCE FROM LAST 2-D */
-					++options[0][27];		/* opt_R = 1 is ON; opt_R > 1 is O-F-F (lets you toggle off after option v) */
+					opt_R.bit = 1;
+					opt_R.val++;			/* THIS IS INCREMENTED TO ALLOW TOGGLING OFF WITH '-v' */
 					break;
 			case 'T':
-				   	options[0][29] = 1;		/* opt_T: SHOW DTHR_lookup values (later below). Will exit early. */
+					opt_T.bit = 1;
 					break;
 			case 'X':						/* OPTION TO SCRAMBLE SEQUENCE           */
-					options[0][33] = 1;		/* opt_X ON 							 */
-					++options[1][33];		/* INCREMENT opt_X to desired level 	 */
+					opt_X.bit = 1;
+					opt_X.val++;
 					break;					/*  X = rand() cheese, XX = FISHER-YATES */
 			case 'Y':						/* OPTION TO SPECIFY FY_size	*/
-					options[0][34] = 1;
+					opt_Y.bit = 1;
 					if (number) {
 						if (number < MAXROW) {
 							FY_size = number;
@@ -353,7 +372,7 @@ int main(int argc, char *argv[])
 			default:
 					printf("maximal: Illegal option %c\n", opt);
 					argc = 0;
-					usage(version, FY_size);
+					usage(version);
 					exit(1);
 					break;
 			} /* END SWITCH opt			*/
@@ -361,32 +380,27 @@ int main(int argc, char *argv[])
 	} /* END WHILE argc argv	*/
 
 	/* IF CERTAIN OPTIONS ARE ON, SKIP RELAX-2D */
-	if (options[0][39] || options[0][24]) {
-		options[0][49] = 1;		/* opt_n NO RELAX 2-D */
+	if (opt_d.bit || opt_O.bit) {
+		opt_n.bit = 1;		/* opt_n NO RELAX 2-D */
 	}
 
 	/*******************************************************/
 	/* BEGIN OUTPUT OF MAXIMAL PROGRAM  ********************/
-	if (options[0][17] || options[0][43]) {		/* opt_H SHOW USAGE */
+	if (opt_h.bit) {		/* opt_H SHOW USAGE */
 	 	system("clear"); 
-		usage(version, FY_size);
-		exit(2);
-	}
-
-	/* IF OPTION I TOGGLED BACK O-F-F FROM OPTION v (VERBOSE), then set opt_I back to zero for screen reporting purposes */
-	if (options[0][18] > 1) {
-		options[0][18] = 0;
+		usage(version);
+		return(2);
 	}
 
 	/* OPTION TO APPEND TO GROWING 2-D MSA FILE */
-	if (options[0][24] >= 2) {
-		options[0][24] = 2;
-		options[0][49] = 1;		/* opt_n NO RELAX 2-D */
+	if (opt_O.val >= 2) {
+		opt_O.val = 2;
+		opt_n.bit = 1;		/* opt_n NO RELAX 2-D */
 	}
 
 	/* IF OPTION R TOGGLED BACK O-F-F FROM OPTION v (VERBOSE), then set opt_R back to zero for screen reporting purposes */
-	if (options[0][27] % 2 == 0) {		
-		options[0][27] = 0;
+	if (opt_R.val % 2 == 0) {		
+		opt_R.val = opt_R.bit = 0;
 	}
 
 	if (j > 1) {
@@ -403,40 +417,37 @@ int main(int argc, char *argv[])
 		
 	mha_head(options[1][58]);
 	printf("micro homology alignment (MHA) -");
-	for (i = 10; i < 36; i++) {			/* UPPER-CASE LETTER OPTIONS */
-		if (options[0][i] > 0)
-			printf("%c", mha_base62(i));
+	for (i = 1; i < 53; i++) {			/* UPPER-CASE LETTER OPTIONS */
+		if (stroptions[i]->bit)
+			printf("%c", stroptions[i]->sym);
 	}
-	for (i = 36; i < 62; i++) {			/* LOWER-CASE LETTER OPTIONS */
-		if (options[0][i])
-			printf("%c", mha_base62(i));
+	if (opt_B.val > 1) {
+		printf(" -B%d", opt_B.val);
 	}
-	if (options[0][11] > 1) {			/* opt_B */
-		printf(" -B%ld", options[0][11]);
-	}
-	printf(" -M%ld", options[1][22]);	/* opt_M */
-	if (options[0][33]) {				/* opt_X */
-		if (options[1][33]) {
+	printf(" -M%d", opt_M.val);
+	if (opt_X.bit) {
+		if (opt_X.val==1) {
 			printf(" -X [USE RANDOMIZED SEQUENCE]");
 		}
 		else {
 			printf(" -XX [USE FISHER-YATES RANDOMIZED SEQUENCE]");
 		}
 	}
-	if (options[1][56] > 1) {			/* opt_u */
-		printf(" -u%ld", options[1][56]);
+	if (opt_u.val) {			/* opt_u */
+		printf(" -u%d", opt_u.val);
 	}
 	printf(" (version %s)\n", version);
 	printf("%s", time0);
 
-	if (options[0][51]) {		/* opt_p SHOW RUN PARAMETERS */
-		printf(" Match: %d, Transition: %d, Mismatch: %d, Threshold: %d%%, Bandwidth: %d, Default block width: %ld",  
-				 match,     transition,     mismatch,     DTHR,            WIDTH,         options[1][58]);
-		if (options[1][56] == 1) {	/* opt_u */
-			printf("*\n * Block width reset for one block of (unwrapped) sequence input.\n");
+	if (opt_p.bit) {		/* opt_p SHOW RUN PARAMETERS */
+		printf("\nParameters\n Match: %d\n Transition: %d\n Mismatch: %d\n Bandwidth: %d\n Default block width: %ld\n Transition matching floor: k-mers > %d\n",  
+				 match,     transition,     mismatch,     WIDTH,         options[1][58],           PISO);
+		printf("\nFisher-Yates length: %d", FY_size);
+		if (opt_u.val == 1) {	/* opt_u */
+			printf("\n * Print width reset for one block of (unwrapped) sequence input.\n");
 		}
-		else if (options[1][56] > 1) {		/* opt_u */
-			printf("*\n * Block width reset for %ld blocks of sequence input.\n", options[1][56]);
+		else if (opt_u.val > 1) {		/* opt_u */
+			printf("\n * Print width reset for %d blocks of sequence input.\n", opt_u.val);
 		}
 		else
 			printf("\n");
@@ -455,12 +466,12 @@ int main(int argc, char *argv[])
 
 	options[1][0] = options[1][32] = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT [32]	*/
 
-	if ((i=(int) options[1][56]) >= 1) {					/* WILL CAUSE OUTPUT TO NOT BE WRAPPED (opt_u EQUALS 1),	*/ 
+	if ((i=opt_u.val) >= 1) {			/* WILL CAUSE OUTPUT TO NOT BE WRAPPED (opt_u EQUALS 1),	*/ 
 		options[1][58] = (lenseq/i);	/*  OR WRAPPED INTO opt_u NUMBER OF BLOCKS.				    */
 	}
 
 	/* OPTION TO PRINT ORIGINAL STRING IN BLOCKS *******************************/
-	if (options[0][50]) {	/* opt_o */
+	if (opt_o.bit) {	/* opt_o */
 		blocks = count_wrap_blocks(lenseq, options[1][58]);
 
 		mha_head(lenseq);
@@ -485,7 +496,7 @@ int main(int argc, char *argv[])
 	lenseq = strlen(Seq);
 	options[1][1] = options[1][32] = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT [32]	*/
 
-	if (options[0][29]) {	/* opt_D: SHOW DTHR VALUES */
+	if (opt_T.bit) {			/* opt_T: SHOW DTHR VALUES */
 		show_DTHR_table();
 	}
 	else if (seqtype == 1) {
@@ -499,7 +510,7 @@ int main(int argc, char *argv[])
 	else if (seqtype == 0)
 		strcpy(letr_unit, "ch");	/* OTHER */
 
-	if (nuctransit && options[0][12]) {		/* opt_c USE REVERSE COMPLEMENT */
+	if (nuctransit && opt_C.bit) {		/* opt_C USE REVERSE COMPLEMENT */
 		for (i=1; i<=lenseq; i++) {
 			if ( (ch=Seq[lenseq-i]) == 'A')
 				Seq_r[i-1] = 'T';
@@ -514,21 +525,21 @@ int main(int argc, char *argv[])
 		}
 		Seq_r[lenseq] = '>';
 		strcpy(Seq, Seq_r);
-		if (options[1][57]) {			/* opt_v VERBOSITY */
+		if (opt_v.val) {			/* opt_v VERBOSITY */
 			printf("\nReverse Complement: \"");
 			for (i = 0; Seq_r[i] != '\0'; i++)
 				printf("%c", Seq_r[i]);
 			printf("\"\n");
 		}
 		Seq = Seq_r;
-		if (options[0][33])
-			options[0][33] = options[1][33] = 0;		/* USE RANDOMIZED SEQUENCE DISABLED IF R.C. REQUESTED */
+		if (opt_X.bit)
+			opt_X.bit = opt_X.val = 0;		/* USE RANDOMIZED SEQUENCE DISABLED IF R.C. REQUESTED */
 	}
-	else if (options[0][33]) {		/* USE RANDOMIZED SEQUENCE */
+	else if (opt_X.bit) {		/* USE RANDOMIZED SEQUENCE */
 		strcpy(Seq_r, Seq);
 		srand(time(0));
 
-		if (options[1][33] == 1) {
+		if (opt_X.val == 1) {
 			mha_randomize1(Seq_r);
 		}
 		else {
@@ -644,7 +655,7 @@ int main(int argc, char *argv[])
 
 	/**********************************************/
 	/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
-	if (options[0][25]) {	/* opt_P */
+	if (opt_P.bit) {	/* opt_P */
 		blocks = count_wrap_blocks(lenseq, options[1][58]);
 
 		printf("\nPATHBOX FILL-IN PASS (length = width = %d)\n\n", lenseq);
@@ -686,7 +697,7 @@ int main(int argc, char *argv[])
 */
 	for (n = 1; n<=lenseq; ) {
 		/* FOR COLUMN n LOOP 1/3 */
-		if (!options[0][55]) {		/* SKIP TO NEXT MARKED TR */	
+		if (!opt_t.bit) {			/* SKIP TO NEXT MARKED TR */	
 			while (!(tela[n].all_S) && n!=lenseq) {
 				assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 			}
@@ -923,8 +934,10 @@ int main(int argc, char *argv[])
 
 					passR[2]++;
 
-					for (i=0; i<k; i++)
-						pathbox[n+i][m+i] = 114; 	/* "r" */
+					if (ON || imperfect_TR) {
+						for (i=0; i<k; i++)
+							pathbox[n+i][m+i] = 114; 	/* "r" LOWER-LEFT */
+					}
 
 					r = 1;
 					tela[n].r = reps;
@@ -951,8 +964,10 @@ int main(int argc, char *argv[])
 
 							push_tela(n+z,m+z, THREE);
 
-							for (i=0; i<k; i++) {
-								pathbox[n+r*k+i][m+i] = 82; 	/* "R" */
+							if (ON || imperfect_TR) {
+								for (i=0; i<k; i++) {
+									pathbox[n+r*k+i][m+i] = 82; 	/* "R" LOWER-LEFT */
+								}
 							}
 
 							r++;
@@ -1165,7 +1180,7 @@ int main(int argc, char *argv[])
 							}
 
 							/* RECORD DNA "REVERB" IN SLIPLOC_ECHOES FOR ALL TR FRAMES */
-							if (options[0][47] && tela[n].o) {    /********** OPTION TO SHOW SLIP LOCATIONS */
+							if (opt_l.bit && tela[n].o) {    /********** OPTION TO SHOW SLIP LOCATIONS */
 								if (tela[n].o > 2*k)
 									h = k;
 								else
@@ -1259,7 +1274,7 @@ int main(int argc, char *argv[])
 	/**********************************************/
 	/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
 
-	if (options[0][25] == 1) {	/* opt_P */
+	if (opt_P.bit) {
 		blocks = count_wrap_blocks(lenseq, options[1][58]);
 
 		printf("\n\nPATHBOX CINCH PASS (length = width = %d)\n\n", lenseq);
@@ -1384,14 +1399,14 @@ int main(int argc, char *argv[])
 	}
 
 	/********* 7. relax_2D MODULE: DE-CINCHES HOMOPOLYMER RUNS IF THEY DID NOT AID CINCH-D *******/
-	if (continue_flag && options[0][49]<1) {		/* opt_n DO NOT DO RELAX-2D */
+	if (continue_flag && !opt_n.bit) {		/* opt_n DO NOT DO RELAX-2D */
 		i = ++options[1][18];		/* INCREMENT opt_I ++PASS NUM */
 	
 		do {
 			relax_length = options[1][32] ;
 			relax_2D();
 			relax_length = options[1][32] - relax_length;
-			passR[8]++;
+			passR[7]++;
 		}
 		while (relax_length > 0);
 	
@@ -1402,7 +1417,7 @@ int main(int argc, char *argv[])
 	/********** 8. RECOVER_1D*************************************************/
 	/* OPTION TO PRINT VALUES OF RECOVERED 1-D ALIGN BOX *********************/
 
-	if (options[0][27]) { /* opt_R is 1 if ON */ 
+	if (opt_R.bit) { 
 		printf("\nChecking 1-D recovery from 2-D self-MHA:\n");
 		recover_1D(recovered);
 
@@ -1448,14 +1463,14 @@ int main(int argc, char *argv[])
 			}
 			if (tela[n].c == '>') {
 				printf("%1c", tela[n].c);  /* PRINTS TERMINAL CHARACTER '>' */
-				if (options[0][21]) 
+				if (opt_L.bit) 
 					line_end(END, lenseq, 0);
 				else
 					printf("  <== 1-D \n");
 			}
 			else {
 				printf(" ");
-				if (options[0][21]) {
+				if (opt_L.bit) {
 					if (l>0 && n>k)
 						q = l;	
 					line_end(END, n-q, 0);
@@ -1499,7 +1514,7 @@ int main(int argc, char *argv[])
 			}
 			if (recovered[n] == '>') {
 				printf("%1c", recovered[n]);  /* PRINTS TERMINAL CHARACTER '>' */
-				if (options[0][21]) {
+				if (opt_L.bit) {
 					line_end(END, r, 0);
 				}
 				else
@@ -1507,7 +1522,7 @@ int main(int argc, char *argv[])
 			}
 			else {
 				printf(" ");
-				if (options[0][21]) 
+				if (opt_L.bit) 
 					line_end(END, n, 0);
 				else 
 					printf("\n");
@@ -1530,7 +1545,7 @@ int main(int argc, char *argv[])
 	} /* END of opt_R */
 
 	/* PRINT OPTION FOR K-MER REPORT AFTER cinch_t **********************/
-	if (options[0][46]) {	/* opt_k */
+	if (opt_k.bit) {
 
 		int k_start=2;
 
@@ -1543,7 +1558,7 @@ int main(int argc, char *argv[])
 	}
 	/***************************************************************************/
 	c   = options[1][1];		/* REUSING c VAR FOR FORMATTED STRING LENGTH */
-	if (options[1][33] > 1)		/* opt_XX FISHER-YATES RANDOMIZATIAN */
+	if (opt_X.val > 1)			/* opt_XX FISHER-YATES RANDOMIZATIAN */
 		row = FY_size;			/* USE IN PLACE OF ORIGINAL STRING LENGTH */
 	else
 		row = options[1][0];	/* RESUING row VAR FOR ORIGINAL STRING LENGTH */
@@ -1564,11 +1579,11 @@ int main(int argc, char *argv[])
 		printf("  %5d       => %4ld ", passQ[i], options[1][i]);
 		switch (i) {
 		case 0:
-			if (options[0][33] == 0)
+			if (!opt_X.bit)
 				printf("characters in original string\n");
-			else if (options[1][33] == 1)
+			else if (opt_X.val == 1)
 				printf("characters in original string => RANDOMIZED\n");
-			else if (options[1][33] > 1)
+			else
 				printf("characters in original string => FISHER-YATES RANDOMIZED TO FILL %d\n", FY_size);
 			break;
 		case 1:
@@ -1579,7 +1594,7 @@ int main(int argc, char *argv[])
 				printf("%s post cinch-t   [pass #2: %d cinches]\n", letr_unit, passR[2]);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
 			else if (passR[2])
 				printf("%s post cinch-t   [pass #2: %d cinch]\n", letr_unit, passR[2]);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
-			else if (options[0][55]) 
+			else if (opt_t.bit) 
 				printf("%s post cinch-t   [pass #2: SKIPPED BY REQUEST]\n", letr_unit);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
 			else 
 				printf("No effective cinch-t cinches taken.\n");
@@ -1617,7 +1632,7 @@ int main(int argc, char *argv[])
 		case 6:	
 			if (passR[6] > 0)
 				printf("%s post cinch-d   [pass #6: %d runs]\n", letr_unit, passR[6]);
-			else if (options[0][39])
+			else if (opt_d.bit)
 				printf("%s post cinch-d   [pass #6: SKIPPED BY REQUEST]\n", letr_unit);
 			else
 				printf("%s post cinch-d   [pass #6]\n", letr_unit);
@@ -1627,14 +1642,14 @@ int main(int argc, char *argv[])
 			break;
 		}
 	}
-	if (options[0][27]) { /* opt_R */ 
+	if (opt_R.bit) {
 		printf("  %5d       => %4ld ", passQ[8], options[1][8]);
 			printf(    "%s recovered 1D   [final check pass]\n", letr_unit);
 	}
 
 	if (continue_flag) {
 		printf("\n Width cinch ratio (post cinch-d):  %2.3f", ratio1=(float)options[1][6]/lenseq);
-		if (options[0][49] < 1)
+		if (!opt_n.bit)
 			printf("\n Width cinch ratio (post relax-2D): %.3f\n\n", ratio2=(float)options[1][32]/lenseq);
 		else
 			printf("\n\n");
@@ -1642,10 +1657,10 @@ int main(int argc, char *argv[])
 	else
 		printf("\n Width cinch ratio (post cinch-k): %.3f\n\n", ratio1=ratio2=(float)options[1][4]/lenseq);
 
-	if (options[0][24]) {							/* OPTION TO OUTPUT 2-D ALIGNMENT & CONSENSUS STRING TO FILE */
+	if (opt_O.bit) {							/* OPTION TO OUTPUT 2-D ALIGNMENT & CONSENSUS STRING TO FILE */
 		fp_cons = fopen("Surf_barrels.log", "a");
 		fprintf(fp_cons,">%s (%d > %d %s) x%d\n", 
-			file_name, (int) options[1][1], (int) options[1][6], letr_unit, (int) options[1][59]);	
+			file_name, (int) options[1][1], (int) options[1][6], letr_unit, opt_x.val);	
 
 		for (m = 0; align2D[m][0] != '\0'; m++) {
 			fprintf(fp_cons, " %s\n", align2D[m]);
@@ -1654,7 +1669,7 @@ int main(int argc, char *argv[])
 		fprintf(fp_cons, " %s\n\n", consensus);
 		fclose(fp_cons);
 	}
-	if (msa && options[0][24]==2) {
+	if (msa && opt_O.val==2) {
 		tuck = get2Dtucknum(m2Dalig, align2D);
 		if (tuck<0) {
 			tuck = m2Da_height;	/* GET2DTUCKNUM IS BUST AND MUST BE DEBUGGED, USE ZERO TUCK */
@@ -1679,7 +1694,7 @@ int main(int argc, char *argv[])
 
 		fclose(fp_msa);
 	}
-	else if (options[0][24]==2) {
+	else if (opt_O.val==2) {
 		fp_msa = fopen("TUBES.mha", "a");
 			fprintf(fp_msa, ">%s\n", align2D[0]);
 		for (m = 1; align2D[m][0] != '\0'; m++) {
@@ -1689,19 +1704,19 @@ int main(int argc, char *argv[])
 		fclose(fp_msa);
 	}
 	
-	if (options[0][54] != 1) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
+	if (!opt_s.bit) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\t x%ld\t%4ld\t%.3f\tCYC:%3d (t=%ld)\tRND:%.*s\t%38s -%ld (%4ld %s) REC:%4d\t%s\n", 
-				version, time0+4, options[1][59], options[0][10], ratio1, passR[5], options[0][5], (int) options[1][33], "XX", 
-				file_name, options[0][12], options[1][1], letr_unit, passQ[8], dev_notes);
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%3d (t=%ld)\tRND:%.*s\t%38s (%c) (%4ld %s) REC:%4d\t%s\n", 
+				version, time0+4, opt_x.val, options[0][10], ratio1, passR[5], options[0][5], opt_X.val, "XX", 
+				file_name, (char) options[1][28], options[1][1], letr_unit, passQ[8], dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (options[0][10] != 1000 || passR[5] > CYCMAX) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.20s\t x%ld\t%4ld\t%.3f\tCYC:%2d (t=%ld)\tRND:-%.*s\t%s -%ld (%ld %s) REC:%4d\t%s\n", 
-					version, time0+4, options[1][59], options[0][10], ratio1, passR[5], options[0][5], (int) options[1][33], "XX", 
-					file_name, options[0][12], options[1][1], letr_unit, passQ[8], dev_notes);
+			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4ld\t%.3f\tCYC:%2d (t=%ld)\tRND:-%.*s\t%s (%c) (%ld %s) REC:%4d\t%s\n", 
+					version, time0+4, opt_x.val, options[0][10], ratio1, passR[5], options[0][5], opt_X.val, "XX", 
+					file_name, (char) options[1][28], options[1][1], letr_unit, passQ[8], dev_notes);
 			for(n = 0; n<lenseq; n++) {
 				fprintf(fp_tricksy, "%c", tela[n].c);
 			}
@@ -1711,7 +1726,7 @@ int main(int argc, char *argv[])
 	}
 	/* dev_prompt(MAIN,__LINE__,file_name); */
 
-	exit(EXIT_GOOD);	/* Exit main(). */
+	return(EXIT_GOOD);	/* Exit main(). */
 } 
 
 
