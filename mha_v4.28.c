@@ -142,10 +142,7 @@ int main(int argc, char *argv[])
 						usage(version);
 						exit(EXIT_ERROR);
 					}
-					else
-						number = number * 10 + (numstring[r]-'0');
 				}
-				printf("\n %2d. Reading an argument as the number %d. ", j, number);
 			}
 			else if (strcmp(argv[i],"TUBES.mha")) {		/* strcmp EVALUATES TO 0 ONLY IF STRINGS ARE THE SAME */
 				/* USING j BELOW AS COUNTER TO NUMBER OF TIMES USER SPECFIES DIFFERENT SEQUENCES */
@@ -247,149 +244,175 @@ int main(int argc, char *argv[])
 
 	/**************************************/
 	/* SET OPTIONS FROM ARGUMENTS  ********/
-	while (--argc > 0 && (*++argv)[0] == '-') {
-		while ((opt = *++argv[0])) {
-			switch (opt) {
-			case 'c':						/* SHOW BASE 62 CODE */
-					opt_c.bit = 1;
-					print_base62_table();
-					return(EXIT_EARLY);
-					break;
-			case 'd':						/* OPTION TO SKIP CINCH-D CINCHING */
-					opt_d.bit = 1;
-					break;
-			case 'f':						/* OPTION TO SHOW FOAM-FREE SEGMENTS BELOW CONSENSUS ROW*/
-					opt_f.bit = 1;
-					break;
-			case 'g':						/* opt_g GEL-UP, COUNTERACT STARTING MELTAGE */
-					opt_g.bit = 1;
-					opt_m.val--;
-					break;
-			case 'h':						/* OPTION TO SHOW HELP */
-					opt_h.bit = 1;
-					break;
-			case 'k':						/* OPTION TO SHOW k-MER COUNTS */
-					opt_k.bit = 1;
-					break;
-			case 'l':						/* OPTION TO SHOW SLIP LOCATIONS IN 1D SEQUENCE */
-					opt_l.bit = 1;
-					break;
-			case 'm':						/* OPTION TO SPLIT, OPEN, AND MELT */
-					opt_m.bit = 1;
-					opt_m.val++;
-					break;
-			case 'n':						/* OPTION TO NOT DO RELAX-2D PASS */
-					opt_n.bit = 1;
-					break;
-			case 'o':						/* OPTION TO PRINT ORIGINAL STRING UNFORMATTED */
-					opt_o.bit = 1;
-					break;
-			case 'p':						/* OPTION TO SHOW PARAMETERS */
-					opt_p.bit = 1;
-					break;
-			case 'r':						/* OPTION TO SHOW ROW NUMBERING */
-					opt_r.bit = 1;
-					break;
-			case 's':						/* OPTION TO SILENCE WRITE TO NORMAL OUTPUT FILE */
-					opt_s.bit = 1;
-					break;
-			case 't':						/* OPTION TO SKIP CINCH-T */
-					opt_t.bit = 1;
-					break;
-			case 'u':						/* OPTION TO PRINT 'UNWRAP' SCREEN WRAP; SET TO INCREASE BY 10 bp */
-					opt_u.bit = 1;			/* HISTORICALLY THIS USED TO UNWRAP 2-D DISPLAY BUT IS IMPRACTICAL ON SCREEN */
-					opt_u.val++;			/* FURTHERMORE WILL BE ADDING FUNCTION TO OUTPUT UNWRAPPED TELA STRUCTURE */
-					par_wrap.set +=10;
-					break;
-			case 'v':						/* OPTION FOR VERBOSITY */
-					opt_v.bit = 1;
-					opt_l.bit = opt_o.bit = opt_p.bit = opt_r.bit = opt_F.bit = opt_L.bit = opt_R.bit = 1;
-					opt_v.val++;			/*   1=EXTRA INFO; 2=BUFFER; 3=DEV-ACTIVE; 4=DEV-LEGACY */
-					opt_R.val++;
-					break;
-			case 'x':						/* OPTION TO SQUEEZE DTHR VALUES BY 1 FOR k > PISO */
-					opt_x.bit = 1;
-					opt_x.val++;
-					break;
-			case 'z':						/* OPTION FOR ZERO MISMATCH SCORE */
-					opt_z.bit = 1;
-					mismatch = 0;
-					break;
-			case 'B':						/* USE SPACE FOR BLANK CHARACTER IN MHA's */
-					opt_B.bit = 1;
-					opt_B.val++;
-					Fill = &fill_2;			/* Fill character set to space (32); default was full-stop (46) */	
-					blank = Fill->sym;
-					break;
-			case 'C':						/* OPTION TO USE REVERSE COMPLEMENT */
-					opt_C.bit = 1;
-					break;
-			case 'D':
-					opt_D.bit = 1;
-					break;
-			case 'F':						/* OPTION TO USE BLANK FILL CHAR W/ SCRIMMAGELINE */
-					opt_F.bit = 1;
-					break;
-			case 'H':						/* OPTION TO SHOW HELP */
-					opt_H.bit = opt_h.bit = 1;
-					break;
-			case 'K':						/* OPTION TO SHOW CONSENSUS ROW */
-					opt_K.bit = 1;
-					break;
-			case 'L':						/* OPTION TO SHOW POSITIONS AT END OF LINES */
-					opt_L.bit = 1;
-					break;
-			case 'M':						/* OPTION TO DOUBLE LONG HOMOMONO WRAP */
-					opt_M.bit = 1;
-					opt_M.val *=2;			/* DOUBLE opt_M  mwrap */
-					break;
-			case 'O':						/* OPTION TO OUTPUT CONSENSUS FILE */
-					opt_O.bit = 1;
-					opt_O.val++;
-					break;
-			case 'P':						/* OPTION TO PRINT PATH BOX */
-					opt_P.bit = 1;
-					break;
-			case 'R':						/* OPTION TO PRINT RECOVERED 1-D SEQUENCE FROM LAST 2-D */
-					opt_R.bit = 1;
-					opt_R.val++;			/* THIS IS INCREMENTED TO ALLOW TOGGLING OFF WITH '-v' */
-					break;
-			case 'T':
-					opt_T.bit = 1;
-					break;
-			case 'X':						/* OPTION TO SCRAMBLE SEQUENCE           */
-					opt_X.bit = 1;
-					opt_X.val++;
-					break;					/*  X = rand() cheese, XX = FISHER-YATES */
-			case 'Y':						/* OPTION TO SPECIFY FY_size	*/
-					opt_Y.bit = 1;
-					if (number) {
-						if (number < MAXROW) {
-							FY_size = number;
-						}
-						else {
-							warnhead('Y');
-							printf("Option 'Y' to specify FY_size, but it must be less than %d.", MAXROW);
-						}
+	const char* optstring = "cdfg::hklm::noprstu::v::x::zB::CDFHKLM::O::PRTX::Y:";
+	while ((opt = getopt(argc, argv, optstring)) != -1) {
+		switch (opt) {
+		case 'c':						/* SHOW BASE 62 CODE */
+				opt_c.bit = 1;
+				print_base62_table();
+				return(EXIT_EARLY);
+				break;
+		case 'd':						/* OPTION TO SKIP CINCH-D CINCHING */
+				opt_d.bit = 1;
+				break;
+		case 'f':						/* OPTION TO SHOW FOAM-FREE SEGMENTS BELOW CONSENSUS ROW*/
+				opt_f.bit = 1;
+				break;
+		case 'g':						/* opt_g GEL-UP, COUNTERACT STARTING MELTAGE */
+				opt_g.bit = 1;
+				if (isalpha(optarg[0]))
+					opt_g.val = 1;	
+				else
+					opt_g.val = atoi(optarg);
+				opt_m.val -= opt_g.val;
+				break;
+		case 'h':						/* OPTION TO SHOW HELP */
+				opt_h.bit = 1;
+				break;
+		case 'k':						/* OPTION TO SHOW k-MER COUNTS */
+				opt_k.bit = 1;
+				break;
+		case 'l':						/* OPTION TO SHOW SLIP LOCATIONS IN 1D SEQUENCE */
+				opt_l.bit = 1;
+				break;
+		case 'm':						/* OPTION TO SPLIT, OPEN, AND MELT */
+				opt_m.bit = 1;
+				if (isalpha(optarg[0]))
+					opt_m.val = 1;	
+				else
+					opt_m.val = atoi(optarg);
+				break;
+		case 'n':						/* OPTION TO NOT DO RELAX-2D PASS */
+				opt_n.bit = 1;
+				break;
+		case 'o':						/* OPTION TO PRINT ORIGINAL STRING UNFORMATTED */
+				opt_o.bit = 1;
+				break;
+		case 'p':						/* OPTION TO SHOW PARAMETERS */
+				opt_p.bit = 1;
+				break;
+		case 'r':						/* OPTION TO SHOW ROW NUMBERING */
+				opt_r.bit = 1;
+				break;
+		case 's':						/* OPTION TO SILENCE WRITE TO NORMAL OUTPUT FILE */
+				opt_s.bit = 1;
+				break;
+		case 't':						/* OPTION TO SKIP CINCH-T */
+				opt_t.bit = 1;
+				break;
+		case 'u':						/* OPTION TO PRINT 'UNWRAP' SCREEN WRAP; SET TO INCREASE BY 10 bp */
+				opt_u.bit = 1;			/* HISTORICALLY THIS USED TO UNWRAP 2-D DISPLAY BUT IS IMPRACTICAL ON SCREEN */
+				if (isalpha(optarg[0]))
+					opt_u.val = 1;	
+				else
+					opt_u.val = atoi(optarg);
+				par_wrap.set += 10 * opt_u.val;
+				break;
+		case 'v':						/* OPTION FOR VERBOSITY */
+				opt_v.bit = 1;			/*   1=EXTRA INFO; 2=BUFFER; 3=DEV-ACTIVE; 4=DEV-LEGACY */
+				opt_l.bit = opt_o.bit = opt_p.bit = opt_r.bit = opt_F.bit = opt_L.bit = 1;
+				if (isalpha(optarg[0]))
+					opt_v.val = 1;	
+				else
+					opt_v.val = atoi(optarg);
+				break;
+		case 'x':						/* OPTION TO SQUEEZE DTHR VALUES BY 1 FOR k > PISO */
+				opt_x.bit = 1;
+				if (isalpha(optarg[0]))
+					opt_x.val = 1;	
+				else
+					opt_x.val = atoi(optarg);
+				break;
+		case 'z':						/* OPTION FOR ZERO MISMATCH SCORE */
+				opt_z.bit = 1;
+				mismatch = 0;
+				break;
+		case 'B':						/* USE SPACE FOR BLANK CHARACTER IN MHA's */
+				opt_B.bit = 1;
+				if (isalpha(optarg[0]))
+					opt_B.val = 1;	
+				else
+					opt_B.val = atoi(optarg);
+				Fill = &fill_2;			/* Fill character set to space (32); default was full-stop (46) */	
+				blank = Fill->sym;
+				break;
+		case 'C':						/* OPTION TO USE REVERSE COMPLEMENT */
+				opt_C.bit = 1;
+				break;
+		case 'D':
+				opt_D.bit = 1;
+				break;
+		case 'F':						/* OPTION TO USE BLANK FILL CHAR W/ SCRIMMAGELINE */
+				opt_F.bit = 1;
+				break;
+		case 'H':						/* OPTION TO SHOW HELP */
+				opt_H.bit = opt_h.bit = 1;
+				break;
+		case 'K':						/* OPTION TO SHOW CONSENSUS ROW */
+				opt_K.bit = 1;
+				break;
+		case 'L':						/* OPTION TO SHOW POSITIONS AT END OF LINES */
+				opt_L.bit = 1;
+				break;
+		case 'M':						/* OPTION TO DOUBLE LONG HOMOMONO WRAP */
+				if (isalpha(optarg[0])) {
+					opt_M.bit = 1;	
+					opt_M.val *= 2;		/* MULTIPLY opt_M  mwrap BY NUMBER */
+				}
+				else {
+					number = atoi(optarg);
+					opt_M.bit = number;		/* B/C VALUE DOES NOT REFLECT ARGUMENT NUMBER */
+					opt_M.val *=number;		/* MULTIPLY opt_M  mwrap BY NUMBER */
+				}
+				break;
+		case 'O':						/* OPTION TO OUTPUT CONSENSUS FILE */
+				opt_O.bit = 1;
+				if (isalpha(optarg[0]) || atoi(optarg)==1)
+					opt_O.val = 1;	
+				else
+					opt_O.val = atoi(optarg);
+				break;
+		case 'P':						/* OPTION TO PRINT PATH BOX */
+				opt_P.bit = 1;
+				break;
+		case 'R':						/* OPTION TO PRINT RECOVERED 1-D SEQUENCE FROM LAST 2-D */
+				opt_R.bit = 1;
+				break;
+		case 'T':
+				opt_T.bit = 1;
+				break;
+		case 'X':						/* OPTION TO SCRAMBLE SEQUENCE           */
+				opt_X.bit = 1;
+				if (isalpha(optarg[0]) || atoi(optarg)==1)
+					opt_X.val = 1;
+				else {
+					opt_X.val = 2;
+				}
+				break;					/*  X = rand() cheese, XX = FISHER-YATES */
+		case 'Y':						/* OPTION TO SPECIFY FY_size	*/
+				opt_Y.bit = 1;
+				number = atoi(optarg);
+				if (number) {
+					if (number < MAXROW) {
+						FY_size = number;
 					}
 					else {
 						warnhead('Y');
-						printf("Option 'Y' to specify FY_size, but none specified; using default FY_size = %d.", FY_size);
+						printf("Option 'Y' to specify FY_size, but it must be less than %d.", MAXROW);
 					}
-					break;
-			default:
-					printf("maximal: Illegal option %c\n", opt);
-					argc = 0;
-					usage(version);
-					exit(1);
-					break;
-			} /* END SWITCH opt			*/
-		} /* END WHILE opt			*/
-	} /* END WHILE argc argv	*/
-
-	/* IF CERTAIN OPTIONS ARE ON, SKIP RELAX-2D */
-	if (opt_d.bit || opt_O.bit) {
-		opt_n.bit = 1;		/* opt_n NO RELAX 2-D */
+				}
+				else {
+					warnhead('Y');
+					printf("Option 'Y' to specify FY_size, but none specified; using default FY_size = %d.", FY_size);
+				}
+				break;
+		default:
+				printf("maximal: Illegal option %c\n", opt);
+				argc = 0;
+				usage(version);
+				exit(1);
+				break;
+		}
 	}
 
 	/*******************************************************/
@@ -400,15 +423,15 @@ int main(int argc, char *argv[])
 		return(2);
 	}
 
+	/* IF CERTAIN OPTIONS ARE ON, SKIP RELAX-2D */
+	if (opt_d.bit || opt_O.bit) {
+		opt_n.bit = 1;		/* opt_n NO RELAX 2-D */
+	}
+
 	/* OPTION TO APPEND TO GROWING 2-D MSA FILE */
 	if (opt_O.val >= 2) {
 		opt_O.val = 2;
 		opt_n.bit = 1;		/* opt_n NO RELAX 2-D */
-	}
-
-	/* IF OPTION R TOGGLED BACK O-F-F FROM OPTION v (VERBOSE), then set opt_R back to zero for screen reporting purposes */
-	if (opt_R.val % 2 == 0) {		
-		opt_R.val = opt_R.bit = 0;
 	}
 
 	if (j > 1) {
@@ -429,10 +452,12 @@ int main(int argc, char *argv[])
 		if (Options[i]->bit)
 			printf("%c", Options[i]->sym);
 	}
-	if (opt_B.val > 1) {
-		printf(" -B%d", opt_B.val);
-	}
-	printf(" -M%d", opt_M.val);
+	if (opt_u.bit) 
+		printf(" -u%d", opt_u.val);
+	if (opt_B.val > 1) 
+		printf(" -B %d", opt_B.val);
+	if (opt_M.bit) 
+		printf(" -M %d", opt_M.bit);	/* opt_M.val is a multiple of opt_M.bit, which is command arg */
 	if (opt_X.bit) {
 		if (opt_X.val==1) {
 			printf(" -X [USE RANDOMIZED SEQUENCE]");
@@ -441,10 +466,7 @@ int main(int argc, char *argv[])
 			printf(" -XX [USE FISHER-YATES RANDOMIZED SEQUENCE]");
 		}
 	}
-	if (opt_u.bit) {
-		printf(" -u%d", opt_u.val);
-	}
-	printf(" (version %s)\n", version);
+	printf("\n Version %s: ", version);
 	printf("%s", time0);
 
 	if (opt_p.bit) {		/* opt_p SHOW RUN PARAMETERS */
