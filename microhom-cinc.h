@@ -122,9 +122,7 @@ int cinch_l(void)
 {
 int cil_row=0, i=0, j=0, k=0, l=0, m=0, n=0, run=0, x=0;
 char letr;
-char lopt_Q_left = (char) options[26];		/* LHS character delimiter for homopolymer run */
-char lopt_R_rght = (char) options[27];		/* RHS character delimiter for homopolymer run */
-char blnk        = (char) options[11];		/* opt_B blank character		*/
+char blnk = Fill->sym;		/* opt_B blank character		*/
 char lclalign2D[MAXROW][MAXROW] = {{0}};
 
 	for (m = 0; align2D[m][0] != '\0'; m++) {
@@ -151,7 +149,7 @@ char lclalign2D[MAXROW][MAXROW] = {{0}};
 					run++;
 				}
 				
-				lclalign2D[    m+cil_row][n-x-opt_M.val+1  ] = lopt_R_rght;	/* WRITE SLIP AFTER FIRST 10 */
+				lclalign2D[    m+cil_row][n-x-opt_M.val+1  ] = monoR.sym;	/* WRITE SLIP AFTER FIRST 10 */
 				for (l = 1; l < opt_M.val; l++)								
 					lclalign2D[m+cil_row][n-x-opt_M.val+1+l] = '\0';
 				cil_row++;														/* ADVANCE TO NEXT ROW, CONT.*/
@@ -159,12 +157,12 @@ char lclalign2D[MAXROW][MAXROW] = {{0}};
 				for (j = (run-opt_M.val)/opt_M.val; j > 0; j--) {
 					for (i = 0; i < n-x-2*opt_M.val; i++)
 						lclalign2D[m+cil_row][i] = blnk;
-					lclalign2D[m+cil_row][i] = lopt_Q_left;					/* MARK LEFT EDGE OF MWRAP RUN */
+					lclalign2D[m+cil_row][i] = monoL.sym;					/* MARK LEFT EDGE OF MWRAP RUN */
 					for (k = 0; k < opt_M.val; k++) {
 						lclalign2D[m+cil_row][n-x-2*opt_M.val+1+k] = letr; /* FILL W/ MONOMER LETTER  */
 					}
 					if (j > 1) {
-						lclalign2D[m + cil_row  ][n-x-opt_M.val+1] = lopt_R_rght;
+						lclalign2D[m + cil_row  ][n-x-opt_M.val+1] = monoR.sym;
                         lclalign2D[m + cil_row++][n-x-opt_M.val+2] = '\0';             /* SHOULD NOT BE NECESSARY */
 					}
 					else if (j == 1) 
@@ -194,15 +192,13 @@ int cinch_k(void)
 int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0, q=0; 
 int first_mwrap_start=0, last_mwrap=0;
 unsigned short int first_mwrap=0, keep_checking=1;
-unsigned short int nuctype = options[13];		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
+unsigned short int nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int homopolyflag=0, imperfect_TR=0;
 int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
 char letr, letr2, letr3;
-char blnk        = (char) options[11];		/* opt_B blank character */
-char kopt_Q_left = (char) options[26];		/* LHS character delimiter for homopolymer Run */
-char kopt_R_rght = (char) options[27];		/* RHS character delimiter for homopolymer Run */
-int max_k = (int) options[46]/2;				/* MAX k-SIZE FROM mark_tela() */
+char blnk = Fill->sym;			/* opt_B blank character */
+int max_k = Cinch_T.pass_V/2;	/* MAX k-SIZE FROM mark_tela() but stored here b/c mark_tela() called by cinch-t block */
 int lenseq = Clean.pass_W;
 int *x_history = NULL;
 int symbol_count = 0;
@@ -236,7 +232,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 				/* CHECK LINE AHEAD OF TIME FOR FIRST MONO-RUN TERMINATOR */
 				for (i = 0; (letr=align2D[m][i]) != '\0'; i++) {	
 					/* NOTE: APPARENT REDUNDANCY BELOW ALLOWS CHANGING L/R RUN DELIMITERS TO BE EQUAL */
-					if (letr == kopt_R_rght && align2D[m][i-1] != blnk) {
+					if (letr == monoR.sym && align2D[m][i-1] != blnk) {
 						first_mwrap = 1;					/* TURN ON BIT FLAG FOR HANDLING FIRST MONO-RUN */
 						last_mwrap = 1;						/* TURN ON BIT FLAG FOR HANDLING TO LAST MONO-RUN */
 						first_mwrap_start = i-opt_M.val;	/* SAVE POSITION OF START OF MWRAP */
@@ -286,20 +282,20 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 						break;									/* BREAK OUT OF FOR n LOOP */
 					}
 					else if (last_mwrap) {
-						if (align2D[m][n] == kopt_Q_left && align2D[m][n+opt_M.val+1] == kopt_R_rght) {		
+						if (align2D[m][n] == monoL.sym && align2D[m][n+opt_M.val+1] == monoR.sym) {		
 							symbol_count += opt_M.val;
-							cik_align2D[m+cik_row][n-x] = kopt_Q_left;
+							cik_align2D[m+cik_row][n-x] = monoL.sym;
 							n++;
-							while ( (letr=align2D[m][n]) != kopt_R_rght) {
+							while ( (letr=align2D[m][n]) != monoR.sym) {
 								cik_align2D[m+cik_row][n-x] = letr;
 								n++;
 							}
-							cik_align2D[m+cik_row][n-x] = letr;			/* WILL WRITE kopt_R_rght */
+							cik_align2D[m+cik_row][n-x] = letr;			/* WILL WRITE monoR.sym */
 							for (i = opt_M.val; i > 0; i--)				/* FAILSAFE:			*/
 								cik_align2D[m+cik_row][n-x+i] = '\0';	/* OVERWRITE W/ NULLS	*/
 							break;										/* BREAK OUT OF n LOOP	*/
 						}
-						else if (align2D[m][n] == kopt_Q_left && align2D[m][n+opt_M.val+1] != kopt_R_rght) {
+						else if (align2D[m][n] == monoL.sym && align2D[m][n+opt_M.val+1] != monoR.sym) {
 							symbol_count += opt_M.val;
 							last_mwrap = 0;
 							for (i = 0; i <= opt_M.val; i++) {
@@ -634,10 +630,11 @@ int cyc_col=0, cyc_row=0, a, b, i, j, kmer=0, m=0, n=0;
 int lenseq   = Clean.pass_W;
 int cyc_width = Current.pass_W;						/* THIS IS opt_W SLOT TO STORE CURRENT 2-D WIDTH */
 short unsigned int edge0=0;
-unsigned short int nuctype = options[13];			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
+unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 unsigned short int nuctransit=0, dud_nudge=0;		/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int tipcyc_flag=0;					/* BIT FLAG FOR TIP CYCLING OPPORTUNITY */
-char blnk = options[11], letr, conletr, topletr;
+char blnk = Fill->sym;
+char letr, conletr, topletr;
 char cyc_ar[MAXROW+1][MAXROW] = {{0}};
 unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 
@@ -837,18 +834,17 @@ unsigned int cinch_d(short unsigned int cinch_d_opt)
 {
 int cid_mrow=0, cid_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, w=0, x=0, tot_repeats=0, uniq_TRs=0, num_transits=0;
 int cidwidth = Current.pass_W; 
-int height = options[17];		/* height slot */
+int height = Current.pass_H;		/* height slot */
 int translimit = 0;
 unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;		/* CHECK MONO IN ORDER TO KNOW TO SKIP IT */
 unsigned short int nuctransit=0;						/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int imperfect_TR=0;
 char letr = 'B', ltr2 = 'Z';
-char dopt_R_rght = (char) options[27];
-char blnk        = (char) options[11];
+char blnk = Fill->sym;
 char cid_align2D[MAXROW][MAXROW];
 
-	nuctype = options[13];		/* EQUALS ONE IF DNA, TWO IF RNA */
-	if (nuctype == 1) {		/* IF DNA */
+	nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA, TWO IF RNA */
+	if (nuctype == 1) {			/* IF DNA */
 		nuctransit = 1;
 	}
 
@@ -1049,7 +1045,7 @@ char cid_align2D[MAXROW][MAXROW];
 						for (i = m; i < MAXROW; i++) {
 							for (j = n+k; j < Current.pass_W+1; j++) {
 								letr = cid_align2D[i+cid_mrow][j-cid_ncol] = align2D[i][j];
-								if (letr=='/' || letr==dopt_R_rght) 
+								if (letr=='/' || letr==monoR.sym) 
 									cid_align2D[i+cid_mrow][j-cid_ncol+1] = '\0';
 								else if (letr=='>') {
 									for (h=0; h<n; h++)
@@ -1124,9 +1120,10 @@ void relax_2D(void)
 {
 int height=0, i, j, m, n, rlx_col=0, v=0, w=0, z=0;
 int width = Current.pass_W; 
-char blnk = options[11], letr;
-unsigned short int nuctype = options[13], nuctransit=0;
-char rlx_opt_R_rght = options[27];
+char blnk = Fill->sym;
+char letr;
+unsigned short int nuctype = Clean.pass_V;
+unsigned short int nuctransit=0;
 char rlx_align2D[MAXROW][MAXROW];
 
 	if (nuctype == 1)		/* IF DNA */
@@ -1137,7 +1134,7 @@ char rlx_align2D[MAXROW][MAXROW];
 	while (align2D[height][0] != '\0') {
 		height++;
 	}
-	options[17] = height;
+	Current.pass_H = height;
 
 	for (n=0; n < width; n++) {
 		v = w = z = m = 0;
@@ -1211,7 +1208,7 @@ char rlx_align2D[MAXROW][MAXROW];
 				}
 			} /* END OF IF w > 1 */
 		}
-		else if (align2D[m][n+1] == '>' || align2D[m][n+1] == rlx_opt_R_rght) {
+		else if (align2D[m][n+1] == '>' || align2D[m][n+1] == monoR.sym) {
 			rlx_align2D[m - rlx_col][n + rlx_col] = letr;
 			rlx_align2D[m - rlx_col][n + rlx_col + 1] = align2D[m][n+1];
 			rlx_align2D[m - rlx_col][n + rlx_col + 2] = '\0';
@@ -1237,19 +1234,18 @@ char rlx_align2D[MAXROW][MAXROW];
 int recover_1D(char *recovered_1D) 
 {
 int m=0, n=0, x=0;
-char 	wrapcharR 	= options[27];		/* mono-run terminator 	*/
-int 	height 		= options[17];		/* height slot 			*/
+int 	height 		= Current.pass_H;	/* height slot 			*/
 int 	lenseq 		= Clean.pass_W;		/* length slot 			*/
 char	letr;
 
 	for (m=0; m<height; ) {
-		for (n=0; (letr=align2D[m][n]) != '/' && letr!=wrapcharR && letr!='>' && n < lenseq; n++) {
+		for (n=0; (letr=align2D[m][n]) != '/' && letr!=monoR.sym && letr!='>' && n < lenseq; n++) {
 			if (isalpha(letr)) {
 				recovered_1D[x] = letr;
 				x++;
 			}
 		}
-		if (letr=='/' || letr==wrapcharR)
+		if (letr=='/' || letr==monoR.sym)
 			m++;
 		else if (letr=='>') {
 			recovered_1D[x] = letr;

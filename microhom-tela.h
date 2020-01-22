@@ -211,7 +211,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 	int i, j, m, n, r, z=0;
 	int lenseq = Clean.pass_W;
 	char c;
-	char blnk = (char) options[11];		/* opt_B blank character */
+	char blnk = Fill->sym;		/* opt_B blank character */
 
 	if      ( cpos>lenseq ||  cpos<0 || tela[cpos].cyc_l < 2)
 		return(0);
@@ -301,7 +301,8 @@ void mark_tela(void)
 	int i, j, l, m, n, k, reps, span, min_k; 
 	int threshold=0, max_score=0, max_count=0, projection=0;
 	int lenseq = Clean.pass_W;
-	unsigned short int nuctype = options[13], nuctransit=0, TRcheck=0, imperfect_TR=0, Aimperfect_TR=0, gapcheck=0;
+	unsigned short int nuctype = Clean.pass_V;
+	unsigned short int nuctransit=0, TRcheck=0, imperfect_TR=0, Aimperfect_TR=0, gapcheck=0;
 	int homopoly_flag=0, Did=0, Dtr=0, Atr=0;
 	int mismatch   = -1;	/* MOVE ME TO HEADER FILE */
 	unsigned short int checkconflict=0;
@@ -694,7 +695,7 @@ void mark_tela(void)
 			max_k = tela[n].all_k;
 		}
 	}
-	options[46] = max_k;  
+	Cinch_T.pass_V = max_k;  
 
 	if (dev_print(TELA,__LINE__)) {
 		printf("                     Finishing. print_tela() follows.");

@@ -19,6 +19,7 @@ fi
 ./maximal -DRKn waves/tubespit/seq-000-orig_c.txt 
 ./maximal -DRKn waves/tubespit/seq-000-orig_d.txt 
 ./maximal -DRKn waves/tubespit/seq-000-orig_e.txt 
+./maximal -DRKn waves/tubespit/seq-000-orig_f.txt 
 ./maximal -DRKnx waves/tubespit/seq-033-imprf1.txt 
 
 ./surfboard-checkmha
