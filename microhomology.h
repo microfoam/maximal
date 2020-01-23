@@ -109,7 +109,7 @@ struct {
 	opt_O = {0, 0, 'O', 	"Append 2-D alignment to consensus file or raw input file.**    "},
 	opt_P = {0, 0, 'P', 	"Show pathbox.                                                  "},
 	opt_Q = {0, 0, 'Q', {0}},
-	opt_R = {0, 0, 'R', 	"Recover sequence from 2-D; toggled on by '-v' and off by '-vR'."},
+	opt_R = {0, 0, 'R', 	"Recover sequence from 2-D.                                     "},
 	opt_S = {0, 0, 'S', {0}},
 	opt_T = {0, 0, 'T', 	"Show diagonal threshold values for transitions scoring.        "},
 	opt_U = {0, 0, 'U', {0}},
@@ -434,10 +434,6 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 				else
 					printf(".");
 			}
-			if (badsites == 0)
-				printf(" = consensus\n");
-			else
-				printf("\n");
 		}
 		if (badsites > 0) {
 			line_end(BLOCKHEAD, 9, 9);	
@@ -1404,7 +1400,7 @@ void usage(char *usage_version)
 void warnhead(char l)
 { 
 /*	printf("%c", 7); */	/* BELL CHARACTER */
-	printf("\n * Notice (%c): ", l);
+	printf("\n\n  * Notice (%c): ", l);
 } 
 
 /*************************************************************************************************/

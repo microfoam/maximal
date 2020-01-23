@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 	int tuck;
 	short unsigned int conflict_flag=0;
 
-	int number=0;
+	int numarg=0;
 	int sumspan=0;
 	int homopoly_flag=0;
 	short unsigned int msa = 0;	
@@ -71,7 +71,6 @@ int main(int argc, char *argv[])
 
  	char m2Dalig[MAXROW+1][MAXROW] = {{0}};			
 	char cycle[WIDTH+1];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
-	char numstring[8] = {0};
 	char Seq_head[100] = {0};	/* FASTA HEADER */
 	char Seq_i[MAXROW] = "TGTGTGAGTGAnnnnnnTGTGTGAGTGAGnnnnnTGTGTGAGTGAGTGAnnTGTGTGAGTGAGTGAGT"; 	/* INPUT SEQUENCE W/ DEFAULT */
 	char Seq_r[MAXROW] = {0}; 	/* RANDOMIZED SEQUENCE */
@@ -85,6 +84,21 @@ int main(int argc, char *argv[])
 	time_t lcl_time = time(NULL);			/* START TIME */
 	char time0[26];							/* START TIME STRING */
 	strcpy(time0,ctime(&lcl_time));			/* TEXT-READABLE START TIME */
+	char recovered[MAXROW] = {0};
+	short unsigned int go_flag=0, cycle_flag=0;			/* USE THIS TYPE FOR TRUE BIT FLAG VARIABLES */
+	unsigned int recovery_flag = 0;
+	int relax_length=0;			/* FOR USE WITH relax_2D CALL */
+	int intraTR_reps_tot = 0; 	/* STORES INITIAL RETURN VALUE FROM cinch-d() */
+	int intraTR_reps = 0;	 	/* STORES CURRENT RETURN VALUE FROM cinch-d() */
+	int Did = 0;				/* Counter for identity (id) diagonal */
+	int Dtr = 0;				/* Counter for tandem repeat (tr) diagonal */
+	int Atr = 0;				/* Counter for additional repeats on the same diagonal */
+	int row = 0;				/* Counter for row number in align2D box */
+	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from tela[].r */
+	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
+	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
+	int blocks;				/* Number of blocks for 1D output print */
+
 
 	signal(SIGINT, signal_callback_handler);	/*  2 */
 	signal(SIGBUS, signal_callback_handler);	/* 10 */
@@ -131,23 +145,11 @@ int main(int argc, char *argv[])
 
 	/* IS THERE A FILE NAME ARGUMENT? */
 	for (i = 1; i < argc; i++) {
-		if (*argv[i] != '-') {
-			if (*argv[i] > '0' && *argv[i] <= '9') {
-				strcpy(numstring, argv[i]);
-				l = strlen(numstring);
-				for (r=0; r<l; r++) {
-					if (!isdigit(numstring[r])) {
-						warnhead('d');
-						printf("Command line arguments starting with numbers need to be strings with digits-only.\n\n");
-						usage(version);
-						exit(EXIT_ERROR);
-					}
-				}
-			}
-			else if (strcmp(argv[i],"TUBES.mha")) {		/* strcmp EVALUATES TO 0 ONLY IF STRINGS ARE THE SAME */
+		if (*argv[i] != '-' && !(isdigit(*argv[i]))) {
+			if (strcmp(argv[i],"TUBES.mha")) {		/* strcmp EVALUATES TO 0 ONLY IF STRINGS ARE THE SAME */
 				/* USING j BELOW AS COUNTER TO NUMBER OF TIMES USER SPECFIES DIFFERENT SEQUENCES */
 
-				if ( (file_ptr = fopen(argv[i], "r") ) == NULL) {
+				if ((file_ptr = fopen(argv[i], "r") ) == NULL) {
 					printf("\n %2d. Error opening file '%s'. Exiting now.\n\n", ++j, argv[i]);
 					exit(EXIT_ERROR);
 				}
@@ -221,30 +223,18 @@ int main(int argc, char *argv[])
 		}	/* END OF IF ARGV[I] != '-' */
 	}	/* END OF FOR i = 1, i < argc, i++ */
 
-	char recovered[MAXROW] = {0};
-	short unsigned int go_flag=0, cycle_flag=0;			/* USE THIS TYPE FOR TRUE BIT FLAG VARIABLES */
-	unsigned int recovery_flag = 0;
-	int relax_length=0;			/* FOR USE WITH relax_2D CALL */
-	int intraTR_reps_tot = 0; 	/* STORES INITIAL RETURN VALUE FROM cinch-d() */
-	int intraTR_reps = 0;	 	/* STORES CURRENT RETURN VALUE FROM cinch-d() */
-	int Did = 0;				/* Counter for identity (id) diagonal */
-	int Dtr = 0;				/* Counter for tandem repeat (tr) diagonal */
-	int Atr = 0;				/* Counter for additional repeats on the same diagonal */
-	int row = 0;				/* Counter for row number in align2D box */
-	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from tela[].r */
-	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
-	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
-	int blocks;				/* Number of blocks for 1D output print */
-
 	if (argc == 1) {
 	 	system("clear"); 
 		usage(version);
-		exit(EXIT_EARLY);
+		return(EXIT_EARLY);
 	}
 
 	/**************************************/
 	/* SET OPTIONS FROM ARGUMENTS  ********/
 	const char* optstring = "cdfg::hklm::noprstu::v::x::zB::CDFHKLM::O::PRTX::Y:";
+	opterr=0;
+
+	OPTLOOP:
 	while ((opt = getopt(argc, argv, optstring)) != -1) {
 		switch (opt) {
 		case 'c':						/* SHOW BASE 62 CODE */
@@ -260,10 +250,11 @@ int main(int argc, char *argv[])
 				break;
 		case 'g':						/* opt_g GEL-UP, COUNTERACT STARTING MELTAGE */
 				opt_g.bit = 1;
-				if (isalpha(optarg[0]))
+				numarg = atoi(optarg);
+				if (numarg<2)
 					opt_g.val = 1;	
 				else
-					opt_g.val = atoi(optarg);
+					opt_g.val = numarg;
 				opt_m.val -= opt_g.val;
 				break;
 		case 'h':						/* OPTION TO SHOW HELP */
@@ -277,10 +268,11 @@ int main(int argc, char *argv[])
 				break;
 		case 'm':						/* OPTION TO SPLIT, OPEN, AND MELT */
 				opt_m.bit = 1;
-				if (isalpha(optarg[0]))
+				numarg = atoi(optarg);
+				if (numarg<2)
 					opt_m.val = 1;	
 				else
-					opt_m.val = atoi(optarg);
+					opt_m.val = numarg;
 				break;
 		case 'n':						/* OPTION TO NOT DO RELAX-2D PASS */
 				opt_n.bit = 1;
@@ -302,26 +294,29 @@ int main(int argc, char *argv[])
 				break;
 		case 'u':						/* OPTION TO PRINT 'UNWRAP' SCREEN WRAP; SET TO INCREASE BY 10 bp */
 				opt_u.bit = 1;			/* HISTORICALLY THIS USED TO UNWRAP 2-D DISPLAY BUT IS IMPRACTICAL ON SCREEN */
-				if (isalpha(optarg[0]))
+				numarg = atoi(optarg);
+				if (numarg<2)
 					opt_u.val = 1;	
 				else
-					opt_u.val = atoi(optarg);
+					opt_u.val = numarg;
 				par_wrap.set += 10 * opt_u.val;
 				break;
 		case 'v':						/* OPTION FOR VERBOSITY */
 				opt_v.bit = 1;			/*   1=EXTRA INFO; 2=BUFFER; 3=DEV-ACTIVE; 4=DEV-LEGACY */
 				opt_l.bit = opt_o.bit = opt_p.bit = opt_r.bit = opt_F.bit = opt_L.bit = 1;
-				if (isalpha(optarg[0]))
+				numarg = atoi(optarg);
+				if (numarg<2)
 					opt_v.val = 1;	
 				else
-					opt_v.val = atoi(optarg);
+					opt_v.val = numarg;
 				break;
 		case 'x':						/* OPTION TO SQUEEZE DTHR VALUES BY 1 FOR k > PISO */
 				opt_x.bit = 1;
-				if (isalpha(optarg[0]))
+				numarg = atoi(optarg);
+				if (numarg<2)
 					opt_x.val = 1;	
 				else
-					opt_x.val = atoi(optarg);
+					opt_x.val = numarg;
 				break;
 		case 'z':						/* OPTION FOR ZERO MISMATCH SCORE */
 				opt_z.bit = 1;
@@ -329,10 +324,11 @@ int main(int argc, char *argv[])
 				break;
 		case 'B':						/* USE SPACE FOR BLANK CHARACTER IN MHA's */
 				opt_B.bit = 1;
-				if (isalpha(optarg[0]))
+				numarg = atoi(optarg);
+				if (numarg<2)
 					opt_B.val = 1;	
 				else
-					opt_B.val = atoi(optarg);
+					opt_B.val = numarg;
 				Fill = &fill_2;			/* Fill character set to space (32); default was full-stop (46) */	
 				blank = Fill->sym;
 				break;
@@ -355,22 +351,23 @@ int main(int argc, char *argv[])
 				opt_L.bit = 1;
 				break;
 		case 'M':						/* OPTION TO DOUBLE LONG HOMOMONO WRAP */
-				if (isalpha(optarg[0])) {
+				numarg = atoi(optarg);
+				if (numarg<2) {
 					opt_M.bit = 1;	
 					opt_M.val *= 2;		/* MULTIPLY opt_M  mwrap BY NUMBER */
 				}
 				else {
-					number = atoi(optarg);
-					opt_M.bit = number;		/* B/C VALUE DOES NOT REFLECT ARGUMENT NUMBER */
-					opt_M.val *=number;		/* MULTIPLY opt_M  mwrap BY NUMBER */
+					opt_M.bit = numarg;		/* B/C VALUE DOES NOT REFLECT ARGUMENT NUMBER */
+					opt_M.val *=numarg;		/* MULTIPLY opt_M  mwrap BY NUMBER */
 				}
 				break;
 		case 'O':						/* OPTION TO OUTPUT CONSENSUS FILE */
 				opt_O.bit = 1;
-				if (isalpha(optarg[0]) || atoi(optarg)==1)
+				numarg = atoi(optarg);
+				if (numarg<2)
 					opt_O.val = 1;	
 				else
-					opt_O.val = atoi(optarg);
+					opt_O.val = numarg;
 				break;
 		case 'P':						/* OPTION TO PRINT PATH BOX */
 				opt_P.bit = 1;
@@ -381,20 +378,21 @@ int main(int argc, char *argv[])
 		case 'T':
 				opt_T.bit = 1;
 				break;
-		case 'X':						/* OPTION TO SCRAMBLE SEQUENCE           */
-				opt_X.bit = 1;
-				if (isalpha(optarg[0]) || atoi(optarg)==1)
+		case 'X':						/* OPTION TO SCRAMBLE SEQUENCE                      */
+				opt_X.bit = 1;			/*  X = 1 for rand() cheese, X = 2 for Fisher-Yates */
+				numarg = atoi(optarg);
+				if (numarg<2 && !(opt_X.val))
 					opt_X.val = 1;
 				else {
 					opt_X.val = 2;
 				}
-				break;					/*  X = rand() cheese, XX = FISHER-YATES */
+				break;
 		case 'Y':						/* OPTION TO SPECIFY FY_size	*/
 				opt_Y.bit = 1;
-				number = atoi(optarg);
-				if (number) {
-					if (number < MAXROW) {
-						FY_size = number;
+				numarg = atoi(optarg);
+				if (numarg) {
+					if (numarg < MAXROW) {
+						FY_size = numarg;
 					}
 					else {
 						warnhead('Y');
@@ -406,13 +404,30 @@ int main(int argc, char *argv[])
 					printf("Option 'Y' to specify FY_size, but none specified; using default FY_size = %d.", FY_size);
 				}
 				break;
+		case '?':
+				if (optopt=='B') {
+					opt_B.bit++;
+					opt_B.val++;
+					Fill = &fill_2;			/* Fill character set to space (32); default was full-stop (46) */	
+					blank = Fill->sym;
+					break;
+				}
+				if (optopt=='X') {
+					opt_X.bit++;
+					opt_X.val++;
+					break;
+				}
 		default:
-				printf("maximal: Illegal option %c\n", opt);
-				argc = 0;
-				usage(version);
-				exit(1);
+				warnhead(opt);
+				printf("Unrecognized input '%c'", optopt);
 				break;
 		}
+	}
+
+	/* THE ONLY GOTO LOOP IN maximal CODE IS HERE TO FIND COMMAND ARGUMENTS AFTER FILE NAME */
+	for(; optind < argc; optind++){ 
+		if (*argv[optind] == '-' && (isalpha(argv[optind][1])))
+			goto OPTLOOP;
 	}
 
 	/*******************************************************/
@@ -420,7 +435,7 @@ int main(int argc, char *argv[])
 	if (opt_h.bit) {		/* opt_H SHOW USAGE */
 	 	system("clear"); 
 		usage(version);
-		return(2);
+		return(EXIT_EARLY);
 	}
 
 	/* IF CERTAIN OPTIONS ARE ON, SKIP RELAX-2D */
@@ -435,16 +450,13 @@ int main(int argc, char *argv[])
 	}
 
 	if (j > 1) {
-		printf("\n");
 		warnhead('S');
 		printf("Many sequences specfied. Using last sequence.\n");
 	}
 	else if (j == 0) {
-		printf("\n");
 		warnhead('S');
 		printf("No sequences specfied. Using example sequence.\n");
 	}
-	printf("\n");
 		
 	mha_head(par_wrap.set);
 	printf("micro homology alignment (MHA) -");
@@ -460,10 +472,10 @@ int main(int argc, char *argv[])
 		printf(" -M %d", opt_M.bit);	/* opt_M.val is a multiple of opt_M.bit, which is command arg */
 	if (opt_X.bit) {
 		if (opt_X.val==1) {
-			printf(" -X [USE RANDOMIZED SEQUENCE]");
+			printf(" -X 1 (using pseudo-random shuffling)");
 		}
 		else {
-			printf(" -XX [USE FISHER-YATES RANDOMIZED SEQUENCE]");
+			printf(" -X 2 (using Fisher-Yates shuffling)");
 		}
 	}
 	printf("\n Version %s: ", version);
@@ -1620,11 +1632,11 @@ int main(int argc, char *argv[])
 			break;
 		case 2:
 			if (Cinch_T.pass_R > 1)
-				printf("%s post cinch-t   [pass #2: %d cinches]\n", letr_unit, Cinch_T.pass_R);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
+				printf("%s post cinch-t   [pass #2: %d cinches]\n", letr_unit, Cinch_T.pass_R);	
 			else if (Cinch_T.pass_R)
-				printf("%s post cinch-t   [pass #2: %d cinch]\n", letr_unit, Cinch_T.pass_R);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
+				printf("%s post cinch-t   [pass #2: %d cinch]\n", letr_unit, Cinch_T.pass_R);
 			else if (opt_t.bit) 
-				printf("%s post cinch-t   [pass #2: SKIPPED BY REQUEST]\n", letr_unit);	/* STYLE: USE DASHED NAME FOR PRINTING, UNDERSCORED FOR CODING 	*/
+				printf("%s post cinch-t   [pass #2: SKIPPED BY REQUEST]\n", letr_unit);
 			else 
 				printf("No effective cinch-t cinches taken.\n");
 			break;												/*  "cinch-x" VERSUS 'cinch_x' programming calls 				*/ 
