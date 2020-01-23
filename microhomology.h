@@ -176,7 +176,7 @@ struct cinch {
 									/* Current.pass_V is pass counter, initialized to -1 so that it is incremented to 0 for Start pass */
 
 
-char align2D[MAXROW][MAXROW] = {{0}};
+char align2D[MAXROW+1][MAXROW] = {{0}};
 char pathbox[MAXROW][MAXROW] = {{0}};
 char consensus[MAXROW] = {0};
 char file_name[255] = "internal_default";
@@ -998,6 +998,7 @@ int i=0;
 	for (i = 0; i < Current.pass_W; i++) {
 		consensus1D[i] = align2D_one[MAXROW][i];
 	}
+	consensus1D[i] = '\0';
 }
 
 /*****************************************************************************************/

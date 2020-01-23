@@ -651,6 +651,8 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 
 	for (n = 0; n <= cyc_width; n++) {
 
+/*  	conletr = consensus[n];
+*/
 		conletr = align2D[MAXROW][n];
 		for (m = 1; align2D[m][0] != '\0' && m <= lenseq; m++) {
 			if (isalpha(letr=align2D[m][n])) {
