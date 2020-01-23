@@ -434,6 +434,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 				else
 					printf(".");
 			}
+			printf("\n");
 		}
 		if (badsites > 0) {
 			line_end(BLOCKHEAD, 9, 9);	
@@ -442,7 +443,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 				letr = mha_base62(consensus_ar[0][n+1]);
 				printf("%c", letr); 
 			}
-		    printf(" <= # (base 62)\n");
+		    printf("\n");
 			warnhead('C');
 			if (badsites == 1)
 				printf("There is one site with mimatched letters.\n");
