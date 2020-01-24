@@ -176,6 +176,14 @@ struct cinch {
 									/* Current.pass_V is pass counter, initialized to -1 so that it is incremented to 0 for Start pass */
 
 
+/* The segment struct type organizes the spine and belly row positions of the 2-D 'snake' for computing MSA tucks */
+struct segment {
+	int spine;		/* row positons of top-most symbol, including terminators, in each 2D column */
+	int belly;		/* row positions of bottom-most buffer row, above which is the bottom most character in that column or adjacent column */
+	char topc;		/* character of spine position */
+};
+
+
 char align2D[MAXROW+1][MAXROW] = {{0}};
 char pathbox[MAXROW][MAXROW] = {{0}};
 char consensus[MAXROW] = {0};
@@ -207,7 +215,6 @@ int 				span_rk(int point);
 void 				warnhead(char l); 
 short unsigned int 	recoverlen(void);
 short unsigned int	cleanseq(char *s);
-int 				get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW]);
 void 				mha_randomize1(char *input_seq);
 void 				mha_randomize2(char *input_seq, int rsize);
 void 				print_base62_table(void);
@@ -215,10 +222,68 @@ void 				shuffle(int *array, int n);
 void 				usage(char *usage_version);	/* FOR PRINTING UNIFORM USAGE INFORMATION */
 char 				*nmer_prefix(int i);		/* CONVERTS INTEGER TO N-MER PREFIX WRITTEN NAME */
 void 				free_2D(int **p2D, int lenseq);
+struct segment 		makesegment(int top, int bottom);
+struct segment * 	makesnake(char *array, int height, int width, int w_plus_rattle, short unsigned int zcol);
 
-/*******************************************************************************************************/
- #include "microhom-devl.h"	/* maximal header: program development code, testing, and evaluation       */
-/*******************************************************************************************************/
+
+#include "microhom-devl.h"	
+
+
+/*********************************************************************************************************/
+struct segment * makesnake(char *array, int height, int width, int w_plus_rattle, short unsigned int zcol)
+{
+	struct segment *snake = NULL;
+
+	snake = (struct segment *)calloc(w_plus_rattle+2, sizeof(struct segment));
+
+	int i, j;
+	int maxtop=0;
+	int maxbot=0;
+	char letr;
+
+	/* POPULATE FIRST COLUMN OF SNAKE STRUCT */
+	if (zcol) {
+		snake[0].spine = 0;
+		snake[0].topc = Term->sym;
+		for (i=height; i>0; i--) {
+			if (isalpha(*(array + MAXROW*(i-1)))) {
+				if (i > maxbot)
+					maxbot = i;
+				break;
+			}
+		}
+		snake[0].belly = maxbot;
+	}
+
+	for (j=0; j<=width; j++) {		/* zcol should be 0 or 1 and refers to which column the 2-D alignment begins */
+		for (i=0; i<height; i++) {
+			if (isalpha( (letr=*(array + i*MAXROW + j)) ) || letr==slip.sym || letr==Term->sym || letr==monoR.sym) {
+				if (i > maxtop)
+					maxtop = i;
+				break;
+			}
+		}
+		for (i=height; i>0; i--) {
+			if (isalpha(*(array + MAXROW*(i-1) + j + 1))) {
+				if (i > maxbot)
+					maxbot = i;
+				break;
+			}
+		}
+		snake[j+zcol].spine = maxtop;
+		snake[j+zcol].belly = maxbot;
+		snake[j+zcol].topc = letr;
+	}
+	for (j=width+1; j<=w_plus_rattle; j++) {
+		snake[j+zcol].spine = maxtop;
+		snake[j+zcol].belly = maxbot;
+		snake[j+zcol].topc = Term->sym;
+	}
+	
+	return(snake);
+}
+
+
 
 /*****************************************************************************************/
 static int random_i(int n) 
@@ -1436,107 +1501,6 @@ char blank = Fill->sym;
 		return (0);		/* RETURN NOT SUCCESSFUL */
 }
 
-/*** arrayA WILL USUALLY BE m2Dalig[] AND arrayB WILL BE align2D[] ********************/
-int get2Dtucknum(char arrayA[][MAXROW], char arrayB[][MAXROW]) 
-{
-	int i=0, j=0, heightAB=0, heightA=0, heightB=0;
-	int  width = Current.pass_W; 
-	char letr; 
-	int bottom[MAXROW] = {0};
-	int    top[MAXROW] = {0};
-
-	if (arrayA[MAXROW][width]!='\0') {
-		for (j=width; (arrayA[MAXROW][j])!='\0' && j < MAXROW; j++) {
-			;
-		}
-		width = j;
-	}
-
-	for (i=0; arrayA[i][0] != '\0' && i<MAXROW; i++) 
-		;
-	for (j=0; arrayB[j][0] != '\0' && j<MAXROW; j++) 
-		;
-	heightA = i;
-	heightB = j;
-	heightAB = i+j;
-
-	/**** FILL BOTTOM BORDER ARRAY; BOTTOM BORDER IS FOR ARRAY ON TOP ****/
-	bottom[width+1] = heightA;
-	bottom[width  ] = heightA;
-	j = width;
-	while (isalpha(arrayA[heightA-1][j]) && j>=0) {
-		bottom[j] = heightA;
-		j--;
-	}
-	while (j>=0 && i>0) {
-		if (isalpha(arrayA[i-1][j]) || isalpha(arrayA[i-1][j+1])) {
-			bottom[j] = i;
-			j--;
-		}
-		else {
-			i--;
-		}
-	}
-
-	/**** FILL TOP BORDER ARRAY; TOP BORDER IS FOR ARRAY ON BOTTOM  ****/
-	top[0] = 0;
-	for (j=0; j<=width; j++) {
-		for (i=0; i<MAXROW; i++) {
-			if (isalpha(letr=arrayB[i][j])) {
-				top[j] = heightB - i;
-				break;
-			}
-            else if (letr == '/' || letr == monoR.sym) {
-				top[  j] = heightB - i;
-				top[++j] = heightB - i;
-				break;
-			}
-			else if ((letr=arrayB[i+1][j-1]) == '/' || letr == monoR.sym) {
-				top[j] = heightB - (i+1);
-				break;
-			}
-			else if (arrayB[i][j]=='>') {
-				top[j] = heightB - i;
-				j = width+1;
-				break;
-			}
-		}
-	}
-
-	/**************************************************/
-	if (opt_v.val>2) {	/* CODE DEVELOPMENT REPORTING */
-		printf("\n ");	
-		for (j=0; j <= width; j++)
-			printf("%c", mha_base62(bottom[j]));	
-			printf(" <-- bottom edge of top array\n ");
-		for (j=0; j <= width; j++)
-			printf("%c", mha_base62(top[j]));	
-			printf(" <-- top edge of bottom array\n ");
-	}
-	/******************************************/
-
-	bottom[0] = heightAB - bottom[0] - top[0];
-	if (opt_v.val>2)
-		printf("%c", mha_base62(bottom[0]));
-	for (j=1; j <= width; j++) {
-		if ((i=heightAB - bottom[j] - top[j]) < bottom[j-1]) {
-			bottom[j] = i;
-		}
-		else
-			bottom[j] = bottom[j-1];
-		if (opt_v.val>2)
-			printf("%c", mha_base62(bottom[j]));
-	}
-	if (opt_v.val>2)
-		printf(" <-- MIN(heightAB - bottom edge - top edge)\n");
-	i = heightA - bottom[j-1] + 1;
-	if (opt_v.val>2)
-		printf("\n 2Dtucknum = %d\n", i);
-	if (i>0)
-		return(i);
-	else
-		return(-1);
-}
 
 /*************************************************************************/
 void print1D(void)
