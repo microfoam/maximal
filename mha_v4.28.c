@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 	char Seq_i[MAXROW] = "TGTGTGAGTGAnnnnnnTGTGTGAGTGAGnnnnnTGTGTGAGTGAGTGAnnTGTGTGAGTGAGTGAGT"; 	/* INPUT SEQUENCE W/ DEFAULT */
 	char Seq_r[MAXROW] = {0}; 	/* RANDOMIZED SEQUENCE */
 	char *Seq = Seq_i;			/* POINTER TO INPUT SEQUENCE */
-
+	
 	FILE *file_ptr;
 	FILE *fp_cons;							/* FILE FOR CONSENSUS STRING Surf_barrels.log */
   	FILE *fp_msa;							/* FILE FOR MHA MSA "TUBES.mha" */
@@ -596,6 +596,7 @@ int main(int argc, char *argv[])
 	Clean.pass_Q = Start.pass_Q = 1000;
 
 	Seq[lenseq] = tela[lenseq].t = tela[lenseq].c = '>';
+	citwidth = lenseq;	
 
 	for (i = 0; i <= lenseq; i++) {
 		tela[i].x = tela[i].X = i;
@@ -613,737 +614,741 @@ int main(int argc, char *argv[])
 		else
 			tela[i].e = tela[i].c;
 	}
+	mark_tela();			/* WILL MARK ALL TRs WITHOUT CINCHING AND RECORD IN tela[].all_k, all_r, all_S, all_L/R */
 
-	/************************************************************************************/
-	/* INITIALIZE PATHBOX FOR SELF-MHA  *************************************************/
-
-	homopoly_flag = 1;								/* FOR LONG HOMOPOLYMERIC RUN CASE **/
-	homopolyend_flag = 0;
-
-	for (n = 0; tela[n].c != '\0'; n++)				/* SET IDENTITY LINE ****************/
-		pathbox[n][n] = MATCH;
-
-	for (n = 0; tela[n].c != '\0'; n++) {
-		if  (n <= WIDTH) {							/* SET VALUES FOR 1ST WIDTH COLS ****/
-				for (m = 0; m < n; m++){
-					if (seqtype && tela[n].c == 'n')			 
-						pathbox[m][n] = mismatch;   /* SPECIAL TREATMENT FOR 'n' IN DNA**/
-					else if (tela[n].c == tela[m].c)
-						pathbox[m][n] = MATCH;		/* MATCH ****************************/
-					else if (nuctransit) {			/* IF DNA AND CHECKING FOR TRANSITIONS */
-						if      (tela[n].c == 'A' && tela[m].c == 'G')
-							pathbox[m][n] = transition;  
-						else if (tela[n].c == 'G' && tela[m].c == 'A')
-							pathbox[m][n] = transition;   
-						else if (tela[n].c == 'C' && tela[m].c == 'T')
-							pathbox[m][n] = transition;   
-						else if (tela[n].c == 'T' && tela[m].c == 'C')
-							pathbox[m][n] = transition;   
-						else
-							pathbox[m][n] = mismatch;   /* MISMATCH IF NO TRANSITION ****/
-					}	
-					else 
-						pathbox[m][n] = mismatch;   /* MISMATCH *************************/
-				}
-		}
-		else {										/* SET VALUES FOR REST OF COLUMNS ***/
-				for (m = n-WIDTH; m < n+1; m++){	/*  WITHIN BAND WIDTH ***************/
-					if (seqtype && tela[n].c == 'n')			  
-						pathbox[m][n] = mismatch;   /* DUE TO NUCLEOTIDE AMBIGUITY ******/
-					else if (tela[n].c == tela[m].c)
-						pathbox[m][n] = MATCH;		/* MATCH ****************************/
-					else if (nuctransit) {			/* IF DNA AND CHECKING FOR TRANSITIONS */
-						if      (tela[n].c == 'A' && tela[m].c == 'G')
-							pathbox[m][n] = transition;  
-						else if (tela[n].c == 'G' && tela[m].c == 'A')
-							pathbox[m][n] = transition;   
-						else if (tela[n].c == 'C' && tela[m].c == 'T')
-							pathbox[m][n] = transition;   
-						else if (tela[n].c == 'T' && tela[m].c == 'C')
-							pathbox[m][n] = transition;   
-						else
-							pathbox[m][n] = mismatch;   /* MISMATCH IF NO TRANSITION ****/
-					}	
-					else 
-						pathbox[m][n] = mismatch;   /* MISMATCH *************************/
-				}
-		}
-
-		if (tela[n].c != tela[n+1].c)	{					/* HERE CHECK FOR HOMOPOLYMERIC RUN */
-			homopoly_flag = 1;						/*  OF LENGTH = (defined) WIDTH	 */
-			if (homopolyend_flag == 1) {			/* TREAT LAST COL OF HOMOPOLY. RUN **/
-				homopolyend_flag = 0;
-				for (i = n - WIDTH + 1; i < n; i++)
-					pathbox[i][n] = mismatch;
+	if (opt_t.bit) {
+		strcpy(align2D[0],Seq);
+		Cinch_T.pass_W = Current.pass_W = citwidth;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT */
+	}
+	else {
+		/* INITIALIZE PATHBOX FOR SELF-MHA  *************************************************/
+	
+		homopoly_flag = 1;								/* FOR LONG HOMOPOLYMERIC RUN CASE **/
+		homopolyend_flag = 0;
+	
+		for (n = 0; tela[n].c != '\0'; n++)				/* SET IDENTITY LINE ****************/
+			pathbox[n][n] = MATCH;
+	
+		for (n = 0; tela[n].c != '\0'; n++) {
+			if  (n <= WIDTH) {							/* SET VALUES FOR 1ST WIDTH COLS ****/
+					for (m = 0; m < n; m++){
+						if (seqtype && tela[n].c == 'n')			 
+							pathbox[m][n] = mismatch;   /* SPECIAL TREATMENT FOR 'n' IN DNA**/
+						else if (tela[n].c == tela[m].c)
+							pathbox[m][n] = MATCH;		/* MATCH ****************************/
+						else if (nuctransit) {			/* IF DNA AND CHECKING FOR TRANSITIONS */
+							if      (tela[n].c == 'A' && tela[m].c == 'G')
+								pathbox[m][n] = transition;  
+							else if (tela[n].c == 'G' && tela[m].c == 'A')
+								pathbox[m][n] = transition;   
+							else if (tela[n].c == 'C' && tela[m].c == 'T')
+								pathbox[m][n] = transition;   
+							else if (tela[n].c == 'T' && tela[m].c == 'C')
+								pathbox[m][n] = transition;   
+							else
+								pathbox[m][n] = mismatch;   /* MISMATCH IF NO TRANSITION ****/
+						}	
+						else 
+							pathbox[m][n] = mismatch;   /* MISMATCH *************************/
+					}
 			}
-		}
-		else
-			homopoly_flag++;
-
-		if (homopoly_flag > WIDTH) {
-			for (j = n-WIDTH+1; j < n+1 ; j++) {
-				for (i = n-WIDTH+1; i < j; i++) {
-					pathbox[i][j] = mismatch;
+			else {										/* SET VALUES FOR REST OF COLUMNS ***/
+					for (m = n-WIDTH; m < n+1; m++){	/*  WITHIN BAND WIDTH ***************/
+						if (seqtype && tela[n].c == 'n')			  
+							pathbox[m][n] = mismatch;   /* DUE TO NUCLEOTIDE AMBIGUITY ******/
+						else if (tela[n].c == tela[m].c)
+							pathbox[m][n] = MATCH;		/* MATCH ****************************/
+						else if (nuctransit) {			/* IF DNA AND CHECKING FOR TRANSITIONS */
+							if      (tela[n].c == 'A' && tela[m].c == 'G')
+								pathbox[m][n] = transition;  
+							else if (tela[n].c == 'G' && tela[m].c == 'A')
+								pathbox[m][n] = transition;   
+							else if (tela[n].c == 'C' && tela[m].c == 'T')
+								pathbox[m][n] = transition;   
+							else if (tela[n].c == 'T' && tela[m].c == 'C')
+								pathbox[m][n] = transition;   
+							else
+								pathbox[m][n] = mismatch;   /* MISMATCH IF NO TRANSITION ****/
+						}	
+						else 
+							pathbox[m][n] = mismatch;   /* MISMATCH *************************/
+					}
+			}
+	
+			if (tela[n].c != tela[n+1].c)	{					/* HERE CHECK FOR HOMOPOLYMERIC RUN */
+				homopoly_flag = 1;						/*  OF LENGTH = (defined) WIDTH	 */
+				if (homopolyend_flag == 1) {			/* TREAT LAST COL OF HOMOPOLY. RUN **/
+					homopolyend_flag = 0;
+					for (i = n - WIDTH + 1; i < n; i++)
+						pathbox[i][n] = mismatch;
 				}
 			}
-			homopolyend_flag = 1;
-		} 
-	} /**********************************************************************************/
-
-	/**********************************************/
-	/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
-	if (opt_P.bit) {	/* opt_P */
-		blocks = count_wrap_blocks(lenseq, par_wrap.set);
-
-		printf("\nPATHBOX FILL-IN PASS (length = width = %d)\n\n", lenseq);
-		for (j = 0; j < blocks; j++) {
-			if (blocks != 1)
-				print_blockhead(j+1, blocks);
-			line_end(PATHBOXHEAD, 9, 9);	
-			for(n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) 
-				printf("%2c", tela[n].c);
-			printf("\n");
-			for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != '>'; m++) {
-				printf("%4d. %c ", m+1, tela[m].c);
-					for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) {
-						if (m > n) {
-							if (pathbox[m][n])
+			else
+				homopoly_flag++;
+	
+			if (homopoly_flag > WIDTH) {
+				for (j = n-WIDTH+1; j < n+1 ; j++) {
+					for (i = n-WIDTH+1; i < j; i++) {
+						pathbox[i][j] = mismatch;
+					}
+				}
+				homopolyend_flag = 1;
+			} 
+		} /**********************************************************************************/
+	
+		/**********************************************/
+		/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
+		if (opt_P.bit) {	/* opt_P */
+			blocks = count_wrap_blocks(lenseq, par_wrap.set);
+	
+			printf("\nPATHBOX FILL-IN PASS (length = width = %d)\n\n", lenseq);
+			for (j = 0; j < blocks; j++) {
+				if (blocks != 1)
+					print_blockhead(j+1, blocks);
+				line_end(PATHBOXHEAD, 9, 9);	
+				for(n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) 
+					printf("%2c", tela[n].c);
+				printf("\n");
+				for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != '>'; m++) {
+					printf("%4d. %c ", m+1, tela[m].c);
+						for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) {
+							if (m > n) {
+								if (pathbox[m][n])
+									printf("%2d", pathbox[m][n]);
+								else 
+									printf("%2c", blank);
+							}
+							else if (n-m <= WIDTH)
 								printf("%2d", pathbox[m][n]);
 							else 
 								printf("%2c", blank);
-						}
-						else if (n-m <= WIDTH)
-							printf("%2d", pathbox[m][n]);
-						else 
-							printf("%2c", blank);
-				}
-				printf("\n");
-	   		 }
-		}
-	} /* END OF OPTION TO PRINT PATHBOX */
-
-	/*********************************************************/
-	/*        USE PATHBOX TO BUILD FIRST 2-D ALIGNMENT       */
-	/*        	          [cinch_t BEGINS]                   */
-	citwidth = lenseq;					/* START AT 1D LENGTH AND CONTRACT DURING CINCH-T ("cit")     */
-	a2D_n = row = 0;					
-	align2D[row][a2D_n++] = tela[0].c;	/* FOR n=0, ENTER VALUE AT IDENTITY DIAGONAL, INCREMENT INDEX */
-
-	mark_tela();			/* WILL MARK ALL TRs WITHOUT CINCHING AND RECORD IN tela[].all_k, all_r, all_S, all_L/R */
-/*	dev_prompt(MAIN,__LINE__,file_name);
-*/
-	for (n = 1; n<=lenseq; ) {
-		/* FOR COLUMN n LOOP 1/3 */
-		if (!opt_t.bit) {			/* SKIP TO NEXT MARKED TR */	
-			while (!(tela[n].all_S) && n!=lenseq) {
-				assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
-			}
-		}
-		else {						/* ELSE opt_t: SKIP CINCH-T */ 
-			strcpy(align2D[0],Seq);
-			break;
-		}
-
-		/* FOR COLUMN n LOOP 2/3: SKIP PRESENT TR IF CONFLICT AND CAN CYCLE WITH SAME SCORE */
-		if (tela[n].all_L && tela[n].all_S == tela[n+1].all_S && !tela[n+1].all_L && tela[(tela[n].all_L)].cyc_o == 'x') 
-			assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
-
-		/* FOR COLUMN n LOOP 3/3 */
-		for (m = 0; m < n; m++) {
-			/* FOR ROW m LOOP 1/6: UPDATE VAR CITWIDTH AT END */
-			if (tela[n].c == '>') {
-				citwidth = a2D_n;
-				align2D[row+1][0] = '\0';
-				Cinch_T.pass_H = Current.pass_H = row+1;	/* STORE HEIGHT IN PASS SLOTS */
-			}
-			else if (tela[n].cyc_o == 'o') {	/* IF THIS POSITION HAD A BIGGER k-MER SQUASHED HERE (E.G., FOR LATER CYCLING) */
-				assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
-				break;	/* GO TO NEXT n */
-			}
-
-			/* FOR ROW m LOOP 2/6: SLIDE DOWN TO ROW WITHIN POPULATED HEMIDIAGONAL */
-			if (n-m > WIDTH+1) 
-				m = n-WIDTH;
-
-			/* FOR ROW m LOOP 3/6: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
-			k = n-m;
-			if (nuctransit) {
-				DTHR = score_DTHR(k);
-				imperfect_TR = 0;
-			}
-
-			/* FOR ROW m LOOP 4/6: SKIP k=ONE */
-			if (k == 1) {	
-				assign_tela(n++, row, a2D_n++, ONE);		/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
-				break;	/* GO TO NEXT n */
-			}
-
-			/* FOR ROW m LOOP 5/6: SET HOMOPOLYMER RUN STATUS UNKNOWN; USED TO RULE OUT k>1 MONONUCLEOTIDE "REPEATS" */
-			homopoly_flag = 2;
-			if (tela[n].c != tela[n-1].c)
-				homopoly_flag = 0;
-
-			/* FOR ROW m LOOP 6/6: START COUNTING SCORE IF PATHBOX POSITION HAS VALUE > MISMATCH */
-			if (pathbox[m][n] > mismatch && n+k <= lenseq) {
-				Dtr = 0;
-
-				/* IF SUMMING PATHBOX DIAGONAL 1/: COMPUTE SCORES OF IDENTITY LINE AND 1st REPEAT DIAGONAL*/
-				Did = k*MATCH;
-				for (i = m; i < n; i++) {
-					if (pathbox[i][i+k] == mismatch) {	/* STOP SHORT IF MISMATCH IS FOUND 		 		*/
-						Dtr =  0;						/* B/C CURRENTLY ONLY CONSIDERING TRANSITIONS 	*/
-						break;							
 					}
-					else
-						Dtr = Dtr + pathbox[i][i+k];	/* COMPUTE SUM OF TANDEM REPEAT UNIT LINE */
-
-					/* SET HOMOPOLYMERIC RUN BIT TO FALSE IF NOT A POSSIBILITY */
-					if (homopoly_flag && i > m && tela[i].c != tela[i-1].c)
-						homopoly_flag = 0;
-				}
-
-				/* IF SUMMING PATHBOX DIAGONAL 2/: SET HOMOPOLYMERIC RUN BIT TO TRUE IF DETECTED 	*/
-				if (homopoly_flag && i == n) {
-					homopoly_flag = 1;				/* BIT IS THERE IF NEEDED BEYOND BREAK. 		*/
+					printf("\n");
+		   		 }
+			}
+		} /* END OF OPTION TO PRINT PATHBOX */
+	
+		/*********************************************************/
+		/*        USE PATHBOX TO BUILD FIRST 2-D ALIGNMENT       */
+		/*        	          [cinch_t BEGINS]                   */
+		a2D_n = row = 0;					
+		align2D[row][a2D_n++] = tela[0].c;	/* FOR n=0, ENTER VALUE AT IDENTITY DIAGONAL, INCREMENT INDEX */
+	
+	/*	dev_prompt(MAIN,__LINE__,file_name);
+	*/
+		for (n = 1; n<=lenseq; ) {
+			/* FOR COLUMN n LOOP 1/3 */
+			if (!opt_t.bit) {			/* SKIP TO NEXT MARKED TR */	
+				while (!(tela[n].all_S) && n!=lenseq) {
 					assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
+				}
+			}
+			else {						/* ELSE opt_t: SKIP CINCH-T */ 
+				strcpy(align2D[0],Seq);
+				break;
+			}
+	
+			/* FOR COLUMN n LOOP 2/3: SKIP PRESENT TR IF CONFLICT AND CAN CYCLE WITH SAME SCORE */
+			if (tela[n].all_L && tela[n].all_S == tela[n+1].all_S && !tela[n+1].all_L && tela[(tela[n].all_L)].cyc_o == 'x') 
+				assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
+	
+			/* FOR COLUMN n LOOP 3/3 */
+			for (m = 0; m < n; m++) {
+				/* FOR ROW m LOOP 1/6: UPDATE VAR CITWIDTH AT END */
+				if (tela[n].c == '>') {
+					citwidth = a2D_n;
+					align2D[row+1][0] = '\0';
+					Cinch_T.pass_H = Current.pass_H = row+1;	/* STORE HEIGHT IN PASS SLOTS */
+				}
+				else if (tela[n].cyc_o == 'o') {	/* IF THIS POSITION HAD A BIGGER k-MER SQUASHED HERE (E.G., FOR LATER CYCLING) */
+					assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
+					break;	/* GO TO NEXT n */
+				}
+	
+				/* FOR ROW m LOOP 2/6: SLIDE DOWN TO ROW WITHIN POPULATED HEMIDIAGONAL */
+				if (n-m > WIDTH+1) 
+					m = n-WIDTH;
+	
+				/* FOR ROW m LOOP 3/6: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
+				k = n-m;
+				if (nuctransit) {
+					DTHR = score_DTHR(k);
+					imperfect_TR = 0;
+				}
+	
+				/* FOR ROW m LOOP 4/6: SKIP k=ONE */
+				if (k == 1) {	
+					assign_tela(n++, row, a2D_n++, ONE);		/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
+					break;	/* GO TO NEXT n */
+				}
+	
+				/* FOR ROW m LOOP 5/6: SET HOMOPOLYMER RUN STATUS UNKNOWN; USED TO RULE OUT k>1 MONONUCLEOTIDE "REPEATS" */
+				homopoly_flag = 2;
+				if (tela[n].c != tela[n-1].c)
+					homopoly_flag = 0;
+	
+				/* FOR ROW m LOOP 6/6: START COUNTING SCORE IF PATHBOX POSITION HAS VALUE > MISMATCH */
+				if (pathbox[m][n] > mismatch && n+k <= lenseq) {
 					Dtr = 0;
-					break;							/* GO TO NEXT n */
-				}
-
-				/* IF SUMMING PATHBOX DIAGONAL 3/: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
-				if (nuctransit && Dtr && Dtr!=Did) { 
-					if (k>PISO && 100*Dtr/Did > DTHR)	{	
-						imperfect_TR = 1;		/* CALLING TR W/ TRANSITIONS FOR n BLOCK VS m BLOCK */
-						tela[n].Dtr = Dtr;
+	
+					/* IF SUMMING PATHBOX DIAGONAL 1/: COMPUTE SCORES OF IDENTITY LINE AND 1st REPEAT DIAGONAL*/
+					Did = k*MATCH;
+					for (i = m; i < n; i++) {
+						if (pathbox[i][i+k] == mismatch) {	/* STOP SHORT IF MISMATCH IS FOUND 		 		*/
+							Dtr =  0;						/* B/C CURRENTLY ONLY CONSIDERING TRANSITIONS 	*/
+							break;							
+						}
+						else
+							Dtr = Dtr + pathbox[i][i+k];	/* COMPUTE SUM OF TANDEM REPEAT UNIT LINE */
+	
+						/* SET HOMOPOLYMERIC RUN BIT TO FALSE IF NOT A POSSIBILITY */
+						if (homopoly_flag && i > m && tela[i].c != tela[i-1].c)
+							homopoly_flag = 0;
 					}
-					else {
+	
+					/* IF SUMMING PATHBOX DIAGONAL 2/: SET HOMOPOLYMERIC RUN BIT TO TRUE IF DETECTED 	*/
+					if (homopoly_flag && i == n) {
+						homopoly_flag = 1;				/* BIT IS THERE IF NEEDED BEYOND BREAK. 		*/
+						assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 						Dtr = 0;
+						break;							/* GO TO NEXT n */
 					}
-				} 
-
-				if (Dtr && dev_print(MAIN,__LINE__)) {
-					printf("cinch_t evaluating k=%d-mer all_r=%d at n=%d, imperfect_TR=%d.", k, tela[n].all_r, n, imperfect_TR);
-				}
-
-				/* IF SUMMING PATHBOX DIAGONAL 4/: FIND AND STORE POSITION OF LEFT-MOST OVERLAPPING TRs */
-				/* SKIP CINCH IF CAN AVOID CONFLICT WITH A LATER CYCLE & CYCLING PREVIOUS TR NOT AN OPTION */
-				if (Dtr && (Dtr==Did || imperfect_TR)) {
-					for (i = n-1; i > 1; i--) {
-						if (tela[i].r && i + tela[i].k * (tela[i].r - 1) > m) {
-							tela[n].X = i;		/* UPDATE LEFT-MOST OVERLAPPING TR */
-
-							if (dev_print(MAIN,__LINE__)) {
-								printf("Setting tela[%d].X to i=%d. m=%d, k=%d, Dtr=%d, imperfect_TR=%d.", n, i, m, k, Dtr, imperfect_TR);
-							}
+	
+					/* IF SUMMING PATHBOX DIAGONAL 3/: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
+					if (nuctransit && Dtr && Dtr!=Did) { 
+						if (k>PISO && 100*Dtr/Did > DTHR)	{	
+							imperfect_TR = 1;		/* CALLING TR W/ TRANSITIONS FOR n BLOCK VS m BLOCK */
+							tela[n].Dtr = Dtr;
+						}
+						else {
+							Dtr = 0;
 						}
 					} 
-					if (!imperfect_TR && (l=tela[n].X) > m && l + span_rk(l) <= n) { 
-						if (dev_print(MAIN,__LINE__)) {
-							printf("NOT A SKIP AND A LITTLE DEV THING.");
+	
+					if (Dtr && dev_print(MAIN,__LINE__)) {
+						printf("cinch_t evaluating k=%d-mer all_r=%d at n=%d, imperfect_TR=%d.", k, tela[n].all_r, n, imperfect_TR);
+					}
+	
+					/* IF SUMMING PATHBOX DIAGONAL 4/: FIND AND STORE POSITION OF LEFT-MOST OVERLAPPING TRs */
+					/* SKIP CINCH IF CAN AVOID CONFLICT WITH A LATER CYCLE & CYCLING PREVIOUS TR NOT AN OPTION */
+					if (Dtr && (Dtr==Did || imperfect_TR)) {
+						for (i = n-1; i > 1; i--) {
+							if (tela[i].r && i + tela[i].k * (tela[i].r - 1) > m) {
+								tela[n].X = i;		/* UPDATE LEFT-MOST OVERLAPPING TR */
+	
+								if (dev_print(MAIN,__LINE__)) {
+									printf("Setting tela[%d].X to i=%d. m=%d, k=%d, Dtr=%d, imperfect_TR=%d.", n, i, m, k, Dtr, imperfect_TR);
+								}
+							}
+						} 
+						if (!imperfect_TR && (l=tela[n].X) > m && l + span_rk(l) <= n) { 
+							if (dev_print(MAIN,__LINE__)) {
+								printf("NOT A SKIP AND A LITTLE DEV THING.");
+							}
+						}
+						else if (tela[n].X != n) {
+							q = tela[n].X;
+							if (tela[q+1].cyc_o != 'o') {
+								alt_k = tela[q].k;
+								j = q + alt_k*(tela[q].r - 1);
+								for (l = n; l+k <= lenseq && l+k <= m+WIDTH; l++) {
+									if (tela[l].c == tela[l+k].c) { 
+										if (j <= l+1) {
+											pull_tela(n);
+											Dtr = imperfect_TR = 0;
+											assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
+											tela[n].cyc_o = 'o';
+											if (dev_print(MAIN,__LINE__)) {
+												printf("Skipping cinch here to use later cycling frame at %d with print_tela:.", l+1);
+												print_tela(prtela_A, prtela_B);
+											}
+											break;
+										}
+									}
+									else break;
+								}
+							}
 						}
 					}
-					else if (tela[n].X != n) {
-						q = tela[n].X;
-						if (tela[q+1].cyc_o != 'o') {
-							alt_k = tela[q].k;
-							j = q + alt_k*(tela[q].r - 1);
-							for (l = n; l+k <= lenseq && l+k <= m+WIDTH; l++) {
-								if (tela[l].c == tela[l+k].c) { 
-									if (j <= l+1) {
-										pull_tela(n);
-										Dtr = imperfect_TR = 0;
-										assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
-										tela[n].cyc_o = 'o';
+	
+					/* IF SUMMING PATHBOX DIAGONAL 5/: SKIP CINCH IF IMPERFECT WHILE CONTAINING PERFECT TRs INSIDE */
+					if (imperfect_TR) {
+						for (l=k/2; l>1; l--) {
+							for (i=0; i<l; i++) {
+								if (tela[n-l+i].c != tela[n+i].c)
+									break;	
+							}
+							if (i==l) {
+								Dtr = imperfect_TR = 0;
+								break;
+							}
+						}
+					}
+	
+					/* IF SUMMING PATHBOX DIAGONAL 6/: START COUNTING REPEATS */
+					if (Dtr && (Dtr==Did || imperfect_TR)) {
+						/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
+						TRcheck = 1;
+						reps = 1;
+						while (TRcheck) {
+							Atr = Aimperfect_TR = 0;
+							if (m + (reps+1)*k >= lenseq) { 
+								Atr = 0;
+								break;
+							}
+	
+							if (nuctransit) {
+								Atr = score_kmer(n+k*reps,k,TWO);
+								if (Atr!=Did && (100*Atr)/Did > DTHR) {
+									Aimperfect_TR = 1;
+								}
+								else
+									Aimperfect_TR = 0;
+							}
+							else
+								Atr = score_kmer(n+k*reps,k,ONE);
+	
+							if (Atr==Did || Aimperfect_TR) {
+								reps++;
+							}
+							else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
+								if (reps > 1)
+									tela[n].cyc_l = k;		/* STORE # OF FRAMES CAN CYCLE THROUGH: AN ENTIRE UNIT-LENGTH */
+								break;
+							}
+						}
+	
+						badslip_type = 0;
+						/* SKIP CINCH IF TR PRIOR TO m SPANS INTO PRESENT TR */
+						if (tela[n].X != n) {
+							for (l=n-1; l>=tela[n].X; l--) {
+								if ((q=tela[l].k) && (l + (p=span_rk(l)) - q) > m) { 
+									if (p > reps*k) {
+										badslip_type = 1;					/* FROM SEQUENCE IN TYPES: (1) -3-5-10-30-50-100-300-500 */
+										Current.pass_R += badslip_type;
+										sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 										if (dev_print(MAIN,__LINE__)) {
-											printf("Skipping cinch here to use later cycling frame at %d with print_tela:.", l+1);
-											print_tela(prtela_A, prtela_B);
+										  	printf("badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 										}
+										assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
+										Dtr = imperfect_TR = 0; /* SKIP PRESENT SLIP */
+										break;
+									}
+								}    
+							}
+						}    
+					}
+					
+					if (nuctransit && Dtr && tela[n].all_S != tela[n].all_r *k*match) {
+						imperfect_TR++;
+					}
+	
+					j = n + tela[n].all_k * tela[n].all_r;
+					if (tela[n].all_L && check_tela(tela[n].all_L, j, ONE)!=3) {
+						Dtr = imperfect_TR = 0;
+					}
+					else if (check_tela(m, j, ONE)!=3) {
+						Dtr = imperfect_TR = 0;
+					}
+	
+					/* IF SUMMING PATHBOX DIAGONAL 7/: COMMITTING TO CINCH AFTER AXIOMATIC TEST BY PUSH_TELA  ************************/
+					if (Dtr) {
+						if (imperfect_TR) {
+							 o = push_tela(n,m, ONE);			/* WITH MODE ONE WILL ASSIGN TRANSITIONS WITHIN PUSH_TELA */
+						}
+						else {
+							 o = push_tela(n,m, THREE);
+						}
+						if (o) {
+							Dtr = imperfect_TR = 0;
+							pull_tela(n);
+							/* OFF flatline_after_TR(n);*/	/* WILL FLATLINE AT PREVIOUS TR */
+							if (dev_print(MAIN,__LINE__)) {
+								printf("push_tela violations=%d (+1 CONT, +2 EQUIV). Skipping k=%d-mer at n=%d.", o, k, n);
+								print_tela(prtela_A, prtela_B);
+							}
+						}
+					}
+					/* IF SUMMING PATHBOX DIAGONAL 8/:  1st MEASUREMENT OF TANDEM REPEAT (TR) */ 
+					if (Dtr==Did || imperfect_TR) {	
+						tela[n].Dtr = Dtr;		/* SAVE Dtr SCORE */
+	
+						++Cinch_T.pass_R;
+	
+						if (ON || imperfect_TR) {
+							for (i=0; i<k; i++)
+								pathbox[n+i][m+i] = 114; 	/* "r" LOWER-LEFT */
+						}
+	
+						r = 1;
+						tela[n].r = reps;
+						tela[n].k = k = n-m;
+						slips[k]++;
+						TRcheck = 1;
+	
+						while (TRcheck) {
+							Atr = 0;
+	
+							if (r<reps) {
+								if (nuctransit) { 
+									for (i=m; i<n; i++) 
+										Atr = Atr + pathbox[i][(i+(r+1)*k)];
+									if (k>PISO && Atr!=Did && (100*Atr)/Did > DTHR) 
+										imperfect_TR = 1;
+								} 
+							}
+							else 
+								Atr = TRcheck = 0;
+							
+							if (r<reps) {
+								z=r*k;
+	
+								push_tela(n+z,m+z, THREE);
+	
+								if (ON || imperfect_TR) {
+									for (i=0; i<k; i++) {
+										pathbox[n+r*k+i][m+i] = 82; 	/* "R" LOWER-LEFT */
+									}
+								}
+	
+								r++;
+								Atr = 0;
+							}
+							else {
+								Atr = Did = Dtr = TRcheck = sumspan = conflict_flag = 0;
+	
+								if (imperfect_TR) {
+									assign_transit(n,THREE); 	/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
+								}
+	
+								/* IF CYCLE REPEAT, STORE CYCLE RUN. CYCLIC REPEATS CAN BE REPEATS IN MORE THAN ONE FRAME. MUST BE >2k */
+								i = 0;			/* CYCLE[] ARRAY INDEX */
+								cycle_flag = 0;	
+								for (j = -1; j < r; j++) {				/* r = reps BECAUSE THIS IS IN ELSE EXIT LOOP */
+									for (l = 0; l < k; l++) 
+										cycle[i++] = tela[(n + j*k + l)].c; 	/* STORE WHOLE REPEAT */
+								}
+								for (l = 0; l < k-1; l++) {				/* STORE EXTENT OF PARTIAL REPEAT. CANNOT MATCH MORE THAN k */
+									if (cycle[l] == tela[(o = n + r*k + l)].c) {
+										cycle[i++] = tela[o].c;
+									}
+									else {
+										if (reps == 1) 
+											tela[n].cyc_l = l+1;		/* STORE LENGTH OF PARTIAL REPEAT */
 										break;
 									}
 								}
-								else break;
-							}
-						}
-					}
-				}
-
-				/* IF SUMMING PATHBOX DIAGONAL 5/: SKIP CINCH IF IMPERFECT WHILE CONTAINING PERFECT TRs INSIDE */
-				if (imperfect_TR) {
-					for (l=k/2; l>1; l--) {
-						for (i=0; i<l; i++) {
-							if (tela[n-l+i].c != tela[n+i].c)
-								break;	
-						}
-						if (i==l) {
-							Dtr = imperfect_TR = 0;
-							break;
-						}
-					}
-				}
-
-				/* IF SUMMING PATHBOX DIAGONAL 6/: START COUNTING REPEATS */
-				if (Dtr && (Dtr==Did || imperfect_TR)) {
-					/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
-					TRcheck = 1;
-					reps = 1;
-					while (TRcheck) {
-						Atr = Aimperfect_TR = 0;
-						if (m + (reps+1)*k >= lenseq) { 
-							Atr = 0;
-							break;
-						}
-
-						if (nuctransit) {
-							Atr = score_kmer(n+k*reps,k,TWO);
-							if (Atr!=Did && (100*Atr)/Did > DTHR) {
-								Aimperfect_TR = 1;
-							}
-							else
-								Aimperfect_TR = 0;
-						}
-						else
-							Atr = score_kmer(n+k*reps,k,ONE);
-
-						if (Atr==Did || Aimperfect_TR) {
-							reps++;
-						}
-						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
-							if (reps > 1)
-								tela[n].cyc_l = k;		/* STORE # OF FRAMES CAN CYCLE THROUGH: AN ENTIRE UNIT-LENGTH */
-							break;
-						}
-					}
-
-					badslip_type = 0;
-					/* SKIP CINCH IF TR PRIOR TO m SPANS INTO PRESENT TR */
-					if (tela[n].X != n) {
-						for (l=n-1; l>=tela[n].X; l--) {
-							if ((q=tela[l].k) && (l + (p=span_rk(l)) - q) > m) { 
-								if (p > reps*k) {
-									badslip_type = 1;					/* FROM SEQUENCE IN TYPES: (1) -3-5-10-30-50-100-300-500 */
-									Current.pass_R += badslip_type;
-									sprintf(dev_notes, "bslip sum %d", Current.pass_R);
-									if (dev_print(MAIN,__LINE__)) {
-									  	printf("badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
-									}
-									assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
-									Dtr = imperfect_TR = 0; /* SKIP PRESENT SLIP */
-									break;
-								}
-							}    
-						}
-					}    
-				}
-				
-				if (nuctransit && Dtr && tela[n].all_S != tela[n].all_r *k*match) {
-					imperfect_TR++;
-				}
-
-				j = n + tela[n].all_k * tela[n].all_r;
-				if (tela[n].all_L && check_tela(tela[n].all_L, j, ONE)!=3) {
-					Dtr = imperfect_TR = 0;
-				}
-				else if (check_tela(m, j, ONE)!=3) {
-					Dtr = imperfect_TR = 0;
-				}
-
-				/* IF SUMMING PATHBOX DIAGONAL 7/: COMMITTING TO CINCH AFTER AXIOMATIC TEST BY PUSH_TELA  ************************/
-				if (Dtr) {
-					if (imperfect_TR) {
-						 o = push_tela(n,m, ONE);			/* WITH MODE ONE WILL ASSIGN TRANSITIONS WITHIN PUSH_TELA */
-					}
-					else {
-						 o = push_tela(n,m, THREE);
-					}
-					if (o) {
-						Dtr = imperfect_TR = 0;
-						pull_tela(n);
-						/* OFF flatline_after_TR(n);*/	/* WILL FLATLINE AT PREVIOUS TR */
-						if (dev_print(MAIN,__LINE__)) {
-							printf("push_tela violations=%d (+1 CONT, +2 EQUIV). Skipping k=%d-mer at n=%d.", o, k, n);
-							print_tela(prtela_A, prtela_B);
-						}
-					}
-				}
-				/* IF SUMMING PATHBOX DIAGONAL 8/:  1st MEASUREMENT OF TANDEM REPEAT (TR) */ 
-				if (Dtr==Did || imperfect_TR) {	
-					tela[n].Dtr = Dtr;		/* SAVE Dtr SCORE */
-
-					++Cinch_T.pass_R;
-
-					if (ON || imperfect_TR) {
-						for (i=0; i<k; i++)
-							pathbox[n+i][m+i] = 114; 	/* "r" LOWER-LEFT */
-					}
-
-					r = 1;
-					tela[n].r = reps;
-					tela[n].k = k = n-m;
-					slips[k]++;
-					TRcheck = 1;
-
-					while (TRcheck) {
-						Atr = 0;
-
-						if (r<reps) {
-							if (nuctransit) { 
-								for (i=m; i<n; i++) 
-									Atr = Atr + pathbox[i][(i+(r+1)*k)];
-								if (k>PISO && Atr!=Did && (100*Atr)/Did > DTHR) 
-									imperfect_TR = 1;
-							} 
-						}
-						else 
-							Atr = TRcheck = 0;
-						
-						if (r<reps) {
-							z=r*k;
-
-							push_tela(n+z,m+z, THREE);
-
-							if (ON || imperfect_TR) {
-								for (i=0; i<k; i++) {
-									pathbox[n+r*k+i][m+i] = 82; 	/* "R" LOWER-LEFT */
-								}
-							}
-
-							r++;
-							Atr = 0;
-						}
-						else {
-							Atr = Did = Dtr = TRcheck = sumspan = conflict_flag = 0;
-
-							if (imperfect_TR) {
-								assign_transit(n,THREE); 	/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
-							}
-
-							/* IF CYCLE REPEAT, STORE CYCLE RUN. CYCLIC REPEATS CAN BE REPEATS IN MORE THAN ONE FRAME. MUST BE >2k */
-							i = 0;			/* CYCLE[] ARRAY INDEX */
-							cycle_flag = 0;	
-							for (j = -1; j < r; j++) {				/* r = reps BECAUSE THIS IS IN ELSE EXIT LOOP */
-								for (l = 0; l < k; l++) 
-									cycle[i++] = tela[(n + j*k + l)].c; 	/* STORE WHOLE REPEAT */
-							}
-							for (l = 0; l < k-1; l++) {				/* STORE EXTENT OF PARTIAL REPEAT. CANNOT MATCH MORE THAN k */
-								if (cycle[l] == tela[(o = n + r*k + l)].c) {
-									cycle[i++] = tela[o].c;
-								}
-								else {
-									if (reps == 1) 
-										tela[n].cyc_l = l+1;		/* STORE LENGTH OF PARTIAL REPEAT */
-									break;
-								}
-							}
-							cycle[i] = '\0';
-							tela[n].o = i;	/* STORE CYCLE LENGTH */
-
-							if (!badslip_type) {
-								/* NUMBER POSITIONS OF COLUMNS IN FRAME */
-								for (l = 0; l < tela[n].cyc_l; l++) {
-									tela[n+l].cyc_k = k;
-
-									if (l == 0) {
-										f = 1;	/* ROW NUMBER IN FRAMES ARRAY; OTHERWISE KEEP INCREMENTING */
-										while (tela[m+l].cyc_F[f] && f < FRAME_ROWS)		/* FIND FIRST AVAILABLE ROW */
-											f++;
-										if (f==1) {
-											tela[n].cyc_o = 'x';		/* NO CONFLICT SO WILL BE TAKING THIS FRAME */
-										}
-										else {
-											conflict_flag = 1;
-											tela[n].cyc_o = 'o';
-											sumspan = tela[n].cyc_l;
-											j=1;
-											while (n-j >= 0 && tela[n-j].cyc_l == 0)
-												++j;
-											if (tela[n-j].cyc_l > tela[n].cyc_l) 
-												sumspan = -tela[(z=n-j)].cyc_l;		/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
-											else 
-												z = n;								/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
-										}
-										tela[n].cyc_F[0] = f;	/* USE 0 ROW TO STORT LOCATION OF INDEXED UNIT TRs */	
-									}
-									else
-										tela[n+l].cyc_F[0] = ++f;	/* USE ROW 0 TO STORE ROW # OF FRAME */
-
-									for (j = 0; j < tela[n+l].all_r; j++) {
-										if (j==0) {		/* WRITE FOR UNIT REPEAT STARTING AT m ONETIME */
-											for (o = 0; o < k; o++) 
-												tela[m + l + o].cyc_F[f] = o+1;
-											if (!conflict_flag && l>0)
-												tela[n+l].cyc_o = 'o';
-										}
-										for (o = 0; o < k; o++) {
-											if (tela[n+j*k+l+o].c==tela[n-k+l+o].c) {
-												tela[n+j*k+l+o].cyc_F[f] = o+1;
+								cycle[i] = '\0';
+								tela[n].o = i;	/* STORE CYCLE LENGTH */
+	
+								if (!badslip_type) {
+									/* NUMBER POSITIONS OF COLUMNS IN FRAME */
+									for (l = 0; l < tela[n].cyc_l; l++) {
+										tela[n+l].cyc_k = k;
+	
+										if (l == 0) {
+											f = 1;	/* ROW NUMBER IN FRAMES ARRAY; OTHERWISE KEEP INCREMENTING */
+											while (tela[m+l].cyc_F[f] && f < FRAME_ROWS)		/* FIND FIRST AVAILABLE ROW */
+												f++;
+											if (f==1) {
+												tela[n].cyc_o = 'x';		/* NO CONFLICT SO WILL BE TAKING THIS FRAME */
 											}
-											else if (imperfect_TR && tela[n+j*k+l+o].t==tela[n-k+l+o].t) {
-												tela[n+j*k+l+o].cyc_F[f] = o+1;
+											else {
+												conflict_flag = 1;
+												tela[n].cyc_o = 'o';
+												sumspan = tela[n].cyc_l;
+												j=1;
+												while (n-j >= 0 && tela[n-j].cyc_l == 0)
+													++j;
+												if (tela[n-j].cyc_l > tela[n].cyc_l) 
+													sumspan = -tela[(z=n-j)].cyc_l;		/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
+												else 
+													z = n;								/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
 											}
-											else {	/* ELSE ERASE LAST PARTIAL UNIT */
-												while (o >= 0) {
-													tela[n + j*k + l + o].cyc_F[f] = 0;
-													o--;
+											tela[n].cyc_F[0] = f;	/* USE 0 ROW TO STORT LOCATION OF INDEXED UNIT TRs */	
+										}
+										else
+											tela[n+l].cyc_F[0] = ++f;	/* USE ROW 0 TO STORE ROW # OF FRAME */
+	
+										for (j = 0; j < tela[n+l].all_r; j++) {
+											if (j==0) {		/* WRITE FOR UNIT REPEAT STARTING AT m ONETIME */
+												for (o = 0; o < k; o++) 
+													tela[m + l + o].cyc_F[f] = o+1;
+												if (!conflict_flag && l>0)
+													tela[n+l].cyc_o = 'o';
+											}
+											for (o = 0; o < k; o++) {
+												if (tela[n+j*k+l+o].c==tela[n-k+l+o].c) {
+													tela[n+j*k+l+o].cyc_F[f] = o+1;
 												}
-												break;
-											}
-										}
-									}
-									tela[n+l].cyc_P = tela[n+l].cyc_k * tela[n+l].all_r;
-									tela[n+l].cyc_r = tela[n+l].all_r;
-								} 
-
-								/* SUM UP COMPATIBLE TR PRODUCTS IN WINDOW OF LENGTH SUMSPAN BEGINNING AT POSITION z OF TR B */
-								if (sumspan > 0 && tela[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
-									for (j = 0; j < sumspan; j++) {
-										for (f = tela[z+j].cyc_F[0] - 1 - j; f > 0; f--) {
-											l=z+j-k;
-											if (tela[l].cyc_F[f] == 1 && tela[l-1].cyc_F[f] != 0) {
-
-												while (tela[l].cyc_o != 'x' && tela[l].cyc_o != 'o' && l>0) 
-													l--;
-
-												while (tela[l].cyc_F[f] != 1 && l>0) 
-													l--;
-
-												if (dev_print(MAIN,__LINE__)) {
-													printf("n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
+												else if (imperfect_TR && tela[n+j*k+l+o].t==tela[n-k+l+o].t) {
+													tela[n+j*k+l+o].cyc_F[f] = o+1;
 												}
-
-												tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
-												tela[l  ].cyc_Rt = z+j;
-												tela[z+j].cyc_Lf = l;
-												break;
-											}
-											else if (tela[l].cyc_F[f] == 1 && tela[l-1].cyc_F[f] == 0) {
-												while ((tela[l].cyc_F[f] != 1 || !tela[l].k) && l<n)
-													l++;
-
-												if (dev_print(MAIN,__LINE__)) {
-													printf("n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
+												else {	/* ELSE ERASE LAST PARTIAL UNIT */
+													while (o >= 0) {
+														tela[n + j*k + l + o].cyc_F[f] = 0;
+														o--;
+													}
+													break;
 												}
-
-												tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
-												tela[l  ].cyc_Rt = z+j;
-												tela[z+j].cyc_Lf = l;
-												break;
 											}
-											else if (tela[l].cyc_F[f] == 0) {
-												tela[z+j].cyc_S = tela[z+j].cyc_P;
-												break;
-											}		
+										}
+										tela[n+l].cyc_P = tela[n+l].cyc_k * tela[n+l].all_r;
+										tela[n+l].cyc_r = tela[n+l].all_r;
+									} 
+	
+									/* SUM UP COMPATIBLE TR PRODUCTS IN WINDOW OF LENGTH SUMSPAN BEGINNING AT POSITION z OF TR B */
+									if (sumspan > 0 && tela[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
+										for (j = 0; j < sumspan; j++) {
+											for (f = tela[z+j].cyc_F[0] - 1 - j; f > 0; f--) {
+												l=z+j-k;
+												if (tela[l].cyc_F[f] == 1 && tela[l-1].cyc_F[f] != 0) {
+	
+													while (tela[l].cyc_o != 'x' && tela[l].cyc_o != 'o' && l>0) 
+														l--;
+	
+													while (tela[l].cyc_F[f] != 1 && l>0) 
+														l--;
+	
+													if (dev_print(MAIN,__LINE__)) {
+														printf("n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
+													}
+	
+													tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
+													tela[l  ].cyc_Rt = z+j;
+													tela[z+j].cyc_Lf = l;
+													break;
+												}
+												else if (tela[l].cyc_F[f] == 1 && tela[l-1].cyc_F[f] == 0) {
+													while ((tela[l].cyc_F[f] != 1 || !tela[l].k) && l<n)
+														l++;
+	
+													if (dev_print(MAIN,__LINE__)) {
+														printf("n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
+													}
+	
+													tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
+													tela[l  ].cyc_Rt = z+j;
+													tela[z+j].cyc_Lf = l;
+													break;
+												}
+												else if (tela[l].cyc_F[f] == 0) {
+													tela[z+j].cyc_S = tela[z+j].cyc_P;
+													break;
+												}		
+											}
+										}
+										/* FIND BEST CINCH SET */
+										c = tela[(l=z)].cyc_S;	/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
+										for (j = 1; j < sumspan; j++) {
+											if (tela[z+j].cyc_S > c) {
+												c = tela[ (l=z+j) ].cyc_S;
+											}
+										}
+										if (l == z && tela[(j=tela[l].cyc_Lf)].cyc_o == 'o') {	
+											i = j-1;	/* SAVE VAR j, CYCLING POSITION; VAR i TO COUNT DOWN TO POSITION THAT NEEDS TO BE CYCLED AWAY FROM */
+											while (tela[i].cyc_o != 'x' && tela[i].cyc_o != blank) 
+												i--;
+											if (tela[i].cyc_o == 'x') {
+												if (cyclelize_tela(i, j-i, n)) {
+													badslip_type = 30;					/* FROM SEQUENCE IN TYPES: 1-3-5-10- (30) -50-100-300-500 */
+													Current.pass_R += badslip_type;
+													sprintf(dev_notes, "bslip sum %d", Current.pass_R);
+													if (dev_print(MAIN,__LINE__)) {
+														printf("badslip type %d at n=%d for k=%d with TR at l=%d, delta=%d.", badslip_type, n, k, l, j-i);
+													}
+	
+													a2D_n = tela[n].x+k; 
+													row   = tela[n].y-1;
+												}
+											}
 										}
 									}
-									/* FIND BEST CINCH SET */
-									c = tela[(l=z)].cyc_S;	/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
-									for (j = 1; j < sumspan; j++) {
-										if (tela[z+j].cyc_S > c) {
-											c = tela[ (l=z+j) ].cyc_S;
+									else if (sumspan < 0 && tela[n].X != n) {
+										for (j = 0; j < -sumspan; j++) {
+											l = z+j + tela[z+j].cyc_k * (tela[z+j].cyc_r - 1);	/* VAR l IS POSITION 1 OF LAST UNIT OF REPEAT A */
+											for (i = tela[n].cyc_F[0]; i < FRAME_ROWS; i++) {
+												if (tela[l].cyc_F[i] == 1 && z+j != l+k) {
+													tela[z+j].cyc_S = tela[z+j].cyc_P + tela[z+j+k].cyc_P;	
+													tela[z+j].cyc_Rt = l+k;
+													tela[l+k].cyc_Lf = z+j;
+													tela[l+k].cyc_o = 'x';
+													break;
+												}
+												else if (tela[l].cyc_F[i] == 0) { 				/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */
+													tela[z+j].cyc_S = tela[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
+													break;
+												}
+												else if (i == FRAME_ROWS-1) {
+													tela[z+j].cyc_S = tela[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
+													break;
+												}
+											}
 										}
-									}
-									if (l == z && tela[(j=tela[l].cyc_Lf)].cyc_o == 'o') {	
-										i = j-1;	/* SAVE VAR j, CYCLING POSITION; VAR i TO COUNT DOWN TO POSITION THAT NEEDS TO BE CYCLED AWAY FROM */
-										while (tela[i].cyc_o != 'x' && tela[i].cyc_o != blank) 
-											i--;
-										if (tela[i].cyc_o == 'x') {
-											if (cyclelize_tela(i, j-i, n)) {
-												badslip_type = 30;					/* FROM SEQUENCE IN TYPES: 1-3-5-10- (30) -50-100-300-500 */
+										/* FIND BEST CINCH SET */
+										c = tela[z].cyc_S;				/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
+										int cycto = z;					/* CYCLING POSITION, FOR CLARITY. WILL NOT STAY AT z */
+										for (j = 1; j < -sumspan; j++) {
+											if (tela[z+j].cyc_S > c) {
+												c = tela[(cycto=z+j)].cyc_S;
+											}
+										}
+										if (cycto != z) {
+											if (cyclelize_tela(z, cycto-z, n)) {	/* REMINDER: cyclelize_tela(int cpos, int delta, int npos) */
+												badslip_type = 50;					/* FROM SEQUENCE IN TYPES: 1-3-5-10-30- (50) -100-300-500 */
 												Current.pass_R += badslip_type;
 												sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 												if (dev_print(MAIN,__LINE__)) {
-													printf("badslip type %d at n=%d for k=%d with TR at l=%d, delta=%d.", badslip_type, n, k, l, j-i);
+													printf("badslip type %d at n=%d for k=%d with TR at cycto=%d, z=%d.", badslip_type, n, k, cycto, z);
 												}
-
+	
 												a2D_n = tela[n].x+k; 
-												row   = tela[n].y-1;
+												row   = tela[n].y-1; 
 											}
 										}
 									}
 								}
-								else if (sumspan < 0 && tela[n].X != n) {
-									for (j = 0; j < -sumspan; j++) {
-										l = z+j + tela[z+j].cyc_k * (tela[z+j].cyc_r - 1);	/* VAR l IS POSITION 1 OF LAST UNIT OF REPEAT A */
-										for (i = tela[n].cyc_F[0]; i < FRAME_ROWS; i++) {
-											if (tela[l].cyc_F[i] == 1 && z+j != l+k) {
-												tela[z+j].cyc_S = tela[z+j].cyc_P + tela[z+j+k].cyc_P;	
-												tela[z+j].cyc_Rt = l+k;
-												tela[l+k].cyc_Lf = z+j;
-												tela[l+k].cyc_o = 'x';
-												break;
-											}
-											else if (tela[l].cyc_F[i] == 0) { 				/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */
-												tela[z+j].cyc_S = tela[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
-												break;
-											}
-											else if (i == FRAME_ROWS-1) {
-												tela[z+j].cyc_S = tela[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
-												break;
-											}
-										}
-									}
-									/* FIND BEST CINCH SET */
-									c = tela[z].cyc_S;				/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
-									int cycto = z;					/* CYCLING POSITION, FOR CLARITY. WILL NOT STAY AT z */
-									for (j = 1; j < -sumspan; j++) {
-										if (tela[z+j].cyc_S > c) {
-											c = tela[(cycto=z+j)].cyc_S;
-										}
-									}
-									if (cycto != z) {
-										if (cyclelize_tela(z, cycto-z, n)) {	/* REMINDER: cyclelize_tela(int cpos, int delta, int npos) */
-											badslip_type = 50;					/* FROM SEQUENCE IN TYPES: 1-3-5-10-30- (50) -100-300-500 */
-											Current.pass_R += badslip_type;
-											sprintf(dev_notes, "bslip sum %d", Current.pass_R);
-											if (dev_print(MAIN,__LINE__)) {
-												printf("badslip type %d at n=%d for k=%d with TR at cycto=%d, z=%d.", badslip_type, n, k, cycto, z);
-											}
-
-											a2D_n = tela[n].x+k; 
-											row   = tela[n].y-1; 
-										}
+	
+								if (tela[n].o > 2*k) {
+									cycle_flag = 1;		/* THIS BIT CAN BE USED TO ADD CYCLE NOTATION TO END OF LINE */
+									if (dev_print(MAIN,__LINE__)) {
+										printf("%d-mer cycle sequence of length %2d starting at %4d (n=%d): %s.", k, tela[n].o, n-k, n, cycle);
 									}
 								}
+								else {
+									for (l = 0; l <= WIDTH; l++)
+										cycle[l] = '\0';
+								}
+	
+								/* RECORD DNA "REVERB" IN SLIPLOC_ECHOES FOR ALL TR FRAMES */
+								if (opt_l.bit && tela[n].o) {    /********** OPTION TO SHOW SLIP LOCATIONS */
+									if (tela[n].o > 2*k)
+										h = k;
+									else
+										h = 1;
+	
+									for (j = 0; j < h; j++) {
+										for (l = j; l+k <= tela[n].o; l+=k) {
+											if 		(tela[n-k+l].echoes == blank)	tela[n-k+l].echoes = '(';
+											else if (tela[n-k+l].echoes == '('  )	tela[n-k+l].echoes = '{';
+											else if (tela[n-k+l].echoes == '{'  )	tela[n-k+l].echoes = '[';
+											else if (tela[n-k+l].echoes == ')'||
+													 tela[n-k+l].echoes == '}'||
+													 tela[n-k+l].echoes == ']'  )	tela[n-k+l].echoes = 'X';
+			
+											if 		(tela[n-1+l].echoes == blank)	tela[n-1+l].echoes = ')';
+											else if (tela[n-1+l].echoes == ')'  )	tela[n-1+l].echoes = '}';
+											else if (tela[n-1+l].echoes == '}'  )	tela[n-1+l].echoes = ']';
+											else if (tela[n-1+l].echoes == '('||
+													 tela[n-1+l].echoes == '{'||
+													 tela[n-1+l].echoes == '['  )	tela[n-1+l].echoes = 'X';
+										}
+									}
+								}/**********************************************************************************/
+	
 							}
-
-							if (tela[n].o > 2*k) {
-								cycle_flag = 1;		/* THIS BIT CAN BE USED TO ADD CYCLE NOTATION TO END OF LINE */
-								if (dev_print(MAIN,__LINE__)) {
-									printf("%d-mer cycle sequence of length %2d starting at %4d (n=%d): %s.", k, tela[n].o, n-k, n, cycle);
+						} /* END OF else & TR_check = 0 PART */
+	
+						/* THE TR "SHADOW" IN COMMENTS REFERS TO REGION OF FIRST UNIT, SO-CALLED BECAUSE           	*/
+						/* OF THE WAY CINCH-T BEGINS MARKING A TR STARTING AT THE SECOND UNIT. 						*/
+						/* THE OVERALL STRATEGY IS TO LOOP FROM n-1 DOWN TO m+1 AND COUNT VARIOUS USEFUL THINGS.	*/					
+						/* COUNT MOST RECENT CONFLICTING SLIP LENGTH IN UPSTREAM SHADOW OF NEW k-MER 				*/
+	
+						overslip = recslips = scooch = 0;
+	
+						if (!badslip_type) {
+	                        for (i = n-1; i > m; i--) {                            /* i WILL LOOP THROUGH TR SHADOW */
+	                            if (tela[i].r) {
+									recslips = recslips + tela[i].r;
+									overslip = overslip + span_rk(i);
 								}
-							}
-							else {
-								for (l = 0; l <= WIDTH; l++)
-									cycle[l] = '\0';
-							}
-
-							/* RECORD DNA "REVERB" IN SLIPLOC_ECHOES FOR ALL TR FRAMES */
-							if (opt_l.bit && tela[n].o) {    /********** OPTION TO SHOW SLIP LOCATIONS */
-								if (tela[n].o > 2*k)
-									h = k;
-								else
-									h = 1;
-
-								for (j = 0; j < h; j++) {
-									for (l = j; l+k <= tela[n].o; l+=k) {
-										if 		(tela[n-k+l].echoes == blank)	tela[n-k+l].echoes = '(';
-										else if (tela[n-k+l].echoes == '('  )	tela[n-k+l].echoes = '{';
-										else if (tela[n-k+l].echoes == '{'  )	tela[n-k+l].echoes = '[';
-										else if (tela[n-k+l].echoes == ')'||
-												 tela[n-k+l].echoes == '}'||
-												 tela[n-k+l].echoes == ']'  )	tela[n-k+l].echoes = 'X';
-		
-										if 		(tela[n-1+l].echoes == blank)	tela[n-1+l].echoes = ')';
-										else if (tela[n-1+l].echoes == ')'  )	tela[n-1+l].echoes = '}';
-										else if (tela[n-1+l].echoes == '}'  )	tela[n-1+l].echoes = ']';
-										else if (tela[n-1+l].echoes == '('||
-												 tela[n-1+l].echoes == '{'||
-												 tela[n-1+l].echoes == '['  )	tela[n-1+l].echoes = 'X';
-									}
-								}
-							}/**********************************************************************************/
-
-						}
-					} /* END OF else & TR_check = 0 PART */
-
-					/* THE TR "SHADOW" IN COMMENTS REFERS TO REGION OF FIRST UNIT, SO-CALLED BECAUSE           	*/
-					/* OF THE WAY CINCH-T BEGINS MARKING A TR STARTING AT THE SECOND UNIT. 						*/
-					/* THE OVERALL STRATEGY IS TO LOOP FROM n-1 DOWN TO m+1 AND COUNT VARIOUS USEFUL THINGS.	*/					
-					/* COUNT MOST RECENT CONFLICTING SLIP LENGTH IN UPSTREAM SHADOW OF NEW k-MER 				*/
-
-					overslip = recslips = scooch = 0;
-
-					if (!badslip_type) {
-                        for (i = n-1; i > m; i--) {                            /* i WILL LOOP THROUGH TR SHADOW */
-                            if (tela[i].r) {
-								recslips = recslips + tela[i].r;
-								overslip = overslip + span_rk(i);
 							}
 						}
+						
+						if (tela[m].r) {
+							recslips = recslips + tela[m].r;
+							if (tela[m].r > 1) { 
+								overslip = overslip + (tela[m].r-1) * tela[m].k;
+	                    	}  
+						}
+	
+						for (i = 0; i < r; i++) {
+							if ((ch=align2D[row][a2D_n]) != '\0') {
+								scooch = overslip;
+							}
+	
+							align2D[row  ][a2D_n+scooch  ] = '/'; 
+							align2D[row  ][a2D_n+scooch+1] = '\0'; 	
+							row++;										/* <==== ROW INCREMENTED HERE!		*/
+	
+							for (j = 0; j < (int) a2D_n; j++) {
+								align2D[row][j] = blank;
+							}
+							for (j = 0; j < k; j++) {
+								o = n + k*i + j;
+								q = a2D_n - k + overslip + j;
+								assign_tela(o, row, q, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
+							}
+						} /* END OF FOR i LOOP OF r */
+	
+						if (dev_print(MAIN,__LINE__)) {
+							p = (int) a2D_n; q = lenseq;
+							printf("\n               | via 2-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,p, TWO));
+							printf("\n               | via 1-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,q, ONE));
+							printf("\n               | print_tela for k=%d and r=%d at n=%d.", k, r, n);
+							print_tela(0,49);
+	/*						print_tela(prtela_A, prtela_B);
+	*/
+						}
+						
+						n = n + reps*k;
+						a2D_n = a2D_n + overslip;
+						r = 0;
+						break;
 					}
-					
-					if (tela[m].r) {
-						recslips = recslips + tela[m].r;
-						if (tela[m].r > 1) { 
-							overslip = overslip + (tela[m].r-1) * tela[m].k;
-                    	}  
-					}
-
-					for (i = 0; i < r; i++) {
-						if ((ch=align2D[row][a2D_n]) != '\0') {
-							scooch = overslip;
-						}
-
-						align2D[row  ][a2D_n+scooch  ] = '/'; 
-						align2D[row  ][a2D_n+scooch+1] = '\0'; 	
-						row++;										/* <==== ROW INCREMENTED HERE!		*/
-
-						for (j = 0; j < (int) a2D_n; j++) {
-							align2D[row][j] = blank;
-						}
-						for (j = 0; j < k; j++) {
-							o = n + k*i + j;
-							q = a2D_n - k + overslip + j;
-							assign_tela(o, row, q, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
-						}
-					} /* END OF FOR i LOOP OF r */
-
-					if (dev_print(MAIN,__LINE__)) {
-						p = (int) a2D_n; q = lenseq;
-						printf("\n               | via 2-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,p, TWO));
-						printf("\n               | via 1-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,q, ONE));
-						printf("\n               | print_tela for k=%d and r=%d at n=%d.", k, r, n);
-						print_tela(0,56);
-/*						print_tela(prtela_A, prtela_B);
-*/
-					}
-					
-					n = n + reps*k;
-					a2D_n = a2D_n + overslip;
-					r = 0;
-					break;
+					else 				/* CASE WHEN Dtr != Did AND NOT IMPERFECT-TYPE TR */
+						Dtr = Did = 0;
 				}
-				else 				/* CASE WHEN Dtr != Did AND NOT IMPERFECT-TYPE TR */
-					Dtr = Did = 0;
-			}
-		} /* END OF "for m" LOOP */
-	} /* END OF "for n" LOOP => cinch_t PASS COMPLETE */
-
-	/**********************************************/
-	/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
-
-	if (opt_P.bit) {
-		blocks = count_wrap_blocks(lenseq, par_wrap.set);
-
-		printf("\n\nPATHBOX CINCH PASS (length = width = %d)\n\n", lenseq);
-		for (j = 0; j < blocks; j++) {
-			if (blocks != 1)
-				print_blockhead(j+1, blocks);
-			line_end(PATHBOXHEAD, 9, 9);	
-			for(n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) 
-				printf("%2c", tela[n].c);
-			printf("\n");
-			for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != '>'; m++) {
-				printf("%4d. %c ", m+1, tela[m].c);
-					for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) {
-						if (m > n) {
-							if (pathbox[m][n])
-								printf("%2c", (char) pathbox[m][n]);
+			} /* END OF "for m" LOOP */
+		} /* END OF "for n" LOOP => cinch_t PASS COMPLETE */
+	
+		/**********************************************/
+		/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
+	
+		if (opt_P.bit) {
+			blocks = count_wrap_blocks(lenseq, par_wrap.set);
+	
+			printf("\n\nPATHBOX CINCH PASS (length = width = %d)\n\n", lenseq);
+			for (j = 0; j < blocks; j++) {
+				if (blocks != 1)
+					print_blockhead(j+1, blocks);
+				line_end(PATHBOXHEAD, 9, 9);	
+				for(n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) 
+					printf("%2c", tela[n].c);
+				printf("\n");
+				for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != '>'; m++) {
+					printf("%4d. %c ", m+1, tela[m].c);
+						for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) {
+							if (m > n) {
+								if (pathbox[m][n])
+									printf("%2c", (char) pathbox[m][n]);
+								else 
+									printf("%2c", blank);
+							}
+							else if (n-m <= WIDTH)
+								printf("%2d", pathbox[m][n]);
 							else 
 								printf("%2c", blank);
-						}
-						else if (n-m <= WIDTH)
-							printf("%2d", pathbox[m][n]);
-						else 
-							printf("%2c", blank);
-				}
-				printf("\n");
-	   		 }
-		}
-	} /* END OF OPTION TO PRINT PATHBOX */
+					}
+					printf("\n");
+		   		 }
+			}
+		} /* END OF OPTION TO PRINT PATHBOX */
+ 		align2D[row][citwidth+1] = '\0';
+		Cinch_T.pass_W = Current.pass_W = citwidth;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT */
+		clear_right(align2D);
+	}
 
- 	align2D[row][citwidth+1] = '\0';
-	Cinch_T.pass_W = Current.pass_W = citwidth;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT */
-	clear_right(align2D);
 	print1D();
 
 	/********** 2. cinch_t MODULE: WRAPS LARGEST EXACT k-mers, IGNORES INTRA-TR TRs **********/

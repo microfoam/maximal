@@ -91,7 +91,7 @@ struct {
 	opt_w = {0, 0, 'w', {0}},
 	opt_x = {0, 0, 'x', 	"Reduce thresholds for transition matching by one.*             "},
 	opt_y = {0, 0, 'y', {0}},
-	opt_z = {0, 0, 'z', 	"Set mismatch score from default to zero (visible in pathbox).  "},
+	opt_z = {0, 0, 'z', 	"Set mismatch score from default to zero (visible in Pathbox).  "},
 	opt_A = {0, 0, 'A', {0}},
 	opt_B = {0, 0, 'B', 	"Reset blank character (default '.') to space (' ').****        "},
 	opt_C = {0, 0, 'C', 	"Use the reverse complement (- strand) of a DNA sequence.       "},
@@ -107,7 +107,7 @@ struct {
 	opt_M = {0,10, 'M', 	"Double the default wrap length for long homomonomer tracts.*   "},
 	opt_N = {0, 0, 'N', {0}},
 	opt_O = {0, 0, 'O', 	"Append 2-D alignment to consensus file or raw input file.**    "},
-	opt_P = {0, 0, 'P', 	"Show pathbox.                                                  "},
+	opt_P = {0, 0, 'P', 	"Show Pathbox grid.                                             "},
 	opt_Q = {0, 0, 'Q', {0}},
 	opt_R = {0, 0, 'R', 	"Recover sequence from 2-D.                                     "},
 	opt_S = {0, 0, 'S', {0}},
@@ -165,7 +165,7 @@ struct cinch {
 } *Cinches[10],
 	 Start  = {0, 0, 0, 0, 0},		/* Initial pass (stage) to read a raw input sequence */
 	 Clean  = {0, 0, 0, 0, 0},		/* Pass to format original input string into acceptable characters and determine sequence type */
-	Cinch_T = {0, 0, 0, 0, 0},		/* Pass to cinch Tandem repeats using a special traversal of the pathbox */
+	Cinch_T = {0, 0, 0, 0, 0},		/* Pass to cinch Tandem repeats using a special traversal of the Pathbox grid */
 	Cinch_L = {0, 0, 0, 0, 0},		/* Pass to cinch Long monomeric tracts that are of size >= 2* mrwrap */
 	Cinch_K = {0, 0, 0, 0, 0},		/* Pass to cinch intra-repeat K-mers */
 	 Nudge  = {0, 0, 0, 0, 0},		/* Pass to nudge correct any mistakes in previous passes, a now rare event */

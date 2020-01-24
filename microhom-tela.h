@@ -304,15 +304,10 @@ void mark_tela(void)
 	unsigned short int nuctype = Clean.pass_V;
 	unsigned short int nuctransit=0, TRcheck=0, imperfect_TR=0, Aimperfect_TR=0, gapcheck=0;
 	int homopoly_flag=0, Did=0, Dtr=0, Atr=0;
-	int mismatch   = -1;	/* MOVE ME TO HEADER FILE */
 	unsigned short int checkconflict=0;
 
 	if (nuctype == 1)		/* IF DNA */
 		nuctransit = 1;
-
-	if (dev_print(TELA,__LINE__)) {
-		printf("Function mark_tela() engaged.");
-	}
 
 	for (n = 1; n<=lenseq; n++) {
 		for (m = 0; m < n; m++) {
@@ -336,30 +331,36 @@ void mark_tela(void)
 			if (tela[n].c != tela[n-1].c)
 				homopoly_flag = 0;
 
-			/* FOR ROW m LOOP 5/5: START COUNTING SCORE IF PATHBOX POSITION HAS VALUE > MISMATCH */
-			if (pathbox[m][n] > mismatch && n+k < lenseq) {
-				Dtr = 0;
+			/* FOR ROW m LOOP 5/5: START COUNTING SCORE (EQUIV. TO: IF PATHBOX POSITION HAS VALUE > MISMATCH) */
+			if (n+k < lenseq) {
+				Dtr = 0;	/* INITIALIZATION */
 
 				/* IF SUMMING PATHBOX DIAGONAL 1/4: COMPUTE SCORES OF IDENTITY LINE AND REPEAT DIAGONAL*/
 				Did = k*MATCH;
-				for (i = m; i < n; i++) {
-					if (pathbox[i][i+k] == mismatch) {	/* STOP SHORT IF MISMATCH IS FOUND 		 		*/
-						Dtr =  0;						/* B/C CURRENTLY ONLY CONSIDERING TRANSITIONS 	*/
+				for (j = 0; j < k; j++) {
+					if (nuctransit && (tela[m+j].c=='n' || tela[n+j].c=='n')) {
+						Dtr =  0;
 						break;							
 					}
-					else
-						Dtr = Dtr + pathbox[i][i+k];	/* COMPUTE SUM OF TANDEM REPEAT UNIT LINE */
+					else if (tela[m+j].c == tela[n+j].c) 
+						Dtr += MATCH;	
+					else if (nuctransit && tela[m+j].e == tela[n+j].e)
+						Dtr += TRANSITION;
+					else {
+						Dtr = 0;
+						break;
+					}
 
 					/* SET HOMOPOLYMERIC RUN BIT TO FALSE IF NOT A POSSIBILITY */
-					if (homopoly_flag && i > m && tela[i].c != tela[i-1].c)
+					if (homopoly_flag && j > 0 && tela[m+j].c != tela[m+j-1].c)
 						homopoly_flag = 0;
 				}
 
 				/* IF SUMMING PATHBOX DIAGONAL 2/4: SET HOMOPOLYMERIC RUN BIT TO TRUE IF DETECTED 	*/
-				if (homopoly_flag && i == n) {
+				if (homopoly_flag && j == k) {
 					homopoly_flag = 1;				/* BIT IS THERE IF NEEDED BEYOND BREAK. 		*/
 					Dtr = 0;
-					break;							/* GO TO NEXT n */
+					break;							/* GO TO NEXT n b/c will be true for all remaining rows */
 				}
 
 				/* IF SUMMING PATHBOX DIAGONAL 3/4: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
