@@ -565,28 +565,36 @@ int main(int argc, char *argv[])
 	}
 	else if (seqtype == 1) {
 		nuctransit = 1;
-		strcpy(letr_unit, "bp");	/* BASE PAIRS */
+		strcpy(letr_unit, "bp");	/* BASE PAIRS (DNA) */
 	}
-	else if (seqtype == 2)
-		strcpy(letr_unit, "nt");	/* NUCLEOTIDES */
+	else if (seqtype == 2) {
+		PyrTU = &nucl_U;
+		strcpy(letr_unit, "nt");	/* NUCLEOTIDES (RNA) */
+	}
 	else if (seqtype == 3)
 		strcpy(letr_unit, "aa");	/* AMINO ACIDS */
 	else if (seqtype == 0)
 		strcpy(letr_unit, "ch");	/* OTHER */
 
-	if (nuctransit && opt_C.bit) {		/* opt_C USE REVERSE COMPLEMENT */
+	if (opt_C.bit) {					/* opt_C USE REVERSE COMPLEMENT (nucleotides), REVERSE (other) */
 		Strand = &R_str;				/* SET STRAND POINTER TO REVERSE STRAND CHARACTER */
-		for (i=1; i<=lenseq; i++) {
-			if ( (ch=Seq[lenseq-i]) == 'A')
-				Seq_r[i-1] = 'T';
-			else if (ch == 'T')
-				Seq_r[i-1] = 'A';
-			else if (ch == 'C')
-				Seq_r[i-1] = 'G';
-			else if (ch == 'G')
-				Seq_r[i-1] = 'C';
-			else
-				Seq_r[i-1] = ambig.sym;
+		if (seqtype==1 || seqtype==2) {
+			for (i=1; i<=lenseq; i++) {
+				if ( (ch=Seq[lenseq-i]) == 'A')
+					Seq_r[i-1] = PyrTU->sym;
+				else if (ch == PyrTU->sym)
+					Seq_r[i-1] = 'A';
+				else if (ch == 'C')
+					Seq_r[i-1] = 'G';
+				else if (ch == 'G')
+					Seq_r[i-1] = 'C';
+				else
+					Seq_r[i-1] = ambig.sym;
+			}
+		}
+		else {
+			for (i=1; i<=lenseq; i++) 
+				Seq_r[i-1] = Seq[lenseq-i];
 		}
 		Seq_r[lenseq] = Term->sym;
 		strcpy(Seq, Seq_r);

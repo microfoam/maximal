@@ -94,7 +94,7 @@ struct {
 	opt_z = {0, 0, 'z', 	"Set mismatch score from default to zero (visible in Pathbox).  "},
 	opt_A = {0, 0, 'A', {0}},
 	opt_B = {0, 0, 'B', 	"Reset blank character (default '.') to space (' ').****        "},
-	opt_C = {0, 0, 'C', 	"Use the reverse complement (- strand) of a DNA sequence.       "},
+	opt_C = {0, 0, 'C', 	"Use the reverse complement (- strand) or reverse as allowed.   "},
 	opt_D = {0, 0, 'D', 	"Turn on program development prompts (user-controlled pauses).  "},
 	opt_E = {0, 0, 'E', {0}},
 	opt_F = {0, 0, 'F', 	"Fill recessed line ends with spacer marks as a visual aid.     "},
@@ -139,34 +139,36 @@ struct {
 	char	sym;	/* character symbol      */
 	int		cod;	/* decimal unicode value */
 }
+	ambig    = {'n',110},		/* MHA ambiguous character in DNA              */
+	nucl_T   = {'T', 84},		/* MHA nucleobase thymine                      */
+	nucl_U   = {'U', 85},		/* MHA nucleobase uracil                       */
+	*PyrTU   = &nucl_T,			/* pointer to thymine or uracil                */
 	fill_1   = {'.', 46},		/* MHA fill character (default): full stop     */
 	fill_0   = {' ', 32},		/* MHA fill character (option): space          */
 	fill10   = {':', 58},		/* MHA fill character (10 bp): colon           */ 	/* OTHER POSSIBILITIES: |, ^ */
+	*Fill    = &fill_1,			/* pointer to default fill character           */	/* ALWAYS USE POINTER, WHICH CAN BE REDIRECTED */
 	margin   = {' ', 32},		/* MHA margin character with pairwise: space   */
+	*Margin  = &margin,			/* pointer to zero column margin under start   */
 	fastahead= {'>', 62},		/* MHA fasta header to decouple from term.     */
 	term00   = {'>', 62},		/* MHA terminator character: greater-than sign */	/* NEEDS TO BE UNIQUE */
 	term01   = {'*', 42},		/* MHA terminator character: greater-than sign */	/* NEEDS TO BE UNIQUE */
-	test00   = {'#', 35},		/* MHA DEV test                                */
+	*Term    = &term00,			/* pointer to terminator character             */	/* ALWAYS USE POINTER, WHICH CAN BE REDIRECTED */
 	monoL    = {'(', 40},		/* MHA long monomeric tract left delimiter     */
 	monoR    = {')', 41},		/* MHA long monomeric tract right delimiter    */
 	F_str    = {'+', 43},		/* MHA dsDNA strand indicator, forward         */
 	R_str    = {'-', 45},		/* MHA dsDNA strand indicator, reverse         */
+	*Strand  = &F_str,			/* pointer to forward strand character         */
 	gap      = {'-', 45},		/* MHA null character, dash                    */
 	slip     = {'/', 47},		/* MHA slip character: forward slash           */
 	tick     = {'|',124},		/* MHA ruler tick mark: vertical bar           */
-	ambig    = {'n',110},		/* MHA ambiguous character in DNA              */
+	*Tick    = &tick,			/* pointer to default 10 bp ruler tick mark    */
+	*ZTick   = &fill_0,			/* pointer to default column zero tick mark    */
 	st_fract = {'f',102},		/* MHA mark_tela() status mark                 */
 	st_cycle = {'c', 99},		/* MHA mark_tela() status mark                 */
 	st_clash = {'!', 33},		/* MHA mark_tela() status mark                 */
 	st_skip0 = {'_', 95},		/* MHA mark_tela() status mark                 */
 	st_skip1 = {'-', 45},		/* MHA mark_tela() status mark                 */
-	st_skip2 = {'~',126},		/* MHA mark_tela() status mark                 */
-	*Fill    = &fill_1,			/* pointer to default fill character           */	/* ALWAYS USE POINTER, WHICH CAN BE REDIRECTED */
-	*Margin  = &margin,			/* pointer to zero column margin under start   */
-	*Strand  = &F_str,			/* pointer to forward strand character         */
-	*Term    = &term00,			/* pointer to terminator character             */	/* ALWAYS USE POINTER, WHICH CAN BE REDIRECTED */
-	*Tick    = &tick,			/* pointer to default 10 bp ruler tick mark    */
-	*ZTick   = &fill_0;			/* pointer to default column zero tick mark    */
+	st_skip2 = {'~',126};		/* MHA mark_tela() status mark                 */
 
 
 struct cinch {

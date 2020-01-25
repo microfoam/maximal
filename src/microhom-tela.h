@@ -722,7 +722,7 @@ short int check_solo(int pos)
 void print_tela(int a, int b)
 {
 int i=0, f=0;
-int width = 42;	    /* 60 x 3 = 180 COLS, PRACTICAL DISPLAY WIDTH DEPENDS ON SCREEN SIZE */
+int width = 56;	    /* 60 x 3 = 180 COLS, PRACTICAL DISPLAY WIDTH DEPENDS ON SCREEN SIZE */
 int lenseq = Clean.pass_W;
 
 	if (a<0 || a>lenseq) 
@@ -748,6 +748,10 @@ int lenseq = Clean.pass_W;
 	}
 	a += OFFSET;
 	b += OFFSET;
+	if (b>lenseq && lenseq > b-a) {
+		a = lenseq-width;
+		b = lenseq;
+	}
 	/************* BEGIN PRINTING LINES *******************/
 	printf("\n t:");
 	for (i=a; i<=b; i++) {
