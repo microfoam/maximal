@@ -217,7 +217,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 	if (dev_print(CINCH,__LINE__)) {
 		printf("Post-cinch-t max_k = %d.", max_k);
 	}
-	if (!max_k)
+	if (!max_k || Cinch_T.pass_Q!=1000)
 		max_k = WIDTH;
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
@@ -626,13 +626,12 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 /******************************************************************/
 unsigned int nudgelize(void)
 {
-int cyc_col=0, cyc_row=0, a, b, i, j, kmer=0, m=0, n=0;
-int lenseq   = Clean.pass_W;
+int cyc_col=0, cyc_row=0, i, j, m=0, n=0;
+int lenseq = Clean.pass_W;
 int cyc_width = Current.pass_W;						/* THIS IS opt_W SLOT TO STORE CURRENT 2-D WIDTH */
 short unsigned int edge0=0;
 unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 unsigned short int nuctransit=0, dud_nudge=0;		/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
-unsigned short int tipcyc_flag=0;					/* BIT FLAG FOR TIP CYCLING OPPORTUNITY */
 char blnk = Fill->sym;
 char letr, conletr, topletr;
 char cyc_ar[MAXROW+1][MAXROW] = {{0}};
@@ -713,85 +712,26 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 						}
 					} /* END OF ELSE (IF NOT edge0) */
 
-					/* TIP-CYCLELIZE AS SOON AS DETECTED */
-					tipcyc_flag = 0;
-					for (i = m; i < cyc_row; i++) {
-						if (align2D[i][cyc_col] != slip.sym)
-							break;
-					}
-					if (i == cyc_row && align2D[m-1][cyc_col+1] == slip.sym) {
-						j = 0;
-						while (align2D[m][j] == blnk) {
-							j++;
-						}
-
-						if (align2D[m][j] == align2D[m-1][cyc_col]) {
-							tipcyc_flag = 1;		
-							kmer = 4;		/* NOT ACTUAL kmer, JUST USING VAR TO CODE CYC TYPE */
-							for (a = 0; a < m-1; a++) {
-								for (b=0; (letr=align2D[a][b]) != '\0'; b++) {
-									cyc_ar[a][b] = letr;
-								}
-								cyc_ar[m-2][b] = '\0';
-							}
-							for (b=0; b < cyc_col; b++) {
-								cyc_ar[m-1][b  ] = align2D[m-1][b];
-							}
-								cyc_ar[m-1][b  ] = slip.sym;
-								cyc_ar[m-1][b+1] = '\0';
-							for (b = 0; b < j; b++) {
-								cyc_ar[m  ][b  ] = blnk;
-							}
-								cyc_ar[m  ][j  ] = align2D[m-1][cyc_col];
-								cyc_ar[m  ][j+1] = slip.sym;
-								cyc_ar[m  ][j+2] = '\0';
-							for (a = m; align2D[a][0] != '\0' && a < MAXROW; a++) {
-								for (b=0; (letr=align2D[a][b]) != '\0'; b++) {
-									cyc_ar[a+1][b] = letr;
-								}
-							}
-							cyc_ar[MAXROW][cyc_col] = align2D[cyc_row][cyc_col];
-							if (dev_print(CINCH,__LINE__)) {
-								printf("TIP CYCLING OPPORTUNITY FOR cyc_col = %d; j=%d.", cyc_col+1, j+1);
-							}
-						}
-					}
-
-                    if (kmer != 4)      	/* LEGACY NAMING OF VARIABLE FROM WHEN NUDGELIZE USED TO BE CYCLELIZE; NOW SEPARATE FUNC. */
-						kmer = 3;       	/* IF k=9, THEN BELOW WILL FUDGE CYCLELIZE BY PUSHING RIGHT. HACK WORKS FOR ALL k */ 
-
-					if (Nudge.pass_V!=3)		/* GIVING PRECEDENCE TO THE MEMORY OF HAVING NUDGE-CYCLED */
-						Nudge.pass_V = kmer;	/* USING THE 0 ROW ABOVE PASS WIDTH ROW TO STORE cyclelize kmer VAR. */
-
-					/* TIP-CYCLELIZE */
-					if (tipcyc_flag) {
-						/* WILL TIP-CYCLELIZE ABOVE AT FLAG CALL */
-						Nudge.pass_W = Current.pass_W = cyc_width;	/* ASSIGN CURRENT WIDTH and PASS x WIDTH HISTORY */
-						tipcyc_flag = kmer = 0;
-						n = cyc_width+1;	/* BREAKS OUT OF n LOOP */
-						break;				/* BREAKS OUT OF m LOOP */
-					}
+					Nudge.pass_V = 3;	/* TEMPORARY: WILL CHAGE EVENTUALLY; IT'S LIKE THIS FOR DEPRECATED REASONS */
 
 					/* NUDGE-CYCLELIZE: */
-					if (ON) {	
-						if (connudge(cyc_ar, 0, cyc_width) == 0) {
-							if (dev_print(CINCH,__LINE__)) {
-								printf("dud_nudge");
-							}
-							dud_nudge = 1;
-							i = Current.pass_V;
-							Cinches[i]->pass_W = cyc_width = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS x WIDTH HISTORY */
-							n = cyc_width+1; 		/* BREAK OUT OF FOR n LOOP AFTER BREAKING OUT OF FOR m LOOP */
-							break; 					/* BREAK OUT OF FOR m LOOP */
+					if (connudge(cyc_ar, 0, cyc_width) == 0) {
+						if (dev_print(CINCH,__LINE__)) {
+							printf("dud_nudge");
 						}
-
-						clear_right(cyc_ar);
-
+						dud_nudge = 1;
 						i = Current.pass_V;
 						Cinches[i]->pass_W = cyc_width = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS x WIDTH HISTORY */
 						n = cyc_width+1; 		/* BREAK OUT OF FOR n LOOP AFTER BREAKING OUT OF FOR m LOOP */
 						break; 					/* BREAK OUT OF FOR m LOOP */
-					} /* END OF ELSE (IF kmer != 2) */
+					}
+
+					clear_right(cyc_ar);
+
+					i = Current.pass_V;
+					Cinches[i]->pass_W = cyc_width = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS x WIDTH HISTORY */
+					n = cyc_width+1; 		/* BREAK OUT OF FOR n LOOP AFTER BREAKING OUT OF FOR m LOOP */
+					break; 					/* BREAK OUT OF FOR m LOOP */
 
 				} /* END OF IF LETTER != CONSENSUS */
 			} /* END OF IF ISALPHA */

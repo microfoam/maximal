@@ -1868,7 +1868,7 @@ int main(int argc, char *argv[])
 	
 	if (!opt_s.bit) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4d\t%.3f\tCYC:%3d (t=%d)\tRND:%.*s\t%38s (%c) (%4d %s) REC:%4d\t%s\n", 
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4d\t%.3f\tNDG:%2d (%d)\tRND:%.*s\t%38s (%c) (%4d %s) REC:%4d\t%s\n", 
 				version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, Nudge.pass_V, opt_X.val, "XX", 
 				file_name, Strand->sym, Clean.pass_W, letr_unit, Recover.pass_Q, dev_notes);
 		fclose(fp_out);
@@ -1876,7 +1876,7 @@ int main(int argc, char *argv[])
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (Current.pass_Q != 1000 || Nudge.pass_R > CYCMAX) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4d\t%.3f\tCYC:%2d (t=%d)\tRND:-%.*s\t%s (%c) (%d %s) REC:%4d\t%s\n", 
+			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4d\t%.3f\tNDG:%2d (%d)\tRND:-%.*s\t%s (%c) (%d %s) REC:%4d\t%s\n", 
 					version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, Nudge.pass_V, opt_X.val, "XX", 
 					file_name, Strand->sym, Clean.pass_W, letr_unit, Recover.pass_Q, dev_notes);
 			for(n = 0; n<lenseq; n++) {
