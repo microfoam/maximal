@@ -700,7 +700,7 @@ void mark_tela(void)
 
 	if (dev_print(TELA,__LINE__)) {
 		printf("                     Finishing. print_tela() follows.");
-		print_tela( 0,  56);
+		print_tela(prtela_A, prtela_B);
 	}
 }
 
@@ -722,7 +722,7 @@ short int check_solo(int pos)
 void print_tela(int a, int b)
 {
 int i=0, f=0;
-int width = 50;	    /* 60 x 3 = 180 COLS, PRACTICAL DISPLAY WIDTH */
+int width = 42;	    /* 60 x 3 = 180 COLS, PRACTICAL DISPLAY WIDTH DEPENDS ON SCREEN SIZE */
 int lenseq = Clean.pass_W;
 
 	if (a<0 || a>lenseq) 
@@ -746,6 +746,8 @@ int lenseq = Clean.pass_W;
 		else
 			b = width;
 	}
+	a += OFFSET;
+	b += OFFSET;
 	/************* BEGIN PRINTING LINES *******************/
 	printf("\n t:");
 	for (i=a; i<=b; i++) {

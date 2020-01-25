@@ -726,7 +726,6 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 						}
 
 						if (align2D[m][j] == align2D[m-1][cyc_col]) {
-							
 							tipcyc_flag = 1;		
 							kmer = 4;		/* NOT ACTUAL kmer, JUST USING VAR TO CODE CYC TYPE */
 							for (a = 0; a < m-1; a++) {

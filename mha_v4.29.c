@@ -974,9 +974,13 @@ int main(int argc, char *argv[])
 					j = n + tela[n].all_k * tela[n].all_r;
 					if (tela[n].all_L && check_tela(tela[n].all_L, j, ONE)!=3) {
 						Dtr = imperfect_TR = 0;
+							if (dev_print(MAIN,__LINE__)) 
+								printf("check_tela() induced cinch cancel.");
 					}
 					else if (check_tela(m, j, ONE)!=3) {
 						Dtr = imperfect_TR = 0;
+						if (dev_print(MAIN,__LINE__)) 
+							printf("check_tela() induced cinch cancel.");
 					}
 	
 					/* IF SUMMING PATHBOX DIAGONAL 7/: COMMITTING TO CINCH AFTER AXIOMATIC TEST BY PUSH_TELA  ************************/
@@ -1324,9 +1328,7 @@ int main(int argc, char *argv[])
 							printf("\n               | via 2-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,p, TWO));
 							printf("\n               | via 1-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,q, ONE));
 							printf("\n               | print_tela for k=%d and r=%d at n=%d.", k, r, n);
-							print_tela(0,49);
-	/*						print_tela(prtela_A, prtela_B);
-	*/
+							print_tela(prtela_A, prtela_B);
 						}
 						
 						n = n + reps*k;

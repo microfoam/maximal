@@ -7,6 +7,7 @@
 #ifndef FILE_DEVL_SEEN
 #define FILE_DEVL_SEEN
 
+#define OFFSET	  130		/* FOR SETTING START POSITION OF PRINT TELA */
 #define OFF			0		/* FOR CLARITY OF MODE ARGUMENTS */
 #define ON 			1		/* FOR CLARITY OF MODE ARGUMENTS */
 #define ONE			1		/* USE ONLY FOR FUNCTIONS THAT CAN BE TURNED OFF WITH MODE OFF */
@@ -29,7 +30,7 @@ void 				dev_prompt(short unsigned int mode, int line_no, char *filename);
 void 				signal_callback_handler(int signum);
 
 int prtela_A =   0;		/* DEVELOPMENT VARIABLE TO GLOBALLY SET PRINT TELA START AND END POINT FOR DIAGNOSTICS */
-int prtela_B =  56;		/* SET TO SOMETHING APPROPRIATE FOR GIVEN COMPUTER SCREEN */	
+int prtela_B =  48;		/* SET TO SOMETHING APPROPRIATE FOR GIVEN COMPUTER SCREEN */	
 int dev_count =  0;		/* USED AS A COUNTER IN CERTAIN PLACES TO LIMIT THE NUMBER OF DEV_PRINTS */
 int dev_limit = 42;		/* USED TO LIMIT THE NUMBER OF DEV_PRINTS */
 
