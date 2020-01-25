@@ -141,7 +141,7 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 				;
 			}
 			else {
-				tela[i].cyc_o = '>';						/* MARK EDGE OF DISCONTINUITY */
+				tela[i].cyc_o = Term->sym;					/* MARK EDGE OF DISCONTINUITY */
 				if (dev_count < dev_limit && dev_print(TELA,__LINE__)) {
 					printf("check_tela() marking edge of discontinuity at i=%d.", i);
 					dev_count++;
@@ -235,7 +235,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 				align2D[m][n] = c;
 			}
 			if (r < reps - 1) {
-				align2D[m][n+1] = '/';
+				align2D[m][n+1] = slip.sym;
 				align2D[m][n+2] = '\0';
 			}
 			else if (r == reps-1) {
@@ -338,7 +338,7 @@ void mark_tela(void)
 				/* IF SUMMING PATHBOX DIAGONAL 1/4: COMPUTE SCORES OF IDENTITY LINE AND REPEAT DIAGONAL*/
 				Did = k*MATCH;
 				for (j = 0; j < k; j++) {
-					if (nuctransit && (tela[m+j].c=='n' || tela[n+j].c=='n')) {
+					if (nuctransit && (tela[m+j].c==ambig.sym || tela[n+j].c==ambig.sym)) {
 						Dtr =  0;
 						break;							
 					}
@@ -411,10 +411,10 @@ void mark_tela(void)
 							}
 							else {
 								if (tela[n-1].all_k == k) {
-									tela[n].stat = 'c';		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
+									tela[n].stat = st_cycle.sym;		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
 								}
 								else {
-									tela[n].stat = 'f';		/* FRACTAL REPEAT = EMBEDDED IN ANOTHER REPEAT */
+									tela[n].stat = st_fract.sym;		/* FRACTAL REPEAT = EMBEDDED IN ANOTHER REPEAT */
 								}
 							}
 							TRcheck = 0;
@@ -472,7 +472,7 @@ void mark_tela(void)
 				if (tela[i].all_k && (i + tela[i].all_k * (tela[i].all_r-1)) > m-recslips) {
 					/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
 					if (i>=m && i<n && tela[i].all_S == tela[i+k].all_S) {
-						tela[i].stat = tela[i+k].stat = tela[n].stat = 'f';
+						tela[i].stat = tela[i+k].stat = tela[n].stat = st_fract.sym;
 						tela[n].all_L = i;		/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;		/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 						recslips += span_allrk(i); 
@@ -506,9 +506,9 @@ void mark_tela(void)
 			if (recslips == 0) {
 				check_shadow = 0;
 			}
-			else if ( m + tela[m].all_k * tela[m].all_r >= m - recslips && tela[m].stat != 'f' && 
+			else if ( m + tela[m].all_k * tela[m].all_r >= m - recslips && tela[m].stat != st_fract.sym && 
 						tela[n-tela[m].all_k].all_k != tela[n].all_k && check_solo(m) && check_solo(n) ) {
-				tela[m].stat = '_';
+				tela[m].stat = st_skip0.sym;
 				clearall_tela(m, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 			}
 		}	
@@ -579,7 +579,7 @@ void mark_tela(void)
 			if (!checkconflict) {
 				/* CONFLICT SCENARIO ONE */
 				if (span==1 && !(tela[n].all_L) && tela[n].all_R) {
-					if (OFF && tela[n].stat == '!') {	/* SO MARKED IN THE CONFLICT TR LOOP */
+					if (OFF && tela[n].stat == st_clash.sym) {	/* SO MARKED IN THE CONFLICT TR LOOP */
 						clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 						if (dev_print(TELA,__LINE__)) {
 							printf("mark_tela() calling clearall_tela at n=%d.", n);
@@ -666,9 +666,9 @@ void mark_tela(void)
 			for (i=0; i<tela[n].all_r; i++) {
 				for (j = 1; j < tela[n].all_k-1; j++) {
 					if (i==0 && tela[(p=m+j)].all_k != tela[(q=n+j)].all_k 
-								&& tela[p].stat == 'f' && tela[n].stat != 'f') {
+								&& tela[p].stat == st_fract.sym && tela[n].stat != st_fract.sym) {
 						clearall_tela(n,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-						tela[n].stat = '-';
+						tela[n].stat = st_skip1.sym;
 						if (dev_print(TELA,__LINE__)) {
 							printf("mark_tela() at n=%d evaluating cycling differences "
 									"but calling clearall only at n to save fractal TR at p=%d.", n, p);
@@ -1192,7 +1192,7 @@ int update_tela(void)
 					else
 						break;
 				}
-				if (letr=='>') {
+				if (letr==Term->sym) {
 					tela[c].y = i;
 					tela[c].x = j;
 				}

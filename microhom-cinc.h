@@ -93,9 +93,9 @@ char letr;
 		i = 0;
 		while (s[i] != '\0') {
 			if (s[i] == 'N') 
-				s[i] = 'n';
+				s[i] = ambig.sym;
 			else if (s[i]!='A' && s[i]!='G' && s[i]!='C' && s[i]!='T' && s[i]!='U')
-				s[i] = 'n';
+				s[i] = ambig.sym;
 			i++;
 		}
 	}
@@ -132,7 +132,7 @@ char lclalign2D[MAXROW][MAXROW] = {{0}};
 				n++;			  
 			}
 			/* letr ASSIGNED */
-			if ((letr=align2D[m][n]) != '/' || letr != '\0') {	/* letr != '\0' USEFUL IF BLANKS FILLED TO SCRIMMAGE */ 
+			if ((letr=align2D[m][n]) != slip.sym || letr != '\0') {	/* letr != '\0' USEFUL IF BLANKS FILLED TO SCRIMMAGE */ 
 				lclalign2D[m+cil_row][n-x] = letr;	
 				if (letr == align2D[m][n-1]) 
 					run++;
@@ -140,7 +140,7 @@ char lclalign2D[MAXROW][MAXROW] = {{0}};
 					run = 1;
 			}
 			else
-				lclalign2D[m+cil_row][n-x] = letr;		/* WRITE TERMINAL MHA CHARACTERS '/' or '>' */
+				lclalign2D[m+cil_row][n-x] = letr;		/* WRITE LINE TERMINAL MHA CHARACTERS */
 	
 			if (run == 2*opt_M.val) {			/* TRIGGER LENGTH MEASURE OF MONOMERIC RUN	*/
 												/* AND WRITING OF (10)-MER BLOCKS			*/
@@ -351,7 +351,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 						}
 						else {
 							/* CHECK TO SEE IF THERE ARE n's */
-							if (nuctype && (align2D[m][n+l]=='n' || align2D[m][n+l+k]=='n')) {
+							if (nuctype && (align2D[m][n+l]==ambig.sym || align2D[m][n+l+k]==ambig.sym)) {
 								keep_checking = 0;
 								break;
 							}
@@ -446,7 +446,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 							sum4score += MATCH;		/* JUSTIFICATION: MATCHES TRANSITION CALL */
 						}
 						/* IF LETTER AT n+l EQUAL TO LETTER AT n+l+k except 'n' */
-						else if ((align2D[m][n+l] != 'n') && (align2D[m][n+l+k] != 'n'))	
+						else if ((align2D[m][n+l] != ambig.sym) && (align2D[m][n+l+k] != ambig.sym))	
 							sum4score += MATCH;
 					} /* END OF FOR l SCAN LOOPS */
 
@@ -479,7 +479,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 					}
 				}
 
-				if (keep_checking && tela[symbol_count+k].stat == '-') {
+				if (keep_checking && tela[symbol_count+k].stat == st_skip1.sym) {
 					keep_checking = 0;
 				}
 
@@ -552,7 +552,7 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 						x_history[n+l] = x;					/* x_history WRITE-IN FOR NEW TR COLS */
 					}
 					symbol_count += k;
-					cik_align2D[m+cik_row  ][n-x+k  ] = '/';
+					cik_align2D[m+cik_row  ][n-x+k  ] = slip.sym;
 					cik_align2D[m+cik_row  ][n-x+k+1] = '\0';
 
  					for (i = 0; i < n-x; i++) {
@@ -685,8 +685,8 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 						}
 	
 						/* SOMETIMES NEED TO SKIP ROWS AT BLEEDING EDGE OF SLIPS */	
-						if (align2D[m][cyc_col+1] == '/') {
-							while (align2D[m][cyc_col+1] == '/') {
+						if (align2D[m][cyc_col+1] == slip.sym) {
+							while (align2D[m][cyc_col+1] == slip.sym) {
 								m++;
 							}
 						}
@@ -716,10 +716,10 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 					/* TIP-CYCLELIZE AS SOON AS DETECTED */
 					tipcyc_flag = 0;
 					for (i = m; i < cyc_row; i++) {
-						if (align2D[i][cyc_col] != '/')
+						if (align2D[i][cyc_col] != slip.sym)
 							break;
 					}
-					if (i == cyc_row && align2D[m-1][cyc_col+1] == '/') {
+					if (i == cyc_row && align2D[m-1][cyc_col+1] == slip.sym) {
 						j = 0;
 						while (align2D[m][j] == blnk) {
 							j++;
@@ -738,13 +738,13 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 							for (b=0; b < cyc_col; b++) {
 								cyc_ar[m-1][b  ] = align2D[m-1][b];
 							}
-								cyc_ar[m-1][b  ] = '/';
+								cyc_ar[m-1][b  ] = slip.sym;
 								cyc_ar[m-1][b+1] = '\0';
 							for (b = 0; b < j; b++) {
 								cyc_ar[m  ][b  ] = blnk;
 							}
 								cyc_ar[m  ][j  ] = align2D[m-1][cyc_col];
-								cyc_ar[m  ][j+1] = '/';
+								cyc_ar[m  ][j+1] = slip.sym;
 								cyc_ar[m  ][j+2] = '\0';
 							for (a = m; align2D[a][0] != '\0' && a < MAXROW; a++) {
 								for (b=0; (letr=align2D[a][b]) != '\0'; b++) {
@@ -841,7 +841,7 @@ int translimit = 0;
 unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;		/* CHECK MONO IN ORDER TO KNOW TO SKIP IT */
 unsigned short int nuctransit=0;						/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int imperfect_TR=0;
-char letr = 'B', ltr2 = 'Z';
+char letr, ltr2;
 char blnk = Fill->sym;
 char cid_align2D[MAXROW][MAXROW];
 
@@ -883,7 +883,7 @@ char cid_align2D[MAXROW][MAXROW];
 						mono_flag = 0;		/* CAN NO LONGER BE A HOMOPOLYMER RUN OF FOR THIS k-MER */
 					}
 
-					if (letr == 'n' || ltr2 == 'n') {
+					if (letr == ambig.sym || ltr2 == ambig.sym) {
 						break;
 					}
 					else if (num_transits > translimit) {
@@ -910,7 +910,7 @@ char cid_align2D[MAXROW][MAXROW];
 					else if (letr!=ltr2)
 						break; 	
 				}
-				else if (letr=='>' || ltr2=='>') {
+				else if (letr==Term->sym || ltr2==Term->sym) {
 					break;
 				}
 				else if (!cinch_d_opt && !isalpha(letr) && isalpha(consensus[n+l+1])) {
@@ -1024,7 +1024,7 @@ char cid_align2D[MAXROW][MAXROW];
 						}
 
 						mha_writeback(align2D, cid_align2D); 
-						cid_align2D[m][n+k  ] = '/';
+						cid_align2D[m][n+k  ] = slip.sym;
 						cid_align2D[m][n+k+1] = '\0';
 						first_write = 0;	/* TURN O-F-F NEED TO WRITE REMAINING PART OF 2-D ALIGNMENT */
 
@@ -1038,7 +1038,7 @@ char cid_align2D[MAXROW][MAXROW];
 							}
 						}
 						if (j == n+k) {
-							if (cid_align2D[m-1][n] == '/')
+							if (cid_align2D[m-1][n] == slip.sym)
 								cid_mrow = -1;
 							else 
 								cid_mrow = 0;
@@ -1047,9 +1047,9 @@ char cid_align2D[MAXROW][MAXROW];
 						for (i = m; i < MAXROW; i++) {
 							for (j = n+k; j < Current.pass_W+1; j++) {
 								letr = cid_align2D[i+cid_mrow][j-cid_ncol] = align2D[i][j];
-								if (letr=='/' || letr==monoR.sym) 
+								if (letr==slip.sym || letr==monoR.sym) 
 									cid_align2D[i+cid_mrow][j-cid_ncol+1] = '\0';
-								else if (letr=='>') {
+								else if (letr==Term->sym) {
 									for (h=0; h<n; h++)
 										cid_align2D[i+cid_mrow][h] = blnk;
 									cid_align2D[i+cid_mrow+1][0] = '\0';
@@ -1067,7 +1067,7 @@ char cid_align2D[MAXROW][MAXROW];
 							consensus[i] = '\0';
 						} 
 
-						if (letr == '>' && j-cid_ncol-1 < cidwidth) {
+						if (letr == Term->sym && j-cid_ncol-1 < cidwidth) {
 							Current.pass_W = j-cid_ncol-1;
 							mha_writeback(cid_align2D, align2D);
 						}
@@ -1149,15 +1149,15 @@ char rlx_align2D[MAXROW][MAXROW];
 			n++;
 		}
 
-		if (align2D[m][n+1] == '/') {		/* EDGE DETECTED */
+		if (align2D[m][n+1] == slip.sym) {		/* EDGE DETECTED */
 			while (isalpha(align2D[m+v][n-1]) && 
 				   isalpha(align2D[m+v][ n ]) &&
-						   align2D[m+v][n+1] == '/'   ) {
+						   align2D[m+v][n+1] == slip.sym   ) {
 				v++;
 			}
 			while (align2D[m+v+w][n-1] == blnk && 
 				   align2D[m+v+w][ n ] == letr && 
-				   align2D[m+v+w][n+1] == '/'     ) {
+				   align2D[m+v+w][n+1] == slip.sym     ) {
 				w++;
 			}
 			if (align2D[m+v+w][n-1] == blnk && align2D[m+v+w][n] == letr) 
@@ -1210,12 +1210,12 @@ char rlx_align2D[MAXROW][MAXROW];
 				}
 			} /* END OF IF w > 1 */
 		}
-		else if (align2D[m][n+1] == '>' || align2D[m][n+1] == monoR.sym) {
+		else if (align2D[m][n+1] == Term->sym || align2D[m][n+1] == monoR.sym) {
 			rlx_align2D[m - rlx_col][n + rlx_col] = letr;
 			rlx_align2D[m - rlx_col][n + rlx_col + 1] = align2D[m][n+1];
 			rlx_align2D[m - rlx_col][n + rlx_col + 2] = '\0';
 
-			if (align2D[m][n+1] == '>') {
+			if (align2D[m][n+1] == Term->sym) {
 				Current.pass_W = n + rlx_col + 1;
 			    align2D[m][n+2] = '\0';
 			}
@@ -1241,15 +1241,15 @@ int 	lenseq 		= Clean.pass_W;		/* length slot 			*/
 char	letr;
 
 	for (m=0; m<height; ) {
-		for (n=0; (letr=align2D[m][n]) != '/' && letr!=monoR.sym && letr!='>' && n < lenseq; n++) {
+		for (n=0; (letr=align2D[m][n]) != slip.sym && letr!=monoR.sym && letr!=Term->sym && n < lenseq; n++) {
 			if (isalpha(letr)) {
 				recovered_1D[x] = letr;
 				x++;
 			}
 		}
-		if (letr=='/' || letr==monoR.sym)
+		if (letr==slip.sym || letr==monoR.sym)
 			m++;
-		else if (letr=='>') {
+		else if (letr==Term->sym) {
 			recovered_1D[x] = letr;
 			return(x);	/* RETURN LENGTH OF RECOVERED_1D[] AFTER POPULATING IT W/ SEQUENCE */
 		}

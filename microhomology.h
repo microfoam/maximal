@@ -139,21 +139,34 @@ struct {
 	char	sym;	/* character symbol      */
 	int		cod;	/* decimal unicode value */
 }
-	fill_1 = {'.', 46},		/* MHA fill character (default): full stop     */
-	fill_2 = {' ', 32},		/* MHA fill character (option): space          */
-	fill_x = {'*', 42},		/* MHA fill character (extra): asterisk        */
-	term   = {'>', 62},		/* MHA terminator character: greater-than sign */
-	monoL  = {'(', 40},		/* MHA long monomeric tract left delimiter     */
-	monoR  = {')', 41},		/* MHA long monomeric tract right delimiter    */
-	F_str  = {'+', 43},		/* MHA dsDNA strand indicator, forward         */
-	R_str  = {'-', 45},		/* MHA dsDNA strand indicator, reverse         */
-	slip   = {'/', 47},		/* MHA slip character: forward slash           */
-	tick   = {'|',124},		/* MHA ruler tick mark: vertical bar           */
-	*Fill  = &fill_1,		/* pointer to default fill character           */
-	*Strand= &F_str,		/* pointer to forward strand character         */
-	*Term  = &term,			/* pointer to terminator character             */
-	*Tick  = &tick,			/* pointer to default 10 bp ruler tick mark    */
-	*ZTick = &fill_2;		/* pointer to default column zero tick mark    */
+	fill_1   = {'.', 46},		/* MHA fill character (default): full stop     */
+	fill_0   = {' ', 32},		/* MHA fill character (option): space          */
+	fill10   = {':', 58},		/* MHA fill character (10 bp): colon           */ 	/* OTHER POSSIBILITIES: |, ^ */
+	margin   = {' ', 32},		/* MHA margin character with pairwise: space   */
+	fastahead= {'>', 62},		/* MHA fasta header to decouple from term.     */
+	term00   = {'>', 62},		/* MHA terminator character: greater-than sign */	/* NEEDS TO BE UNIQUE */
+	term01   = {'*', 42},		/* MHA terminator character: greater-than sign */	/* NEEDS TO BE UNIQUE */
+	test00   = {'#', 35},		/* MHA DEV test                                */
+	monoL    = {'(', 40},		/* MHA long monomeric tract left delimiter     */
+	monoR    = {')', 41},		/* MHA long monomeric tract right delimiter    */
+	F_str    = {'+', 43},		/* MHA dsDNA strand indicator, forward         */
+	R_str    = {'-', 45},		/* MHA dsDNA strand indicator, reverse         */
+	gap      = {'-', 45},		/* MHA null character, dash                    */
+	slip     = {'/', 47},		/* MHA slip character: forward slash           */
+	tick     = {'|',124},		/* MHA ruler tick mark: vertical bar           */
+	ambig    = {'n',110},		/* MHA ambiguous character in DNA              */
+	st_fract = {'f',102},		/* MHA mark_tela() status mark                 */
+	st_cycle = {'c', 99},		/* MHA mark_tela() status mark                 */
+	st_clash = {'!', 33},		/* MHA mark_tela() status mark                 */
+	st_skip0 = {'_', 95},		/* MHA mark_tela() status mark                 */
+	st_skip1 = {'-', 45},		/* MHA mark_tela() status mark                 */
+	st_skip2 = {'~',126},		/* MHA mark_tela() status mark                 */
+	*Fill    = &fill_1,			/* pointer to default fill character           */	/* ALWAYS USE POINTER, WHICH CAN BE REDIRECTED */
+	*Margin  = &margin,			/* pointer to zero column margin under start   */
+	*Strand  = &F_str,			/* pointer to forward strand character         */
+	*Term    = &term00,			/* pointer to terminator character             */	/* ALWAYS USE POINTER, WHICH CAN BE REDIRECTED */
+	*Tick    = &tick,			/* pointer to default 10 bp ruler tick mark    */
+	*ZTick   = &fill_0;			/* pointer to default column zero tick mark    */
 
 
 struct cinch {
@@ -345,12 +358,12 @@ char letr;
 	/* CLEAR TO THE RIGHT OF ROW TERMINATORS */
 	for (m=0; m < height; m++) {
 		n = 0;
-		while ( (letr=swipe_align2D[m][n]) != '/' && letr != monoR.sym && letr != '>') {
+		while ( (letr=swipe_align2D[m][n]) != slip.sym && letr != monoR.sym && letr != Term->sym) {
 			n++;
 		}
 		for (n = n+1; n <= lenseq; n++)
 			swipe_align2D[m][n] = '\0';
-		if (letr == '>') {
+		if (letr == Term->sym) {
 			for (m=m+1; m < height; m++) {
 				for (n=0; n <=lenseq; n++) {
 					swipe_align2D[m][n] = '\0';
@@ -388,7 +401,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 		for (m = 0; m < MAXROW; m++) {
 			if ( (isalpha(letr=align2D[m][n]))) {
 				consensus_ar[0][n+1]++;
-				if ( letr <= 'Z' || (nuctype && letr=='n') )  
+				if ( letr <= 'Z' || (nuctype && letr==ambig.sym) )  
 					consensus_ar[1][n+1] = letr;
 				else								/* ELSE MAKE UPPERCASE */
 					consensus_ar[1][n+1] = toupper(letr);
@@ -444,7 +457,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 							checktransit = 0;
 					}
 				}
-				else if (letr!='n' && letr != consensus_ar[1][n+1]) {
+				else if (letr!=ambig.sym && letr != consensus_ar[1][n+1]) {
 					if (consensus_ar[0][n+1] == 1) {	/* IF THIS IS THE FIRST CONFLICT NOTED AT THIS POSITION */
 						++badsites;						/* COUNT ADDITIONAL BAD SITE COLUMN */
 						++consensus_ar[0][n+1];			/* INCREMENT COUNTER FOR DIFFERENT LETTERS AT COLUMN */
@@ -467,7 +480,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 				else if (x >= con_maxrows)
 					break;
 			}
-			else if (letr == '>') {
+			else if (letr == Term->sym) {
 				while (col_isclear(align2D,n,m,-1)>-1)
 					n++;
 				consensus_ar[1][n+1] = letr;
@@ -634,7 +647,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 				else if (x >= con_maxrows)
 					break;
 			}
-			else if (letr == '>') {
+			else if (letr == Term->sym) {
 				consensus_ar[1][n+1] = letr;
 			}
 		} /* END OF FOR m=1... */
@@ -680,7 +693,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 	if (frstletr > -1) {
 		while (con_align2D[nudge_row-1][frstletr  ]==con_align2D[nudge_row][frstletr] &&
 			   con_align2D[nudge_row-1][frstletr-1]==blnk &&
-			   con_align2D[nudge_row-1][frstletr+1]== '/') {
+			   con_align2D[nudge_row-1][frstletr+1]== slip.sym) {
 			--nudge_row;
 		}
 	}
@@ -756,7 +769,7 @@ int foam_ar[3][MAXROW] = {{0}};	 	/* ROW m=0 FOR COLUMN LETR COUNTER 	*/
 		for (m = foam_ar[2][n]+1; align2D[m][0] != '\0'; m++) {
 			if ( isalpha(align2D[m][n]) ) {
 				++foam_ar[0][n];		/* INCREMENT COUNTER */
-				foam_ar[1][n] = '.';
+				foam_ar[1][n] = fill_1.sym;
 			}
 		}
 	}
@@ -834,7 +847,7 @@ void line_end(int type, int c, int lcl_width)
 	if (opt_r.bit) {				/* FORMAT WITH LINE NUMBERING. DEFAULT */
 		if (type == 0) {			/* FORMAT FOR LINE BEGINNING. c is LINE NUMBER (m+1) */
 			if (c == 1)
-				printf(" %4d. >", c);
+				printf(" %4d. %c", c, Term->sym);
 			else 
 				printf(" %4d. %c", c, ZTick->sym);
 		}
@@ -855,7 +868,7 @@ void line_end(int type, int c, int lcl_width)
 	else {		 				 	/* FORMAT WITHOUT LINE NUMBERS. r = REMOVED */
 		if (type == 0) {		   	/* FORMAT FOR LINE BEGINNING. c is LINE NUMBER (m+1) */
 			if (c == 1)
-				printf("   >");
+				printf("   %c", Term->sym);
 			else           
 				printf("   %c", ZTick->sym);
 		}
@@ -1028,7 +1041,7 @@ int m=0, n=0, widest_n=0;
 	clear_right(lcl_align2D); 
 	clear_2D_ar(align2D_prev);
 	for (m = 0; lcl_align2D[m][0] != '\0' && m <= lenseq; m++) {
-		for (n = 0; (letr=lcl_align2D[m][n]) != '/' && letr != '>' && letr != monoR.sym; n++) {
+		for (n = 0; (letr=lcl_align2D[m][n]) != slip.sym && letr != Term->sym && letr != monoR.sym; n++) {
 			align2D_prev[m][n] = letr;
 			if (letr == monoL.sym && lcl_align2D[m][n+opt_M.val+1] == monoR.sym) 
 				align2D_prev[m][n+opt_M.val+2] = '\0';
@@ -1036,7 +1049,7 @@ int m=0, n=0, widest_n=0;
 		align2D_prev[m][n  ] = letr;	/* MHA-STANDARD TERMINATOR  */
 		if (n > widest_n)
 			widest_n = n;
-		if (letr == '>') {				
+		if (letr == Term->sym) {				
 			Current.pass_W = widest_n;	/* ASSIGN 2-D WIDTH  */
 			Current.pass_H = m+1;		/* ASSIGN 2-D HEIGHT */
 		}
@@ -1078,9 +1091,9 @@ void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW])
 	clear_right(lcl_align2D); 
 	clear_2D_ar(align2D_prev);		/* DOES NOT CLEAR MAXROW ROW */
 	for (m = 0; lcl_align2D[m][0] != '\0'; m++) {
-		for (n = 0; (letr=lcl_align2D[m][n]) != '/' && letr != '>' && letr != monoR.sym; n++) {
+		for (n = 0; (letr=lcl_align2D[m][n]) != slip.sym && letr != Term->sym && letr != monoR.sym; n++) {
 			if (nuctype) { /* IF NON-ZERO LIKE DNA (1) OR RNA (2) */
-				if (islower(letr) && letr != 'n')
+				if (islower(letr) && letr != ambig.sym)
 					align2D_prev[m][n] = toupper(letr);
 				else
 					align2D_prev[m][n] = letr;
@@ -1096,7 +1109,7 @@ void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW])
 		align2D_prev[m][n  ] = letr;	/* MHA-STANDARD TERMINATOR  */
 		if (n > widest_n)
 			widest_n = n;
-		if (letr == '>') {				/* ASSIGN CINCH-WIDTH TO CURRENT [32]	*/
+		if (letr == Term->sym) {				/* ASSIGN CINCH-WIDTH TO CURRENT [32]	*/
 			Current.pass_W = widest_n;
 		}
 	}
@@ -1104,7 +1117,7 @@ void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW])
 	/* FLUSH POST-TERMINATOR ENDS OF align2D WITH NULLS */
 	for (m = 0; lcl_align2D[m][0] != '\0'; m++) {
 		n = 0;
-		while ( (letr=lcl_align2D[m][n]) != '/' && letr != '>' && letr != monoR.sym) 
+		while ( (letr=lcl_align2D[m][n]) != slip.sym && letr != Term->sym && letr != monoR.sym) 
 			n++;	
 		for (i = 1; n+i <= lenseq; i++)
 			align2D_prev[m][n+i] = '\0';	
@@ -1137,14 +1150,14 @@ int all_clear;		/* COUNTER VARIABLE USED FOR CHECKING NEED TO PRINT BOTTOM ROWS 
 int blocks2D=0, b=0, c=0, carry_over=0, d=0, fudge=0, g, h, i, j, j_start, j_end, m, m_start=0, n;
 int mmsites=0, max_n=0;
 int linewrap = par_wrap.set;
-char letr = 'B', next = 'B';			/* Begin the Beguine */
+char letr, next;
 char blnk  = Fill->sym;			/* opt_B blank character */
 int cinchwidth = Current.pass_W;		
 int   lenseq = Clean.pass_W;
 int   height = Current.pass_H;
 int head_start;							/* USE TO PASS RULER O-F-F-SET TO line_end() */
 int scrimmageline;						/* USE TO INCREMENT AND TEST IF FILLER IS NEEDED, CAN BE OPTION TO DO SO */
-char tick = ':'; 						/* OTHER POSSIBILITIES: |, ^ */
+char tick = fill10.sym;
 short unsigned int lcl_opt_F;
 
 	if (opt_B.val > 1)
@@ -1180,7 +1193,7 @@ short unsigned int lcl_opt_F;
 			j_start =   j   * linewrap;
 			j_end   = (j+1) * linewrap;
 
-			for (n = j_start; n < j_end && (letr=align2D[m][n])!='/' && letr!='>' && letr!=monoR.sym; n++) {
+			for (n = j_start; n < j_end && (letr=align2D[m][n])!=slip.sym && letr!=Term->sym && letr!=monoR.sym; n++) {
 				if (isalpha(letr)) {
 					c++;
 					d++;
@@ -1208,7 +1221,7 @@ short unsigned int lcl_opt_F;
 
 			line_end(START, m+1, 0);
 
-			for (n = j_start; n < j_end  && (letr=align2D[m][n])!='>' && letr!=monoR.sym && letr!='\0'; n++) {
+			for (n = j_start; n < j_end  && (letr=align2D[m][n])!=Term->sym && letr!=monoR.sym && letr!='\0'; n++) {
 				if (d+b == 0) {		/* HANDLES BLOCK CONTINUATION LINES THAT HAVE ZERO CHARACTERS B/C OF ITS TUCK & LENGTH */
 					break;
 				}
@@ -1220,11 +1233,11 @@ short unsigned int lcl_opt_F;
 					printf("%c", letr);
 
 				/* TURN ON OPTION opt_F TO USE BLANK CHAR TO FILL < SCRIMMAGE IF EXCESSIVELY SHORT */
-				if (!opt_F.bit && align2D[m][n] == '/' && scrimmageline-(b+d-2) > 10)
+				if (!opt_F.bit && align2D[m][n] == slip.sym && scrimmageline-(b+d-2) > 10)
 					lcl_opt_F = 1; 	/* TURN ON local opt_F IN THIS CASE */
 
 				/* OPTION opt_F TO USE BLANK CHAR TO FILL < SCRIMMAGE */
-				if ((opt_F.bit || lcl_opt_F) && align2D[m][n] == '/' && b+d-2 < scrimmageline) {
+				if ((opt_F.bit || lcl_opt_F) && align2D[m][n] == slip.sym && b+d-2 < scrimmageline) {
 					for (i = 0; b+d+i < scrimmageline; i++) {
 						if ( (b+d+2+i)%10 == 0)		/* WHY 2? +1 FOR STARTING AT 0, +1 FOR '/' CHAR */
 							printf("%c", tick);		/* PRINT TICK MARKS AT 10 bp INTERVALS IF NOT BLANK SPACE */
@@ -1238,13 +1251,13 @@ short unsigned int lcl_opt_F;
 			next = align2D[m][n];	/* TERMINAL CHARACTERS WILL ALSO PRINT AT END OF BLOCK IF...	*/ 
 										/* ...THEY ARE FIRST CHARACTER OF NEXT BLOCK					*/
 
-			if (next == '/' || next == monoR.sym)		/* TO INDICATE ADJACENCY TO SLIP, WHICH ALSO WILL SHOW IN NEXT BLOCK */
+			if (next == slip.sym || next == monoR.sym)		/* TO INDICATE ADJACENCY TO SLIP, WHICH ALSO WILL SHOW IN NEXT BLOCK */
 				printf("%c", next);
 			else if (next==blnk || (isalpha(next) && d+b != 0))	/* TRUE IF AT EDGE OF opt_w WINDOW */
 				printf("=>");			/* TO INDICATE CONTINUATION TO NEXT BLOCK */
 			else if (next == '\0' && n == j_start)		
 				printf("%c", blnk);
-			else if (next == '>') {		/* LAST CHARACTER */
+			else if (next == Term->sym) {		/* LAST CHARACTER */
 				printf("%c", next);
 				if (opt_L.bit)	/* opt_L = LINE END NUMBERING (ON) */
 					line_end(END, c, 0);
@@ -1309,7 +1322,7 @@ short unsigned int lcl_opt_F;
 	}
 	else if (c < lenseq) {
 		Current.pass_Q = round((1000*(cinchwidth-mmsites-(lenseq-c)))/cinchwidth);
-		warnhead('-');
+		warnhead(gap.sym);
 		printf(" 2-D auto-alignment is missing %d %s(s)!\n\n", lenseq-c, letr_unit); 
 
 		/* ENSURE THERE ARE NO MISSING MHA ROW TERMINATORS */
@@ -1324,16 +1337,16 @@ short unsigned int lcl_opt_F;
 				while (isalpha(align2D[m][n])) {
 					n++;
 				}
-				if (m<height-1 && (letr=align2D[m][n]) != '/' && letr!=monoR.sym) {
-					align2D[m][n  ] = '/';
+				if (m<height-1 && (letr=align2D[m][n]) != slip.sym && letr!=monoR.sym) {
+					align2D[m][n  ] = slip.sym;
 					align2D[m][n+1] = '\0';
 					if (dev_print(LOGY,__LINE__)) {
 						printf("print_2Dseq() adding missing line terminator at row=%d, col=%d.", m,n);
 					}
 					break;
 				}
-				else if (m==height-1 && align2D[m][n] != '>') {
-					align2D[m  ][n] = '>';
+				else if (m==height-1 && align2D[m][n] != Term->sym) {
+					align2D[m  ][n] = Term->sym;
 					align2D[m+1][0] = '\0';
 					if (dev_print(LOGY,__LINE__)) {
 						printf("print_2Dseq() adding missing final terminator at row=%d, col=%d.", m,n);
@@ -1414,23 +1427,23 @@ char letr;
 				n++;
 				alpha_count++;
 			}
-			if (m<height-1 && ((letr=align2D[m][n]) != '/' && letr!=monoR.sym)) {
-				align2D[m][n  ] = '/';
+			if (m<height-1 && ((letr=align2D[m][n]) != slip.sym && letr!=monoR.sym)) {
+				align2D[m][n  ] = slip.sym;
 				align2D[m][n+1] = '\0';
 				if (dev_print(LOGY,__LINE__)) {
 					printf("recoverlen() is adding a missing line terminator at m=%d, n=%d.", m,n);
 				}
 				break;
 			}
-			else if (m==height-1 && align2D[m][n] != '>') {
-				align2D[m][n  ] = '>';
+			else if (m==height-1 && align2D[m][n] != Term->sym) {
+				align2D[m][n  ] = Term->sym;
 				align2D[m][n+1] = '\0';
 				if (dev_print(LOGY,__LINE__)) {
 					printf("recoverlen() is adding a missing final terminator at m=%d, n=%d.", m,n);
 				}
 				return(alpha_count);
 			}
-			else if (align2D[m][n] == '>') {
+			else if (align2D[m][n] == Term->sym) {
 				return(alpha_count);
 			}
 			else {
@@ -1516,7 +1529,7 @@ void print1D(void)
 	for (j = 0; j < blocks; j++) {
 		if (Clean.pass_V && opt_v.val) { /* IF DNA AND VERBOSITY */
 			line_end(SLIPS, j+1, 0);	
-   			for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && tela[n].c!='>' && tela[n].c!='\0'; n++) {
+   			for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && tela[n].c!=Term->sym && tela[n].c!='\0'; n++) {
 				if ((ch=tela[n].t)=='R' || ch=='Y')
 					printf("%c", ch);
 				else
@@ -1525,11 +1538,11 @@ void print1D(void)
 			printf("\n");
 		}
 		line_end(START, j+1, 0);	
-   		for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && tela[n].c!='>' && tela[n].c!='\0'; n++) {
+   		for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && tela[n].c!=Term->sym && tela[n].c!='\0'; n++) {
 			printf("%1c", tela[n].c);
 		}
-		if (tela[n].c == '>') {
-			printf("%1c", tela[n].c);  /* PRINTS TERMINAL CHARACTER '>' */
+		if (tela[n].c == Term->sym) {
+			printf("%1c", tela[n].c);  /* PRINTS TERMINAL CHARACTER */
 			if (opt_L.bit) 
 				line_end(END, n, 0);
 			else

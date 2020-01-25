@@ -13,25 +13,55 @@ date > TUBES.log
 echo >> TUBES.log
 echo '1. vnd_edgeNEE_Dmaur.txt' >> TUBES.log
 echo '2. vnd_edgeNEE_Dsimu.txt' >> TUBES.log
+./maximal -O 2    waves/sharks/vnd_edgeNEE_Dmaur.txt
+./maximal -O 2    waves/sharks/vnd_edgeNEE_Dsimu.txt TUBES.mha
+cat TUBES.mha >> TUBES.log
+rm TUBES.mha
+
 echo >> TUBES.log
+echo '1. vnd_edgeNEE_Dsimu.txt' >> TUBES.log
+echo '2. vnd_edgeNEE_Dmaur.txt' >> TUBES.log
+./maximal -O 2    waves/sharks/vnd_edgeNEE_Dsimu.txt
+./maximal -O 2    waves/sharks/vnd_edgeNEE_Dmaur.txt TUBES.mha
+cat TUBES.mha >> TUBES.log
+echo >> TUBES.log
+rm TUBES.mha
+
+date >> TUBES.log
+echo >> TUBES.log
+echo '1. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.log
+echo '2. vnd_edgeNEE_Dsimu.txt' >> TUBES.log
 ./maximal -v 3 -O 2 -x waves/sharks/vnd_edgeNEE_Dmaur.txt
 ./maximal -v 3 -O 2    waves/sharks/vnd_edgeNEE_Dsimu.txt TUBES.mha
 cat TUBES.mha >> TUBES.log
 rm TUBES.mha
 
 echo >> TUBES.log
-echo >> TUBES.log
 echo '1. vnd_edgeNEE_Dsimu.txt' >> TUBES.log
-echo '2. vnd_edgeNEE_Dmaur.txt' >> TUBES.log
-echo >> TUBES.log
-./maximal -v 3 -O 2    waves/sharks/vnd_edgeNEE_Dsimu.txt
-./maximal -v 3 -O 2 -x waves/sharks/vnd_edgeNEE_Dmaur.txt TUBES.mha
+echo '2. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.log
+./maximal -O 2    waves/sharks/vnd_edgeNEE_Dsimu.txt
+./maximal -O 2 -x waves/sharks/vnd_edgeNEE_Dmaur.txt TUBES.mha
 cat TUBES.mha >> TUBES.log
 echo >> TUBES.log
 rm TUBES.mha
 
-#./maximal -v 3 -O 2 -x waves/sharks/vnd_edgeNEE_Dsimu.txt
-#./maximal -v 3 -O 2    waves/sharks/vnd_edgeNEE_Dmaur.txt TUBES.mha
+date >> TUBES.log
+echo >> TUBES.log
+echo '1. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.log
+echo '2. vnd_edgeNEE_Dsimu.txt -x' >> TUBES.log
+./maximal -O 2 -x waves/sharks/vnd_edgeNEE_Dmaur.txt
+./maximal -O 2 -x waves/sharks/vnd_edgeNEE_Dsimu.txt TUBES.mha
+cat TUBES.mha >> TUBES.log
+rm TUBES.mha
+
+echo >> TUBES.log
+echo '1. vnd_edgeNEE_Dsimu.txt -x' >> TUBES.log
+echo '2. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.log
+./maximal -O 2 -x waves/sharks/vnd_edgeNEE_Dsimu.txt
+./maximal -O 2 -x waves/sharks/vnd_edgeNEE_Dmaur.txt TUBES.mha
+cat TUBES.mha >> TUBES.log
+echo >> TUBES.log
+rm TUBES.mha
 
 mv Surf_wavereport.mha Surf_wavereport-tubes.log
 

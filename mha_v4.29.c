@@ -153,7 +153,6 @@ int main(int argc, char *argv[])
 		if (*argv[i] != '-' && !(isdigit(*argv[i]))) {
 			if (strcmp(argv[i],"TUBES.mha")) {		/* strcmp EVALUATES TO 0 ONLY IF STRINGS ARE THE SAME */
 				/* USING j BELOW AS COUNTER TO NUMBER OF TIMES USER SPECFIES DIFFERENT SEQUENCES */
-
 				if ((file_ptr = fopen(argv[i], "r") ) == NULL) {
 					printf("\n %2d. Error opening file '%s'. Exiting now.\n\n", ++j, argv[i]);
 					exit(EXIT_ERROR);
@@ -162,7 +161,7 @@ int main(int argc, char *argv[])
 					fseek(file_ptr, 0, SEEK_END);
 					lenseq = ftell(file_ptr);
 					if (lenseq > MAXROW) {		/* LAST ROW OF array2D WILL STORE CONSENSUS, SO NEED TO KEEP CLEAR */
-						printf("\n %2d. Sequence (length %d) from file '%s' > MAXROW limit (%d) by %d.", ++j, lenseq, argv[i], MAXROW, lenseq-MAXROW+1);
+						printf("\n %2d. Sequence (length %d) from file '%s' >MAXROW (%d) by %d.", ++j, lenseq, argv[i], MAXROW, lenseq-MAXROW+1);
 						printf("\n %2d. Exiting now. For help enter './maximal -h'. \n\n", ++j);
 						exit(EXIT_ERROR);
 					}
@@ -174,7 +173,7 @@ int main(int argc, char *argv[])
 					printf("\n %2d. Detecting sequence from file: '%s'.", ++j, file_name);
 	
 					/* CHECK FOR FASTA HEADER AND SAVE IN Seq_head, THEN MASK IN Seq */
-					if (Seq_i[0] == '>') {
+					if (Seq_i[0] == fastahead.sym) {
 						for (h = 0; Seq_i[h+1] != '\n' && Seq_i[h+1] != '\r' && h < 100; h++) {
 							Seq_head[h] = Seq_i[h+1];
 						}
@@ -196,7 +195,7 @@ int main(int argc, char *argv[])
 				}
 				else if (!pairwise){
 					pairwise = 1;		/* USING THIS SLOT TO STORE BIT VALUE INDICATING TUBES.mha CO-INPUT */
-					printf("\n*%2d. Acknowledging requested use of supporting file 'TUBES.mha'.", j);
+					printf("\n %2d. Acknowledging requested use of supporting file 'TUBES.mha'.", j+1);
 
 					int scrimmage = 0;
 					short unsigned int lastrow=0;
@@ -228,9 +227,16 @@ int main(int argc, char *argv[])
 					ralign_height = m;
 					ralign_width = scrimmage;
 
-					printf("\n\nRead file 'TUBES.mha' into ralign2D array (height %d, width %d) as follows:\n", ralign_height, ralign_width-1);
+					/* BUILD ALIGN2D WITH BLANKS INSTEAD OF FULLSTOPS */
+					Fill = &fill_0;				/* Fill character set to space (32); default was full-stop (46) */	
+					blank = Fill->sym;
+					opt_B.bit = opt_B.val = 1;
+	
+					printf("\n %2d. Read file 'TUBES.mha' into ralign2D array (height %d, width %d) as follows:\n", 
+								j+2, ralign_height, ralign_width-1);
 					for (m=0; ralign2D[m][0]!='\0'; m++)	{
-						printf("%s\n", ralign2D[m]);
+						printf("\n\t");
+						printf("%s", ralign2D[m]);
 					}
 				}
 			}
@@ -247,9 +253,11 @@ int main(int argc, char *argv[])
 	/* SET OPTIONS FROM ARGUMENTS  ********/
 	const char* optstring = "cdfg::hklm::noprstu::v::x::zB::CDFHKLM::O::PRTX::Y:";
 	opterr=0;
+	int opt_count=0;	/* INDEX TO COUNT NUMBER OF OPTIONS */
 
 	OPTLOOP:
 	while ((opt = getopt(argc, argv, optstring)) != -1) {
+		++opt_count;
 		switch (opt) {
 		case 'c':						/* SHOW BASE 62 CODE */
 				opt_c.bit = 1;
@@ -343,7 +351,7 @@ int main(int argc, char *argv[])
 					opt_B.val = 1;	
 				else
 					opt_B.val = numarg;
-				Fill = &fill_2;			/* Fill character set to space (32); default was full-stop (46) */	
+				Fill = &fill_0;			/* Fill character set to space (32); default was full-stop (46) */	
 				blank = Fill->sym;
 				break;
 		case 'C':						/* OPTION TO USE REVERSE COMPLEMENT */
@@ -380,8 +388,9 @@ int main(int argc, char *argv[])
 				numarg = atoi(optarg);
 				if (numarg<2)
 					opt_O.val = 1;	
-				else
+				else {
 					opt_O.val = numarg;
+				}
 				break;
 		case 'P':						/* OPTION TO PRINT PATH BOX */
 				opt_P.bit = 1;
@@ -422,7 +431,7 @@ int main(int argc, char *argv[])
 				if (optopt=='B') {
 					opt_B.bit++;
 					opt_B.val++;
-					Fill = &fill_2;			/* Fill character set to space (32); default was full-stop (46) */	
+					Fill = &fill_0;			/* Fill character set to space (32); default was full-stop (46) */	
 					blank = Fill->sym;
 					break;
 				}
@@ -465,33 +474,38 @@ int main(int argc, char *argv[])
 
 	if (j > 1) {
 		warnhead('S');
-		printf("Many sequences specfied. Using last sequence.\n");
+		printf("Many sequences specfied. Using last sequence.");
 	}
 	else if (j == 0) {
 		warnhead('S');
-		printf("No sequences specfied. Using example sequence.\n");
+		printf("No sequences specfied. Using example sequence.");
 	}
 		
 	mha_head(par_wrap.set);
-	printf("micro homology alignment (MHA) -");
-	for (i = 1; i < 53; i++) {			/* UPPER-CASE LETTER OPTIONS */
-		if (Options[i]->bit)
-			printf("%c", Options[i]->sym);
-	}
-	if (opt_u.bit) 
-		printf(" -u%d", opt_u.val);
-	if (opt_B.val > 1) 
-		printf(" -B %d", opt_B.val);
-	if (opt_M.bit) 
-		printf(" -M %d", opt_M.bit);	/* opt_M.val is a multiple of opt_M.bit, which is command arg */
-	if (opt_X.bit) {
-		if (opt_X.val==1) {
-			printf(" -X 1 (using pseudo-random shuffling)");
+	printf("micro homology alignment (MHA) ");
+	if (opt_count) {
+		printf("-");
+		for (i = 1; i < 53; i++) {			/* UPPER-CASE LETTER OPTIONS */
+			if (Options[i]->bit)
+				printf("%c", Options[i]->sym);
 		}
-		else {
-			printf(" -X 2 (using Fisher-Yates shuffling)");
+		if (opt_u.bit) 
+			printf(" -u%d", opt_u.val);
+		if (opt_B.val > 1) 
+			printf(" -B %d", opt_B.val);
+		if (opt_M.bit) 
+			printf(" -M %d", opt_M.bit);	/* opt_M.val is a multiple of opt_M.bit, which is command arg */
+		if (opt_X.bit) {
+			if (opt_X.val==1) {
+				printf(" -X 1 (using pseudo-random shuffling)");
+			}
+			else {
+				printf(" -X 2 (using Fisher-Yates shuffling)");
+			}
 		}
 	}
+	else 
+		printf(" < no options specified >");
 	printf("\n Version %s: ", version);
 	printf("%s", time0);
 
@@ -572,9 +586,9 @@ int main(int argc, char *argv[])
 			else if (ch == 'G')
 				Seq_r[i-1] = 'C';
 			else
-				Seq_r[i-1] = 'n';
+				Seq_r[i-1] = ambig.sym;
 		}
-		Seq_r[lenseq] = '>';
+		Seq_r[lenseq] = Term->sym;
 		strcpy(Seq, Seq_r);
 		if (opt_v.val) {			/* opt_v VERBOSITY */
 			printf("\nReverse Complement: \"");
@@ -609,7 +623,7 @@ int main(int argc, char *argv[])
 	++Current.pass_V;
 	Clean.pass_Q = Start.pass_Q = 1000;
 
-	Seq[lenseq] = tela[lenseq].t = tela[lenseq].c = '>';
+	Seq[lenseq] = tela[lenseq].t = tela[lenseq].c = Term->sym;
 	citwidth = lenseq;	
 
 	for (i = 0; i <= lenseq; i++) {
@@ -646,7 +660,7 @@ int main(int argc, char *argv[])
 		for (n = 0; tela[n].c != '\0'; n++) {
 			if  (n <= WIDTH) {							/* SET VALUES FOR 1ST WIDTH COLS ****/
 					for (m = 0; m < n; m++){
-						if (seqtype && tela[n].c == 'n')			 
+						if (seqtype && tela[n].c == ambig.sym)			 
 							pathbox[m][n] = mismatch;   /* SPECIAL TREATMENT FOR 'n' IN DNA**/
 						else if (tela[n].c == tela[m].c)
 							pathbox[m][n] = MATCH;		/* MATCH ****************************/
@@ -668,7 +682,7 @@ int main(int argc, char *argv[])
 			}
 			else {										/* SET VALUES FOR REST OF COLUMNS ***/
 					for (m = n-WIDTH; m < n+1; m++){	/*  WITHIN BAND WIDTH ***************/
-						if (seqtype && tela[n].c == 'n')			  
+						if (seqtype && tela[n].c == ambig.sym)			  
 							pathbox[m][n] = mismatch;   /* DUE TO NUCLEOTIDE AMBIGUITY ******/
 						else if (tela[n].c == tela[m].c)
 							pathbox[m][n] = MATCH;		/* MATCH ****************************/
@@ -720,12 +734,12 @@ int main(int argc, char *argv[])
 				if (blocks != 1)
 					print_blockhead(j+1, blocks);
 				line_end(PATHBOXHEAD, 9, 9);	
-				for(n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) 
+				for(n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != Term->sym; n++) 
 					printf("%2c", tela[n].c);
 				printf("\n");
-				for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != '>'; m++) {
+				for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != Term->sym; m++) {
 					printf("%4d. %c ", m+1, tela[m].c);
-						for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) {
+						for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != Term->sym; n++) {
 							if (m > n) {
 								if (pathbox[m][n])
 									printf("%2d", pathbox[m][n]);
@@ -769,7 +783,7 @@ int main(int argc, char *argv[])
 			/* FOR COLUMN n LOOP 3/3 */
 			for (m = 0; m < n; m++) {
 				/* FOR ROW m LOOP 1/6: UPDATE VAR CITWIDTH AT END */
-				if (tela[n].c == '>') {
+				if (tela[n].c == Term->sym) {
 					citwidth = a2D_n;
 					align2D[row+1][0] = '\0';
 					Cinch_T.pass_H = Current.pass_H = row+1;	/* STORE HEIGHT IN PASS SLOTS */
@@ -1075,9 +1089,9 @@ int main(int argc, char *argv[])
 												while (n-j >= 0 && tela[n-j].cyc_l == 0)
 													++j;
 												if (tela[n-j].cyc_l > tela[n].cyc_l) 
-													sumspan = -tela[(z=n-j)].cyc_l;		/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
+													sumspan = -tela[(z=n-j)].cyc_l;		/* POS. z IS START OF STORING PRODUCTS & SUMS OF PRODUCTS */
 												else 
-													z = n;								/* POS. z IS WHERE TO START STORING PRODUCTS & SUMS OF PRODUCTS */
+													z = n;								/* POS. z IS START OF STORING PRODUCTS & SUMS OF PRODUCTS */
 											}
 											tela[n].cyc_F[0] = f;	/* USE 0 ROW TO STORT LOCATION OF INDEXED UNIT TRs */	
 										}
@@ -1291,7 +1305,7 @@ int main(int argc, char *argv[])
 								scooch = overslip;
 							}
 	
-							align2D[row  ][a2D_n+scooch  ] = '/'; 
+							align2D[row  ][a2D_n+scooch  ] = slip.sym; 
 							align2D[row  ][a2D_n+scooch+1] = '\0'; 	
 							row++;										/* <==== ROW INCREMENTED HERE!		*/
 	
@@ -1337,12 +1351,12 @@ int main(int argc, char *argv[])
 				if (blocks != 1)
 					print_blockhead(j+1, blocks);
 				line_end(PATHBOXHEAD, 9, 9);	
-				for(n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) 
+				for(n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != Term->sym; n++) 
 					printf("%2c", tela[n].c);
 				printf("\n");
-				for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != '>'; m++) {
+				for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != Term->sym; m++) {
 					printf("%4d. %c ", m+1, tela[m].c);
-						for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != '>'; n++) {
+						for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != Term->sym; n++) {
 							if (m > n) {
 								if (pathbox[m][n])
 									printf("%2c", (char) pathbox[m][n]);
@@ -1497,13 +1511,13 @@ int main(int argc, char *argv[])
 				for (i=m+l; i >= k; i--)
 					tela[i].c = tela[i-l].c;	/* (WELL...) USE Seq[i] TO STORE GAPS FOR COMPARISON; NEVER tela[i].c */
 				for (i=k; i < k+l; i++)
-					tela[i].c = '-';
+					tela[i].c = gap.sym;
 			}
 			else {
 				for (i=m-l; i >= k+l; i--)
 					recovered[i-l] = recovered[i];
 				for (i=k; i < k-l; i++)
-					recovered[i] = '-';
+					recovered[i] = gap.sym;
 			}
 		}
 		else
@@ -1518,11 +1532,11 @@ int main(int argc, char *argv[])
 		for (j = 0; j < blocks; j++) {
 			printf("\n");
 			line_end(START, j+1, 0);	
-	   		for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && tela[n].c != '>'; n++) {
+	   		for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && tela[n].c != Term->sym; n++) {
 				printf("%1c", tela[n].c);
 			}
-			if (tela[n].c == '>') {
-				printf("%1c", tela[n].c);  /* PRINTS TERMINAL CHARACTER '>' */
+			if (tela[n].c == Term->sym) {
+				printf("%1c", tela[n].c);  /* PRINTS TERMINAL CHARACTER */
 				if (opt_L.bit) 
 					line_end(END, lenseq, 0);
 				else
@@ -1542,7 +1556,7 @@ int main(int argc, char *argv[])
 			line_end(SLIPS, j+1, 0);	
 	   		for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && n < m; n++) {
 				if (seqtype == 1 || seqtype == 2) {			/* IF DNA OR RNA */
-					if (tela[n].c == 'n' || recovered[n] == 'n') {
+					if (tela[n].c == ambig.sym || recovered[n] == ambig.sym) {
 						printf("?");
 						z++;	
 					}
@@ -1569,11 +1583,11 @@ int main(int argc, char *argv[])
 			printf("\n");
 	
 			line_end(START, j+1, 0);	
-	   		for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && recovered[n] != '>'; n++) {
+	   		for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && recovered[n] != Term->sym; n++) {
 				printf("%1c", recovered[n]);
 			}
-			if (recovered[n] == '>') {
-				printf("%1c", recovered[n]);  /* PRINTS TERMINAL CHARACTER '>' */
+			if (recovered[n] == Term->sym) {
+				printf("%1c", recovered[n]);  /* PRINTS TERMINAL CHARACTER */
 				if (opt_L.bit) {
 					line_end(END, r, 0);
 				}
@@ -1730,18 +1744,34 @@ int main(int argc, char *argv[])
 	}
 	if (pairwise && opt_O.val==2) {
 		int whole_snake = max(Current.pass_W, ralign_width) + 1;
+
+		int min_width;
+		if (max(Current.pass_W, ralign_width) == Current.pass_W)
+			min_width = ralign_width - 2;
+		else
+			min_width = Current.pass_W - 1;
+
+		/* RETURN Fill POINTER TO FULL STOP */	
+		Fill = &fill_1;	
+
 		if (opt_v.val > 2) {
 			printf("\n ralign2D height = %2d, width = %2d", ralign_height, ralign_width);
 			printf("\n align2D  height = %2d, width = %2d\n", Current.pass_H, Current.pass_W);
 			for (m=0; ralign2D[m][0]!='\0'; m++)	{
 				printf("\n%s", ralign2D[m]);
 			}
-			printf(" ralign2D\n");
-			printf("\n>%s", align2D[0]);
+			printf("  ralign2D");
+			printf("\n%c%s", Term->sym, align2D[0]);
 			for (m=1; align2D[m][0]!='\0'; m++)	{
-				printf("\n %s", align2D[m]);
+				printf("\n%c", Margin->sym);
+				for (n=0; align2D[m][n]!='\0'; n++) {
+					if ((ch=align2D[m][n])==fill_0.sym)
+						printf("%c", Fill->sym);
+					else
+						printf("%c", align2D[m][n]);
+				}
 			}
-			printf(" align2D\n\n");
+			printf("  align2D\n\n");
 		}
 		
 		struct segment *snake1 = makesnake(ralign2D[0], ralign_height, ralign_width, whole_snake, 0);
@@ -1796,15 +1826,24 @@ int main(int argc, char *argv[])
 		}
 
 		/* SUPERIMPOSE SECOND 2D ARRAY OVER FIRST FOR COMPARISON */
-		ralign2D[tuck][0] = '>';
+		ralign2D[tuck][0] = Term->sym;
 		for (i=0; align2D[i][0]!='\0'; i++) {
 			if (i>0)
-				ralign2D[tuck+i][0]= ' ';
-			for (j=1; (ch=align2D[i][j-1])!='/' && ch!=monoR.sym && ch!='>'; j++) {
+				ralign2D[tuck+i][0]= Margin->sym;
+			for (j=1; (ch=align2D[i][j-1])!=slip.sym && ch!=monoR.sym && ch!=Term->sym; j++) {
 				ralign2D[tuck+i][j] = ch;
 			}
-				ralign2D[tuck+i][j] = ch;
+			ralign2D[tuck+i][j] = ch;
+
+			/* ADD FILL CHARACTERS BETWEEN THE SNAKE TO THE FULL RATTLE */
+			while (j <= min_width) {	/* whole snake includes start and end terminators */
+				if (!isalpha(ralign2D[tuck+i][++j]))
+					ralign2D[tuck+i][j] = Fill->sym;
+				else
+					break;
+			}
 		}
+
 		fp_pairwise = fopen("TUBES.mha", "w");
 			fprintf(fp_pairwise, "%s\n", ralign2D[0]);
 		for (m = 1; ralign2D[m][1] != '\0'; m++) {
@@ -1817,7 +1856,7 @@ int main(int argc, char *argv[])
 	}
 	else if (opt_O.val==2) {
 		fp_pairwise = fopen("TUBES.mha", "a");
-			fprintf(fp_pairwise, ">%s\n", align2D[0]);
+			fprintf(fp_pairwise, "%c%s\n", Term->sym, align2D[0]);
 		for (m = 1; align2D[m][0] != '\0'; m++) {
 			fprintf(fp_pairwise, " %s\n", align2D[m]);
 		}
