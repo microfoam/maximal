@@ -41,11 +41,11 @@ echo 'Tests canceled (shown with preceding runs for context):'
 grep -B1 Canceled Surf_wavereport.log | sed '/^--$/d'
 echo
 echo 'Line counts:'
-wc -l mha_v*.c | grep -v total
-wc -l microhomology.h
-wc -l microhom-devl.h
-wc -l microhom-skor.h
-wc -l microhom-tela.h
-wc -l microhom-cinc.h
+wc -l src/mha_v*.c | grep -v total
+wc -l src/microhomology.h
+wc -l src/microhom-devl.h
+wc -l src/microhom-skor.h
+wc -l src/microhom-tela.h
+wc -l src/microhom-cinc.h
 echo
 
