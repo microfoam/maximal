@@ -23,7 +23,7 @@ in the file name.
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
 separated by four N's, which work as separators to prevent cinching across the
 segments. This allows a single sequence to be processed to display how both the
-+ and - strands are currently cinched. 
+(+) and (-) strands are cinched. 
 In addtion there are sentinel dinucleotide repeats before and after 
 each of the two main repeat knots. These dinculeotides repeats can show whether
 cinching continued after the knots whenever this sequence is run through
