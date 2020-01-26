@@ -1,4 +1,4 @@
-This is the README file for the 'waves/chowder' sub-directory.  
+# maximal/waves/chowder/ README
 
 This 'chowder' sub-directory is used to hold sequence files currently under
 attention or slated for attention during development of the 'maximal' program.
@@ -18,4 +18,4 @@ some of these cases, a duplicate sub-sequence to one maintained in the other
 'waves' sub-directories will be also stored in 'chowder' with some knot desigation
 in the file name.
 
-Last updated: 1/19/2010 AJE
+*Last updated*: 1/26/2010 AJE
