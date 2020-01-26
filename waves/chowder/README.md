@@ -35,6 +35,7 @@ the phrase `target_formatted_in_file'. The purpose of putting this in the fasta
 header is so that it is read in as the header and then displayed to the 
 user/developer to indicate that one can look at the raw file to see what is desired.
 
+```
  >target_formatted_in_file
   GC
   GCnnGACAC
@@ -45,9 +46,10 @@ user/developer to indicate that one can look at the raw file to see what is desi
   .....................GTGTC
   .....................GTGTCnnGC
   ............................GC
+```
 
 What currently happens:
-`
+```
   GC
   GCnnGACAC
   ....GACAC
@@ -57,6 +59,6 @@ What currently happens:
   .....................GTGTC
   .....................GTGTCnnGC
   ............................GC
- `
+```
  
 *Last updated*: 1/26/2010 AJE
