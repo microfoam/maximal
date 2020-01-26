@@ -166,7 +166,9 @@ struct {
 	tick     = {'|',124},		/* MHA ruler tick mark: vertical bar           */
 	*Tick    = &tick,			/* pointer to default 10 bp ruler tick mark    */
 	*ZTick   = &fill_0,			/* pointer to default column zero tick mark    */
-	st_fract = {'f',102},		/* MHA mark_tela() status mark                 */
+	st_parent= {'p',112},		/* MHA mark_tela() status mark                 */
+	st_Fract = {'F', 70},		/* MHA mark_tela() status mark, orphan Fractal */
+	st_fract = {'f',102},		/* MHA mark_tela() status mark, confirmed fr.  */
 	st_cycle = {'c', 99},		/* MHA mark_tela() status mark                 */
 	st_clash = {'!', 33},		/* MHA mark_tela() status mark                 */
 	st_skip0 = {'_', 95},		/* MHA mark_tela() status mark                 */

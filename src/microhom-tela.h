@@ -411,12 +411,12 @@ void mark_tela(void)
 								projection = n + k*reps;
 							}
 							else {
-								if (tela[n-1].all_k && tela[n-1].all_k % k == 0) {
+								if (tela[n-1].all_k && k % tela[n-1].all_k == 0) {
 									tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
 									tela[n  ].stat = st_cycle.sym;
 								}
 								else {
-									tela[n].stat = st_fract.sym;		/* FRACTAL REPEAT = EMBEDDED IN ANOTHER REPEAT */
+									tela[n].stat = st_Fract.sym;		/* FRACTAL REPEAT = EMBEDDED IN ANOTHER REPEAT */
 								}
 							}
 							TRcheck = 0;
@@ -496,22 +496,21 @@ void mark_tela(void)
 			while (tela[j].all_k) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
 				j--;
 			}
-			for (i=j; i>0; i--) {
+			for (i=j-1; i>0; i--) {
 				int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
-				if (tela[i].all_k && (i + tela[i].all_k * (tela[i].all_r-1)) > m-recslips) {
+				if (tela[i].all_k && i>=m && i<n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
+					tela[i].stat = tela[i+k].stat = st_fract.sym;
+					tela[n].stat = st_parent.sym;
+					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
+					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
+					recslips += span_allrk(i); 
+				}
+				else if (tela[i].all_k && (i + tela[i].all_k * (tela[i].all_r-1)) > m-recslips) {
 					/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
-					if (i>=m && i<n && tela[i].all_S == tela[i+k].all_S) {
-						tela[i].stat = tela[i+k].stat = tela[n].stat = st_fract.sym;
-						tela[n].all_L = i;		/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
-						tela[i].all_R = n;		/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-						recslips += span_allrk(i); 
-					}
-					else {
-						tela[n].all_L = i;		/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
-						tela[i].all_R = n;		/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-						if (dev_print(TELA,__LINE__)) {
-							printf("         mark_tela marking conflict between i=%d and n=%d.", i,n);
-						}
+					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
+					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
+					if (dev_print(TELA,__LINE__)) {
+						printf("         mark_tela marking conflict between i=%d and n=%d.", i,n);
 					}
 				}
 			}
@@ -526,7 +525,7 @@ void mark_tela(void)
 			while (tela[j].all_k) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
 				j--;
 			}
-			for (i=j; i>=m; i--) {
+			for (i=j; i>m; i--) {
 				if (tela[i].all_k) {
 					check_shadow = 1;
 					recslips += span_allrk(i);
@@ -609,30 +608,21 @@ void mark_tela(void)
 			if (!checkconflict) {
 				/* CONFLICT SCENARIO ONE */
 				if (span==1 && !(tela[n].all_L) && tela[n].all_R) {
-					if (OFF && tela[n].stat == st_clash.sym) {	/* SO MARKED IN THE CONFLICT TR LOOP */
-						clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-						push_clearall(n, 3);
-						if (dev_print(TELA,__LINE__)) {
-							printf("mark_tela calling clearall_tela at n=%d.", n);
-						}
+					j = tela[n].all_R;
+					int k2 = tela[j].all_k;
+					if (dev_print(TELA,__LINE__)) {
+						printf("mark_tela at n=%d, span=%d with no left-conflict, but right_conflict=%d.", n, span, tela[n].all_R);
 					}
-					else {
-						j = tela[n].all_R;
-						int k2 = tela[j].all_k;
-						if (dev_print(TELA,__LINE__)) {
-							printf("mark_tela at n=%d, span=%d with no left-conflict, but right_conflict=%d.", n, span, tela[n].all_R);
-						}
-						for (i=j+1; tela[i].all_k == k2; i++) {
-							if (!tela[i].all_L && !tela[i].all_R && tela[i].all_S > tela[j].all_S) {
-								clearall_tela(j, i-j, tela[i].all_S, TWO);		/* O-F-F, ONE, OR TWO */
-								for (int p=j; p<=i; p++) {
-									if (tela[p].all_k)	
-										push_clearall(p, 4);
-								}
-								tela[i].all_Z = tela[i].all_S;
-								tela[n].all_Z = tela[n].all_S;
-								tela[n].all_R = 0;
+					for (i=j+1; tela[i].all_k == k2; i++) {
+						if (!tela[i].all_L && !tela[i].all_R && tela[i].all_S > tela[j].all_S) {
+							clearall_tela(j, i-j, tela[i].all_S, TWO);		/* O-F-F, ONE, OR TWO */
+							for (int p=j; p<=i; p++) {
+								if (tela[p].all_k)	
+									push_clearall(p, 4);
 							}
+							tela[i].all_Z = tela[i].all_S;
+							tela[n].all_Z = tela[n].all_S;
+							tela[n].all_R = 0;
 						}
 					}
 				}
@@ -689,7 +679,7 @@ void mark_tela(void)
 				else {
 					clearall_tela(n, span, max_score, ONE);			/* O-F-F, ONE, OR TWO */
 					for (int p=n; p<=n+span; p++) {
-						if (tela[p].all_S != max_score)
+						if (tela[p].all_S && tela[p].all_S != max_score)
 							push_clearall(p, 8);
 					}
 					if (dev_print(TELA,__LINE__)) {

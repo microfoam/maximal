@@ -485,7 +485,9 @@ int *x_history = NULL;
 					}
 				}
 
-				if (keep_checking && tela[symbol_count+k].stat == st_skip1.sym) {
+				if (keep_checking && 	(tela[symbol_count+k].stat == st_skip1.sym 
+								/*	  || tela[symbol_count+k].stat == st_skip2.sym  
+									  || tela[symbol_count+k].stat == st_Fract.sym */ ) ) {
 					keep_checking = 0;
 				}
 
