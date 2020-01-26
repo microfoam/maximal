@@ -76,7 +76,7 @@ in the first unit of a longer repeat with cinch-k taking the remaining intra-TR 
 This is now solved for the first test case but will be kept in the chowder directory as a periodic test. The solution
 was to have `mark_tela()` clear small fractal repeats in the first unit of a longer repeat.
 This allows the longer repeat (9-mer here) to be cinched without violating equivalence prior to
-cinch-k. The `AC` dinucleotide repeat works here as a sentinel repeat of cinch-t flatlining. 
+cinch-k. The 5'-AC dinucleotide repeat works here as a sentinel repeat of cinch-t flatlining. 
 Some additional aspects remain to be handled.
 
 ```
