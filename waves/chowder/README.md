@@ -18,4 +18,20 @@ some of these cases, a duplicate sub-sequence to one maintained in the other
 'waves' sub-directories will be also stored in 'chowder' with some knot desigation
 in the file name.
 
+
+## tubespit-17-symmetric.txt
+This is a snippet of <tubespit/seq-017-cycle5.txt>.
+
+> >target_formatted_in_file
+>  GC
+>  GCnnGACAC
+>  ....GACAC
+>  ......CACnnTG
+>  ...........TGnnnnCA
+>  .................CAnnGTG
+>  .....................GTGTC
+>  .....................GTGTCnnGC
+>  ............................GC
+>
+  
 *Last updated*: 1/26/2010 AJE
