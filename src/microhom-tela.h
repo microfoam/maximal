@@ -332,7 +332,7 @@ void mark_tela(void)
 				homopoly_flag = 0;
 
 			/* FOR ROW m LOOP 5/5: START COUNTING SCORE (EQUIV. TO: IF PATHBOX POSITION HAS VALUE > MISMATCH) */
-			if (n+k < lenseq) {
+			if (n+k <= lenseq) {
 				Dtr = imperfect_TR = 0;		/* INITIALIZATION */
 
 				/* IF SUMMING PATHBOX DIAGONAL 1/4: COMPUTE SCORES OF IDENTITY LINE AND REPEAT DIAGONAL*/
@@ -432,7 +432,7 @@ void mark_tela(void)
 							/* FIRST SEE IF ANY TRs MARKED IN SHADOW ARE PARTS OF CYCLE TRs THAT PRECEDE m */
 							if (cycflag && tela[i].stat==st_cycle.sym) {
 								for (j=i-1; j>=0; j--) {
-									if (tela[j].stat == st_cycle.sym && j>=0)
+									if (tela[j].stat == st_cycle.sym)
 										;
 									else {
 										j++;
@@ -442,9 +442,12 @@ void mark_tela(void)
 									}
 								}
 							}
-							if (cycflag && tela[i].all_k) {
+							if (!cycflag && !j) {
+								clearall_tela(0, k-1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+							}
+							else if (cycflag) {
 								tela[i].stat = st_skip2.sym;
-								clearall_tela(i, 1, -1, OFF);		/* O-F-F, ONE, OR TWO */
+								clearall_tela(n-k+1, k-2, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							}
 						}
 					}

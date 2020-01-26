@@ -1,0 +1,10 @@
+>target_formatted_in_file
+GC
+GCnnGACAC
+    GACAC
+      CACnnTG
+           TGnnnnCA
+                 CAnnGTG
+                     GTGTC
+                     GTGTCnnGC
+                            GC

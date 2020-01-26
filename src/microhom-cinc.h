@@ -198,7 +198,7 @@ unsigned short int homopolyflag=0, imperfect_TR=0;
 int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
 char letr, letr2, letr3;
 char blnk = Fill->sym;				/* opt_B fill character */
-int max_k = Cinch_T.pass_V/2;		/* MAX k-SIZE FROM mark_tela() but stored here b/c mark_tela() called by cinch-t block */
+int max_k = Cinch_T.pass_V - 1;		/* MAX k-SIZE FROM mark_tela() but stored here b/c mark_tela() called by cinch-t block */
 int lenseq = Clean.pass_W;
 int symbol_count = 0;
 char cik_align2D[MAXROW][MAXROW] = {{0}};
