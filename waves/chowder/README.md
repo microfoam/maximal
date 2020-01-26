@@ -1,8 +1,8 @@
 # maximal/waves/chowder/ README
 
-This 'chowder' sub-directory is used to hold sequence files currently under
+The `chowder` sub-directory contains sequence files currently under
 attention or slated for attention during development of the 'maximal' program.
-Because the benchmark scripts (typically named 'surfboard-cleanup_set_*') use
+Because the benchmark scripts (typically base named `surfboard-cleanup_set_`) use
 sequences in the 'waves/tubespit' sub-directory, some chowder sequences will be
 located in duplicate forms in both sub-directories with the same file name. In those
 cases, the duplicate file in the chowder sub-directory indicates that the
@@ -15,9 +15,11 @@ testing script.
 Often an interesting sequence problem is whittled down to a "knot", a snippet of 
 a fuller sequence that isolates the interesting problem under investigation. In 
 some of these cases, a duplicate sub-sequence to one maintained in the other 
-'waves' sub-directories will be also stored in 'chowder' with some knot desigation
-in the file name.
+`/waves` sub-directories will also be stored in `/waves/chowder` sometimes with 
+some information in the new file name about how it was derived and/or what it 
+intended to be done.
 
+This README file will also contain diary type notes about current knot problems.
 
 ## tubespit-17-symmetric.txt
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
