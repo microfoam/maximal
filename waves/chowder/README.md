@@ -1,5 +1,4 @@
 # maximal/waves/chowder/ README
-
 The `chowder` sub-directory contains sequence files currently under
 attention or slated for attention during development of the 'maximal' program.
 Because the benchmark scripts (typically base named `surfboard-cleanup_set_`) use
@@ -19,7 +18,10 @@ some of these cases, a duplicate sub-sequence to one maintained in the other
 some information in the new file name about how it was derived and/or what it 
 intended to be done.
 
-This README file will also contain diary type notes about current knot problems.
+## Chowder to eat
+
+- [ ] tubespit-17 strand symmetry
+
 
 ## tubespit-17-symmetric.txt
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
