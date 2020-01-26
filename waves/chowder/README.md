@@ -20,8 +20,8 @@ intended to be done.
 
 ## Chowder to eat
 
-- [ ] tubespit-17 strand symmetry
-
+- [ ] tubespit-17: strand symmetry
+- [x] vnd_NEE_Dsech-snippet_1: skip fractal repeats in first unit so that cinch-t does not flatline from equivalence violation prior to cinch-k.
 
 ## tubespit-17-symmetric.txt
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
@@ -69,5 +69,37 @@ What currently happens is formally correct but not optimal and not symmetric wit
   .......................GTCnnGC/
   ............................GC>
 ```
+## vnd_NEE_Dsech-snippet_1.txt 
+This addresses an issue resulting from conversion to axiom testing in the cinch-t/cinch-k system,
+whereby cinch-t takes repeats in a moving window such that intra-repeat repeats only get taken
+in the first unit of a longer repeat with cinch-k taking the remaining intra-TR repeats afterwards.
+This is now solved for the first test case but will be kept in the chowder directory as a periodic test. The solution
+was to have `mark_tela()` clear small fractal repeats in the first unit of a longer repeat.
+This allows the longer repeat (9-mer here) to be cinched without violating equivalence prior to
+cinch-k. The `AC` dinucleotide repeat works here as a sentinel repeat of cinch-t flatlining. 
+Some additional aspects remain to be handled.
+
+```
+2-D PASS #2: cinch-t [LONGEST *tANDEM REPEATS, k>1] (width = 39)
+
+   >TAGCTCCTTAAATTAGCCAAGCGCGCA/
+    .........:........AAGCGCGCAAGTACAGGAC/
+    .........:.........:.........:.....ACAG>
+    _________|_________|_________|_________
+             10        20        30        
+
+2-D PASS #4: cinch-k [INTRA-REPEAT *k-MERS > 0] (width = 35)
+
+   >TAGCTCCTTAAATTAGCCAAGC/
+    .........:.........:GC/
+    .........:.........:GCA/
+    .........:........AAGC/
+    .........:.........:GC/
+    .........:.........:GCAAGTACAGGAC/
+    .........:.........:.........:.ACAG>
+    _________|_________|_________|_____
+             10        20        30        
+```
+
  
 *Last updated*: 1/26/2010 AJE
