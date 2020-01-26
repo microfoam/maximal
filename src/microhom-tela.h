@@ -7,20 +7,21 @@
 #ifndef FILE_TELA_SEEN
 #define FILE_TELA_SEEN
 
-int  		assign_tela(int pos, int eM, int eN, int mode);
-void 		assign_transit(int n, int kr_src);
-short int 	check_solo(int pos);
-int  		check_tela(int eM, int eN, short unsigned int mode_dim);
-void 		clearall_tela(int n, int span, int keep_score, int mode);
-int  		cyclelize_tela(int cpos, int delta, int npos);
-void 		flatline_after_TR(int pos);
-void 		mark_tela(void);
-void 		print_tela(int a, int b);
-void 		pull_tela(int n);
-int  		push_tela(int n2, int n1, short unsigned int axioms);
-int 		score_kmer(int n, int k, short unsigned int mode);
-int  		settle_tiescores(int n, int span, int max_score, int iteration);
-int			update_tela(void);
+int  			assign_tela(int pos, int eM, int eN, int mode);
+void 			assign_transit(int n, int kr_src);
+short int 		check_solo(int pos);
+int  			check_tela(int eM, int eN, short unsigned int mode_dim);
+void 			clearall_tela(int n, int span, int keep_score, int mode);
+int  			cyclelize_tela(int cpos, int delta, int npos);
+void 			flatline_after_TR(int pos);
+void			mark_tela(void);
+void			push_clearall(int pos, int row);
+void 			print_tela(int a, int b);
+void 			pull_tela(int n);
+int  			push_tela(int n2, int n1, short unsigned int axioms);
+int 			score_kmer(int n, int k, short unsigned int mode);
+int  			settle_tiescores(int n, int span, int max_score, int iteration);
+int				update_tela(void);
 
 int assign_tela(int pos, int eM, int eN, int mode)
 {
@@ -375,7 +376,7 @@ void mark_tela(void)
 				/* IF SUMMING PATHBOX DIAGONAL 4/4: START COUNTING REPEATS */
 				if (Dtr && (Dtr==Did || imperfect_TR)) {
 					if (dev_print(TELA,__LINE__)) {
-						printf("         mark_tela() counting repeats at n=%d for k-mer=%d.", n,k);
+						printf("         mark_tela counting repeats at n=%d for k-mer=%d.", n,k);
 					}
 					/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
 					TRcheck = 1;
@@ -410,8 +411,8 @@ void mark_tela(void)
 								projection = n + k*reps;
 							}
 							else {
-								if (tela[n-1].all_k % k == 0) {
-									tela[n-1].stat = st_cycle.sym;		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
+								if (tela[n-1].all_k && tela[n-1].all_k % k == 0) {
+									tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
 									tela[n  ].stat = st_cycle.sym;
 								}
 								else {
@@ -442,12 +443,14 @@ void mark_tela(void)
 									}
 								}
 							}
-							if (!cycflag && !j) {
-								clearall_tela(0, k-1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-							}
-							else if (cycflag) {
-								tela[i].stat = st_skip2.sym;
-								clearall_tela(n-k+1, k-2, -1, TWO);		/* O-F-F, ONE, OR TWO */
+							if (cycflag) {
+								for (i=n-k+1; i<n-1; i++) {
+									if (tela[i].all_k) {
+										tela[i].stat = st_skip2.sym;
+										clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+										push_clearall(i, 1);				/* START AT ROW ONE */
+									}
+								}
 							}
 						}
 					}
@@ -474,7 +477,7 @@ void mark_tela(void)
 			}
 			if (gapcheck) {
 				if (dev_print(TELA,__LINE__)) {
-					printf("         mark_tela() filling in gap between %d and %d, inclusive of these points, for k-mer=%d.", i-1,n-1,k);
+					printf("         mark_tela filling in gap between %d and %d, inclusive of these points, for k-mer=%d.", i-1,n-1,k);
 				}
 				for (j=i-1; j>n; j--) {
 					tela[j].all_k = k;
@@ -507,7 +510,7 @@ void mark_tela(void)
 						tela[n].all_L = i;		/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;		/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 						if (dev_print(TELA,__LINE__)) {
-							printf("         mark_tela() marking conflict between i=%d and n=%d.", i,n);
+							printf("         mark_tela marking conflict between i=%d and n=%d.", i,n);
 						}
 					}
 				}
@@ -536,6 +539,7 @@ void mark_tela(void)
 						tela[n-tela[m].all_k].all_k != tela[n].all_k && check_solo(m) && check_solo(n) ) {
 				tela[m].stat = st_skip0.sym;
 				clearall_tela(m, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+				push_clearall(m, 2);
 			}
 		}	
 	}
@@ -607,19 +611,24 @@ void mark_tela(void)
 				if (span==1 && !(tela[n].all_L) && tela[n].all_R) {
 					if (OFF && tela[n].stat == st_clash.sym) {	/* SO MARKED IN THE CONFLICT TR LOOP */
 						clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+						push_clearall(n, 3);
 						if (dev_print(TELA,__LINE__)) {
-							printf("mark_tela() calling clearall_tela at n=%d.", n);
+							printf("mark_tela calling clearall_tela at n=%d.", n);
 						}
 					}
 					else {
 						j = tela[n].all_R;
 						int k2 = tela[j].all_k;
 						if (dev_print(TELA,__LINE__)) {
-							printf("mark_tela() at n=%d, span=%d with no left-conflict, but right_conflict=%d.", n, span, tela[n].all_R);
+							printf("mark_tela at n=%d, span=%d with no left-conflict, but right_conflict=%d.", n, span, tela[n].all_R);
 						}
 						for (i=j+1; tela[i].all_k == k2; i++) {
 							if (!tela[i].all_L && !tela[i].all_R && tela[i].all_S > tela[j].all_S) {
 								clearall_tela(j, i-j, tela[i].all_S, TWO);		/* O-F-F, ONE, OR TWO */
+								for (int p=j; p<=i; p++) {
+									if (tela[p].all_k)	
+										push_clearall(p, 4);
+								}
 								tela[i].all_Z = tela[i].all_S;
 								tela[n].all_Z = tela[n].all_S;
 								tela[n].all_R = 0;
@@ -631,9 +640,11 @@ void mark_tela(void)
 				else if (span>1 && tela[n].all_L && !(tela[n].all_R) && tela[n+1].all_k < tela[n].all_k &&
 							!(tela[n+1].all_L) && !(tela[n+1].all_R) && tela[n].all_k % tela[n+1].all_k==0) {
 					clearall_tela(n, 1, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
+					if (tela[n].all_S != tela[n+1].all_S)
+						push_clearall(n, 5);
 					/* POSSIBLE THIS CASE COULD BE GENERALIZED...FOR A RAINY DAY */
 					if (dev_print(TELA,__LINE__)) {
-						printf("mark_tela() at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
+						printf("mark_tela at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
 								"and n+1 has smaller k that is a multiple of k-size at n with no conflicts.", n, span, tela[n].all_L);
 					}
 				}
@@ -643,14 +654,17 @@ void mark_tela(void)
 					for (j=n+1; j<n+span; j++) {
 						if (tela[j].all_k == k && !tela[j].all_R && !tela[j].all_L) {
 							if (dev_print(TELA,__LINE__)) {
-								printf("mark_tela() at n=%d, scenario three", n);
+								printf("mark_tela at n=%d, scenario three", n);
 							}
 							for (i=j-1; i>=n; i--) {
 								clearall_tela(i, j-n, -1, TWO);		/* O-F-F, ONE, OR TWO */
+								for (int p=i; p<=i+j-n; p++)
+									push_clearall(p, 6);
 							}
 							for (i=j+1; i<n+span; i++) {
 								if (tela[i].all_k == k && tela[i].all_R == l) {
 									clearall_tela(i,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
+									push_clearall(i, 7);
 								}
 							}
 						}
@@ -674,8 +688,12 @@ void mark_tela(void)
 				}
 				else {
 					clearall_tela(n, span, max_score, ONE);			/* O-F-F, ONE, OR TWO */
+					for (int p=n; p<=n+span; p++) {
+						if (tela[p].all_S != max_score)
+							push_clearall(p, 8);
+					}
 					if (dev_print(TELA,__LINE__)) {
-						printf("         mark_tela() engaging clearall_tela(ONE) at n=%d.", n);
+						printf("         mark_tela engaging clearall_tela(ONE) at n=%d.", n);
 					}
 				}
 			}
@@ -694,21 +712,26 @@ void mark_tela(void)
 					if (i==0 && tela[(p=m+j)].all_k != tela[(q=n+j)].all_k 
 								&& tela[p].stat == st_fract.sym && tela[n].stat != st_fract.sym) {
 						clearall_tela(n,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
+						push_clearall(n, 9);
 						tela[n].stat = st_skip1.sym;
 						if (dev_print(TELA,__LINE__)) {
-							printf("mark_tela() at n=%d evaluating cycling differences "
+							printf("mark_tela at n=%d evaluating cycling differences "
 									"but calling clearall only at n to save fractal TR at p=%d.", n, p);
 						}
 					}
 					else if (tela[(p=m+i*k+j)].all_k != tela[(q=n+i*k+j)].all_k) { 
 						if (dev_print(TELA,__LINE__)) {
-							printf("mark_tela() at n=%d evaluating cycling differences "
+							printf("mark_tela at n=%d evaluating cycling differences "
 									"and calling clearall at p=%d and q=%d.", n, p, q);
 						}
-						if (tela[p].all_k)
+						if (tela[p].all_k) {
 							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-						if (tela[q].all_k)
+							push_clearall(p, 0);
+						}
+						if (tela[q].all_k) {
 							clearall_tela(q,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
+							push_clearall(q, 1);
+						}
 					}
 				}
 			}
@@ -730,6 +753,16 @@ void mark_tela(void)
 	}
 }
 
+
+/*****************************************/
+void push_clearall(int pos, int row)
+{
+	if (row < MEMROWS) {
+		tela[pos].mem[row] = row;
+	}
+}
+
+/*****************************/
 short int check_solo(int pos)
 {
 	if (!tela[pos].all_k) {
@@ -958,12 +991,12 @@ int lenseq = Clean.pass_W;
 	for (i=a; i<=b; i++)
 		printf(" --");
 
-	/* PRINT TOP FRAME ROWS */
-	for (f=1; f<=10; f++) {
+	/* PRINT TOP MEM ROWS: mark_tela mem OR frame rows in cinch-t */
+	for (f=1; f<=14; f++) {
 		printf("\nf%c:", mha_base62(f));
 		for (i=a; i<=b; i++) {
-			if (tela[i].cyc_F[f])
-				printf("%3d", tela[i].cyc_F[f]);
+			if (tela[i].mem[f])
+				printf("%3d", tela[i].mem[f]);
 			else
 				printf("  .");
 		}

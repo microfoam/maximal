@@ -81,12 +81,13 @@ int main(int argc, char *argv[])
 
 	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
 	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
-	int blocks;				/* Number of blocks for 1D output print */
+	int blocks;					/* Number of blocks for 1D output print */
 	char ch = blank;
 
 	int badslip_type = 0;
 	int scooch = 0;
 	int alt_k = 0;
+	int maxmemrows = 0;			/* cinch_t() max memrows */
 
 	char cycle[WIDTH+1];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
 	char Seq_head[100] = {0};	/* FASTA HEADER */
@@ -651,7 +652,7 @@ int main(int argc, char *argv[])
 		else
 			tela[i].e = tela[i].c;
 	}
-	mark_tela();			/* WILL MARK ALL TRs WITHOUT CINCHING AND RECORD IN tela[].all_k, all_r, all_S, all_L/R */
+	mark_tela();		/* WILL MARK ALL TRs WITHOUT CINCHING AND RECORD IN tela[].all_k, all_r, all_S, all_L/R */
 
 	if (opt_t.bit) {
 		strcpy(align2D[0],Seq);
@@ -773,6 +774,13 @@ int main(int argc, char *argv[])
 	
 	/*	dev_prompt(MAIN,__LINE__,file_name);
 	*/
+		/* CLEAR TELA MEM SPACE AFTER FIRST USE IN MARK_TELA; SCRIPT all MAX maxmemrows HAS BEEN 5 (4+1)  */
+		for (i=0; i<MEMROWS; i++) {		
+			for (j=0; j<=lenseq; j++) {
+				tela[j].mem[i] = '\0';
+			}
+		}
+
 		for (n = 1; n<=lenseq; ) {
 			/* FOR COLUMN n LOOP 1/3 */
 			if (!opt_t.bit) {			/* SKIP TO NEXT MARKED TR */	
@@ -1089,12 +1097,16 @@ int main(int argc, char *argv[])
 	
 										if (l == 0) {
 											f = 1;	/* ROW NUMBER IN FRAMES ARRAY; OTHERWISE KEEP INCREMENTING */
-											while (tela[m+l].cyc_F[f] && f < FRAME_ROWS)		/* FIND FIRST AVAILABLE ROW */
+											while (tela[m+l].mem[f] && f < MEMROWS)		/* FIND FIRST AVAILABLE ROW */
 												f++;
 											if (f==1) {
 												tela[n].cyc_o = 'x';		/* NO CONFLICT SO WILL BE TAKING THIS FRAME */
+												if (f > maxmemrows)			/* DEV-USE: MONITOR HOW MUCH OF MEMROWS IS BEING USED */
+													maxmemrows = f;
 											}
 											else {
+												if (f > maxmemrows)			/* DEV-USE: MONITOR HOW MUCH OF MEMROWS IS BEING USED */
+													maxmemrows = f;
 												conflict_flag = 1;
 												tela[n].cyc_o = 'o';
 												sumspan = tela[n].cyc_l;
@@ -1106,28 +1118,28 @@ int main(int argc, char *argv[])
 												else 
 													z = n;								/* POS. z IS START OF STORING PRODUCTS & SUMS OF PRODUCTS */
 											}
-											tela[n].cyc_F[0] = f;	/* USE 0 ROW TO STORT LOCATION OF INDEXED UNIT TRs */	
+											tela[n].mem[0] = f;	/* USE 0 ROW TO STORT LOCATION OF INDEXED UNIT TRs */	
 										}
 										else
-											tela[n+l].cyc_F[0] = ++f;	/* USE ROW 0 TO STORE ROW # OF FRAME */
+											tela[n+l].mem[0] = ++f;	/* USE ROW 0 TO STORE ROW # OF FRAME */
 	
 										for (j = 0; j < tela[n+l].all_r; j++) {
 											if (j==0) {		/* WRITE FOR UNIT REPEAT STARTING AT m ONETIME */
 												for (o = 0; o < k; o++) 
-													tela[m + l + o].cyc_F[f] = o+1;
+													tela[m + l + o].mem[f] = o+1;
 												if (!conflict_flag && l>0)
 													tela[n+l].cyc_o = 'o';
 											}
 											for (o = 0; o < k; o++) {
 												if (tela[n+j*k+l+o].c==tela[n-k+l+o].c) {
-													tela[n+j*k+l+o].cyc_F[f] = o+1;
+													tela[n+j*k+l+o].mem[f] = o+1;
 												}
 												else if (imperfect_TR && tela[n+j*k+l+o].t==tela[n-k+l+o].t) {
-													tela[n+j*k+l+o].cyc_F[f] = o+1;
+													tela[n+j*k+l+o].mem[f] = o+1;
 												}
 												else {	/* ELSE ERASE LAST PARTIAL UNIT */
 													while (o >= 0) {
-														tela[n + j*k + l + o].cyc_F[f] = 0;
+														tela[n + j*k + l + o].mem[f] = 0;
 														o--;
 													}
 													break;
@@ -1141,14 +1153,14 @@ int main(int argc, char *argv[])
 									/* SUM UP COMPATIBLE TR PRODUCTS IN WINDOW OF LENGTH SUMSPAN BEGINNING AT POSITION z OF TR B */
 									if (sumspan > 0 && tela[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
 										for (j = 0; j < sumspan; j++) {
-											for (f = tela[z+j].cyc_F[0] - 1 - j; f > 0; f--) {
+											for (f = tela[z+j].mem[0] - 1 - j; f > 0; f--) {
 												l=z+j-k;
-												if (tela[l].cyc_F[f] == 1 && tela[l-1].cyc_F[f] != 0) {
+												if (tela[l].mem[f] == 1 && tela[l-1].mem[f] != 0) {
 	
 													while (tela[l].cyc_o != 'x' && tela[l].cyc_o != 'o' && l>0) 
 														l--;
 	
-													while (tela[l].cyc_F[f] != 1 && l>0) 
+													while (tela[l].mem[f] != 1 && l>0) 
 														l--;
 	
 													if (dev_print(MAIN,__LINE__)) {
@@ -1160,8 +1172,8 @@ int main(int argc, char *argv[])
 													tela[z+j].cyc_Lf = l;
 													break;
 												}
-												else if (tela[l].cyc_F[f] == 1 && tela[l-1].cyc_F[f] == 0) {
-													while ((tela[l].cyc_F[f] != 1 || !tela[l].k) && l<n)
+												else if (tela[l].mem[f] == 1 && tela[l-1].mem[f] == 0) {
+													while ((tela[l].mem[f] != 1 || !tela[l].k) && l<n)
 														l++;
 	
 													if (dev_print(MAIN,__LINE__)) {
@@ -1173,7 +1185,7 @@ int main(int argc, char *argv[])
 													tela[z+j].cyc_Lf = l;
 													break;
 												}
-												else if (tela[l].cyc_F[f] == 0) {
+												else if (tela[l].mem[f] == 0) {
 													tela[z+j].cyc_S = tela[z+j].cyc_P;
 													break;
 												}		
@@ -1208,19 +1220,19 @@ int main(int argc, char *argv[])
 									else if (sumspan < 0 && tela[n].X != n) {
 										for (j = 0; j < -sumspan; j++) {
 											l = z+j + tela[z+j].cyc_k * (tela[z+j].cyc_r - 1);	/* VAR l IS POSITION 1 OF LAST UNIT OF REPEAT A */
-											for (i = tela[n].cyc_F[0]; i < FRAME_ROWS; i++) {
-												if (tela[l].cyc_F[i] == 1 && z+j != l+k) {
+											for (i = tela[n].mem[0]; i < MEMROWS; i++) {
+												if (tela[l].mem[i] == 1 && z+j != l+k) {
 													tela[z+j].cyc_S = tela[z+j].cyc_P + tela[z+j+k].cyc_P;	
 													tela[z+j].cyc_Rt = l+k;
 													tela[l+k].cyc_Lf = z+j;
 													tela[l+k].cyc_o = 'x';
 													break;
 												}
-												else if (tela[l].cyc_F[i] == 0) { 				/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */
+												else if (tela[l].mem[i] == 0) { 				/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */
 													tela[z+j].cyc_S = tela[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
 													break;
 												}
-												else if (i == FRAME_ROWS-1) {
+												else if (i == MEMROWS-1) {
 													tela[z+j].cyc_S = tela[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
 													break;
 												}
@@ -1877,9 +1889,9 @@ int main(int argc, char *argv[])
 	
 	if (!opt_s.bit) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4d\t%.3f\tNDG:%2d (%d)\tRND:%.*s\t%38s (%c) (%4d %s) REC:%4d\t%s\n", 
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4d\t%.3f\tNDG:%2d (%d)\tRND:%.*s\t%38s (%c) (%4d %s) REC:%4d\tM:%2d\t%s\n", 
 				version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, Nudge.pass_V, opt_X.val, "XX", 
-				file_name, Strand->sym, Clean.pass_W, letr_unit, Recover.pass_Q, dev_notes);
+				file_name, Strand->sym, Clean.pass_W, letr_unit, Recover.pass_Q, maxmemrows+1, dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */

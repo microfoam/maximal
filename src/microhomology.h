@@ -9,7 +9,9 @@
 #define CYCMAX     60       /* SEMI-MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER EMBEDDED DECISIONS */
 #define MAXROW   2000       /* maximum input line size; NOT M-A-G-I-C JUST WHAT MY 'PUTERS CAN DO AS CURRENTLY WRITTEN */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
-#define FRAME_ROWS 25       /* NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
+#define MEMROWS    25       /* NUMBER OF mem[MEMROWS] ROWS IN STRUCT COORD ARRAY TELA */
+							/* USE 1: BIT (0/1) VALUES FOR MARK_TELA MARKS ASSOCIATED WITH A SINGLE LOOP OF CLEAR_ALL PRECEDENCE */
+							/* USE 2: NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
 #define START       0       /* FOR USE WITH line_end() */
 #define END         1       /* FOR USE WITH line_end() */
 #define RULER       2       /* FOR USE WITH line_end() */
@@ -40,8 +42,9 @@ struct coord {
 	int Dtr;		/* CUMULATIVE SUM OF DIAGONAL TANDEM REPEAT (DTR) SCORES BY POSITION */
 	char t;			/* IUPAC TRANSITIONS IN DNA USUALLY (RY) IN "IMPERFECT" TANDEM REPEATS */
 	/*************************************************************************************************/
-	int  cyc_F[FRAME_ROWS];	/* cycling frames; count-off column positions per unit; 32 - 7 = 25 */
-							/* one row/frame; row 0 is row # locator; FRAME_ROWS IS BASED ON MEM AL. */
+	int  mem[MEMROWS];	/* Use 1: bits for clearall_tela() in mark_tela(), so that order of precedence can be easily edited */
+						/* Use 2: cycling frames; count-off column positions per unit; 32 - 7 = 25 */
+						/* one row/frame; row 0 is row # locator; MEMROWS IS BASED ON MEM AL. */
 	int all_k;		/* ALL SERIES: PRE-CINCH-T: k-MER SIZE                        */
 	int all_r;		/* ALL SERIES: PRE-CINCH-T: REPEAT NUMBER                     */
 	int all_S;		/* ALL SERIES: PRE-CINCH-T: SUM OF SCORES OVER ALL UNITS      */

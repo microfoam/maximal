@@ -32,5 +32,5 @@ fi
 ./maximal -DRKnx waves/tubespit/seq-033-imprf1.txt 
 
 ./surfboard-checkmha
-echo 'sand_dunes: last benchmark WCR AVERAGES: 0.451077 -> 0.451077 -> 0.453615' | tee -a corduroy.log
+echo 'sand_dunes: last benchmark WCR AVERAGES: 0.451077 -> 0.451077 -> 0.453615 -> 0.457615' | tee -a corduroy.log
 echo
