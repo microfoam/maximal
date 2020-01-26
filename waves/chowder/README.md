@@ -21,11 +21,15 @@ in the file name.
 
 ## tubespit-17-symmetric.txt
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
-separated by four N's, which work as separators and prevent cinching on the 
-edges. In addtion there are sentinel dinucleotide repeats before and after 
-each of the two main repeat knots. These two dinculeotides can show whether
-cinching continued after the knots when ever this sequence is run through
-maximal for either strand. This sequence also demonstrates how sequences
+separated by four N's, which work as separators to prevent cinching across the
+segments. This allows a single sequence to be processed to display how both the
++ and - strands are currently cinched. 
+In addtion there are sentinel dinucleotide repeats before and after 
+each of the two main repeat knots. These dinculeotides repeats can show whether
+cinching continued after the knots whenever this sequence is run through
+maximal for either strand. 
+
+This sequence also demonstrates how sequences
 can be saved in a pseudo-aligned fashion in the text file. The program will
 strip all of this formatting (i.e., spaces, line breaks and non-essential characters)
 so it does not interfere with the reading of the file. Therefore, formatting 
@@ -50,15 +54,16 @@ user/developer to indicate that one can look at the raw file to see what is desi
 
 What currently happens:
 ```
-  GC
-  GCnnGACAC
-  ....GACAC
-  ......CACnnTG
-  ...........TGnnnnCA
-  .................CAnnGTG
-  .....................GTGTC
-  .....................GTGTCnnGC
-  ............................GC
+ >GC/
+  GCnnGACAC/
+  ....GACAC/
+  ......CACnnTG/
+  ...........TGnnnnCA/
+  .................CAnnGTG/
+  .....................GTGTC/
+  .......................GT/      <=== 
+  .......................GTCnnGC/
+  ............................GC>
 ```
  
 *Last updated*: 1/26/2010 AJE
