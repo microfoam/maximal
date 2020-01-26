@@ -70,7 +70,7 @@ What currently happens is formally correct but not optimal and not symmetric wit
   .......................GTCnnGC/
   ............................GC>
 ```
-##seq-016-cyc3_a_knot-Rn.txt
+## seq-016-cyc3_a_knot-Rn.txt
 The `Rn` designates this was from the first test type in `cleanup_set_all'.
 
 ```
