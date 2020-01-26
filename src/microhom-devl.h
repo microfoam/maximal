@@ -7,7 +7,7 @@
 #ifndef FILE_DEVL_SEEN
 #define FILE_DEVL_SEEN
 
-#define OFFSET	   60		/* FOR SETTING START POSITION OF PRINT TELA */
+#define OFFSET	    0		/* FOR SETTING START POSITION OF PRINT TELA */
 #define OFF			0		/* FOR CLARITY OF MODE ARGUMENTS */
 #define ON 			1		/* FOR CLARITY OF MODE ARGUMENTS */
 #define ONE			1		/* USE ONLY FOR FUNCTIONS THAT CAN BE TURNED OFF WITH MODE OFF */
@@ -91,9 +91,9 @@ void dev_linehead(int mode, int line_no)
 /***************************************/
 void signal_callback_handler(int signum) 
 {
-	printf("  )--- I caught signal %d before exiting (2=SIGINT, 10=SIGBUS, 11=SIGSEGV).\n\n",signum);
+	printf("  )--- I caught signal %d before exiting (2=SIGINT, 8=SIGFPE, 10=SIGBUS, 11=SIGSEGV).\n\n",signum);
 	fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
-	fprintf(fp_out, "---->\tCanceled run for %s with signal=%d (2=SIGINT, 10=SIGBUS, 11=SIGSEGV). dev_notes: %s.\n", file_name, signum, dev_notes);
+	fprintf(fp_out, "---->\tCanceled run for %s with signal=%d (2=SIGINT, 8=SIGFPE, 10=SIGBUS, 11=SIGSEGV). dev_notes: %s.\n", file_name, signum, dev_notes);
 	fclose(fp_out);
 	exit(signum);
 }

@@ -1,7 +1,16 @@
 #!/bin/bash
 
 echo 'sand dunes' >> corduroy.log
-./surfboard-Pop_Up
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	echo 'with fresh compile (-c)' >> corduroy.log
+	./surfboard-Pop_Up
+	;;
+esac
+done
 
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
@@ -23,4 +32,5 @@ fi
 ./maximal -DRKnx waves/tubespit/seq-033-imprf1.txt 
 
 ./surfboard-checkmha
-
+echo 'sand_dunes: last two benchmark WCR AVERAGE: 0.451077 -> 0.451077' | tee -a corduroy.log
+echo

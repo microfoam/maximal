@@ -33,10 +33,8 @@ tail -n 1 Surf_wavereport.log
 echo
 echo 'Tests with PASS < 1000:'
 grep ^v Surf_wavereport.log | grep -vE '\t1000' 
-echo
 echo 'Tests with REC < 1000:'
 grep ^v Surf_wavereport.log | grep -vE 'REC:1000' 
-echo
 echo 'Tests canceled (shown with preceding runs for context):'
 grep -B1 Canceled Surf_wavereport.log | sed '/^--$/d'
 echo

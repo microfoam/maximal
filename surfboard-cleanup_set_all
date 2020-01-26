@@ -1,7 +1,16 @@
 #!/bin/bash
 
 echo 'all' >> corduroy.log
-./surfboard-Pop_Up
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	echo 'with fresh compile (-c)' >> corduroy.log
+	./surfboard-Pop_Up
+	;;
+esac
+done
 
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
@@ -802,4 +811,5 @@ fi
 ./maximal -CRnx waves/tubespit/seq-154-v427_cycABs.txt
 
 ./surfboard-checkmha
-
+echo 'all: last two commit benchmarks WCR AVERAGE: 0.507390 -> 0.507870' | tee -a corduroy.log
+echo

@@ -333,7 +333,7 @@ void mark_tela(void)
 
 			/* FOR ROW m LOOP 5/5: START COUNTING SCORE (EQUIV. TO: IF PATHBOX POSITION HAS VALUE > MISMATCH) */
 			if (n+k < lenseq) {
-				Dtr = 0;	/* INITIALIZATION */
+				Dtr = imperfect_TR = 0;		/* INITIALIZATION */
 
 				/* IF SUMMING PATHBOX DIAGONAL 1/4: COMPUTE SCORES OF IDENTITY LINE AND REPEAT DIAGONAL*/
 				Did = k*MATCH;
@@ -366,7 +366,7 @@ void mark_tela(void)
 				/* IF SUMMING PATHBOX DIAGONAL 3/4: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
 				if (nuctransit && Dtr && Dtr!=Did) { 
 					if (k>PISO && 100*Dtr/Did > threshold)	{	
-						imperfect_TR = 1;		/* CALLING TR W/ TRANSITIONS FOR n BLOCK VS m BLOCK */
+						imperfect_TR = 1;			/* CALLING TR W/ TRANSITIONS FOR n BLOCK VS m BLOCK */
 					}
 					else 
 						Dtr = 0;
@@ -410,8 +410,9 @@ void mark_tela(void)
 								projection = n + k*reps;
 							}
 							else {
-								if (tela[n-1].all_k == k) {
-									tela[n].stat = st_cycle.sym;		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
+								if (tela[n-1].all_k % k == 0) {
+									tela[n-1].stat = st_cycle.sym;		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
+									tela[n  ].stat = st_cycle.sym;
 								}
 								else {
 									tela[n].stat = st_fract.sym;		/* FRACTAL REPEAT = EMBEDDED IN ANOTHER REPEAT */
@@ -424,7 +425,29 @@ void mark_tela(void)
 					if (dev_print(TELA,__LINE__)) {
 						printf("                     repeats=%d at n=%d for k-mer=%d.", reps,n,k);
 					}
-
+					/* v4.29 NEW MODULE TO CLEAR FRACTAL TR'S IN SHADOW, RESULTING IN CHECK_TELA PASS IN CINCH-T */
+					if (tela[n].c != tela[n+k].c && tela[n].stat != st_cycle.sym) {
+						int cycflag=1;
+						for (i=m+1; i<n; i++) {
+							/* FIRST SEE IF ANY TRs MARKED IN SHADOW ARE PARTS OF CYCLE TRs THAT PRECEDE m */
+							if (cycflag && tela[i].stat==st_cycle.sym) {
+								for (j=i-1; j>=0; j--) {
+									if (tela[j].stat == st_cycle.sym && j>=0)
+										;
+									else {
+										j++;
+										if (j<=m)
+											cycflag = 0;
+										break;
+									}
+								}
+							}
+							if (cycflag && tela[i].all_k) {
+								tela[i].stat = st_skip2.sym;
+								clearall_tela(i, 1, -1, OFF);		/* O-F-F, ONE, OR TWO */
+							}
+						}
+					}
 					break;		/* OTHERWISE MAY OVERWRITE TR WITH ONE OF SMALLER K */
 				}
 			}
@@ -506,7 +529,7 @@ void mark_tela(void)
 			if (recslips == 0) {
 				check_shadow = 0;
 			}
-			else if ( m + tela[m].all_k * tela[m].all_r >= m - recslips && tela[m].stat != st_fract.sym && 
+			else if (ON && m + tela[m].all_k * tela[m].all_r >= m - recslips && tela[m].stat != st_fract.sym && 
 						tela[n-tela[m].all_k].all_k != tela[n].all_k && check_solo(m) && check_solo(n) ) {
 				tela[m].stat = st_skip0.sym;
 				clearall_tela(m, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
@@ -725,12 +748,19 @@ int i=0, f=0;
 int width = 56;	    /* 60 x 3 = 180 COLS, PRACTICAL DISPLAY WIDTH DEPENDS ON SCREEN SIZE */
 int lenseq = Clean.pass_W;
 
+/*
 	if (a<0 || a>lenseq) 
 		a = 0;
 	if (b>lenseq)
 		b = lenseq;
-
-	if (width > lenseq) {
+*/
+	a += OFFSET;
+	b += OFFSET;
+	if (b>lenseq && lenseq > b-a) {
+		a = lenseq-width;
+		b = lenseq;
+	}
+	else if (width > lenseq) {
 		a = 0;
 		b = lenseq;
 	}
@@ -746,12 +776,7 @@ int lenseq = Clean.pass_W;
 		else
 			b = width;
 	}
-	a += OFFSET;
-	b += OFFSET;
-	if (b>lenseq && lenseq > b-a) {
-		a = lenseq-width;
-		b = lenseq;
-	}
+
 	/************* BEGIN PRINTING LINES *******************/
 	printf("\n t:");
 	for (i=a; i<=b; i++) {

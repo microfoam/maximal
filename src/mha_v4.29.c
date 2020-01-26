@@ -106,6 +106,7 @@ int main(int argc, char *argv[])
 	char recovered[MAXROW] = {0};
 
 	signal(SIGINT, signal_callback_handler);	/*  2 */
+	signal(SIGFPE, signal_callback_handler);	/*  8 */
 	signal(SIGBUS, signal_callback_handler);	/* 10 */
 	signal(SIGSEGV, signal_callback_handler);	/* 11 */
 

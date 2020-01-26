@@ -197,20 +197,21 @@ unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEO
 unsigned short int homopolyflag=0, imperfect_TR=0;
 int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
 char letr, letr2, letr3;
-char blnk = Fill->sym;			/* opt_B blank character */
-int max_k = Cinch_T.pass_V/2;	/* MAX k-SIZE FROM mark_tela() but stored here b/c mark_tela() called by cinch-t block */
+char blnk = Fill->sym;				/* opt_B fill character */
+int max_k = Cinch_T.pass_V/2;		/* MAX k-SIZE FROM mark_tela() but stored here b/c mark_tela() called by cinch-t block */
 int lenseq = Clean.pass_W;
-int *x_history = NULL;
 int symbol_count = 0;
 char cik_align2D[MAXROW][MAXROW] = {{0}};
-/* char **cik_align2D = NULL; */
+int *x_history = NULL;
 
-	x_history = (int *)calloc(lenseq, sizeof(int));
+/* 	char **cik_align2D = NULL; */
 /*	cik_align2D = (char **)calloc(lenseq, sizeof(int));
 	for (i=0; i<lenseq; i++) {
 		cik_align2D[i] = (char *)calloc(lenseq, sizeof(int));
 	}
 */
+	x_history = (int *)calloc(lenseq, sizeof(int));
+
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
 	}	
@@ -219,6 +220,8 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 	}
 	if (!max_k || Cinch_T.pass_Q!=1000)
 		max_k = WIDTH;
+	else if (max_k<1)
+		max_k = 1;
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
 	for (k = max_k; k > 0; k--) {
@@ -315,10 +318,13 @@ char cik_align2D[MAXROW][MAXROW] = {{0}};
 				} /* END OF A CINCHLD BLOCK */
 
 				/* CHECK FOR & DEAL WITH LINE ENDS TOO SHORT TO HARBOR TR OF SIZE k */
+				if (align2D[m][n+2*k] == Term->sym && col_isclear(align2D, n,m,-1)>=0) {
+					keep_checking = 0;
+				}
 				if (!isalpha(align2D[m][n+2*k-1])) {	/* TRUE IF WINDOW < 2x k-MER, WRITE REST OF LINE TO cik_align2D */
-					for (i = n; align2D[m][i] != '\0'; i++) {
+					for (i = n; (letr=align2D[m][i]) != '\0'; i++) {
 						cik_align2D[m+cik_row][i-x] = align2D[m][i];
-						if (isalpha(align2D[m][i])) {
+						if (isalpha(letr)) {
 							symbol_count++;
 							x_history[i] = x;				/* x_history WRITE-IN FOR LINE ENDS TOO SHORT FOR TR */
 						}
