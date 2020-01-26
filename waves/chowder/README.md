@@ -21,6 +21,7 @@ intended to be done.
 ## Chowder to eat
 
 - [ ] tubespit-17: strand symmetry
+- [ ] seq-016-cyc3_a_knot -Rn
 - [x] vnd_NEE_Dsech-snippet_1: skip fractal repeats in first unit so that cinch-t does not flatline from equivalence violation prior to cinch-k.
 
 ## tubespit-17-symmetric.txt
@@ -69,6 +70,30 @@ What currently happens is formally correct but not optimal and not symmetric wit
   .......................GTCnnGC/
   ............................GC>
 ```
+##seq-016-cyc3_a_knot-Rn.txt
+The `Rn` designates this was from the first test type in `cleanup_set_all'.
+
+```
+>target_formatted_in_file
+ ATGGGCTGCA
+ ........CAAC
+ .........AACAAT
+ .........AACAATACG
+ ...............ACGA
+```
+
+```
+2-D PASS #2: cinch-t 
+
+   >ATGGGCTGCA/
+    ........CAA/
+    ........CAA/
+    ........CAATAACAATACG/
+    .........:........ACGA>
+    _________|_________|__
+             10        20        
+```
+
 ## vnd_NEE_Dsech-snippet_1.txt 
 This addresses an issue resulting from conversion to axiom testing in the cinch-t/cinch-k system,
 whereby cinch-t takes repeats in a moving window such that intra-repeat repeats only get taken

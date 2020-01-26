@@ -1,1 +1,6 @@
-ATGGGCTGCACAACAACAATAACAATACGACGA
+>target_formatted_in_file
+ ATGGGCTGCA
+ ........CAAC
+ .........AACAAT
+ .........AACAATACGA
+ ................CGA
