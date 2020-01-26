@@ -24,7 +24,7 @@ This README file will also contain diary type notes about current knot problems.
 ## tubespit-17-symmetric.txt
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
 separated by four N's, which work as separators to prevent cinching across the
-segments. This allows a single sequence to be processed to display how both the
+segments. This combination of tricks allows a single sequence to be processed to display how both the
 (+) and (-) strands are cinched. 
 In addtion there are sentinel dinucleotide repeats before and after 
 each of the two main repeat knots. These dinculeotides repeats can show whether
@@ -32,9 +32,9 @@ cinching continued after the knots whenever this sequence is run through
 maximal for either strand. 
 
 This sequence also demonstrates how sequences
-can be saved in a pseudo-aligned fashion in the text file. The program will
+can be saved in a hand-aligned fashion in the text file. The program will
 strip all of this formatting (i.e., spaces, line breaks and non-essential characters)
-so it does not interfere with the reading of the file. Therefore, formatting 
+so it does not interfere with the reading and processing of the file. Therefore, formatting 
 can be used in a chowder file to indicate what the target folding pattern
 is desired (but not yet acheived). The fasta header indicates this with 
 the phrase `target_formatted_in_file'. The purpose of putting this in the fasta
@@ -54,7 +54,7 @@ user/developer to indicate that one can look at the raw file to see what is desi
   ............................GC
 ```
 
-What currently happens:
+What currently happens is formally correct but not optimal and not symmetric with respect to strand:
 ```
  >GC/
   GCnnGACAC/
