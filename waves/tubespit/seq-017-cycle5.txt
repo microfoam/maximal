@@ -1,2 +1,2 @@
->Target-0.590_strand_symmetric
+>Target-0.590_(GACAC)2_strand_symmetric
 GTGCGCAGCTGGATGACACGACACCACTATGTGCANNTG
