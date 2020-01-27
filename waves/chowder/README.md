@@ -20,9 +20,34 @@ intended to be done.
 
 ## Chowder to eat
 
-- [ ] tubespit-17: strand symmetry
 - [ ] seq-016-cyc3_a_knot -Rn
-- [x] vnd_NEE_Dsech-snippet_1: skip fractal repeats in first unit so that cinch-t does not flatline from equivalence violation prior to cinch-k.
+- [x] tubespit-17: strand symmetry (v4.30)
+- [x] vnd_NEE_Dsech-snippet_1: skip fractal repeats in first unit so that cinch-t does not flatline from equivalence violation (v4.29)
+
+## seq-016-cyc3_a_knot-Rn.txt
+This sequence is folded correctly but not optimal.
+The `Rn` designates this was from the first test type in `cleanup_set_all'.
+
+```
+>target_formatted_in_file
+ ATGGGCTGCA
+ ........CAAC
+ .........AACAAT
+ .........AACAATACG
+ ...............ACGA
+```
+
+```
+2-D PASS #2: cinch-t 
+
+   >ATGGGCTGCA/
+    ........CAA/
+    ........CAA/
+    ........CAATAACAATACG/
+    .........:........ACGA>
+    _________|_________|__
+             10        20        
+```
 
 ## tubespit-17-symmetric.txt
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
@@ -57,42 +82,37 @@ user/developer to indicate that one can look at the raw file to see what is desi
   ............................GC
 ```
 
-What currently happens is formally correct but not optimal and not symmetric with respect to strand:
+Solved in v4.30:
 ```
- >GC/
-  GCnnGACAC/
-  ....GACAC/
-  ......CACnnTG/
-  ...........TGnnnnCA/
-  .................CAnnGTG/
-  .....................GTGTC/
-  .......................GT/      <=== 
-  .......................GTCnnGC/
-  ............................GC>
-```
-## seq-016-cyc3_a_knot-Rn.txt
-The `Rn` designates this was from the first test type in `cleanup_set_all'.
+   >GC/
+    GCnnGACAC/
+    ....GACAC/
+    ......CACnnTG/
+    .........:.TGnnnnCA/
+    .........:.......CAnnGTG/
+    .........:.........:.GTGTC/
+    .........:.........:.GTGTCnnGC/
+    .........:.........:........GC>
+    _________|_________|_________|
+             10        20        30     
+'''
 
-```
->target_formatted_in_file
- ATGGGCTGCA
- ........CAAC
- .........AACAAT
- .........AACAATACG
- ...............ACGA
-```
+Compare to variant missing the 3-mer overlapping repeat:
+'''
 
-```
-2-D PASS #2: cinch-t 
-
-   >ATGGGCTGCA/
-    ........CAA/
-    ........CAA/
-    ........CAATAACAATACG/
-    .........:........ACGA>
-    _________|_________|__
-             10        20        
-```
+    1. >GTGC/    4
+    2.  ..GCAGCTG/   11
+    3.  ........GA/   13
+    4.  .......TGAC/   17
+    5.  .........AC/   19
+    6.  ........GAC/   22
+    7.  .........AC/   24
+    8.  .........:CAnTATG/   31
+    9.  .........:.....TGCAnnTG>   39
+        _________|_________|___
+                 10        20        
+        GTGCAGCTGACAnTATGCAnnTG
+'''
 
 ## vnd_NEE_Dsech-snippet_1.txt 
 This addresses an issue resulting from conversion to axiom testing in the cinch-t/cinch-k system,
@@ -127,4 +147,4 @@ Some additional aspects remain to be handled.
 ```
 
  
-*Last updated*: 1/26/2010 AJE
+*Last updated*: 1/27/2010 AJE
