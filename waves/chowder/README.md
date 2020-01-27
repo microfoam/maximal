@@ -37,6 +37,7 @@ The `Rn` designates this was from the first test type in `cleanup_set_all'.
  ...............ACGA
 ```
 
+What currently happens:
 ```
 2-D PASS #2: cinch-t 
 
@@ -95,11 +96,10 @@ Solved in v4.30:
     .........:.........:........GC>
     _________|_________|_________|
              10        20        30     
-'''
+```
 
 Compare to variant missing the 3-mer overlapping repeat:
-'''
-
+```
     1. >GTGC/    4
     2.  ..GCAGCTG/   11
     3.  ........GA/   13
@@ -112,7 +112,7 @@ Compare to variant missing the 3-mer overlapping repeat:
         _________|_________|___
                  10        20        
         GTGCAGCTGACAnTATGCAnnTG
-'''
+```
 
 ## vnd_NEE_Dsech-snippet_1.txt 
 This addresses an issue resulting from conversion to axiom testing in the cinch-t/cinch-k system,
@@ -145,6 +145,5 @@ Some additional aspects remain to be handled.
     _________|_________|_________|_____
              10        20        30        
 ```
-
  
 *Last updated*: 1/27/2010 AJE
