@@ -350,7 +350,7 @@ int *x_history = NULL;
 							break;
 						}
 						/* FOR AESTHETICS AND MORE? DON'T SCOOCH MONOS INTO TRANSITS */
-						else if (k==1 && ((consensus[n-x+y  ]=='R' || consensus[n-x+y  ]=='Y') ||
+						else if (nuctransit && k==1 && ((consensus[n-x+y  ]=='R' || consensus[n-x+y  ]=='Y') ||
 										  (consensus[n-x+y+1]=='R' || consensus[n-x+y+1]=='Y'))) {
 							keep_checking = 0;
 							break;
