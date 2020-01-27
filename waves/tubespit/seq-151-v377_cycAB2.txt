@@ -1,2 +1,2 @@
->cyc-12
+>Target-0.529_cyc-12
 TGTGTGAGTGAGnnnnn

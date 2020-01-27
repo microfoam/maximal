@@ -1,2 +1,2 @@
->cyc-17
+>Target-0.294_cyc-17
 TGTGTGAGTGAGTGAGT
