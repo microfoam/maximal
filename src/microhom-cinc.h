@@ -485,12 +485,6 @@ int *x_history = NULL;
 					}
 				}
 
-				if (keep_checking && 	(tela[symbol_count+k].stat == st_skip1.sym 
-								/*	  || tela[symbol_count+k].stat == st_skip2.sym  
-									  || tela[symbol_count+k].stat == st_Fract.sym */ ) ) {
-					keep_checking = 0;
-				}
-
 				if (keep_checking && n > scrimmage_line) { 
 					if ((l=col_isclear(cik_align2D,n-x+k,m,-1)) > -1 
 						&& col_isclear(align2D,n+k,m,1)< 0) {
@@ -521,6 +515,16 @@ int *x_history = NULL;
 						    }    
 						}
 			    	}
+					/* CHECK FOR SLIPS OVER-HEAD (LOWER ROWS) OF SECOND UNIT */
+					for (i=m-1; i>=0; i--) {
+						for (int j=n+k+1; j<n+2*k; j++) {
+							if (align2D[i][j] == slip.sym) {
+								i = -1;
+								keep_checking = imperfect_TR = 0;
+								break;
+							}
+						}
+					}
 				}
 
 				if (imperfect_TR && n > scrimmage_line && 
