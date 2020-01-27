@@ -2,14 +2,14 @@
 
 #clear
 echo
-echo 'Tri-fin dawn patrol: Compiling maximal v4.30.'
+echo 'Tri-fin dawn patrol: Compiling maximal v4.29.'
 echo '                                                                                                            '
 echo '.~.                                                                                                         '
 echo '///_M                                                                                                       '
 echo '/////_H                    _     _     _     _     _     _     _     _     _     _     _     _     _     _  '
 echo '///////_A__________.~._~.~.) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `'
 echo '```````^:^`````````          m           a           x           i           m           a           l      '
-gcc -o maximal -Wall -Wextra -Wstrict-prototypes -O2 src/mha_v4.30.c -lm
+gcc -o maximal -Wall -Wextra -Wstrict-prototypes -O2 src/mha_v4.29.c -lm
 #clear
 echo
 echo 'Tri-fin dawn patrol: Surfs up!'
