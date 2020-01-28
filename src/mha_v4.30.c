@@ -59,22 +59,22 @@ int main(int argc, char *argv[])
 	short unsigned int pairwise = 0;	
 
 	int homopolyend_flag=0, overslip=0, TRcheck = 0;
-	short unsigned int go_flag=0;
+	short unsigned int cycle_flag=0;
 
 	int relax_length=0;			/* FOR USE WITH relax_2D CALL */
 	int intraTR_reps_tot = 0; 	/* STORES INITIAL RETURN VALUE FROM cinch-d() */
 	int intraTR_reps = 0;	 	/* STORES CURRENT RETURN VALUE FROM cinch-d() */
-	short unsigned int cycle_flag=0;
+	unsigned int recovery_flag = 0;
 
 	int Did = 0;				/* Counter for identity (id) diagonal */
 	int Dtr = 0;				/* Counter for tandem repeat (tr) diagonal */
 	int Atr = 0;				/* Counter for additional repeats on the same diagonal */
-	unsigned int recovery_flag = 0;
+	char blank = Fill->sym;					/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
 
 	int row = 0;				/* Counter for row number in align2D box */
 	int a2D_n = 0;				/* NUMBER INDEX OF n FOR a2D_n */
 	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from tela[].r */
-	char blank = Fill->sym;					/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
+	char ch = blank;
 
 	float ratio1 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post cinch-d, pre relax-2D 	*/
 	float ratio2 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post relax-2D 				*/
@@ -82,8 +82,6 @@ int main(int argc, char *argv[])
 	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
 	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
 	int blocks;					/* Number of blocks for 1D output print */
-	char ch = blank;
-
 	int badslip_type = 0;
 	int scooch = 0;
 	int alt_k = 0;
@@ -1079,7 +1077,7 @@ int main(int argc, char *argv[])
 									for (l = 0; l < k; l++) 
 										cycle[i++] = tela[(n + j*k + l)].c; 	/* STORE WHOLE REPEAT */
 								}
-								for (l = 0; l < k-1; l++) {				/* STORE EXTENT OF PARTIAL REPEAT. CANNOT MATCH MORE THAN k */
+								for (l = 0; l < k; l++) {				/* STORE EXTENT OF PARTIAL REPEAT. CANNOT MATCH MORE THAN k */
 									if (cycle[l] == tela[(o = n + r*k + l)].c) {
 										cycle[i++] = tela[o].c;
 									}
@@ -1482,7 +1480,7 @@ int main(int argc, char *argv[])
 		if (cycle_flag || align2D[0][0] == blank) {
 			++Nudge.pass_R;
 
-			while ((go_flag=nudgelize())!=0 && Nudge.pass_R < CYCMAX) {	
+			while (nudgelize() && Nudge.pass_R < CYCMAX) {	
 				++Nudge.pass_R;
 			}
 		}
