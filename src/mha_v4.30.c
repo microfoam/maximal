@@ -1194,7 +1194,33 @@ int main(int argc, char *argv[])
 												c = tela[ (l=z+j) ].cyc_S;
 											}
 										}
-										if (l == z && tela[(j=tela[l].cyc_Lf)].cyc_o == 'o') {	
+										tela[l].cyc_o = 'x';
+										if (l != z && tela[(tela[l].cyc_Lf)].cyc_o == 'x') {
+											badslip_type = 10;							/* FROM SEQUENCE IN TYPES: 1-3-5- (10) -30-50-100-300-500 */
+											if (dev_print(MAIN,__LINE__)) {
+												printf("badslip type %d at n=%d for k=%d with TR at l=%d.\n Before--->", badslip_type, n, k, l);
+												print_tela(prtela_A, prtela_B);
+											}
+											assign_tela(n, row, a2D_n, ONE);	/* MODES O-F-F, ONE--FIVE: ONE=FLATLINE AT N, TWO=ASSIGN  */
+											pull_tela((tela[n].X));
+											pull_tela(n);
+											assign_transit(l,TWO); 	/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
+	
+											for (j = n; j < l; j++) {
+												assign_tela(n++, row, a2D_n++, TWO);	/* MODES O-F-F, ONE--FIVE: ONE=FLATLINE AT N, TWO=ASSIGN  */
+											}
+	
+											reps = tela[l].r = tela[l].cyc_r;
+											tela[l].k = k;
+											tela[l].o = tela[l].cyc_k * (tela[l].cyc_r+1);
+											for (p=0; p<tela[z].cyc_l; p++) {
+												if (z+p != l) {
+													tela[z+p].r = 0;
+													tela[z+p].cyc_o = 'o';
+												}
+											}
+										}
+										else if (l == z && tela[(j=tela[l].cyc_Lf)].cyc_o == 'o') {	
 											i = j-1;	/* SAVE VAR j, CYCLING POSITION; VAR i TO COUNT DOWN TO POSITION THAT NEEDS TO BE CYCLED AWAY FROM */
 											while (tela[i].cyc_o != 'x' && tela[i].cyc_o != blank) 
 												i--;

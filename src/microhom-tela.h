@@ -581,8 +581,8 @@ void mark_tela(void)
 					}
 				}
 			}
-			if (!checkconflict) {
-				/* CONFLICT SCENARIO ONE */
+			if (!checkconflict) {						/* MEANING CHECKCONFLICT FLAG WAS NEVER TURNED OFF, I.E., THERE IS CONFLICT */
+				/* CONFLICT SCENARIO ONE (a and b) */
 				if (span==1 && !(tela[n].all_L) && tela[n].all_R) {
 					j = tela[n].all_R;
 					int k2 = tela[j].all_k;
@@ -590,7 +590,14 @@ void mark_tela(void)
 						printf("mark_tela at n=%d, span=%d with no left-conflict, but right_conflict=%d.", n, span, tela[n].all_R);
 					}
 					for (i=j+1; tela[i].all_k == k2; i++) {
-						if (!tela[i].all_L && !tela[i].all_R && tela[i].all_S > tela[j].all_S) {
+						if (tela[i].all_S < tela[j].all_S && k2 > k && tela[j].all_r > tela[n].all_r) {
+							clearall_tela(n,1,-1,TWO);
+							push_clearall(n, 2);
+							clearall_tela(i,1,-1,TWO);
+							push_clearall(i, 2);
+							tela[j].all_L = 0;
+						}
+						else if (!tela[i].all_L && !tela[i].all_R && tela[i].all_S > tela[j].all_S) {
 							clearall_tela(j, i-j, tela[i].all_S, TWO);		/* O-F-F, ONE, OR TWO */
 							for (int p=j; p<=i; p++) {
 								if (tela[p].all_k)	
@@ -967,12 +974,12 @@ int lenseq = Clean.pass_W;
 void pull_tela(int n)
 {
 	int i=0;
-	int k = tela[n].k;
-	int r = tela[n].r;
+	int k = tela[n].all_k;
+	int r = tela[n].all_r;
 	int m = n-k;
 
 	/* IF IMPERFECT REPEAT, ERASE. THIS IS MOSTLY RIGHT, BUT EVENTUALLY NEED TO CHECK OVERLAPPING TRANSITIONS */
-	if (k*r > tela[n].all_S) {	
+	if (k*r*MATCH > tela[n].all_S) {	
 		for (i=m; i<(n+k*r); i++) {
 			consensus[(tela[i].x)] = tela[i].t = tela[i].c;
 		}
