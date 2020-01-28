@@ -388,6 +388,8 @@ void mark_tela(void)
 						Atr = 0;
 						if (m + (reps+1)*k >= lenseq) { 
 							Atr = 0;
+							tela[n].all_r = reps;
+							push_clearall(n,18);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 							break;
 						}
 
@@ -677,11 +679,11 @@ void mark_tela(void)
 						max_count = settle_tiescores(n, span, max_score, j++);
 				}
 				else {
-					clearall_tela(n, span, max_score, ONE);			/* O-F-F, ONE, OR TWO */
 					for (int p=n; p<=n+span; p++) {
 						if (tela[p].all_S && tela[p].all_S != max_score)
 							push_clearall(p, 7);
 					}
+					clearall_tela(n, span, max_score, ONE);			/* O-F-F, ONE, OR TWO */
 					if (dev_print(TELA,__LINE__)) {
 						printf("         mark_tela engaging clearall_tela(ONE) at n=%d.", n);
 					}
@@ -706,11 +708,11 @@ void mark_tela(void)
 						}
 						if (tela[p].all_k) {
 							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_clearall(p, 9);
+							push_clearall(p, 8);
 						}
 						if (tela[q].all_k) {
 							clearall_tela(q,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_clearall(q, 10);
+							push_clearall(q, 9);
 						}
 					}
 				}
@@ -973,7 +975,7 @@ int lenseq = Clean.pass_W;
 		printf(" --");
 
 	/* PRINT TOP MEM ROWS: mark_tela mem OR frame rows in cinch-t */
-	for (f=0; f<=14; f++) {
+	for (f=0; f<=10; f++) {
 		printf("\nf%c:", mha_base62(f));
 		for (i=a; i<=b; i++) {
 			if (tela[i].mem[f])
@@ -1194,8 +1196,13 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 		if (tela[i].all_Z == max_score)
 			max_count++;
 	}
-	if (max_count == 1) 				/* THERE IS ONE OPTIMAL CINCH LOCATION AND NO CONFLICT SO ERASE ALL OTHERS */
+	if (max_count == 1) {				/* THERE IS ONE OPTIMAL CINCH LOCATION AND NO CONFLICT SO ERASE ALL OTHERS */
 		clearall_tela(n, span, max_score, TWO);		/* O-F-F, ONE, OR TWO */
+		for (i=n; i<n+span; i++) {
+			if (tela[i].all_Z != max_score)
+				push_clearall(i, 10);
+		}
+	}
 
 	return(max_count);
 }
