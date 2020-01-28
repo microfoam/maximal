@@ -189,7 +189,7 @@ char lclalign2D[MAXROW][MAXROW] = {{0}};
 /******************************************************************/
 int cinch_k(void) 
 {
-int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0, q=0; 
+int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0; 
 int first_mwrap_start=0, last_mwrap=0;
 unsigned short int first_mwrap=0, keep_checking=1;
 unsigned short int nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
@@ -336,6 +336,12 @@ int *x_history = NULL;
 				if (keep_checking) {
 					if (k>1)
 						homopolyflag = 1;	/* SET HOMOPOLYFLAG STATUS TO UNKNOWN/NEED TO CHECK */
+					else if (nuctransit) {
+						letr = align2D[m][n];
+						if (tela[symbol_count].t != tela[symbol_count].c || tela[symbol_count+1].t != tela[symbol_count+1].c) {
+							keep_checking = 0;
+						}
+					}
 
 					for (l = 0; l < k; l++) {
 						/* BREAK EARLY IF WOULD-BE TRANSVERSION */
@@ -346,12 +352,6 @@ int *x_history = NULL;
 						}
 						else if ( ((letr =align2D[m][n+l  ])=='C' || letr =='T') &&
 							      ((letr2=align2D[m][n+l+k])=='A' || letr2=='G') ) {
-							keep_checking = 0;
-							break;
-						}
-						/* FOR AESTHETICS AND MORE? DON'T SCOOCH MONOS INTO TRANSITS */
-						else if (nuctransit && k==1 && ((consensus[n-x+y  ]=='R' || consensus[n-x+y  ]=='Y') ||
-										  (consensus[n-x+y+1]=='R' || consensus[n-x+y+1]=='Y'))) {
 							keep_checking = 0;
 							break;
 						}
@@ -375,14 +375,11 @@ int *x_history = NULL;
 								if (n == scrimmage_line || col_isclear(align2D,n,m,1) < 0) {
 									y = 0;		/* RESET y VAR. B/C NO LONGER NEED TO ADJUST CONSENSUS COORDINATES */
 								}
-								if ( (letr2=consensus[n-x+y+l]) == 'R' || letr2 == 'Y') {
+								if ((letr2=consensus[n-x+y+l]) == 'R' || letr2 == 'Y') {
 									keep_checking = 0;
 								}
-								else if (k>0 && ((letr3=consensus[(q=n-x+y+l+k)]) == 'R' || letr3 == 'Y')) {
-									if (k==1 && col_isclear(align2D,q,m,1)>0)
-										;
-									else
-										keep_checking = 0;
+								else if ((letr3=consensus[n-x+y+l+k]) == 'R' || letr3 == 'Y') {
+									keep_checking = 0;
 								}
 							}
 							if (keep_checking && align2D[m][n+l] != align2D[m][n+k+l]) {
@@ -553,9 +550,6 @@ int *x_history = NULL;
 				if (keep_checking || imperfect_TR) {
 					if (k>1 && dev_print(CINCH,__LINE__)) {
 						printf("cinch-k taking k-mer=%2d at symbol_count=%3d (lenseq = %3d).", k, symbol_count, lenseq);
-					}
-					else if (k==1 && m<4 && dev_print(CINCH,__LINE__)) {
-						printf("cinch-k getting tired showing you the details.");
 					}
 
 					for (l = 0; l < k; l++) {
