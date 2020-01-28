@@ -253,7 +253,7 @@ int main(int argc, char *argv[])
 
 	/**************************************/
 	/* SET OPTIONS FROM ARGUMENTS  ********/
-	const char* optstring = "cdfg::hklm::noprstu::v::x::zB::CDFHKLM::O::PRTX::Y:";
+	const char* optstring = "cdfg::hklm::noprstu::v::xzB::CDFHKLM::O::PRTX::Y:";
 	opterr=0;
 	int opt_count=0;	/* INDEX TO COUNT NUMBER OF OPTIONS */
 
@@ -336,11 +336,7 @@ int main(int argc, char *argv[])
 				break;
 		case 'x':						/* OPTION TO SQUEEZE DTHR VALUES BY 1 FOR k > PISO */
 				opt_x.bit = 1;
-				numarg = atoi(optarg);
-				if (numarg<2)
-					opt_x.val = 1;	
-				else
-					opt_x.val = numarg;
+				opt_x.val = 1;	
 				break;
 		case 'z':						/* OPTION FOR ZERO MISMATCH SCORE */
 				opt_z.bit = 1;
@@ -435,13 +431,12 @@ int main(int argc, char *argv[])
 					opt_B.val++;
 					Fill = &fill_0;			/* Fill character set to space (32); default was full-stop (46) */	
 					blank = Fill->sym;
-					break;
 				}
-				if (optopt=='X') {
+				else if (optopt=='X') {
 					opt_X.bit++;
 					opt_X.val++;
-					break;
 				}
+				break;
 		default:
 				warnhead(opt);
 				printf("Unrecognized input '%c'", optopt);
@@ -451,8 +446,9 @@ int main(int argc, char *argv[])
 
 	/* THE ONLY GOTO LOOP IN maximal CODE IS HERE TO FIND COMMAND ARGUMENTS AFTER FILE NAME */
 	for(; optind < argc; optind++){ 
-		if (*argv[optind] == '-' && (isalpha(argv[optind][1])))
+		if (*argv[optind] == '-' && (isalpha(argv[optind][1]))) {
 			goto OPTLOOP;
+		}
 	}
 
 	/*******************************************************/

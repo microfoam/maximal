@@ -92,7 +92,7 @@ struct {
 	opt_u = {0, 0, 'u', 	"Unwrap display of 2-D output (adds 10 columns to wrap).*       "},
 	opt_v = {0, 0, 'v', 	"Increment verbosity level.***                                  "},
 	opt_w = {0, 0, 'w', {0}},
-	opt_x = {0, 0, 'x', 	"Reduce thresholds for transition matching by one.*             "},
+	opt_x = {0, 0, 'x', 	"Reduce thresholds for transition matching by one.              "},
 	opt_y = {0, 0, 'y', {0}},
 	opt_z = {0, 0, 'z', 	"Set mismatch score from default to zero (visible in Pathbox).  "},
 	opt_A = {0, 0, 'A', {0}},
