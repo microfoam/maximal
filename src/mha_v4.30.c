@@ -1718,9 +1718,7 @@ int main(int argc, char *argv[])
 			}
 			else if (Nudge.pass_R <= CYCMAX) {	/* IN WHICH CASE k WILL BE NON-ZERO */
 				if (Nudge.pass_V == 3)
-					printf("%s post nudgelize [pass #5: %d runs; last TR was nudge-cyclelized]\n", letr_unit, Nudge.pass_R);
-				else if (Nudge.pass_V == 4)
-					printf("%s post nudgelize [pass #5: %d runs; last TR was tip-cyclelized]\n", letr_unit, Nudge.pass_R);
+					printf("%s post nudgelize [pass #5: %d runs of nudging]\n", letr_unit, Nudge.pass_R);
 			}
 			else 							/* IN WHICH CASE cyc runs >> CYCMAX */
 				printf("%s post nudgelize [pass #5: reverted after %d runs due to gnarly micro-foam]\n", letr_unit, Nudge.pass_R-CYCMAX*1000);
@@ -1738,7 +1736,7 @@ int main(int argc, char *argv[])
 				printf("%s post cinch-d   [pass #6]\n", letr_unit);
 			break;
 		case 7:	
-			printf(    "%s post relax-2D  [pass #7: relaxed %d runs]\n", letr_unit, Relax.pass_R);
+			printf(    "%s post relax-2D  [pass #7: relaxed %d run(s)]\n", letr_unit, Relax.pass_R);
 			break;
 		}
 	}
