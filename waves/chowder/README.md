@@ -20,12 +20,12 @@ intended to be done.
 
 ## Chowder to eat
 
-- [ ] seq-016-cyc3_a_knot -Rn
+- [x] seq-016-cyc3_a_knot -Rn, evaluation of overlapping repeats not triggered correctly
 - [x] tubespit-17: strand symmetry (v4.30)
 - [x] vnd_NEE_Dsech-snippet_1: skip fractal repeats in first unit so that cinch-t does not flatline from equivalence violation (v4.29)
 
 ## seq-016-cyc3_a_knot-Rn.txt
-This sequence is folded correctly but not optimal.
+This sequence was folded correctly but not optimal (in earlier versions now).
 The `Rn` designates this was from the first test type in `cleanup_set_all'.
 
 ```
@@ -37,7 +37,7 @@ The `Rn` designates this was from the first test type in `cleanup_set_all'.
  ...............ACGA
 ```
 
-What currently happens:
+Versions 4.29, and early 4.30 produced:
 ```
 2-D PASS #2: cinch-t 
 
@@ -49,6 +49,39 @@ What currently happens:
     _________|_________|__
              10        20        
 ```
+
+Later versions of 4.30 produce a 2-D alignment that is nearly at target, short
+of one cyclization. This was an issue of not triggering a comparison of
+overlapping repeats in cinch-t.
+
+```
+2-D PASS #2: cinch-t 
+
+    1. >ATGGGCTGCACA/   12
+    2.  .........ACA/   15
+    3.  .........ACAAT/   20
+    4.  ........AACAATACG/   29
+    5.  .........:....ACGA>   33
+        _________|________
+                 10        
+        ATGGGCTGCACAATACGA
+        ........A.........
+```
+
+This issue is now solved (latest v4.30 version):
+```
+2-D PASS #2: cinch-t 
+
+    1. >ATGGGCTGCACA/   12
+    2.  .........ACA/   15
+    3.  .........ACAATA/   21
+    4.  .........ACAATACG/   29
+    5.  .........:....ACGA>   33
+        _________|________
+                 10        
+        ATGGGCTGCACAATACGA
+```
+
 
 ## tubespit-17-symmetric.txt
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
@@ -146,4 +179,4 @@ Some additional aspects remain to be handled.
              10        20        30        
 ```
  
-*Last updated*: 1/27/2010 AJE
+*Last updated*: 1/28/2010 AJE

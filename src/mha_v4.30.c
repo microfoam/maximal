@@ -780,7 +780,7 @@ int main(int argc, char *argv[])
 		for (n = 1; n<=lenseq; ) {
 			/* FOR COLUMN n LOOP 1/3 */
 			if (!opt_t.bit) {			/* SKIP TO NEXT MARKED TR */	
-				while ((!(tela[n].all_S) || tela[n].stat==st_fract.sym) && n!=lenseq) {
+				while ((!(tela[n].all_S) || tela[n].stat==st_fract.sym || tela[n].stat==st_Fract.sym) && n!=lenseq) {
 					assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 				}
 			}
@@ -953,8 +953,14 @@ int main(int argc, char *argv[])
 								reps++;
 							}
 							else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
-								if (reps > 1)
+								if (reps > 1) {
 									tela[n].cyc_l = k;		/* STORE # OF FRAMES CAN CYCLE THROUGH: AN ENTIRE UNIT-LENGTH */
+									i = 1;
+									while (!tela[n+k-i].all_k) {
+										--tela[n].cyc_l;
+										++i;
+									}
+								}
 								break;
 							}
 						}
@@ -1109,10 +1115,12 @@ int main(int argc, char *argv[])
 												j=1;
 												while (n-j >= 0 && tela[n-j].cyc_l == 0)
 													++j;
-												if (tela[n-j].cyc_l > tela[n].cyc_l) 
+												if (tela[n-j].cyc_l > tela[n].cyc_l)  {
 													sumspan = -tela[(z=n-j)].cyc_l;		/* POS. z IS START OF STORING PRODUCTS & SUMS OF PRODUCTS */
-												else 
+												}
+												else {
 													z = n;								/* POS. z IS START OF STORING PRODUCTS & SUMS OF PRODUCTS */
+												}
 											}
 											tela[n].mem[0] = f;	/* USE 0 ROW TO STORT LOCATION OF INDEXED UNIT TRs */	
 										}
