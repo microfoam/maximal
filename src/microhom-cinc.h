@@ -762,7 +762,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 				cyc_ar[m][n] = cyc_ar[m][n+i];
 			}
 		}
-	} /*************** END OF PUSH LEFT GIVEN edge0 **************************/
+	} 
 
 	if (!dud_nudge)	{
 		mha_writeback(cyc_ar, align2D);

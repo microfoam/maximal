@@ -142,7 +142,7 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 				;
 			}
 			else {
-				tela[i].cyc_o = Term->sym;					/* MARK EDGE OF DISCONTINUITY */
+				tela[i].DEV = '>';					/* MARK EDGE OF DISCONTINUITY */
 				if (dev_count < dev_limit && dev_print(TELA,__LINE__)) {
 					printf("check_tela() marking edge of discontinuity at i=%d.", i);
 					dev_count++;
@@ -163,7 +163,7 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 			for (j=i+1; j<eN; j++) {
 				if (tela[j].x == tela[i].x && 
 					tela[j].e != tela[i].e) {
-					tela[j].cyc_o = tela[i].cyc_o = '*';	/* MARK PAIR OF NON-EQUIVALENT SITES SHARING SAME COLUMN */
+					tela[j].DEV = tela[i].DEV = '*';		/* MARK PAIR OF NON-EQUIVALENT SITES SHARING SAME COLUMN */
 					badflag++;
 					break;		/* TO BREAK FOR j LOOP */
 				}	
@@ -451,8 +451,8 @@ void mark_tela(void)
 								}
 								else if (i>m && tela[i].all_k * tela[i].all_r <= n && tela[i].all_k != k) {
 									if (i-tela[i].all_k >= m && tela[i].all_S == tela[i+k].all_S) {
-										tela[i].stat = st_fract.sym;
-										push_clearall(i, 1)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+											tela[i].stat = st_fract.sym;
+											push_clearall(i, 1)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
 									}
 									else {
 										tela[i].stat = st_Fract.sym;
@@ -912,6 +912,13 @@ int lenseq = Clean.pass_W;
 	printf("\n E:");
 	for (i=a; i<=b; i++)
 		printf("%3c", tela[i].echoes);
+
+	printf("\nDEV");
+	for (i=a; i<=b; i++)
+		if (tela[i].DEV)
+			printf("_ %c", tela[i].DEV);
+		else
+			printf("__ ");
 
 	printf("\ncO:");
 	for (i=a; i<=b; i++)

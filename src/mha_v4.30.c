@@ -882,7 +882,7 @@ int main(int argc, char *argv[])
 						} 
 						if (!imperfect_TR && (l=tela[n].X) > m && l + span_rk(l) <= n) { 
 							if (dev_print(MAIN,__LINE__)) {
-								printf("NOT A SKIP AND A LITTLE DEV THING.");
+								printf("NOT A SKIP AND A LITTLE DEV THING. n=%d, l=%d", n, l);
 							}
 						}
 						else if (tela[n].X != n) {
@@ -1158,10 +1158,8 @@ int main(int argc, char *argv[])
 											for (f = tela[z+j].mem[0] - 1 - j; f > 0; f--) {
 												l=z+j-k;
 												if (tela[l].mem[f] == 1 && tela[l-1].mem[f] != 0) {
-	
 													while (tela[l].cyc_o != 'x' && tela[l].cyc_o != 'o' && l>0) 
 														l--;
-	
 													while (tela[l].mem[f] != 1 && l>0) 
 														l--;
 	
@@ -1195,11 +1193,17 @@ int main(int argc, char *argv[])
 										}
 										/* FIND BEST CINCH SET */
 										c = tela[(l=z)].cyc_S;	/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
+										int max_count = 1;
 										for (j = 1; j < sumspan; j++) {
 											if (tela[z+j].cyc_S > c) {
 												c = tela[ (l=z+j) ].cyc_S;
+												max_count = 0;
+											}
+											else if (tela[z+j].cyc_S==c) {
+												max_count++;
 											}
 										}
+printf("\n max_count=%d", max_count);
 										tela[l].cyc_o = 'x';
 										if (l != z && tela[(tela[l].cyc_Lf)].cyc_o == 'x') {
 											badslip_type = 10;							/* FROM SEQUENCE IN TYPES: 1-3-5- (10) -30-50-100-300-500 */
