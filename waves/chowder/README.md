@@ -21,6 +21,7 @@ intended to be done.
 ## Chowder to eat
 
 - [ ] seq6-koslip-snippet.txt, evaluation of overlapping repeats
+- [ ] seq-64-snippet-Rnx_symmetry.txt 
 - [x] seq26-snippet.txt: split repetitions of overlapping repeat with a fractal subset.
 - [x] seq-016-cyc3_a_knot -Rn, evaluation of overlapping repeats not triggered correctly
 - [x] tubespit-17: strand symmetry (v4.30)
@@ -46,6 +47,41 @@ Target fold is the following (pre-cinch-k):
    ...CGCGT/
    .....CGTGCACTGAT/
    ..............ATC>
+```
+
+## Chowder chunk: seq-64-snippet-Rnx_symmetry.txt 
+A 9-mer repeat is skipped in the process of evaluating earlier overlapping repeats.
+This does not occur when the reverse complement is run. This behavior is elicited
+under '-x' sequeeze (hence '-Rnx' in the file name). This cinching issue was 
+discovered while addressing an unrelated transition calling issue with the same 
+overlapping repeats (4-mer and 7-mer).
+
+Top strand:
+```
+2-D PASS #2: cinch-t (width = 46)
+
+   >CAAGTCGACGC/
+    .......ACGCTCC/
+    .......ACGCCCCCCACGCTCCCAGTATTTTTCCCTAACCAGGGC/
+    .........:.........:.........:.........:....GC>
+    _________|_________|_________|_________|______
+             10        20        30        40        
+    CAAGTCGACGCYCCCCACGCTCCCAGTATTTTTCCCTAACCAGGGC
+
+```
+
+Reverse-complement:
+```
+2-D PASS #2: cinch-t (width = 44)
+
+   >GC/
+    GCCCTGGTTAGGGAAAAATACTGGGAGCGTG/
+    .........:.........:..GGGGGCGTGGAGCGT/
+    .........:.........:.........:...GCGTCGACTTG>
+    _________|_________|_________|_________|____
+             10        20        30        40        
+    GCCCTGGTTAGGGAAAAATACTGGGRGCGTGGAGCGTCGACTTG
+
 ```
 
 ## Solved: seq26-snippet.txt
