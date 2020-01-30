@@ -218,10 +218,9 @@ int *x_history = NULL;
 	if (dev_print(CINCH,__LINE__)) {
 		printf("Post cinch-t max_k = %d. Cinch_T.pass_Q = %d", max_k, Cinch_T.pass_Q);
 	}
-	if (!max_k || Cinch_T.pass_Q!=1000)
+	if (max_k<1 || Cinch_T.pass_Q!=1000)
 		max_k = WIDTH;
-	else if (max_k<1)
-		max_k = 1;
+
 	if (dev_print(CINCH,__LINE__)) {
 		printf("Using max_k = %d.", max_k);
 	}
@@ -378,7 +377,7 @@ int *x_history = NULL;
 								if (n == scrimmage_line || col_isclear(align2D,n,m,1) < 0) {
 									y = 0;		/* RESET y VAR. B/C NO LONGER NEED TO ADJUST CONSENSUS COORDINATES */
 								}
-								if ((letr2=consensus[n-x+y+l]) == 'R' || letr2 == 'Y') {
+								if (n>scrimmage_line && ((letr2=consensus[n-x+y+l]) == 'R' || letr2 == 'Y')) {
 									keep_checking = 0;
 								}
 								else if ((letr3=consensus[n-x+y+l+k]) == 'R' || letr3 == 'Y') {
@@ -486,8 +485,7 @@ int *x_history = NULL;
 				}
 
 				if (keep_checking && n > scrimmage_line) { 
-					if ((l=col_isclear(cik_align2D,n-x+k,m,-1)) > -1 
-						&& col_isclear(align2D,n+k,m,1)< 0) {
+					if ((l=col_isclear(cik_align2D,n-x+k,m,-1)) > -1 && col_isclear(align2D,n+k,m,1)< 0) {
 
 						/* CHECK IF WILL PULL IN ADJACENT MISMATCHES AFTER RUN OF REPEATS */
 					    r = 1; 
@@ -551,7 +549,7 @@ int *x_history = NULL;
 				}
 
 				if (keep_checking || imperfect_TR) {
-					if (k>1 && dev_print(CINCH,__LINE__)) {
+					if (k>0 && dev_print(CINCH,__LINE__)) {
 						printf("cinch-k taking k-mer=%2d at symbol_count=%3d (lenseq = %3d).", k, symbol_count, lenseq);
 					}
 

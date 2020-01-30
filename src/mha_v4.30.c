@@ -1199,11 +1199,16 @@ int main(int argc, char *argv[])
 											else 
 												tela[series+j].cyc_o = cyc_skip.sym;
 										}
-										if (max_count>1 && n==series) 
+										if (max_count>1 && n==series) { 
 											tela[(tela[n].cyc_Lf)].cyc_Rt = n;
+											tela[series].cyc_o = cyc_take.sym;
+										}
+										else {
+											tela[l].cyc_o = cyc_take.sym;
+										}
 										if (dev_print(MAIN,__LINE__)) 
 											printf("\n max_count=%d, sumspan=%d, c=%d", max_count, sumspan, c);
-
+										
 										if (l != series && tela[(tela[l].cyc_Lf)].cyc_o == cyc_take.sym) {
 											badslip_type = 10;							/* FROM SEQUENCE IN TYPES: 1-3-5- (10) -30-50-100-300-500 */
 											if (dev_print(MAIN,__LINE__)) {
