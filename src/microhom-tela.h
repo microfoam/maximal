@@ -7,23 +7,77 @@
 #ifndef FILE_TELA_SEEN
 #define FILE_TELA_SEEN
 
-int  			assign_tela(int pos, int eM, int eN, int mode);
-void 			assign_transit(int n, int kr_src);
-short int 		check_solo(int pos);
-int  			check_tela(int eM, int eN, short unsigned int mode_dim);
-void 			clearall_tela(int n, int span, int keep_score, int mode);
-int  			cyclelize_tela(int cpos, int delta, int npos);
-void 			flatline_after_TR(int pos);
-void			mark_tela(void);
-void			push_clearall(int pos, int row);
-void 			print_tela(int a, int b);
-void 			pull_tela(int n);
-int  			push_tela(int n2, int n1, short unsigned int axioms);
-int 			score_kmer(int n, int k, short unsigned int mode);
-int  			settle_tiescores(int n, int span, int max_score, int iteration);
-int				update_tela(void);
+short unsigned int  assign_tela(int pos, int eM, int eN, int mode);
+void 				assign_transit(int n, int kr_src);
+short int 			check_solo(int pos);
+int  				check_tela(int eM, int eN, short unsigned int mode_dim);
+void 				clearall_tela(int n, int span, int keep_score, int mode);
+int  				cyclelize_tela(int cpos, int delta, int npos);
+void 				flatline_after_TR(int pos);
+void				mark_tela(void);
+void				push_clearall(int pos, int row);
+int 				push_gPnt(short unsigned int ymode, int pos, int prev_par);
+int 				push_gPnt_kmer(int pos, int kmer, int reps);
+void 				print_tela(int a, int b);
+void 				pull_tela(int n);
+int  				push_tela(int n2, int n1, short unsigned int axioms);
+int 				score_kmer(int n, int k, short unsigned int mode);
+int  				settle_tiescores(int n, int span, int max_score, int iteration);
+int					update_tela(void);
 
-int assign_tela(int pos, int eM, int eN, int mode)
+/******************************* MODE ZERO (+x) OR ONE (+y) *****************************************/
+int push_gPnt(short unsigned int ymode, int pos, int prev_par)
+{
+	/* TRAINING WHEELS: DELETE ME EVENTUALLY */
+	if (ymode<0 || ymode>1 || prev_par>pos || pos>MAXROW || prev_par>MAXROW || (ymode==1 && prev_par >= pos)) {
+		printf("\n\n * Incorrect invocation of push_gPnt(%d,%d,%d) in code.\n\n", ymode, pos, prev_par);
+		return(-1);
+	}
+
+	if (!ymode && pos == prev_par) {	
+		/* No paralogy, increment in the x-direction */
+		tela[pos].gPnt.rel_xy = 0;
+		tela[pos].gPnt.prevPar = tela[pos].gPnt.topPar = pos;
+	}
+	else if (prev_par < pos) {
+		if (ymode) {
+			/* Paralogy, increment in the y-direction */
+			tela[pos].gPnt.rel_xy = 1;
+		}
+		else {
+			/* Paralogy, increment in the x-direction */
+			tela[pos].gPnt.rel_xy = 0;
+		}
+		tela[pos].gPnt.topPar = tela[prev_par].gPnt.topPar;
+		tela[pos].gPnt.prevPar = prev_par;
+	}
+
+	return((tela[pos].gPnt.topPar));
+}
+
+/***********************************************/
+int push_gPnt_kmer(int pos, int kmer, int reps)
+{
+	int top_left = push_gPnt(YDIR, pos, pos-kmer);
+	int top_right;
+
+	for (int r=0; r<reps; r++) {
+		if ( (top_right=push_gPnt(YDIR, pos+r*kmer, pos-kmer)) < 0 )
+			break;
+		
+		for (int i=1; i<kmer; i++) {
+			if ( (top_right=push_gPnt(XDIR, pos+r*kmer+i, pos-kmer+i)) < 0 )
+				break;
+		}
+	}
+	
+	if (top_left<0 || top_right<0)
+		return(-1);
+	else
+		return(top_left);
+}
+
+short unsigned int assign_tela(int pos, int eM, int eN, int mode)
 {
 	if (!mode)
 		return(0);
@@ -219,12 +273,18 @@ int cyclelize_tela(int cpos, int delta, int npos)
 	else if (delta>lenseq || delta<0 || delta > tela[cpos].cyc_l)
 		return(0);
 
+	for (i=cpos; i<npos; i++) {
+		tela[i].gPnt.rel_xy = XDIR;
+		tela[i].gPnt.prevPar = tela[i].gPnt.topPar = i;
+	}
+	push_gPnt_kmer(cpos+delta, k, tela[cpos+delta].all_r);
+
 	if (k && reps && tela[cpos].cyc_o == 'x') {
 		z = cpos;
 		for (r=0; r<reps; r++) {
 			for (j=0; j<delta; j++) {
 				z++;					/* VAR z is 1D cycling position */
-				c = tela[(i=cpos+r*k)].c;
+				c = tela[(i=cpos+r*k+j)].c;
 				m = tela[i].y;
 				n = tela[i].x;
 
@@ -240,8 +300,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 				align2D[m][n+2] = '\0';
 			}
 			else if (r == reps-1) {
-/*				n = n - delta;
-*/				for (j = z+1; j < npos; j++) {
+				for (j = z+1; j < npos; j++) {
 					align2D[m][++n] = tela[j].c;
 					tela[j].y = m;
 					tela[j].x = n;
@@ -257,6 +316,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 		flatline_after_TR(npos);	
 
 		tela[cpos+delta].cyc_o = 'x';
+
 		return (1);		/* RETURN SUCCESS, BUT EVENTUALLY ADD A CHECK_TELA CALL IN HERE */
 	}
 	else
@@ -289,6 +349,8 @@ void flatline_after_TR(int pos)
 	for (i=start; i<=lenseq; i++) {
 		tela[i].x = x++; 
 		tela[i].y = y; 
+		tela[i].gPnt.rel_xy = 0;
+		tela[i].gPnt.prevPar = tela[i].gPnt.topPar = i;
 	}
 	if (dev_print(TELA,__LINE__)) {
 		printf("Function cyclelize_tela() finished by flat-lining tela at position=%d with coordinates (x,y) = (%d,%d).", i,x,y);
@@ -784,6 +846,16 @@ int lenseq = Clean.pass_W;
 	}
 
 	/************* BEGIN PRINTING LINES *******************/
+	printf("\nxy:");
+	for (i=a; i<=b; i++)
+		printf("%3d", tela[i].gPnt.rel_xy);
+	printf("\ntP:");
+	for (i=a; i<=b; i++)
+		printf("%3d", tela[i].gPnt.topPar);
+	printf("\npP:");
+	for (i=a; i<=b; i++)
+		printf("%3d", tela[i].gPnt.prevPar);
+
 	printf("\n t:");
 	for (i=a; i<=b; i++) {
 		if (tela[i].c != tela[i].t)

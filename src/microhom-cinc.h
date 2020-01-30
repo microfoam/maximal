@@ -552,6 +552,8 @@ int *x_history = NULL;
 						printf("cinch-k taking k-mer=%2d at symbol_count=%3d (lenseq = %3d).", k, symbol_count, lenseq);
 					}
 
+					push_gPnt_kmer(symbol_count+k,k,1);
+
 					for (l = 0; l < k; l++) {
 						cik_align2D[m+cik_row  ][n-x+l] = align2D[m][n+l  ];	
 						cik_align2D[m+cik_row+1][n-x+l] = align2D[m][n+l+k];

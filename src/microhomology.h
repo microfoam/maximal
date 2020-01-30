@@ -19,7 +19,17 @@
 #define PATHBOXHEAD 4       /* FOR USE WITH line_end() */
 #define BLOCKHEAD   5       /* FOR USE WITH line_end() */
 #define SLIPRULER   6       /* FOR USE WITH line_end() */
+#define XDIR        0		/* FOR USE WITH push_gPnt() */
+#define YDIR        1		/* FOR USE WITH push_gPnt() */
 #define max(a,b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a > _b ? _a : _b; })
+
+struct genPoint {
+	short unsigned int rel_xy;	/* Point positions relative to previous point:         */
+								/* Point (x,y) can only ever be (1,0) or (0,1).        */
+								/* rel_xy = 0 if (1,0); relx_xy = 1 if (0,1).          */
+	int topPar;		/* Top-most paralogy position, can be same as previous */
+	int prevPar;	/* Previous (closest on the left) paralogy position    */
+};
 
 struct coord {
 	int x;			/* 2D x-AXIS COORDINATE => COLUMN   */
@@ -58,6 +68,7 @@ struct coord {
 	int cyc_Rt;		/* Right-side overlapping TR */
 	char cyc_o;		/* x => cinched; o => untaken cyclelizable option; !,** => CHECK_TELA VIOLATIONS */
 	/*************************************************************************************************/
+	struct genPoint gPnt;	/* Will eventually replace absolute points above */
 } tela[MAXROW];
 
 

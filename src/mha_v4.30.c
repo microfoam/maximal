@@ -631,6 +631,7 @@ int main(int argc, char *argv[])
 	citwidth = lenseq;	
 
 	for (i = 0; i <= lenseq; i++) {
+		push_gPnt(XDIR,i,i);
 		tela[i].x = tela[i].X = i;
 		tela[i].t = tela[i].c = Seq[i];
 		tela[i].cyc_o = tela[i].echoes = blank;
@@ -788,8 +789,9 @@ int main(int argc, char *argv[])
 			}
 	
 			/* FOR COLUMN n LOOP 2/3: SKIP PRESENT TR IF CONFLICT AND CAN CYCLE WITH SAME SCORE */
-			if (tela[n].all_L && tela[n].all_S == tela[n+1].all_S && !tela[n+1].all_L && tela[(tela[n].all_L)].cyc_o == 'x') 
+			if (tela[n].all_L && tela[n].all_S == tela[n+1].all_S && !tela[n+1].all_L && tela[(tela[n].all_L)].cyc_o == 'x') {
 				assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
+			}
 	
 			/* FOR COLUMN n LOOP 3/3 */
 			for (m = 0; m < n; m++) {
@@ -1203,7 +1205,6 @@ int main(int argc, char *argv[])
 												max_count++;
 											}
 										}
-printf("\n max_count=%d", max_count);
 										tela[l].cyc_o = 'x';
 										if (l != z && tela[(tela[l].cyc_Lf)].cyc_o == 'x') {
 											badslip_type = 10;							/* FROM SEQUENCE IN TYPES: 1-3-5- (10) -30-50-100-300-500 */
@@ -1357,6 +1358,8 @@ printf("\n max_count=%d", max_count);
 	                    	}  
 						}
 	
+						push_gPnt_kmer(n,k,r);
+
 						for (i = 0; i < r; i++) {
 							if ((ch=align2D[row][a2D_n]) != '\0') {
 								scooch = overslip;
@@ -1441,22 +1444,9 @@ printf("\n max_count=%d", max_count);
 
 	print_2Dseq();
 	Cinch_T.pass_Q = Current.pass_Q;
-/*	dev_prompt(MAIN,__LINE__,file_name);
-*/
+
 	if (recoverlen()==lenseq) {
 		update_tela();
-	}
-
-	if (OFF && dev_print(MAIN,__LINE__)) {
-		n = check_tela(0,lenseq, ONE);
-		if (n!=3) {
-			printf("\n  check_tela via 1-D coords, axioms = %2d (<3).", n);
-		}
-		n = check_tela(0,citwidth, TWO);
-		if (n!=3) {
-			printf("\n  check_tela via 2-D coords, axioms = %2d (<3).", n);
-		}
-		print_tela(prtela_A, prtela_B);
 	}
 
 	/********** 3. cinch_l MODULE: WRAPS HOMOPOLYMERIC RUNS IF >= 20 (2 * wrap VAR.) ********/
@@ -1474,8 +1464,10 @@ printf("\n max_count=%d", max_count);
 	Cinch_K.pass_R = cinch_k();
 	cycle_flag = print_2Dseq();
 	Cinch_K.pass_Q = Current.pass_Q;
-/*	dev_prompt(MAIN,__LINE__,file_name);
-*/
+	if (dev_print(MAIN,__LINE__)) {
+		print_tela(prtela_A, prtela_B);
+	}
+
 	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT ***************/
 	continue_flag = 1;
 
