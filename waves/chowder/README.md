@@ -26,7 +26,7 @@ intended to be done.
 - [x] tubespit-17: strand symmetry (v4.30)
 - [x] vnd_NEE_Dsech-snippet_1: skip fractal repeats in first unit so that cinch-t does not flatline from equivalence violation (v4.29)
 
-## seq6-koslip-snippet.txt
+## Chowder chunk: seq6-koslip-snippet.txt
 
 Current cinch-t run produces an auto-alignment that is correct but not optimal:
 ```
@@ -48,7 +48,7 @@ Target fold is the following (pre-cinch-k):
    ..............ATC>
 ```
 
-## seq26-snippet.txt
+## Solved: seq26-snippet.txt
 This was addressed in a recent v4.30 commit and the solution was pretty cool.
 Basically, this one involved splitting out a subset of repeats that was also
 being counted as fractal. So the (GA)x2 repeat gets cinched as (GA)x1 in 
@@ -80,7 +80,7 @@ cinch-t and another (GA)x1 in cinch-k.
              10        20        30        40        50        
 ```
 
-## seq-016-cyc3_a_knot-Rn.txt
+## Solved: seq-016-cyc3_a_knot-Rn.txt
 This sequence was folded correctly but not optimal (in earlier versions now).
 The `Rn` designates this was from the first test type in `cleanup_set_all'.
 
@@ -139,7 +139,7 @@ This issue is now solved (latest v4.30 version):
 ```
 
 
-## tubespit-17-symmetric.txt
+## Solved: tubespit-17-symmetric.txt
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
 separated by four N's, which work as separators to prevent cinching across the
 segments. This combination of tricks allows a single sequence to be processed to display how both the
@@ -203,7 +203,7 @@ Compare to variant missing the 3-mer overlapping repeat:
         GTGCAGCTGACAnTATGCAnnTG
 ```
 
-## vnd_NEE_Dsech-snippet_1.txt 
+## Solved: vnd_NEE_Dsech-snippet_1.txt 
 This addresses an issue resulting from conversion to axiom testing in the cinch-t/cinch-k system,
 whereby cinch-t takes repeats in a moving window such that intra-repeat repeats only get taken
 in the first unit of a longer repeat with cinch-k taking the remaining intra-TR repeats afterwards.
