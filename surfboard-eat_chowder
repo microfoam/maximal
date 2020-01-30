@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo 'sand dunes' >> corduroy.log
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	echo 'with fresh compile (-c)' >> corduroy.log
+	./surfboard-Pop_Up
+	;;
+esac
+done
+
+if [ -f Surf_wavereport.mha ]; then
+        rm Surf_wavereport.mha
+fi
+
+# CHOWDER TESTS 
+./maximal -Knx waves/chowder/seq6-koslip-snippet.txt -R
+
+./maximal -DKnx waves/chowder/seq-64-snippet-Rnx_symmetry.txt 
+./maximal -DKnx waves/chowder/seq-64-snippet-Rnx_symmetry.txt -C
+
+
+./surfboard-checkmha
+echo

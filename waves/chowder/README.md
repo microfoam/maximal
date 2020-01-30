@@ -1,6 +1,6 @@
 # maximal/waves/chowder/ README
 The `chowder` sub-directory contains sequence files currently under
-attention or slated for attention during development of the 'maximal' program.
+attention or slated for attention during development of the *maximal* program.
 Because the benchmark scripts (typically base named `surfboard-cleanup_set_`) use
 sequences in the 'waves/tubespit' sub-directory, some chowder sequences will be
 located in duplicate forms in both sub-directories with the same file name. In those
@@ -183,7 +183,7 @@ segments. This combination of tricks allows a single sequence to be processed to
 In addtion there are sentinel dinucleotide repeats before and after 
 each of the two main repeat knots. These dinculeotides repeats can show whether
 cinching continued after the knots whenever this sequence is run through
-maximal for either strand. 
+*maximal* for either strand. 
 
 This sequence also demonstrates how sequences
 can be saved in a hand-aligned fashion in the text file. The program will

@@ -16,7 +16,8 @@ if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
-# FAVE TESTS START ON LINE 11
+
+# FAVE TESTS START ON LINE 21
 ./maximal -DRKn  waves/tubespit/seq-017-variant.txt
 ./maximal -DRKn  waves/tubespit/seq-017-cycle5.txt
 ./maximal -DRKnC waves/tubespit/seq-017-cycle5.txt

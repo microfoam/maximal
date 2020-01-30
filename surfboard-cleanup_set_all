@@ -16,7 +16,8 @@ if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
-# TESTS START ON LINE 11
+
+# TESTS START ON LINE 21
 ./maximal -Rn waves/seals/vnd_ex3_Dmela.txt
 ./maximal -Rn waves/seals/vnd_ex3_Dmaur.txt
 ./maximal -Rn waves/seals/vnd_ex3_Dsech.txt
