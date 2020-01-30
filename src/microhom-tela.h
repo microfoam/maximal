@@ -570,6 +570,16 @@ void mark_tela(void)
 				int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
 				if (tela[i].all_k && i>=m && i<n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
 					tela[i].stat = tela[i+k].stat = st_fract.sym;
+					if (ON) {
+						/* CODE BLOCK TO REDUCE REPEAT NUMBERS IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T */
+						int x=0;
+						while(tela[i-x-1].stat == st_cycle.sym) {
+							x++;
+						}
+						if (i-x <= m && tela[i-x].all_k == tela[i].all_k) {
+							tela[i-x].all_r -= tela[i].all_r;
+						}
+					}
 					tela[n].stat = st_parent.sym;
 					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */

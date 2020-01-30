@@ -963,6 +963,7 @@ int main(int argc, char *argv[])
 								break;
 							}
 						}
+						reps = tela[n].all_r;		/* all_r is adjusted for fractal sub-set splitting */
 	
 						badslip_type = 0;
 						/* SKIP CINCH IF TR PRIOR TO m SPANS INTO PRESENT TR */
@@ -1356,7 +1357,7 @@ int main(int argc, char *argv[])
 								overslip = overslip + (tela[m].r-1) * tela[m].k;
 	                    	}  
 						}
-	
+
 						push_gPnt_kmer(n,k,r);
 
 						for (i = 0; i < r; i++) {

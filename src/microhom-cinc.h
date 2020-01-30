@@ -216,12 +216,15 @@ int *x_history = NULL;
 		nuctransit = 1;
 	}	
 	if (dev_print(CINCH,__LINE__)) {
-		printf("Post-cinch-t max_k = %d.", max_k);
+		printf("Post cinch-t max_k = %d. Cinch_T.pass_Q = %d", max_k, Cinch_T.pass_Q);
 	}
 	if (!max_k || Cinch_T.pass_Q!=1000)
 		max_k = WIDTH;
 	else if (max_k<1)
 		max_k = 1;
+	if (dev_print(CINCH,__LINE__)) {
+		printf("Using max_k = %d.", max_k);
+	}
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
 	for (k = max_k; k > 0; k--) {
@@ -611,7 +614,7 @@ int *x_history = NULL;
 		}
 
 		Cinch_K.pass_V += cik_row;			/* STORE ROWS ADDED */
-		if (dev_print(CINCH,__LINE__)) {
+		if (cik_row && dev_print(CINCH,__LINE__)) {
 			printf("Post cinch-k k=%d loop: symbol_count=%3d (lenseq = %3d).", k, symbol_count, lenseq);
 		}
 
