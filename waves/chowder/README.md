@@ -20,9 +20,32 @@ intended to be done.
 
 ## Chowder to eat
 
+- [ ] seq6-koslip-snippet.txt, evaluation of overlapping repeats
 - [x] seq-016-cyc3_a_knot -Rn, evaluation of overlapping repeats not triggered correctly
 - [x] tubespit-17: strand symmetry (v4.30)
 - [x] vnd_NEE_Dsech-snippet_1: skip fractal repeats in first unit so that cinch-t does not flatline from equivalence violation (v4.29)
+
+## seq6-koslip-snippet.txt
+
+Current cinch-t run produces an auto-alignment that is correct but not optimal:
+```
+  >TAGC/    4
+   ..GCGTC/    9
+   ..GCGTCGTGCACTGAT/   24
+   .........:.....ATC>   27
+   _________|________
+            10        
+   TAGCGTCGTGCACTGATC
+```
+
+Target fold is the following (pre-cinch-k):
+```
+  >TAGCG/
+   ...CGCGT/
+   ...CGCGT/
+   .....CGTGCACTGAT/
+   ..............ATC>
+```
 
 ## seq-016-cyc3_a_knot-Rn.txt
 This sequence was folded correctly but not optimal (in earlier versions now).
@@ -179,4 +202,4 @@ Some additional aspects remain to be handled.
              10        20        30        
 ```
  
-*Last updated*: 1/28/2010 AJE
+*Last updated*: 1/30/2010 AJE

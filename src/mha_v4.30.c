@@ -882,12 +882,7 @@ int main(int argc, char *argv[])
 								}
 							}
 						} 
-						if (!imperfect_TR && (l=tela[n].X) > m && l + span_rk(l) <= n) { 
-							if (dev_print(MAIN,__LINE__)) {
-								printf("NOT A SKIP AND A LITTLE DEV THING. n=%d, l=%d", n, l);
-							}
-						}
-						else if (tela[n].X != n) {
+						if (tela[n].X != n) {
 							q = tela[n].X;
 							if (tela[q+1].cyc_o != 'o') {
 								alt_k = tela[q].k;
@@ -1067,6 +1062,7 @@ int main(int argc, char *argv[])
 							}
 							else {
 								Atr = Did = Dtr = TRcheck = sumspan = conflict_flag = 0;
+								int series;				/* POSITION OF SERIES OF PRODUCTS & SUMS OF PRODUCTS */
 	
 								if (imperfect_TR) {
 									assign_transit(n,THREE); 	/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
@@ -1116,10 +1112,11 @@ int main(int argc, char *argv[])
 												while (n-j >= 0 && tela[n-j].cyc_l == 0)
 													++j;
 												if (tela[n-j].cyc_l > tela[n].cyc_l)  {
-													sumspan = -tela[(z=n-j)].cyc_l;		/* POS. z IS START OF STORING PRODUCTS & SUMS OF PRODUCTS */
+													series = n-j;
+													sumspan = -tela[series].cyc_l;
 												}
 												else {
-													z = n;								/* POS. z IS START OF STORING PRODUCTS & SUMS OF PRODUCTS */
+													series = n;
 												}
 											}
 											tela[n].mem[0] = f;	/* USE 0 ROW TO STORT LOCATION OF INDEXED UNIT TRs */	
@@ -1154,59 +1151,54 @@ int main(int argc, char *argv[])
 										tela[n+l].cyc_r = tela[n+l].all_r;
 									} 
 	
-									/* SUM UP COMPATIBLE TR PRODUCTS IN WINDOW OF LENGTH SUMSPAN BEGINNING AT POSITION z OF TR B */
+									/* SUM UP COMPATIBLE TR PRODUCTS IN WINDOW OF LENGTH SUMSPAN BEGINNING AT POSITION series OF TR B */
 									if (sumspan > 0 && tela[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
 										for (j = 0; j < sumspan; j++) {
-											for (f = tela[z+j].mem[0] - 1 - j; f > 0; f--) {
-												l=z+j-k;
-												if (tela[l].mem[f] == 1 && tela[l-1].mem[f] != 0) {
-													while (tela[l].cyc_o != 'x' && tela[l].cyc_o != 'o' && l>0) 
+											l=series+j-k;
+											for (f = tela[series+j].mem[0] - 1 - j; f > 0; f--) {
+												if (tela[l].mem[f] == 1) {
+													int backstop = tela[n].X - tela[(tela[n].X)].k;					/* WHY IS THIS NOT BEST? */
+													backstop = 0;													/* !!!!!!!!!!!!!!!!!!!!! */
+
+													while (tela[l].cyc_o != 'x' && tela[l].cyc_o != 'o' && l>backstop) 
 														l--;
-													while (tela[l].mem[f] != 1 && l>0) 
+													while (tela[l].mem[f] != 1 && l>backstop) 
 														l--;
-	
-													if (dev_print(MAIN,__LINE__)) {
-														printf("n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
+													if (OFF && l == backstop) {										/* !!!!!!!!!!!!!!!!!!!!! */
+														while (tela[l].mem[f] != 1 || !tela[l].all_k)
+															l++;
 													}
-	
-													tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
-													tela[l  ].cyc_Rt = z+j;
-													tela[z+j].cyc_Lf = l;
-													break;
-												}
-												else if (tela[l].mem[f] == 1 && tela[l-1].mem[f] == 0) {
-													while ((tela[l].mem[f] != 1 || !tela[l].k) && l<n)
-														l++;
-	
+													tela[series+j].cyc_S = tela[series+j].cyc_P + tela[l].cyc_P;	
+													tela[series+j].cyc_Lf = l;
+													tela[l  ].cyc_Rt = series+j;
+
 													if (dev_print(MAIN,__LINE__)) {
-														printf("n=%d, k=%d, l=%d, z=%d, j=%d of sumspan=%d.", n, k, l, z, j, sumspan);
+														printf("j%d) n=%2d, k=%2d, l=%2d, series+j=%2d of sumspan=%d.", j, n, k, l, series + j, sumspan);
 													}
-	
-													tela[z+j].cyc_S = tela[z+j].cyc_P + tela[l].cyc_P;	
-													tela[l  ].cyc_Rt = z+j;
-													tela[z+j].cyc_Lf = l;
 													break;
 												}
 												else if (tela[l].mem[f] == 0) {
-													tela[z+j].cyc_S = tela[z+j].cyc_P;
+													tela[series+j].cyc_S = tela[series+j].cyc_P;
 													break;
 												}		
 											}
 										}
 										/* FIND BEST CINCH SET */
-										c = tela[(l=z)].cyc_S;	/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
+										c = tela[(l=series)].cyc_S;	/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
 										int max_count = 1;
 										for (j = 1; j < sumspan; j++) {
-											if (tela[z+j].cyc_S > c) {
-												c = tela[ (l=z+j) ].cyc_S;
+											if (tela[series+j].cyc_S > c) {
+												c = tela[ (l=series+j) ].cyc_S;
 												max_count = 0;
 											}
-											else if (tela[z+j].cyc_S==c) {
+											else if (tela[series+j].cyc_S==c) {
 												max_count++;
 											}
 										}
+										if (dev_print(MAIN,__LINE__)) 
+											printf("\n max_count=%d", max_count);
 										tela[l].cyc_o = 'x';
-										if (l != z && tela[(tela[l].cyc_Lf)].cyc_o == 'x') {
+										if (l != series && tela[(tela[l].cyc_Lf)].cyc_o == 'x') {
 											badslip_type = 10;							/* FROM SEQUENCE IN TYPES: 1-3-5- (10) -30-50-100-300-500 */
 											if (dev_print(MAIN,__LINE__)) {
 												printf("badslip type %d at n=%d for k=%d with TR at l=%d.\n Before--->", badslip_type, n, k, l);
@@ -1224,14 +1216,14 @@ int main(int argc, char *argv[])
 											reps = tela[l].r = tela[l].cyc_r;
 											tela[l].k = k;
 											tela[l].o = tela[l].cyc_k * (tela[l].cyc_r+1);
-											for (p=0; p<tela[z].cyc_l; p++) {
-												if (z+p != l) {
-													tela[z+p].r = 0;
-													tela[z+p].cyc_o = 'o';
+											for (p=0; p<tela[series].cyc_l; p++) {
+												if (series+p != l) {
+													tela[series+p].r = 0;
+													tela[series+p].cyc_o = 'o';
 												}
 											}
 										}
-										else if (l == z && tela[(j=tela[l].cyc_Lf)].cyc_o == 'o') {	
+										else if (l == series && tela[(j=tela[l].cyc_Lf)].cyc_o == 'o') {	
 											i = j-1;	/* SAVE VAR j, CYCLING POSITION; VAR i TO COUNT DOWN TO POSITION THAT NEEDS TO BE CYCLED AWAY FROM */
 											while (tela[i].cyc_o != 'x' && tela[i].cyc_o != blank) 
 												i--;
@@ -1252,40 +1244,40 @@ int main(int argc, char *argv[])
 									}
 									else if (sumspan < 0 && tela[n].X != n) {
 										for (j = 0; j < -sumspan; j++) {
-											l = z+j + tela[z+j].cyc_k * (tela[z+j].cyc_r - 1);	/* VAR l IS POSITION 1 OF LAST UNIT OF REPEAT A */
+											l = series+j + tela[series+j].cyc_k * (tela[series+j].cyc_r - 1);	/* VAR l IS POSITION 1 OF LAST UNIT OF REPEAT A */
 											for (i = tela[n].mem[0]; i < MEMROWS; i++) {
-												if (tela[l].mem[i] == 1 && z+j != l+k) {
-													tela[z+j].cyc_S = tela[z+j].cyc_P + tela[z+j+k].cyc_P;	
-													tela[z+j].cyc_Rt = l+k;
-													tela[l+k].cyc_Lf = z+j;
+												if (tela[l].mem[i] == 1 && series+j != l+k) {
+													tela[series+j].cyc_S = tela[series+j].cyc_P + tela[series+j+k].cyc_P;	
+													tela[series+j].cyc_Rt = l+k;
+													tela[l+k].cyc_Lf = series+j;
 													tela[l+k].cyc_o = 'x';
 													break;
 												}
 												else if (tela[l].mem[i] == 0) { 				/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */
-													tela[z+j].cyc_S = tela[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
+													tela[series+j].cyc_S = tela[series+j].cyc_P;
 													break;
 												}
 												else if (i == MEMROWS-1) {
-													tela[z+j].cyc_S = tela[z+j].cyc_P + 0;		/* PLUS ZERO IS FOR CODING CLARITY */
+													tela[series+j].cyc_S = tela[series+j].cyc_P;
 													break;
 												}
 											}
 										}
 										/* FIND BEST CINCH SET */
-										c = tela[z].cyc_S;				/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
-										int cycto = z;					/* CYCLING POSITION, FOR CLARITY. WILL NOT STAY AT z */
+										c = tela[series].cyc_S;				/* RUNNING BEST SCORE FOR CINCH SETS AT POSTION l */
+										int cycto = series;					/* CYCLING POSITION, FOR CLARITY. WILL NOT STAY AT series */
 										for (j = 1; j < -sumspan; j++) {
-											if (tela[z+j].cyc_S > c) {
-												c = tela[(cycto=z+j)].cyc_S;
+											if (tela[series+j].cyc_S > c) {
+												c = tela[(cycto=series+j)].cyc_S;
 											}
 										}
-										if (cycto != z) {
-											if (cyclelize_tela(z, cycto-z, n)) {	/* REMINDER: cyclelize_tela(int cpos, int delta, int npos) */
+										if (cycto != series) {
+											if (cyclelize_tela(series, cycto-series, n)) {	/* REMINDER: cyclelize_tela(int cpos, int delta, int npos) */
 												badslip_type = 50;					/* FROM SEQUENCE IN TYPES: 1-3-5-10-30- (50) -100-300-500 */
 												Current.pass_R += badslip_type;
 												sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 												if (dev_print(MAIN,__LINE__)) {
-													printf("badslip type %d at n=%d for k=%d with TR at cycto=%d, z=%d.", badslip_type, n, k, cycto, z);
+													printf("badslip type %d at n=%d for k=%d with TR at cycto=%d, series=%d.", badslip_type, n, k, cycto, series);
 												}
 	
 												a2D_n = tela[n].x+k; 
