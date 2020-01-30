@@ -21,6 +21,7 @@ intended to be done.
 ## Chowder to eat
 
 - [ ] seq6-koslip-snippet.txt, evaluation of overlapping repeats
+- [x] seq26-snippet.txt: split repetitions of overlapping repeat with a fractal subset.
 - [x] seq-016-cyc3_a_knot -Rn, evaluation of overlapping repeats not triggered correctly
 - [x] tubespit-17: strand symmetry (v4.30)
 - [x] vnd_NEE_Dsech-snippet_1: skip fractal repeats in first unit so that cinch-t does not flatline from equivalence violation (v4.29)
@@ -45,6 +46,38 @@ Target fold is the following (pre-cinch-k):
    ...CGCGT/
    .....CGTGCACTGAT/
    ..............ATC>
+```
+
+## seq26-snippet.txt
+This was addressed in a recent v4.30 commit and the solution was pretty cool.
+Basically, this one involved splitting out a subset of repeats that was also
+being counted as fractal. So the (GA)x2 repeat gets cinched as (GA)x1 in 
+cinch-t and another (GA)x1 in cinch-k.
+
+```
+2-D PASS #2: cinch-t (width = 56)
+
+   >ACTGATGCAAAACAAATGCAG/ **
+    .........:........CAGGCGA/
+    .........:.........:...GAGAT/
+    .........:.........:...GAGATAAATGGGACGAGCGGTGCATCCG/
+    .........:.........:.........:.........:.........CGGGTGC>
+    _________|_________|_________|_________|_________|______
+             10        20        30        40        50       
+
+ Next: cinch-k for k = 2...
+
+2-D PASS #4: cinch-k (width = 54)
+
+   >ACTGATGCAAAACAAATGCAG/
+    .........:........CAGGCGA/
+    .........:.........:...GA/
+    .........:.........:...GAT/
+    .........:.........:...GA/
+    .........:.........:...GATAAATGGGACGAGCGGTGCATCCG/
+    .........:.........:.........:.........:.......CGGGTGC>
+    _________|_________|_________|_________|_________|____
+             10        20        30        40        50        
 ```
 
 ## seq-016-cyc3_a_knot-Rn.txt
