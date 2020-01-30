@@ -789,7 +789,7 @@ int main(int argc, char *argv[])
 			}
 	
 			/* FOR COLUMN n LOOP 2/3: SKIP PRESENT TR IF CONFLICT AND CAN CYCLE WITH SAME SCORE */
-			if (tela[n].all_L && tela[n].all_S == tela[n+1].all_S && !tela[n+1].all_L && tela[(tela[n].all_L)].cyc_o == 'x') {
+			if (tela[n].all_L && tela[n].all_S == tela[n+1].all_S && !tela[n+1].all_L && tela[(tela[n].all_L)].cyc_o == cyc_take.sym) {
 				assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 			}
 	
@@ -801,7 +801,7 @@ int main(int argc, char *argv[])
 					align2D[row+1][0] = '\0';
 					Cinch_T.pass_H = Current.pass_H = row+1;	/* STORE HEIGHT IN PASS SLOTS */
 				}
-				else if (tela[n].cyc_o == 'o') {	/* IF THIS POSITION HAD A BIGGER k-MER SQUASHED HERE (E.G., FOR LATER CYCLING) */
+				else if (tela[n].cyc_o == cyc_skip.sym) {	/* IF THIS POSITION HAD A BIGGER k-MER SQUASHED HERE (E.G., FOR LATER CYCLING) */
 					assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 					break;	/* GO TO NEXT n */
 				}
@@ -884,7 +884,7 @@ int main(int argc, char *argv[])
 						} 
 						if (tela[n].X != n) {
 							q = tela[n].X;
-							if (tela[q+1].cyc_o != 'o') {
+							if (tela[q+1].cyc_o != cyc_skip.sym) {
 								alt_k = tela[q].k;
 								j = q + alt_k*(tela[q].r - 1);
 								for (l = n; l+k <= lenseq && l+k <= m+WIDTH; l++) {
@@ -892,7 +892,7 @@ int main(int argc, char *argv[])
 										if (j <= l+1) {
 											Dtr = imperfect_TR = 0;
 											assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
-											tela[n].cyc_o = 'o';
+											tela[n].cyc_o = cyc_skip.sym;
 											if (dev_print(MAIN,__LINE__)) {
 												printf("Skipping cinch here to use later cycling frame at %d with print_tela:.", l+1);
 												print_tela(prtela_A, prtela_B);
@@ -1098,7 +1098,7 @@ int main(int argc, char *argv[])
 											while (tela[m+l].mem[f] && f < MEMROWS)		/* FIND FIRST AVAILABLE ROW */
 												f++;
 											if (f==1) {
-												tela[n].cyc_o = 'x';		/* NO CONFLICT SO WILL BE TAKING THIS FRAME */
+												tela[n].cyc_o = cyc_take.sym;		/* NO CONFLICT SO WILL BE TAKING THIS FRAME */
 												if (f > maxmemrows)			/* DEV-USE: MONITOR HOW MUCH OF MEMROWS IS BEING USED */
 													maxmemrows = f;
 											}
@@ -1106,7 +1106,7 @@ int main(int argc, char *argv[])
 												if (f > maxmemrows)			/* DEV-USE: MONITOR HOW MUCH OF MEMROWS IS BEING USED */
 													maxmemrows = f;
 												conflict_flag = 1;
-												tela[n].cyc_o = 'o';
+												tela[n].cyc_o = cyc_skip.sym;
 												sumspan = tela[n].cyc_l;
 												j=1;
 												while (n-j >= 0 && tela[n-j].cyc_l == 0)
@@ -1129,7 +1129,7 @@ int main(int argc, char *argv[])
 												for (o = 0; o < k; o++) 
 													tela[m + l + o].mem[f] = o+1;
 												if (!conflict_flag && l>0)
-													tela[n+l].cyc_o = 'o';
+													tela[n+l].cyc_o = cyc_skip.sym;
 											}
 											for (o = 0; o < k; o++) {
 												if (tela[n+j*k+l+o].c==tela[n-k+l+o].c) {
@@ -1157,10 +1157,11 @@ int main(int argc, char *argv[])
 											l=series+j-k;
 											for (f = tela[series+j].mem[0] - 1 - j; f > 0; f--) {
 												if (tela[l].mem[f] == 1) {
-													int backstop = tela[n].X - tela[(tela[n].X)].k;					/* WHY IS THIS NOT BEST? */
-													backstop = 0;													/* !!!!!!!!!!!!!!!!!!!!! */
+													int backstop;
+													backstop = tela[n].X - tela[(tela[n].X)].k;					/* WHY IS THIS NOT BEST? */
+													backstop = 0; 												/* !!!!!!!!!!!!!!!!!!!!! */
 
-													while (tela[l].cyc_o != 'x' && tela[l].cyc_o != 'o' && l>backstop) 
+													while (tela[l].cyc_o != cyc_take.sym && tela[l].cyc_o != cyc_skip.sym && l>backstop) 
 														l--;
 													while (tela[l].mem[f] != 1 && l>backstop) 
 														l--;
@@ -1168,6 +1169,7 @@ int main(int argc, char *argv[])
 														while (tela[l].mem[f] != 1 || !tela[l].all_k)
 															l++;
 													}
+
 													tela[series+j].cyc_S = tela[series+j].cyc_P + tela[l].cyc_P;	
 													tela[series+j].cyc_Lf = l;
 													tela[l  ].cyc_Rt = series+j;
@@ -1189,16 +1191,20 @@ int main(int argc, char *argv[])
 										for (j = 1; j < sumspan; j++) {
 											if (tela[series+j].cyc_S > c) {
 												c = tela[ (l=series+j) ].cyc_S;
-												max_count = 0;
+												max_count = 1;
 											}
 											else if (tela[series+j].cyc_S==c) {
 												max_count++;
 											}
+											else 
+												tela[series+j].cyc_o = cyc_skip.sym;
 										}
+										if (max_count>1 && n==series) 
+											tela[(tela[n].cyc_Lf)].cyc_Rt = n;
 										if (dev_print(MAIN,__LINE__)) 
-											printf("\n max_count=%d", max_count);
-										tela[l].cyc_o = 'x';
-										if (l != series && tela[(tela[l].cyc_Lf)].cyc_o == 'x') {
+											printf("\n max_count=%d, sumspan=%d, c=%d", max_count, sumspan, c);
+
+										if (l != series && tela[(tela[l].cyc_Lf)].cyc_o == cyc_take.sym) {
 											badslip_type = 10;							/* FROM SEQUENCE IN TYPES: 1-3-5- (10) -30-50-100-300-500 */
 											if (dev_print(MAIN,__LINE__)) {
 												printf("badslip type %d at n=%d for k=%d with TR at l=%d.\n Before--->", badslip_type, n, k, l);
@@ -1219,15 +1225,15 @@ int main(int argc, char *argv[])
 											for (p=0; p<tela[series].cyc_l; p++) {
 												if (series+p != l) {
 													tela[series+p].r = 0;
-													tela[series+p].cyc_o = 'o';
+													tela[series+p].cyc_o = cyc_skip.sym;
 												}
 											}
 										}
-										else if (l == series && tela[(j=tela[l].cyc_Lf)].cyc_o == 'o') {	
+										else if (l == series && tela[(j=tela[l].cyc_Lf)].cyc_o == cyc_skip.sym) {	
 											i = j-1;	/* SAVE VAR j, CYCLING POSITION; VAR i TO COUNT DOWN TO POSITION THAT NEEDS TO BE CYCLED AWAY FROM */
-											while (tela[i].cyc_o != 'x' && tela[i].cyc_o != blank) 
+											while (tela[i].cyc_o != cyc_take.sym && tela[i].cyc_o != blank) 
 												i--;
-											if (tela[i].cyc_o == 'x') {
+											if (tela[i].cyc_o == cyc_take.sym) {
 												if (cyclelize_tela(i, j-i, n)) {
 													badslip_type = 30;					/* FROM SEQUENCE IN TYPES: 1-3-5-10- (30) -50-100-300-500 */
 													Current.pass_R += badslip_type;
@@ -1250,7 +1256,7 @@ int main(int argc, char *argv[])
 													tela[series+j].cyc_S = tela[series+j].cyc_P + tela[series+j+k].cyc_P;	
 													tela[series+j].cyc_Rt = l+k;
 													tela[l+k].cyc_Lf = series+j;
-													tela[l+k].cyc_o = 'x';
+													tela[l+k].cyc_o = cyc_take.sym;
 													break;
 												}
 												else if (tela[l].mem[i] == 0) { 				/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */

@@ -178,6 +178,8 @@ struct {
 	tick     = {'|',124},		/* MHA ruler tick mark: vertical bar           */
 	*Tick    = &tick,			/* pointer to default 10 bp ruler tick mark    */
 	*ZTick   = &fill_0,			/* pointer to default column zero tick mark    */
+	cyc_take = {'x',120},		/* MHA cinch-t cycle frame evaluations         */
+	cyc_skip = {'o',111},		/* MHA cinch-t cycle frame evaluations         */
 	st_parent= {'p',112},		/* MHA mark_tela() status mark                 */
 	st_Fract = {'F', 70},		/* MHA mark_tela() status mark, orphan Fractal */
 	st_fract = {'f',102},		/* MHA mark_tela() status mark, confirmed fr.  */

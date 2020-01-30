@@ -279,7 +279,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 	}
 	push_gPnt_kmer(cpos+delta, k, tela[cpos+delta].all_r);
 
-	if (k && reps && tela[cpos].cyc_o == 'x') {
+	if (k && reps && tela[cpos].cyc_o == cyc_take.sym) {
 		z = cpos;
 		for (r=0; r<reps; r++) {
 			for (j=0; j<delta; j++) {
@@ -315,7 +315,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 
 		flatline_after_TR(npos);	
 
-		tela[cpos+delta].cyc_o = 'x';
+		tela[cpos+delta].cyc_o = cyc_take.sym;
 
 		return (1);		/* RETURN SUCCESS, BUT EVENTUALLY ADD A CHECK_TELA CALL IN HERE */
 	}
@@ -1081,7 +1081,7 @@ void pull_tela(int n)
 	}
 
 	tela[n].r = 0;
-	tela[n].echoes = tela[n].cyc_o = 'o';
+	tela[n].echoes = tela[n].cyc_o = cyc_skip.sym;
 }
 
 
