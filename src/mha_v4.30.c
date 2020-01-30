@@ -895,7 +895,6 @@ int main(int argc, char *argv[])
 								for (l = n; l+k <= lenseq && l+k <= m+WIDTH; l++) {
 									if (tela[l].c == tela[l+k].c) { 
 										if (j <= l+1) {
-											pull_tela(n);
 											Dtr = imperfect_TR = 0;
 											assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 											tela[n].cyc_o = 'o';
