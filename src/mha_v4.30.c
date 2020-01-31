@@ -132,16 +132,8 @@ int main(int argc, char *argv[])
 	Options[25] = &opt_y; Options[51] = &opt_Y;
 	Options[26] = &opt_z; Options[52] = &opt_Z;
 
-	Cinches[0] = &Start;
-	Cinches[1] = &Clean;
-	Cinches[2] = &Cinch_T;
-	Cinches[3] = &Cinch_L;
-	Cinches[4] = &Cinch_K;
-	Cinches[5] = &Nudge;
-	Cinches[6] = &Cinch_D;
-	Cinches[7] = &Relax;
-	Cinches[8] = &Recover;
-	Cinches[9] = &Current;
+	Cinches[0] = &Start; Cinches[1] = &Clean; Cinches[2] = &Cinch_T; Cinches[3] = &Cinch_L; Cinches[4] = &Cinch_K;
+	Cinches[5] = &Nudge; Cinches[6] = &Cinch_D; Cinches[7] = &Relax; Cinches[8] = &Recover; Cinches[9] = &Current;
 
 	/* IS THERE A FILE NAME ARGUMENT? */
 	for (i = 1; i < argc; i++) {
@@ -762,8 +754,6 @@ int main(int argc, char *argv[])
 		a2D_n = row = 0;					
 		align2D[row][a2D_n++] = tela[0].c;	/* FOR n=0, ENTER VALUE AT IDENTITY DIAGONAL, INCREMENT INDEX */
 	
-	/*	dev_prompt(MAIN,__LINE__,file_name);
-	*/
 		/* CLEAR TELA MEM SPACE AFTER FIRST USE IN MARK_TELA; SCRIPT all MAX maxmemrows HAS BEEN 5 (4+1)  */
 		for (i=0; i<MEMROWS; i++) {		
 			for (j=0; j<=lenseq; j++) {
@@ -1002,7 +992,6 @@ int main(int argc, char *argv[])
 						if (o) {
 							Dtr = imperfect_TR = 0;
 							pull_tela(n);
-							/* OFF flatline_after_TR(n);*/	/* WILL FLATLINE AT PREVIOUS TR */
 							if (dev_print(MAIN,__LINE__)) {
 								printf("push_tela violations=%d (+1 CONT, +2 EQUIV). Skipping k=%d-mer at n=%d.", o, k, n);
 								print_tela(prtela_A, prtela_B);
@@ -1015,10 +1004,8 @@ int main(int argc, char *argv[])
 	
 						++Cinch_T.pass_R;
 	
-						if (ON || imperfect_TR) {
-							for (i=0; i<k; i++)
-								pathbox[n+i][m+i] = 114; 	/* "r" LOWER-LEFT */
-						}
+						for (i=0; i<k; i++)
+							pathbox[n+i][m+i] = 114; 	/* "r" LOWER-LEFT */
 	
 						r = 1;
 						tela[n].r = reps;
@@ -1232,8 +1219,7 @@ int main(int argc, char *argv[])
 											while (tela[i].cyc_o != cyc_take.sym && tela[i].cyc_o != blank) 
 												i--;
 											if (tela[i].cyc_o == cyc_take.sym) {
-/*												tela[i].cyc_o = cyc_skip.sym;
-*/												if (dev_print(MAIN,__LINE__)) 
+												if (dev_print(MAIN,__LINE__)) 
 													printf("\n i=%d (cpos), j-i=%d (delta), n=%d (npos)", i,j-i,n);
 												if (cyclelize_tela(i, j-i, n)) {
 													badslip_type = 30;					/* FROM SEQUENCE IN TYPES: 1-3-5-10- (30) -50-100-300-500 */
