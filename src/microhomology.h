@@ -958,33 +958,33 @@ int hr_len = min_len;					/* DEFAULT LENGTH OF HEADER BANNER */
 
 	if (Current.pass_V == 6) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: cinch-d [RESCUES TR's INTERRUPTED BY DE NOVO REPEATS OF REPEATS] (width = %d)\n\n", Current.pass_V, lcl_width);
+		printf(" 2-D pass #%d: cinch-d (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
 	else if (Current.pass_V == 5) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: nudgelize [RESCUES TR's OBSCURED BY INITIAL CYCLING FRAME] (width = %d)\n\n", Current.pass_V, lcl_width);
+		printf(" 2-D pass #%d: nudgelize (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
 	else if (Current.pass_V == 4 || Current.pass_V == 6) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: cinch-k [INTRA-REPEAT *k-MERS > 0] (width = %d)\n\n", Current.pass_V, lcl_width);
+		printf(" 2-D pass #%d: cinch-k (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
 	else if (Current.pass_V == 3) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: cinch-l [*lONG HOMOPOLYMER TRACTS] (width = %d)\n\n", Current.pass_V, lcl_width);
+		printf(" 2-D pass #%d: cinch-l (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
 	else if (Current.pass_V == 2) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: cinch-t [LONGEST *tANDEM REPEATS, k>1] (width = %d)\n\n", Current.pass_V, lcl_width);
+		printf(" 2-D pass #%d: cinch-t (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
 	else if (Current.pass_V == 1) {
-			printf("\n\n1-D sequence:\n");
+			printf("\n\n 1-D sequence:\n");
 	}
 	else if (Current.pass_V == 7) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf("2-D PASS #%d: relax-2D [RELAXES HOMOPOLYMER RUNS THAT DID NOT AID cinch-d] (width = %d)\n\n", Current.pass_V, lcl_width);
+		printf(" 2-D pass #%d: relax-2D (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
 	else if (Current.pass_V == 0) {
-		printf("\nOriginal string (length = %d):\n", lcl_width);
+		printf("\n Original string (length = %d):\n", lcl_width);
 	}
 	else 
 		printf("%.*s\n", max_len, h_rule);

@@ -139,7 +139,6 @@ int main(int argc, char *argv[])
 	for (i = 1; i < argc; i++) {
 		if (*argv[i] != '-' && !(isdigit(*argv[i]))) {
 			if (strcmp(argv[i],"TUBES.mha")) {		/* strcmp EVALUATES TO 0 ONLY IF STRINGS ARE THE SAME */
-				/* USING j BELOW AS COUNTER TO NUMBER OF TIMES USER SPECFIES DIFFERENT SEQUENCES */
 				if ((file_ptr = fopen(argv[i], "r") ) == NULL) {
 					printf("\n %2d. Error opening file '%s'. Exiting now.\n\n", ++j, argv[i]);
 					exit(EXIT_ERROR);
@@ -455,11 +454,7 @@ int main(int argc, char *argv[])
 		opt_n.bit = 1;		/* opt_n NO RELAX 2-D */
 	}
 
-	if (j > 1) {
-		warnhead('S');
-		printf("Many sequences specfied. Using last sequence.");
-	}
-	else if (j == 0) {
+	if (j == 0) {
 		warnhead('S');
 		printf("No sequences specfied. Using example sequence.");
 	}
