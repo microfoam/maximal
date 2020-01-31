@@ -29,9 +29,9 @@ int main(int argc, char *argv[])
 	char version[] = "4.30";				/* current development version number */
 
 	int c=0, f=0, i=0; 
-	short unsigned int continue_flag=0;
+	short unsigned int pairwise = 0;	
 
-	int j=0, h=0, k=0; 
+	int j=0, k=0, r=0; 
 	short unsigned int imperfect_TR=0; 
 
 	int l=0, m=0, n=0; 
@@ -40,7 +40,8 @@ int main(int argc, char *argv[])
 	int o=0, p=0, q=0;
 	short unsigned int nuctransit=0; 
 
-	int reps=0, r=0, z=0;	
+	int reps=0, row=0;	
+	int blocks;								/* Number of blocks for 1D output print */
 	short unsigned int seqtype=0; 
 
 	int lenseq = 0;
@@ -53,17 +54,16 @@ int main(int argc, char *argv[])
 	int homopoly_flag=0;
 	unsigned int FY_size = 100;				/* DEFAULT SIZE OF FISHER-YATES RANDOMIZED STRING */
 
-	int ralign_height = 0;	
-	int ralign_width = 0;
-	int tuck;
-	short unsigned int pairwise = 0;	
-
 	int homopolyend_flag=0, overslip=0, TRcheck = 0;
 	short unsigned int cycle_flag=0;
 
+	int a2D_n = 0;				/* NUMBER INDEX OF n FOR a2D_n */
+	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from tela[].r */
 	int relax_length=0;			/* FOR USE WITH relax_2D CALL */
 	int intraTR_reps_tot = 0; 	/* STORES INITIAL RETURN VALUE FROM cinch-d() */
 	int intraTR_reps = 0;	 	/* STORES CURRENT RETURN VALUE FROM cinch-d() */
+	int ralign_height = 0;	
+	int ralign_width = 0;
 	unsigned int recovery_flag = 0;
 
 	int Did = 0;				/* Counter for identity (id) diagonal */
@@ -71,21 +71,16 @@ int main(int argc, char *argv[])
 	int Atr = 0;				/* Counter for additional repeats on the same diagonal */
 	char blank = Fill->sym;					/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
 
-	int row = 0;				/* Counter for row number in align2D box */
-	int a2D_n = 0;				/* NUMBER INDEX OF n FOR a2D_n */
-	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from tela[].r */
-	char ch = blank;
-
 	float ratio1 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post cinch-d, pre relax-2D 	*/
 	float ratio2 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post relax-2D 				*/
 
-	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
-	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
-	int blocks;					/* Number of blocks for 1D output print */
 	int badslip_type = 0;
 	int scooch = 0;
-	int alt_k = 0;
 	int maxmemrows = 0;			/* cinch_t() max memrows */
+	char ch = blank;
+
+	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
+	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
 
 	char cycle[WIDTH+1];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
 	char Seq_head[100] = {0};	/* FASTA HEADER */
@@ -174,16 +169,16 @@ int main(int argc, char *argv[])
 	
 					/* CHECK FOR FASTA HEADER AND SAVE IN Seq_head, THEN MASK IN Seq */
 					if (Seq_i[0] == fastahead.sym) {
-						for (h = 0; Seq_i[h+1] != '\n' && Seq_i[h+1] != '\r' && h < 100; h++) {
-							Seq_head[h] = Seq_i[h+1];
+						for (j = 0; Seq_i[j+1] != '\n' && Seq_i[j+1] != '\r' && j < 100; j++) {
+							Seq_head[j] = Seq_i[j+1];
 						}
 
 						/* SCOOCH STRING INTO FASTA HEADER SPACE (ERASING IT) */
 						i = (int) strlen(Seq_head) + 2;
-						for (h = 0; Seq_i[h+i] != '\0'; h++)
-							Seq_i[h] = Seq_i[h+i];
+						for (j = 0; Seq_i[j+i] != '\0'; j++)
+							Seq_i[j] = Seq_i[j+i];
 	
-						Seq_i[h] = '\0';	
+						Seq_i[j] = '\0';	
 					}
 					else 
 						strcpy(Seq_head, "input sequence");
@@ -885,8 +880,7 @@ int main(int argc, char *argv[])
 						if (tela[n].X != n) {
 							q = tela[n].X;
 							if (tela[q+1].cyc_o != cyc_skip.sym) {
-								alt_k = tela[q].k;
-								j = q + alt_k*(tela[q].r - 1);
+								j = q + (tela[q].k)*(tela[q].r - 1);
 								for (l = n; l+k <= lenseq && l+k <= m+WIDTH; l++) {
 									if (tela[l].c == tela[l+k].c) { 
 										if (j <= l+1) {
@@ -1047,13 +1041,12 @@ int main(int argc, char *argv[])
 								Atr = TRcheck = 0;
 							
 							if (r<reps) {
-								z=r*k;
+								p = r*k;
+								push_tela(n+p, m+p, THREE);
 	
-								push_tela(n+z,m+z, THREE);
-	
-								if (ON || imperfect_TR) {
+								if (imperfect_TR) {
 									for (i=0; i<k; i++) {
-										pathbox[n+r*k+i][m+i] = 82; 	/* "R" LOWER-LEFT */
+										pathbox[n+p+i][m+i] = 82; 	/* "R" LOWER-LEFT */
 									}
 								}
 	
@@ -1158,14 +1151,14 @@ int main(int argc, char *argv[])
 											for (f = tela[series+j].mem[0] - 1 - j; f > 0; f--) {
 												if (tela[l].mem[f] == 1) {
 													int backstop;
-													backstop = 0; 												/* !!!!!!!!!!!!!!!!!!!!! */
 													backstop = tela[n].X - tela[(tela[n].X)].k;					/* WHY IS THIS NOT BEST? */
+													backstop = 0; 												/* !!!!!!!!!!!!!!!!!!!!! */
 
 													while (tela[l].cyc_o != cyc_take.sym && tela[l].cyc_o != cyc_skip.sym && l>backstop) 
 														l--;
 													while (tela[l].mem[f] != 1 && l>backstop) 
 														l--;
-													if (ON  && l == backstop) {									/* !!!!!!!!!!!!!!!!!!!!! */
+													if (OFF && l == backstop) {									/* !!!!!!!!!!!!!!!!!!!!! */
 														while (tela[l].mem[f] != 1 || !tela[l].all_k)
 															l++;
 													}
@@ -1234,13 +1227,13 @@ int main(int argc, char *argv[])
 												}
 											}
 										}
-										else if (l == series && (ON || tela[(j=tela[l].cyc_Lf)].cyc_o == cyc_skip.sym)) {
+										else if (l == series && tela[(j=tela[l].cyc_Lf)].cyc_o == cyc_skip.sym) {
 											i = j-1;	/* SAVE VAR j, CYCLING POSITION; VAR i TO COUNT DOWN TO POSITION THAT NEEDS TO BE CYCLED AWAY FROM */
 											while (tela[i].cyc_o != cyc_take.sym && tela[i].cyc_o != blank) 
 												i--;
 											if (tela[i].cyc_o == cyc_take.sym) {
-												tela[i].cyc_o = cyc_skip.sym;
-												if (dev_print(MAIN,__LINE__)) 
+/*												tela[i].cyc_o = cyc_skip.sym;
+*/												if (dev_print(MAIN,__LINE__)) 
 													printf("\n i=%d (cpos), j-i=%d (delta), n=%d (npos)", i,j-i,n);
 												if (cyclelize_tela(i, j-i, n)) {
 													badslip_type = 30;					/* FROM SEQUENCE IN TYPES: 1-3-5-10- (30) -50-100-300-500 */
@@ -1314,12 +1307,13 @@ int main(int argc, char *argv[])
 	
 								/* RECORD DNA "REVERB" IN SLIPLOC_ECHOES FOR ALL TR FRAMES */
 								if (opt_l.bit && tela[n].o) {    /********** OPTION TO SHOW SLIP LOCATIONS */
+									int echo_r;
 									if (tela[n].o > 2*k)
-										h = k;
+										echo_r = k;
 									else
-										h = 1;
+										echo_r = 1;
 	
-									for (j = 0; j < h; j++) {
+									for (j = 0; j < echo_r; j++) {
 										for (l = j; l+k <= tela[n].o; l+=k) {
 											if 		(tela[n-k+l].echoes == blank)	tela[n-k+l].echoes = '(';
 											else if (tela[n-k+l].echoes == '('  )	tela[n-k+l].echoes = '{';
@@ -1475,58 +1469,52 @@ int main(int argc, char *argv[])
 	}
 
 	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT ***************/
-	continue_flag = 1;
+	i = ++Current.pass_V;
+	if (cycle_flag || align2D[0][0] == blank) {
+		++Nudge.pass_R;
 
-	if (continue_flag) {
-		i = ++Current.pass_V;
-		if (cycle_flag || align2D[0][0] == blank) {
+		while (nudgelize() && Nudge.pass_R < CYCMAX) {	
 			++Nudge.pass_R;
-
-			while (nudgelize() && Nudge.pass_R < CYCMAX) {	
-				++Nudge.pass_R;
-			}
 		}
-		else {	
-			Cinches[i]->pass_W = Cinches[i-1]->pass_W;
-		}
-		Nudge.pass_Q = Current.pass_Q;
 	}
+	else {	
+		Cinches[i]->pass_W = Cinches[i-1]->pass_W;
+	}
+	Nudge.pass_Q = Current.pass_Q;
 
 	/********* 6. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
-	if (continue_flag) {
-		++Current.pass_V;
+	++Current.pass_V;
 
-		if (dev_print(MAIN,__LINE__)) {
-			if (nuctransit) {
-				printf("Pre-cinch_d report (p = perfect, i = imperfect tandem repeat):");
-			}
-			else {
-				printf("Pre-cinch_d report:");
-			}
+	if (dev_print(MAIN,__LINE__)) {
+		if (nuctransit) {
+			printf("Pre-cinch_d report (p = perfect, i = imperfect tandem repeat):");
 		}
-		intraTR_reps_tot = intraTR_reps = cinch_d(0);
-	
-		if (intraTR_reps_tot == 0) {
-			printf(" Nothing left for cinch-d to cinch! \n");
-			print_2Dseq();
+		else {
+			printf("Pre-cinch_d report:");
 		}
-	
-		if (intraTR_reps_tot > 0) {
-			while (intraTR_reps > 0) {
-				intraTR_reps = cinch_d(1);
-				++Cinch_D.pass_R;
-			}
-			Cinch_D.pass_V = --Cinch_D.pass_R;	/* STORE d runs in PASS SLOT IN CASE FUTURE MODULES POST CINCH-D NEED IT */
-												/* NEED TO COUNT LIKE THIS FOR FOLLOWING REASONS: 			*/
-												/*  1. LAST RUN IS A CHECK RETURNING ZERO, SO RUNS NEED TO BE DECREMENTED BY 1. 	*/
-												/*  2. APPARENT LAST EFFECTIVE CINCH-D RUN MAY REVEAL A NEW CINCH-D OPPORTUNITY. 	*/
-												/* 	OTHERWISE COULD HAVE SET WHILE LOOP TO > 1 (DON'T DO THIS. )			*/
-		}
-		Cinch_D.pass_Q = Current.pass_Q;
+	}
+	intraTR_reps_tot = intraTR_reps = cinch_d(0);
+
+	if (intraTR_reps_tot == 0) {
+		printf(" Nothing left for cinch-d to cinch! \n");
+		print_2Dseq();
 	}
 
+	if (intraTR_reps_tot > 0) {
+		while (intraTR_reps > 0) {
+			intraTR_reps = cinch_d(1);
+			++Cinch_D.pass_R;
+		}
+		Cinch_D.pass_V = --Cinch_D.pass_R;	/* STORE d runs in PASS SLOT IN CASE FUTURE MODULES POST CINCH-D NEED IT */
+											/* NEED TO COUNT LIKE THIS FOR FOLLOWING REASONS: 			*/
+											/*  1. LAST RUN IS A CHECK RETURNING ZERO, SO RUNS NEED TO BE DECREMENTED BY 1. 	*/
+											/*  2. APPARENT LAST EFFECTIVE CINCH-D RUN MAY REVEAL A NEW CINCH-D OPPORTUNITY. 	*/
+											/* 	OTHERWISE COULD HAVE SET WHILE LOOP TO > 1 (DON'T DO THIS. )			*/
+	}
+	Cinch_D.pass_Q = Current.pass_Q;
+
 	/********* 7. relax_2D MODULE: DE-CINCHES HOMOPOLYMER RUNS IF THEY DID NOT AID CINCH-D *******/
-	if (continue_flag && !opt_n.bit) {		/* opt_n DO NOT DO RELAX-2D */
+	if (!opt_n.bit) {		/* opt_n DO NOT DO RELAX-2D */
 		++Current.pass_V;
 	
 		do {
@@ -1551,7 +1539,7 @@ int main(int argc, char *argv[])
 		r = (int) strlen(recovered) - 1;
 		m = max(lenseq,r);
 		blocks = count_wrap_blocks(m, par_wrap.set);
-		z = 0;			/* USE TO COUNT RECOVERED LETTERS IDENTICAL TO 1D */
+		int recover_char = 0;			/* USE TO COUNT RECOVERED LETTERS IDENTICAL TO 1D */
 		if (lenseq != r) {
 			l = r - lenseq;
 			for (i=0; i < m; i++) {
@@ -1611,11 +1599,11 @@ int main(int argc, char *argv[])
 				if (seqtype == 1 || seqtype == 2) {			/* IF DNA OR RNA */
 					if (tela[n].c == ambig.sym || recovered[n] == ambig.sym) {
 						printf("?");
-						z++;	
+						recover_char++;	
 					}
 					else if (tela[n].c == recovered[n]) {
 						printf("|");
-						z++;
+						recover_char++;
 					}
 					else {
 						printf("*");
@@ -1625,7 +1613,7 @@ int main(int argc, char *argv[])
 				else {						/* ELSE IF NOT NA */
 					if (tela[n].c == recovered[n]) {
 						printf("|");
-						z++;
+						recover_char++;
 					}
 					else {
 						printf("*");
@@ -1657,7 +1645,7 @@ int main(int argc, char *argv[])
 		} /* END OF FOR j LOOP */
 		printf("\n");
 
-		Recover.pass_W = z;			/* STORE NUMBER OF RECOVERED CHARACTERS */
+		Recover.pass_W = recover_char;			/* STORE NUMBER OF RECOVERED CHARACTERS */
 
 		if (recovery_flag) {		/* LAST ROW OF array2D WILL STORE CONSENSUS, SO NEED TO KEEP CLEAR */
 			warnhead('R');
@@ -1683,12 +1671,6 @@ int main(int argc, char *argv[])
 		for (i = 11; i <= WIDTH; i++)
 			printf(" %d-mers:%2d\n", i, slips[i]);
 	}
-	/***************************************************************************/
-	c   = Clean.pass_W;		/* REUSING c VAR FOR FORMATTED STRING LENGTH; CAN DELETE? */
-	if (opt_X.val > 1)			/* opt_XX FISHER-YATES RANDOMIZATIAN */
-		row = FY_size;			/* USE IN PLACE OF ORIGINAL STRING LENGTH */
-	else
-		row = Start.pass_W;	/* RESUING row VAR FOR ORIGINAL STRING LENGTH */
 	/***************************************************************************/
 
 	if (seqtype == 1)		
@@ -1775,15 +1757,11 @@ int main(int argc, char *argv[])
 			printf(    "%s recovered 1D   [final check pass]\n", letr_unit);
 	}
 
-	if (continue_flag) {
-		printf("\n Width cinch ratio (post cinch-d):  %2.3f", ratio1=(float)Cinch_D.pass_W/lenseq);
-		if (!opt_n.bit)
-			printf("\n Width cinch ratio (post relax-2D): %.3f\n\n", ratio2=(float)Current.pass_W/lenseq);
-		else
-			printf("\n\n");
-	}
+	printf("\n Width cinch ratio (post cinch-d):  %2.3f", ratio1=(float)Cinch_D.pass_W/lenseq);
+	if (!opt_n.bit)
+		printf("\n Width cinch ratio (post relax-2D): %.3f\n\n", ratio2=(float)Current.pass_W/lenseq);
 	else
-		printf("\n Width cinch ratio (post cinch-k): %.3f\n\n", ratio1=ratio2=(float)Cinch_K.pass_W/lenseq);
+		printf("\n\n");
 
 	if (opt_O.bit) {							/* OPTION TO OUTPUT 2-D ALIGNMENT & CONSENSUS STRING TO FILE */
 		fp_cons = fopen("Surf_barrels.log", "a");
@@ -1842,7 +1820,7 @@ int main(int argc, char *argv[])
 				nmin = n;
 			}
 		}
-		tuck = snake1[nmin].belly + snakebuffer - snake2[nmin].spine;
+		int tuck = snake1[nmin].belly + snakebuffer - snake2[nmin].spine;
 
 		if (opt_v.val > 2) {
 			printf("        ");
