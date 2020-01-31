@@ -476,6 +476,10 @@ void mark_tela(void)
 							if (n+k*reps > projection) {
 								projector = n;
 								projection = n + k*reps;
+								if (k == tela[n-1].all_k) {
+									tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
+									tela[n  ].stat = st_cycle.sym;
+								}
 							}
 							else {
 								if (tela[n-1].all_k && k % tela[n-1].all_k == 0) {
@@ -485,11 +489,11 @@ void mark_tela(void)
 								else {
 									int doppleganger = n - tela[projector].all_k;
 									if (tela[doppleganger].mem[1]) {
-										           tela[n].stat = st_fract.sym;
-										tela[doppleganger].stat = st_fract.sym;
+										           tela[n].stat = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
+										tela[doppleganger].stat = st_fract.sym;		/* MATCHING PAIR */
 									}
 									else
-										tela[n].stat = st_Fract.sym;		/* FRACTAL REPEAT = EMBEDDED IN ANOTHER REPEAT */
+										tela[n].stat = st_Fract.sym;
 								}
 							}
 							TRcheck = 0;
