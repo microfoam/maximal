@@ -34,7 +34,7 @@ under '-x' sequeeze (hence '-Rnx' in the file name). This cinching issue was
 discovered while addressing an unrelated transition calling issue with the same 
 overlapping repeats (4-mer and 7-mer).
 
-Top strand:
+Top strand comes out like this:
 ```
 2-D PASS #2: cinch-t (width = 46)
 
@@ -48,7 +48,18 @@ Top strand:
 
 ```
 
-Reverse-complement:
+But the top strand should actually look like the following, which would match the reverse complement:
+```
+ >CAAGTCGACGC/
+    .......ACGCTCCACGCCCCC/
+    .........:...CACGCTCCCAGTATTTTTCCCTAACCAGGGC/
+    .........:.........:.......:.........:....GC>
+    _________|_________|_________|_________|____
+             10        20        30        40    
+    CAAGTCGACGCTCCACGCTCCCAGTATTTTTCCCTAACCAGGGC
+```
+
+Reverse-complement comes out like this:
 ```
 2-D PASS #2: cinch-t (width = 44)
 

@@ -17,7 +17,6 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 # CHOWDER TESTS 
-./maximal -DKnx waves/chowder/seq6-koslip-snippet.txt 
-./maximal -DKnx waves/chowder/seq-64-snippet-Rnx_symmetry.txt 
-./maximal -DKnx waves/chowder/seq-64-snippet-Rnx_symmetry.txt -C
+./maximal -DKnxrL waves/chowder/seq-64-snippet-Rnx_symmetry.txt 
+./maximal -DKnxrL waves/chowder/seq-64-snippet-Rnx_symmetry.txt -C
 
