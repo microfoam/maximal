@@ -29,7 +29,8 @@ fi
 ./maximal -DRKn waves/tubespit/seq-000-orig_f.txt 
 ./maximal -DRKnx waves/tubespit/seq-033-imprf1.txt 
 ./maximal -DRKn waves/tubespit/seq-100-v343_10.txt 
+./maximal -DRKn waves/chowder/seq6-koslip-snippet.txt 
 
 ./surfboard-checkmha
-echo 'sand_dunes: last benchmark WCR AVERAGE: 0.438818' | tee -a corduroy.log
+echo 'sand_dunes benchmark WCR average of 12: 0.448583' | tee -a corduroy.log
 echo

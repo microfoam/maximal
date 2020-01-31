@@ -20,34 +20,12 @@ intended to be done.
 
 ## Chowder to eat
 
-- [ ] seq6-koslip-snippet.txt, evaluation of overlapping repeats
 - [ ] seq-64-snippet-Rnx_symmetry.txt 
+- [x] seq6-koslip-snippet.txt, evaluation of overlapping repeats
 - [x] seq26-snippet.txt: split repetitions of overlapping repeat with a fractal subset.
 - [x] seq-016-cyc3_a_knot -Rn, evaluation of overlapping repeats not triggered correctly
 - [x] tubespit-17: strand symmetry (v4.30)
 - [x] vnd_NEE_Dsech-snippet_1: skip fractal repeats in first unit so that cinch-t does not flatline from equivalence violation (v4.29)
-
-## Chowder chunk: seq6-koslip-snippet.txt
-
-Current cinch-t run produces an auto-alignment that is correct but not optimal:
-```
-  >TAGC/    4
-   ..GCGTC/    9
-   ..GCGTCGTGCACTGAT/   24
-   .........:.....ATC>   27
-   _________|________
-            10        
-   TAGCGTCGTGCACTGATC
-```
-
-Target fold is the following (pre-cinch-k):
-```
-  >TAGCG/
-   ...CGCGT/
-   ...CGCGT/
-   .....CGTGCACTGAT/
-   ..............ATC>
-```
 
 ## Chowder chunk: seq-64-snippet-Rnx_symmetry.txt 
 A 9-mer repeat is skipped in the process of evaluating earlier overlapping repeats.
@@ -82,6 +60,52 @@ Reverse-complement:
              10        20        30        40        
     GCCCTGGTTAGGGAAAAATACTGGGRGCGTGGAGCGTCGACTTG
 
+```
+
+## Solved: seq6-koslip-snippet.txt (conditional mark_tela break)
+
+Previously cinch-t runs produced an auto-alignment that was correct but not optimal:
+```
+  >TAGC/    4
+   ..GCGTC/    9
+   ..GCGTCGTGCACTGAT/   24
+   .........:.....ATC>   27
+   _________|________
+            10        
+   TAGCGTCGTGCACTGATC
+```
+
+Target fold is the following (pre-cinch-k):
+```
+  >TAGCG/
+   ...CGCGT/
+   ...CGCGT/
+   .....CGTGCACTGAT/
+   ..............ATC>
+```
+
+This sequence knot has now been solved by a smarter pre-cinch_t mark_tela() module that conditions the normal
+break out of a loop scanning rows starting at a given column *n*.
+The mark_tela() code block was exapted from a cinch-t block and like cinch-t, mark_tela() used to break out of 
+2-D column *n* at row *m* as soon as it found a repeat, thus favoring higher *k*-mer size. The problem for mark_tela() functionality is that
+a fractal repeat might be obscured by a cycling repeat frame of the parent TR containing the fractal. 
+This is important because cinch-t needs to skip fractal repeats, which are then addressed by cinch-k.
+Now mark_tela() senses whether this column is obscuring a smaller fractal *k*. I didn't know for a few days
+how I would eventually solve this, but I am pretty happy with the simplicity of this solution.
+Post-cinch-k the 2-D auto-alignment now looks like this:
+
+```
+ 2-D pass #4: cinch-k (width = 15)
+
+   >TAGCG/
+    ...CGT/
+    ...CG/
+    ...CGT/
+    ...CGTGCACTGAT/
+    .........:..ATC>
+    _________|_____
+             10        
+    TAGCGTGCACTGATC
 ```
 
 ## Solved: seq26-snippet.txt
@@ -271,4 +295,4 @@ Some additional aspects remain to be handled.
              10        20        30        
 ```
  
-*Last updated*: 1/30/2010 AJE
+*Last updated*: 1/31/2020 AJE
