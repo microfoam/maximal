@@ -21,6 +21,7 @@ intended to be done.
 ## Chowder to eat
 
 - [ ] seq-64-snippet-Rnx_symmetry.txt 
+- [x] seq-146-v344_33-snippet.txt: adjacent non-zero mod k's
 - [x] seq6-koslip-snippet.txt, evaluation of overlapping repeats
 - [x] seq26-snippet.txt: split repetitions of overlapping repeat with a fractal subset.
 - [x] seq-016-cyc3_a_knot -Rn, evaluation of overlapping repeats not triggered correctly
@@ -71,6 +72,27 @@ Reverse-complement comes out like this:
              10        20        30        40        
     GCCCTGGTTAGGGAAAAATACTGGGRGCGTGGAGCGTCGACTTG
 
+```
+
+## Solved: seq-146-v344_33-snippet.txt: non-zero, adjacent mod-k's
+
+I just solved this after looking at it for a few seconds. I didn't think this was possible because 
+of its rarity, but this involved adjacent nucleotides with non-zero mod *k*'s: (*k* % tela[n-1].all_k > 0).
+
+I leave the correct cinch-t solution here as a reverse exercise. (Try to spot the non-zero mod *k*. If you want a hint,
+...factor in cycling frames.):
+
+```
+ 2-D pass #2: cinch-t (width = 27)
+
+    1. >GACCT/    5
+    2.  ..CCTGACAGC/   14
+    3.  .........GCCGCCCG/   22
+    4.  .........:CTGCCCGAACAC/   34
+    5.  .........:.........CACGAACG>   42
+        _________|_________|_______
+                 10        20        
+        GACCTGACAGCYGCCCGAACACGAACG
 ```
 
 ## Solved: seq6-koslip-snippet.txt (conditional mark_tela break)
