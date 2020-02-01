@@ -18,7 +18,7 @@ some of these cases, a duplicate sub-sequence to one maintained in the other
 some information in the new file name about how it was derived and/or what it 
 intended to be done.
 
-\* In surfing lingo, chowder is (annoying) flotsam and jetsam.
+<sup>\*</sup> In surfing lingo, chowder is (annoying) flotsam and jetsam. If you eat the chowder, you are crashing into it or tumbling over it. 
 
 ## Chowder to eat
 
