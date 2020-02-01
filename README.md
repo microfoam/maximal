@@ -8,11 +8,13 @@ Program options can be seen by running ./maximal without any options specified.
 Version v4.30 is the most recent stable version.
 Version v3.64 is the version associated with the most recent preprint (see 'Pointbreak/' sub-directory).
 Version numbers represent convenient prototype program development versions that increase in steps of 0.01.
-Version 4.00 is simply version the 400th version in the repository.
-
+Version 4.00 is simply the 400th version in the development repository.
+We are 'pre-release' of the first official release, a little bit of the 'journey is the destination' with public access.
+Nonetheless, at this moment we can say that the construction work has moved up from the south-east and south-west and joined here,
+carried out by two great armies of workers, and some angels.
 
 The file "maximal" currently corresponds to a MAC OS-compatible executible.
-Older code versions are saved in the "pointbreak" directory.
+Older code versions are saved in the "Pointbreak/" directory.
 
 _______________________________________________
 FILE: Surf_wavereport.(log|mha)
@@ -56,3 +58,4 @@ If this file is present it has record of newly identified "tricksy" strings with
 Typically, this file is committed after a -XX Fischer-Yates run and is named with additional version and run information.
 _______________________________________________
 
+*Last updated*: 1/31/2020
