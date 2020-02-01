@@ -78,7 +78,7 @@ Reverse-complement comes out like this:
 
 ```
 
-## Solved: *seq-146-v344_33-snippet.txt*: non-zero, adjacent mod-k's
+## Solved: *seq-146-v344_33-snippet.txt*, non-zero adjacent mod-*k*'s
 
 I just solved this sequence snippet, which previously necessitated nudging correction. I didn't think this case was possible because 
 of its apparent rarity (I actually assumed it was not possible by experience), but this involved adjacent nucleotides with non-zero mod *k*'s: (*k* % tela[n-1].all_k > 0).
@@ -99,7 +99,7 @@ I leave the correct cinch-t solution here as a reverse exercise. (Try to spot th
         GACCTGACAGCYGCCCGAACACGAACG
 ```
 
-## Solved: *seq6-koslip-snippet.txt* (conditional mark_tela break)
+## Solved: *seq6-koslip-snippet.txt*, conditional mark_tela break
 
 Previously cinch-t runs produced an auto-alignment that was correct but not optimal:
 ```
@@ -145,7 +145,7 @@ Post-cinch-k the 2-D auto-alignment now looks like this:
     TAGCGTGCACTGATC
 ```
 
-## Solved: *seq26-snippet.txt*: fractal splitting
+## Solved: *seq26-snippet.txt*, fractal splitting
 This was addressed in a recent v4.30 commit and the solution was pretty cool.
 Basically, this one involved splitting out a subset of repeats that was also
 being counted as fractal. So the (GA)x2 repeat gets cinched as (GA)x1 in 
@@ -236,7 +236,7 @@ This issue is now solved (latest v4.30 version):
 ```
 
 
-## Solved: *tubespit-17-symmetric.txt*: tricks in annotation
+## Solved: *tubespit-17-symmetric.txt*, tricks in annotation
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
 separated by four N's, which work as separators to prevent cinching across the
 segments. This combination of tricks allows a single sequence to be processed to display how both the
@@ -300,7 +300,7 @@ Compare to variant missing the 3-mer overlapping repeat:
         GTGCAGCTGACAnTATGCAnnTG
 ```
 
-## Solved: *vnd_NEE_Dsech-snippet_1.txt*: axiom testing
+## Solved: *vnd_NEE_Dsech-snippet_1.txt*, axiom testing
 This addresses an issue resulting from conversion to axiom testing in the cinch-t/cinch-k system,
 whereby cinch-t takes repeats in a moving window such that intra-repeat repeats only get taken
 in the first unit of a longer repeat with cinch-k taking the remaining intra-TR repeats afterwards.
