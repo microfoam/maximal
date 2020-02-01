@@ -222,7 +222,7 @@ int *x_history = NULL;
 		max_k = WIDTH;
 
 	if (dev_print(CINCH,__LINE__)) {
-		printf("Using max_k = %d.", max_k);
+		printf("Using max_k = %d.\n", max_k);
 	}
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
@@ -540,7 +540,7 @@ int *x_history = NULL;
 
 				/*** LAST CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
 				if (keep_checking || imperfect_TR) {
-					for (i=n+1; i<lenseq; i++) {
+					for (i=n+1; i<=lenseq; i++) {
 						if (tela[i].k && tela[i].x > n && tela[i].x < n+k && tela[i].y > m+cik_row) {
 							keep_checking = imperfect_TR = 0;
 							break;
@@ -576,7 +576,7 @@ int *x_history = NULL;
 								if ((letr=consensus[i]) != 'R' && letr != 'Y')
 									consensus[i] = consensus[i+k];
 							}
-							for (i = n-x+k; i+k < lenseq; i++) {
+							for (i = n-x+k; i+k <= lenseq; i++) {
 								consensus[i] = consensus[i+k];
 							}
 							consensus[i] = '\0';
