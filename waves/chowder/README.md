@@ -1,5 +1,5 @@
 # maximal/waves/chowder/ README
-The `chowder`* sub-directory contains sequence files currently under
+The `chowder`<sup>*</sup> sub-directory contains sequence files currently under
 attention or slated for attention during development of the *maximal* program.
 Because the benchmark scripts (typically base named `surfboard-cleanup_set_`) use
 sequences in the 'waves/tubespit' sub-directory, some chowder sequences will be
@@ -18,7 +18,7 @@ some of these cases, a duplicate sub-sequence to one maintained in the other
 some information in the new file name about how it was derived and/or what it 
 intended to be done.
 
-\*In surfing lingo, chowder is (annoying) flotsam and jetsam.
+\* In surfing lingo, chowder is (annoying) flotsam and jetsam.
 
 ## Chowder to eat
 
