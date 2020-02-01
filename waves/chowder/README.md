@@ -76,8 +76,8 @@ Reverse-complement comes out like this:
 
 ## Solved: seq-146-v344_33-snippet.txt: non-zero, adjacent mod-k's
 
-I just solved this after looking at it for a few seconds. I didn't think this was possible because 
-of its rarity, but this involved adjacent nucleotides with non-zero mod *k*'s: (*k* % tela[n-1].all_k > 0).
+I just solved this sequence snippet, which previously necessitated nudging correction. I didn't think this case was possible because 
+of its apparent rarity (I actually assumed it was not possible by experience), but this involved adjacent nucleotides with non-zero mod *k*'s: (*k* % tela[n-1].all_k > 0).
 
 I leave the correct cinch-t solution here as a reverse exercise. (Try to spot the non-zero mod *k*. If you want a hint,
 ...factor in cycling frames.):
