@@ -435,7 +435,13 @@ void mark_tela(void)
 					}
 					else 
 						Dtr = 0;
-				} 
+				}
+
+				/* EXAMPLE: seq-146-v344_33-snippet.txt */  /*******************/
+				if (tela[n-1].all_k && k>tela[n-1].all_k &&  k % tela[n-1].all_k ) {
+				                                            /*******************/
+					Dtr = 0; 
+				}
 
 				/* IF SUMMING PATHBOX DIAGONAL 4/4: START COUNTING REPEATS */
 				if (Dtr && (Dtr==Did || imperfect_TR)) {
