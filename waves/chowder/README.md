@@ -15,10 +15,12 @@ Often an interesting sequence problem is whittled down to a "knot", a snippet of
 a fuller sequence that isolates the interesting problem under investigation. In 
 some of these cases, a duplicate sub-sequence to one maintained in the other 
 `/waves` sub-directories will also be stored in `/waves/chowder` sometimes with 
-some information in the new file name about how it was derived and/or what it 
-intended to be done.
+some information in the new file name about how it was derived and/or how the
+desired solution should be.
 
-<sup>\*</sup> In surfing lingo, chowder is (annoying) flotsam and jetsam. If you eat the chowder, you are crashing into it or tumbling over it. 
+<sup>\*</sup> In surfing lingo, chowder is (annoying) flotsam and jetsam. If you eat the chowder, you are crashing into it or 
+at the very least tumbling over it.
+Outstanding (unsolved) chowder are prefaced with the header leader 'Chowder chunks:', while solved ones will have the header leader 'Solved:'.
 
 ## Chowder to eat
 
@@ -30,7 +32,7 @@ intended to be done.
 - [x] tubespit-17: strand symmetry (v4.30)
 - [x] vnd_NEE_Dsech-snippet_1: skip fractal repeats in first unit so that cinch-t does not flatline from equivalence violation (v4.29)
 
-## Chowder chunk: seq-64-snippet-Rnx_symmetry.txt 
+## Chowder chunk: *seq-64-snippet-Rnx_symmetry.txt* 
 A 9-mer repeat is skipped in the process of evaluating earlier overlapping repeats.
 This does not occur when the reverse complement is run. This behavior is elicited
 under '-x' sequeeze (hence '-Rnx' in the file name). This cinching issue was 
@@ -76,7 +78,7 @@ Reverse-complement comes out like this:
 
 ```
 
-## Solved: seq-146-v344_33-snippet.txt: non-zero, adjacent mod-k's
+## Solved: *seq-146-v344_33-snippet.txt*: non-zero, adjacent mod-k's
 
 I just solved this sequence snippet, which previously necessitated nudging correction. I didn't think this case was possible because 
 of its apparent rarity (I actually assumed it was not possible by experience), but this involved adjacent nucleotides with non-zero mod *k*'s: (*k* % tela[n-1].all_k > 0).
@@ -97,7 +99,7 @@ I leave the correct cinch-t solution here as a reverse exercise. (Try to spot th
         GACCTGACAGCYGCCCGAACACGAACG
 ```
 
-## Solved: seq6-koslip-snippet.txt (conditional mark_tela break)
+## Solved: *seq6-koslip-snippet.txt* (conditional mark_tela break)
 
 Previously cinch-t runs produced an auto-alignment that was correct but not optimal:
 ```
@@ -143,7 +145,7 @@ Post-cinch-k the 2-D auto-alignment now looks like this:
     TAGCGTGCACTGATC
 ```
 
-## Solved: seq26-snippet.txt
+## Solved: *seq26-snippet.txt*: fractal splitting
 This was addressed in a recent v4.30 commit and the solution was pretty cool.
 Basically, this one involved splitting out a subset of repeats that was also
 being counted as fractal. So the (GA)x2 repeat gets cinched as (GA)x1 in 
@@ -175,7 +177,7 @@ cinch-t and another (GA)x1 in cinch-k.
              10        20        30        40        50        
 ```
 
-## Solved: seq-016-cyc3_a_knot-Rn.txt
+## Solved: *seq-016-cyc3_a_knot-Rn.txt*
 This sequence was folded correctly but not optimal (in earlier versions now).
 The `Rn` designates this was from the first test type in `cleanup_set_all'.
 
@@ -234,7 +236,7 @@ This issue is now solved (latest v4.30 version):
 ```
 
 
-## Solved: tubespit-17-symmetric.txt
+## Solved: *tubespit-17-symmetric.txt*: tricks in annotation
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
 separated by four N's, which work as separators to prevent cinching across the
 segments. This combination of tricks allows a single sequence to be processed to display how both the
@@ -298,7 +300,7 @@ Compare to variant missing the 3-mer overlapping repeat:
         GTGCAGCTGACAnTATGCAnnTG
 ```
 
-## Solved: vnd_NEE_Dsech-snippet_1.txt 
+## Solved: *vnd_NEE_Dsech-snippet_1.txt*: axiom testing
 This addresses an issue resulting from conversion to axiom testing in the cinch-t/cinch-k system,
 whereby cinch-t takes repeats in a moving window such that intra-repeat repeats only get taken
 in the first unit of a longer repeat with cinch-k taking the remaining intra-TR repeats afterwards.
@@ -306,7 +308,6 @@ This is now solved for the first test case but will be kept in the chowder direc
 was to have `mark_tela()` clear small fractal repeats in the first unit of a longer repeat.
 This allows the longer repeat (9-mer here) to be cinched without violating equivalence prior to
 cinch-k. The 5'-AC dinucleotide repeat works here as a sentinel repeat of cinch-t flatlining. 
-Some additional aspects remain to be handled.
 
 ```
 2-D PASS #2: cinch-t [LONGEST *tANDEM REPEATS, k>1] (width = 39)
