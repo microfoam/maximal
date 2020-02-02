@@ -370,12 +370,19 @@ void mark_tela(void)
 	unsigned short int nuctransit=0, TRcheck=0, imperfect_TR=0, Aimperfect_TR=0, gapcheck=0;
 	int homopoly_flag=0, Did=0, Dtr=0, Atr=0;
 	unsigned short int checkconflict=0;
+	int transit_ctr = 0;
+	int transitloc[4] = {-1};
+	short unsigned int transitlocsize = 4;
 
 	if (nuctype == 1)		/* IF DNA */
 		nuctransit = 1;
 
 	for (n = 1; n<=lenseq; n++) {
 		for (m = 0; m < n; m++) {
+			transit_ctr = 0;;
+			for (i = 0; i<transitlocsize; i++)
+				transitloc[i] = -1; 
+
 			/* FOR ROW m LOOP 1/5: SLIDE DOWN TO ROW WITHIN POPULATED HEMIDIAGONAL */
 			if (n-m > WIDTH+1) 
 				m = n-WIDTH;
@@ -409,8 +416,11 @@ void mark_tela(void)
 					}
 					else if (tela[m+j].c == tela[n+j].c) 
 						Dtr += MATCH;	
-					else if (nuctransit && tela[m+j].e == tela[n+j].e)
+					else if (nuctransit && tela[m+j].e == tela[n+j].e && transit_ctr<transitlocsize) {
 						Dtr += TRANSITION;
+						transitloc[transit_ctr]=j;
+						transit_ctr++;
+					}
 					else {
 						Dtr = 0;
 						break;
@@ -441,6 +451,29 @@ void mark_tela(void)
 				if (tela[n-1].all_k && k>tela[n-1].all_k &&  k % tela[n-1].all_k ) {
 				                                            /*******************/
 					Dtr = 0; 
+				}
+
+				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPLEGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
+				if (imperfect_TR) {
+					int t = 0;
+					while ((j=transitloc[t]) != -1 && t<transitlocsize) {
+						for (int fract_k = 2; fract_k <= (int) k/2; fract_k++) {
+							for (i = fract_k; i < k-fract_k; i++) {
+								if (fract_k<=PISO && tela[m+i].all_k == fract_k && j>=i-fract_k && j<=i+span_allrk(m+i) && i+span_allrk(m+i)<=k) {
+									if (dev_print(TELA,__LINE__)) {
+										printf("Calling conflict between perfect and imperfect fractal TRs for parent " 
+												"k=%d at n=%d, transition at j=%d, and fractal TR at m+i=%d.", k, n, j, m+i); 
+									}
+									clearall_tela(i,1,-1,TWO);
+									push_clearall(i, 3);
+									Dtr=0;
+									t = transitlocsize; 	/* To cause break out of fract_k loop */
+									break; 					/* To break out of i loop */
+								}
+							}
+						}
+						t++;
+					}
 				}
 
 				/* IF SUMMING PATHBOX DIAGONAL 4/4: START COUNTING REPEATS */
@@ -1210,7 +1243,7 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 	return(violation);	/* RETURNS 1 IF CONTINUITY FAILS, 3 IF EQUIVALENCE FAILS, 4 IF BOTH FAIL */
 }
 
-/*********************************************/
+/****************************************************/
 int score_kmer(int n, int k, short unsigned int mode)
 {
 	if (!mode) {
