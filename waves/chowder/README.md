@@ -35,9 +35,10 @@ Outstanding (unsolved) chowder are prefaced with the header leader 'Chowder chun
 ## Chowder chunk: *seq-64-snippet-Rnx_symmetry.txt* 
 A 9-mer repeat is skipped in the process of evaluating earlier overlapping repeats.
 This does not occur when the reverse complement is run. This behavior is elicited
-under '-x' sequeeze (hence '-Rnx' in the file name). This cinching issue was 
+under '-x' squeeze (hence '-Rnx' in the file name). This cinching issue was 
 discovered while addressing an unrelated transition calling issue with the same 
-overlapping repeats (4-mer and 7-mer).
+overlapping repeats (4-mer and 7-mer). As explained below, after working on this 
+a bit additional aspects were revealed.
 
 Top strand comes out like this:
 ```
@@ -77,6 +78,70 @@ Reverse-complement comes out like this:
     GCCCTGGTTAGGGAAAAATACTGGGRGCGTGGAGCGTCGACTTG
 
 ```
+
+Okay, so this one actually got a bit more interesting for a couple of reasons.
+First, canceling of non-fractal overlapping repeats is not impossible but
+requires making sure to not cancel, or uncancelling previously overlapping
+repeats that are no longer overlapping. In addressing this aspect of
+overlapping repeats, which are now called in the program, I started to
+appreciate that this particular sequence is a special case of a repeat unit
+separated by an expanded mono-nucleotide tract. Such tracts are not called
+until the cinch-k module. So instead of canceling the 7-mer in this case, I
+concluded you actually want to cancel the 9-mer and leave it to cinch-d to 
+cinch up the 9-mer as a 7-mer!
+
+Take a look again, this time with some annotation added below the consensus row:
+
+```
+ 2-D pass #2: cinch-t (width = 46)
+    1. >CAAGTCGACGC/   11
+    2.  .......ACGCTCC/   18
+    3.  .......ACGCCCCCCACGCTCCCAG...
+    4.  .........:.........:.........:
+        _________|_________|_________|
+                 10        20        30
+        CAAGTCGACGCYCCCCACGCTCCCAG...
+        .......123456...123456.......
+
+ 2-D pass #4: cinch-k (width = 30)
+    1. >CA/    2
+    2.  .AGTCGACGC/   11
+    3.  ......ACGCTC/   17
+    4.  .........:.C/   18
+    5.  ......ACGCCC/   24
+    6.  .........:.C/   25
+    7.  .........:.C/   26
+    8.  .........:.CACGCTC/   33
+    9.  .........:.......C/   34
+   10.  .........:.......CAG...
+        _________|_________|_________|
+                 10        20        30        
+        CAGTCGACGCYCACGCTCAG...
+        ......123456123456.....
+
+ 2-D pass #6: cinch-d (width = 24)
+    1. >CA/    2
+    2.  .AGTCGACGC/   11
+    3.  ......ACGCTC/   17
+    4.  .........:.C/   18
+    5.  ......ACGCCC/   24
+    6.  .........:.C/   25
+    7.  .........:.C/   26
+    8.  .........:.C/   27
+    9.  ......ACGCTC/   33
+   10.  .........:.C/   34
+   11.  .........:.CAG...
+        _________|_________|
+                 10        20        
+        CAGTCGACGCYCAG...
+        ......123456.....
+```
+So *maximal* does this now, but it means that this still counts as chowder because we need to ensure strand symmetry.
+(Technical point: Incidentally, while working on this sequence I discovered that cinch-d had become hobbled because of an inverted
+less-than sign that should have been a greater-than-or-equal sign in evaluating score threshold! I must have missed
+it because I also recently increased the size of `PISO` to help prioritize chowder. Like the hobbling of cinch-d,
+elevating `PISO` also has the effect of increasing the benchmark average WCR's.)
+
 
 ## Solved: *seq-146-v344_33-snippet.txt*, non-zero adjacent mod-*k*'s
 
