@@ -1074,12 +1074,16 @@ int main(int argc, char *argv[])
 												f++;
 											if (f==1) {
 												tela[n].cyc_o = cyc_take.sym;		/* NO CONFLICT SO WILL BE TAKING THIS FRAME */
-												if (f > maxmemrows)			/* DEV-USE: MONITOR HOW MUCH OF MEMROWS IS BEING USED */
+												if (f > maxmemrows)	{		/* DEV-USE: MONITOR HOW MUCH OF MEMROWS IS BEING USED */
 													maxmemrows = f;
+													tela[0].mem[f] = 1;		/* BIT SLOT TO RECORD ROW HAS VALUES */
+												}
 											}
 											else {
-												if (f > maxmemrows)			/* DEV-USE: MONITOR HOW MUCH OF MEMROWS IS BEING USED */
+												if (f > maxmemrows)	{		/* DEV-USE: MONITOR HOW MUCH OF MEMROWS IS BEING USED */
 													maxmemrows = f;
+													tela[0].mem[f] = 1;		/* BIT SLOT TO RECORD ROW HAS VALUES */
+												}
 												conflict_flag = 1;
 												tela[n].cyc_o = cyc_skip.sym;
 												sumspan = tela[n].cyc_l;

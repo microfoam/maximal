@@ -396,4 +396,4 @@ cinch-k. The 5'-AC dinucleotide repeat works here as a sentinel repeat of cinch-
              10        20        30        
 ```
  
-*Last updated*: 1/31/2020 AJE
+*Last updated*: 2/2/2020 AJE
