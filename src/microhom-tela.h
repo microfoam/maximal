@@ -571,28 +571,30 @@ void mark_tela(void)
 					if (n>3 && !tela[n-1].all_k) { 
 						for (i=m+1; i<n; i++) {	
 							if ((fract_k=tela[i].all_k)) {
-								if (fract_k > (int) k/2) { 	/* TOO BIG TO BE AN ENCLOSED FRACTAL AND HIGHER K WINS */
-									char monoch = tela[i+fract_k-1].c;
+								if (fract_k > (int) k/2) { 	
 									short unsigned int mono_sep = 0;
-									for (j=i+fract_k; j<n; j++) {
-										if (tela[j].c != monoch)
-											break;
-									}
-									if (j==n) {						/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
-										mono_sep = 1;
-										clearall_tela(n,1,-1,TWO);
-										push_clearall(n, 3);
-									}
-									if (!mono_sep) {				/* CHECK AGAIN FOR MONO SEPARATOR BASED ON FIRST CHAR OF PRESENT K-MER */
-										monoch = tela[n].c;
+									if (i+fract_k < n) {
+										char monoch = tela[i+fract_k-1].c;
 										for (j=i+fract_k; j<n; j++) {
 											if (tela[j].c != monoch)
 												break;
 										}
-										if (j==n) {						/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
+										if (j==n) {				/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
 											mono_sep = 1;
 											clearall_tela(n,1,-1,TWO);
-											push_clearall(n, 4);
+											push_clearall(n, 3);
+										}
+										if (!mono_sep) {		/* CHECK AGAIN FOR MONO SEPARATOR BASED ON FIRST CHAR OF PRESENT K-MER */
+											monoch = tela[n].c;
+											for (j=i+fract_k; j<n; j++) {
+												if (tela[j].c != monoch)
+													break;
+											}
+											if (j==n) {			/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
+												mono_sep = 1;
+												clearall_tela(n,1,-1,TWO);
+												push_clearall(n, 4);
+											}
 										}
 									}
 									if (!mono_sep) {
