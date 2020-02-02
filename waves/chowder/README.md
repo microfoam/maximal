@@ -102,7 +102,6 @@ Take a look again, this time with some annotation added below the consensus row:
                  10        20        30
         CAAGTCGACGCYCCCCACGCTCCCAG...
         .......1234567..1234567...... <- the 7-mer, indexed with a third unit a bit away
-        ........123456789123456789... <- the 9-mer, indexed
 
  2-D pass #4: cinch-k (width = 30)
     1. >CA/    2
