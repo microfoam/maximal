@@ -88,7 +88,7 @@ appreciate that this particular sequence is a special case of a repeat unit
 separated by an expanded mono-nucleotide tract. Such tracts are not called
 until the cinch-k module. So instead of canceling the 7-mer in this case, I
 concluded you actually want to cancel the 9-mer and leave it to cinch-d to 
-cinch up the 9-mer as a 7-mer!
+cinch up the 9-mer as a 6-mer!
 
 Take a look again, this time with some annotation added below the consensus row:
 
@@ -101,7 +101,8 @@ Take a look again, this time with some annotation added below the consensus row:
         _________|_________|_________|
                  10        20        30
         CAAGTCGACGCYCCCCACGCTCCCAG...
-        .......123456...123456.......
+        .......1234567..1234567...... <- the 7-mer, indexed with a third unit a bit away
+        ........123456789123456789... <- the 9-mer, indexed
 
  2-D pass #4: cinch-k (width = 30)
     1. >CA/    2
@@ -117,7 +118,7 @@ Take a look again, this time with some annotation added below the consensus row:
         _________|_________|_________|
                  10        20        30        
         CAGTCGACGCYCACGCTCAG...
-        ......123456123456.....
+        ......123456123456..... <- the 6-mer, indexed
 
  2-D pass #6: cinch-d (width = 24)
     1. >CA/    2
@@ -134,7 +135,7 @@ Take a look again, this time with some annotation added below the consensus row:
         _________|_________|
                  10        20        
         CAGTCGACGCYCAG...
-        ......123456.....
+        ......123456..... <- the 6-mer, all cinched up
 ```
 So *maximal* does this now, but it means that this still counts as chowder because we need to ensure strand symmetry.
 (Technical point: Incidentally, while working on this sequence I discovered that cinch-d had become hobbled because of an inverted
