@@ -60,7 +60,6 @@ int main(int argc, char *argv[])
 	int a2D_n = 0;				/* NUMBER INDEX OF n FOR a2D_n */
 	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from tela[].r */
 	int relax_length=0;			/* FOR USE WITH relax_2D CALL */
-	int intraTR_reps_tot = 0; 	/* STORES INITIAL RETURN VALUE FROM cinch-d() */
 	int intraTR_reps = 0;	 	/* STORES CURRENT RETURN VALUE FROM cinch-d() */
 	int ralign_height = 0;	
 	int ralign_width = 0;
@@ -1464,6 +1463,8 @@ int main(int argc, char *argv[])
 	}
 	else {	
 		Cinches[i]->pass_W = Cinches[i-1]->pass_W;
+		if (!Nudge.pass_R)
+			printf("\n Nothing to nudgelize!");
 	}
 	Nudge.pass_Q = Current.pass_Q;
 
@@ -1478,23 +1479,16 @@ int main(int argc, char *argv[])
 			printf("Pre-cinch_d report:");
 		}
 	}
-	intraTR_reps_tot = intraTR_reps = cinch_d(0);
+	intraTR_reps = cinch_d(0);
 
-	if (intraTR_reps_tot == 0) {
-		printf(" Nothing left for cinch-d to cinch! \n");
-		print_2Dseq();
+	if (!intraTR_reps) {
+		printf(" Nothing left for cinch-d to cinch!\n");
 	}
-
-	if (intraTR_reps_tot > 0) {
+	else {
 		while (intraTR_reps > 0) {
 			intraTR_reps = cinch_d(1);
-			++Cinch_D.pass_R;
 		}
-		Cinch_D.pass_V = --Cinch_D.pass_R;	/* STORE d runs in PASS SLOT IN CASE FUTURE MODULES POST CINCH-D NEED IT */
-											/* NEED TO COUNT LIKE THIS FOR FOLLOWING REASONS: 			*/
-											/*  1. LAST RUN IS A CHECK RETURNING ZERO, SO RUNS NEED TO BE DECREMENTED BY 1. 	*/
-											/*  2. APPARENT LAST EFFECTIVE CINCH-D RUN MAY REVEAL A NEW CINCH-D OPPORTUNITY. 	*/
-											/* 	OTHERWISE COULD HAVE SET WHILE LOOP TO > 1 (DON'T DO THIS. )			*/
+		Cinch_D.pass_V = Cinch_D.pass_R;
 	}
 	Cinch_D.pass_Q = Current.pass_Q;
 

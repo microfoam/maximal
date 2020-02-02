@@ -886,13 +886,7 @@ char cid_align2D[MAXROW][MAXROW];
 										n+1, k, num_transits, translimit, PISO);
 						}
 					}
-					else if (num_transits > translimit) {
-						if (dev_print(CINCH,__LINE__)) {
-							printf("At n=%4d: Skipping k=%d, num_transits=%d, and translimit=%d as set by allowed_transits(k) and PISO=%d.", 
-										n+1, k, num_transits, translimit, PISO);
-						}
-					}
-					else {
+					else if (num_transits <= translimit) {
 						TR_check = 1;
 						++tot_repeats;
 						num = 2;		/* THIS KEEPS COUNT OF HOW MANY REPEATS. WITH ONE RE-PEAT COUNTED, THERE ARE TWO */
@@ -950,13 +944,16 @@ char cid_align2D[MAXROW][MAXROW];
 						if (imperfect_TR && score_transits(k,num_transits) <= score_DTHR(k)) {
 							break;
 						}
+						else {
+							++Cinch_D.pass_R;
+						}
 						m = 0;
 						while (isalpha(align2D[m][n+k]) == 0) {
 							m++;
 						}
 						if (dev_print(CINCH,__LINE__)) {
-							printf("Working on %2d-mer consensus TR (%dx) at position %4d, row %4d.", 
-												k, num, n, m);
+							printf("%4d. Working on %2d-mer consensus TR (%dx) at position %4d, row %4d.", 
+									Cinch_D.pass_R, k, num, n, m);
 						}
 
 						if (imperfect_TR == 1) {
@@ -1023,11 +1020,11 @@ char cid_align2D[MAXROW][MAXROW];
 				} /*********************************************************************************************/
 				else if (dev_print(CINCH,__LINE__)) {		/* ELSE IF PRE-CINCH-D AND DEV_PRINT OPTION */
 					if (imperfect_TR) 
-						printf("%4d. i-TR: %3dx %d-mer at consensus position %3d with %d transition(s).", uniq_TRs, num, k, n, num_transits);
+						printf("%4d. i-TR: %3dx %2d-mer at consensus position %3d with %d transition(s).", uniq_TRs, num, k, n, num_transits);
 					else if (nuctransit) 
-						printf("%4d. p-TR: %3dx %d-mer at consensus position %3d.", uniq_TRs, num, k, n);
+						printf("%4d. p-TR: %3dx %2d-mer at consensus position %3d.", uniq_TRs, num, k, n);
 					else 
-						printf("%4d. TR: %3dx %d-mer at consensus position %3d.", uniq_TRs, num, k, n);
+						printf("%4d. TR: %3dx %2d-mer at consensus position %3d.", uniq_TRs, num, k, n);
 				}
 			} /* END OF WHILE TR_check */
 
@@ -1035,14 +1032,17 @@ char cid_align2D[MAXROW][MAXROW];
 	} /* END OF FOR k LOOP */
 
 	i = Current.pass_V;
-	if (cinch_d_opt == 0 && tot_repeats == 0) {
-		Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
-		printf("\n");
+	if (!cinch_d_opt) {
+		if (!tot_repeats) {
+			Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
+			printf("\n");
+		}
+		else 
+			printf("\n");
 	}
-	else if (cinch_d_opt) {
+	else {
 		Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
 		if (cidwidth == Current.pass_W) {
-			print_2Dseq();
 			return(0);
 		}
 		else if (tot_repeats > 1 && opt_K.bit) {

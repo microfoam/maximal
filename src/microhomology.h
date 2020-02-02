@@ -960,11 +960,11 @@ int hr_len = min_len;					/* DEFAULT LENGTH OF HEADER BANNER */
 
 	if (Current.pass_V == 6) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf(" 2-D pass #%d: cinch-d (width = %d)\n\n", Current.pass_V, lcl_width);
+		printf(" 2-D pass #%d: cinch-d run %d (width = %d)\n\n", Current.pass_V, Cinch_D.pass_R, lcl_width);
 	}
 	else if (Current.pass_V == 5) {
 		printf("%.*s\n", hr_len, h_rule);
-		printf(" 2-D pass #%d: nudgelize (width = %d)\n\n", Current.pass_V, lcl_width);
+		printf(" 2-D pass #%d: nudgelize run %d (width = %d)\n\n", Current.pass_V, Nudge.pass_R, lcl_width);
 	}
 	else if (Current.pass_V == 4 || Current.pass_V == 6) {
 		printf("%.*s\n", hr_len, h_rule);
