@@ -9,7 +9,7 @@
 #define CYCMAX     60       /* SEMI-MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER EMBEDDED DECISIONS */
 #define MAXROW   2000       /* maximum input line size; NOT M-A-G-I-C JUST WHAT MY 'PUTERS CAN DO AS CURRENTLY WRITTEN */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
-#define MEMROWS    24       /* NUMBER OF mem[MEMROWS] ROWS IN STRUCT COORD ARRAY TELA */
+#define MEMROWS    23       /* NUMBER OF mem[MEMROWS] ROWS IN STRUCT COORD ARRAY TELA */
 							/* USE 1: BIT (0/1) VALUES FOR MARK_TELA MARKS ASSOCIATED WITH A SINGLE LOOP OF CLEAR_ALL PRECEDENCE */
 							/* USE 2: NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
 #define START       0       /* FOR USE WITH line_end() */
@@ -53,7 +53,7 @@ struct coord {
 	char t;			/* IUPAC TRANSITIONS IN DNA USUALLY (RY) IN "IMPERFECT" TANDEM REPEATS */
 	/*************************************************************************************************/
 	int  mem[MEMROWS];	/* Use 1: bits for clearall_tela() in mark_tela(), so that order of precedence can be easily edited */
-						/* Use 2: cycling frames; count-off column positions per unit; 32 - 7 = 25 */
+						/* Use 2: cycling frames; count-off column positions per unit; 32 - 9 = 23 */
 						/* one row/frame; row 0 is row # locator; MEMROWS IS BASED ON MEM AL. */
 	int all_k;		/* ALL SERIES: PRE-CINCH-T: k-MER SIZE                        */
 	int all_r;		/* ALL SERIES: PRE-CINCH-T: REPEAT NUMBER                     */
@@ -63,6 +63,7 @@ struct coord {
 	int all_R;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON RHS */
 	int all_L;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON LHS */
 	char stat;		/* ALL SERIES: PRE-CINCH-T: STATUS                            */
+	char stat2;		/* ALL SERIES: PRE-CINCH-T: STATUS                            */
 	/*************************************************************************************************/
 	int cyc_Lf;		/* Left-side overlapping TR */
 	int cyc_Rt;		/* Right-side overlapping TR */
@@ -181,8 +182,9 @@ struct {
 	cyc_take = {'x',120},		/* MHA cinch-t cycle frame evaluations         */
 	cyc_skip = {'o',111},		/* MHA cinch-t cycle frame evaluations         */
 	st_parent= {'p',112},		/* MHA mark_tela() status mark                 */
-	st_Fract = {'F', 70},		/* MHA mark_tela() status mark, orphan Fractal */
 	st_fract = {'f',102},		/* MHA mark_tela() status mark, confirmed fr.  */
+	st_Fract = {'F', 70},		/* MHA mark_tela() status mark, orphan Fractal */
+	st_overl = {'o', 79},		/* MHA mark_tela() status mark, overlapping    */
 	st_cycle = {'c', 99},		/* MHA mark_tela() status mark                 */
 	st_clash = {'!', 33},		/* MHA mark_tela() status mark                 */
 	st_skip0 = {'_', 95},		/* MHA mark_tela() status mark                 */

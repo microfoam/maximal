@@ -947,7 +947,7 @@ char cid_align2D[MAXROW][MAXROW];
 
 				if (cinch_d_opt && !opt_d.bit) {	/* CINCH-D ENGINE IF NOT opt_d (SKIP-CINCH-D CINCHING) */
 					if (first_write) {
-						if (imperfect_TR && score_transits(k,num_transits) > score_DTHR(k)) {
+						if (imperfect_TR && score_transits(k,num_transits) <= score_DTHR(k)) {
 							break;
 						}
 						m = 0;
@@ -956,7 +956,7 @@ char cid_align2D[MAXROW][MAXROW];
 						}
 						if (dev_print(CINCH,__LINE__)) {
 							printf("Working on %2d-mer consensus TR (%dx) at position %4d, row %4d.", 
-												k, num, n+1, m+1);
+												k, num, n, m);
 						}
 
 						if (imperfect_TR == 1) {
@@ -1023,11 +1023,11 @@ char cid_align2D[MAXROW][MAXROW];
 				} /*********************************************************************************************/
 				else if (dev_print(CINCH,__LINE__)) {		/* ELSE IF PRE-CINCH-D AND DEV_PRINT OPTION */
 					if (imperfect_TR) 
-						printf("%4d. i-TR: %3dx %d-mer at consensus position %3d with %d transition(s).", uniq_TRs, num, k, n+1, num_transits);
+						printf("%4d. i-TR: %3dx %d-mer at consensus position %3d with %d transition(s).", uniq_TRs, num, k, n, num_transits);
 					else if (nuctransit) 
-						printf("%4d. p-TR: %3dx %d-mer at consensus position %3d.", uniq_TRs, num, k, n+1);
+						printf("%4d. p-TR: %3dx %d-mer at consensus position %3d.", uniq_TRs, num, k, n);
 					else 
-						printf("%4d. TR: %3dx %d-mer at consensus position %3d.", uniq_TRs, num, k, n+1);
+						printf("%4d. TR: %3dx %d-mer at consensus position %3d.", uniq_TRs, num, k, n);
 				}
 			} /* END OF WHILE TR_check */
 

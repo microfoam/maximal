@@ -363,7 +363,7 @@ void mark_tela(void)
 {
 	int i, j, l, m, n, k, reps, span, min_k; 
 	int threshold=0, max_score=0, max_count=0;
-	int projection=0, projector=0, proj_k=0;
+	int projection=0, projector=0, proj_k=0, fract_k=0;
 	unsigned short int skip_break=0;
 	int lenseq = Clean.pass_W;
 	unsigned short int nuctype = Clean.pass_V;
@@ -374,8 +374,9 @@ void mark_tela(void)
 	int transitloc[4] = {-1};
 	short unsigned int transitlocsize = 4;
 
-	if (nuctype == 1)		/* IF DNA */
+	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
+	}
 
 	for (n = 1; n<=lenseq; n++) {
 		for (m = 0; m < n; m++) {
@@ -457,7 +458,7 @@ void mark_tela(void)
 				if (imperfect_TR) {
 					int t = 0;
 					while ((j=transitloc[t]) != -1 && t<transitlocsize) {
-						for (int fract_k = 2; fract_k <= (int) k/2; fract_k++) {
+						for (fract_k = 2; fract_k <= (int) k/2; fract_k++) {
 							for (i = fract_k; i < k-fract_k; i++) {
 								if (fract_k<=PISO && tela[m+i].all_k == fract_k && j>=i-fract_k && j<=i+span_allrk(m+i) && i+span_allrk(m+i)<=k) {
 									if (dev_print(TELA,__LINE__)) {
@@ -567,24 +568,54 @@ void mark_tela(void)
 					}
 					/* v4.30: MARK FRACTAL TR'S FOR CINCH-T TO SKIP, AND LEAVE FOR CINCH-K */
 					if (n>3 && !tela[n-1].all_k) { 
-						for (i=m+2; i<n; i++) {	/* m+2 BECAUSE THIS IS EARLIEST CAN HAVE A FRACTAL DINUCL REPEAT CALLED IN SHADOW */
-							if (tela[i].all_k && tela[n].all_S > tela[i].all_S) {
-								if (i==m && tela[m].all_k != k) {
-									if (tela[m-1].all_k)
-										;
-									else if (tela[m].all_k * tela[m].all_r <= n) {
-										tela[m].stat = st_Fract.sym;
-										push_clearall(m, 2);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
+						for (i=m+1; i<n; i++) {	
+							if ((fract_k=tela[i].all_k)) {
+								if (fract_k > (int) k/2) { 	/* TOO BIG TO BE AN ENCLOSED FRACTAL AND HIGHER K WINS */
+									char monoch = tela[i+fract_k-1].c;
+									short unsigned int mono_sep = 0;
+									for (j=i+fract_k; j<n; j++) {
+										if (tela[j].c != monoch)
+											break;
+									}
+									if (j==n) {						/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
+										mono_sep = 1;
+										clearall_tela(n,1,-1,TWO);
+										push_clearall(n, 3);
+									}
+									if (!mono_sep) {				/* CHECK AGAIN FOR MONO SEPARATOR BASED ON FIRST CHAR OF PRESENT K-MER */
+										monoch = tela[n].c;
+										for (j=i+fract_k; j<n; j++) {
+											if (tela[j].c != monoch)
+												break;
+										}
+										if (j==n) {						/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
+											mono_sep = 1;
+											clearall_tela(n,1,-1,TWO);
+											push_clearall(n, 3);
+										}
+									}
+									if (!mono_sep) {
+										tela[i].stat2 = st_overl.sym;
 									}
 								}
-								else if (i>m && tela[i].all_k * tela[i].all_r <= n && tela[i].all_k != k) {
-									if (i-tela[i].all_k >= m && tela[i].all_S == tela[i+k].all_S) {
-											tela[i].stat = st_fract.sym;
-											push_clearall(i, 1)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+								else if (i>m+1 && tela[n].all_S > tela[i].all_S) {	/* m+2 B/C IS EARLIEST CAN HAVE FRACTAL DINUCL REPEAT IN SHADOW */
+									if (i==m && tela[m].all_k != k) {
+										if (tela[m-1].all_k)
+											;
+										else if (tela[m].all_k * tela[m].all_r <= n) {
+											tela[m].stat = st_Fract.sym;
+											push_clearall(m, 2);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
+										}
 									}
-									else {
-										tela[i].stat = st_Fract.sym;
-										push_clearall(i, 2)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+									else if (i>m && tela[i].all_k * tela[i].all_r <= n && tela[i].all_k != k) {
+										if (i-tela[i].all_k >= m && tela[i].all_S == tela[i+k].all_S) {
+												tela[i].stat = st_fract.sym;
+												push_clearall(i, 1)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+										}
+										else {
+											tela[i].stat = st_Fract.sym;
+											push_clearall(i, 2)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+										}
 									}
 								}
 							}
@@ -984,6 +1015,13 @@ int lenseq = Clean.pass_W;
 	for (i=a; i<=b; i++) {
 		if (tela[i].stat)
 			printf("%3c", tela[i].stat);
+		else
+			printf("  .");
+	}
+	printf("\nol:");
+	for (i=a; i<=b; i++) {
+		if (tela[i].stat2)
+			printf("%3c", tela[i].stat2);
 		else
 			printf("  .");
 	}
