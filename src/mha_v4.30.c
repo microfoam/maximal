@@ -1437,6 +1437,9 @@ int main(int argc, char *argv[])
 	if (cinchled) {
 		print_2Dseq();
 	}
+	else
+		printf("\n Nothing for cinch-l to cinch.");
+
 	Cinch_L.pass_Q = Current.pass_Q;
 
 	/********* 4. cinch_k MODULE: HANDLES k-mers FROM SIZE WIDTH DOWN TO k=1 ***********/
@@ -1444,6 +1447,9 @@ int main(int argc, char *argv[])
 
 	Cinch_K.pass_R = cinch_k();
 	Cinch_K.pass_Q = Current.pass_Q;
+	if (!Cinch_K.pass_R)
+		printf("\n Nothing for cinch-k to cinch.");
+
 	if (dev_print(MAIN,__LINE__)) {
 		print_tela(prtela_A, prtela_B);
 	}
@@ -1460,7 +1466,7 @@ int main(int argc, char *argv[])
 	else {	
 		Cinches[i]->pass_W = Cinches[i-1]->pass_W;
 		if (!Nudge.pass_R)
-			printf("\n Nothing to nudgelize!");
+			printf("\n Nothing for nudgelize to nudge.");
 	}
 	Nudge.pass_Q = Current.pass_Q;
 
@@ -1478,7 +1484,7 @@ int main(int argc, char *argv[])
 	intraTR_reps = cinch_d(0);
 
 	if (!intraTR_reps) {
-		printf(" Nothing left for cinch-d to cinch!\n");
+		printf(" Nothing for cinch-d to cinch.\n");
 	}
 	else {
 		while (intraTR_reps > 0) {
@@ -1684,7 +1690,12 @@ int main(int argc, char *argv[])
 				printf("No effective cinch-t cinches taken.\n");
 			break;												/*  "cinch-x" VERSUS 'cinch_x' programming calls 				*/ 
 		case 3:													/*  USEFUL FOR SEARCHING CODE.									*/
-			printf("%s post cinch-l   [pass #3: %d run(s)]\n", letr_unit, Cinch_L.pass_R);
+			if (!Cinch_L.pass_R)
+				printf("%s post cinch-l   [pass #3]\n", letr_unit);
+			else if (Cinch_L.pass_R == 1)
+				printf("%s post cinch-l   [pass #3: one run]\n", letr_unit);
+			else if (Cinch_L.pass_R > 1)
+				printf("%s post cinch-l   [pass #3: %d runs]\n", letr_unit, Cinch_L.pass_R);
 			break;
 		case 4:	
 			if (!Cinch_K.pass_V)

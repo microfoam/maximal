@@ -606,7 +606,7 @@ int *x_history = NULL;
 
 		if (cik_row > 0) {
 			mha_writeback(cik_align2D, align2D); 
-			printf("\n\n Next: cinch-k for k = %d...", k);
+			printf("\n Next: cinch-k for k = %d...", k);
 			print_2Dseq();
 		}
 
