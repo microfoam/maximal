@@ -862,14 +862,15 @@ void mark_tela(void)
 					while (max_count > 1)
 						max_count = settle_tiescores(n, span, max_score, j++);
 				}
-				else {
-					for (int p=n; p<=n+span; p++) {
-						if (tela[p].all_S && tela[p].all_S != max_score)
-							push_clearall(p, 15);
-					}
-					clearall_tela(n, span, max_score, ONE);			/* O-F-F, ONE, OR TWO */
-					if (dev_print(TELA,__LINE__)) {
-						printf("         mark_tela engaging clearall_tela(ONE) at n=%d.", n);
+				else if (ON) {
+					for (i=n; i<=n+span; i++) {
+						if (tela[i].all_S && tela[i].all_S != max_score) {
+							push_clearall(i, 15);
+							clearall_tela(i, 1, -1, ONE);			/* O-F-F, ONE, OR TWO */
+							if (dev_print(TELA,__LINE__)) {
+								printf("         mark_tela engaging clearall_tela(ONE) at i=%d.", i);
+							}
+						}
 					}
 				}
 			}

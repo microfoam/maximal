@@ -574,9 +574,9 @@ int main(int argc, char *argv[])
 		}
 		Seq_r[lenseq] = Term->sym;
 		strcpy(Seq, Seq_r);
-		if (opt_v.val) {			/* opt_v VERBOSITY */
-			printf("\nReverse Complement: \"");
-			for (i = 0; Seq_r[i] != '\0'; i++)
+		if (opt_v.bit) {			/* opt_v VERBOSITY */
+			printf("\nReverse complement: \n\"");
+			for (i = 0; i<lenseq; i++)
 				printf("%c", Seq_r[i]);
 			printf("\"\n");
 		}
