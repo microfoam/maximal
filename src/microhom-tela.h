@@ -447,10 +447,12 @@ void mark_tela(void)
 						Dtr = 0;
 				}
 
-				/* EXAMPLE: seq-146-v344_33-snippet.txt */  /*******************/
-				if (tela[n-1].all_k && k>tela[n-1].all_k &&  k % tela[n-1].all_k ) {
-				                                            /*******************/
-					Dtr = 0; 
+				/** MOD TEST. EXAMPLE: seq-146-v344_33-snippet.txt **/
+				if (tela[n-1].all_k && k>tela[n-1].all_k && k % tela[n-1].all_k) {
+					if (k-tela[n-1].all_k <= PISO) {
+						push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+						Dtr = 0; 
+					}
 				}
 
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPLEGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
