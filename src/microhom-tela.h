@@ -447,17 +447,25 @@ void mark_tela(void)
 						Dtr = 0;
 				}
 
-				/** MOD TEST. EXAMPLE: seq-146-v344_33-snippet.txt **/
-				if (tela[n-1].all_k && k>tela[n-1].all_k && k % tela[n-1].all_k) {
-					if (k-tela[n-1].all_k <= PISO) {
+				/** MOD TESTS. Example for if part: seq-146-v344_33-snippet.txt    **/
+				/**            Example for if else part: seq-15-cycle4-snippet.txt **/
+				if (tela[n-1].all_k) {
+					int prev_k = tela[n-1].all_k;
+					if (k>prev_k && k % prev_k && k-prev_k <= PISO) {
 						push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+						push_clearall(n,1);
 						Dtr = 0; 
 					}
+					else if (k==2 && prev_k>k && prev_k % k && n-prev_k < n-1 && tela[n-prev_k].all_k != k && n+k < projection) {
+						push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+						push_clearall(n,1);
+						Dtr = 0; 
+					}	
 				}
 
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPLEGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
 				/* IF SO, CANCEL TR AT n */
-				if (imperfect_TR) {
+				if (Dtr && imperfect_TR) {
 					int t = 0;
 					while ((j=transitloc[t]) != -1 && t<transitlocsize) {
 						for (fract_k = 2; fract_k <= (int) k/2; fract_k++) {
@@ -517,6 +525,7 @@ void mark_tela(void)
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
 							tela[n].all_r = reps;
 							push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+
 							if (n+k*reps > projection) {
 								/* BEFORE ADVANCING PROJECTION, CHECK TO SEE IF THIS TR CALL IS COVERING A FRACTAL REPEAT OF SMALLER K.  */	
 								/* RECALL THAT A FRACTAL TR (k>1) CAN ONLY EXIST STARTING AT THE THIRD COLUMN OF EACH UNIT OF PARENT TR. */
@@ -580,18 +589,18 @@ void mark_tela(void)
 											if (tela[j].c != monoch)
 												break;
 										}
-										if (j==n) {				/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
+										if (j==n) {			/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
 											mono_sep = 1;
 											clearall_tela(n,1,-1,TWO);
 											push_clearall(n, 3);
 										}
-										if (!mono_sep) {		/* CHECK AGAIN FOR MONO SEPARATOR BASED ON FIRST CHAR OF PRESENT K-MER */
+										if (!mono_sep) {	/* CHECK AGAIN FOR MONO SEPARATOR BASED ON FIRST CHAR OF PRESENT K-MER */
 											monoch = tela[n].c;
 											for (j=i+fract_k; j<n; j++) {
 												if (tela[j].c != monoch)
 													break;
 											}
-											if (j==n) {			/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
+											if (j==n) {		/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
 												mono_sep = 1;
 												clearall_tela(n,1,-1,TWO);
 												push_clearall(n, 4);
