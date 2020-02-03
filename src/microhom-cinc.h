@@ -1041,14 +1041,20 @@ char cid_align2D[MAXROW][MAXROW];
 	}
 	else {
 		Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
-		if (cidwidth == Current.pass_W) {
+		if (!cid_ncol) {
+			opt_K.bit = 1;						/* EVEN IF NOT OPTIONED, GOOD TO SHOW FOR LAST RUN */
+			print_2Dseq();
 			return(0);
 		}
-		else if (tot_repeats > 1 && opt_K.bit) {
+		else if (tot_repeats > 1 && opt_K.bit && !opt_v.bit) {
 			cidwidth = Current.pass_W;
 			opt_K.bit = 0;					/* TEMPORARY ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
 			consensus_2D(0, Current.pass_W);
 			opt_K.bit = 1;					/* REASSIGN SETTING */
+		}
+		else if (tot_repeats > 1 && opt_v.bit) {
+			cidwidth = Current.pass_W;
+			print_2Dseq();
 		}
 		else if (tot_repeats > 1) {
 			cidwidth = Current.pass_W;
@@ -1056,7 +1062,9 @@ char cid_align2D[MAXROW][MAXROW];
 		}
 		else { 
 			cidwidth = Current.pass_W;
-			print_2Dseq();
+			opt_K.bit = 0;					/* TEMPORARY ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
+			consensus_2D(0, Current.pass_W);
+			opt_K.bit = 1;					/* REASSIGN SETTING */
 		}
 	}
 	return(tot_repeats);
