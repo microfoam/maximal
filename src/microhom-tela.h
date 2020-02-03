@@ -454,6 +454,7 @@ void mark_tela(void)
 				}
 
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPLEGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
+				/* IF SO, CANCEL TR AT n */
 				if (imperfect_TR) {
 					int t = 0;
 					while ((j=transitloc[t]) != -1 && t<transitlocsize) {
@@ -464,9 +465,9 @@ void mark_tela(void)
 										printf("Calling conflict between perfect and imperfect fractal TRs for parent " 
 												"k=%d at n=%d, transition at j=%d, and fractal TR at m+i=%d.", k, n, j, m+i); 
 									}
-									clearall_tela(m+i,1,-1,TWO);
-									push_clearall(m+i,1);
-									push_clearall(n  ,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+									clearall_tela(n,1,-1,TWO);
+									push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+									push_clearall(n,1);
 									Dtr=0;
 									t = transitlocsize; 	/* To cause break out of fract_k loop */
 									break; 					/* To break out of i loop */
