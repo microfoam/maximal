@@ -198,7 +198,8 @@ unsigned short int homopolyflag=0, imperfect_TR=0;
 int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
 char letr, letr2, letr3;
 char blnk = Fill->sym;				/* opt_B fill character */
-int max_k = Cinch_T.pass_V - 1;		/* MAX k-SIZE FROM mark_tela() but stored here b/c mark_tela() called by cinch-t block */
+int max_k = WIDTH/2;
+
 int lenseq = Clean.pass_W;
 int symbol_count = 0;
 char cik_align2D[MAXROW][MAXROW] = {{0}};
@@ -218,8 +219,8 @@ int *x_history = NULL;
 	if (dev_print(CINCH,__LINE__)) {
 		printf("Post cinch-t max_k = %d. Cinch_T.pass_Q = %d", max_k, Cinch_T.pass_Q);
 	}
-	if (max_k<1 || Cinch_T.pass_Q!=1000)
-		max_k = WIDTH;
+	if (Cinch_T.pass_V<1)
+		max_k = 1;
 
 	if (dev_print(CINCH,__LINE__)) {
 		printf("Using max_k = %d.\n", max_k);
