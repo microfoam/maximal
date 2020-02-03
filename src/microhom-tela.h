@@ -380,7 +380,7 @@ void mark_tela(void)
 
 	for (n = 1; n<=lenseq; n++) {
 		for (m = 0; m < n; m++) {
-			transit_ctr = 0;;
+			transit_ctr = 0;
 			for (i = 0; i<transitlocsize; i++)
 				transitloc[i] = -1; 
 
@@ -419,8 +419,7 @@ void mark_tela(void)
 						Dtr += MATCH;	
 					else if (nuctransit && tela[m+j].e == tela[n+j].e && transit_ctr<transitlocsize) {
 						Dtr += TRANSITION;
-						transitloc[transit_ctr]=j;
-						transit_ctr++;
+						transitloc[transit_ctr++]=j;
 					}
 					else {
 						Dtr = 0;
@@ -465,9 +464,9 @@ void mark_tela(void)
 										printf("Calling conflict between perfect and imperfect fractal TRs for parent " 
 												"k=%d at n=%d, transition at j=%d, and fractal TR at m+i=%d.", k, n, j, m+i); 
 									}
-									clearall_tela(i,1,-1,TWO);
-									push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-									push_clearall(i,1);
+									clearall_tela(m+i,1,-1,TWO);
+									push_clearall(m+i,1);
+									push_clearall(n  ,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 									Dtr=0;
 									t = transitlocsize; 	/* To cause break out of fract_k loop */
 									break; 					/* To break out of i loop */
