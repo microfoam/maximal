@@ -553,7 +553,6 @@ void mark_tela(void)
 									tela[n-proj_k].stat = st_fract.sym;		/* MATCHING PAIR */
 									i = n-proj_k-1;
 									while (tela[i].all_k == k && tela[i].stat == st_cycle.sym && i>=projector-proj_k && tela[i].all_r<2) {
-										printf("\n n=%d, projector=%d, projector-proj_k=%d, i=%d", n, projector, projector-proj_k, i);
 										clearall_tela(i,1,-1,TWO);
 										push_clearall(i, 2);
 										i--;

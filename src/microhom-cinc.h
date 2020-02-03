@@ -607,9 +607,7 @@ int *x_history = NULL;
 		if (cik_row > 0) {
 			mha_writeback(cik_align2D, align2D); 
 			printf("\n\n Next: cinch-k for k = %d...", k);
-
-			if (k > 1)	/* k=1 WILL PRINT FROM MAIN */
-				print_2Dseq();
+			print_2Dseq();
 		}
 
 		Cinch_K.pass_V += cik_row;			/* STORE ROWS ADDED */

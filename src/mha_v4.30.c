@@ -55,32 +55,31 @@ int main(int argc, char *argv[])
 	unsigned int FY_size = 100;				/* DEFAULT SIZE OF FISHER-YATES RANDOMIZED STRING */
 
 	int homopolyend_flag=0, overslip=0, TRcheck = 0;
-	short unsigned int cycle_flag=0;
+	unsigned int recovery_flag = 0;
 
 	int a2D_n = 0;				/* NUMBER INDEX OF n FOR a2D_n */
 	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from tela[].r */
 	int relax_length=0;			/* FOR USE WITH relax_2D CALL */
+	char blank = Fill->sym;					/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
+
 	int intraTR_reps = 0;	 	/* STORES CURRENT RETURN VALUE FROM cinch-d() */
 	int ralign_height = 0;	
 	int ralign_width = 0;
-	unsigned int recovery_flag = 0;
+	char ch = blank;
 
+	int badslip_type = 0;
 	int Did = 0;				/* Counter for identity (id) diagonal */
 	int Dtr = 0;				/* Counter for tandem repeat (tr) diagonal */
 	int Atr = 0;				/* Counter for additional repeats on the same diagonal */
-	char blank = Fill->sym;					/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
 
 	float ratio1 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post cinch-d, pre relax-2D 	*/
 	float ratio2 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post relax-2D 				*/
 
-	int badslip_type = 0;
 	int scooch = 0;
 	int maxmemrows = 0;			/* cinch_t() max memrows */
-	char ch = blank;
-
-	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
 	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
 
+	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
 	char cycle[WIDTH+1];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
 	char Seq_head[100] = {0};	/* FASTA HEADER */
 	char Seq_i[MAXROW] = "TGTGTGAGTGAnnnnnnTGTGTGAGTGAGnnnnnTGTGTGAGTGAGTGAnnTGTGTGAGTGAGTGAGT"; 	/* INPUT SEQUENCE W/ DEFAULT */
@@ -1044,7 +1043,6 @@ int main(int argc, char *argv[])
 	
 								/* IF CYCLE REPEAT, STORE CYCLE RUN. CYCLIC REPEATS CAN BE REPEATS IN MORE THAN ONE FRAME. MUST BE >2k */
 								i = 0;			/* CYCLE[] ARRAY INDEX */
-								cycle_flag = 0;	
 								for (j = -1; j < r; j++) {				/* r = reps BECAUSE THIS IS IN ELSE EXIT LOOP */
 									for (l = 0; l < k; l++) 
 										cycle[i++] = tela[(n + j*k + l)].c; 	/* STORE WHOLE REPEAT */
@@ -1268,7 +1266,7 @@ int main(int argc, char *argv[])
 												Current.pass_R += badslip_type;
 												sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 												if (dev_print(MAIN,__LINE__)) {
-													printf("badslip type %d at n=%d for k=%d with TR at cycto=%d, series=%d.", badslip_type, n, k, cycto, series);
+													printf("badslip type %d at n=%d (k=%d) w/ TR at cycto=%d, ser.=%d.", badslip_type, n, k, cycto, series);
 												}
 	
 												a2D_n = tela[n].x+k; 
@@ -1279,7 +1277,6 @@ int main(int argc, char *argv[])
 								}
 	
 								if (tela[n].o > 2*k) {
-									cycle_flag = 1;		/* THIS BIT CAN BE USED TO ADD CYCLE NOTATION TO END OF LINE */
 									if (dev_print(MAIN,__LINE__)) {
 										printf("%d-mer cycle sequence of length %2d starting at %4d (n=%d): %s.", k, tela[n].o, n-k, n, cycle);
 									}
@@ -1446,7 +1443,6 @@ int main(int argc, char *argv[])
 	++Current.pass_V;
 
 	Cinch_K.pass_R = cinch_k();
-	cycle_flag = print_2Dseq();
 	Cinch_K.pass_Q = Current.pass_Q;
 	if (dev_print(MAIN,__LINE__)) {
 		print_tela(prtela_A, prtela_B);
@@ -1454,7 +1450,7 @@ int main(int argc, char *argv[])
 
 	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT ***************/
 	i = ++Current.pass_V;
-	if (cycle_flag || align2D[0][0] == blank) {
+	if (Cinch_K.pass_Q!=1000 || align2D[0][0] == blank) {
 		++Nudge.pass_R;
 
 		while (nudgelize() && Nudge.pass_R < CYCMAX) {	
