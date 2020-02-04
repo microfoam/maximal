@@ -410,6 +410,7 @@ short unsigned int checktransit=0;					/* BIT FLAG FOR CHECKING GOOD TRANSITION 
 char blnk = Fill->sym; 
 char letr=blnk, ltr2=blnk, conletr=blnk;
 int con_maxrows=26;
+int checktransit_n = -1;
 int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
                                        		/* ROW m=0 FOR COUNTER */
 											/* ROW m=1 FOR CONSENSUS */
@@ -514,15 +515,13 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 			consensus[n] = letr;
 			plustransit = 0;
 			if (Current.pass_V) { /* IF PASS NUMBER */
-				sprintf(dev_notes, "checktransit=%d at n=%d", checktransit, n);
-				if (dev_print(LOGY,__LINE__)) {
-					printf("checktransit=%d at n=%d.\n", checktransit, n);
-				}
+				checktransit_n = n;
+				sprintf(dev_notes, "checktransit=%d at n=%d", checktransit, checktransit_n);
 			}
 		}
 		else if (plustransit)
 			++consensus_ar[0][n+1];
-	}
+	} /* END OF FOR n LOOP */
 
 	if (opt_K.bit) {							/* opt_K SHOW CONSENSUS ROW */	
 		/* PRINT CONSENSUS ROWS */
@@ -536,6 +535,17 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 					printf(".");
 			}
 			printf("\n");
+			if (checktransit_n >= 0) {
+				line_end(BLOCKHEAD, 9, 9);
+				printf(" ");							/* OPEN CONSENSUS PARENTHESES */
+				for (n = n_start; n < n_end; n++) {
+					if (n==checktransit_n)
+						printf("%c", '*'); 
+					else
+						printf(".");
+				}
+				printf(" <= check transition\n");
+			}
 		}
 		if (badsites > 0) {
 			line_end(BLOCKHEAD, 9, 9);	

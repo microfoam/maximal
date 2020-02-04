@@ -897,6 +897,11 @@ int main(int argc, char *argv[])
 						}
 					}
 	
+					/* SOMETIMES MARK_TELA() CANCELED A HIGHER K AT THIS COLUMN: NEED TO CHECK AND DEAL ACCORDINGLY */
+					if (OFF && Dtr && k != tela[n].all_k) {
+						Dtr = imperfect_TR = 0;
+					}
+
 					/* IF SUMMING PATHBOX DIAGONAL 6/: START COUNTING REPEATS */
 					if (Dtr && (Dtr==Did || imperfect_TR)) {
 						/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
@@ -991,6 +996,7 @@ int main(int argc, char *argv[])
 							}
 						}
 					}
+
 					/* IF SUMMING PATHBOX DIAGONAL 8/:  1st MEASUREMENT OF TANDEM REPEAT (TR) */ 
 					if (Dtr==Did || imperfect_TR) {	
 						tela[n].Dtr = Dtr;		/* SAVE Dtr SCORE */
@@ -1885,16 +1891,16 @@ int main(int argc, char *argv[])
 	
 	if (!opt_s.bit) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4d\t%.3f\tNDG:%2d (%d)\tRND:%.*s\t%38s (%c) (%4d %s) REC:%4d\tM:%2d\t%s\n", 
-				version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, Nudge.pass_V, opt_X.val, "XX", 
+		fprintf(fp_out, "v%s\t%.20s\t x%d\t%4d\t%.3f\tNDG:%2d \tRND:%.*s\t%38s (%c) (%4d %s) REC:%4d\tM:%2d\t%s\n", 
+				version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, opt_X.val, "XX", 
 				file_name, Strand->sym, Clean.pass_W, letr_unit, Recover.pass_Q, maxmemrows+1, dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (Current.pass_Q != 1000 || Nudge.pass_R > CYCMAX) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4d\t%.3f\tNDG:%2d (%d)\tRND:-%.*s\t%s (%c) (%d %s) REC:%4d\t%s\n", 
-					version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, Nudge.pass_V, opt_X.val, "XX", 
+			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4d\t%.3f\tNDG:%2d \tRND:-%.*s\t%s (%c) (%d %s) REC:%4d\t%s\n", 
+					version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, opt_X.val, "XX", 
 					file_name, Strand->sym, Clean.pass_W, letr_unit, Recover.pass_Q, dev_notes);
 			for(n = 0; n<lenseq; n++) {
 				fprintf(fp_tricksy, "%c", tela[n].c);
