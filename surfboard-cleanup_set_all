@@ -812,5 +812,5 @@ fi
 ./maximal -CRnx waves/tubespit/seq-154-v427_cycABs.txt
 
 ./surfboard-checkmha
-echo 'Last commit benchmark WCR average: 0.510378 --> 0.510295 --> 0.510451' | tee -a corduroy.log
+echo 'Last commit benchmark WCR average: 0.510378 --> 0.510295 --> 0.510451 --> 0.510514 (0 checktransits)' | tee -a corduroy.log
 echo

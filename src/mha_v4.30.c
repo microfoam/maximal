@@ -897,8 +897,8 @@ int main(int argc, char *argv[])
 						}
 					}
 	
-					/* SOMETIMES MARK_TELA() CANCELED A HIGHER K AT THIS COLUMN: NEED TO CHECK AND DEAL ACCORDINGLY */
-					if (OFF && Dtr && k != tela[n].all_k) {
+					/* SOMETIMES MARK_TELA() CANCELED A HIGHER IMPERFECT K-MER AT THIS COLUMN: NEED TO CHECK AND DEAL ACCORDINGLY */
+					if (Dtr && k != tela[n].all_k && imperfect_TR) {
 						Dtr = imperfect_TR = 0;
 					}
 
