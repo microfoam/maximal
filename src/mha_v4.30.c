@@ -1716,16 +1716,12 @@ int main(int argc, char *argv[])
 				printf("%s post nudgelize [pass #5]\n", letr_unit);
 			else if (Nudge.pass_R == 1) {	
 				if (Nudge.pass_V == 3)
-					printf("%s post nudgelize [pass #5: %d run; nudge-cyclelized TR]\n", letr_unit, Nudge.pass_R);
-				else if (Nudge.pass_V == 4)
-					printf("%s post nudgelize [pass #5: %d run; tip-cyclelized TR]\n", letr_unit, Nudge.pass_R);
+					printf("%s post nudgelize [pass #5: one nudge was required]\n", letr_unit);
 			}
 			else if (Nudge.pass_R <= CYCMAX) {	/* IN WHICH CASE k WILL BE NON-ZERO */
 				if (Nudge.pass_V == 3)
-					printf("%s post nudgelize [pass #5: %d runs of nudging]\n", letr_unit, Nudge.pass_R);
+					printf("%s post nudgelize [pass #5: %d nudges were required]\n", letr_unit, Nudge.pass_R);
 			}
-			else 							/* IN WHICH CASE cyc runs >> CYCMAX */
-				printf("%s post nudgelize [pass #5: reverted after %d runs due to gnarly micro-foam]\n", letr_unit, Nudge.pass_R-CYCMAX*1000);
 			break;
 		case 6:	
 			if (Cinch_D.pass_R) {
