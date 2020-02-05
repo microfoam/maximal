@@ -136,7 +136,8 @@ Take a look again, this time with some annotation added below the consensus row:
         CAGTCGACGCYCAG...
         ......123456..... <- the 6-mer, all cinched up
 ```
-So *maximal* does this now, but it means that this still counts as chowder because we need to ensure strand symmetry.
+So *maximal* does this now, but it means that this still counts as chowder because we need to ensure strand symmetry. :thinking:
+
 (Technical point: Incidentally, while working on this sequence I discovered that cinch-d had become hobbled because of an inverted
 less-than sign that should have been a greater-than-or-equal sign in evaluating score threshold! I must have missed
 it because I also recently increased the size of `PISO` to help prioritize chowder. Like the hobbling of cinch-d,
@@ -283,6 +284,9 @@ And it can fold like this:
 ```
 This implies that C = A and D = B. So the sequence is actually 5'-AABABAABAB.
 
+:sweat_smile:
+
+
 ## Solved: *seq6-koslip-snippet.txt*, conditional mark_tela break
 
 Previously cinch-t runs produced an auto-alignment that was correct but not optimal:
@@ -311,10 +315,9 @@ The mark_tela() code block was exapted from a cinch-t block and like cinch-t, ma
 2-D column *n* at row *m* as soon as it found a repeat, thus favoring higher *k*-mer size. The problem for mark_tela() functionality is that
 a fractal repeat might be obscured by a cycling repeat frame of the parent TR containing the fractal. 
 This is important because cinch-t needs to skip fractal repeats, which are then addressed by cinch-k.
-Now mark_tela() senses whether this column is obscuring a smaller fractal *k*. I didn't know for a few days
-how I would eventually solve this, but I am pretty happy with the simplicity of this solution.
-Post-cinch-k the 2-D auto-alignment now looks like this:
+Now mark_tela() senses whether this column is obscuring a smaller fractal *k*. 
 
+Post-cinch-k the 2-D auto-alignment now looks like this:
 ```
  2-D pass #4: cinch-k (width = 15)
 
@@ -328,6 +331,9 @@ Post-cinch-k the 2-D auto-alignment now looks like this:
              10        
     TAGCGTGCACTGATC
 ```
+I didn't know for a few days how I would eventually solve this, but I am pretty happy with the simplicity of this solution.
+
+:smiley:
 
 ## Solved: *seq26-snippet.txt*, fractal splitting
 This was addressed in a recent v4.30 commit and the solution was pretty cool.
@@ -360,6 +366,9 @@ cinch-t and another (GA)x1 in cinch-k.
     _________|_________|_________|_________|_________|____
              10        20        30        40        50        
 ```
+
+:heart_eyes:
+
 
 ## Solved: *seq-016-cyc3_a_knot-Rn.txt*
 This sequence was folded correctly but not optimal (in earlier versions now).
@@ -419,6 +428,7 @@ This issue is now solved (latest v4.30 version):
         ATGGGCTGCACAATACGA
 ```
 
+:slightly_smiling_face:
 
 ## Solved: *tubespit-17-symmetric.txt*, tricks in annotation
 This is a snippet of `tubespit/seq-017-cycle5.txt` and its reverse complement
@@ -484,6 +494,8 @@ Compare to variant missing the 3-mer overlapping repeat:
         GTGCAGCTGACAnTATGCAnnTG
 ```
 
+:stuck_out_tongue_winking_eye:
+
 ## Solved: *vnd_NEE_Dsech-snippet_1.txt*, axiom testing
 This addresses an issue resulting from conversion to axiom testing in the cinch-t/cinch-k system,
 whereby cinch-t takes repeats in a moving window such that intra-repeat repeats only get taken
@@ -514,5 +526,7 @@ cinch-k. The 5'-AC dinucleotide repeat works here as a sentinel repeat of cinch-
     _________|_________|_________|_____
              10        20        30        
 ```
+
+:nerd_face:
  
 *Last updated*: 2/4/2020 AJE
