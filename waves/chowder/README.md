@@ -143,7 +143,7 @@ it because I also recently increased the size of `PISO` to help prioritize chowd
 elevating `PISO` also has the effect of increasing the benchmark average WCR's.)
 
 
-## Solved: *seq-146-v344_33-snippet.txt*, non-zero adjacent mod-*k*'s
+## Solved: *seq-146-v344_33-snippet.txt*, non-zero adjacent mod *k*'s
 
 I just solved this sequence snippet, which previously necessitated nudging correction. I didn't think this case was possible because 
 of its apparent rarity (I actually assumed it was not possible by experience), but this involved adjacent nucleotides with non-zero mod *k*'s: (*k* % tela[n-1].all_k > 0).
@@ -163,6 +163,125 @@ I leave the correct cinch-t solution here as a reverse exercise. (Try to spot th
                  10        20        
         GACCTGACAGCYGCCCGAACACGAACG
 ```
+
+I am adding a little more exposition here for the curious, but also to collate some notes from my hand-written scratch notebook and commit notebook.
+
+Adjacent *k*-mers for the most part are often the result of cycling frames.
+For example, for the sequence 5'-CATGATGAG *maximal* will mark two 3-mers at positions 5 and 6 as follows:
+```
+n: 123456789
+  >CATGATGAG>
+k: ....33...
+r: ....11...
+```
+
+The adjacent 3-mers correspond to two related cycling frames as such:
+```
+Cycling frame 1:
+  >CATG/
+   .ATGAG>
+
+Cycling frame 2:
+  >CATGA/
+   ..TGAG>
+```
+
+In my notebooks, I call these cycling islands and think of them as a set. With a higher number of repeats,
+you can start to call higher *k* repeats at adjacent positions. So for the sequence
+5'-CATGATGATGATGAG you get an annotation as follows:
+```
+  >CATGATGATGATGAG>
+k: ....33366333...
+r: ....33211111...
+```
+
+So we have adjacent columns with differently sized *k*-mers being called: *k*=3 -> *k*=6 and *k*=6 -> *k*=3.
+We can appreciate that this is an artifact of the underling 3-mers being repeated enough times for higher *k* repeats being called 
+that are a multiple of the smaller unit. Accordingly, we can identify these cycling islands by simply requiring
+that adjacent *k*-mers have zero-valued mod values (*e.g.*, 6 mod 3 = 0).
+
+Okay, so what about adjacent non-zero mod valued *k*-mers? Well at lower *k*-mer sizes they are not very interesting
+because they are the result of mononucleotide tracts, which *maximal* is smart enough to detect.
+To explain a bit more, let's imagine an adjacent 3-mer and 4-mer. I will write them with letters representing potentially
+different symbols at each column.
+
+A 4-mer at *n* and a 3-mer at *n*-1:
+```
+   m...n...
+  >ABCDABCD>
+k: ...34...
+r: ...11...
+
+This sequence can fold like this:
+  >ABCD/
+   ABCD>
+
+And it can fold like this:
+  >ABC/
+   DABCD>
+```
+This implies that D = C = B = A. So the sequence is really just 5'-AAAAAAAA.
+
+Because of the cinch-t sytem of annotating at *n*, I also wanted to work it out for the reverse order.
+
+3-mer being at *n* and the 4-mer being at *n*-1:
+
+```
+   ..m..n..
+  >CAABCABC>
+k: ...34...
+r: ...11...
+
+This sequence can fold like this:
+  >CAABC/
+   ..ABC>
+
+And it can fold like this:
+  >CAAB/
+   CABC>
+```
+This implies that C = B = A. So again the sequence is really just 5'-AAAAAAAA.
+Natural *k*-mer tandem repeats have a distribution that is shifted to the smaller *k* sizes, so normally
+you don't see "adjacent non-zero mod *k*'s". But they are possible at higher *k* sizes. Here's
+an example for a 5-mer and a 3-mer in both orders:
+
+A 5-mer at *n*, and a 3-mer at *n*-1:
+```
+   m....n....
+  >ABCDEABCDE>
+k: ....35....
+r: ....11....
+
+This sequence can fold like this:
+  >ABCDE/
+   ABCDE>
+
+And it can fold like this:
+  >ABCD/
+    EABCDE>
+```
+This implies that C = A and E = D = B. So the sequence is actually 5'-ABABBABABB.
+And so we can have adjacent non-zero mod *k*'s (5 mod 3 = 2). But they are 
+incompatible with each other.
+
+Here's the case for the reverse order, which actually is a different sequence.
+
+A 3-mer at *n* and a 5-mer at *n*-1:
+```
+   ...m..n..
+  >CABABCABCD>
+k: .....53...
+r: .....11...
+
+This sequence can fold like this:
+  >CABABC/
+   ...ABCD>
+
+And it can fold like this:
+  >CABAB/
+   CABCD>
+```
+This implies that C = A and D = B. So the sequence is actually 5'-AABABAABAB.
 
 ## Solved: *seq6-koslip-snippet.txt*, conditional mark_tela break
 
@@ -396,4 +515,4 @@ cinch-k. The 5'-AC dinucleotide repeat works here as a sentinel repeat of cinch-
              10        20        30        
 ```
  
-*Last updated*: 2/2/2020 AJE
+*Last updated*: 2/4/2020 AJE
