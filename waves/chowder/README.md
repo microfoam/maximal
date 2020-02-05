@@ -447,7 +447,7 @@ strip all of this formatting (*i.e.*, spaces, line breaks and non-essential char
 so it does not interfere with the reading and processing of the file. Therefore, formatting 
 can be used in a chowder file to indicate what the target folding pattern
 is desired (but not yet acheived). The fasta header indicates this with 
-the phrase `target_formatted_in_file'. The purpose of putting this in the fasta
+the phrase `target_formatted_in_file`. The purpose of putting this in the fasta
 header is so that it is read in as the header and then displayed to the 
 user/developer to indicate that one can look at the raw file to see what is desired.
 
