@@ -1041,7 +1041,7 @@ char cid_align2D[MAXROW][MAXROW];
 	}
 	else {
 		Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
-		if (!cid_ncol) {
+		if (!cid_ncol && !opt_v.bit) {
 			opt_K.bit = 1;						/* EVEN IF NOT OPTIONED, GOOD TO SHOW FOR LAST RUN */
 			print_2Dseq();
 			return(0);
@@ -1052,13 +1052,9 @@ char cid_align2D[MAXROW][MAXROW];
 			consensus_2D(0, Current.pass_W);
 			opt_K.bit = 1;					/* REASSIGN SETTING */
 		}
-		else if (tot_repeats > 1 && opt_v.bit) {
+		else if (tot_repeats&& opt_v.bit) {
 			cidwidth = Current.pass_W;
 			print_2Dseq();
-		}
-		else if (tot_repeats > 1) {
-			cidwidth = Current.pass_W;
-			consensus_2D(0, Current.pass_W);
 		}
 		else { 
 			cidwidth = Current.pass_W;

@@ -1464,9 +1464,11 @@ int main(int argc, char *argv[])
 	i = ++Current.pass_V;
 	if (Cinch_K.pass_Q!=1000 || align2D[0][0] == blank) {
 		++Nudge.pass_R;
+		Nudge.pass_W = Current.pass_W;
 
 		while (nudgelize() && Nudge.pass_R < CYCMAX) {	
 			++Nudge.pass_R;
+			++Nudge.pass_W;
 		}
 	}
 	else {	
@@ -1671,7 +1673,7 @@ int main(int argc, char *argv[])
 	else
 		printf(   "\n   PASS      Width cinch history:\n");
 
-	for (i = 0; Cinches[i]->pass_W != '\0' && i < 8; i++) {
+	for (i = 0; i<8 && Cinches[i]->pass_W != '\0'; i++) {
 		printf("  %5d       => %4d ", Cinches[i]->pass_Q, Cinches[i]->pass_W);
 		switch (i) {
 		case 0:
@@ -1718,7 +1720,7 @@ int main(int argc, char *argv[])
 				if (Nudge.pass_V == 3)
 					printf("%s post nudgelize [pass #5: one nudge was required]\n", letr_unit);
 			}
-			else if (Nudge.pass_R <= CYCMAX) {	/* IN WHICH CASE k WILL BE NON-ZERO */
+			else {	/* IN WHICH CASE k WILL BE NON-ZERO */
 				if (Nudge.pass_V == 3)
 					printf("%s post nudgelize [pass #5: %d nudges were required]\n", letr_unit, Nudge.pass_R);
 			}

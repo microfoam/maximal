@@ -15,7 +15,7 @@ void 				clearall_tela(int n, int span, int keep_score, int mode);
 int  				cyclelize_tela(int cpos, int delta, int npos);
 void 				flatline_after_TR(int pos);
 void				mark_tela(void);
-void				push_clearall(int pos, int row);
+void				push_mem(int pos, int row);
 int 				push_gPnt(short unsigned int ymode, int pos, int prev_par);
 int 				push_gPnt_kmer(int pos, int kmer, int reps);
 void 				print_tela(int a, int b);
@@ -447,20 +447,46 @@ void mark_tela(void)
 						Dtr = 0;
 				}
 
-				/** MOD TESTS. Example for if part: seq-146-v344_33-snippet.txt    **/
-				/**            Example for if else part: seq-15-cycle4-snippet.txt **/
-				if (Dtr && tela[n-1].all_k) {
+				/** MOD TESTS. Original example for if part: seq-146-v344_33-snippet.txt    **/
+				/**            Original example for if else part: seq-15-cycle4-snippet.txt **/
+				short unsigned int new = 0;			/* TO TEST MUTUALLY-EXCLUSIVE/ALTERNATIVE CODE BLOCKS BELOW */
+				if ( new  && Dtr && tela[n-1].all_k) {
 					int prev_k = tela[n-1].all_k;
 					if (k>prev_k && k % prev_k && k-prev_k <= PISO) {
-						push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-						push_clearall(n,1);
+						push_mem(n,  0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+						push_mem(n-1,1);
+						push_mem(n  ,1);
+						tela[n-1].stat = st_Fract.sym;
+						tela[n  ].stat = st_Fract.sym;
+						tela[n  ].cyc_k = k;			/* IN CASE all_k GETS OVER-WRITTEN CAN LOOK HERE FOR CANCELED ONE */
+						n += k-1;
 						Dtr = 0; 
 					}
-					else if (k==2 && prev_k>k && prev_k % k && n-prev_k < n-1 && tela[n-prev_k].all_k != k && n+k < projection) {
-						push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-						push_clearall(n,2);
+					else if (prev_k>k && prev_k % k && n-prev_k < n-1 && tela[n-prev_k].all_k != k && n+k < projection) {
+						push_mem(n  ,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+						push_mem(n-1,2);
+						push_mem(n  ,2);
+						tela[n-1].stat = st_Fract.sym;
+						tela[n  ].stat = st_Fract.sym;
+						tela[n  ].cyc_k = k;			/* IN CASE all_k GETS OVER-WRITTEN CAN LOOK HERE FOR CANCELED ONE */
 						Dtr = 0; 
-					}	
+					}
+				}
+				else if ( !new  && Dtr && tela[n-1].all_k) {
+					int prev_k = tela[n-1].all_k;
+					if (k>prev_k && k % prev_k && k-prev_k <= PISO) {
+						push_mem(n,  0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+						push_mem(n-1,1);
+						push_mem(n  ,1);
+						Dtr = 0; 
+					}
+					else if (prev_k>k && prev_k % k && n-prev_k < n-1 && tela[n-prev_k].all_k != k && n+k < projection) {
+						push_mem(n,  0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+						push_mem(n-1,2);
+						push_mem(n  ,2);
+						tela[n  ].cyc_k = k;			/* IN CASE all_k GETS OVER-WRITTEN CAN LOOK HERE FOR CANCELED ONE */
+						Dtr = 0; 
+					}
 				}
 
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPLEGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
@@ -476,8 +502,8 @@ void mark_tela(void)
 												"k=%d at n=%d, transition at j=%d, and fractal TR at m+i=%d.", k, n, j, m+i); 
 									}
 									clearall_tela(n,1,-1,TWO);
-									push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-									push_clearall(n,3);
+									push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+									push_mem(n,3);
 									Dtr=0;
 									t = transitlocsize; 	/* To cause break out of fract_k loop */
 									break; 					/* To break out of i loop */
@@ -503,7 +529,7 @@ void mark_tela(void)
 						if (m + (reps+1)*k >= lenseq) { 
 							Atr = 0;
 							tela[n].all_r = reps;
-							push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+							push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 							break;
 						}
 
@@ -524,7 +550,7 @@ void mark_tela(void)
 						}
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
 							tela[n].all_r = reps;
-							push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+							push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 
 							if (n+k*reps > projection) {
 								/* BEFORE ADVANCING PROJECTION, CHECK TO SEE IF THIS TR CALL IS COVERING A FRACTAL REPEAT OF SMALLER K.  */	
@@ -563,7 +589,7 @@ void mark_tela(void)
 									i = n-proj_k-1;
 									while (tela[i].all_k == k && tela[i].stat == st_cycle.sym && i>=projector-proj_k && tela[i].all_r<2) {
 										clearall_tela(i,1,-1,TWO);
-										push_clearall(i, 4);
+										push_mem(i, 4);
 										i--;
 									}
 								}
@@ -592,7 +618,7 @@ void mark_tela(void)
 										if (j==n) {			/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
 											mono_sep = 1;
 											clearall_tela(n,1,-1,TWO);
-											push_clearall(n, 5);
+											push_mem(n, 5);
 										}
 										if (!mono_sep) {	/* CHECK AGAIN FOR MONO SEPARATOR BASED ON FIRST CHAR OF PRESENT K-MER */
 											monoch = tela[n].c;
@@ -603,7 +629,7 @@ void mark_tela(void)
 											if (j==n) {		/* THIS IS THE CASE OF ANOTHER REPEAT OF AN EARLIER TR W/ A MONO-NUCLEOTIDE EXPANSION SEPARATOR */
 												mono_sep = 1;
 												clearall_tela(n,1,-1,TWO);
-												push_clearall(n, 6);
+												push_mem(n, 6);
 											}
 										}
 									}
@@ -618,7 +644,7 @@ void mark_tela(void)
 											}
 											if (j==i) {
 												clearall_tela(i,1,-1,TWO);
-												push_clearall(i, 7);
+												push_mem(i, 7);
 											}
 										}
 									}
@@ -629,17 +655,17 @@ void mark_tela(void)
 											;
 										else if (tela[m].all_k * tela[m].all_r <= n) {
 											tela[m].stat = st_Fract.sym;
-											push_clearall(m, 8);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
+											push_mem(m, 8);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 										}
 									}
 									else if (i>m && tela[i].all_k * tela[i].all_r <= n && tela[i].all_k != k) {
 										if (i-tela[i].all_k >= m && tela[i].all_S == tela[i+k].all_S) {
 												tela[i].stat = st_fract.sym;
-												push_clearall(i, 9)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+												push_mem(i, 9)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
 										}
 										else {
 											tela[i].stat = st_Fract.sym;
-											push_clearall(i,10)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+											push_mem(i,10)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
 										}
 									}
 								}
@@ -795,16 +821,16 @@ void mark_tela(void)
 					for (i=j+1; tela[i].all_k == k2; i++) {
 						if (tela[i].all_S < tela[j].all_S && k2 > k && tela[j].all_r > tela[n].all_r) {
 							clearall_tela(n,1,-1,TWO);
-							push_clearall(n,11);
+							push_mem(n,11);
 							clearall_tela(i,1,-1,TWO);
-							push_clearall(i, 11);
+							push_mem(i, 11);
 							tela[j].all_L = 0;
 						}
 						else if (!tela[i].all_L && !tela[i].all_R && tela[i].all_S > tela[j].all_S) {
 							clearall_tela(j, i-j, tela[i].all_S, TWO);		/* O-F-F, ONE, OR TWO */
 							for (int p=j; p<=i; p++) {
 								if (tela[p].all_k)	
-									push_clearall(p, 11);
+									push_mem(p, 11);
 							}
 							tela[i].all_Z = tela[i].all_S;
 							tela[n].all_Z = tela[n].all_S;
@@ -817,7 +843,7 @@ void mark_tela(void)
 							!(tela[n+1].all_L) && !(tela[n+1].all_R) && tela[n].all_k % tela[n+1].all_k==0) {
 					clearall_tela(n, 1, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
 					if (tela[n].all_S != tela[n+1].all_S)
-						push_clearall(n, 13);
+						push_mem(n, 13);
 					/* POSSIBLE THIS CASE COULD BE GENERALIZED...FOR A RAINY DAY */
 					if (dev_print(TELA,__LINE__)) {
 						printf("mark_tela at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
@@ -835,12 +861,12 @@ void mark_tela(void)
 							for (i=j-1; i>=n; i--) {
 								clearall_tela(i, j-n, -1, TWO);		/* O-F-F, ONE, OR TWO */
 								for (int p=i; p<=i+j-n; p++)
-									push_clearall(p, 14);
+									push_mem(p, 14);
 							}
 							for (i=j+1; i<n+span; i++) {
 								if (tela[i].all_k == k && tela[i].all_R == l) {
 									clearall_tela(i,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-									push_clearall(i, 15);
+									push_mem(i, 15);
 								}
 							}
 						}
@@ -865,7 +891,7 @@ void mark_tela(void)
 				else if (ON) {
 					for (i=n; i<=n+span; i++) {
 						if (tela[i].all_S && tela[i].all_S != max_score) {
-							push_clearall(i, 16);
+							push_mem(i, 16);
 							clearall_tela(i, 1, -1, ONE);			/* O-F-F, ONE, OR TWO */
 							if (dev_print(TELA,__LINE__)) {
 								printf("         mark_tela engaging clearall_tela(ONE) at i=%d.", i);
@@ -893,11 +919,11 @@ void mark_tela(void)
 						}
 						if (tela[p].all_k) {
 							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_clearall(p, 17);
+							push_mem(p, 17);
 						}
 						if (tela[q].all_k) {
 							clearall_tela(q,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_clearall(q, 18);
+							push_mem(q, 18);
 						}
 					}
 				}
@@ -923,7 +949,7 @@ void mark_tela(void)
 
 /*****************************************/
 /* ORIGINAL IDEA FOR THIS FUNCTION IS TO CALL TRs BY UNIQUE NUMBERED CASES AND THEN LATER CLEAR THEM (ERASE) IN AN EASILY MODIFIABLE ORDER */
-void push_clearall(int pos, int row)
+void push_mem(int pos, int row)
 {
 	if (row == 0) {
 		tela[0].mem[0]++;			/* BIT SLOT TO INDICATE THIS ROW WAS WRITTEN TO */
@@ -1416,7 +1442,7 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 		clearall_tela(n, span, max_score, TWO);		/* O-F-F, ONE, OR TWO */
 		for (i=n; i<n+span; i++) {
 			if (tela[i].all_Z != max_score)
-				push_clearall(i, 19);
+				push_mem(i, 19);
 		}
 	}
 
