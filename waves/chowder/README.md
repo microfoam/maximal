@@ -310,13 +310,13 @@ Target fold is the following (pre-cinch-k):
    ..............ATC>
 ```
 
-This sequence knot has now been solved by a smarter pre-cinch_t mark_tela() module that conditions the normal
+This sequence knot has now been solved by a smarter pre-cinch_t `mark_tela()` module that conditions the normal
 break out of a loop scanning rows starting at a given column *n*.
-The mark_tela() code block was exapted from a cinch-t block and like cinch-t, mark_tela() used to break out of 
-2-D column *n* at row *m* as soon as it found a repeat, thus favoring higher *k*-mer size. The problem for mark_tela() functionality is that
+The `mark_tela()` code block was exapted from a cinch-t block and like cinch-t, `mark_tela()` used to break out of 
+2-D column *n* at row *m* as soon as it found a repeat, thus favoring higher *k*-mer size. The problem for `mark_tela()` functionality is that
 a fractal repeat might be obscured by a cycling repeat frame of the parent TR containing the fractal. 
 This is important because cinch-t needs to skip fractal repeats, which are then addressed by cinch-k.
-Now mark_tela() senses whether this column is obscuring a smaller fractal *k*. 
+Now *maximal*  senses whether this column is obscuring a smaller fractal *k*. 
 
 Post-cinch-k the 2-D auto-alignment now looks like this:
 ```
@@ -372,7 +372,7 @@ cinch-t and another (GA)x1 in cinch-k.
 
 
 ## Solved: *seq-016-cyc3_a_knot-Rn.txt*
-This sequence was folded correctly but not optimal (in earlier versions now).
+In earlier program versions, this sequence was folded correctly but not optimal.
 The `Rn` designates this was from the first test type in `cleanup_set_all'.
 
 ```
@@ -443,7 +443,7 @@ cinching continued after the knots whenever this sequence is run through
 
 This sequence also demonstrates how sequences
 can be saved in a hand-aligned fashion in the text file. The program will
-strip all of this formatting (i.e., spaces, line breaks and non-essential characters)
+strip all of this formatting (*i.e.*, spaces, line breaks and non-essential characters)
 so it does not interfere with the reading and processing of the file. Therefore, formatting 
 can be used in a chowder file to indicate what the target folding pattern
 is desired (but not yet acheived). The fasta header indicates this with 
