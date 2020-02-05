@@ -229,8 +229,8 @@ Because of the cinch-t sytem of annotating at *n*, I also wanted to work it out 
 ```
    ..m..n..
   >CAABCABC>
-k: ...34...
-r: ...11...
+k: ....43..
+r: ....11..
 
 This sequence can fold like this:
   >CAABC/
