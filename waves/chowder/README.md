@@ -101,7 +101,9 @@ Take a look again, this time with some annotation added below the consensus row:
         _________|_________|_________|
                  10        20        30
         CAAGTCGACGCYCCCCACGCTCCCAG...
-        .......1234567..1234567...... <- the 7-mer, indexed with a third unit a bit away
+        .......1234567..1234567...... <- the 7-mer, indexed with a downstream third unit
+        ..............123456789...... <- frame 1 of the 9-mer
+        ...............123456789..... <- frame 2 of the 9-mer
 
  2-D pass #4: cinch-k (width = 30)
     1. >CA/    2
@@ -197,7 +199,7 @@ k: ....33366333...
 r: ....33211111...
 ```
 
-So we have adjacent columns with differently sized *k*-mers being called: *k*=3 -> *k*=6 and *k*=6 -> *k*=3.
+So we have adjacent columns with differently sized *k*-mers being called: *k*=3 stepping up to *k*=6, and then later *k*=6 stepping back down to *k*=3.
 We can appreciate that this is an artifact of the underlying 3-mers being repeated enough times for higher *k* repeats being called 
 that are a multiple of the smaller unit. Accordingly, we can identify these cycling islands by simply requiring
 that adjacent *k*-mers have zero-valued mod values (*e.g.*, 6 mod 3 = 0).
@@ -263,7 +265,7 @@ And it can fold like this:
     EABCDE>
 ```
 This implies that C = A and E = D = B. So the sequence is actually 5'-ABABBABABB.
-And so we can have adjacent non-zero mod *k*'s (5 mod 3 = 2). But they are 
+So, we *can* have adjacent non-zero mod *k*'s (5 mod 3 = 2). But they are 
 incompatible with each other.
 
 Here's the case for the reverse order, which actually is a different sequence.
