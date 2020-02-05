@@ -149,8 +149,7 @@ elevating `PISO` also has the effect of increasing the benchmark average WCR's.)
 ## Solved: *seq-146-v344_33-snippet.txt*, adjacent non-zero mod *k*'s
 
 I just solved this sequence snippet, which previously necessitated nudging correction. I didn't think this case was possible because 
-of its apparent rarity (I actually assumed it was not possible by experience), but this involved adjacent nucleotides with non-zero mod *k*'s: 
-(`k % tela[n-1].k > 0`).
+I had never seen an example of adjacent nucleotides with repeats having non-zero mod *k*'s (*k*<sub>*n*<\sub> mod *k* <sub>*n*-1<\sub> > 0`).
 
 I leave the correct cinch-t solution here as a reverse exercise. Try to spot the non-zero mod *k*-mers. (If you want a hint,
 factor in cycling frames.):
@@ -532,4 +531,4 @@ cinch-k. The 5'-AC dinucleotide repeat works here as a sentinel repeat of cinch-
 
 :nerd_face:
  
-*Last updated*: 2/4/2020 AJE
+<sub>*Last updated*<\sub>: 2/4/2020 AJE
