@@ -148,8 +148,8 @@ elevating `PISO` also has the effect of increasing the benchmark average WCR's.)
 I just solved this sequence snippet, which previously necessitated nudging correction. I didn't think this case was possible because 
 of its apparent rarity (I actually assumed it was not possible by experience), but this involved adjacent nucleotides with non-zero mod *k*'s: (*k* % tela[n-1].all_k > 0).
 
-I leave the correct cinch-t solution here as a reverse exercise. (Try to spot the non-zero mod *k*. If you want a hint,
-...factor in cycling frames.):
+I leave the correct cinch-t solution here as a reverse exercise. Try to spot the non-zero mod *k*-mers. (If you want a hint,
+factor in cycling frames.):
 
 ```
  2-D pass #2: cinch-t (width = 27)
