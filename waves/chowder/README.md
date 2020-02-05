@@ -373,7 +373,7 @@ cinch-t and another (GA)x1 in cinch-k.
 
 ## Solved: *seq-016-cyc3_a_knot-Rn.txt*
 In earlier program versions, this sequence was folded correctly but not optimal.
-The `Rn` designates this was from the first test type in `cleanup_set_all'.
+The `Rn` designates this was from the first test type in `cleanup_set_all`.
 
 ```
 >target_formatted_in_file
