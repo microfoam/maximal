@@ -143,7 +143,7 @@ it because I also recently increased the size of `PISO` to help prioritize chowd
 elevating `PISO` also has the effect of increasing the benchmark average WCR's.)
 
 
-## Solved: *seq-146-v344_33-snippet.txt*, non-zero adjacent mod *k*'s
+## Solved: *seq-146-v344_33-snippet.txt*, adjacent non-zero mod *k*'s
 
 I just solved this sequence snippet, which previously necessitated nudging correction. I didn't think this case was possible because 
 of its apparent rarity (I actually assumed it was not possible by experience), but this involved adjacent nucleotides with non-zero mod *k*'s: (*k* % tela[n-1].all_k > 0).
@@ -196,7 +196,7 @@ r: ....33211111...
 ```
 
 So we have adjacent columns with differently sized *k*-mers being called: *k*=3 -> *k*=6 and *k*=6 -> *k*=3.
-We can appreciate that this is an artifact of the underling 3-mers being repeated enough times for higher *k* repeats being called 
+We can appreciate that this is an artifact of the underlying 3-mers being repeated enough times for higher *k* repeats being called 
 that are a multiple of the smaller unit. Accordingly, we can identify these cycling islands by simply requiring
 that adjacent *k*-mers have zero-valued mod values (*e.g.*, 6 mod 3 = 0).
 
