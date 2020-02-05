@@ -449,7 +449,7 @@ void mark_tela(void)
 
 				/** MOD TESTS. Example for if part: seq-146-v344_33-snippet.txt    **/
 				/**            Example for if else part: seq-15-cycle4-snippet.txt **/
-				if (tela[n-1].all_k) {
+				if (Dtr && tela[n-1].all_k) {
 					int prev_k = tela[n-1].all_k;
 					if (k>prev_k && k % prev_k && k-prev_k <= PISO) {
 						push_clearall(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
