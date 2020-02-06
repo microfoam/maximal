@@ -620,18 +620,6 @@ void mark_tela(void)
 									}
 									if (!mono_sep) {
 										tela[i].stat2 = st_overl.sym;
-										/* IF THERE ARE NO TRs CALLED IN i's SHADOW, THEN CANCEL THIS ONE B/C BIGGER K WINS.  */
-										/* CURRENTLY MAKES VERY MODEST DIFFERENCE IF THIS BLOCK IS ON, SO LEAVING BUT IN OFF. */
-										if (OFF && tela[i].all_S < tela[n].all_S) {
-											for (j=i-fract_k; j<i; j++) {
-												if (tela[j].all_k)
-													break;
-											}
-											if (j==i) {
-												clearall_tela(i,1,-1,TWO);
-												push_mem(i, 7);
-											}
-										}
 									}
 								}
 								else if (tela[n].all_S > tela[i].all_S) {	/* m+2 B/C IS EARLIEST CAN HAVE FRACTAL DINUCL REPEAT IN SHADOW */
@@ -705,16 +693,16 @@ void mark_tela(void)
 				if (tela[i].all_k && i-tela[i].all_k >= m && span_allrk(i)<=n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
 					tela[i].stat = tela[i+k].stat = st_fract.sym;
 					tela[n].stat = st_parent.sym;
-					if (ON) {
-						/* CODE BLOCK TO REDUCE REPEAT NUMBERS IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T */
-						int x=0;
-						while(tela[i-x-1].stat == st_cycle.sym) {
-							x++;
-						}
-						if (i-x <= m && tela[i-x].all_k == tela[i].all_k) {
-							tela[i-x].all_r -= tela[i].all_r;
-						}
+
+					/* REDUCE REPEAT NUMBERS IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T */
+					int x=0;
+					while(tela[i-x-1].stat == st_cycle.sym) {
+						x++;
 					}
+					if (i-x <= m && tela[i-x].all_k == tela[i].all_k) {
+						tela[i-x].all_r -= tela[i].all_r;
+					}
+					
 					tela[n].stat = st_parent.sym;
 					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
@@ -872,7 +860,7 @@ void mark_tela(void)
 					while (max_count > 1)
 						max_count = settle_tiescores(n, span, max_score, j++);
 				}
-				else if (ON) {
+				else {
 					for (i=n; i<=n+span; i++) {
 						if (tela[i].all_S && tela[i].all_S != max_score) {
 							push_mem(i, 16);
