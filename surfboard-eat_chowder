@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'sand dunes' >> corduroy.log
+echo 'chowder' >> corduroy.log
 
 while getopts c option
 do
@@ -16,8 +16,30 @@ if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
-# CHOWDER TESTS 
-./maximal -DKnxrL waves/chowder/seq-64-snippet-Rnx_symmetry.txt 
-./maximal -DKnxrL waves/chowder/seq-64-snippet-Rnx_symmetry.txt -C
-./maximal -DKn    waves/chowder/seq-29-toslp2-snippet.txt -v 3
 
+# CHOWDER TESTS 
+./maximal -DKRnxrL waves/chowder/seq-64-snippet-Rnx_symmetry.txt 
+./maximal -DKRnxrL waves/chowder/seq-64-snippet-Rnx_symmetry.txt -C
+./maximal -DKRn    waves/chowder/seq-29-toslp2-snippet.txt -v 3
+./maximal -DKRn  waves/seals/vnd_ex3_Dbiar.txt 
+./maximal -DKRn  waves/seals/vnd_ex3_Danan.txt 
+./maximal -DKRnx waves/seals/vnd_ex3_Danan.txt -C
+./maximal -DKRnx waves/seals/vnd_ex3_Derec.txt 
+./maximal -DKRn  waves/seals/vnd_ex3_Dsuzu.txt -C
+./maximal -DKRnx waves/seals/vnd_ex3_Dyaku.txt -C
+./maximal -DKRnx waves/seals/vnd_ex3_Dsant.txt -C
+./maximal -DKRnx waves/sharks/vnd_NEE_Dsant.txt 
+./maximal -DKRn  waves/sharks/vnd_NEE_Dsant.txt -C
+./maximal -DKRn  waves/tubespit/seq-014-cycle3.txt 
+./maximal -DKRn  waves/tubespit/seq-015-cycle4.txt 
+./maximal -DKRn  waves/tubespit/seq-025-tosSt2.txt 
+./maximal -DKRn  waves/tubespit/seq-026-tosSt2.txt 
+./maximal -DKRn  waves/tubespit/seq-029-toslp2.txt 
+./maximal -DKRnx waves/tubespit/seq-055-impkhp.txt 
+./maximal -DKRnx waves/tubespit/seq-099-v343_09.txt 
+./maximal -DKRnx waves/tubespit/seq-146-v344_33.txt 
+./maximal -DKRn  waves/tubespit/seq-006-koslip.txt -C
+./maximal -DKRnx waves/tubespit/seq-056-tbslp2.txt -C
+
+./surfboard-checkmha
+echo
