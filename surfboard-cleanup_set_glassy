@@ -1,6 +1,6 @@
 #!/bin/bash
-
-echo 'glassy' >> corduroy.log
+echo >> corduroy.log
+echo 'Glassy:' >> corduroy.log
 #./surfboard-Pop_Up
 
 if [ -f Surf_wavereport.mha ]; then

@@ -1,6 +1,6 @@
 #!/bin/bash
-
-echo 'sand dunes' >> corduroy.log
+echo >> corduroy.log
+echo 'Sand dunes:' >> corduroy.log
 
 while getopts c option
 do

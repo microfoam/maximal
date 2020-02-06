@@ -1,6 +1,6 @@
 #!/bin/bash
-
-echo 'gnarly rev. comp.' >> corduroy.log
+echo >> corduroy.log
+echo 'Gnarly RC:' >> corduroy.log
 #./surfboard-Pop_Up
 
 if [ -f Surf_wavereport.mha ]; then
