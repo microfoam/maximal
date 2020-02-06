@@ -17,20 +17,24 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 
-# FAVE TESTS START ON LINE 21
+# DIAGNOSTIC TESTS START ON LINE 21
 ./maximal -DRKn  waves/tubespit/seq-017-variant.txt
 ./maximal -DRKn  waves/tubespit/seq-017-cycle5.txt
 ./maximal -DRKnC waves/tubespit/seq-017-cycle5.txt
-./maximal -DRKn waves/tubespit/seq-154-v427_cycABs.txt
-./maximal -DRKn waves/tubespit/seq-000-orig_b.txt 
-./maximal -DRKn waves/tubespit/seq-000-orig_c.txt 
-./maximal -DRKn waves/tubespit/seq-000-orig_d.txt 
-./maximal -DRKn waves/tubespit/seq-000-orig_e.txt 
-./maximal -DRKn waves/tubespit/seq-000-orig_f.txt 
+./maximal -DRKn  waves/tubespit/seq-154-v427_cycABs.txt
+./maximal -DRKn  waves/tubespit/seq-000-orig_b.txt 
+./maximal -DRKn  waves/tubespit/seq-000-orig_c.txt 
+./maximal -DRKn  waves/tubespit/seq-000-orig_d.txt 
+./maximal -DRKn  waves/tubespit/seq-000-orig_e.txt 
+./maximal -DRKn  waves/tubespit/seq-000-orig_f.txt 
 ./maximal -DRKnx waves/tubespit/seq-033-imprf1.txt 
-./maximal -DRKn waves/tubespit/seq-100-v343_10.txt 
-./maximal -DRKn waves/chowder/seq6-koslip-snippet.txt 
+./maximal -DRKn  waves/tubespit/seq-100-v343_10.txt 
+./maximal -DRKn  waves/chowder/seq6-koslip-snippet.txt 
+./maximal -DRKn  waves/chowder/abba_zabba_1.txt 
+./maximal -DRKn  waves/chowder/abba_zabba_2.txt 
+./maximal -DRKn  waves/chowder/abba_zabba_3.txt 
+./maximal -DRKn  waves/chowder/abba_zabba_4.txt 
 
 ./surfboard-checkmha
-echo 'sand_dunes benchmark WCR average of 12: 0.448583' | tee -a corduroy.log
+echo 'sand_dunes benchmark WCR average of 16: 0.387562' | tee -a corduroy.log
 echo

@@ -373,6 +373,7 @@ void mark_tela(void)
 	int transit_ctr = 0;
 	int transitloc[4] = {-1};
 	short unsigned int transitlocsize = 4;
+	int prev_k;
 
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
@@ -449,10 +450,8 @@ void mark_tela(void)
 
 				/** MOD TESTS. Original example for if part: seq-146-v344_33-snippet.txt    **/
 				/**            Original example for if else part: seq-15-cycle4-snippet.txt **/
-				short unsigned int new = 0;			/* TO TEST MUTUALLY-EXCLUSIVE/ALTERNATIVE CODE BLOCKS BELOW */
-				if ( new  && Dtr && tela[n-1].all_k) {
-					int prev_k = tela[n-1].all_k;
-					if (k>prev_k && k % prev_k && k-prev_k <= PISO) {
+				if (Dtr && (prev_k=tela[n-1].all_k) && prev_k != k) {
+					if (k>prev_k && k % prev_k) {
 						push_mem(n,  0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 						push_mem(n-1,1);
 						push_mem(n  ,1);
@@ -462,29 +461,14 @@ void mark_tela(void)
 						n += k-1;
 						Dtr = 0; 
 					}
-					else if (prev_k>k && prev_k % k && n-prev_k < n-1 && tela[n-prev_k].all_k != k && n+k < projection) {
+					else if (prev_k>k && prev_k % k && tela[n-prev_k].all_k != k) {
 						push_mem(n  ,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 						push_mem(n-1,2);
 						push_mem(n  ,2);
 						tela[n-1].stat = st_Fract.sym;
 						tela[n  ].stat = st_Fract.sym;
 						tela[n  ].cyc_k = k;			/* IN CASE all_k GETS OVER-WRITTEN CAN LOOK HERE FOR CANCELED ONE */
-						Dtr = 0; 
-					}
-				}
-				else if ( !new  && Dtr && tela[n-1].all_k) {
-					int prev_k = tela[n-1].all_k;
-					if (k>prev_k && k % prev_k && k-prev_k <= PISO) {
-						push_mem(n,  0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-						push_mem(n-1,1);
-						push_mem(n  ,1);
-						Dtr = 0; 
-					}
-					else if (prev_k>k && prev_k % k && n-prev_k < n-1 && tela[n-prev_k].all_k != k && n+k < projection) {
-						push_mem(n,  0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-						push_mem(n-1,2);
-						push_mem(n  ,2);
-						tela[n  ].cyc_k = k;			/* IN CASE all_k GETS OVER-WRITTEN CAN LOOK HERE FOR CANCELED ONE */
+						n += prev_k-2;					/* THIS LINE DOES NOT SEEM TO MAKE A DIFFERENCE BUT LEAVING HERE ANNOTATED. HERE FOR SYMMETRY AND OTHER */
 						Dtr = 0; 
 					}
 				}
@@ -550,7 +534,7 @@ void mark_tela(void)
 						}
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
 							tela[n].all_r = reps;
-							push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+							push_mem(n,0);          /* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 
 							if (n+k*reps > projection) {
 								/* BEFORE ADVANCING PROJECTION, CHECK TO SEE IF THIS TR CALL IS COVERING A FRACTAL REPEAT OF SMALLER K.  */	
@@ -579,13 +563,14 @@ void mark_tela(void)
 								}
 							}
 							else {
-								if (tela[n-1].all_k && k == tela[n-1].all_k) {
+								if (tela[n-1].all_k && (k == tela[n-1].all_k || tela[n-1].all_k % k == 0)) {
 									tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
 									tela[n  ].stat = st_cycle.sym;
 								}
-								else if (tela[n-proj_k].all_k == k) {
-										   tela[n].stat = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
-									tela[n-proj_k].stat = st_fract.sym;		/* MATCHING PAIR */
+								else if (tela[n-proj_k].all_k == k  /* && n-k >= projector && n + span_allrk(n) <= projector+proj_k */ ) {
+									tela[projector].stat = st_parent.sym;
+									tela[n        ].stat = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
+									tela[n-proj_k ].stat = st_fract.sym;		/* MATCHING PAIR */
 									i = n-proj_k-1;
 									while (tela[i].all_k == k && tela[i].stat == st_cycle.sym && i>=projector-proj_k && tela[i].all_r<2) {
 										clearall_tela(i,1,-1,TWO);
@@ -593,7 +578,7 @@ void mark_tela(void)
 										i--;
 									}
 								}
-								else if (ON )
+								else
 									tela[n].stat = st_Fract.sym;
 							}
 							TRcheck = 0;
@@ -649,23 +634,21 @@ void mark_tela(void)
 										}
 									}
 								}
-								else if (i>m+1 && tela[n].all_S > tela[i].all_S) {	/* m+2 B/C IS EARLIEST CAN HAVE FRACTAL DINUCL REPEAT IN SHADOW */
-									if (i==m && tela[m].all_k != k) {
-										if (tela[m-1].all_k)
-											;
-										else if (tela[m].all_k * tela[m].all_r <= n) {
-											tela[m].stat = st_Fract.sym;
-											push_mem(m, 8);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
-										}
+								else if (tela[n].all_S > tela[i].all_S) {	/* m+2 B/C IS EARLIEST CAN HAVE FRACTAL DINUCL REPEAT IN SHADOW */
+									if (i==m && tela[m].all_k != k && span_allrk(m) <= n) {
+										tela[m].stat = st_Fract.sym;
+										push_mem(m, 8);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 									}
-									else if (i>m && tela[i].all_k * tela[i].all_r <= n && tela[i].all_k != k) {
+									else if (i + span_allrk(i) <= n && tela[i].all_k != k)  {
 										if (i-tela[i].all_k >= m && tela[i].all_S == tela[i+k].all_S) {
-												tela[i].stat = st_fract.sym;
-												push_mem(i, 9)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+											tela[ n ].stat = st_parent.sym;
+											tela[i  ].stat = st_fract.sym;
+											tela[i+k].stat = st_fract.sym;
+											push_mem(i, 9)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
 										}
 										else {
 											tela[i].stat = st_Fract.sym;
-											push_mem(i,10)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+											push_mem(i,10)          /* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
 										}
 									}
 								}
@@ -719,8 +702,9 @@ void mark_tela(void)
 			}
 			for (i=j-1; i>0; i--) {
 				int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
-				if (tela[i].all_k && i>=m && i<n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
+				if (tela[i].all_k && i-tela[i].all_k >= m && span_allrk(i)<=n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
 					tela[i].stat = tela[i+k].stat = st_fract.sym;
+					tela[n].stat = st_parent.sym;
 					if (ON) {
 						/* CODE BLOCK TO REDUCE REPEAT NUMBERS IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T */
 						int x=0;
@@ -810,7 +794,7 @@ void mark_tela(void)
 					}
 				}
 			}
-			if (!checkconflict) {						/* MEANING CHECKCONFLICT FLAG WAS NEVER TURNED OFF, I.E., THERE IS CONFLICT */
+			if (!checkconflict) {						/* MEANING CHECKCONFLICT FLAG WAS NEVER TURNED O-F-F, I.E., THERE IS CONFLICT */
 				/* CONFLICT SCENARIO ONE (a and b) */
 				if (span==1 && !(tela[n].all_L) && tela[n].all_R) {
 					j = tela[n].all_R;
@@ -830,7 +814,7 @@ void mark_tela(void)
 							clearall_tela(j, i-j, tela[i].all_S, TWO);		/* O-F-F, ONE, OR TWO */
 							for (int p=j; p<=i; p++) {
 								if (tela[p].all_k)	
-									push_mem(p, 11);
+									push_mem(p, 12);
 							}
 							tela[i].all_Z = tela[i].all_S;
 							tela[n].all_Z = tela[n].all_S;
@@ -1013,22 +997,24 @@ int lenseq = Clean.pass_W;
 	}
 
 	/************* BEGIN PRINTING LINES *******************/
-	printf("\nxy:");
-	for (i=a; i<=b; i++)
-		printf("%3d", tela[i].gPnt.rel_xy);
-	printf("\ntP:");
-	for (i=a; i<=b; i++)
-		printf("%3d", tela[i].gPnt.topPar);
-	printf("\npP:");
-	for (i=a; i<=b; i++)
-		printf("%3d", tela[i].gPnt.prevPar);
-
-	printf("\n t:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].c != tela[i].t)
-			printf("__%c", tela[i].t);
-		else
-			printf("___");
+	if (Current.pass_V>2) {		/* pre-cinch-t */
+		printf("\nxy:");
+		for (i=a; i<=b; i++)
+			printf("%3d", tela[i].gPnt.rel_xy);
+		printf("\ntP:");
+		for (i=a; i<=b; i++)
+			printf("%3d", tela[i].gPnt.topPar);
+		printf("\npP:");
+		for (i=a; i<=b; i++)
+			printf("%3d", tela[i].gPnt.prevPar);
+	
+		printf("\n t:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].c != tela[i].t)
+				printf("__%c", tela[i].t);
+			else
+				printf("___");
+		}
 	}
 	printf("\n c:");
 	for (i=a; i<=b; i++)
@@ -1038,27 +1024,29 @@ int lenseq = Clean.pass_W;
 	for (i=a; i<=b; i++)
 		printf("%3d", i);
 
-	printf("\nLf:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].cyc_Lf)
-			printf("%3d", tela[i].cyc_Lf);
-		else
-			printf("  <");
-	}
-
-	printf("\nRt:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].cyc_Rt)
-			printf("%3d", tela[i].cyc_Rt);
-		else
-			printf("  >");
-	}
-	printf("\n X:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].X != i)
-			printf("%3d", tela[i].X);
-		else
-			printf("  .");
+	if (Current.pass_V>2) {		/* pre-cinch-t */
+		printf("\nLf:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].cyc_Lf)
+				printf("%3d", tela[i].cyc_Lf);
+			else
+				printf("  <");
+		}
+	
+		printf("\nRt:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].cyc_Rt)
+				printf("%3d", tela[i].cyc_Rt);
+			else
+				printf("  >");
+		}
+		printf("\n X:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].X != i)
+				printf("%3d", tela[i].X);
+			else
+				printf("  .");
+		}
 	}
 	printf("\n y:");
 	for (i=a; i<=b; i++)
@@ -1125,59 +1113,61 @@ int lenseq = Clean.pass_W;
 			printf(" __");
 	}
 
-	printf("\n k:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].k)
-			printf("%3d", tela[i].k);
-		else
-			printf("  .");
+	if (Current.pass_V>2) {		/* pre-cinch-t */
+		printf("\n k:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].k)
+				printf("%3d", tela[i].k);
+			else
+				printf("  .");
+		}
+		printf("\n r:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].r)
+				printf("%3d", tela[i].r);
+			else
+				printf(" __");
+		}
+	
+		printf("\nDt:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].Dtr)
+				printf("%3d", tela[i].Dtr);
+			else
+				printf("  .");
+		}
+	
+		printf("\n o:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].o)
+				printf("%3d", tela[i].o);
+			else
+				printf("  .");
+		}
+		printf("\n E:");
+		for (i=a; i<=b; i++)
+			printf("%3c", tela[i].echoes);
 	}
-	printf("\n r:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].r)
-			printf("%3d", tela[i].r);
-		else
-			printf(" __");
-	}
-
-	printf("\nDt:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].Dtr)
-			printf("%3d", tela[i].Dtr);
-		else
-			printf("  .");
-	}
-
-	printf("\n o:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].o)
-			printf("%3d", tela[i].o);
-		else
-			printf("  .");
-	}
-	printf("\n E:");
-	for (i=a; i<=b; i++)
-		printf("%3c", tela[i].echoes);
-
 	printf("\nDEV");
-	for (i=a; i<=b; i++)
-		if (tela[i].DEV)
-			printf("_ %c", tela[i].DEV);
-		else
-			printf("__ ");
-
-	printf("\ncO:");
-	for (i=a; i<=b; i++)
-		printf("%3c", tela[i].cyc_o);
-
-	printf("\ncL:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].cyc_l) 
-			printf("%3d", tela[i].cyc_l);
-		else
-			printf("  .");
+		for (i=a; i<=b; i++)
+			if (tela[i].DEV)
+				printf("_ %c", tela[i].DEV);
+			else
+				printf("__ ");
+	
+		if (Current.pass_V>2) {		/* pre-cinch-t */
+		printf("\ncO:");
+		for (i=a; i<=b; i++)
+			printf("%3c", tela[i].cyc_o);
+	
+		printf("\ncL:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].cyc_l) 
+				printf("%3d", tela[i].cyc_l);
+			else
+				printf("  .");
+		}
 	}
-
 	printf("\ncK:");
 	for (i=a; i<=b; i++) {
 		if (tela[i].cyc_k)
@@ -1194,22 +1184,23 @@ int lenseq = Clean.pass_W;
 			printf("  .");
 	}
 
-	printf("\ncP:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].cyc_P)
-			printf("%3d", tela[i].cyc_P);
-		else
-			printf("  .");
+	if (Current.pass_V>2) {		/* pre-cinch-t */
+		printf("\ncP:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].cyc_P)
+				printf("%3d", tela[i].cyc_P);
+			else
+				printf("  .");
+		}
+	
+		printf("\ncS:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].cyc_S)
+				printf("%3d", tela[i].cyc_S);
+			else
+				printf("  .");
+		}
 	}
-
-	printf("\ncS:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].cyc_S)
-			printf("%3d", tela[i].cyc_S);
-		else
-			printf("  .");
-	}
-
 	printf("\n   ");
 	for (i=a; i<=b; i++)
 		printf(" --");
@@ -1293,9 +1284,6 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 		/* CHECK PRINCIPLE OF EQUIVALENCE */
 		for (i=0; i<k; i++) {
 			if      (tela[n1+i].c == tela[n2+i].c) {
-				;
-			}
-			else if (OFF && tela[n1+i].e == tela[n2+i].e) {
 				;
 			}
 			else if (tela[n1+i].t == tela[n2+i].t) {	/* THIS IS REDUNDANT IF ].e IS EVALUATED BUT HERE FOR TESTING PURPOSES */

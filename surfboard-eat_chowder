@@ -19,4 +19,5 @@ fi
 # CHOWDER TESTS 
 ./maximal -DKnxrL waves/chowder/seq-64-snippet-Rnx_symmetry.txt 
 ./maximal -DKnxrL waves/chowder/seq-64-snippet-Rnx_symmetry.txt -C
+./maximal -DKn    waves/chowder/seq-29-toslp2-snippet.txt -v 3
 

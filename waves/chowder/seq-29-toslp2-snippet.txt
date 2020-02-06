@@ -1,0 +1,8 @@
+>target_formatted_in_file
+GAACAC/
+...CAC/
+....AC/
+.....CAG/ 
+...CAC/
+....AC/
+.....CAGTACG
