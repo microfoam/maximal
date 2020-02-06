@@ -34,7 +34,6 @@ fi
 ./maximal -DKRn  waves/tubespit/seq-015-cycle4.txt 
 ./maximal -DKRn  waves/tubespit/seq-025-tosSt2.txt 
 ./maximal -DKRn  waves/tubespit/seq-026-tosSt2.txt 
-./maximal -DKRn  waves/tubespit/seq-029-toslp2.txt 
 ./maximal -DKRnx waves/tubespit/seq-055-impkhp.txt 
 ./maximal -DKRnx waves/tubespit/seq-099-v343_09.txt 
 ./maximal -DKRnx waves/tubespit/seq-146-v344_33.txt 
