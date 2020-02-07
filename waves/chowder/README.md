@@ -234,7 +234,7 @@ because they are the result of mononucleotide tracts, which *maximal* is smart e
 To explain a bit more, let's imagine an adjacent 3-mer and 4-mer. I will write them with letters representing potentially
 different symbols at each column.
 
-A 4-mer at *n* and a 3-mer at *n*-1:
+***A 4-mer at *n* and a 3-mer at *n*-1:***
 ```
    m...n...
   >ABCDABCD>
@@ -253,7 +253,7 @@ This implies that D = C = B = A. So the sequence is really just 5'-AAAAAAAA.
 
 Because of the cinch-t sytem of annotating at *n*, I also wanted to work it out for the reverse order.
 
-3-mer being at *n* and the 4-mer being at *n*-1:
+***3-mer being at *n* and the 4-mer being at *n*-1:***
 
 ```
    ..m..n..
@@ -274,7 +274,7 @@ Natural *k*-mer tandem repeats have a distribution that is shifted to the smalle
 you don't see "adjacent non-zero mod *k*'s". But they are possible at higher *k* sizes. Here's
 an example for a 5-mer and a 3-mer in both orders:
 
-A 5-mer at *n*, and a 3-mer at *n*-1:
+***A 5-mer at *n*, and a 3-mer at *n*-1:***
 ```
    m....n....
   >ABCDEABCDE>
@@ -295,7 +295,7 @@ incompatible with each other.
 
 Here's the case for the reverse order, which actually is a different sequence.
 
-A 3-mer at *n* and a 5-mer at *n*-1:
+***A 3-mer at *n* and a 5-mer at *n*-1:***
 ```
    ...m..n..
   >CABABCABCD>
@@ -327,6 +327,7 @@ I will not articulate here for brevity. Nonetheless, I explored this question by
 two abstract sequences derived above for an adjacent 5-mer and 3-mer in both orders.  For reasons that will become clear, I will call them abba-zabba sequences.
 
 Sequence pattern one is ABABBABABBZ.
+
 Sequence pattern two is AABABAABABZ.
 
 I added the 'Z' at the tail because originally I wanted to work on both of them in one sequence and the 'Z' was a good separator of the A's and B's.
@@ -338,7 +339,7 @@ are always constructed of an underlying 2-mer pattern based on 'AB'.
 The significance is that rather than choosing either the 3-mer or the 5-mer, one should choose neither *k*-mer! 
 Why? Just see for yourself:
 
-Abba-zabba foam based on pattern one:
+***Abba-zabba foam based on pattern one:***
 ```
 2-D pass #4: cinch-k (width = 3)
  >AB/
@@ -357,7 +358,7 @@ Abba-zabba foam based on pattern one:
   ABZ
 ```
 
-Abba-zabba foam based on pattern two:
+***Abba-zabba foam based on pattern two:***
 ```
 2-D pass #4: cinch-k (width = 3)
  >A/
