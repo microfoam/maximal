@@ -314,7 +314,7 @@ This implies that C = A and D = B. So the sequence is actually 5'-AABABAABAB.
 
 :sweat_smile:
 
-### Abba-zaaba foam
+### Abba-Zabba foam
 Now here's the reason I have been obsessed with this new fractal way of looking at repeats, 
 inspired by studying sequence evolution in relatively unconstranied gene regulatory sequences. 
 There is nothing about this particular business that is common sense. For example, having implemented
