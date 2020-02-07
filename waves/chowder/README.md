@@ -314,6 +314,71 @@ This implies that C = A and D = B. So the sequence is actually 5'-AABABAABAB.
 
 :sweat_smile:
 
+### Abba-zaaba foam
+Now here's the reason I have been obsessed with this new fractal way of looking at repeats, 
+inspired by studying sequence evolution in relatively unconstranied gene regulatory sequences. 
+There is nothing about this particular business that is common sense. For example, having implemented
+the capabilities I just described, I thought I had a choice about whether to choose the bigger
+or the smaller of the two adjacently-annotated *k*-mers with non-zero mod *k*'s.
+
+In a superficially greedy approach, you might think that you should take the larger of the two *k*-mers,
+but what happens is usually messier than choosing the smaller of the two for reasons
+I will not articulate here for brevity. Nonetheless, I explored this question by working on the 
+two abstract sequences derived above for an adjacent 5-mer and 3-mer in both orders.  
+For reasons that will become clear, I will call them abba-zabba sequences.
+
+Sequence pattern one is ABABBABABBZ.
+
+Sequence pattern two is AABABAABABZ.
+
+I added the 'Z' because it turned out I would get different behavior depending on whether I repeated each sequence or not.
+This had to do with whether the internal repeats were solved by cinch-t or cinch-k.
+The fractal repeats would be solved by cinch-k only if there were two units. This exercise, 
+and I am now certainly glad that I wrote this out for the README, showed me that an adjacent 5-mer and 3-mer
+are always constructed of an underlying 2-mer pattern based on 'AB'.
+The significance is that rather than choosing either the 3-mer or the 5-mer, one should choose neither *k*-mer! 
+Why? Just see for yourself:
+
+Abba-zabba foam based on pattern one:
+```
+2-D pass #4: cinch-k (width = 3)
+ >AB/
+  AB/
+  .B/
+  AB/
+  AB/
+  .BZ/
+  AB/
+  AB/
+  .B/
+  AB/
+  AB/
+  .BZ>
+  ___
+  ABZ
+```
+
+Abba-zabba foam based on pattern two:
+```
+2-D pass #4: cinch-k (width = 3)
+ >A/
+  AB/
+  AB/
+  A/
+  AB/
+  ABZ/
+  A/
+  AB/
+  AB/
+  A/
+  AB/
+  ABZ>
+  ___
+  ABZ
+```
+
+:astonished:
+
 
 ## Solved: *seq6-koslip-snippet.txt*, conditional mark_tela break
 
