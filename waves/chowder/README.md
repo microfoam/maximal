@@ -316,7 +316,7 @@ This implies that C = A and D = B. So the sequence is actually 5'-AABABAABAB.
 
 ### Abba-Zabba foam
 Now here's the reason I have been obsessed with this new fractal way of looking at repeats, 
-inspired by studying sequence evolution in relatively unconstranied gene regulatory sequences. 
+inspired by studying sequence evolution in relatively unconstrained gene regulatory sequences. 
 There is nothing about this particular business that is common sense. For example, having implemented
 the capabilities I just described, I thought I had a choice about whether to choose the bigger
 or the smaller of the two adjacently-annotated *k*-mers with non-zero mod *k*'s.
