@@ -324,9 +324,8 @@ or the smaller of the two adjacently-annotated *k*-mers with non-zero mod *k*'s.
 In a superficially greedy approach, you might think that you should take the larger of the two *k*-mers,
 but what happens is usually messier than choosing the smaller of the two for reasons
 I will not articulate here for brevity. Nonetheless, I explored this question by working on the 
-two abstract sequences derived above for an adjacent 5-mer and 3-mer in both orders.  
+two abstract sequences derived above for an adjacent 5-mer and 3-mer in both orders.  For reasons that will become clear, I will call them abba-zabba sequences.
 
-For reasons that will become clear, I will call them abba-zabba sequences.
 Sequence pattern one is ABABBABABBZ.
 Sequence pattern two is AABABAABABZ.
 
