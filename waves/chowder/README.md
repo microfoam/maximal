@@ -253,7 +253,7 @@ This implies that D = C = B = A. So the sequence is really just 5'-AAAAAAAA.
 
 Because of the cinch-t sytem of annotating at *n*, I also wanted to work it out for the reverse order.
 
-***3-mer being at *n* and the 4-mer being at *n*-1:***
+***3-mer at *n* and a 4-mer at *n*-1:***
 
 ```
    ..m..n..
