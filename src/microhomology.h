@@ -9,7 +9,7 @@
 #define CYCMAX     60       /* SEMI-MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER EMBEDDED DECISIONS */
 #define MAXROW   2000       /* maximum input line size; NOT M-A-G-I-C JUST WHAT MY 'PUTERS CAN DO AS CURRENTLY WRITTEN */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
-#define MEMROWS    22       /* NUMBER OF mem[MEMROWS] ROWS IN STRUCT COORD ARRAY TELA */
+#define MEMROWS    20       /* NUMBER OF mem[MEMROWS] ROWS IN STRUCT COORD ARRAY TELA */
 							/* USE 1: BIT (0/1) VALUES FOR MARK_TELA MARKS ASSOCIATED WITH A SINGLE LOOP OF CLEAR_ALL PRECEDENCE */
 							/* USE 2: NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
 #define START       0       /* FOR USE WITH line_end() */
@@ -53,18 +53,20 @@ struct coord {
 	char t;			/* IUPAC TRANSITIONS IN DNA USUALLY (RY) IN "IMPERFECT" TANDEM REPEATS */
 	/*************************************************************************************************/
 	int  mem[MEMROWS];	/* Use 1: bits for clearall_tela() in mark_tela(), so that order of precedence can be easily edited */
-						/* Use 2: cycling frames; count-off column positions per unit; 32 - 10 = 22 */
+						/* Use 2: cycling frames; count-off column positions per unit; 32 - 11 = 21 */
 						/* one row/frame; row 0 is row # locator; MEMROWS IS BASED ON MEM AL. */
-	int all_k;		/* ALL SERIES: PRE-CINCH-T: k-MER SIZE                        */
-	int k2;			/* ALL SERIES: PRE-CINCH-T: k-MER SIZE; smaller k at same col */
-	int all_r;		/* ALL SERIES: PRE-CINCH-T: REPEAT NUMBER                     */
-	int all_S;		/* ALL SERIES: PRE-CINCH-T: SUM OF SCORES OVER ALL UNITS      */
-	char  DEV;		/* DEV-use; MARKS FOR INTERPRETATION NOT FOR CHANGING BEHAVIOR*/
-	int all_Z;		/* ALL SERIES: PRE-CINCH-T: ALL_S + TIE-BREAKERS			  */
-	int all_R;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON RHS */
-	int all_L;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON LHS */
-	char stat;		/* ALL SERIES: PRE-CINCH-T: STATUS                            */
-	char stat2;		/* ALL SERIES: PRE-CINCH-T: STATUS                            */
+	int ok;			/* ALL SERIES: PRE-CINCH-T: OPERATIONAL k-MER SIZE (prev. all_k)*/
+	int or;			/* ALL SERIES: PRE-CINCH-T: REPEAT NUMBER (prev. all_r)       	*/
+	int k0;			/* ALL SERIES: PRE-CINCH-T: k-MER; largest k at pos. n, undone	*/	
+	int k1;			/* ALL SERIES: PRE-CINCH-T: k-MER; largest k at pos. n        	*/
+	int k2;			/* ALL SERIES: PRE-CINCH-T: k-MER; smaller k at pos. n        	*/
+	int all_S;		/* ALL SERIES: PRE-CINCH-T: SUM OF SCORES OVER ALL UNITS      	*/
+	char  DEV;		/* DEV-use; MARKS FOR INTERPRETATION NOT FOR CHANGING BEHAVIOR	*/
+	int all_Z;		/* ALL SERIES: PRE-CINCH-T: ALL_S + TIE-BREAKERS			  	*/
+	int all_R;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON RHS 	*/
+	int all_L;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON LHS 	*/
+	char stat;		/* ALL SERIES: PRE-CINCH-T: STATUS                            	*/
+	char stat2;		/* ALL SERIES: PRE-CINCH-T: STATUS                            	*/
 	/*************************************************************************************************/
 	int cyc_Lf;		/* Left-side overlapping TR */
 	int cyc_Rt;		/* Right-side overlapping TR */
@@ -997,7 +999,7 @@ int hr_len = min_len;					/* DEFAULT LENGTH OF HEADER BANNER */
 		printf(" 2-D pass #%d: relax-2D (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
 	else if (Current.pass_V == 0) {
-		printf("\n Original string (length = %d):\n", lcl_width);
+		printf("\nOriginal string (length = %d):\n", lcl_width);
 	}
 	else 
 		printf("%.*s\n", max_len, h_rule);
@@ -1642,7 +1644,7 @@ void print1D(void)
 /*************************/
 int span_allrk(int point)
 {
-	int product = tela[point].all_r * (tela[point].all_k);
+	int product = tela[point].or * (tela[point].ok);
 	return(product);
 }
 

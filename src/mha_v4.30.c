@@ -604,8 +604,10 @@ int main(int argc, char *argv[])
 		Seq = Seq_r;
 	}
 
+	Start.pass_Q = 1000;
+
 	++Current.pass_V;
-	Clean.pass_Q = Start.pass_Q = 1000;
+	Clean.pass_Q = 500;	/* Nominal half-pass until mark_tela() is completed; used to count half a pass for print_tela() */
 
 	Seq[lenseq] = tela[lenseq].t = tela[lenseq].c = Term->sym;
 	citwidth = lenseq;	
@@ -627,7 +629,8 @@ int main(int argc, char *argv[])
 		else
 			tela[i].e = tela[i].c;
 	}
-	mark_tela();		/* WILL MARK ALL TRs WITHOUT CINCHING AND RECORD IN tela[].all_k, all_r, all_S, all_L/R */
+	mark_tela();			/* WILL MARK ALL TRs WITHOUT CINCHING AND RECORD IN tela[].ok, all_r, all_S, all_L/R */
+	Clean.pass_Q = 1000;	/* mark_tela() is completed; used to count half a pass for print_tela() */
 
 	if (opt_t.bit) {
 		strcpy(align2D[0],Seq);
@@ -845,7 +848,7 @@ int main(int argc, char *argv[])
 					} 
 	
 					if (Dtr && dev_print(MAIN,__LINE__)) {
-						printf("cinch_t evaluating k=%d-mer all_r=%d at n=%d, imperfect_TR=%d.", k, tela[n].all_r, n, imperfect_TR);
+						printf("cinch_t evaluating k=%d-mer all_r=%d at n=%d, imperfect_TR=%d.", k, tela[n].or, n, imperfect_TR);
 					}
 	
 					/* IF SUMMING PATHBOX DIAGONAL 4/: FIND AND STORE POSITION OF LEFT-MOST OVERLAPPING TRs */
@@ -898,7 +901,7 @@ int main(int argc, char *argv[])
 					}
 	
 					/* SOMETIMES MARK_TELA() CANCELED A HIGHER IMPERFECT K-MER AT THIS COLUMN: NEED TO CHECK AND DEAL ACCORDINGLY */
-					if (Dtr && k != tela[n].all_k && imperfect_TR) {
+					if (Dtr && k != tela[n].ok && imperfect_TR) {
 						Dtr = imperfect_TR = 0;
 					}
 
@@ -932,7 +935,7 @@ int main(int argc, char *argv[])
 								if (reps > 1) {
 									tela[n].cyc_l = k;		/* STORE # OF FRAMES CAN CYCLE THROUGH: AN ENTIRE UNIT-LENGTH */
 									i = 1;
-									while (!tela[n+k-i].all_k) {
+									while (!tela[n+k-i].ok) {
 										--tela[n].cyc_l;
 										++i;
 									}
@@ -940,7 +943,7 @@ int main(int argc, char *argv[])
 								break;
 							}
 						}
-						reps = tela[n].all_r;		/* all_r is adjusted for fractal sub-set splitting */
+						reps = tela[n].or;		/* all_r is adjusted for fractal sub-set splitting */
 	
 						badslip_type = 0;
 						/* SKIP CINCH IF TR PRIOR TO m SPANS INTO PRESENT TR */
@@ -963,11 +966,11 @@ int main(int argc, char *argv[])
 						}    
 					}
 					
-					if (nuctransit && Dtr && tela[n].all_S != tela[n].all_r *k*match) {
+					if (nuctransit && Dtr && tela[n].all_S != tela[n].or *k*match) {
 						imperfect_TR++;
 					}
 	
-					j = n + tela[n].all_k * tela[n].all_r;
+					j = n + tela[n].ok * tela[n].or;
 					if (tela[n].all_L && check_tela(tela[n].all_L, j, ONE)!=3) {
 						Dtr = imperfect_TR = 0;
 							if (dev_print(MAIN,__LINE__)) 
@@ -1106,7 +1109,7 @@ int main(int argc, char *argv[])
 										else
 											tela[n+l].mem[0] = ++f;	/* USE ROW 0 TO STORE ROW # OF FRAME */
 	
-										for (j = 0; j < tela[n+l].all_r; j++) {
+										for (j = 0; j < tela[n+l].or; j++) {
 											if (j==0) {		/* WRITE FOR UNIT REPEAT STARTING AT m ONETIME */
 												for (o = 0; o < k; o++) 
 													tela[m + l + o].mem[f] = o+1;
@@ -1129,8 +1132,8 @@ int main(int argc, char *argv[])
 												}
 											}
 										}
-										tela[n+l].cyc_P = tela[n+l].cyc_k * tela[n+l].all_r;
-										tela[n+l].cyc_r = tela[n+l].all_r;
+										tela[n+l].cyc_P = tela[n+l].cyc_k * tela[n+l].or;
+										tela[n+l].cyc_r = tela[n+l].or;
 									} 
 	
 									/* SUM UP COMPATIBLE TR PRODUCTS IN WINDOW OF LENGTH SUMSPAN BEGINNING AT POSITION series OF TR B */
@@ -1148,7 +1151,7 @@ int main(int argc, char *argv[])
 													while (tela[l].mem[f] != 1 && l>backstop) 
 														l--;
 													if (OFF && l == backstop) {									/* !!!!!!!!!!!!!!!!!!!!! */
-														while (tela[l].mem[f] != 1 || !tela[l].all_k)
+														while (tela[l].mem[f] != 1 || !tela[l].ok)
 															l++;
 													}
 

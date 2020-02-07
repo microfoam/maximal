@@ -493,8 +493,9 @@ int *x_history = NULL;
 						i = k;  /* VAR i SET TO k ONLY TO ENTER WHILE LOOP */
 						while (i==k) {
 							for (i = 0; i < k; i++) {
-						    	if (align2D[m][n+i] != (letr2=align2D[m][n+(r+1)*k+i]) && isalpha(letr2))
+						    	if (align2D[m][n+i] != (letr2=align2D[m][n+(r+1)*k+i]) && isalpha(letr2)) {
 									break;
+								}
 					        }    
 					        if (i == k)
 								r++;        /* INCREMENT NUMBER OF REPEATS */
@@ -517,7 +518,7 @@ int *x_history = NULL;
 					/* CHECK FOR SLIPS OVER-HEAD (LOWER ROWS) OF SECOND UNIT */
 					for (i=m-1; i>=0; i--) {
 						for (int j=n+k+1; j<n+2*k; j++) {
-							if (align2D[i][j] == slip.sym) {
+							if (align2D[i][j] == slip.sym && tela[symbol_count-1].c != tela[symbol_count+2*k].c) {
 								i = -1;
 								keep_checking = imperfect_TR = 0;
 								break;

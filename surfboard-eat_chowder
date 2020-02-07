@@ -20,7 +20,6 @@ fi
 # CHOWDER TESTS 
 ./maximal -DKRnxrL waves/chowder/seq-64-snippet-Rnx_symmetry.txt 
 ./maximal -DKRnxrL waves/chowder/seq-64-snippet-Rnx_symmetry.txt -C
-./maximal -DKRn    waves/chowder/seq-29-toslp2-snippet.txt -v 3
 ./maximal -DKRn  waves/seals/vnd_ex3_Dbiar.txt 
 ./maximal -DKRn  waves/seals/vnd_ex3_Danan.txt 
 ./maximal -DKRnx waves/seals/vnd_ex3_Danan.txt -C
@@ -32,8 +31,6 @@ fi
 ./maximal -DKRn  waves/sharks/vnd_NEE_Dsant.txt -C
 ./maximal -DKRn  waves/tubespit/seq-014-cycle3.txt 
 ./maximal -DKRn  waves/tubespit/seq-015-cycle4.txt 
-./maximal -DKRn  waves/tubespit/seq-025-tosSt2.txt 
-./maximal -DKRn  waves/tubespit/seq-026-tosSt2.txt 
 ./maximal -DKRnx waves/tubespit/seq-055-impkhp.txt 
 ./maximal -DKRnx waves/tubespit/seq-099-v343_09.txt 
 ./maximal -DKRnx waves/tubespit/seq-146-v344_33.txt 

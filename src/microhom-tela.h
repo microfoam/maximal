@@ -13,6 +13,7 @@ short int 			check_solo(int pos);
 int  				check_tela(int eM, int eN, short unsigned int mode_dim);
 void 				clearall_tela(int n, int span, int keep_score, int mode);
 int  				cyclelize_tela(int cpos, int delta, int npos);
+void				push_tela_or(int n);
 void 				flatline_after_TR(int pos);
 void				mark_tela(void);
 void				push_mem(int pos, int row);
@@ -25,28 +26,6 @@ int 				score_kmer(int n, int k, short unsigned int mode);
 int  				settle_tiescores(int n, int span, int max_score, int iteration);
 int					update_tela(void);
 
-/* Return k-mer repeat size smaller than k if it exists, otherwise return 0 */
-/* First prototype function will just do perfect repeats */
-int get_k2(int n, int k1) 
-{
-	int lenseq = Clean.pass_W;
-	int i=0, m=0, k=0;
-
-	if (n+k1 >= lenseq || n-k1 <= 0)
-		return(0);
-	else {
-		for (k = k1-1; k>0; k--) {
-			m = n-k;
-			for (i=0; i<k; i++) {
-				if (tela[m+i].c != tela[n+i].c)
-					break;
-			}
-			if (i==k)
-				return(k);
-		}
-		return(0);
-	}
-}
 
 /******************************* MODE ZERO (+x) OR ONE (+y) *****************************************/
 int push_gPnt(short unsigned int ymode, int pos, int prev_par)
@@ -129,8 +108,8 @@ void assign_transit(int n, int kr_src)
 	int k, r;
 
 	if      (kr_src == 1) {		/* kr_src = ONE */
-		k = tela[n].all_k;
-		r = tela[n].all_r;
+		k = tela[n].ok;
+		r = tela[n].or;
 	}
 	else if (kr_src == 2) {		/* kr_src = TWO */
 		k = tela[n].cyc_k;
@@ -261,20 +240,32 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 }
 
 
-/* FUNCTION TO CLEAR _ALL ELEMENTS IN TELA WITHIN A NON-CONFLICTED CYCLING ISLAND W/ A SINGLE MAX-SCORE */
+/* FUNCTION TO CLEAR_ALL ELEMENTS IN TELA WITHIN A NON-CONFLICTED CYCLING ISLAND W/ A SINGLE MAX-SCORE.        */
+/* The use of clearall-tela has evolved in practice. As written it scans a window starting at n of length span */
+/* and then clears elements at tela[n] if tela[n].all_Z did not match 'keep_score'. In practice, it was        */
+/* very easy to start specifying spans of 1 (meaning only scan at n), and to set the keep_score to -1, which   */
+/* is not a value that is ever assigned. Almost always it is now run as clearall_tela (n, 1, -1, TWO).         */
 void clearall_tela(int n, int span, int keep_score, int mode)
 {
 	int i;
 
-	if (!mode)				/* MODE 0=O-F-F, 1=CLEAR S ONLY; 2=CLEAR ALL */
+	if (!mode)		/* MODE 0 = O-F-F; 1=CLEAR S ONLY; 2=CLEAR ALL; 3=CLEAR ALL & SHIFT k-mers ok<- k2 ->k1->k0 */
 		return;
 
 	for (i=n; i< n+span; i++) {
 		if (tela[i].all_Z != keep_score) {
-			tela[i].all_S = 0; 
+			tela[i].all_S = 0;										/* MODES > 0 */					
 			if (mode>1) {
-				tela[i].all_k = tela[i].all_r = tela[i].all_Z = 0; 
-				tela[i].all_L = tela[i].all_R = 0;
+				tela[i].ok = tela[i].or = tela[i].all_Z = 0;		/* MODES > 1 */  
+				tela[i].all_L = tela[i].all_R = 0;					/* MODES > 1 */ 
+
+				if (mode>2 && tela[i].k1 && !tela[i].k0) {
+					tela[i].ok = tela[i].k2;						/* MODES > 2 */ 
+					tela[i].k0 = tela[i].k1;						/* MODES > 2 */ 
+					tela[i].k1 = tela[i].k2;						/* MODES > 2 */ 
+					tela[i].k2 = 0;									/* MODES > 2 */ 
+					push_tela_or(i);
+				}
 			}
 		}
 	}
@@ -300,7 +291,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 		tela[i].gPnt.rel_xy = XDIR;
 		tela[i].gPnt.prevPar = tela[i].gPnt.topPar = i;
 	}
-	push_gPnt_kmer(cpos+delta, k, tela[cpos+delta].all_r);
+	push_gPnt_kmer(cpos+delta, k, tela[cpos+delta].or);
 
 	if (k && reps && tela[cpos].cyc_o == cyc_take.sym) {
 		z = cpos;
@@ -352,9 +343,9 @@ void flatline_after_TR(int pos)
 	int lenseq = Clean.pass_W;
 	int i, start, x, y;
 
-	if (!tela[pos].all_k) {
+	if (!tela[pos].ok) {
 		for (i=pos-1; i>0; i--) {
-			if (tela[i].all_k) {
+			if (tela[i].ok) {
 				pos = i;
 				break;
 			}
@@ -364,10 +355,10 @@ void flatline_after_TR(int pos)
 		}
 	}
 
-	x = tela[pos].x + tela[pos].all_k;						/* START OF FIRST COLUMN AFTER REPEAT */
-	y = tela[pos].y + tela[pos].all_r - 1;					/* FINISHING ROW */
+	x = tela[pos].x + tela[pos].ok;						/* START OF FIRST COLUMN AFTER REPEAT */
+	y = tela[pos].y + tela[pos].or - 1;					/* FINISHING ROW */
 
-	start = pos + tela[pos].all_k * tela[pos].all_r;		/* 1D-POINT TO START */
+	start = pos + tela[pos].ok * tela[pos].or;		/* 1D-POINT TO START */
 
 	for (i=start; i<=lenseq; i++) {
 		tela[i].x = x++; 
@@ -380,6 +371,59 @@ void flatline_after_TR(int pos)
 	}
 }
 
+/* Get repeats at n, Albert-style (units start at m, annotated at n, beginning of second unit); runs on operational k (ok) */
+/* Prototype will focus only on perfect repeats. */
+void push_tela_or(int n)
+{
+	int i=0, reps=0;
+	int k=tela[n].ok;
+	short unsigned int rcheck = 1;
+	int m=n-k;
+	int lenseq = Clean.pass_W;
+
+	if (m<0 || n+k>lenseq) {
+		tela[n].or = 0;
+		return;
+	}
+
+	while (rcheck && n + k*(reps+1) < lenseq) {
+		for (i=0; i<k; i++) {
+			if (tela[m+reps*k + i].c != tela[n+reps*k + i].c) {
+				rcheck = 0;
+				break;	
+			}
+		}
+		if (i==k)
+			reps++;
+	}
+	tela[n].or = reps;
+	tela[n].all_S = reps * k * MATCH;
+	return;
+}
+
+
+/* Return k-mer repeat size smaller than k if it exists, otherwise return 0 */
+/* First prototype function will just do perfect repeats */
+int get_k2(int n, int k1) 
+{
+	int lenseq = Clean.pass_W;
+	int i=0, m=0, k=0;
+
+	if (n+k1 >= lenseq || n-k1 <= 0)
+		return(0);
+	else {
+		for (k = k1-1; k>0; k--) {
+			m = n-k;
+			for (i=0; i<k; i++) {
+				if (tela[m+i].c != tela[n+i].c)
+					break;
+			}
+			if (i && i==k && k<k1)
+				return(k);
+		}
+		return(0);
+	}
+}
 
 /**************** FUNCTION TO MARK ALL POSSIBLE k-MERs BEFORE LEGACY CINCH-T PASS ******************************/
 void mark_tela(void) 
@@ -397,18 +441,31 @@ void mark_tela(void)
 	int transitloc[4] = {-1};
 	short unsigned int transitlocsize = 4;
 	int prev_k;
-	int k1, k2;
+	int k1=0, k2=0, k_tmp=0;
 	short unsigned int floor=1;
 
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
 	}
 
+	/* Annotations of the largest (k1) and second largest (k2) k-mers at position n are permanent. */
+	/* Annotation at all_k is eraseable and is the operational k-mer used at that position.        */
 	for (n=1; n<lenseq; n++) {
 		for (k=WIDTH; k>floor; k--) {
-			if ((k1=get_k2(n,k))>floor) {
-				if ((k2=get_k2(n,k1))>floor)
-					tela[n].k2 = k2;
+			k2 = k1 = k_tmp=0;
+			if ((k_tmp=get_k2(n,k))>floor) {
+				if (!tela[n].k1) {
+					tela[n].k1 = k1 = k_tmp;
+					if ((k_tmp=get_k2(n,k1))>floor) {
+						tela[n].k2 = k2 = k_tmp;
+						if (dev_print(TELA,__LINE__)) 
+							printf("At n=%2d, k1=%d, k2=%d.", n, k1, k2);
+						break;					/* BREAK BECAUSE CURRENTLY ONLY STORING TOP TWO k-MERS AT n */
+					}
+					else if (dev_print(TELA,__LINE__)) 
+						printf("At n=%2d, k1=%d.", n, k1);
+
+				}
 			}
 		}
 	}
@@ -484,7 +541,7 @@ void mark_tela(void)
 
 				/** MOD TESTS. Original example for if part: seq-146-v344_33-snippet.txt    **/
 				/**            Original example for if else part: seq-15-cycle4-snippet.txt **/
-				if (Dtr && (prev_k=tela[n-1].all_k) && prev_k != k) {
+				if (Dtr && (prev_k=tela[n-1].ok) && prev_k != k) {
 					short unsigned int k2_check=1;
 					for (i=n; i<n+k; i++) {
 						if (tela[i].k2) {
@@ -502,13 +559,12 @@ void mark_tela(void)
 						n += k-1;
 						Dtr = 0; 
 					}
-					else if (prev_k>k && prev_k % k && tela[n-prev_k].all_k != k) {
+					else if (prev_k>k && prev_k % k && tela[n-prev_k].ok != k) {
 						push_mem(n  ,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 						push_mem(n-1,2);
 						push_mem(n  ,2);
 						tela[n-1].stat = st_Fract.sym;
 						tela[n  ].stat = st_Fract.sym;
-						tela[n  ].cyc_k = k;			/* IN CASE all_k GETS OVER-WRITTEN CAN LOOK HERE FOR CANCELED ONE */
 						n += prev_k-2;					/* THIS LINE DOES NOT SEEM TO MAKE A DIFFERENCE BUT LEAVING HERE ANNOTATED. HERE FOR SYMMETRY AND OTHER */
 						Dtr = 0; 
 					}
@@ -521,7 +577,7 @@ void mark_tela(void)
 					while ((j=transitloc[t]) != -1 && t<transitlocsize) {
 						for (fract_k = 2; fract_k <= (int) k/2; fract_k++) {
 							for (i = fract_k; i < k-fract_k; i++) {
-								if (fract_k<=PISO && tela[m+i].all_k == fract_k && j>=i-fract_k && j<=i+span_allrk(m+i) && i+span_allrk(m+i)<=k) {
+								if (fract_k<=PISO && tela[m+i].ok == fract_k && j>=i-fract_k && j<=i+span_allrk(m+i) && i+span_allrk(m+i)<=k) {
 									if (dev_print(TELA,__LINE__)) {
 										printf("Calling conflict between perfect and imperfect fractal TRs for parent " 
 												"k=%d at n=%d, transition at j=%d, and fractal TR at m+i=%d.", k, n, j, m+i); 
@@ -546,14 +602,14 @@ void mark_tela(void)
 					}
 					/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
 					TRcheck = 1;
-					tela[n].all_k = k;
-					tela[n].all_r = reps = 1;
+					tela[n].ok = k;
+					tela[n].or = reps = 1;
 					tela[n].all_S = Dtr;	/* SAVE INITIAL UNIT SCORE */
 					while (TRcheck) {
 						Atr = 0;
 						if (m + (reps+1)*k >= lenseq) { 
 							Atr = 0;
-							tela[n].all_r = reps;
+							tela[n].or = reps;
 							push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 							break;
 						}
@@ -574,14 +630,14 @@ void mark_tela(void)
 							tela[n].all_S += Atr;
 						}
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
-							tela[n].all_r = reps;
+							tela[n].or = reps;
 							push_mem(n,0);          /* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 
 							if (n+k*reps > projection) {
 								/* BEFORE ADVANCING PROJECTION, CHECK TO SEE IF THIS TR CALL IS COVERING A FRACTAL REPEAT OF SMALLER K.  */	
 								/* RECALL THAT A FRACTAL TR (k>1) CAN ONLY EXIST STARTING AT THE THIRD COLUMN OF EACH UNIT OF PARENT TR. */
 								/* RECALL THAT A CYCLING TR IS CALLED AND MARKED ONLY WHEN THE SECOND CYCLING POSITION IS CALLED.        */
-								if (k==tela[n-1].all_k && tela[n-1].stat==st_cycle.sym && tela[n-proj_k].all_k && tela[n-proj_k].all_k<proj_k) {
+								if (k==tela[n-1].ok && tela[n-1].stat==st_cycle.sym && tela[n-proj_k].ok && tela[n-proj_k].ok<proj_k) {
 									for (i=n; i<n+span_allrk(n); i++) {
 										if (tela[n].c != tela[n-proj_k].c)
 											break;
@@ -592,28 +648,30 @@ void mark_tela(void)
 								if (!skip_break) {
 									projector = n;
 									projection = n + k*reps;
-									proj_k = tela[projector].all_k;
+									proj_k = tela[projector].ok;
 									if (dev_print(TELA,__LINE__)) {
 										printf("Advancing projection at n=%d to %d.", n,projection);
 									}
 	
-									if (k == tela[n-1].all_k) {
+									if (k == tela[n-1].ok) {
 										tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
 										tela[n  ].stat = st_cycle.sym;
 									}
 								}
 							}
 							else {
-								if (tela[n-1].all_k && (k == tela[n-1].all_k || tela[n-1].all_k % k == 0)) {
+								if (tela[n-1].ok && (k == tela[n-1].ok || tela[n-1].ok % k == 0)) {
 									tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
 									tela[n  ].stat = st_cycle.sym;
 								}
-								else if (tela[n-proj_k].all_k == k  /* && n-k >= projector && n + span_allrk(n) <= projector+proj_k */ ) {
+								else if (tela[n-proj_k].ok == k  /* && n-k >= projector && n + span_allrk(n) <= projector+proj_k */ ) {
 									tela[projector].stat = st_parent.sym;
+									if (dev_print(TELA,__LINE__))
+										printf("Calling parent at %d.", projector);
 									tela[n        ].stat = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
 									tela[n-proj_k ].stat = st_fract.sym;		/* MATCHING PAIR */
 									i = n-proj_k-1;
-									while (tela[i].all_k == k && tela[i].stat == st_cycle.sym && i>=projector-proj_k && tela[i].all_r<2) {
+									while (tela[i].ok == k && tela[i].stat == st_cycle.sym && i>=projector-proj_k && tela[i].or<2) {
 										clearall_tela(i,1,-1,TWO);
 										push_mem(i, 4);
 										i--;
@@ -630,9 +688,9 @@ void mark_tela(void)
 						printf("repeats=%d at n=%d for k-mer=%d.", reps,n,k);
 					}
 					/* v4.30: MARK FRACTAL TR'S FOR CINCH-T TO SKIP, AND LEAVE FOR CINCH-K */
-					if (n>3 && !tela[n-1].all_k) { 
+					if (n>3 && !tela[n-1].ok) { 
 						for (i=m+1; i<n; i++) {	
-							if ((fract_k=tela[i].all_k)) {
+							if ((fract_k=tela[i].ok)) {
 								if (fract_k > (int) k/2) { 	
 									short unsigned int mono_sep = 0;
 									if (i+fract_k < n) {
@@ -664,13 +722,15 @@ void mark_tela(void)
 									}
 								}
 								else if (tela[n].all_S > tela[i].all_S) {	/* m+2 B/C IS EARLIEST CAN HAVE FRACTAL DINUCL REPEAT IN SHADOW */
-									if (i==m && tela[m].all_k != k && span_allrk(m) <= n) {
+									if (i==m && tela[m].ok != k && span_allrk(m) <= n) {
 										tela[m].stat = st_Fract.sym;
 										push_mem(m, 7);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 									}
-									else if (i + span_allrk(i) <= n && tela[i].all_k != k)  {
-										if (i-tela[i].all_k >= m && tela[i].all_S == tela[i+k].all_S) {
+									else if (i + span_allrk(i) <= n && tela[i].ok != k)  {
+										if (i-tela[i].ok >= m && tela[i].all_S == tela[i+k].all_S) {
 											tela[ n ].stat = st_parent.sym;
+											if (dev_print(TELA,__LINE__))
+												printf("Calling parent at %d.", n);
 											tela[i  ].stat = st_fract.sym;
 											tela[i+k].stat = st_fract.sym;
 											push_mem(i, 8)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
@@ -695,15 +755,15 @@ void mark_tela(void)
 
 	/* FILL IN CYCLING GAPS CAUSED BY BELOW THRESHOLD FRAMES: THIS SUPPRESSES INTRA-TR CONFLICT REPORTING */
 	for (n=0; n<=lenseq; n++) {
-		if (tela[n].all_k && !tela[n+1].all_k) {
-			k = tela[n].all_k;
+		if (tela[n].ok && !tela[n+1].ok) {
+			k = tela[n].ok;
 			gapcheck = 0;
-			for (i=n+2; i <= n + k * tela[n].all_r; i++) {
-				if (tela[i].all_k && tela[i].all_k != k) {
+			for (i=n+2; i <= n + k * tela[n].or; i++) {
+				if (tela[i].ok && tela[i].ok != k) {
 					gapcheck = 0;
 					break;
 				}
-				else if (tela[i].all_k == k) {
+				else if (tela[i].ok == k) {
 					gapcheck = 1;
 					break;
 				}
@@ -713,8 +773,8 @@ void mark_tela(void)
 					printf("         mark_tela filling in gap between %d and %d, inclusive of these points, for k-mer=%d.", i-1,n-1,k);
 				}
 				for (j=i-1; j>n; j--) {
-					tela[j].all_k = k;
-					tela[j].all_r = 0;
+					tela[j].ok = k;
+					tela[j].or = 0;
 				}
 			}
 		}
@@ -722,34 +782,35 @@ void mark_tela(void)
 
 	/* NOW MARK ALL CONFLICTING TRs */
 	for (n=lenseq; n>0; n--) {
-		if (tela[n].all_k) {
-			k = tela[n].all_k;
+		if (tela[n].ok) {
+			k = tela[n].ok;
 			m = n - k;
 			j = n - 1;
-			while (tela[j].all_k) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
+			while (tela[j].ok) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
 				j--;
 			}
 			for (i=j-1; i>0; i--) {
 				int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
-				if (tela[i].all_k && i-tela[i].all_k >= m && span_allrk(i)<=n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
+				if (tela[i].ok && i-tela[i].ok >= m && span_allrk(i)<=n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
 					tela[i].stat = tela[i+k].stat = st_fract.sym;
 					tela[n].stat = st_parent.sym;
+					if (dev_print(TELA,__LINE__))
+						printf("Calling parent at %d.", n);
 
 					/* REDUCE REPEAT NUMBERS IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T */
 					int x=0;
 					while(tela[i-x-1].stat == st_cycle.sym) {
 						x++;
 					}
-					if (i-x <= m && tela[i-x].all_k == tela[i].all_k) {
-						tela[i-x].all_r -= tela[i].all_r;
+					if (i-x <= m && tela[i-x].ok == tela[i].ok) {
+						tela[i-x].or -= tela[i].or;
 					}
 					
-					tela[n].stat = st_parent.sym;
 					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 					recslips += span_allrk(i); 
 				}
-				else if (tela[i].all_k && (i + tela[i].all_k * (tela[i].all_r-1)) > m-recslips) {
+				else if (tela[i].ok && (i + tela[i].ok * (tela[i].or-1)) > m-recslips) {
 					/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
 					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
@@ -764,9 +825,9 @@ void mark_tela(void)
 	/* IDENTIFY CYCLING MARKS FOR PERFECT REPEATS LAID OVER INTERNAL REPEATS WITH r>1 */
 	/* CAN CLEAN UP HOW THESE LOOK AND PERHAPS ACT ON THEM PRIOR TO CINCH-K */
 	for (n = 1; n<=lenseq; n++) {
-		if (tela[n].all_r > 1 && (!nuctransit || tela[n].all_S == tela[n].all_k * tela[n].all_r)) {
-			k    = tela[n].all_k;
-			reps = tela[n].all_r;
+		if (tela[n].or > 1 && (!nuctransit || tela[n].all_S == tela[n].ok * tela[n].or)) {
+			k    = tela[n].ok;
+			reps = tela[n].or;
 			m = n-k;
 
 			/* CHECK FIRST AND LAST REPEATS FOR CONFLICTS */
@@ -778,16 +839,16 @@ void mark_tela(void)
 			}
 			if (j==k) {		/* IF THERE IS NO CONFLICT ON EDGE REPEATS, THEN CONTINUE */
 				for (j=1; j<k; j++) {
-					tela[n+j].all_k = tela[m+j].all_k;
-					tela[n+j].all_r = tela[m+j].all_r;
+					tela[n+j].ok = tela[m+j].ok;
+					tela[n+j].or = tela[m+j].or;
 					tela[n+j].all_S = tela[m+j].all_S;
 					tela[n+j].all_Z = tela[m+j].all_Z;
 					tela[n+j].all_L = tela[m+j].all_L;
 				}
 				for (j=0; j<k; j++) {
 					for (i=1; i<reps; i++) {
-						tela[n+i*k+j].all_k = tela[m+j].all_k;
-						tela[n+i*k+j].all_r = tela[m+j].all_r;
+						tela[n+i*k+j].ok = tela[m+j].ok;
+						tela[n+i*k+j].or = tela[m+j].or;
 						tela[n+i*k+j].all_S = tela[m+j].all_S;
 						tela[n+i*k+j].all_Z = tela[m+j].all_Z;
 						tela[n+i*k+j].all_L = tela[m+j].all_L;
@@ -804,12 +865,12 @@ void mark_tela(void)
 		if (tela[n].all_S) {
 			checkconflict = span = 1;
 			max_count = 0;
-			min_k = k = tela[n].all_k;
+			min_k = k = tela[n].ok;
 			max_score = tela[n].all_S;
 			if (tela[n].all_L || tela[n].all_R) {
 				checkconflict = 0;
 			}
-			for (i=n+1; tela[i].all_k; i++) {
+			for (i=n+1; tela[i].ok; i++) {
 				span++;
 				if (checkconflict) {
 					if (tela[i].all_L || tela[i].all_R) {
@@ -818,8 +879,8 @@ void mark_tela(void)
 					else {
 						if (tela[i].all_S > max_score) 
 							max_score = tela[i].all_S;
-						if (tela[i].all_k < min_k) 
-							min_k= tela[i].all_k;
+						if (tela[i].ok < min_k) 
+							min_k= tela[i].ok;
 					}
 				}
 			}
@@ -827,12 +888,12 @@ void mark_tela(void)
 				/* CONFLICT SCENARIO ONE (a and b) */
 				if (span==1 && !(tela[n].all_L) && tela[n].all_R) {
 					j = tela[n].all_R;
-					int kR = tela[j].all_k;
+					int kR = tela[j].ok;
 					if (dev_print(TELA,__LINE__)) {
 						printf("mark_tela at n=%d, span=%d with no left-conflict, but right_conflict=%d.", n, span, tela[n].all_R);
 					}
-					for (i=j+1; tela[i].all_k == kR; i++) {
-						if (tela[i].all_S < tela[j].all_S && kR > k && tela[j].all_r > tela[n].all_r) {
+					for (i=j+1; tela[i].ok == kR; i++) {
+						if (tela[i].all_S < tela[j].all_S && kR > k && tela[j].or > tela[n].or) {
 							clearall_tela(n,1,-1,TWO);
 							push_mem(n,10);
 							clearall_tela(i,1,-1,TWO);
@@ -842,7 +903,7 @@ void mark_tela(void)
 						else if (!tela[i].all_L && !tela[i].all_R && tela[i].all_S > tela[j].all_S) {
 							clearall_tela(j, i-j, tela[i].all_S, TWO);		/* O-F-F, ONE, OR TWO */
 							for (int p=j; p<=i; p++) {
-								if (tela[p].all_k)	
+								if (tela[p].ok)	
 									push_mem(p, 11);
 							}
 							tela[i].all_Z = tela[i].all_S;
@@ -852,8 +913,8 @@ void mark_tela(void)
 					}
 				}
 				/* CONFLICT SCENARIO TWO */
-				else if (span>1 && tela[n].all_L && !(tela[n].all_R) && tela[n+1].all_k < tela[n].all_k &&
-							!(tela[n+1].all_L) && !(tela[n+1].all_R) && tela[n].all_k % tela[n+1].all_k==0) {
+				else if (span>1 && tela[n].all_L && !(tela[n].all_R) && tela[n+1].ok < tela[n].ok &&
+							!(tela[n+1].all_L) && !(tela[n+1].all_R) && tela[n].ok % tela[n+1].ok==0) {
 					clearall_tela(n, 1, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
 					if (tela[n].all_S != tela[n+1].all_S)
 						push_mem(n, 12);
@@ -865,9 +926,9 @@ void mark_tela(void)
 				}
 				/* CONFLICT SCENARIO THREE: FIRST TR CAN BE CYCLED BUT NOT THE SECOND, WHICH HAS HIGHER SCORE ANYWAYS */
 				else if (span>1 && tela[(l=tela[n].all_R)].all_S > tela[n].all_S && !tela[l+1].all_S) {
-					k = tela[n].all_k;
+					k = tela[n].ok;
 					for (j=n+1; j<n+span; j++) {
-						if (tela[j].all_k == k && !tela[j].all_R && !tela[j].all_L) {
+						if (tela[j].ok == k && !tela[j].all_R && !tela[j].all_L) {
 							if (dev_print(TELA,__LINE__)) {
 								printf("mark_tela at n=%d, scenario three", n);
 							}
@@ -877,7 +938,7 @@ void mark_tela(void)
 									push_mem(p, 13);
 							}
 							for (i=j+1; i<n+span; i++) {
-								if (tela[i].all_k == k && tela[i].all_R == l) {
+								if (tela[i].ok == k && tela[i].all_R == l) {
 									clearall_tela(i,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
 									push_mem(i, 14);
 								}
@@ -891,7 +952,7 @@ void mark_tela(void)
 			}
 			else {
 				for (i=n; i<n+span; i++) {
-					if (tela[i].all_S == max_score && tela[i].all_k == min_k) {
+					if (tela[i].all_S == max_score && tela[i].ok == min_k) {
 						max_count++;
 						tela[i].all_Z = tela[i].all_S;
 					}
@@ -919,25 +980,32 @@ void mark_tela(void)
 
 	/* CHECK TO SEE IF THERE ARE CYCLING DIFFERENCES BETWEEN INTERNAL REPEATS */
 	for (n=2; n+1<lenseq; n++) {
-		if (!tela[n-1].all_k && tela[n].all_k && !tela[n+1].all_k) {
+		if (!tela[n-1].ok && tela[n].ok && !tela[n+1].ok) {
 			int p,q;
-			k = tela[n].all_k;
+			k = tela[n].ok;
 			m = n - k;
-			for (i=0; i<tela[n].all_r; i++) {
-				for (j = 1; j < tela[n].all_k-1; j++) {
-					if (tela[(p=m+i*k+j)].all_k != tela[(q=n+i*k+j)].all_k) { 
+			for (i=0; i<tela[n].or; i++) {
+				for (j = 1; j < tela[n].ok-1; j++) {
+					if (tela[(p=m+i*k+j)].ok != tela[(q=n+i*k+j)].ok && !tela[p].k2) { 
 						if (dev_print(TELA,__LINE__)) {
-							printf("mark_tela at n=%d evaluating cycling differences "
+							printf("mark_tela at n=%d evaluating differences between potential fractal TRs"
 									"and calling clearall at p=%d and q=%d.", n, p, q);
 						}
-						if (tela[p].all_k) {
+						if (tela[p].ok) {
 							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
 							push_mem(p, 16);
+							push_mem(n, 16);
 						}
-						if (tela[q].all_k) {
+						if (tela[q].ok) {
 							clearall_tela(q,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
 							push_mem(q, 17);
+							push_mem(n, 17);
 						}
+					}
+					else if (tela[p].ok != tela[q].ok && tela[p].k2 == tela[q].ok) { 
+						clearall_tela(p,1,-1, THREE);	/* O-F-F, ONE, TWO, OR THREE */
+						tela[p].stat = st_fract.sym;
+						tela[q].stat = st_fract.sym;
 					}
 				}
 			}
@@ -947,8 +1015,8 @@ void mark_tela(void)
 	/* FIND AND RECORD MAX_K SIZE */
 	int max_k = 0;
 	for (n=0; n<lenseq; n++) {
-		if (tela[n].all_k > max_k) {
-			max_k = tela[n].all_k;
+		if (tela[n].ok > max_k) {
+			max_k = tela[n].ok;
 		}
 	}
 	Cinch_T.pass_V = max_k;  
@@ -977,11 +1045,11 @@ void push_mem(int pos, int row)
 /*****************************/
 short int check_solo(int pos)
 {
-	if (!tela[pos].all_k) {
+	if (!tela[pos].ok) {
 		return(-1);					/* NEGATIVE SIGNALS NO REPEAT AT GIVEN POSITION */
 	}
-	else if ( tela[pos-1].all_k || 
-			  tela[pos+1].all_k ) {
+	else if ( tela[pos-1].ok || 
+			  tela[pos+1].ok ) {
 		return(0);					/* ZERO SIGNALS NOT SOLO REPEAT POSITION */
 	}
 	else {
@@ -1026,7 +1094,7 @@ int lenseq = Clean.pass_W;
 	}
 
 	/************* BEGIN PRINTING LINES *******************/
-	if (Current.pass_V>2) {		/* pre-cinch-t */
+	if (Clean.pass_Q==1000) {	/* post-mark_tela() */
 		printf("\nxy:");
 		for (i=a; i<=b; i++)
 			printf("%3d", tela[i].gPnt.rel_xy);
@@ -1053,7 +1121,7 @@ int lenseq = Clean.pass_W;
 	for (i=a; i<=b; i++)
 		printf("%3d", i);
 
-	if (Current.pass_V>2) {		/* pre-cinch-t */
+	if (Clean.pass_Q==1000) {
 		printf("\nLf:");
 		for (i=a; i<=b; i++) {
 			if (tela[i].cyc_Lf)
@@ -1099,6 +1167,20 @@ int lenseq = Clean.pass_W;
 		else
 			printf("  .");
 	}
+	printf("\nk0:");
+	for (i=a; i<=b; i++) {
+		if (tela[i].k0)
+			printf("%3d", tela[i].k0);
+		else
+			printf("  .");
+	}
+	printf("\nk1:");
+	for (i=a; i<=b; i++) {
+		if (tela[i].k1)
+			printf("%3d", tela[i].k1);
+		else
+			printf("  .");
+	}
 	printf("\nk2:");
 	for (i=a; i<=b; i++) {
 		if (tela[i].k2)
@@ -1106,17 +1188,17 @@ int lenseq = Clean.pass_W;
 		else
 			printf("  .");
 	}
-	printf("\nak:");
+	printf("\nok:");
 	for (i=a; i<=b; i++) {
-		if (tela[i].all_k)
-			printf("%3d", tela[i].all_k);
+		if (tela[i].ok)
+			printf("%3d", tela[i].ok);
 		else
 			printf("  .");
 	}
-	printf("\nar:");
+	printf("\nor:");
 	for (i=a; i<=b; i++) {
-		if (tela[i].all_k)					/* THIS IS MEANT TO BE ALL_K */
-			printf("%3d", tela[i].all_r);
+		if (tela[i].ok)					/* THIS IS MEANT TO BE ALL_K */
+			printf("%3d", tela[i].or);
 		else
 			printf("  .");
 	}
@@ -1149,7 +1231,7 @@ int lenseq = Clean.pass_W;
 			printf(" __");
 	}
 
-	if (Current.pass_V>2) {		/* pre-cinch-t */
+	if (Clean.pass_Q==1000) {
 		printf("\n k:");
 		for (i=a; i<=b; i++) {
 			if (tela[i].k)
@@ -1189,9 +1271,9 @@ int lenseq = Clean.pass_W;
 			if (tela[i].DEV)
 				printf("_ %c", tela[i].DEV);
 			else
-				printf("__ ");
+				printf(" __");
 	
-		if (Current.pass_V>2) {		/* pre-cinch-t */
+	if (Clean.pass_Q==1000) {
 		printf("\ncO:");
 		for (i=a; i<=b; i++)
 			printf("%3c", tela[i].cyc_o);
@@ -1203,24 +1285,22 @@ int lenseq = Clean.pass_W;
 			else
 				printf("  .");
 		}
-	}
-	printf("\ncK:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].cyc_k)
-			printf("%3d", tela[i].cyc_k);
-		else
-			printf("  .");
-	}
+	
+		printf("\ncK:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].cyc_k)
+				printf("%3d", tela[i].cyc_k);
+			else
+				printf("  .");
+		}
+		printf("\ncR:");
+		for (i=a; i<=b; i++) {
+			if (tela[i].cyc_r)
+				printf("%3d", tela[i].cyc_r);
+			else
+				printf("  .");
+		}
 
-	printf("\ncR:");
-	for (i=a; i<=b; i++) {
-		if (tela[i].cyc_r)
-			printf("%3d", tela[i].cyc_r);
-		else
-			printf("  .");
-	}
-
-	if (Current.pass_V>2) {		/* pre-cinch-t */
 		printf("\ncP:");
 		for (i=a; i<=b; i++) {
 			if (tela[i].cyc_P)
@@ -1254,6 +1334,13 @@ int lenseq = Clean.pass_W;
 		}
 	}
 
+	if (Clean.pass_Q==500) {
+		printf("\n   ");
+		for (i=a; i<=b; i++) 
+			printf("~~~");
+		printf("\n");
+	}
+
 	printf("\n");
 }
 
@@ -1262,8 +1349,8 @@ int lenseq = Clean.pass_W;
 void pull_tela(int n)
 {
 	int i=0;
-	int k = tela[n].all_k;
-	int r = tela[n].all_r;
+	int k = tela[n].ok;
+	int r = tela[n].or;
 	int m = n-k;
 
 	/* IF IMPERFECT REPEAT, ERASE. THIS IS MOSTLY RIGHT, BUT EVENTUALLY NEED TO CHECK OVERLAPPING TRANSITIONS */
@@ -1422,9 +1509,9 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 
 	for (i=n; i<n+span; i++) {
 		if (tela[i].all_S == max_score) {
-			k = tela[i].all_k;
+			k = tela[i].ok;
 			m = i-k;					/* DEFINES START OF FIRST REPEAT UNIT */
-			o = i+k*(tela[i].all_r-1);	/* DEFINES START OF LAST REPEAT UNIT */
+			o = i+k*(tela[i].or-1);	/* DEFINES START OF LAST REPEAT UNIT */
 			up = m - k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AT m-1 */
 			dn = o + k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AFTER REPEATS */
 			for (j=0; j<k; j++) {

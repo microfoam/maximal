@@ -25,6 +25,7 @@ Outstanding (unsolved) chowder are prefaced with the header leader 'Chowder chun
 ## Chowder to eat
 
 - [ ] seq-64-snippet-Rnx_symmetry.txt 
+- [x] seq-29-toslp2-snippet.txt: keeping track of different *k*-mers annotated at same position
 - [x] seq-146-v344_33-snippet.txt: adjacent non-zero mod k's
 - [x] seq6-koslip-snippet.txt, evaluation of overlapping repeats
 - [x] seq26-snippet.txt: split repetitions of overlapping repeat with a fractal subset.
@@ -145,6 +146,31 @@ less-than sign that should have been a greater-than-or-equal sign in evaluating 
 it because I also recently increased the size of `PISO` to help prioritize chowder. Like the hobbling of cinch-d,
 elevating `PISO` also has the effect of increasing the benchmark average WCR's.)
 
+## Solved: *waves/chowder/seq-29-toslp2-snippet.txt*, keeping track of different *k*-mers annotated at same position
+
+I will document this more fully later b/c it involved installing a more robust functionality for *k*-mers at the same position *n*,
+which bears explaining.
+For this chowder sequence snippet, position 15 is position *n* for the perfect CA-dinucleotide repeat *and* the imperfect 8-mer repeat, 
+5'-CACCAGYA. There was more to it than that b/c of overlapping fractal and parent repeats, some of which were canceled for various
+reasons, leaving orphan fractals. Also, involved conditioning one cinch-k loop.
+
+```
+ 2-D pass #4: cinch-k (width = 11)
+
+>GA/
+ .ACAC/
+ ..CA/
+ ..CAC/
+ ....CAG/
+ ..CA/
+ ..CAC/
+ ....CAGTACG>
+ _________|_
+          10
+ GACACAGTACG
+
+```
+-AE, 2/6/2020
 
 ## Solved: *seq-146-v344_33-snippet.txt*, adjacent non-zero mod *k*'s
 
@@ -531,4 +557,4 @@ cinch-k. The 5'-AC dinucleotide repeat works here as a sentinel repeat of cinch-
 
 :nerd_face:
  
-*Last updated*: 2/4/2020 AJE
+*Last updated*: 2/6/2020 AJE
