@@ -290,8 +290,8 @@ And it can fold like this:
     EABCDE>
 ```
 This implies that C = A and E = D = B. So the sequence is actually 5'-ABABBABABB.
-So, we *can* have adjacent non-zero mod *k*'s (5 mod 3 = 2). But they are 
-incompatible with each other.
+This means we *can* have non-trivial adjacent non-zero mod *k*'s (5 mod 3 = 2). But they are 
+incompatible with each other and one or the other but not both could be taken.
 
 Here's the case for the reverse order, which actually is a different sequence.
 
