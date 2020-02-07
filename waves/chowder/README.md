@@ -325,13 +325,13 @@ In a superficially greedy approach, you might think that you should take the lar
 but what happens is usually messier than choosing the smaller of the two for reasons
 I will not articulate here for brevity. Nonetheless, I explored this question by working on the 
 two abstract sequences derived above for an adjacent 5-mer and 3-mer in both orders.  
+
 For reasons that will become clear, I will call them abba-zabba sequences.
-
 Sequence pattern one is ABABBABABBZ.
-
 Sequence pattern two is AABABAABABZ.
 
-I added the 'Z' because it turned out I would get different behavior depending on whether I repeated each sequence or not.
+I added the 'Z' at the tail because originally I wanted to work on both of them in one sequence and the 'Z' was a good separator of the A's and B's.
+It then turned out I would get different behavior depending on whether I repeated each sequence.
 This had to do with whether the internal repeats were solved by cinch-t or cinch-k.
 The fractal repeats would be solved by cinch-k only if there were two units. This exercise, 
 and I am now certainly glad that I wrote this out for the README, showed me that an adjacent 5-mer and 3-mer
