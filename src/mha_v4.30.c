@@ -1443,9 +1443,8 @@ int main(int argc, char *argv[])
 	++Current.pass_V;
 
 	Cinch_L.pass_R = (int) cinch_l();
-	if (cinchled) {
+	if (cinchled) 
 		print_2Dseq();
-	}
 	else
 		printf("\n Nothing for cinch-l to cinch.");
 
@@ -1465,6 +1464,7 @@ int main(int argc, char *argv[])
 
 	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT ***************/
 	i = ++Current.pass_V;
+
 	if (Cinch_K.pass_Q!=1000 || align2D[0][0] == blank) {
 		++Nudge.pass_R;
 		Nudge.pass_W = Current.pass_W;

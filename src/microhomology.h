@@ -7,7 +7,7 @@
 
 #define TEMP		2		/* SETS MAGIC MELT TEMP; SETS LOWER BOUND FOR MELTAGE opt_m; UNELECTED, DEFAULT ACTS AS TEMP=1 */
 #define CYCMAX     60       /* SEMI-MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER EMBEDDED DECISIONS */
-#define MAXROW   2000       /* maximum input line size; NOT M-A-G-I-C JUST WHAT MY 'PUTERS CAN DO AS CURRENTLY WRITTEN */
+#define MAXROW   2800       /* maximum input line size; NOT M-A-G-I-C JUST WHAT MY 'PUTERS CAN DO AS CURRENTLY WRITTEN */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
 #define MEMROWS    20       /* NUMBER OF mem[MEMROWS] ROWS IN STRUCT COORD ARRAY TELA */
 							/* USE 1: BIT (0/1) VALUES FOR MARK_TELA MARKS ASSOCIATED WITH A SINGLE LOOP OF CLEAR_ALL PRECEDENCE */
@@ -224,7 +224,7 @@ struct segment {
 
 
 char align2D[MAXROW+1][MAXROW] = {{0}};
-char pathbox[MAXROW][MAXROW] = {{0}};
+char pathbox[MAXROW+1][MAXROW] = {{0}};
 char consensus[MAXROW] = {0};
 char file_name[255] = "internal_default";
 char dev_notes[32] = "-";             /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */

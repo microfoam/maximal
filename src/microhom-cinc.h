@@ -15,7 +15,7 @@ unsigned int 		nudgelize(void);
 unsigned int 		cinch_d(short unsigned int cinch_d_opt);
 void 				relax_2D(void);
 int 				recover_1D(char *recovered_1D);
-
+void 				clear_pathbox(void);
 
 /******************************************************************/
 short unsigned int cleanseq(char *s) 
@@ -116,6 +116,18 @@ char letr;
 }
 /******************************************************************/
 
+/** INVOKE PRIOR TO RE-USING PATHBOX **/
+void clear_pathbox(void)
+{
+	int i=0, j=0;
+
+	for (i=0; i<=Clean.pass_W; i++)
+		for (j=0; j<=Clean.pass_W; j++)
+			pathbox[i][j] = '\0';
+
+	for (j=0; j<=Clean.pass_W; j++)
+		pathbox[MAXROW][j] = '\0';
+}
 
 /******************************************************************/
 int cinch_l(void) 
@@ -123,24 +135,24 @@ int cinch_l(void)
 int cil_row=0, i=0, j=0, k=0, l=0, m=0, n=0, run=0, x=0;
 char letr;
 char blnk = Fill->sym;		/* opt_B blank character		*/
-char lclalign2D[MAXROW][MAXROW] = {{0}};
 
+	clear_pathbox();
 	for (m = 0; align2D[m][0] != '\0'; m++) {
 		for (n = 0; align2D[m][n] != '\0'; n++) {
 			while (align2D[m][n] == blnk) {	/* MOVE WINDOW PAST BLANKS */
-				lclalign2D[m+cil_row][n-x] = blnk;
+				pathbox[m+cil_row][n-x] = blnk;
 				n++;			  
 			}
 			/* letr ASSIGNED */
 			if ((letr=align2D[m][n]) != slip.sym || letr != '\0') {	/* letr != '\0' USEFUL IF BLANKS FILLED TO SCRIMMAGE */ 
-				lclalign2D[m+cil_row][n-x] = letr;	
+				pathbox[m+cil_row][n-x] = letr;	
 				if (letr == align2D[m][n-1]) 
 					run++;
 				else
 					run = 1;
 			}
 			else
-				lclalign2D[m+cil_row][n-x] = letr;		/* WRITE LINE TERMINAL MHA CHARACTERS */
+				pathbox[m+cil_row][n-x] = letr;		/* WRITE LINE TERMINAL MHA CHARACTERS */
 	
 			if (run == 2*opt_M.val) {			/* TRIGGER LENGTH MEASURE OF MONOMERIC RUN	*/
 												/* AND WRITING OF (10)-MER BLOCKS			*/
@@ -149,21 +161,21 @@ char lclalign2D[MAXROW][MAXROW] = {{0}};
 					run++;
 				}
 				
-				lclalign2D[    m+cil_row][n-x-opt_M.val+1  ] = monoR.sym;	/* WRITE SLIP AFTER FIRST 10 */
+				pathbox[    m+cil_row][n-x-opt_M.val+1  ] = monoR.sym;	/* WRITE SLIP AFTER FIRST 10 */
 				for (l = 1; l < opt_M.val; l++)								
-					lclalign2D[m+cil_row][n-x-opt_M.val+1+l] = '\0';
+					pathbox[m+cil_row][n-x-opt_M.val+1+l] = '\0';
 				cil_row++;														/* ADVANCE TO NEXT ROW, CONT.*/
 	
 				for (j = (run-opt_M.val)/opt_M.val; j > 0; j--) {
 					for (i = 0; i < n-x-2*opt_M.val; i++)
-						lclalign2D[m+cil_row][i] = blnk;
-					lclalign2D[m+cil_row][i] = monoL.sym;					/* MARK LEFT EDGE OF MWRAP RUN */
+						pathbox[m+cil_row][i] = blnk;
+					pathbox[m+cil_row][i] = monoL.sym;					/* MARK LEFT EDGE OF MWRAP RUN */
 					for (k = 0; k < opt_M.val; k++) {
-						lclalign2D[m+cil_row][n-x-2*opt_M.val+1+k] = letr; /* FILL W/ MONOMER LETTER  */
+						pathbox[m+cil_row][n-x-2*opt_M.val+1+k] = letr; /* FILL W/ MONOMER LETTER  */
 					}
 					if (j > 1) {
-						lclalign2D[m + cil_row  ][n-x-opt_M.val+1] = monoR.sym;
-                        lclalign2D[m + cil_row++][n-x-opt_M.val+2] = '\0';             /* SHOULD NOT BE NECESSARY */
+						pathbox[m + cil_row  ][n-x-opt_M.val+1] = monoR.sym;
+                        pathbox[m + cil_row++][n-x-opt_M.val+2] = '\0';             /* SHOULD NOT BE NECESSARY */
 					}
 					else if (j == 1) 
 						break;			/* BREAK OUT OF FOR j LOOP */
@@ -179,7 +191,7 @@ char lclalign2D[MAXROW][MAXROW] = {{0}};
 	Cinch_L.pass_W = Current.pass_W;
 
 	if (cinchled) {
-		mha_writeback(lclalign2D, align2D); 
+		mha_writeback(pathbox, align2D); 
 	}
 	return(cinchled);
 }
@@ -199,19 +211,12 @@ int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
 char letr, letr2, letr3;
 char blnk = Fill->sym;				/* opt_B fill character */
 int max_k = WIDTH/2;
-
 int lenseq = Clean.pass_W;
 int symbol_count = 0;
-char cik_align2D[MAXROW][MAXROW] = {{0}};
 int *x_history = NULL;
 
-/* 	char **cik_align2D = NULL; */
-/*	cik_align2D = (char **)calloc(lenseq, sizeof(int));
-	for (i=0; i<lenseq; i++) {
-		cik_align2D[i] = (char *)calloc(lenseq, sizeof(int));
-	}
-*/
 	x_history = (int *)calloc(lenseq, sizeof(int));
+	clear_pathbox();
 
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
@@ -258,14 +263,14 @@ int *x_history = NULL;
 
 				/* MOVE WINDOW PAST INITIAL BLANKS */
 				while (align2D[m][n] == blnk) {
-					cik_align2D[m+cik_row][n-x] = blnk;
+					pathbox[m+cik_row][n-x] = blnk;
 					n++;
 				}
 
 				/* CHECK FOR NEED TO ADD ADDITIONAL BLANKS & ADJUST x */
 				if (n <= scrimmage_line) {
 					for (i = n-x; i < scrimmage_line; i++)
-						cik_align2D[m+cik_row][i] = blnk;
+						pathbox[m+cik_row][i] = blnk;
 					if (n > 1) {
 						x = x_history[n-1];
 					}
@@ -278,40 +283,40 @@ int *x_history = NULL;
 					if (first_mwrap && n == first_mwrap_start) {		
 						symbol_count += opt_M.val;
 						for (n = first_mwrap_start; (letr=align2D[m][n]) != '\0'; n++) {
-							cik_align2D[m+cik_row][n-x] = letr;
+							pathbox[m+cik_row][n-x] = letr;
 							if (isalpha(letr)) {
 								x_history[n] = x;					/* x_history WRITE-IN FOR MWRAP DONE ONCE */
 							}
 						}
-						cik_align2D[m+cik_row][n-x] = '\0';	
+						pathbox[m+cik_row][n-x] = '\0';	
 						first_mwrap = 0;						/* RESET first_mwrap FLAG */
 						break;									/* BREAK OUT OF FOR n LOOP */
 					}
 					else if (last_mwrap) {
 						if (align2D[m][n] == monoL.sym && align2D[m][n+opt_M.val+1] == monoR.sym) {		
 							symbol_count += opt_M.val;
-							cik_align2D[m+cik_row][n-x] = monoL.sym;
+							pathbox[m+cik_row][n-x] = monoL.sym;
 							n++;
 							while ( (letr=align2D[m][n]) != monoR.sym) {
-								cik_align2D[m+cik_row][n-x] = letr;
+								pathbox[m+cik_row][n-x] = letr;
 								n++;
 							}
-							cik_align2D[m+cik_row][n-x] = letr;			/* WILL WRITE monoR.sym */
+							pathbox[m+cik_row][n-x] = letr;			/* WILL WRITE monoR.sym */
 							for (i = opt_M.val; i > 0; i--)				/* FAILSAFE:			*/
-								cik_align2D[m+cik_row][n-x+i] = '\0';	/* OVERWRITE W/ NULLS	*/
+								pathbox[m+cik_row][n-x+i] = '\0';	/* OVERWRITE W/ NULLS	*/
 							break;										/* BREAK OUT OF n LOOP	*/
 						}
 						else if (align2D[m][n] == monoL.sym && align2D[m][n+opt_M.val+1] != monoR.sym) {
 							symbol_count += opt_M.val;
 							last_mwrap = 0;
 							for (i = 0; i <= opt_M.val; i++) {
-								cik_align2D[m+cik_row][n-x+i] = align2D[m][n+i];
+								pathbox[m+cik_row][n-x+i] = align2D[m][n+i];
 							}
 							letr = align2D[m][n+1];
 							n = n + opt_M.val;
 							while (align2D[m][n] == letr) {
 								symbol_count++;
-								cik_align2D[m+cik_row][n-x] = letr;
+								pathbox[m+cik_row][n-x] = letr;
 								x_history[n] = x;
 								n++;
 							}
@@ -324,9 +329,9 @@ int *x_history = NULL;
 				if (align2D[m][n+2*k] == Term->sym && col_isclear(align2D, n,m,-1)>=0) {
 					keep_checking = 0;
 				}
-				if (!isalpha(align2D[m][n+2*k-1])) {	/* TRUE IF WINDOW < 2x k-MER, WRITE REST OF LINE TO cik_align2D */
+				if (!isalpha(align2D[m][n+2*k-1])) {	/* TRUE IF WINDOW < 2x k-MER, WRITE REST OF LINE TO pathbox */
 					for (i = n; (letr=align2D[m][i]) != '\0'; i++) {
-						cik_align2D[m+cik_row][i-x] = align2D[m][i];
+						pathbox[m+cik_row][i-x] = align2D[m][i];
 						if (isalpha(letr)) {
 							symbol_count++;
 							x_history[i] = x;				/* x_history WRITE-IN FOR LINE ENDS TOO SHORT FOR TR */
@@ -375,7 +380,7 @@ int *x_history = NULL;
 							}
 	
 							if (nuctransit && keep_checking) {
-								if (n == scrimmage_line || col_isclear(align2D,n,m,1) < 0) {
+								if (n == scrimmage_line || col_isclear(align2D,n,m,1) < 0 || scrimmage_line<0) {
 									y = 0;		/* RESET y VAR. B/C NO LONGER NEED TO ADJUST CONSENSUS COORDINATES */
 								}
 								if (n>scrimmage_line && ((letr2=consensus[n-x+y+l]) == 'R' || letr2 == 'Y')) {
@@ -486,14 +491,16 @@ int *x_history = NULL;
 				}
 
 				if (keep_checking && n > scrimmage_line) { 
-					if ((l=col_isclear(cik_align2D,n-x+k,m,-1)) > -1 && col_isclear(align2D,n+k,m,1)< 0) {
+					int p=0, q=0;
+					if ((l=col_isclear(pathbox,n-x+k,m,-1)) > -1 && col_isclear(align2D,n+k,m,1)< 0) {
 
 						/* CHECK IF WILL PULL IN ADJACENT MISMATCHES AFTER RUN OF REPEATS */
 					    r = 1; 
 						i = k;  /* VAR i SET TO k ONLY TO ENTER WHILE LOOP */
 						while (i==k) {
 							for (i = 0; i < k; i++) {
-						    	if (align2D[m][n+i] != (letr2=align2D[m][n+(r+1)*k+i]) && isalpha(letr2)) {
+								q = n+(r+1)*k+i;
+						    	if (q>=Current.pass_W || n+i>=Current.pass_W || ((letr=align2D[m][n+i]) != (letr2=align2D[m][q]) && isalpha(letr) && isalpha(letr2))) {
 									break;
 								}
 					        }    
@@ -501,20 +508,23 @@ int *x_history = NULL;
 								r++;        /* INCREMENT NUMBER OF REPEATS */
 					    }    
 
-						if (nuctransit) {
-							if ((letr=cik_align2D[l][n-x+k+i]) != (letr2=align2D[m][n+(r+1)*k+i]) &&
-								 letr!='R' && letr!='Y' && 
-								 isalpha(letr) && isalpha(letr2) && (letr3=consensus[n-x+(r+1)*k+i])!='R' && letr3!='Y') {
+						if (nuctransit && (p=n-x+k+i)<=Current.pass_W && (q=n+(r+1)*k+i)<=Current.pass_W) {
+							if      (!isalpha((letr =align2D[l][p])))
+								keep_checking = 0;
+							else if (!isalpha((letr2=align2D[m][q])))
+								keep_checking = 0;
+							else if (letr!=letr2 && letr!='R' && letr!='Y' && (letr3=consensus[q])!='R' && letr3!='Y') {
 						        keep_checking = 0; 
 						    }    
 						}
 						else {
-							if ((letr=cik_align2D[l][n-x+k+i]) != (letr2=align2D[m][n+(r+1)*k+i]) &&
+							if ((letr=pathbox[l][n-x+k+i]) != (letr2=align2D[m][n+(r+1)*k+i]) &&
 								 isalpha(letr) && isalpha(letr2)) {
 						        keep_checking = 0; 
 						    }    
 						}
 			    	}
+
 					/* CHECK FOR SLIPS OVER-HEAD (LOWER ROWS) OF SECOND UNIT */
 					for (i=m-1; i>=0; i--) {
 						for (int j=n+k+1; j<n+2*k; j++) {
@@ -558,17 +568,17 @@ int *x_history = NULL;
 					push_gPnt_kmer(symbol_count+k,k,1);
 
 					for (l = 0; l < k; l++) {
-						cik_align2D[m+cik_row  ][n-x+l] = align2D[m][n+l  ];	
-						cik_align2D[m+cik_row+1][n-x+l] = align2D[m][n+l+k];
+						pathbox[m+cik_row  ][n-x+l] = align2D[m][n+l  ];	
+						pathbox[m+cik_row+1][n-x+l] = align2D[m][n+l+k];
 						x_history[n+l] = x;					/* x_history WRITE-IN FOR NEW TR COLS */
 					}
 					symbol_count += k;
-					cik_align2D[m+cik_row  ][n-x+k  ] = slip.sym;
-					cik_align2D[m+cik_row  ][n-x+k+1] = '\0';
+					pathbox[m+cik_row  ][n-x+k  ] = slip.sym;
+					pathbox[m+cik_row  ][n-x+k+1] = '\0';
 
  					for (i = 0; i < n-x; i++) {
-						if (!isalpha(cik_align2D[m+cik_row+1][i]))
-							cik_align2D[m+cik_row+1][i] = blnk;
+						if (!isalpha(pathbox[m+cik_row+1][i]))
+							pathbox[m+cik_row+1][i] = blnk;
 					}
 
 					/* SCOOCH CONSENSUS ROW IF MINDING TRANSITIONS AND IF BOTTOM IS CLEAR (IS SAFE) */	
@@ -595,7 +605,7 @@ int *x_history = NULL;
 
 				}   /* END OF TR ASSIGN LOOPS */
 				else {
-					letr = cik_align2D[m+cik_row][n-x] = align2D[m][n];
+					letr = pathbox[m+cik_row][n-x] = align2D[m][n];
 					x_history[n] = x;
 					if (isalpha(letr)) {
 						symbol_count++;
@@ -606,7 +616,7 @@ int *x_history = NULL;
 		}   /* END OF FOR m LOOPS */
 
 		if (cik_row > 0) {
-			mha_writeback(cik_align2D, align2D); 
+			mha_writeback(pathbox, align2D); 
 			printf("\n Next: cinch-k for k = %d...", k);
 			print_2Dseq();
 		}
@@ -617,15 +627,14 @@ int *x_history = NULL;
 		}
 
 		if (k > 1)	/* NOT NEEDED AFTER k EQUALS ONE */
-			clear_2D_ar(cik_align2D);
+			clear_2D_ar(pathbox);
 
 	} /* END OF FOR k LOOPS */ 
 
-	mha_UPPERback(cik_align2D, align2D); /* THIS ALSO SAVES 2D-WIDTH in Current.pass_W */
+	mha_UPPERback(pathbox, align2D); /* THIS ALSO SAVES 2D-WIDTH in Current.pass_W */
 
 	Cinch_K.pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS i WIDTH HISTORY */
 	free(x_history);
-	/*	free_2D(cik_align2D, lenseq); */
 
 	return (Cinch_K.pass_V);
 }
@@ -643,24 +652,22 @@ unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF
 unsigned short int nuctransit=0, dud_nudge=0;		/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 char blnk = Fill->sym;
 char letr, conletr, topletr;
-char cyc_ar[MAXROW+1][MAXROW] = {{0}};
 unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 
 	if (nuctype == 1)	/* IF DNA */
 		nuctransit = 1;
 
-	mha_writeback(align2D, cyc_ar);
+	clear_pathbox();
+	mha_writeback(align2D, pathbox);
 	for (j=0; j<=lenseq; j++)
-		cyc_ar[MAXROW][j] = consensus[j];
+		pathbox[MAXROW][j] = consensus[j];
  
 	/* FLAG SPECIAL CASE OF CYCLING NEED AT n=0 COLUMN */
-	if (!Nudge.pass_V && cyc_ar[0][0] == blnk)
+	if (!Nudge.pass_V && pathbox[0][0] == blnk)
 		edge0 = 1;
 
 	for (n = 0; n <= cyc_width; n++) {
 
-/*  	conletr = consensus[n];
-*/
 		conletr = align2D[MAXROW][n];
 		for (m = 1; align2D[m][0] != '\0' && m <= lenseq; m++) {
 			if (isalpha(letr=align2D[m][n])) {
@@ -671,7 +678,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 								         (conletr=='Y' && (letr=='C'||letr=='T') && (topletr=='C'||topletr=='T'))  )) {
 					;	/* NOTHING: GO TO NEXT m */
 				}
-				else if (letr != cyc_ar[MAXROW][n] || edge0) {
+				else if (letr != pathbox[MAXROW][n] || edge0) {
 					if (edge0) {
 						while (isalpha(align2D[m][0]) == 0 && m <= lenseq) {
 							m++;
@@ -724,7 +731,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 					Nudge.pass_V = 3;	/* TEMPORARY: WILL CHAGE EVENTUALLY; IT'S LIKE THIS FOR DEPRECATED REASONS */
 
 					/* NUDGE-CYCLELIZE: */
-					if (connudge(cyc_ar, 0, cyc_width) == 0) {
+					if (connudge(pathbox, 0, cyc_width) == 0) {
 						if (dev_print(CINCH,__LINE__)) {
 							printf("dud_nudge");
 						}
@@ -735,7 +742,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 						break; 					/* BREAK OUT OF FOR m LOOP */
 					}
 
-					clear_right(cyc_ar);
+					clear_right(pathbox);
 
 					i = Current.pass_V;
 					Cinches[i]->pass_W = cyc_width = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS x WIDTH HISTORY */
@@ -751,8 +758,8 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 	if (edge0 && !dud_nudge) {
 		i = 0; /* COUNTER FOR AMOUNT TO PUSH LEFT */
 		for (n=0; n < cyc_width; n++) {
-			for (m=0; cyc_ar[m][n] != '\0' && m < MAXROW; m++) {
-				if (cyc_ar[m][n] != blnk) {
+			for (m=0; pathbox[m][n] != '\0' && m < MAXROW; m++) {
+				if (pathbox[m][n] != blnk) {
 					n = MAXROW; 	/* TO BREAK OUT OF FOR n LOOP */
 					break;			/* TO BREAK OUT OF FOR m LOOP */
 				}
@@ -760,16 +767,16 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 			if (n < MAXROW)
 				i++;
 		} 
-		for (m = 0; cyc_ar[m][0] != '\0' && m < MAXROW; m++) {
+		for (m = 0; pathbox[m][0] != '\0' && m < MAXROW; m++) {
 			for (n = 0; n < cyc_width+i; n++) {
-				cyc_ar[m][n] = cyc_ar[m][n+i];
+				pathbox[m][n] = pathbox[m][n+i];
 			}
 		}
 	} 
 
 	if (!dud_nudge)	{
-		mha_writeback(cyc_ar, align2D);
-		mha_writeconsensus(cyc_ar, consensus);
+		mha_writeback(pathbox, align2D);
+		mha_writeconsensus(pathbox, consensus);
 		return(print_2Dseq());
 	}
 	else {
@@ -791,8 +798,8 @@ unsigned short int nuctransit=0;						/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSI
 unsigned short int imperfect_TR=0;
 char letr, ltr2;
 char blnk = Fill->sym;
-char cid_align2D[MAXROW][MAXROW];
 
+	clear_pathbox();
 	nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA, TWO IF RNA */
 	if (nuctype == 1) {			/* IF DNA */
 		nuctransit = 1;
@@ -968,9 +975,9 @@ char cid_align2D[MAXROW][MAXROW];
 							} 
 						}
 
-						mha_writeback(align2D, cid_align2D); 
-						cid_align2D[m][n+k  ] = slip.sym;
-						cid_align2D[m][n+k+1] = '\0';
+						mha_writeback(align2D, pathbox); 
+						pathbox[m][n+k  ] = slip.sym;
+						pathbox[m][n+k+1] = '\0';
 						first_write = 0;	/* TURN O-F-F NEED TO WRITE REMAINING PART OF 2-D ALIGNMENT */
 
 						cid_ncol = k;
@@ -978,12 +985,12 @@ char cid_align2D[MAXROW][MAXROW];
 
 						/* DEAL WITH LOOSE SLIP CONNECTIONS PRODUCED BY NUDGELIZING */
 						for (j = 0; j < n+k; j++) {
-							if (cid_align2D[m][j] != blnk) {
+							if (pathbox[m][j] != blnk) {
 								break;
 							}
 						}
 						if (j == n+k) {
-							if (cid_align2D[m-1][n] == slip.sym)
+							if (pathbox[m-1][n] == slip.sym)
 								cid_mrow = -1;
 							else 
 								cid_mrow = 0;
@@ -991,13 +998,13 @@ char cid_align2D[MAXROW][MAXROW];
 
 						for (i = m; i < MAXROW; i++) {
 							for (j = n+k; j < Current.pass_W+1; j++) {
-								letr = cid_align2D[i+cid_mrow][j-cid_ncol] = align2D[i][j];
+								letr = pathbox[i+cid_mrow][j-cid_ncol] = align2D[i][j];
 								if (letr==slip.sym || letr==monoR.sym) 
-									cid_align2D[i+cid_mrow][j-cid_ncol+1] = '\0';
+									pathbox[i+cid_mrow][j-cid_ncol+1] = '\0';
 								else if (letr==Term->sym) {
 									for (h=0; h<n; h++)
-										cid_align2D[i+cid_mrow][h] = blnk;
-									cid_align2D[i+cid_mrow+1][0] = '\0';
+										pathbox[i+cid_mrow][h] = blnk;
+									pathbox[i+cid_mrow+1][0] = '\0';
 									i = MAXROW;
 									break;
 								}
@@ -1014,7 +1021,7 @@ char cid_align2D[MAXROW][MAXROW];
 
 						if (letr == Term->sym && j-cid_ncol-1 < cidwidth) {
 							Current.pass_W = j-cid_ncol-1;
-							mha_writeback(cid_align2D, align2D);
+							mha_writeback(pathbox, align2D);
 						}
 					} /* END OF IF first_write EQUALS ONE */
 				} /*********************************************************************************************/
