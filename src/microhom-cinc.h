@@ -1085,12 +1085,12 @@ char blnk = Fill->sym;
 char letr;
 unsigned short int nuctype = Clean.pass_V;
 unsigned short int nuctransit=0;
-char rlx_align2D[MAXROW][MAXROW];
 
 	if (nuctype == 1)		/* IF DNA */
 		nuctransit = 1;
 
-	mha_writeback(align2D, rlx_align2D); 
+	clear_pathbox();
+	mha_writeback(align2D, pathbox); 
  
 	while (align2D[height][0] != '\0') {
 		height++;
@@ -1141,18 +1141,18 @@ char rlx_align2D[MAXROW][MAXROW];
 				}
 				if (m+v+w+z == height) {		/* WRITE TO LOCAL 2D ARRAY */
 					for (j = 0; j < height; j++) 
-						rlx_align2D[m+v - rlx_col + j][n + rlx_col] = blnk;	
+						pathbox[m+v - rlx_col + j][n + rlx_col] = blnk;	
 					for (i = 0; i < w; i++) {
-						rlx_align2D[m+v-1 - rlx_col][n + i + rlx_col + 1] = letr;
+						pathbox[m+v-1 - rlx_col][n + i + rlx_col + 1] = letr;
 						for (j = 0; j < height; j++) 
-							rlx_align2D[m+v - rlx_col + j][n + i + rlx_col + 1] = blnk;
+							pathbox[m+v - rlx_col + j][n + i + rlx_col + 1] = blnk;
 					}
 					rlx_col = rlx_col + w;
 
 					/* REWRITE REST OF ARRAY TO NEW COORDINATES */
 					for (i = m+v+w-1; i < height; i++) {
 						for (j = n+1; (letr=align2D[i][j]) != '\0'; j++) 
-							rlx_align2D[i-rlx_col][j+rlx_col] = letr;
+							pathbox[i-rlx_col][j+rlx_col] = letr;
 					}
 
 					if (nuctransit) {
@@ -1170,9 +1170,9 @@ char rlx_align2D[MAXROW][MAXROW];
 			} /* END OF IF w > 1 */
 		}
 		else if (align2D[m][n+1] == Term->sym || align2D[m][n+1] == monoR.sym) {
-			rlx_align2D[m - rlx_col][n + rlx_col] = letr;
-			rlx_align2D[m - rlx_col][n + rlx_col + 1] = align2D[m][n+1];
-			rlx_align2D[m - rlx_col][n + rlx_col + 2] = '\0';
+			pathbox[m - rlx_col][n + rlx_col] = letr;
+			pathbox[m - rlx_col][n + rlx_col + 1] = align2D[m][n+1];
+			pathbox[m - rlx_col][n + rlx_col + 2] = '\0';
 
 			if (align2D[m][n+1] == Term->sym) {
 				Current.pass_W = n + rlx_col + 1;
@@ -1183,7 +1183,7 @@ char rlx_align2D[MAXROW][MAXROW];
 
 	} /* END OF FOR n LOOP */
 
-	mha_writeback(rlx_align2D, align2D);
+	mha_writeback(pathbox, align2D);
 
 	i = Current.pass_V;
 	Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS [9] WIDTH HISTORY */

@@ -1508,7 +1508,7 @@ int main(int argc, char *argv[])
 	/********* 7. relax_2D MODULE: DE-CINCHES HOMOPOLYMER RUNS IF THEY DID NOT AID CINCH-D *******/
 	if (!opt_n.bit) {		/* opt_n DO NOT DO RELAX-2D */
 		++Current.pass_V;
-	
+
 		do {
 			relax_length = Current.pass_W;
 			relax_2D();
