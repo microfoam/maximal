@@ -1513,11 +1513,13 @@ int main(int argc, char *argv[])
 			relax_length = Current.pass_W;
 			relax_2D();
 			relax_length = Current.pass_W - relax_length;
-			++Relax.pass_R;
+			if (relax_length)
+				++Relax.pass_R;
 		}
 		while (relax_length > 0);
-	
-		print_2Dseq();
+
+		if (Relax.pass_R)
+			print_2Dseq();
 		Relax.pass_Q = Current.pass_Q;
 	}	
 
@@ -1731,9 +1733,9 @@ int main(int argc, char *argv[])
 		case 6:	
 			if (Cinch_D.pass_R) {
 				if (Cinch_D.pass_R==1) 
-					printf("%s post cinch-d   [pass #6: one run]\n", letr_unit);
+					printf("%s post cinch-d   [pass #6: one cinch]\n", letr_unit);
 				else
-					printf("%s post cinch-d   [pass #6: %d runs]\n", letr_unit, Cinch_D.pass_R);
+					printf("%s post cinch-d   [pass #6: %d cinches]\n", letr_unit, Cinch_D.pass_R);
 			}
 			else if (opt_d.bit)
 				printf("%s post cinch-d   [pass #6: SKIPPED BY REQUEST]\n", letr_unit);
@@ -1741,7 +1743,12 @@ int main(int argc, char *argv[])
 				printf("%s post cinch-d   [pass #6]\n", letr_unit);
 			break;
 		case 7:	
-			printf(    "%s post relax-2D  [pass #7: relaxed %d run(s)]\n", letr_unit, Relax.pass_R);
+			if (!Relax.pass_R)
+				printf(    "%s post relax-2D  [pass #7]\n", letr_unit);
+			else if (Relax.pass_R == 1)
+				printf(    "%s post relax-2D  [pass #7: relaxed one run]\n", letr_unit);
+			else
+				printf(    "%s post relax-2D  [pass #7: relaxed %d run(s)]\n", letr_unit, Relax.pass_R);
 			break;
 		}
 	}
