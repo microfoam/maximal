@@ -18,24 +18,25 @@ fi
 
 
 # DIAGNOSTIC TESTS START ON LINE 21
-./maximal -DKn  waves/tubespit/seq-017-variant.txt
-./maximal -DKn  waves/tubespit/seq-017-cycle5.txt
-./maximal -DKnC waves/tubespit/seq-017-cycle5.txt
-./maximal -DKn  waves/tubespit/seq-154-v427_cycABs.txt
-./maximal -DKn  waves/tubespit/seq-000-orig_b.txt 
-./maximal -DKn  waves/tubespit/seq-000-orig_c.txt 
-./maximal -DKn  waves/tubespit/seq-000-orig_d.txt 
-./maximal -DKn  waves/tubespit/seq-000-orig_e.txt 
-./maximal -DKn  waves/tubespit/seq-000-orig_f.txt 
-./maximal -DKnx waves/tubespit/seq-033-imprf1.txt 
-./maximal -DKn  waves/tubespit/seq-100-v343_10.txt 
-./maximal -DKn  waves/chowder/seq6-koslip-snippet.txt 
-./maximal -DKn  waves/chowder/abba_zabba_1.txt 
-./maximal -DKn  waves/chowder/abba_zabba_2.txt 
-./maximal -DKn  waves/chowder/abba_zabba_3.txt 
-./maximal -DKn  waves/chowder/abba_zabba_4.txt 
-./maximal -DKn  waves/chowder/seq26-snippet.txt 
+./maximal -DKRn  waves/tubespit/seq-017-variant.txt
+./maximal -DKRn  waves/tubespit/seq-017-cycle5.txt
+./maximal -DKRnC waves/tubespit/seq-017-cycle5.txt
+./maximal -DKRn  waves/tubespit/seq-154-v427_cycABs.txt
+./maximal -DKRn  waves/tubespit/seq-000-orig_b.txt 
+./maximal -DKRn  waves/tubespit/seq-000-orig_c.txt 
+./maximal -DKRn  waves/tubespit/seq-000-orig_d.txt 
+./maximal -DKRn  waves/tubespit/seq-000-orig_e.txt 
+./maximal -DKRn  waves/tubespit/seq-000-orig_f.txt 
+./maximal -DKRnx waves/tubespit/seq-033-imprf1.txt 
+./maximal -DKRn  waves/tubespit/seq-100-v343_10.txt 
+./maximal -DKRn  waves/chowder/seq6-koslip-snippet.txt 
+./maximal -DKRn  waves/chowder/abba_zabba_1.txt 
+./maximal -DKRn  waves/chowder/abba_zabba_2.txt 
+./maximal -DKRn  waves/chowder/abba_zabba_3.txt 
+./maximal -DKRn  waves/chowder/abba_zabba_4.txt 
+./maximal -DKRn  waves/chowder/seq26-snippet.txt 
+./maximal -DKRn  waves/chowder/gal11-knot1.txt 
 
 ./surfboard-checkmha
-echo 'sand_dunes benchmark WCR average of 17: 0.392471' | tee -a corduroy.log
+echo 'sand_dunes benchmark WCR average of 18: 0.385889' | tee -a corduroy.log
 echo

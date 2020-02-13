@@ -458,13 +458,8 @@ void mark_tela(void)
 					tela[n].k1 = k1 = k_tmp;
 					if ((k_tmp=get_k2(n,k1))>floor) {
 						tela[n].k2 = k2 = k_tmp;
-						if (dev_print(TELA,__LINE__)) 
-							printf("At n=%2d, k1=%d, k2=%d.", n, k1, k2);
 						break;					/* BREAK BECAUSE CURRENTLY ONLY STORING TOP TWO k-MERS AT n */
 					}
-					else if (dev_print(TELA,__LINE__)) 
-						printf("At n=%2d, k1=%d.", n, k1);
-
 				}
 			}
 		}
@@ -565,7 +560,7 @@ void mark_tela(void)
 						push_mem(n  ,2);
 						tela[n-1].stat = st_Fract.sym;
 						tela[n  ].stat = st_Fract.sym;
-						n += prev_k-2;					/* THIS LINE DOES NOT SEEM TO MAKE A DIFFERENCE BUT LEAVING HERE ANNOTATED. HERE FOR SYMMETRY AND OTHER */
+						n += prev_k-2;
 						Dtr = 0; 
 					}
 				}
@@ -598,7 +593,7 @@ void mark_tela(void)
 				/* IF SUMMING PATHBOX DIAGONAL 4/4: START COUNTING REPEATS */
 				if (Dtr && (Dtr==Did || imperfect_TR)) {
 					if (dev_print(TELA,__LINE__)) {
-						printf("         mark_tela counting repeats at n=%d for k-mer=%d.", n,k);
+						printf("Counting repeats at n=%d for k-mer=%d.", n,k);
 					}
 					/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
 					TRcheck = 1;
@@ -685,10 +680,10 @@ void mark_tela(void)
 						}
 					}
 					if (dev_print(TELA,__LINE__)) {
-						printf("repeats=%d at n=%d for k-mer=%d.", reps,n,k);
+						printf("Repeats=%d (n=%d for k-mer=%d)", reps,n,k);
 					}
 					/* v4.30: MARK FRACTAL TR'S FOR CINCH-T TO SKIP, AND LEAVE FOR CINCH-K */
-					if (n>3 && !tela[n-1].ok) { 
+					if (n>3 /* && !tela[n-1].ok */) { 
 						for (i=m+1; i<n; i++) {	
 							if ((fract_k=tela[i].ok)) {
 								if (fract_k > (int) k/2) { 	
@@ -722,26 +717,28 @@ void mark_tela(void)
 									}
 								}
 								else if (tela[n].all_S > tela[i].all_S) {	/* m+2 B/C IS EARLIEST CAN HAVE FRACTAL DINUCL REPEAT IN SHADOW */
-									if (i==m && tela[m].ok != k && span_ork(m) <= n) {
-										tela[m].stat = st_Fract.sym;
-										push_mem(m, 7);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
-									}
-									else if (i + span_ork(i) <= n && tela[i].ok != k)  {
+									if (i + span_ork(i) <= n && tela[i].ok != k)  {
 										if (i-tela[i].ok >= m && tela[i].all_S == tela[i+k].all_S) {
 											tela[ n ].stat = st_parent.sym;
 											if (dev_print(TELA,__LINE__))
 												printf("Calling parent at %d.", n);
 											tela[i  ].stat = st_fract.sym;
 											tela[i+k].stat = st_fract.sym;
-											push_mem(i, 8)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+											push_mem(i, 7)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
 										}
 										else {
 											tela[i].stat = st_Fract.sym;
-											push_mem(i, 9)          /* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+											push_mem(i, 8)          /* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
 										}
 									}
 								}
 							}
+						} /* END OF FOR LOOP THROUGH SHADOW STARTING AT m+1 */
+
+						/* MARK FRACTAL TR's AT m, MASKED BY PARENT TR */
+						if (tela[m].ok && tela[m].ok != k && tela[m].ok==tela[n].k2 && m+span_ork(m) <= n) {
+							tela[m].stat = st_fract.sym;
+							push_mem(m, 9);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 						}
 					}
 					if (!skip_break)
@@ -811,7 +808,7 @@ void mark_tela(void)
 					/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
 					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-					if (dev_print(TELA,__LINE__)) {
+					if (OFF && dev_print(TELA,__LINE__)) {
 						printf("         mark_tela marking conflict between i=%d and n=%d.", i,n);
 					}
 				}
@@ -1019,14 +1016,15 @@ void mark_tela(void)
 	Cinch_T.pass_V = max_k;  
 
 	if (dev_print(TELA,__LINE__)) {
-		printf("                     Finishing. print_tela() follows.");
+		printf(" Finished pre-marking tela struct as follows:");
 		print_tela(prtela_A, prtela_B);
 	}
 }
 
 
 /*****************************************/
-/* ORIGINAL IDEA FOR THIS FUNCTION IS TO CALL TRs BY UNIQUE NUMBERED CASES AND THEN LATER CLEAR THEM (ERASE) IN AN EASILY MODIFIABLE ORDER */
+/* ORIGINAL IDEA FOR THIS FUNCTION WAS TO CALL TRs BY UNIQUE NUMBERED CASES AND THEN LATER CLEAR THEM (ERASE) IN AN EASILY MODIFIABLE ORDER */
+/* CURRENTLY ONLY BEING USED FOR TRACKING HOW A TR WAS MARKED */
 void push_mem(int pos, int row)
 {
 	if (row == 0) {
