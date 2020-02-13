@@ -1404,7 +1404,7 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 			if      (tela[n1+i].c == tela[n2+i].c) {
 				;
 			}
-			else if (tela[n1+i].t == tela[n2+i].t) {	/* THIS IS REDUNDANT IF ].e IS EVALUATED BUT HERE FOR TESTING PURPOSES */
+			else if (tela[n1+i].e == tela[n2+i].e) {	/* THIS IS REDUNDANT IF ].e IS EVALUATED BUT HERE FOR TESTING PURPOSES */
 				;
 			}
 			else {
