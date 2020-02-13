@@ -577,7 +577,7 @@ void mark_tela(void)
 					while ((j=transitloc[t]) != -1 && t<transitlocsize) {
 						for (fract_k = 2; fract_k <= (int) k/2; fract_k++) {
 							for (i = fract_k; i < k-fract_k; i++) {
-								if (fract_k<=PISO && tela[m+i].ok == fract_k && j>=i-fract_k && j<=i+span_allrk(m+i) && i+span_allrk(m+i)<=k) {
+								if (fract_k<=PISO && tela[m+i].ok == fract_k && j>=i-fract_k && j<=i+span_ork(m+i) && i+span_ork(m+i)<=k) {
 									if (dev_print(TELA,__LINE__)) {
 										printf("Calling conflict between perfect and imperfect fractal TRs for parent " 
 												"k=%d at n=%d, transition at j=%d, and fractal TR at m+i=%d.", k, n, j, m+i); 
@@ -638,11 +638,11 @@ void mark_tela(void)
 								/* RECALL THAT A FRACTAL TR (k>1) CAN ONLY EXIST STARTING AT THE THIRD COLUMN OF EACH UNIT OF PARENT TR. */
 								/* RECALL THAT A CYCLING TR IS CALLED AND MARKED ONLY WHEN THE SECOND CYCLING POSITION IS CALLED.        */
 								if (k==tela[n-1].ok && tela[n-1].stat==st_cycle.sym && tela[n-proj_k].ok && tela[n-proj_k].ok<proj_k) {
-									for (i=n; i<n+span_allrk(n); i++) {
+									for (i=n; i<n+span_ork(n); i++) {
 										if (tela[n].c != tela[n-proj_k].c)
 											break;
 									}
-									if (i==n+span_allrk(n))
+									if (i==n+span_ork(n))
 										skip_break = 1;
 								}
 								if (!skip_break) {
@@ -664,7 +664,7 @@ void mark_tela(void)
 									tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
 									tela[n  ].stat = st_cycle.sym;
 								}
-								else if (tela[n-proj_k].ok == k  /* && n-k >= projector && n + span_allrk(n) <= projector+proj_k */ ) {
+								else if (tela[n-proj_k].ok == k  /* && n-k >= projector && n + span_ork(n) <= projector+proj_k */ ) {
 									tela[projector].stat = st_parent.sym;
 									if (dev_print(TELA,__LINE__))
 										printf("Calling parent at %d.", projector);
@@ -722,11 +722,11 @@ void mark_tela(void)
 									}
 								}
 								else if (tela[n].all_S > tela[i].all_S) {	/* m+2 B/C IS EARLIEST CAN HAVE FRACTAL DINUCL REPEAT IN SHADOW */
-									if (i==m && tela[m].ok != k && span_allrk(m) <= n) {
+									if (i==m && tela[m].ok != k && span_ork(m) <= n) {
 										tela[m].stat = st_Fract.sym;
 										push_mem(m, 7);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 									}
-									else if (i + span_allrk(i) <= n && tela[i].ok != k)  {
+									else if (i + span_ork(i) <= n && tela[i].ok != k)  {
 										if (i-tela[i].ok >= m && tela[i].all_S == tela[i+k].all_S) {
 											tela[ n ].stat = st_parent.sym;
 											if (dev_print(TELA,__LINE__))
@@ -786,7 +786,7 @@ void mark_tela(void)
 			k = tela[n].ok;
 			m = n - k;
 
-			if (tela[m].or>1 && tela[m].ok < k && m+span_allrk(m)<=n) {
+			if (tela[m].or>1 && tela[m].ok < k && m+span_ork(m)<=n) {
 				tela[m].or--;
 				/* REDUCE REPEAT NUMBER IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T */
 			}
@@ -797,7 +797,7 @@ void mark_tela(void)
 			}
 			for (i=j-1; i>0; i--) {
 				int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
-				if (tela[i].ok && i-tela[i].ok >= m && span_allrk(i)<=n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
+				if (tela[i].ok && i-tela[i].ok >= m && span_ork(i)<=n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
 					tela[i].stat = tela[i+k].stat = st_fract.sym;
 					tela[n].stat = st_parent.sym;
 					if (dev_print(TELA,__LINE__))
@@ -805,7 +805,7 @@ void mark_tela(void)
 
 					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-					recslips += span_allrk(i); 
+					recslips += span_ork(i); 
 				}
 				else if (tela[i].ok && (i + tela[i].ok * (tela[i].or-1)) > m-recslips) {
 					/* CASE OF NON-CONFLICTING FRACTAL REPEATS */

@@ -249,7 +249,7 @@ void 				print1D(void);
 short unsigned int	print_2Dseq(void);
 void 				print_blockhead(int a, int b);	
 short int 			pushdown(char pusharray[][MAXROW], int push_m, int push_n); 
-int 				span_allrk(int point);
+int 				span_ork(int point);
 int 				span_rk(int point);
 void 				warnhead(char l); 
 short unsigned int 	recoverlen(void);
@@ -1642,7 +1642,7 @@ void print1D(void)
 }
 
 /*************************/
-int span_allrk(int point)
+int span_ork(int point)
 {
 	int product = tela[point].or * (tela[point].ok);
 	return(product);
