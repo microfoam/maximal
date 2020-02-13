@@ -785,6 +785,12 @@ void mark_tela(void)
 		if (tela[n].ok) {
 			k = tela[n].ok;
 			m = n - k;
+
+			if (tela[m].or>1 && tela[m].ok < k && m+span_allrk(m)<=n) {
+				tela[m].or--;
+				/* REDUCE REPEAT NUMBER IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T */
+			}
+
 			j = n - 1;
 			while (tela[j].ok) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
 				j--;
@@ -797,15 +803,6 @@ void mark_tela(void)
 					if (dev_print(TELA,__LINE__))
 						printf("Calling parent at %d.", n);
 
-					/* REDUCE REPEAT NUMBERS IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T */
-					int x=0;
-					while(tela[i-x-1].stat == st_cycle.sym) {
-						x++;
-					}
-					if (i-x <= m && tela[i-x].ok == tela[i].ok) {
-						tela[i-x].or -= tela[i].or;
-					}
-					
 					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 					recslips += span_allrk(i); 
