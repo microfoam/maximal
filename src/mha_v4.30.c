@@ -978,8 +978,6 @@ int main(int argc, char *argv[])
 					}
 					else if (check_tela(m, j, ONE)!=3) {
 						Dtr = imperfect_TR = 0;
-						if (dev_print(MAIN,__LINE__)) 
-							printf("check_tela() induced cinch cancel.");
 					}
 	
 					/* IF SUMMING PATHBOX DIAGONAL 7/: COMMITTING TO CINCH AFTER AXIOMATIC TEST BY PUSH_TELA  ************************/
