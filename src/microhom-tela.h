@@ -457,8 +457,13 @@ void mark_tela(void)
 				if (!tela[n].k1) {
 					tela[n].k1 = k1 = k_tmp;
 					if ((k_tmp=get_k2(n,k1))>floor) {
-						tela[n].k2 = k2 = k_tmp;
-						break;					/* BREAK BECAUSE CURRENTLY ONLY STORING TOP TWO k-MERS AT n */
+						if (k_tmp==tela[n-1].k1 && k1%k_tmp==0) {
+							tela[n].k1 = k1 = k_tmp;	/* BECAUSE LARGER k1 IS A HIGH-REPEAT NUMBER ARTIFACT */
+						}
+						else {
+							tela[n].k2 = k2 = k_tmp;
+							break;						/* BREAK BECAUSE CURRENTLY ONLY STORING TOP TWO k-MERS AT n */
+						}
 					}
 				}
 			}
@@ -474,7 +479,7 @@ void mark_tela(void)
 			/* FOR ROW m LOOP 1/5: SLIDE DOWN TO ROW WITHIN POPULATED HEMIDIAGONAL */
 			if (n-m > WIDTH+1) 
 				m = n-WIDTH;
-
+			
 			/* FOR ROW m LOOP 2/5: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
 			k = n-m;
 			if (nuctransit) {
@@ -492,7 +497,9 @@ void mark_tela(void)
 				homopoly_flag = 0;
 
 			/* FOR ROW m LOOP 5/5: START COUNTING SCORE (EQUIV. TO: IF PATHBOX POSITION HAS VALUE > MISMATCH) */
-			if (n+k <= lenseq) {
+			if (OFF && tela[n].k1 && k>tela[n].k1 && k%tela[n].k1 == 0 && tela[n-1].ok == tela[n].k1)
+				;
+			else if (n+k <= lenseq) {
 				Dtr = imperfect_TR = 0;		/* INITIALIZATION */
 
 				/* IF SUMMING PATHBOX DIAGONAL 1/4: COMPUTE SCORES OF IDENTITY LINE AND REPEAT DIAGONAL*/
