@@ -556,10 +556,12 @@ void mark_tela(void)
 					}
 					else if (prev_k>k && prev_k % k && tela[n-prev_k].ok != k) {
 						push_mem(n  ,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-						push_mem(n-1,2);
 						push_mem(n  ,2);
-						tela[n-1].stat = st_Fract.sym;
 						tela[n  ].stat = st_Fract.sym;
+						if (tela[n-1-prev_k].stat == st_cycle.sym) {
+							push_mem(n-1,2);
+							tela[n-1].stat = st_Fract.sym;
+						}
 						n += prev_k-2;
 						Dtr = 0; 
 					}

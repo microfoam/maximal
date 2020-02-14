@@ -1496,8 +1496,14 @@ int main(int argc, char *argv[])
 		printf(" Nothing for cinch-d to cinch.\n");
 	}
 	else {
+		int d_width = Current.pass_W;
 		while (intraTR_reps > 0) {
 			intraTR_reps = cinch_d(1);
+			if (Current.pass_W==d_width)
+				break;
+			else
+				d_width = Current.pass_W;
+
 		}
 		Cinch_D.pass_V = Cinch_D.pass_R;
 	}
