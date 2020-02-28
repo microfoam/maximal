@@ -1497,19 +1497,23 @@ void usage(char *usage_version)
 {
 	int i;
 
-	printf("\nRunning maximal version %s, a program for micro-homology alignment (MHA).\n", usage_version);
-	printf("\nUsage: ./maximal -[OPTIONS] sequence.txt\n");
+	printf("Running maximal version %s, a program for micro-homology alignment (MHA).\n", usage_version);
+	printf("\nUsage: ./maximal -[OPTIONS] sequence.txt");
 	for (i=1; i<53; i++) {
 		if (*Options[i]->description)
-			printf("\n\t\t-%c\t%s",Options[i]->sym, Options[i]->description);
+			printf("\n\t\t -%c\t%s",Options[i]->sym, Options[i]->description);
 	}
 	printf("\n\n");
-	printf("   *  This option takes an optional number argument with a monotonically-increasing effect.\n\n");
+	printf("   *  This option takes an optional number argument with a monotonically-increasing effect.\n");
 	printf(" (**) This option takes an optional number argument specifying which mode from a set of limited modes to use.\n");
 	printf("      The number of modes is indicated by the number of asterisks.\n");
-	printf("\n Example usages: ./maximal -v         sequence_file.txt");
-	printf("\n                 ./maximal -KnO       sequence_file.txt");
-	printf("\n                 ./maximal -KnXXY 800 sequence_file.txt\n\n");
+	printf("\n Usage examples: ./maximal -v  sequence_file.txt              [Run in verbose user mode]");
+	printf("\n                 ./maximal -Kn sequence_file.txt -X 2 -Y 800  [Show consensus row; no relax-2D; Fisher-Yates scrambled to length 800 bp]\n");
+	printf("\n Citations:");
+	printf("\n  (1) Erives, A. J. (2018) Genetic sequences are two-dimensional. bioRxiv 2018.");
+	printf("\n      https://doi.org/10.1101/299867. CC-BY 4.0 International license.");
+	printf("\n  (2) Erives, A. J. (2019) Maximal homology alignment: A new method based on two-dimensional homology. bioRxiv 2019.");
+	printf("\n      https://doi.org/10.1101/593228. CC-BY 4.0 International license.\n\n");
 }
 
 /*****************************************************************************************/
