@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 
 	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
 	char cycle[WIDTH+1];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
-	char Seq_head[100] = {0};	/* FASTA HEADER */
+	char Seq_head[SEQHEADS] = {0};	/* FASTA HEADER */
 	char Seq_i[MAXROW] = "TGTGTGAGTGAnnnnnnTGTGTGAGTGAGnnnnnTGTGTGAGTGAGTGAnnTGTGTGAGTGAGTGAGT"; 	/* INPUT SEQUENCE W/ DEFAULT */
 	char Seq_r[MAXROW] = {0}; 	/* RANDOMIZED SEQUENCE */
 	char *Seq = Seq_i;			/* POINTER TO INPUT SEQUENCE */
@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
 	
 					/* CHECK FOR FASTA HEADER AND SAVE IN Seq_head, THEN MASK IN Seq */
 					if (Seq_i[0] == fastahead.sym) {
-						for (j = 0; Seq_i[j+1] != '\n' && Seq_i[j+1] != '\r' && j < 100; j++) {
+						for (j = 0; Seq_i[j+1] != '\n' && Seq_i[j+1] != '\r' && j < SEQHEADS; j++) {
 							Seq_head[j] = Seq_i[j+1];
 						}
 

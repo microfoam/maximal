@@ -21,6 +21,7 @@
 #define SLIPRULER   6       /* FOR USE WITH line_end() */
 #define XDIR        0		/* FOR USE WITH push_gPnt() */
 #define YDIR        1		/* FOR USE WITH push_gPnt() */
+#define SEQHEADS  160		/* Maximum size for sequence headers, FASTA */
 #define max(a,b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a > _b ? _a : _b; })
 
 struct genPoint {
