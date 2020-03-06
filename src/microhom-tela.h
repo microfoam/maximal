@@ -497,7 +497,7 @@ void mark_tela(void)
 				homopoly_flag = 0;
 
 			/* FOR ROW m LOOP 5/5: START COUNTING SCORE (EQUIV. TO: IF PATHBOX POSITION HAS VALUE > MISMATCH) */
-			if (OFF && tela[n].k1 && k>tela[n].k1 && k%tela[n].k1 == 0 && tela[n-1].ok == tela[n].k1)
+			if (OFF && tela[n].k1 && k>tela[n].k1 && k%tela[n].k1 == 0 && tela[n-1].ok == tela[n].k1 && tela[n-1].stat==st_cycle.sym)
 				;
 			else if (n+k <= lenseq) {
 				Dtr = imperfect_TR = 0;		/* INITIALIZATION */

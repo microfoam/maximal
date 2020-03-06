@@ -383,10 +383,10 @@ int *x_history = NULL;
 								if (n == scrimmage_line || col_isclear(align2D,n,m,1) < 0 || scrimmage_line<0) {
 									y = 0;		/* RESET y VAR. B/C NO LONGER NEED TO ADJUST CONSENSUS COORDINATES */
 								}
-								if (n>scrimmage_line && ((letr2=consensus[n-x+y+l]) == 'R' || letr2 == 'Y')) {
+								if (n>scrimmage_line && ((letr2=consensus[n-x+y+l]) == 'R' || letr2 == 'Y') /* && tela[symbol_count+l].e != letr2 */) {
 									keep_checking = 0;
 								}
-								else if ((letr3=consensus[n-x+y+l+k]) == 'R' || letr3 == 'Y') {
+								else if (((letr3=consensus[n-x+y+k+l]) == 'R' || letr3 == 'Y') /* && tela[symbol_count+k+l].e != letr3 */) {
 									keep_checking = 0;
 								}
 							}

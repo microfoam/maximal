@@ -1505,7 +1505,7 @@ void usage(char *usage_version)
 	}
 	printf("\n\n");
 	printf("   *  This option takes an optional number argument with a monotonically-increasing effect.\n");
-	printf(" (**) This option takes an optional number argument specifying which mode from a set of limited modes to use.\n");
+	printf(" (**) This option takes an optional number argument specifying which mode to use.\n");
 	printf("      The number of modes is indicated by the number of asterisks.\n");
 	printf("\n Usage examples: ./maximal -v  sequence_file.txt              [Run in verbose user mode]");
 	printf("\n                 ./maximal -Kn sequence_file.txt -X 2 -Y 800  [Show consensus row; no relax-2D; Fisher-Yates scrambled to length 800 bp]\n");
