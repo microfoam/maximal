@@ -99,6 +99,24 @@ char letr;
 			i++;
 		}
 	}
+	else if (stringtype == 3 && opt_x.bit) {
+		i = 0;
+		while ((letr=s[i]) != '\0') {
+			if (letr=='L' || letr=='M' || letr=='I' || letr=='V') 	/* WORKHORSE HYDROPHOBICITY  */
+				s[i] = 'O';
+			else if (letr=='W' || letr=='Y' || letr=='F') 			/* HEAVY HYDROPHOBIC MOTHERS */
+				s[i] = 'X';
+			else if (letr=='Q' || letr=='E' || letr=='D') 			/* POLAR - OR CARBOXYMIDE STRUCTURE-FRIENDLY */
+				s[i] = 'U';
+			else if (letr=='K' || letr=='R') 						/* POLAR +	*/
+				s[i] = 'Z';
+			else if (letr=='T' || letr=='S') 						/* -OH 		*/
+				s[i] = 'B';
+			else if (letr=='A' || letr=='G') 						/* SMALL 	*/
+				s[i] = 'J';
+			i++;
+		}
+	}
 
 	return(stringtype);		/* RETURNS 0, 1, 2, OR 3 */
 
@@ -108,6 +126,7 @@ char letr;
 		0	A B C D - - G H - - K - M N - - - R S T - V W - Y - = IUPAC DNA
 		0	A B C D - - G H - - K - M N - - - R S - U V W - Y - = IUPAC RNA
 		3	A - C D E F G H I - K L M N - P Q R S T - V W - Y - = PROTEIN (20 amino acids)
+		3x	J - C U U X J H O - Z O O N - P U Z B B - O X - X - = DR. OZ'S BLOSUM-90 RAREFIED WAXES
 		0	A - C D E F G H I - K L M N O P Q R S T U V W - Y - = PROTEIN (22 a.a. w/ pyrolysine=O and selenocysteine=U)
 		0	- - - - E F - - I - - L - - - P Q - - - - - - - - - = PROTEIN-ONLY (THESE 6 amino acids are diagnostic)
 		0	- - - - - - - - - J - - - - O - - - - - - - - X - Z = NOT CANONICAL PROTEIN, NOT-IUPAC 

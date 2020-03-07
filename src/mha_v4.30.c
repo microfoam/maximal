@@ -316,7 +316,7 @@ int main(int argc, char *argv[])
 				else
 					opt_v.val = numarg;
 				break;
-		case 'x':						/* OPTION TO SQUEEZE DTHR VALUES BY 1 FOR k > PISO */
+		case 'x':						/* OPTION TO SQUEEZE DTHR VALUES BY 1 FOR k > PISO FOR DNA; DR. OZ'S WAX FOR PROTEIN */
 				opt_x.bit = 1;
 				opt_x.val = 1;	
 				break;
@@ -1656,6 +1656,9 @@ int main(int argc, char *argv[])
 			Recover.pass_Q = 1000; 
 		}
 	} /* END of opt_R */
+
+	if (seqtype==3 && opt_x.bit && opt_v.val == 1)
+		printf("\n O = [LMIV], X = [WYF], U = [QED], Z = [KR], B = [TS], J = [AG]\n");
 
 	/* PRINT OPTION FOR K-MER REPORT AFTER cinch_t **********************/
 	if (opt_k.bit) {
