@@ -812,5 +812,5 @@ fi
 ./maximal -CRnx waves/tubespit/seq-154-v427_cycABs.txt
 
 ./surfboard-checkmha
-echo 'Commit WCR avgs: 0.509736 (Doc OZ BLOSUM-90 RAREFIED WAXES)' | tee -a corduroy.log
+echo 'Commit WCR avgs: 0.509736 (Doc OZ BLOSUM-90 RAREFIED WAXES; last of v4.30) -> 0.509417 (transit handling in get_k2 for mark_tela)' | tee -a corduroy.log
 echo

@@ -407,16 +407,31 @@ void push_tela_or(int n)
 int get_k2(int n, int k1) 
 {
 	int lenseq = Clean.pass_W;
-	int i=0, m=0, k=0;
+	int i=0, m=0, k=0, transits=0;
+	int allowed_transits(int k);
+	int maxtransits;
 
 	if (n+k1 >= lenseq || n-k1 <= 0)
 		return(0);
 	else {
 		for (k = k1-1; k>0; k--) {
 			m = n-k;
+			transits=0;
+			maxtransits = allowed_transits(k);
+
+/*			printf("\n n=%d, k=%2d, maxtransits=%d", n, k, maxtransits);
+*/
 			for (i=0; i<k; i++) {
-				if (tela[m+i].c != tela[n+i].c)
-					break;
+				if (tela[m+i].c != tela[n+i].c) {
+					if (tela[m+i].e == tela[n+i].e) {
+						transits++;
+						if (transits > maxtransits) {
+							break;
+						}
+					}
+					else
+						break;
+				}
 			}
 			if (i && i==k && k<k1)
 				return(k);
