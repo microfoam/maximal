@@ -23,13 +23,13 @@ int thr_table[WIDTH+1] = {0};
 int allowed_transits(int k)
 {
 	int numtransit = 0;	
-	float fractransit = 0.08;	/* SETS NUMBER OF ADDITIONAL ALLOWED TRANSITIONS FOR GIVEN k-MER */
 
-	if (ONE) {
+	if (ON) {
 		numtransit = (int) round(0.32*log2( (float) k ));		/* EQUIVALENT TO 0.64 * LOG_BASE_4 (k) */
 		/* FUNCTION ONE: LOGARITHMIC: SLOW, ORGANIC INCREASE IN ALLOWED TRANSITIONS; ALSO MANIFESTS PISO (FLOOR) NATURALLY */
 	} 
 	else {
+		float fractransit = 0.08;	/* SETS NUMBER OF ADDITIONAL ALLOWED TRANSITIONS FOR GIVEN k-MER */
 		numtransit = 1 + round(fractransit * k);    /* FRACTRANSIT 0.08 ALLOWS k<7 KMERS ONLY ONE TRANSITION */
 		/* FUNCTION TWO: FLAT FRACTION OF TRANSITIONS: VERY HAIRY, BUT GREAT FOR DEBUGGING CRAZY KNOTS       */
 		/* ---THIS IS A LEGACY DEVELOPMENT-PHASE FUNCTION SAVED FOR DIDACTIC & HISTORICAL PURPOSES.          */
@@ -84,7 +84,7 @@ void show_DTHR_table(void)
 	printf("\n k-mer\t Max. trans.\t Threshold\t Score with maximum transitions"); 
 	for (k = 1; k <= WIDTH; k++) {
 		if (seqtype==1 && k>PISO) {
-			maxtransits = (int) round(0.32*log2((float) k));
+			maxtransits = allowed_transits(k);
 			table_score = score_DTHR(k);
 			max_score = (int) 100*((k-maxtransits)*match + maxtransits*transition)/(k*match);
 		}
