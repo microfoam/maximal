@@ -121,19 +121,27 @@ void assign_transit(int n, int kr_src)
 	}
 
 	int m = n - k;
+	int m_pos=0, n_pos=0;
 
 	/* ASSIGN TRANSITIONS TO .t IF IMPERFECT_TR, ALL IN REFERENCE TO FIRST UNIT STARTING AT m */
 	for (i=0; i<r; i++) {
 		for (j=0; j<k; j++) {	/* 1ST TIME TO NOTE THE TRANSITION POSITIONS BY DIFFERENCES */
-			if (tela[n+i*k+j].c != tela[m+j].c && tela[n+i*k+j].e == tela[m+j].e) {
-				tela[n+i*k+j].t = tela[m+j].t = tela[m+j].e;
+			m_pos = m     + j;
+			n_pos = n+i*k + j;
+			if (tela[n_pos].c != tela[m_pos].c && tela[n_pos].e == tela[m_pos].e) {
+				if (tela[m_pos].t != tela[m_pos].c)
+					tela[n_pos].t = tela[n_pos].e;
+				else
+					tela[m_pos].t = tela[m_pos].e;
 			}
 		}
 	}
 	for (i=0; i<r; i++) {
 		for (j=0; j<k; j++) {	/* 2ND TIME TO PROPAGATE TRANSITIONS TO ALL PARALAGOUS POSITIONS */
-			if (tela[n+i*k+j].t != tela[m+j].t) {
-				tela[n+i*k+j].t = tela[m+j].t;
+			m_pos = m     + j;
+			n_pos = n+i*k + j;
+			if (tela[n_pos].t != tela[m_pos].t && tela[n_pos].e == tela[m_pos].e) {
+				tela[n_pos].t = tela[m_pos].t = tela[n_pos].e;
 			}
 		}
 	}
@@ -403,35 +411,45 @@ void push_tela_or(int n)
 
 
 /* Return k-mer repeat size smaller than k if it exists, otherwise return 0 */
-/* First prototype function will just do perfect repeats */
-int get_k2(int n, int k1) 
+int get_k2(int n, int k1, short unsigned int seqtype) 
 {
 	int lenseq = Clean.pass_W;
-	int i=0, m=0, k=0, transits=0;
-	int allowed_transits(int k);
-	int maxtransits;
+	int i=0, m=0, k=0;
 
-	if (n+k1 >= lenseq || n-k1 <= 0)
+	if (n+k1 >= lenseq)
 		return(0);
-	else {
+	else if (seqtype==1 && k1-1>PISO) {
+		int maxtransits, transits;
+		int allowed_transits(int k);
+
 		for (k = k1-1; k>0; k--) {
 			m = n-k;
-			transits=0;
 			maxtransits = allowed_transits(k);
+			transits=0;
 
-/*			printf("\n n=%d, k=%2d, maxtransits=%d", n, k, maxtransits);
-*/
 			for (i=0; i<k; i++) {
 				if (tela[m+i].c != tela[n+i].c) {
-					if (tela[m+i].e == tela[n+i].e) {
-						transits++;
-						if (transits > maxtransits) {
+					if (k>PISO && tela[m+i].e == tela[n+i].e) {
+						if (++transits <= maxtransits) 
+							;
+						else
 							break;
-						}
 					}
 					else
 						break;
 				}
+			}
+			if (i && i==k && k<k1)
+				return(k);
+		}
+		return(0);
+	}
+	else {
+		for (k = k1-1; k>0; k--) {
+			m = n-k;
+			for (i=0; i<k; i++) {
+				if (tela[m+i].c != tela[n+i].c) 
+					break;
 			}
 			if (i && i==k && k<k1)
 				return(k);
@@ -468,10 +486,10 @@ void mark_tela(void)
 	for (n=1; n<lenseq; n++) {
 		for (k=WIDTH; k>floor; k--) {
 			k2 = k1 = k_tmp=0;
-			if ((k_tmp=get_k2(n,k))>floor) {
+			if ((k_tmp=get_k2(n,k,nuctype))>floor) {
 				if (!tela[n].k1) {
 					tela[n].k1 = k1 = k_tmp;
-					if ((k_tmp=get_k2(n,k1))>floor) {
+					if ((k_tmp=get_k2(n,k1,nuctype))>floor) {
 						if (k_tmp==tela[n-1].k1 && k1%k_tmp==0) {
 							tela[n].k1 = k1 = k_tmp;	/* BECAUSE LARGER k1 IS A HIGH-REPEAT NUMBER ARTIFACT */
 						}
