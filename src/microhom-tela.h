@@ -921,39 +921,12 @@ void mark_tela(void)
 				}
 			}
 			if (!checkconflict) {						/* MEANING CHECKCONFLICT FLAG WAS NEVER TURNED O-F-F, I.E., THERE IS CONFLICT */
-				/* CONFLICT SCENARIO ONE (a and b) */
-				if (span==1 && !(tela[n].all_L) && tela[n].all_R) {
-					j = tela[n].all_R;
-					int kR = tela[j].ok;
-					if (dev_print(TELA,__LINE__)) {
-						printf("mark_tela at n=%d, span=%d with no left-conflict, but right_conflict=%d.", n, span, tela[n].all_R);
-					}
-					for (i=j+1; tela[i].ok == kR; i++) {
-						if (tela[i].all_S < tela[j].all_S && kR > k && tela[j].or > tela[n].or) {
-							clearall_tela(n,1,-1,TWO);
-							push_mem(n,10);
-							clearall_tela(i,1,-1,TWO);
-							push_mem(i, 10);
-							tela[j].all_L = 0;
-						}
-						else if (!tela[i].all_L && !tela[i].all_R && tela[i].all_S > tela[j].all_S) {
-							clearall_tela(j, i-j, tela[i].all_S, TWO);		/* O-F-F, ONE, OR TWO */
-							for (int p=j; p<=i; p++) {
-								if (tela[p].ok)	
-									push_mem(p, 11);
-							}
-							tela[i].all_Z = tela[i].all_S;
-							tela[n].all_Z = tela[n].all_S;
-							tela[n].all_R = 0;
-						}
-					}
-				}
 				/* CONFLICT SCENARIO TWO */
-				else if (span>1 && tela[n].all_L && !(tela[n].all_R) && tela[n+1].ok < tela[n].ok &&
+				if (span>1 && tela[n].all_L && !(tela[n].all_R) && tela[n+1].ok < tela[n].ok &&
 							!(tela[n+1].all_L) && !(tela[n+1].all_R) && tela[n].ok % tela[n+1].ok==0) {
 					clearall_tela(n, 1, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
 					if (tela[n].all_S != tela[n+1].all_S)
-						push_mem(n, 12);
+						push_mem(n, 10);
 					/* POSSIBLE THIS CASE COULD BE GENERALIZED...FOR A RAINY DAY */
 					if (dev_print(TELA,__LINE__)) {
 						printf("mark_tela at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
@@ -971,12 +944,12 @@ void mark_tela(void)
 							for (i=j-1; i>=n; i--) {
 								clearall_tela(i, j-n, -1, TWO);		/* O-F-F, ONE, OR TWO */
 								for (int p=i; p<=i+j-n; p++)
-									push_mem(p, 13);
+									push_mem(p, 11);
 							}
 							for (i=j+1; i<n+span; i++) {
 								if (tela[i].ok == k && tela[i].all_R == l) {
 									clearall_tela(i,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-									push_mem(i, 14);
+									push_mem(i, 12);
 								}
 							}
 						}
@@ -1001,7 +974,7 @@ void mark_tela(void)
 				else {
 					for (i=n; i<=n+span; i++) {
 						if (tela[i].all_S && tela[i].all_S != max_score) {
-							push_mem(i, 15);
+							push_mem(i, 13);
 							clearall_tela(i, 1, -1, ONE);			/* O-F-F, ONE, OR TWO */
 							if (dev_print(TELA,__LINE__)) {
 								printf("         mark_tela engaging clearall_tela(ONE) at i=%d.", i);
@@ -1029,13 +1002,13 @@ void mark_tela(void)
 						}
 						if (tela[p].ok) {
 							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_mem(p, 16);
-							push_mem(n, 16);
+							push_mem(p, 14);
+							push_mem(n, 14);
 						}
 						if (tela[q].ok) {
 							clearall_tela(q,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_mem(q, 17);
-							push_mem(n, 17);
+							push_mem(q, 15);
+							push_mem(n, 15);
 						}
 					}
 					else if (tela[p].ok != tela[q].ok && tela[p].k2 == tela[q].ok) { 

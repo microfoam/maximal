@@ -886,8 +886,8 @@ int main(int argc, char *argv[])
 						}
 					}
 	
-					/* IF SUMMING PATHBOX DIAGONAL 5/: SKIP CINCH IF IMPERFECT WHILE CONTAINING PERFECT TRs INSIDE */
-					if (imperfect_TR) {
+					/* IF SUMMING PATHBOX DIAGONAL 5/: SKIP CINCH IF IMPERFECT WHILE CONTAINING PERFECT TR AT SAME COLUMN OF SMALLER K */
+					if (imperfect_TR && tela[n].or < 2) {
 						for (l=k/2; l>1; l--) {
 							for (i=0; i<l; i++) {
 								if (tela[n-l+i].c != tela[n+i].c)
