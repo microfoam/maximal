@@ -516,7 +516,6 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 			}
 		} 
 		if (checktransit) {		/* IF checktransit IS STILL POSITIVE THEN IT'S SUPPOSED TO NOT HAVE CHECKED OUT */
-			consensus[n] = letr;
 			plustransit = 0;
 			if (Current.pass_V) { /* IF PASS NUMBER */
 				checktransit_n = n;
