@@ -30,7 +30,7 @@ int					update_tela(void);
 /******************************* MODE ZERO (+x) OR ONE (+y) *****************************************/
 int push_gPnt(short unsigned int ymode, int pos, int prev_par)
 {
-	/* TRAINING WHEELS: DELETE ME EVENTUALLY */
+	/* TRAINING WHEELS: DELETE ME EVENTUALLY (INVOCATION CHECKS) */
 	if (ymode<0 || ymode>1 || prev_par>pos || pos>MAXROW || prev_par>MAXROW || (ymode==1 && prev_par >= pos)) {
 		printf("\n\n * Incorrect invocation of push_gPnt(%d,%d,%d) in code.\n\n", ymode, pos, prev_par);
 		return(-1);
@@ -1031,7 +1031,7 @@ void mark_tela(void)
 	Cinch_T.pass_V = max_k;  
 
 	if (dev_print(TELA,__LINE__)) {
-		printf(" Finished pre-marking tela struct as follows:");
+		printf("Finished pre-marking tela as follows:\n");
 		print_tela(prtela_A, prtela_B);
 	}
 }
@@ -1345,10 +1345,16 @@ int lenseq = Clean.pass_W;
 	}
 
 	if (Clean.pass_Q==500) {
-		printf("\n   ");
-		for (i=a; i<=b; i++) 
-			printf("~~~");
-		printf("\n");
+		printf("\n\n    Jk");
+		for (i=0; i<13; i++)
+			printf("  \u2662");
+		for (i=0; i<13; i++)
+			printf("  \u2664");
+		for (i=0; i<13; i++)
+			printf("  \u2661");
+		for (i=0; i<13; i++)
+			printf("  \u2667");
+		printf("  Jk\n");
 	}
 
 	printf("\n");
