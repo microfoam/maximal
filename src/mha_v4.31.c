@@ -1671,6 +1671,9 @@ int main(int argc, char *argv[])
 	}
 	/***************************************************************************/
 
+	if (seqtype == 3 && opt_x.bit && opt_v.bit)
+		print_protein_waxes();
+
 	if (seqtype == 1)		
 		printf(   "\n   PASS      Width cinch history for %s (DNA)\n", Seq_head);
 	else if (seqtype==2)	

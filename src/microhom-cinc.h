@@ -116,17 +116,18 @@ char letr;
 				s[i] = 'J';
 			i++;
 		}
+		print_protein_waxes();
 	}
 
 	return(stringtype);		/* RETURNS 0, 1, 2, OR 3 */
 
-	/*	SIGNATURES OF DIFFERENT ALPHABETS: 
+	/*	PROFILES OF DIFFERENT ALPHABETS: 
 	 	1	A - C - - - G - - - - - - N - - - - - T - - - - - - = DNA 
 		2	A - C - - - G - - - - - - N - - - - - - U - - - - - = RNA
 		0	A B C D - - G H - - K - M N - - - R S T - V W - Y - = IUPAC DNA
 		0	A B C D - - G H - - K - M N - - - R S - U V W - Y - = IUPAC RNA
 		3	A - C D E F G H I - K L M N - P Q R S T - V W - Y - = PROTEIN (20 amino acids)
-		3x	J - C U U X J H O - Z O O N - P U Z B B - O X - X - = DR. OZ'S BLOSUM-90 RAREFIED WAXES
+		3x	J - C U U X J H O - Z O O N - P U Z B B - O X - X - = DOC OZ'S BLOSUM-90 RAREFIED WAXES
 		0	A - C D E F G H I - K L M N O P Q R S T U V W - Y - = PROTEIN (22 a.a. w/ pyrolysine=O and selenocysteine=U)
 		0	- - - - E F - - I - - L - - - P Q - - - - - - - - - = PROTEIN-ONLY (THESE 6 amino acids are diagnostic)
 		0	- - - - - - - - - J - - - - O - - - - - - - - X - Z = NOT CANONICAL PROTEIN, NOT-IUPAC 
@@ -134,6 +135,17 @@ char letr;
 	*/
 }
 /******************************************************************/
+
+void print_protein_waxes(void)
+{
+		printf("\nProtein sequence waxed into equivalence classes:\n");
+		printf(" O = [LMIV]\t Workhorse hydrophobicity\n");
+		printf(" X = [WYF] \t Heavy hydrophobic mothers\n");
+		printf(" U = [QED] \t Polar, negative or structure-friendly carboxymide\n");
+		printf(" U = [KR]  \t Polar, positive\n");
+		printf(" B = [ST]  \t Small -OH\n");
+		printf(" J = [AG]  \t Small\n");
+}
 
 /** INVOKE PRIOR TO RE-USING PATHBOX **/
 void clear_pathbox(void)

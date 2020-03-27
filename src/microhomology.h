@@ -249,6 +249,7 @@ void 				mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW]
 void 				print1D(void);
 short unsigned int	print_2Dseq(void);
 void 				print_blockhead(int a, int b);	
+void				print_protein_waxes(void);
 short int 			pushdown(char pusharray[][MAXROW], int push_m, int push_n); 
 int 				span_ork(int point);
 int 				span_rk(int point);
