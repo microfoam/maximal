@@ -629,7 +629,7 @@ int main(int argc, char *argv[])
 		else
 			tela[i].e = tela[i].c;
 	}
-	mark_tela();			/* WILL MARK ALL TRs WITHOUT CINCHING AND RECORD IN tela[].ok, all_r, all_S, all_L/R */
+	mark_tela();			/* WILL MARK ALL TRs WITHOUT CINCHING AND RECORD IN tela[].ok, or, all_S, all_L/R */
 	Clean.pass_Q = 1000;	/* mark_tela() is completed; used to count half a pass for print_tela() */
 
 	if (opt_t.bit) {
@@ -848,7 +848,7 @@ int main(int argc, char *argv[])
 					} 
 	
 					if (Dtr && dev_print(MAIN,__LINE__)) {
-						printf("cinch_t evaluating k=%d-mer all_r=%d at n=%d, imperfect_TR=%d.", k, tela[n].or, n, imperfect_TR);
+						printf("cinch_t evaluating k=%d-mer at (operational) r=%d at n=%d, imperfect_TR=%d.", k, tela[n].or, n, imperfect_TR);
 					}
 	
 					/* IF SUMMING PATHBOX DIAGONAL 4/: FIND AND STORE POSITION OF LEFT-MOST OVERLAPPING TRs */
