@@ -36,7 +36,9 @@ fi
 ./maximal -DKR  waves/chowder/abba_zabba_4.txt 
 ./maximal -DKR  waves/chowder/seq26-snippet.txt 
 ./maximal -DKR  waves/chowder/gal11-knot1.txt 
+./maximal -DKR  waves/chowder/seq26-variations1.txt 
+./maximal -DKR  waves/chowder/seq26-variations2.txt 
 
 ./surfboard-checkmha
-echo 'sand_dunes benchmark WCR average of 18: 0.385889' | tee -a corduroy.log
+echo 'sand_dunes benchmark WCR average of 20: 0.37815' | tee -a corduroy.log
 echo

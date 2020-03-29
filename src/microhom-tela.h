@@ -416,7 +416,7 @@ int get_k2(int n, int k1, short unsigned int seqtype)
 	int lenseq = Clean.pass_W;
 	int i=0, m=0, k=0;
 
-	if (n+k1 >= lenseq)
+	if (n+k1 > lenseq+1)
 		return(0);
 	else if (seqtype==1 && k1-1>PISO) {
 		int maxtransits, transits;
@@ -428,6 +428,8 @@ int get_k2(int n, int k1, short unsigned int seqtype)
 			transits=0;
 
 			for (i=0; i<k; i++) {
+				if (seqtype==1 && tela[n+i].c == ambig.sym)
+					break;
 				if (tela[m+i].c != tela[n+i].c) {
 					if (k>PISO && tela[m+i].e == tela[n+i].e) {
 						if (++transits <= maxtransits) 
@@ -515,6 +517,12 @@ void mark_tela(void)
 			
 			/* FOR ROW m LOOP 2/5: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
 			k = n-m;
+
+			if (tela[n-1].ok && tela[n-1].k1 && tela[n-1].k1 == tela[n].k1 && k>tela[n].k1 && !(k%tela[n-1].ok)) {
+				k = tela[n].k1;
+				m = n - k;
+			}
+
 			if (nuctransit) {
 				threshold = score_DTHR(k);
 			}
@@ -826,8 +834,17 @@ void mark_tela(void)
 			m = n - k;
 
 			if (tela[m].or>1 && tela[m].ok < k && m+span_ork(m)<=n) {
-				tela[m].or--;
 				/* REDUCE REPEAT NUMBER IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T */
+				int k_at_m = tela[m].ok;
+				int less_r = tela[m].or - 1;
+				tela[m].or = 1;
+
+				i = 1;
+				int jump = 0;
+				while (tela[(jump=(m-i*k_at_m))].ok == k_at_m && tela[jump].stat == st_cycle.sym) {
+					tela[jump].or -= less_r;
+					++i;
+				}
 			}
 
 			j = n - 1;
@@ -850,9 +867,6 @@ void mark_tela(void)
 					/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
 					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-					if (OFF && dev_print(TELA,__LINE__)) {
-						printf("         mark_tela marking conflict between i=%d and n=%d.", i,n);
-					}
 				}
 			}
 		}
@@ -1034,6 +1048,7 @@ void mark_tela(void)
 		printf("Finished pre-marking tela as follows:\n");
 		print_tela(prtela_A, prtela_B);
 	}
+	/* dev_prompt(TELA,__LINE__,file_name); */
 }
 
 
