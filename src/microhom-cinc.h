@@ -498,6 +498,15 @@ int *x_history = NULL;
 					check_imperf = 0;			/* RESET check_imperf HERE */
 				} /* END OF IF check_imperf */
 
+				if ((keep_checking || imperfect_TR) && col_isclear(align2D,n,m,-1)<0 && col_isclear(align2D,n,m,1)<0) {
+					for (i=1; i<k; i++) {
+						if (col_isclear(align2D,n+l,m,1)>=0) {
+							keep_checking = imperfect_TR = 0;
+							break;
+						}
+					}
+				}
+
 				/* BREAK CHECKING IF IT WILL PULL IN MISMATCHES IN REPEAT OR TO RIGHT OF REPEAT */
 				if (nuctransit && (imperfect_TR || keep_checking) && n > scrimmage_line) { 
 					for (l = 0; l < 2*k; l++) {
