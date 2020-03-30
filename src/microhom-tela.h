@@ -845,6 +845,9 @@ void mark_tela(void)
 					tela[jump].or -= less_r;
 					++i;
 				}
+				jump = m - (--i)*k_at_m;
+				if (tela[--jump].ok == k_at_m)
+					tela[jump].or -= less_r;
 			}
 
 			j = n - 1;
