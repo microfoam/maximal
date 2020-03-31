@@ -486,7 +486,7 @@ int main(int argc, char *argv[])
 	printf("%s", time0);
 
 	if (opt_p.bit) {		/* opt_p SHOW RUN PARAMETERS */
-		printf("\nParamaters");
+		printf("\nParameters");
 		printf("\n Match: %d\n Transition: %d\n Mismatch: %d\n Bandwidth: %d\n Default block width: %d\n Transition matching floor: k-mers > %d\n",  
 				 match, transition, mismatch, WIDTH, par_wrap.set, PISO);
 		printf("\nFisher-Yates length: %d", FY_size);
