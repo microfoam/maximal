@@ -812,5 +812,5 @@ fi
 ./maximal -CRnx waves/tubespit/seq-154-v427_cycABs.txt
 
 ./surfboard-checkmha
-echo 'Commit WCR avgs: 0.509697 (get_k2 transit handling) ->0.509617 (less mark_tela) ->0.509672 (generaliz. spl fract) ->0.509687 (cinch-k)' | tee -a corduroy.log
+echo 'Commit WCR avgs: ->0.509672 (generaliz. spl fract) ->0.509687 (cinch-k) -> 0.509737 (less mark_tela II)' | tee -a corduroy.log
 echo
