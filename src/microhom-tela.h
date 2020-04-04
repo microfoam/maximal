@@ -1540,7 +1540,9 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 			dn = o + k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AFTER REPEATS */
 			for (j=0; j<k; j++) {
 				if (up+j >= 0 && tela[up+j].e == tela[m-k*(iteration-1)+j].e) {
-					if (tela[up+j].c == tela[m-k*(iteration-1)+j].c) {
+					if (tela[up+j].c == ambig.sym)
+						ratchet++;
+					else if (tela[up+j].c == tela[m-k*(iteration-1)+j].c) {
 						tela[i].all_Z += match;
 						ratchet++;
 					}
@@ -1550,7 +1552,9 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 					}
 				}
 				if (dn+j<=lenseq && tela[dn+j].e == tela[o+k*(iteration-1)+j].e) {
-					if (tela[dn+j].c == tela[o+k*(iteration-1)+j].c) {
+					if (tela[dn+j].c == ambig.sym)
+						ratchet++;
+					else if (tela[dn+j].c == tela[o+k*(iteration-1)+j].c) {
 						tela[i].all_Z += match;
 						ratchet++;
 					}
