@@ -150,8 +150,8 @@ struct {
 
 }	*Parms[2] = {},
                    /*.......X  .........|.........|.........|.........|.........|.........|...X*/	
-	par_piso = { 5, "char",    "Sets the floor for transition scoring above this k-mer size.  ", "opt_x"},
-	par_wrap = {80, "columns", "Sets screen wrap length for 2-D alignment.                    ", "opt_u"};
+	par_piso = {  5, "char",    "Sets the floor for transition scoring above this k-mer size.  ", "opt_x"},
+	par_wrap = {100, "columns", "Sets screen wrap length for 2-D alignment.                    ", "opt_u"};
 
 
 /* This unnamed struct type organizes a set of pointers and names for mha's 2-D alignment character set */
@@ -857,7 +857,7 @@ int col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short in
 		if (check_array[m][0] == '\0') 
 			break;
 	}
-    return(-1);		/* RETURN NEGATIVE VALUE TO INDICATE COLUMN IS CLEAR EITHER BELOW OR ABOVE */
+    return(-1);		/* RETURN NEGATIVE VALUE TO INDICATE COLUMN IS CLEAR IN DESIGNATED DIRECTION */
 }
 /*****************************************************************************************/
 
