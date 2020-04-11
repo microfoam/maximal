@@ -1443,8 +1443,6 @@ int main(int argc, char *argv[])
 	Cinch_L.pass_R = (int) cinch_l();
 	if (cinchled) 
 		print_2Dseq();
-	else
-		printf("\n Nothing for cinch-l to cinch.");
 
 	Cinch_L.pass_Q = Current.pass_Q;
 
@@ -1453,8 +1451,6 @@ int main(int argc, char *argv[])
 
 	Cinch_K.pass_R = cinch_k();
 	Cinch_K.pass_Q = Current.pass_Q;
-	if (!Cinch_K.pass_R)
-		printf("\n Nothing for cinch-k to cinch.");
 
 	if (dev_print(MAIN,__LINE__)) {
 		print_tela(prtela_A, prtela_B);
@@ -1474,8 +1470,6 @@ int main(int argc, char *argv[])
 	}
 	else {	
 		Cinches[i]->pass_W = Cinches[i-1]->pass_W;
-		if (!Nudge.pass_R)
-			printf("\n Nothing for nudgelize to nudge.");
 	}
 	Nudge.pass_Q = Current.pass_Q;
 
@@ -1492,10 +1486,7 @@ int main(int argc, char *argv[])
 	}
 	intraTR_reps = cinch_d(0);
 
-	if (!intraTR_reps) {
-		printf(" Nothing for cinch-d to cinch.\n");
-	}
-	else {
+	if (intraTR_reps) {
 		int d_width = Current.pass_W;
 		while (intraTR_reps > 0) {
 			intraTR_reps = cinch_d(1);
