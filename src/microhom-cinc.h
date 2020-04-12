@@ -531,8 +531,16 @@ int *x_history = NULL;
 				}
 
 				if (keep_checking && n > scrimmage_line) { 
+					if (k==2 && dev_print(CINCH,__LINE__)) {			/* TEMPORARY: DELETE ME */
+						printf("n=%2d, x=%d, k=%d, m=%d, cik_row=%d, symbol_count=%2d, keep_checking=%d.", n,x,k,m,cik_row,symbol_count,keep_checking);
+					}
+
 					int p=0, q=0;
-					if ((l=col_isclear(pathbox,n-x+k,m,-1)) > -1 && col_isclear(align2D,n+k,m,1)< 0) {
+													  /* SHOULD BE NECESSARY (b/c pathbox NOT align2D, BUT IS WORSE?!? */
+					if ( (col_isclear(pathbox,n-x+k,m /* +cik_row */,-1)>-1 && col_isclear(align2D,n+k,m,1)<0) || k<1 ) {
+
+						if (k==2 && dev_print(CINCH,__LINE__))			/* TEMPORARY: DELETE ME */
+							printf("n=%2d, x=%d, k=%d, m=%d, cik_row=%d, symbol_count=%2d, keep_checking=%d.", n,x,k,m,cik_row,symbol_count,keep_checking);
 
 						/* CHECK IF WILL PULL IN ADJACENT MISMATCHES AFTER RUN OF REPEATS */
 					    r = 1; 
@@ -549,19 +557,10 @@ int *x_history = NULL;
 					    }    
 
 						if (nuctransit && (p=n-x+k+i)<=Current.pass_W && (q=n+(r+1)*k+i)<=Current.pass_W) {
-							if      (!isalpha((letr =align2D[l][p])))
+							if (!isalpha((letr2=align2D[m][q])))
 								keep_checking = 0;
-							else if (!isalpha((letr2=align2D[m][q])))
-								keep_checking = 0;
-							else if (letr!=letr2 && letr!='R' && letr!='Y' && (letr3=consensus[q])!='R' && letr3!='Y') {
+							else if (letr!=letr2 && letr!='R' && letr!='Y' && (letr3=consensus[q])!='R' && letr3!='Y') 
 						        keep_checking = 0; 
-						    }    
-						}
-						else {
-							if ((letr=pathbox[l][n-x+k+i]) != (letr2=align2D[m][n+(r+1)*k+i]) &&
-								 isalpha(letr) && isalpha(letr2)) {
-						        keep_checking = 0; 
-						    }    
 						}
 			    	}
 
@@ -602,7 +601,7 @@ int *x_history = NULL;
 
 				if (keep_checking || imperfect_TR) {
 					if (k>0 && dev_print(CINCH,__LINE__)) {
-						printf("cinch-k taking k-mer=%2d at symbol_count=%3d (lenseq = %3d).", k, symbol_count, lenseq);
+						printf("cinch-k taking k-mer=%2d at symbol_count=%3d (lenseq = %3d); x=%d, y=%d.", k, symbol_count, lenseq, x,y);
 					}
 
 					push_gPnt_kmer(symbol_count+k,k,1);
@@ -1082,10 +1081,8 @@ char blnk = Fill->sym;
 	if (!cinch_d_opt) {
 		if (!tot_repeats) {
 			Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
-			printf("\n");
 		}
-		else 
-			printf("\n");
+		printf("\n");
 	}
 	else {
 		Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
