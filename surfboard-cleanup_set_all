@@ -812,5 +812,5 @@ fi
 ./maximal -CRnx waves/tubespit/seq-154-v427_cycABs.txt
 
 ./surfboard-checkmha
-echo 'Commit WCR avgs: ->0.509672 (gen. spl fract) ->0.509687 (cinch-k) ->0.509737 (less mark_tela II) ->0.509664 (skip ambig in settle_tiescores)' | tee -a corduroy.log
+echo 'Commit WCR avgs: ->0.509672 (gen. spl fract) ->0.509687 (cinch-k) ->0.509737 (less mark_tela II) ->0.509664 (skip ambig in settle_tiescores) ->0.509672 (cinch-k adjust.)' | tee -a corduroy.log
 echo

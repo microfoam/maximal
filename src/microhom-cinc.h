@@ -530,36 +530,33 @@ int *x_history = NULL;
 					}
 				}
 
-				if (keep_checking && n > scrimmage_line) { 
-					if (k==2 && dev_print(CINCH,__LINE__)) {			/* TEMPORARY: DELETE ME */
-						printf("n=%2d, x=%d, k=%d, m=%d, cik_row=%d, symbol_count=%2d, keep_checking=%d.", n,x,k,m,cik_row,symbol_count,keep_checking);
-					}
-
+				if (keep_checking && n > scrimmage_line && k>1) { 
 					int p=0, q=0;
-													  /* SHOULD BE NECESSARY (b/c pathbox NOT align2D, BUT IS WORSE?!? */
-					if ( (col_isclear(pathbox,n-x+k,m /* +cik_row */,-1)>-1 && col_isclear(align2D,n+k,m,1)<0) || k<1 ) {
 
-						if (k==2 && dev_print(CINCH,__LINE__))			/* TEMPORARY: DELETE ME */
-							printf("n=%2d, x=%d, k=%d, m=%d, cik_row=%d, symbol_count=%2d, keep_checking=%d.", n,x,k,m,cik_row,symbol_count,keep_checking);
+					if ((l=col_isclear(pathbox,n-x+k,m+cik_row,-1))>-1 && col_isclear(align2D,n+k,m,1)<0) {
 
 						/* CHECK IF WILL PULL IN ADJACENT MISMATCHES AFTER RUN OF REPEATS */
 					    r = 1; 
 						i = k;  /* VAR i SET TO k ONLY TO ENTER WHILE LOOP */
 						while (i==k) {
 							for (i = 0; i < k; i++) {
-								q = n+(r+1)*k+i;
+								q = n+r*k+i;
 						    	if (q>=Current.pass_W || n+i>=Current.pass_W || ((letr=align2D[m][n+i]) != (letr2=align2D[m][q]) && isalpha(letr) && isalpha(letr2))) {
 									break;
 								}
 					        }    
 					        if (i == k)
 								r++;        /* INCREMENT NUMBER OF REPEATS */
+							else
+								break;
 					    }    
 
-						if (nuctransit && (p=n-x+k+i)<=Current.pass_W && (q=n+(r+1)*k+i)<=Current.pass_W) {
+						if (nuctransit && (p=n-x+k+i)<=Current.pass_W && (q=n+r*k+i)<=Current.pass_W) {
+                            if (!isalpha((letr3 =align2D[l][p])))
+                                keep_checking = 0; 
 							if (!isalpha((letr2=align2D[m][q])))
 								keep_checking = 0;
-							else if (letr!=letr2 && letr!='R' && letr!='Y' && (letr3=consensus[q])!='R' && letr3!='Y') 
+							else if (letr!=letr2 && letr3!=letr2 && (letr=consensus[p])!='R' && letr!='Y' && (letr3=consensus[q])!='R' && letr3!='Y') 
 						        keep_checking = 0; 
 						}
 			    	}
