@@ -533,7 +533,7 @@ int *x_history = NULL;
 				if (keep_checking && n > scrimmage_line && k>1) { 
 					int p=0, q=0;
 
-					if ((l=col_isclear(pathbox,n-x+k,m+cik_row,-1))>-1 && col_isclear(align2D,n+k,m,1)<0) {
+					if (col_isclear(pathbox,n-x+k,m+cik_row,-1)>-1 && col_isclear(align2D,n+k,m,1)<0) {
 
 						/* CHECK IF WILL PULL IN ADJACENT MISMATCHES AFTER RUN OF REPEATS */
 					    r = 1; 
@@ -551,12 +551,8 @@ int *x_history = NULL;
 								break;
 					    }    
 
-						if (nuctransit && (p=n-x+k+i)<=Current.pass_W && (q=n+r*k+i)<=Current.pass_W) {
-                            if (!isalpha((letr3 =align2D[l][p])))
-                                keep_checking = 0; 
-							if (!isalpha((letr2=align2D[m][q])))
-								keep_checking = 0;
-							else if (letr!=letr2 && letr3!=letr2 && (letr=consensus[p])!='R' && letr!='Y' && (letr3=consensus[q])!='R' && letr3!='Y') 
+						if (nuctransit && (p=n-x+k)<=Current.pass_W && (q=n-x+r*k)<=Current.pass_W) {
+							if ((letr=consensus[p])!='R' && letr!='Y' && (letr3=consensus[q])!='R' && letr3!='Y') 
 						        keep_checking = 0; 
 						}
 			    	}
