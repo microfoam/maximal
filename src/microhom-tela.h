@@ -862,6 +862,10 @@ void mark_tela(void)
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 				}
 			}
+			if (tela[m].or && tela[m].all_S < tela[n].all_S && m+tela[m].or*(tela[m].ok)>n) {
+				clearall_tela(m, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+				push_mem(m, 8);
+			}
 		}
 	}
 
@@ -933,7 +937,7 @@ void mark_tela(void)
 							!(tela[n+1].all_L) && !(tela[n+1].all_R) && tela[n].ok % tela[n+1].ok==0) {
 					clearall_tela(n, 1, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
 					if (tela[n].all_S != tela[n+1].all_S)
-						push_mem(n, 8);
+						push_mem(n, 9);
 					/* POSSIBLE THIS CASE COULD BE GENERALIZED...FOR A RAINY DAY */
 					if (dev_print(TELA,__LINE__)) {
 						printf("mark_tela at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
@@ -951,12 +955,12 @@ void mark_tela(void)
 							for (i=j-1; i>=n; i--) {
 								clearall_tela(i, j-n, -1, TWO);		/* O-F-F, ONE, OR TWO */
 								for (int p=i; p<=i+j-n; p++)
-									push_mem(p, 9);
+									push_mem(p, 10);
 							}
 							for (i=j+1; i<n+span; i++) {
 								if (tela[i].ok == k && tela[i].all_R == l) {
 									clearall_tela(i,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-									push_mem(i, 10);
+									push_mem(i, 11);
 								}
 							}
 						}
@@ -981,7 +985,7 @@ void mark_tela(void)
 				else {
 					for (i=n; i<=n+span; i++) {
 						if (tela[i].all_S && tela[i].all_S != max_score) {
-							push_mem(i, 11);
+							push_mem(i, 12);
 							clearall_tela(i, 1, -1, ONE);			/* O-F-F, ONE, OR TWO */
 							if (dev_print(TELA,__LINE__)) {
 								printf("         mark_tela engaging clearall_tela(ONE) at i=%d.", i);
@@ -1009,13 +1013,13 @@ void mark_tela(void)
 						}
 						if (tela[p].ok) {
 							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_mem(p, 12);
-							push_mem(n, 12);
+							push_mem(p, 13);
+							push_mem(n, 13);
 						}
 						if (tela[q].ok) {
 							clearall_tela(q,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_mem(q, 13);
-							push_mem(n, 13);
+							push_mem(q, 14);
+							push_mem(n, 14);
 						}
 					}
 					else if (tela[p].ok != tela[q].ok && tela[p].k2 == tela[q].ok) { 

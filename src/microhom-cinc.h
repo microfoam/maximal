@@ -529,7 +529,7 @@ int *x_history = NULL;
 						}
 					}
 				}
-
+				
 				if (keep_checking && n > scrimmage_line) { 
 					int p=0, q=0;
 
@@ -553,7 +553,7 @@ int *x_history = NULL;
 
 						if (nuctransit && (p=n-x+k)<=Current.pass_W && (q=n-x+r*k)<=Current.pass_W && col_isclear(align2D,q+k,m,-1)<0) {
 							if ((letr=consensus[p])!='R' && letr!='Y' && (letr3=consensus[q])!='R' && letr3!='Y') 
-						        keep_checking = 0; 
+						        keep_checking = imperfect_TR = 0; 
 						}
 			    	}
 
