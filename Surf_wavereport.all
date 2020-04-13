@@ -1,792 +1,792 @@
-v4.31	Apr 13 15:14:01 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:01 2020	 x0	1000	0.506	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmaur.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:01 2020	 x0	1000	0.496	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsech.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:02 2020	 x0	1000	0.501	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsimu.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:02 2020	 x0	1000	0.474	NDG: 0 	RND:	         waves/seals/vnd_ex3_Derec.txt (+) ( 962 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:02 2020	 x0	1000	0.459	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsant.txt (+) ( 959 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:03 2020	 x0	1000	0.456	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dyaku.txt (+) ( 957 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:03 2020	 x0	1000	0.485	NDG: 4 	RND:	         waves/seals/vnd_ex3_Dbiar.txt (+) ( 974 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:03 2020	 x0	1000	0.486	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsuzu.txt (+) ( 980 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:03 2020	 x0	1000	0.442	NDG: 0 	RND:	         waves/seals/vnd_ex3_Danan.txt (+) ( 962 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:04 2020	 x0	1000	0.477	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbipe.txt (+) ( 950 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:04 2020	 x0	1000	0.541	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmela.txt (+) (1008 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:04 2020	 x0	1000	0.529	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmaur.txt (+) (1006 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:04 2020	 x0	1000	0.518	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsech.txt (+) (1002 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:05 2020	 x0	1000	0.518	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsimu.txt (+) (1007 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:05 2020	 x0	1000	0.537	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Derec.txt (+) (1005 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:05 2020	 x0	1000	0.496	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsant.txt (+) (1093 bp) REC:1000	M: 5	-
-v4.31	Apr 13 15:14:05 2020	 x0	1000	0.496	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dyaku.txt (+) (1063 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:06 2020	 x0	1000	0.531	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dbiar.txt (+) (1063 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:06 2020	 x0	1000	0.531	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsuzu.txt (+) (1064 bp) REC:1000	M: 7	-
-v4.31	Apr 13 15:14:06 2020	 x0	1000	0.483	NDG: 0 	RND:	       waves/sharks/nab_DWME_Dmela.txt (+) ( 764 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:06 2020	 x0	1000	0.356	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_a.txt (+) (  87 ch) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:06 2020	 x0	1000	0.250	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_b.txt (+) (  84 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:06 2020	 x0	1000	0.216	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_c.txt (+) ( 102 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_d.txt (+) ( 121 ch) REC:1000	M:10	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.413	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_e.txt (+) ( 109 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.269	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_f.txt (+) ( 156 ch) REC:1000	M: 5	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.533	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_g.txt (+) (  45 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.696	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_h.txt (+) (  69 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.458	NDG: 0 	RND:	     waves/tubespit/seq-001-toslip.txt (+) (  72 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.485	NDG: 0 	RND:	     waves/tubespit/seq-002-toslip.txt (+) (  66 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.672	NDG: 0 	RND:	     waves/tubespit/seq-003-tosSt1.txt (+) (  61 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.535	NDG: 0 	RND:	     waves/tubespit/seq-004-tos-ct.txt (+) (  71 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.613	NDG: 0 	RND:	     waves/tubespit/seq-005-koshp1.txt (+) (  62 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-006-koslip.txt (+) ( 138 bp) REC:1000	M: 5	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-007-koslip.txt (+) (  84 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.556	NDG: 0 	RND:	     waves/tubespit/seq-008-koslp2.txt (+) (  81 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.523	NDG: 0 	RND:	     waves/tubespit/seq-009-koslp3.txt (+) (  65 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.528	NDG: 0 	RND:	     waves/tubespit/seq-010-cycle1.txt (+) ( 106 bp) REC:1000	M: 2	bslip sum 1
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.491	NDG: 0 	RND:	     waves/tubespit/seq-011-cycle1.txt (+) ( 159 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-012-cycle1.txt (+) (  55 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-013-cycle2.txt (+) ( 123 bp) REC:1000	M: 4	bslip sum 50
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-014-cycle3.txt (+) ( 138 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.561	NDG: 0 	RND:	     waves/tubespit/seq-015-cycle4.txt (+) ( 157 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.338	NDG: 0 	RND:	     waves/tubespit/seq-016-cyc3_a.txt (+) (  68 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (+) (  39 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-018-koshp2.txt (+) (  74 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.515	NDG: 0 	RND:	     waves/tubespit/seq-019-koslp4.txt (+) (  68 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.584	NDG: 0 	RND:	     waves/tubespit/seq-020-cyc3_b.txt (+) (  77 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.284	NDG: 0 	RND:	     waves/tubespit/seq-021-cyc3_c.txt (+) (  95 bp) REC:1000	M: 3	bslip sum 2
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.631	NDG: 0 	RND:	     waves/tubespit/seq-022-tosSt2.txt (+) (  65 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.571	NDG: 0 	RND:	     waves/tubespit/seq-023-tosSt2.txt (+) (  84 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.540	NDG: 0 	RND:	     waves/tubespit/seq-024-tosSt2.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-025-tosSt2.txt (+) ( 195 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-026-tosSt2.txt (+) ( 400 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.545	NDG: 0 	RND:	     waves/tubespit/seq-027-cycleX.txt (+) ( 400 bp) REC:1000	M: 4	bslip sum 50
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.385	NDG: 0 	RND:	     waves/tubespit/seq-028-scrtch.txt (+) (  52 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.421	NDG: 0 	RND:	     waves/tubespit/seq-029-toslp2.txt (+) (  57 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.554	NDG: 0 	RND:	     waves/tubespit/seq-030-toslp2.txt (+) (  56 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.486	NDG: 0 	RND:	     waves/tubespit/seq-031-t0edge.txt (+) (  37 bp) REC:1000	M: 4	bslip sum 50
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-032-combo1.txt (+) ( 265 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.682	NDG: 0 	RND:	     waves/tubespit/seq-033-imprf1.txt (+) (  66 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-034-imprf2.txt (+) (  67 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.603	NDG: 0 	RND:	     waves/tubespit/seq-035-imprf3.txt (+) (  58 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:07 2020	 x0	1000	0.602	NDG: 0 	RND:	     waves/tubespit/seq-036-imprf4.txt (+) (  83 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.538	NDG: 0 	RND:	     waves/tubespit/seq-037-imprfk.txt (+) (  93 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.553	NDG: 0 	RND:	     waves/tubespit/seq-038-imprft.txt (+) ( 103 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.517	NDG: 0 	RND:	     waves/tubespit/seq-039-imprfk.txt (+) ( 118 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.587	NDG: 0 	RND:	     waves/tubespit/seq-040-imprfk.txt (+) ( 104 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.667	NDG: 0 	RND:	     waves/tubespit/seq-041-RNAnuc.txt (+) (  42 nt) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-041-notRNA.txt (+) (  42 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.846	NDG: 0 	RND:	     waves/tubespit/seq-041-protin.txt (+) ( 312 aa) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.464	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta1.txt (+) ( 140 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.846	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta2.txt (+) ( 312 aa) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.647	NDG: 0 	RND:	     waves/tubespit/seq-043-timprf.txt (+) (  34 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-044-tosimp.txt (+) (  88 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.761	NDG: 0 	RND:	     waves/tubespit/seq-045-cinky1.txt (+) ( 134 bp) REC:1000	M: 1	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-046-cinky2.txt (+) ( 182 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.350	NDG: 0 	RND:	     waves/tubespit/seq-047-cycle6.txt (+) (  40 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.484	NDG: 0 	RND:	     waves/tubespit/seq-048-tbdslp.txt (+) ( 122 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.525	NDG: 0 	RND:	     waves/tubespit/seq-049-cyctip.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-050-cyctip.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.449	NDG: 0 	RND:	     waves/tubespit/seq-051-cyctip.txt (+) ( 800 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.505	NDG: 0 	RND:	     waves/tubespit/seq-052-cyctip.txt (+) ( 800 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:08 2020	 x0	1000	0.474	NDG: 0 	RND:	     waves/tubespit/seq-053-impkhp.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:09 2020	 x0	1000	0.466	NDG: 0 	RND:	     waves/tubespit/seq-054-impkhp.txt (+) ( 800 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:09 2020	 x0	1000	0.531	NDG: 0 	RND:	     waves/tubespit/seq-055-impkhp.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:09 2020	 x0	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-056-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:09 2020	 x0	1000	0.425	NDG: 0 	RND:	     waves/tubespit/seq-057-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:09 2020	 x0	1000	0.579	NDG: 0 	RND:	     waves/tubespit/seq-058-tcycle.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:09 2020	 x0	1000	0.544	NDG: 0 	RND:	     waves/tubespit/seq-059-tcycle.txt (+) ( 800 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-060-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.519	NDG: 0 	RND:	     waves/tubespit/seq-061-tghost.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-062-tuckup.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-063-cnudge.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge0.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.630	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge1.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.550	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge2.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge3.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge4.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge5.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge6.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge7.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge8.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge9.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-065-consen.txt (+) ( 100 bp) REC:1000	M: 6	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.660	NDG: 0 	RND:	     waves/tubespit/seq-066-consen.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-067-bslclr.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-068-dRaggd.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.670	NDG: 0 	RND:	     waves/tubespit/seq-069-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-070-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-071-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.340	NDG: 0 	RND:	     waves/tubespit/seq-072-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-073-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-074-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:10 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-075-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.540	NDG: 0 	RND:	     waves/tubespit/seq-076-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-077-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-078-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-079-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-080-kcheck.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.410	NDG: 0 	RND:	     waves/tubespit/seq-081-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.550	NDG: 0 	RND:	     waves/tubespit/seq-082-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.620	NDG: 0 	RND:	     waves/tubespit/seq-083-shadow.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-084-shadow.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-085-adjDTH.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-086-adjDTH.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-087-adjDTH.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-088-ndgLst.txt (+) (  16 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-089-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-090-v327_52.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-091-v343_01.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-092-v343_02.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-093-v343_03.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-094-v343_04.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-095-v343_05.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-096-v343_06.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-097-v343_07.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-098-v343_08.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-099-v343_09.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-100-v343_10.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.360	NDG: 0 	RND:	    waves/tubespit/seq-101-v343_11.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-102-v343_12.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-103-v343_13.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-104-v343_14.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-105-v343_17.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.610	NDG: 0 	RND:	    waves/tubespit/seq-106-v343_18.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-107-v343_19.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-108-v343_20.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-109-v343_21.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-110-v343_22.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.660	NDG: 0 	RND:	    waves/tubespit/seq-111-v343_23.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-112-v343_24.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.400	NDG: 0 	RND:	    waves/tubespit/seq-113-v343_25.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-116-v344_03.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-118-v344_05.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:11 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-119-v344_06.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-114-v344_01.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-115-v344_02.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-117-v344_04.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-120-v344_07.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-121-v344_08.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-122-v344_09.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-123-v344_10.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-124-v344_11.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-125-v344_12.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-126-v344_13.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.420	NDG: 0 	RND:	    waves/tubespit/seq-127-v344_14.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-128-v344_15.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-130-v344_17.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-131-v344_18.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-132-v344_19.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-133-v344_20.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-134-v344_21.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.510	NDG: 0 	RND:	    waves/tubespit/seq-135-v344_22.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-136-v344_23.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-137-v344_24.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.440	NDG: 0 	RND:	    waves/tubespit/seq-138-v344_25.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-139-v344_26.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-140-v344_27.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-141-v344_28.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-142-v344_29.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-143-v344_30.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-144-v344_31.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-145-v344_32.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-146-v344_33.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-147-v344_34.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-148-v344_35.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-149-v344_36.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-155-v369_02.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-156-v369_03.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-157-v369_04.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.647	NDG: 0 	RND:	waves/tubespit/seq-150-v377_cycAB1.txt (+) (  17 bp) REC:1000	M: 4	bslip sum 50
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.529	NDG: 0 	RND:	waves/tubespit/seq-151-v377_cycAB2.txt (+) (  17 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.412	NDG: 0 	RND:	waves/tubespit/seq-152-v377_cycAB3.txt (+) (  17 bp) REC:1000	M: 4	bslip sum 30
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.294	NDG: 0 	RND:	waves/tubespit/seq-153-v377_cycAB4.txt (+) (  17 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:12 2020	 x0	1000	0.478	NDG: 0 	RND:	waves/tubespit/seq-154-v427_cycABs.txt (+) ( 138 bp) REC:1000	M: 4	bslip sum 160
-v4.31	Apr 13 15:14:12 2020	 x1	1000	0.486	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:13 2020	 x1	1000	0.493	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmaur.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:13 2020	 x1	1000	0.488	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsech.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:13 2020	 x1	1000	0.493	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsimu.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:14 2020	 x1	1000	0.471	NDG: 0 	RND:	         waves/seals/vnd_ex3_Derec.txt (+) ( 962 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:14 2020	 x1	1000	0.458	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsant.txt (+) ( 959 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:14 2020	 x1	1000	0.455	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dyaku.txt (+) ( 957 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:14 2020	 x1	1000	0.492	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbiar.txt (+) ( 974 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:15 2020	 x1	1000	0.479	NDG: 5 	RND:	         waves/seals/vnd_ex3_Dsuzu.txt (+) ( 980 bp) REC:1000	M: 4	checktransit=22 at n=170
-v4.31	Apr 13 15:14:15 2020	 x1	1000	0.425	NDG:10 	RND:	         waves/seals/vnd_ex3_Danan.txt (+) ( 962 bp) REC:1000	M: 5	checktransit=25 at n=145
-v4.31	Apr 13 15:14:15 2020	 x1	1000	0.478	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbipe.txt (+) ( 950 bp) REC:1000	M: 5	-
-v4.31	Apr 13 15:14:15 2020	 x1	1000	0.539	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmela.txt (+) (1008 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:16 2020	 x1	1000	0.526	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmaur.txt (+) (1006 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:16 2020	 x1	1000	0.515	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsech.txt (+) (1002 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:16 2020	 x1	1000	0.515	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsimu.txt (+) (1007 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:16 2020	 x1	1000	0.524	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Derec.txt (+) (1005 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:16 2020	 x1	1000	0.487	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsant.txt (+) (1093 bp) REC:1000	M: 5	-
-v4.31	Apr 13 15:14:17 2020	 x1	1000	0.492	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dyaku.txt (+) (1063 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:17 2020	 x1	1000	0.516	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dbiar.txt (+) (1063 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:17 2020	 x1	1000	0.520	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsuzu.txt (+) (1064 bp) REC:1000	M: 7	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.475	NDG: 0 	RND:	       waves/sharks/nab_DWME_Dmela.txt (+) ( 764 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.356	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_a.txt (+) (  87 ch) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.250	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_b.txt (+) (  84 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.216	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_c.txt (+) ( 102 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_d.txt (+) ( 121 ch) REC:1000	M:10	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.413	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_e.txt (+) ( 109 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.269	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_f.txt (+) ( 156 ch) REC:1000	M: 5	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.533	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_g.txt (+) (  45 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.696	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_h.txt (+) (  69 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.458	NDG: 0 	RND:	     waves/tubespit/seq-001-toslip.txt (+) (  72 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.485	NDG: 0 	RND:	     waves/tubespit/seq-002-toslip.txt (+) (  66 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.672	NDG: 0 	RND:	     waves/tubespit/seq-003-tosSt1.txt (+) (  61 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.535	NDG: 0 	RND:	     waves/tubespit/seq-004-tos-ct.txt (+) (  71 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.613	NDG: 0 	RND:	     waves/tubespit/seq-005-koshp1.txt (+) (  62 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-006-koslip.txt (+) ( 138 bp) REC:1000	M: 5	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-007-koslip.txt (+) (  84 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.556	NDG: 0 	RND:	     waves/tubespit/seq-008-koslp2.txt (+) (  81 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:18 2020	 x1	1000	0.523	NDG: 0 	RND:	     waves/tubespit/seq-009-koslp3.txt (+) (  65 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.528	NDG: 0 	RND:	     waves/tubespit/seq-010-cycle1.txt (+) ( 106 bp) REC:1000	M: 2	bslip sum 1
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.491	NDG: 0 	RND:	     waves/tubespit/seq-011-cycle1.txt (+) ( 159 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-012-cycle1.txt (+) (  55 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-013-cycle2.txt (+) ( 123 bp) REC:1000	M: 4	bslip sum 50
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-014-cycle3.txt (+) ( 138 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.516	NDG: 0 	RND:	     waves/tubespit/seq-015-cycle4.txt (+) ( 157 bp) REC:1000	M: 4	bslip sum 50
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.412	NDG: 0 	RND:	     waves/tubespit/seq-016-cyc3_a.txt (+) (  68 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (+) (  39 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-018-koshp2.txt (+) (  74 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.515	NDG: 0 	RND:	     waves/tubespit/seq-019-koslp4.txt (+) (  68 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.506	NDG: 0 	RND:	     waves/tubespit/seq-020-cyc3_b.txt (+) (  77 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.284	NDG: 0 	RND:	     waves/tubespit/seq-021-cyc3_c.txt (+) (  95 bp) REC:1000	M: 3	bslip sum 2
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.538	NDG: 0 	RND:	     waves/tubespit/seq-022-tosSt2.txt (+) (  65 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.571	NDG: 0 	RND:	     waves/tubespit/seq-023-tosSt2.txt (+) (  84 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.540	NDG: 0 	RND:	     waves/tubespit/seq-024-tosSt2.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-025-tosSt2.txt (+) ( 195 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-026-tosSt2.txt (+) ( 400 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.507	NDG: 0 	RND:	     waves/tubespit/seq-027-cycleX.txt (+) ( 400 bp) REC:1000	M: 4	bslip sum 50
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.423	NDG: 0 	RND:	     waves/tubespit/seq-028-scrtch.txt (+) (  52 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.421	NDG: 0 	RND:	     waves/tubespit/seq-029-toslp2.txt (+) (  57 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.554	NDG: 0 	RND:	     waves/tubespit/seq-030-toslp2.txt (+) (  56 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.486	NDG: 0 	RND:	     waves/tubespit/seq-031-t0edge.txt (+) (  37 bp) REC:1000	M: 4	bslip sum 50
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-032-combo1.txt (+) ( 265 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-033-imprf1.txt (+) (  66 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.687	NDG: 0 	RND:	     waves/tubespit/seq-034-imprf2.txt (+) (  67 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.603	NDG: 0 	RND:	     waves/tubespit/seq-035-imprf3.txt (+) (  58 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.614	NDG: 0 	RND:	     waves/tubespit/seq-036-imprf4.txt (+) (  83 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-037-imprfk.txt (+) (  93 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.563	NDG: 0 	RND:	     waves/tubespit/seq-038-imprft.txt (+) ( 103 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.517	NDG: 0 	RND:	     waves/tubespit/seq-039-imprfk.txt (+) ( 118 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.587	NDG: 0 	RND:	     waves/tubespit/seq-040-imprfk.txt (+) ( 104 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.667	NDG: 0 	RND:	     waves/tubespit/seq-041-RNAnuc.txt (+) (  42 nt) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-041-notRNA.txt (+) (  42 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-041-protin.txt (+) ( 312 aa) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.464	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta1.txt (+) ( 140 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:19 2020	 x1	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta2.txt (+) ( 312 aa) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:20 2020	 x1	1000	0.647	NDG: 0 	RND:	     waves/tubespit/seq-043-timprf.txt (+) (  34 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:20 2020	 x1	1000	0.443	NDG: 0 	RND:	     waves/tubespit/seq-044-tosimp.txt (+) (  88 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:20 2020	 x1	1000	0.575	NDG: 0 	RND:	     waves/tubespit/seq-045-cinky1.txt (+) ( 134 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:20 2020	 x1	1000	0.473	NDG: 5 	RND:	     waves/tubespit/seq-046-cinky2.txt (+) ( 182 bp) REC:1000	M: 3	checktransit=22 at n=16
-v4.31	Apr 13 15:14:20 2020	 x1	1000	0.350	NDG: 0 	RND:	     waves/tubespit/seq-047-cycle6.txt (+) (  40 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:20 2020	 x1	1000	0.443	NDG: 0 	RND:	     waves/tubespit/seq-048-tbdslp.txt (+) ( 122 bp) REC:1000	M: 5	-
-v4.31	Apr 13 15:14:20 2020	 x1	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-049-cyctip.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:20 2020	 x1	1000	0.572	NDG: 0 	RND:	     waves/tubespit/seq-050-cyctip.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:20 2020	 x1	1000	0.428	NDG: 0 	RND:	     waves/tubespit/seq-051-cyctip.txt (+) ( 800 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:20 2020	 x1	1000	0.493	NDG: 0 	RND:	     waves/tubespit/seq-052-cyctip.txt (+) ( 800 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:20 2020	 x1	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-053-impkhp.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:21 2020	 x1	1000	0.456	NDG: 0 	RND:	     waves/tubespit/seq-054-impkhp.txt (+) ( 800 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:21 2020	 x1	1000	0.526	NDG: 0 	RND:	     waves/tubespit/seq-055-impkhp.txt (+) ( 800 bp) REC:1000	M: 6	-
-v4.31	Apr 13 15:14:21 2020	 x1	1000	0.507	NDG: 0 	RND:	     waves/tubespit/seq-056-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:21 2020	 x1	1000	0.412	NDG: 0 	RND:	     waves/tubespit/seq-057-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:21 2020	 x1	1000	0.566	NDG: 0 	RND:	     waves/tubespit/seq-058-tcycle.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:21 2020	 x1	1000	0.521	NDG: 0 	RND:	     waves/tubespit/seq-059-tcycle.txt (+) ( 800 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-060-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-061-tghost.txt (+) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-062-tuckup.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-063-cnudge.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge0.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge1.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.430	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge2.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.370	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge3.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge4.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge5.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.550	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge6.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.430	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge7.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge8.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge9.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-065-consen.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-066-consen.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.410	NDG: 0 	RND:	     waves/tubespit/seq-067-bslclr.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-068-dRaggd.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.610	NDG: 0 	RND:	     waves/tubespit/seq-069-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-070-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-071-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.340	NDG: 0 	RND:	     waves/tubespit/seq-072-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-073-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:22 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-074-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.430	NDG: 0 	RND:	     waves/tubespit/seq-075-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.540	NDG: 0 	RND:	     waves/tubespit/seq-076-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-077-ktrans.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-078-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-079-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-080-kcheck.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.410	NDG: 0 	RND:	     waves/tubespit/seq-081-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-082-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-083-shadow.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-084-shadow.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-085-adjDTH.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-086-adjDTH.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-087-adjDTH.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-088-ndgLst.txt (+) (  16 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.480	NDG: 0 	RND:	     waves/tubespit/seq-089-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-090-v327_52.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-091-v343_01.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-092-v343_02.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-093-v343_03.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-094-v343_04.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-095-v343_05.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-096-v343_06.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-097-v343_07.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-098-v343_08.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-099-v343_09.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-100-v343_10.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.360	NDG: 0 	RND:	    waves/tubespit/seq-101-v343_11.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-102-v343_12.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-103-v343_13.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-104-v343_14.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-105-v343_17.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.610	NDG: 0 	RND:	    waves/tubespit/seq-106-v343_18.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.480	NDG: 0 	RND:	    waves/tubespit/seq-107-v343_19.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-108-v343_20.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-109-v343_21.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-110-v343_22.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-111-v343_23.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-112-v343_24.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.360	NDG: 0 	RND:	    waves/tubespit/seq-113-v343_25.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:23 2020	 x1	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-116-v344_03.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-118-v344_05.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-119-v344_06.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-114-v344_01.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.480	NDG: 0 	RND:	    waves/tubespit/seq-115-v344_02.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-117-v344_04.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-120-v344_07.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-121-v344_08.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-122-v344_09.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-123-v344_10.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-124-v344_11.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-125-v344_12.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-126-v344_13.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.350	NDG: 0 	RND:	    waves/tubespit/seq-127-v344_14.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-128-v344_15.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-130-v344_17.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 2
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.400	NDG: 0 	RND:	    waves/tubespit/seq-131-v344_18.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.510	NDG: 0 	RND:	    waves/tubespit/seq-132-v344_19.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-133-v344_20.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.330	NDG: 0 	RND:	    waves/tubespit/seq-134-v344_21.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-135-v344_22.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-136-v344_23.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-137-v344_24.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.480	NDG: 0 	RND:	    waves/tubespit/seq-138-v344_25.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-139-v344_26.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-140-v344_27.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-141-v344_28.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-142-v344_29.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-143-v344_30.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-144-v344_31.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-145-v344_32.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-146-v344_33.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-147-v344_34.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-148-v344_35.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-149-v344_36.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-155-v369_02.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-156-v369_03.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-157-v369_04.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.647	NDG: 0 	RND:	waves/tubespit/seq-150-v377_cycAB1.txt (+) (  17 bp) REC:1000	M: 4	bslip sum 50
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.529	NDG: 0 	RND:	waves/tubespit/seq-151-v377_cycAB2.txt (+) (  17 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.412	NDG: 0 	RND:	waves/tubespit/seq-152-v377_cycAB3.txt (+) (  17 bp) REC:1000	M: 4	bslip sum 30
-v4.31	Apr 13 15:14:24 2020	 x1	1000	0.294	NDG: 0 	RND:	waves/tubespit/seq-153-v377_cycAB4.txt (+) (  17 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:25 2020	 x1	1000	0.478	NDG: 0 	RND:	waves/tubespit/seq-154-v427_cycABs.txt (+) ( 138 bp) REC:1000	M: 4	bslip sum 160
-v4.31	Apr 13 15:14:25 2020	 x0	1000	0.356	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_a.txt (-) (  87 ch) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:25 2020	 x0	1000	0.250	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_b.txt (-) (  84 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:25 2020	 x0	1000	0.216	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_c.txt (-) ( 102 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:25 2020	 x0	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_d.txt (-) ( 121 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:25 2020	 x0	1000	0.468	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_e.txt (-) ( 109 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:25 2020	 x0	1000	0.269	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_f.txt (-) ( 156 ch) REC:1000	M:14	-
-v4.31	Apr 13 15:14:25 2020	 x0	1000	0.533	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_g.txt (-) (  45 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:25 2020	 x0	1000	0.696	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_h.txt (-) (  69 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:25 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (-) ( 956 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:25 2020	 x0	1000	0.506	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmaur.txt (-) ( 956 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:25 2020	 x0	1000	0.496	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsech.txt (-) ( 956 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:26 2020	 x0	1000	0.501	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsimu.txt (-) ( 956 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:26 2020	 x0	1000	0.476	NDG: 0 	RND:	         waves/seals/vnd_ex3_Derec.txt (-) ( 962 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:26 2020	 x0	1000	0.458	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsant.txt (-) ( 959 bp) REC:1000	M: 8	-
-v4.31	Apr 13 15:14:26 2020	 x0	1000	0.455	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dyaku.txt (-) ( 957 bp) REC:1000	M: 8	-
-v4.31	Apr 13 15:14:27 2020	 x0	1000	0.487	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbiar.txt (-) ( 974 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:27 2020	 x0	1000	0.486	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsuzu.txt (-) ( 980 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:27 2020	 x0	1000	0.446	NDG: 0 	RND:	         waves/seals/vnd_ex3_Danan.txt (-) ( 962 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:27 2020	 x0	1000	0.484	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbipe.txt (-) ( 950 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:28 2020	 x0	1000	0.541	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmela.txt (-) (1008 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:28 2020	 x0	1000	0.529	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmaur.txt (-) (1006 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:28 2020	 x0	1000	0.518	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsech.txt (-) (1002 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:28 2020	 x0	1000	0.518	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsimu.txt (-) (1007 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:29 2020	 x0	1000	0.536	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Derec.txt (-) (1005 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:29 2020	 x0	1000	0.490	NDG: 3 	RND:	        waves/sharks/vnd_NEE_Dsant.txt (-) (1093 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:29 2020	 x0	1000	0.494	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dyaku.txt (-) (1063 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:30 2020	 x0	1000	0.531	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dbiar.txt (-) (1063 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:30 2020	 x0	1000	0.531	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsuzu.txt (-) (1064 bp) REC:1000	M: 5	-
-v4.31	Apr 13 15:14:30 2020	 x0	1000	0.483	NDG: 0 	RND:	       waves/sharks/nab_DWME_Dmela.txt (-) ( 764 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:30 2020	 x0	1000	0.458	NDG: 0 	RND:	     waves/tubespit/seq-001-toslip.txt (-) (  72 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:30 2020	 x0	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-002-toslip.txt (-) (  66 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:30 2020	 x0	1000	0.672	NDG: 0 	RND:	     waves/tubespit/seq-003-tosSt1.txt (-) (  61 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:30 2020	 x0	1000	0.535	NDG: 0 	RND:	     waves/tubespit/seq-004-tos-ct.txt (-) (  71 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:30 2020	 x0	1000	0.613	NDG: 0 	RND:	     waves/tubespit/seq-005-koshp1.txt (-) (  62 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:30 2020	 x0	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-006-koslip.txt (-) ( 138 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-007-koslip.txt (-) (  84 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.556	NDG: 0 	RND:	     waves/tubespit/seq-008-koslp2.txt (-) (  81 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.523	NDG: 0 	RND:	     waves/tubespit/seq-009-koslp3.txt (-) (  65 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.509	NDG: 0 	RND:	     waves/tubespit/seq-010-cycle1.txt (-) ( 106 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.503	NDG: 0 	RND:	     waves/tubespit/seq-011-cycle1.txt (-) ( 159 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-012-cycle1.txt (-) (  55 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-013-cycle2.txt (-) ( 123 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-014-cycle3.txt (-) ( 138 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.561	NDG: 0 	RND:	     waves/tubespit/seq-015-cycle4.txt (-) ( 157 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.368	NDG: 0 	RND:	     waves/tubespit/seq-016-cyc3_a.txt (-) (  68 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (-) (  39 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-018-koshp2.txt (-) (  74 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.515	NDG: 0 	RND:	     waves/tubespit/seq-019-koslp4.txt (-) (  68 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.584	NDG: 0 	RND:	     waves/tubespit/seq-020-cyc3_b.txt (-) (  77 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.337	NDG: 0 	RND:	     waves/tubespit/seq-021-cyc3_c.txt (-) (  95 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.538	NDG: 0 	RND:	     waves/tubespit/seq-022-tosSt2.txt (-) (  65 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-023-tosSt2.txt (-) (  84 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-024-tosSt2.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-025-tosSt2.txt (-) ( 195 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-026-tosSt2.txt (-) ( 400 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.545	NDG: 0 	RND:	     waves/tubespit/seq-027-cycleX.txt (-) ( 400 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.385	NDG: 0 	RND:	     waves/tubespit/seq-028-scrtch.txt (-) (  52 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.421	NDG: 0 	RND:	     waves/tubespit/seq-029-toslp2.txt (-) (  57 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.554	NDG: 0 	RND:	     waves/tubespit/seq-030-toslp2.txt (-) (  56 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.486	NDG: 0 	RND:	     waves/tubespit/seq-031-t0edge.txt (-) (  37 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-032-combo1.txt (-) ( 265 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.682	NDG: 0 	RND:	     waves/tubespit/seq-033-imprf1.txt (-) (  66 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-034-imprf2.txt (-) (  67 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.603	NDG: 0 	RND:	     waves/tubespit/seq-035-imprf3.txt (-) (  58 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.602	NDG: 0 	RND:	     waves/tubespit/seq-036-imprf4.txt (-) (  83 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.538	NDG: 0 	RND:	     waves/tubespit/seq-037-imprfk.txt (-) (  93 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.553	NDG: 0 	RND:	     waves/tubespit/seq-038-imprft.txt (-) ( 103 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.517	NDG: 0 	RND:	     waves/tubespit/seq-039-imprfk.txt (-) ( 118 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.587	NDG: 0 	RND:	     waves/tubespit/seq-040-imprfk.txt (-) ( 104 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.667	NDG: 0 	RND:	     waves/tubespit/seq-041-RNAnuc.txt (-) (  42 nt) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-041-notRNA.txt (-) (  42 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.846	NDG: 0 	RND:	     waves/tubespit/seq-041-protin.txt (-) ( 312 aa) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:31 2020	 x0	1000	0.464	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta1.txt (-) ( 140 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.846	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta2.txt (-) ( 312 aa) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.647	NDG: 0 	RND:	     waves/tubespit/seq-043-timprf.txt (-) (  34 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-044-tosimp.txt (-) (  88 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.761	NDG: 0 	RND:	     waves/tubespit/seq-045-cinky1.txt (-) ( 134 bp) REC:1000	M: 1	-
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-046-cinky2.txt (-) ( 182 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.350	NDG: 0 	RND:	     waves/tubespit/seq-047-cycle6.txt (-) (  40 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.484	NDG: 0 	RND:	     waves/tubespit/seq-048-tbdslp.txt (-) ( 122 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.517	NDG: 0 	RND:	     waves/tubespit/seq-049-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-050-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.454	NDG: 0 	RND:	     waves/tubespit/seq-051-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.499	NDG: 0 	RND:	     waves/tubespit/seq-052-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:32 2020	 x0	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-053-impkhp.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:33 2020	 x0	1000	0.464	NDG: 0 	RND:	     waves/tubespit/seq-054-impkhp.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:33 2020	 x0	1000	0.527	NDG: 0 	RND:	     waves/tubespit/seq-055-impkhp.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:33 2020	 x0	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-056-tbslp2.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:33 2020	 x0	1000	0.425	NDG: 0 	RND:	     waves/tubespit/seq-057-tbslp2.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:33 2020	 x0	1000	0.579	NDG: 0 	RND:	     waves/tubespit/seq-058-tcycle.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.544	NDG: 0 	RND:	     waves/tubespit/seq-059-tcycle.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-060-tbslp2.txt (-) ( 800 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.519	NDG: 0 	RND:	     waves/tubespit/seq-061-tghost.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-062-tuckup.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-063-cnudge.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge0.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.630	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge1.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.550	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge2.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge3.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge4.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge5.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge6.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.430	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge7.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge8.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge9.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-065-consen.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.660	NDG: 0 	RND:	     waves/tubespit/seq-066-consen.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-067-bslclr.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-068-dRaggd.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.680	NDG: 0 	RND:	     waves/tubespit/seq-069-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-070-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-071-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:34 2020	 x0	1000	0.340	NDG: 0 	RND:	     waves/tubespit/seq-072-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-073-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-074-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-075-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.540	NDG: 0 	RND:	     waves/tubespit/seq-076-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-077-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-078-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-079-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-080-kcheck.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.410	NDG: 0 	RND:	     waves/tubespit/seq-081-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.550	NDG: 0 	RND:	     waves/tubespit/seq-082-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.620	NDG: 0 	RND:	     waves/tubespit/seq-083-shadow.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-084-shadow.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-085-adjDTH.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-086-adjDTH.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-087-adjDTH.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.562	NDG: 0 	RND:	     waves/tubespit/seq-088-ndgLst.txt (-) (  16 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-089-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-090-v327_52.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-091-v343_01.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-092-v343_02.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-093-v343_03.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-094-v343_04.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-095-v343_05.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-096-v343_06.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-097-v343_07.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-098-v343_08.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-099-v343_09.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-100-v343_10.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.360	NDG: 0 	RND:	    waves/tubespit/seq-101-v343_11.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-102-v343_12.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-103-v343_13.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-104-v343_14.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-105-v343_17.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.610	NDG: 0 	RND:	    waves/tubespit/seq-106-v343_18.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-107-v343_19.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:35 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-108-v343_20.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-109-v343_21.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-110-v343_22.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.680	NDG: 0 	RND:	    waves/tubespit/seq-111-v343_23.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.420	NDG: 0 	RND:	    waves/tubespit/seq-112-v343_24.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.400	NDG: 0 	RND:	    waves/tubespit/seq-113-v343_25.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-116-v344_03.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-118-v344_05.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-119-v344_06.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-114-v344_01.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-115-v344_02.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-117-v344_04.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-120-v344_07.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-121-v344_08.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-122-v344_09.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-123-v344_10.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-124-v344_11.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-125-v344_12.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-126-v344_13.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.420	NDG: 0 	RND:	    waves/tubespit/seq-127-v344_14.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-128-v344_15.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-130-v344_17.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-131-v344_18.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-132-v344_19.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-133-v344_20.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-134-v344_21.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-135-v344_22.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-136-v344_23.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-137-v344_24.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.440	NDG: 0 	RND:	    waves/tubespit/seq-138-v344_25.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.650	NDG: 0 	RND:	    waves/tubespit/seq-139-v344_26.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-140-v344_27.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-141-v344_28.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-142-v344_29.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-143-v344_30.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:36 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-144-v344_31.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-145-v344_32.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-146-v344_33.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-147-v344_34.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-148-v344_35.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-149-v344_36.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-155-v369_02.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-156-v369_03.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-157-v369_04.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.647	NDG: 0 	RND:	waves/tubespit/seq-150-v377_cycAB1.txt (-) (  17 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.529	NDG: 0 	RND:	waves/tubespit/seq-151-v377_cycAB2.txt (-) (  17 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.412	NDG: 0 	RND:	waves/tubespit/seq-152-v377_cycAB3.txt (-) (  17 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.294	NDG: 0 	RND:	waves/tubespit/seq-153-v377_cycAB4.txt (-) (  17 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x0	1000	0.507	NDG: 0 	RND:	waves/tubespit/seq-154-v427_cycABs.txt (-) ( 138 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:37 2020	 x1	1000	0.356	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_a.txt (-) (  87 ch) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:37 2020	 x1	1000	0.250	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_b.txt (-) (  84 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x1	1000	0.216	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_c.txt (-) ( 102 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x1	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_d.txt (-) ( 121 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x1	1000	0.468	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_e.txt (-) ( 109 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x1	1000	0.269	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_f.txt (-) ( 156 ch) REC:1000	M:14	-
-v4.31	Apr 13 15:14:37 2020	 x1	1000	0.533	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_g.txt (-) (  45 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:37 2020	 x1	1000	0.696	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_h.txt (-) (  69 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:37 2020	 x1	1000	0.502	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (-) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:37 2020	 x1	1000	0.498	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmaur.txt (-) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:37 2020	 x1	1000	0.494	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsech.txt (-) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:38 2020	 x1	1000	0.498	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsimu.txt (-) ( 956 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:38 2020	 x1	1000	0.475	NDG: 0 	RND:	         waves/seals/vnd_ex3_Derec.txt (-) ( 962 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:38 2020	 x1	1000	0.444	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsant.txt (-) ( 959 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:39 2020	 x1	1000	0.444	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dyaku.txt (-) ( 957 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:39 2020	 x1	1000	0.494	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbiar.txt (-) ( 974 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:39 2020	 x1	1000	0.473	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsuzu.txt (-) ( 980 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:39 2020	 x1	1000	0.432	NDG: 0 	RND:	         waves/seals/vnd_ex3_Danan.txt (-) ( 962 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:39 2020	 x1	1000	0.485	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbipe.txt (-) ( 950 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:40 2020	 x1	1000	0.539	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmela.txt (-) (1008 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:40 2020	 x1	1000	0.526	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmaur.txt (-) (1006 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:40 2020	 x1	1000	0.515	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsech.txt (-) (1002 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:40 2020	 x1	1000	0.515	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsimu.txt (-) (1007 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:41 2020	 x1	1000	0.524	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Derec.txt (-) (1005 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:41 2020	 x1	1000	0.488	NDG: 4 	RND:	        waves/sharks/vnd_NEE_Dsant.txt (-) (1093 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:41 2020	 x1	1000	0.490	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dyaku.txt (-) (1063 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:41 2020	 x1	1000	0.516	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dbiar.txt (-) (1063 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.528	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsuzu.txt (-) (1064 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.473	NDG: 0 	RND:	       waves/sharks/nab_DWME_Dmela.txt (-) ( 764 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.458	NDG: 0 	RND:	     waves/tubespit/seq-001-toslip.txt (-) (  72 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-002-toslip.txt (-) (  66 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.672	NDG: 0 	RND:	     waves/tubespit/seq-003-tosSt1.txt (-) (  61 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.535	NDG: 0 	RND:	     waves/tubespit/seq-004-tos-ct.txt (-) (  71 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.613	NDG: 0 	RND:	     waves/tubespit/seq-005-koshp1.txt (-) (  62 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-006-koslip.txt (-) ( 138 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-007-koslip.txt (-) (  84 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.556	NDG: 0 	RND:	     waves/tubespit/seq-008-koslp2.txt (-) (  81 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.523	NDG: 0 	RND:	     waves/tubespit/seq-009-koslp3.txt (-) (  65 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.509	NDG: 0 	RND:	     waves/tubespit/seq-010-cycle1.txt (-) ( 106 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.503	NDG: 0 	RND:	     waves/tubespit/seq-011-cycle1.txt (-) ( 159 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-012-cycle1.txt (-) (  55 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-013-cycle2.txt (-) ( 123 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-014-cycle3.txt (-) ( 138 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.516	NDG: 0 	RND:	     waves/tubespit/seq-015-cycle4.txt (-) ( 157 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.368	NDG: 0 	RND:	     waves/tubespit/seq-016-cyc3_a.txt (-) (  68 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (-) (  39 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-018-koshp2.txt (-) (  74 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.515	NDG: 0 	RND:	     waves/tubespit/seq-019-koslp4.txt (-) (  68 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.506	NDG: 0 	RND:	     waves/tubespit/seq-020-cyc3_b.txt (-) (  77 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.337	NDG: 0 	RND:	     waves/tubespit/seq-021-cyc3_c.txt (-) (  95 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.538	NDG: 0 	RND:	     waves/tubespit/seq-022-tosSt2.txt (-) (  65 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-023-tosSt2.txt (-) (  84 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:42 2020	 x1	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-024-tosSt2.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-025-tosSt2.txt (-) ( 195 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.452	NDG: 0 	RND:	     waves/tubespit/seq-026-tosSt2.txt (-) ( 400 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.507	NDG: 0 	RND:	     waves/tubespit/seq-027-cycleX.txt (-) ( 400 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.404	NDG: 0 	RND:	     waves/tubespit/seq-028-scrtch.txt (-) (  52 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.421	NDG: 0 	RND:	     waves/tubespit/seq-029-toslp2.txt (-) (  57 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.554	NDG: 0 	RND:	     waves/tubespit/seq-030-toslp2.txt (-) (  56 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.486	NDG: 0 	RND:	     waves/tubespit/seq-031-t0edge.txt (-) (  37 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-032-combo1.txt (-) ( 265 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-033-imprf1.txt (-) (  66 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.687	NDG: 0 	RND:	     waves/tubespit/seq-034-imprf2.txt (-) (  67 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.603	NDG: 0 	RND:	     waves/tubespit/seq-035-imprf3.txt (-) (  58 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.614	NDG: 0 	RND:	     waves/tubespit/seq-036-imprf4.txt (-) (  83 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-037-imprfk.txt (-) (  93 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.563	NDG: 0 	RND:	     waves/tubespit/seq-038-imprft.txt (-) ( 103 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.517	NDG: 0 	RND:	     waves/tubespit/seq-039-imprfk.txt (-) ( 118 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.587	NDG: 0 	RND:	     waves/tubespit/seq-040-imprfk.txt (-) ( 104 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.667	NDG: 0 	RND:	     waves/tubespit/seq-041-RNAnuc.txt (-) (  42 nt) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-041-notRNA.txt (-) (  42 ch) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-041-protin.txt (-) ( 312 aa) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.464	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta1.txt (-) ( 140 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta2.txt (-) ( 312 aa) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.647	NDG: 0 	RND:	     waves/tubespit/seq-043-timprf.txt (-) (  34 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-044-tosimp.txt (-) (  88 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.575	NDG: 0 	RND:	     waves/tubespit/seq-045-cinky1.txt (-) ( 134 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.445	NDG: 0 	RND:	     waves/tubespit/seq-046-cinky2.txt (-) ( 182 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.350	NDG: 0 	RND:	     waves/tubespit/seq-047-cycle6.txt (-) (  40 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.484	NDG: 0 	RND:	     waves/tubespit/seq-048-tbdslp.txt (-) ( 122 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.512	NDG: 0 	RND:	     waves/tubespit/seq-049-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.572	NDG: 0 	RND:	     waves/tubespit/seq-050-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:43 2020	 x1	1000	0.442	NDG: 0 	RND:	     waves/tubespit/seq-051-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:44 2020	 x1	1000	0.486	NDG: 0 	RND:	     waves/tubespit/seq-052-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:44 2020	 x1	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-053-impkhp.txt (-) ( 800 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:44 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-054-impkhp.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:44 2020	 x1	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-055-impkhp.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:44 2020	 x1	1000	0.498	NDG: 2 	RND:	     waves/tubespit/seq-056-tbslp2.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:44 2020	 x1	1000	0.411	NDG: 0 	RND:	     waves/tubespit/seq-057-tbslp2.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.566	NDG: 0 	RND:	     waves/tubespit/seq-058-tcycle.txt (-) ( 800 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.533	NDG: 0 	RND:	     waves/tubespit/seq-059-tcycle.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-060-tbslp2.txt (-) ( 800 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.512	NDG: 0 	RND:	     waves/tubespit/seq-061-tghost.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-062-tuckup.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.450	NDG: 0 	RND:	     waves/tubespit/seq-063-cnudge.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge0.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge1.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.480	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge2.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.390	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge3.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge4.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge5.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge6.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge7.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:45 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge8.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge9.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-065-consen.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-066-consen.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.370	NDG: 0 	RND:	     waves/tubespit/seq-067-bslclr.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-068-dRaggd.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.620	NDG: 0 	RND:	     waves/tubespit/seq-069-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-070-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-071-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.340	NDG: 0 	RND:	     waves/tubespit/seq-072-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-073-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-074-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.430	NDG: 0 	RND:	     waves/tubespit/seq-075-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-076-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-077-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-078-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-079-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-080-kcheck.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.410	NDG: 0 	RND:	     waves/tubespit/seq-081-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-082-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-083-shadow.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-084-shadow.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-085-adjDTH.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-086-adjDTH.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-087-adjDTH.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.562	NDG: 0 	RND:	     waves/tubespit/seq-088-ndgLst.txt (-) (  16 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.480	NDG: 0 	RND:	     waves/tubespit/seq-089-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.610	NDG: 0 	RND:	    waves/tubespit/seq-090-v327_52.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-091-v343_01.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-092-v343_02.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-093-v343_03.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-094-v343_04.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-095-v343_05.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.620	NDG: 0 	RND:	    waves/tubespit/seq-096-v343_06.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-097-v343_07.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-098-v343_08.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-099-v343_09.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:46 2020	 x1	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-100-v343_10.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.360	NDG: 0 	RND:	    waves/tubespit/seq-101-v343_11.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-102-v343_12.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-103-v343_13.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-104-v343_14.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-105-v343_17.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-106-v343_18.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-107-v343_19.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-108-v343_20.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-109-v343_21.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-110-v343_22.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-111-v343_23.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.420	NDG: 0 	RND:	    waves/tubespit/seq-112-v343_24.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-113-v343_25.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-116-v344_03.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.420	NDG: 0 	RND:	    waves/tubespit/seq-118-v344_05.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-119-v344_06.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-114-v344_01.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-115-v344_02.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-117-v344_04.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-120-v344_07.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-121-v344_08.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-122-v344_09.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-123-v344_10.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.480	NDG: 0 	RND:	    waves/tubespit/seq-124-v344_11.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.620	NDG: 0 	RND:	    waves/tubespit/seq-125-v344_12.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-126-v344_13.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.400	NDG: 0 	RND:	    waves/tubespit/seq-127-v344_14.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-128-v344_15.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-130-v344_17.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.400	NDG: 0 	RND:	    waves/tubespit/seq-131-v344_18.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-132-v344_19.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-133-v344_20.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.370	NDG: 0 	RND:	    waves/tubespit/seq-134-v344_21.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.480	NDG: 0 	RND:	    waves/tubespit/seq-135-v344_22.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-136-v344_23.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-137-v344_24.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-138-v344_25.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.650	NDG: 0 	RND:	    waves/tubespit/seq-139-v344_26.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-140-v344_27.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:47 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-141-v344_28.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-142-v344_29.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-143-v344_30.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-144-v344_31.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-145-v344_32.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-146-v344_33.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.620	NDG: 0 	RND:	    waves/tubespit/seq-147-v344_34.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-148-v344_35.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-149-v344_36.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-155-v369_02.txt (-) ( 100 bp) REC:1000	M: 4	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.440	NDG: 0 	RND:	    waves/tubespit/seq-156-v369_03.txt (-) ( 100 bp) REC:1000	M: 3	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-157-v369_04.txt (-) ( 100 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.647	NDG: 0 	RND:	waves/tubespit/seq-150-v377_cycAB1.txt (-) (  17 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.529	NDG: 0 	RND:	waves/tubespit/seq-151-v377_cycAB2.txt (-) (  17 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.412	NDG: 0 	RND:	waves/tubespit/seq-152-v377_cycAB3.txt (-) (  17 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.294	NDG: 0 	RND:	waves/tubespit/seq-153-v377_cycAB4.txt (-) (  17 bp) REC:1000	M: 2	-
-v4.31	Apr 13 15:14:48 2020	 x1	1000	0.507	NDG: 0 	RND:	waves/tubespit/seq-154-v427_cycABs.txt (-) ( 138 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:50 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:50 2020	 x0	1000	0.506	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmaur.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:50 2020	 x0	1000	0.496	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsech.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:51 2020	 x0	1000	0.501	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsimu.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:51 2020	 x0	1000	0.474	NDG: 0 	RND:	         waves/seals/vnd_ex3_Derec.txt (+) ( 962 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:51 2020	 x0	1000	0.459	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsant.txt (+) ( 959 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:51 2020	 x0	1000	0.456	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dyaku.txt (+) ( 957 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:52 2020	 x0	1000	0.487	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbiar.txt (+) ( 974 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:52 2020	 x0	1000	0.486	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsuzu.txt (+) ( 980 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:52 2020	 x0	1000	0.442	NDG: 0 	RND:	         waves/seals/vnd_ex3_Danan.txt (+) ( 962 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:52 2020	 x0	1000	0.477	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbipe.txt (+) ( 950 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:53 2020	 x0	1000	0.541	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmela.txt (+) (1008 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:53 2020	 x0	1000	0.529	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmaur.txt (+) (1006 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:53 2020	 x0	1000	0.518	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsech.txt (+) (1002 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:53 2020	 x0	1000	0.518	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsimu.txt (+) (1007 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:54 2020	 x0	1000	0.537	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Derec.txt (+) (1005 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:54 2020	 x0	1000	0.496	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsant.txt (+) (1093 bp) REC:1000	M: 5	-
+v4.31	Apr 13 18:45:54 2020	 x0	1000	0.496	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dyaku.txt (+) (1063 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:54 2020	 x0	1000	0.531	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dbiar.txt (+) (1063 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.531	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsuzu.txt (+) (1064 bp) REC:1000	M: 7	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.483	NDG: 0 	RND:	       waves/sharks/nab_DWME_Dmela.txt (+) ( 764 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.356	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_a.txt (+) (  87 ch) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.250	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_b.txt (+) (  84 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.216	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_c.txt (+) ( 102 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_d.txt (+) ( 121 ch) REC:1000	M:10	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.413	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_e.txt (+) ( 109 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.269	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_f.txt (+) ( 156 ch) REC:1000	M: 5	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.533	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_g.txt (+) (  45 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.696	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_h.txt (+) (  69 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.458	NDG: 0 	RND:	     waves/tubespit/seq-001-toslip.txt (+) (  72 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.485	NDG: 0 	RND:	     waves/tubespit/seq-002-toslip.txt (+) (  66 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.672	NDG: 0 	RND:	     waves/tubespit/seq-003-tosSt1.txt (+) (  61 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.535	NDG: 0 	RND:	     waves/tubespit/seq-004-tos-ct.txt (+) (  71 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.613	NDG: 0 	RND:	     waves/tubespit/seq-005-koshp1.txt (+) (  62 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-006-koslip.txt (+) ( 138 bp) REC:1000	M: 5	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-007-koslip.txt (+) (  84 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.556	NDG: 0 	RND:	     waves/tubespit/seq-008-koslp2.txt (+) (  81 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.523	NDG: 0 	RND:	     waves/tubespit/seq-009-koslp3.txt (+) (  65 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.528	NDG: 0 	RND:	     waves/tubespit/seq-010-cycle1.txt (+) ( 106 bp) REC:1000	M: 2	bslip sum 1
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.491	NDG: 0 	RND:	     waves/tubespit/seq-011-cycle1.txt (+) ( 159 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-012-cycle1.txt (+) (  55 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-013-cycle2.txt (+) ( 123 bp) REC:1000	M: 4	bslip sum 50
+v4.31	Apr 13 18:45:55 2020	 x0	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-014-cycle3.txt (+) ( 138 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.561	NDG: 0 	RND:	     waves/tubespit/seq-015-cycle4.txt (+) ( 157 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.338	NDG: 0 	RND:	     waves/tubespit/seq-016-cyc3_a.txt (+) (  68 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (+) (  39 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-018-koshp2.txt (+) (  74 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.515	NDG: 0 	RND:	     waves/tubespit/seq-019-koslp4.txt (+) (  68 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.584	NDG: 0 	RND:	     waves/tubespit/seq-020-cyc3_b.txt (+) (  77 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.284	NDG: 0 	RND:	     waves/tubespit/seq-021-cyc3_c.txt (+) (  95 bp) REC:1000	M: 3	bslip sum 2
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.631	NDG: 0 	RND:	     waves/tubespit/seq-022-tosSt2.txt (+) (  65 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.571	NDG: 0 	RND:	     waves/tubespit/seq-023-tosSt2.txt (+) (  84 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.540	NDG: 0 	RND:	     waves/tubespit/seq-024-tosSt2.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-025-tosSt2.txt (+) ( 195 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-026-tosSt2.txt (+) ( 400 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.545	NDG: 0 	RND:	     waves/tubespit/seq-027-cycleX.txt (+) ( 400 bp) REC:1000	M: 4	bslip sum 50
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.385	NDG: 0 	RND:	     waves/tubespit/seq-028-scrtch.txt (+) (  52 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.421	NDG: 0 	RND:	     waves/tubespit/seq-029-toslp2.txt (+) (  57 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.554	NDG: 0 	RND:	     waves/tubespit/seq-030-toslp2.txt (+) (  56 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.486	NDG: 0 	RND:	     waves/tubespit/seq-031-t0edge.txt (+) (  37 bp) REC:1000	M: 4	bslip sum 50
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-032-combo1.txt (+) ( 265 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.682	NDG: 0 	RND:	     waves/tubespit/seq-033-imprf1.txt (+) (  66 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-034-imprf2.txt (+) (  67 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.603	NDG: 0 	RND:	     waves/tubespit/seq-035-imprf3.txt (+) (  58 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.602	NDG: 0 	RND:	     waves/tubespit/seq-036-imprf4.txt (+) (  83 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.538	NDG: 0 	RND:	     waves/tubespit/seq-037-imprfk.txt (+) (  93 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.553	NDG: 0 	RND:	     waves/tubespit/seq-038-imprft.txt (+) ( 103 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.517	NDG: 0 	RND:	     waves/tubespit/seq-039-imprfk.txt (+) ( 118 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.587	NDG: 0 	RND:	     waves/tubespit/seq-040-imprfk.txt (+) ( 104 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.667	NDG: 0 	RND:	     waves/tubespit/seq-041-RNAnuc.txt (+) (  42 nt) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-041-notRNA.txt (+) (  42 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.846	NDG: 0 	RND:	     waves/tubespit/seq-041-protin.txt (+) ( 312 aa) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.464	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta1.txt (+) ( 140 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.846	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta2.txt (+) ( 312 aa) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.647	NDG: 0 	RND:	     waves/tubespit/seq-043-timprf.txt (+) (  34 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-044-tosimp.txt (+) (  88 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.761	NDG: 0 	RND:	     waves/tubespit/seq-045-cinky1.txt (+) ( 134 bp) REC:1000	M: 1	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-046-cinky2.txt (+) ( 182 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.350	NDG: 0 	RND:	     waves/tubespit/seq-047-cycle6.txt (+) (  40 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.484	NDG: 0 	RND:	     waves/tubespit/seq-048-tbdslp.txt (+) ( 122 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:56 2020	 x0	1000	0.525	NDG: 0 	RND:	     waves/tubespit/seq-049-cyctip.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:57 2020	 x0	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-050-cyctip.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:57 2020	 x0	1000	0.449	NDG: 0 	RND:	     waves/tubespit/seq-051-cyctip.txt (+) ( 800 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:57 2020	 x0	1000	0.505	NDG: 0 	RND:	     waves/tubespit/seq-052-cyctip.txt (+) ( 800 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:57 2020	 x0	1000	0.474	NDG: 0 	RND:	     waves/tubespit/seq-053-impkhp.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:57 2020	 x0	1000	0.466	NDG: 0 	RND:	     waves/tubespit/seq-054-impkhp.txt (+) ( 800 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:57 2020	 x0	1000	0.531	NDG: 0 	RND:	     waves/tubespit/seq-055-impkhp.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:57 2020	 x0	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-056-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:58 2020	 x0	1000	0.425	NDG: 0 	RND:	     waves/tubespit/seq-057-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:58 2020	 x0	1000	0.579	NDG: 0 	RND:	     waves/tubespit/seq-058-tcycle.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:58 2020	 x0	1000	0.544	NDG: 0 	RND:	     waves/tubespit/seq-059-tcycle.txt (+) ( 800 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:58 2020	 x0	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-060-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:58 2020	 x0	1000	0.519	NDG: 0 	RND:	     waves/tubespit/seq-061-tghost.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:58 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-062-tuckup.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:58 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-063-cnudge.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:58 2020	 x0	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge0.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:58 2020	 x0	1000	0.630	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge1.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:58 2020	 x0	1000	0.550	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge2.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:58 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge3.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge4.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge5.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge6.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge7.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge8.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge9.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-065-consen.txt (+) ( 100 bp) REC:1000	M: 6	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.660	NDG: 0 	RND:	     waves/tubespit/seq-066-consen.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-067-bslclr.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-068-dRaggd.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.670	NDG: 0 	RND:	     waves/tubespit/seq-069-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-070-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-071-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.340	NDG: 0 	RND:	     waves/tubespit/seq-072-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-073-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-074-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-075-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.540	NDG: 0 	RND:	     waves/tubespit/seq-076-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-077-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-078-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-079-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-080-kcheck.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.410	NDG: 0 	RND:	     waves/tubespit/seq-081-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.550	NDG: 0 	RND:	     waves/tubespit/seq-082-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.620	NDG: 0 	RND:	     waves/tubespit/seq-083-shadow.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-084-shadow.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-085-adjDTH.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-086-adjDTH.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-087-adjDTH.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-088-ndgLst.txt (+) (  16 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-089-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-090-v327_52.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-091-v343_01.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-092-v343_02.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-093-v343_03.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-094-v343_04.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-095-v343_05.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-096-v343_06.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-097-v343_07.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-098-v343_08.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-099-v343_09.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-100-v343_10.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:45:59 2020	 x0	1000	0.360	NDG: 0 	RND:	    waves/tubespit/seq-101-v343_11.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-102-v343_12.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-103-v343_13.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-104-v343_14.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-105-v343_17.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.610	NDG: 0 	RND:	    waves/tubespit/seq-106-v343_18.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-107-v343_19.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-108-v343_20.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-109-v343_21.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-110-v343_22.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.660	NDG: 0 	RND:	    waves/tubespit/seq-111-v343_23.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-112-v343_24.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.400	NDG: 0 	RND:	    waves/tubespit/seq-113-v343_25.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-116-v344_03.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-118-v344_05.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-119-v344_06.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-114-v344_01.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-115-v344_02.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-117-v344_04.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-120-v344_07.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-121-v344_08.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-122-v344_09.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-123-v344_10.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-124-v344_11.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-125-v344_12.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-126-v344_13.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.420	NDG: 0 	RND:	    waves/tubespit/seq-127-v344_14.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-128-v344_15.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-130-v344_17.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-131-v344_18.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-132-v344_19.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-133-v344_20.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-134-v344_21.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.510	NDG: 0 	RND:	    waves/tubespit/seq-135-v344_22.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-136-v344_23.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-137-v344_24.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.440	NDG: 0 	RND:	    waves/tubespit/seq-138-v344_25.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-139-v344_26.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-140-v344_27.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-141-v344_28.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-142-v344_29.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-143-v344_30.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:00 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-144-v344_31.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-145-v344_32.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-146-v344_33.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-147-v344_34.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-148-v344_35.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-149-v344_36.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-155-v369_02.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-156-v369_03.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-157-v369_04.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.647	NDG: 0 	RND:	waves/tubespit/seq-150-v377_cycAB1.txt (+) (  17 bp) REC:1000	M: 4	bslip sum 50
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.529	NDG: 0 	RND:	waves/tubespit/seq-151-v377_cycAB2.txt (+) (  17 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.412	NDG: 0 	RND:	waves/tubespit/seq-152-v377_cycAB3.txt (+) (  17 bp) REC:1000	M: 4	bslip sum 30
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.294	NDG: 0 	RND:	waves/tubespit/seq-153-v377_cycAB4.txt (+) (  17 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:01 2020	 x0	1000	0.478	NDG: 0 	RND:	waves/tubespit/seq-154-v427_cycABs.txt (+) ( 138 bp) REC:1000	M: 4	bslip sum 160
+v4.31	Apr 13 18:46:01 2020	 x1	1000	0.486	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:01 2020	 x1	1000	0.493	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmaur.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:01 2020	 x1	1000	0.488	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsech.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:02 2020	 x1	1000	0.493	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsimu.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:02 2020	 x1	1000	0.471	NDG: 0 	RND:	         waves/seals/vnd_ex3_Derec.txt (+) ( 962 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:02 2020	 x1	1000	0.458	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsant.txt (+) ( 959 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:02 2020	 x1	1000	0.455	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dyaku.txt (+) ( 957 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:03 2020	 x1	1000	0.492	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbiar.txt (+) ( 974 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:03 2020	 x1	1000	0.479	NDG: 5 	RND:	         waves/seals/vnd_ex3_Dsuzu.txt (+) ( 980 bp) REC:1000	M: 4	checktransit=22 at n=170
+v4.31	Apr 13 18:46:03 2020	 x1	1000	0.425	NDG: 0 	RND:	         waves/seals/vnd_ex3_Danan.txt (+) ( 962 bp) REC:1000	M: 5	-
+v4.31	Apr 13 18:46:03 2020	 x1	1000	0.478	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbipe.txt (+) ( 950 bp) REC:1000	M: 5	-
+v4.31	Apr 13 18:46:03 2020	 x1	1000	0.539	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmela.txt (+) (1008 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:04 2020	 x1	1000	0.526	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmaur.txt (+) (1006 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:04 2020	 x1	1000	0.515	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsech.txt (+) (1002 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:04 2020	 x1	1000	0.515	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsimu.txt (+) (1007 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:04 2020	 x1	1000	0.524	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Derec.txt (+) (1005 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:04 2020	 x1	1000	0.487	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsant.txt (+) (1093 bp) REC:1000	M: 5	-
+v4.31	Apr 13 18:46:05 2020	 x1	1000	0.492	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dyaku.txt (+) (1063 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:05 2020	 x1	1000	0.516	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dbiar.txt (+) (1063 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:05 2020	 x1	1000	0.520	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsuzu.txt (+) (1064 bp) REC:1000	M: 7	-
+v4.31	Apr 13 18:46:05 2020	 x1	1000	0.475	NDG: 0 	RND:	       waves/sharks/nab_DWME_Dmela.txt (+) ( 764 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:05 2020	 x1	1000	0.356	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_a.txt (+) (  87 ch) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.250	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_b.txt (+) (  84 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.216	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_c.txt (+) ( 102 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_d.txt (+) ( 121 ch) REC:1000	M:10	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.413	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_e.txt (+) ( 109 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.269	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_f.txt (+) ( 156 ch) REC:1000	M: 5	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.533	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_g.txt (+) (  45 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.696	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_h.txt (+) (  69 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.458	NDG: 0 	RND:	     waves/tubespit/seq-001-toslip.txt (+) (  72 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.485	NDG: 0 	RND:	     waves/tubespit/seq-002-toslip.txt (+) (  66 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.672	NDG: 0 	RND:	     waves/tubespit/seq-003-tosSt1.txt (+) (  61 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.535	NDG: 0 	RND:	     waves/tubespit/seq-004-tos-ct.txt (+) (  71 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.613	NDG: 0 	RND:	     waves/tubespit/seq-005-koshp1.txt (+) (  62 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-006-koslip.txt (+) ( 138 bp) REC:1000	M: 5	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-007-koslip.txt (+) (  84 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.556	NDG: 0 	RND:	     waves/tubespit/seq-008-koslp2.txt (+) (  81 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.523	NDG: 0 	RND:	     waves/tubespit/seq-009-koslp3.txt (+) (  65 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.528	NDG: 0 	RND:	     waves/tubespit/seq-010-cycle1.txt (+) ( 106 bp) REC:1000	M: 2	bslip sum 1
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.491	NDG: 0 	RND:	     waves/tubespit/seq-011-cycle1.txt (+) ( 159 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-012-cycle1.txt (+) (  55 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-013-cycle2.txt (+) ( 123 bp) REC:1000	M: 4	bslip sum 50
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-014-cycle3.txt (+) ( 138 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.516	NDG: 0 	RND:	     waves/tubespit/seq-015-cycle4.txt (+) ( 157 bp) REC:1000	M: 4	bslip sum 50
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.412	NDG: 0 	RND:	     waves/tubespit/seq-016-cyc3_a.txt (+) (  68 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (+) (  39 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-018-koshp2.txt (+) (  74 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.515	NDG: 0 	RND:	     waves/tubespit/seq-019-koslp4.txt (+) (  68 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.506	NDG: 0 	RND:	     waves/tubespit/seq-020-cyc3_b.txt (+) (  77 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.284	NDG: 0 	RND:	     waves/tubespit/seq-021-cyc3_c.txt (+) (  95 bp) REC:1000	M: 3	bslip sum 2
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.538	NDG: 0 	RND:	     waves/tubespit/seq-022-tosSt2.txt (+) (  65 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.571	NDG: 0 	RND:	     waves/tubespit/seq-023-tosSt2.txt (+) (  84 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.540	NDG: 0 	RND:	     waves/tubespit/seq-024-tosSt2.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-025-tosSt2.txt (+) ( 195 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-026-tosSt2.txt (+) ( 400 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.507	NDG: 0 	RND:	     waves/tubespit/seq-027-cycleX.txt (+) ( 400 bp) REC:1000	M: 4	bslip sum 50
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.423	NDG: 0 	RND:	     waves/tubespit/seq-028-scrtch.txt (+) (  52 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.421	NDG: 0 	RND:	     waves/tubespit/seq-029-toslp2.txt (+) (  57 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.554	NDG: 0 	RND:	     waves/tubespit/seq-030-toslp2.txt (+) (  56 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.486	NDG: 0 	RND:	     waves/tubespit/seq-031-t0edge.txt (+) (  37 bp) REC:1000	M: 4	bslip sum 50
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-032-combo1.txt (+) ( 265 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-033-imprf1.txt (+) (  66 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.687	NDG: 0 	RND:	     waves/tubespit/seq-034-imprf2.txt (+) (  67 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.603	NDG: 0 	RND:	     waves/tubespit/seq-035-imprf3.txt (+) (  58 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.614	NDG: 0 	RND:	     waves/tubespit/seq-036-imprf4.txt (+) (  83 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:06 2020	 x1	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-037-imprfk.txt (+) (  93 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.563	NDG: 0 	RND:	     waves/tubespit/seq-038-imprft.txt (+) ( 103 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.517	NDG: 0 	RND:	     waves/tubespit/seq-039-imprfk.txt (+) ( 118 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.587	NDG: 0 	RND:	     waves/tubespit/seq-040-imprfk.txt (+) ( 104 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.667	NDG: 0 	RND:	     waves/tubespit/seq-041-RNAnuc.txt (+) (  42 nt) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-041-notRNA.txt (+) (  42 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-041-protin.txt (+) ( 312 aa) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.464	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta1.txt (+) ( 140 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta2.txt (+) ( 312 aa) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.647	NDG: 0 	RND:	     waves/tubespit/seq-043-timprf.txt (+) (  34 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.443	NDG: 0 	RND:	     waves/tubespit/seq-044-tosimp.txt (+) (  88 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.575	NDG: 0 	RND:	     waves/tubespit/seq-045-cinky1.txt (+) ( 134 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.473	NDG: 5 	RND:	     waves/tubespit/seq-046-cinky2.txt (+) ( 182 bp) REC:1000	M: 3	checktransit=22 at n=16
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.350	NDG: 0 	RND:	     waves/tubespit/seq-047-cycle6.txt (+) (  40 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.443	NDG: 0 	RND:	     waves/tubespit/seq-048-tbdslp.txt (+) ( 122 bp) REC:1000	M: 5	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-049-cyctip.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.572	NDG: 0 	RND:	     waves/tubespit/seq-050-cyctip.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.428	NDG: 0 	RND:	     waves/tubespit/seq-051-cyctip.txt (+) ( 800 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.493	NDG: 0 	RND:	     waves/tubespit/seq-052-cyctip.txt (+) ( 800 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:07 2020	 x1	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-053-impkhp.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:08 2020	 x1	1000	0.456	NDG: 0 	RND:	     waves/tubespit/seq-054-impkhp.txt (+) ( 800 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:08 2020	 x1	1000	0.526	NDG: 0 	RND:	     waves/tubespit/seq-055-impkhp.txt (+) ( 800 bp) REC:1000	M: 6	-
+v4.31	Apr 13 18:46:08 2020	 x1	1000	0.507	NDG: 0 	RND:	     waves/tubespit/seq-056-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:08 2020	 x1	1000	0.412	NDG: 0 	RND:	     waves/tubespit/seq-057-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:08 2020	 x1	1000	0.566	NDG: 0 	RND:	     waves/tubespit/seq-058-tcycle.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:08 2020	 x1	1000	0.521	NDG: 0 	RND:	     waves/tubespit/seq-059-tcycle.txt (+) ( 800 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:08 2020	 x1	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-060-tbslp2.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-061-tghost.txt (+) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-062-tuckup.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-063-cnudge.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge0.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge1.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.430	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge2.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.370	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge3.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge4.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge5.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.550	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge6.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.430	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge7.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge8.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge9.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-065-consen.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-066-consen.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.410	NDG: 0 	RND:	     waves/tubespit/seq-067-bslclr.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-068-dRaggd.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.610	NDG: 0 	RND:	     waves/tubespit/seq-069-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-070-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-071-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.340	NDG: 0 	RND:	     waves/tubespit/seq-072-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-073-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-074-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.430	NDG: 0 	RND:	     waves/tubespit/seq-075-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.540	NDG: 0 	RND:	     waves/tubespit/seq-076-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-077-ktrans.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-078-ktrans.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-079-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-080-kcheck.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.410	NDG: 0 	RND:	     waves/tubespit/seq-081-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-082-kcheck.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-083-shadow.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-084-shadow.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-085-adjDTH.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-086-adjDTH.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-087-adjDTH.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-088-ndgLst.txt (+) (  16 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.480	NDG: 0 	RND:	     waves/tubespit/seq-089-ktrans.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:09 2020	 x1	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-090-v327_52.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-091-v343_01.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-092-v343_02.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-093-v343_03.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-094-v343_04.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-095-v343_05.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-096-v343_06.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-097-v343_07.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-098-v343_08.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-099-v343_09.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-100-v343_10.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.360	NDG: 0 	RND:	    waves/tubespit/seq-101-v343_11.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-102-v343_12.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-103-v343_13.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-104-v343_14.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-105-v343_17.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.610	NDG: 0 	RND:	    waves/tubespit/seq-106-v343_18.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.480	NDG: 0 	RND:	    waves/tubespit/seq-107-v343_19.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-108-v343_20.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-109-v343_21.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-110-v343_22.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-111-v343_23.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-112-v343_24.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.360	NDG: 0 	RND:	    waves/tubespit/seq-113-v343_25.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-116-v344_03.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-118-v344_05.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-119-v344_06.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-114-v344_01.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.480	NDG: 0 	RND:	    waves/tubespit/seq-115-v344_02.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-117-v344_04.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-120-v344_07.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-121-v344_08.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-122-v344_09.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-123-v344_10.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-124-v344_11.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-125-v344_12.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-126-v344_13.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.350	NDG: 0 	RND:	    waves/tubespit/seq-127-v344_14.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-128-v344_15.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-130-v344_17.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 2
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.400	NDG: 0 	RND:	    waves/tubespit/seq-131-v344_18.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.510	NDG: 0 	RND:	    waves/tubespit/seq-132-v344_19.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-133-v344_20.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.330	NDG: 0 	RND:	    waves/tubespit/seq-134-v344_21.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-135-v344_22.txt (+) ( 100 bp) REC:1000	M: 2	bslip sum 1
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-136-v344_23.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:10 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-137-v344_24.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.480	NDG: 0 	RND:	    waves/tubespit/seq-138-v344_25.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-139-v344_26.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-140-v344_27.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-141-v344_28.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-142-v344_29.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-143-v344_30.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-144-v344_31.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-145-v344_32.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-146-v344_33.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-147-v344_34.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-148-v344_35.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-149-v344_36.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-155-v369_02.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-156-v369_03.txt (+) ( 100 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-157-v369_04.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.647	NDG: 0 	RND:	waves/tubespit/seq-150-v377_cycAB1.txt (+) (  17 bp) REC:1000	M: 4	bslip sum 50
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.529	NDG: 0 	RND:	waves/tubespit/seq-151-v377_cycAB2.txt (+) (  17 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.412	NDG: 0 	RND:	waves/tubespit/seq-152-v377_cycAB3.txt (+) (  17 bp) REC:1000	M: 4	bslip sum 30
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.294	NDG: 0 	RND:	waves/tubespit/seq-153-v377_cycAB4.txt (+) (  17 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:11 2020	 x1	1000	0.478	NDG: 0 	RND:	waves/tubespit/seq-154-v427_cycABs.txt (+) ( 138 bp) REC:1000	M: 4	bslip sum 160
+v4.31	Apr 13 18:46:11 2020	 x0	1000	0.356	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_a.txt (-) (  87 ch) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:11 2020	 x0	1000	0.250	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_b.txt (-) (  84 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x0	1000	0.216	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_c.txt (-) ( 102 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x0	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_d.txt (-) ( 121 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x0	1000	0.468	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_e.txt (-) ( 109 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x0	1000	0.269	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_f.txt (-) ( 156 ch) REC:1000	M:14	-
+v4.31	Apr 13 18:46:11 2020	 x0	1000	0.533	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_g.txt (-) (  45 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:11 2020	 x0	1000	0.696	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_h.txt (-) (  69 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:11 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (-) ( 956 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:11 2020	 x0	1000	0.506	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmaur.txt (-) ( 956 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:12 2020	 x0	1000	0.496	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsech.txt (-) ( 956 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:12 2020	 x0	1000	0.501	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsimu.txt (-) ( 956 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:12 2020	 x0	1000	0.476	NDG: 0 	RND:	         waves/seals/vnd_ex3_Derec.txt (-) ( 962 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:12 2020	 x0	1000	0.458	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsant.txt (-) ( 959 bp) REC:1000	M: 8	-
+v4.31	Apr 13 18:46:13 2020	 x0	1000	0.455	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dyaku.txt (-) ( 957 bp) REC:1000	M: 8	-
+v4.31	Apr 13 18:46:13 2020	 x0	1000	0.487	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbiar.txt (-) ( 974 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:13 2020	 x0	1000	0.486	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsuzu.txt (-) ( 980 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:13 2020	 x0	1000	0.446	NDG: 0 	RND:	         waves/seals/vnd_ex3_Danan.txt (-) ( 962 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:14 2020	 x0	1000	0.484	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbipe.txt (-) ( 950 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:14 2020	 x0	1000	0.541	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmela.txt (-) (1008 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:14 2020	 x0	1000	0.529	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmaur.txt (-) (1006 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:14 2020	 x0	1000	0.518	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsech.txt (-) (1002 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:15 2020	 x0	1000	0.518	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsimu.txt (-) (1007 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:15 2020	 x0	1000	0.536	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Derec.txt (-) (1005 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:15 2020	 x0	1000	0.492	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsant.txt (-) (1093 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:15 2020	 x0	1000	0.494	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dyaku.txt (-) (1063 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.531	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dbiar.txt (-) (1063 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.531	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsuzu.txt (-) (1064 bp) REC:1000	M: 5	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.483	NDG: 0 	RND:	       waves/sharks/nab_DWME_Dmela.txt (-) ( 764 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.458	NDG: 0 	RND:	     waves/tubespit/seq-001-toslip.txt (-) (  72 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-002-toslip.txt (-) (  66 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.672	NDG: 0 	RND:	     waves/tubespit/seq-003-tosSt1.txt (-) (  61 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.535	NDG: 0 	RND:	     waves/tubespit/seq-004-tos-ct.txt (-) (  71 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.613	NDG: 0 	RND:	     waves/tubespit/seq-005-koshp1.txt (-) (  62 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-006-koslip.txt (-) ( 138 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-007-koslip.txt (-) (  84 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.556	NDG: 0 	RND:	     waves/tubespit/seq-008-koslp2.txt (-) (  81 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.523	NDG: 0 	RND:	     waves/tubespit/seq-009-koslp3.txt (-) (  65 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.509	NDG: 0 	RND:	     waves/tubespit/seq-010-cycle1.txt (-) ( 106 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.503	NDG: 0 	RND:	     waves/tubespit/seq-011-cycle1.txt (-) ( 159 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-012-cycle1.txt (-) (  55 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-013-cycle2.txt (-) ( 123 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-014-cycle3.txt (-) ( 138 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:16 2020	 x0	1000	0.561	NDG: 0 	RND:	     waves/tubespit/seq-015-cycle4.txt (-) ( 157 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.368	NDG: 0 	RND:	     waves/tubespit/seq-016-cyc3_a.txt (-) (  68 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (-) (  39 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-018-koshp2.txt (-) (  74 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.515	NDG: 0 	RND:	     waves/tubespit/seq-019-koslp4.txt (-) (  68 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.584	NDG: 0 	RND:	     waves/tubespit/seq-020-cyc3_b.txt (-) (  77 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.337	NDG: 0 	RND:	     waves/tubespit/seq-021-cyc3_c.txt (-) (  95 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.538	NDG: 0 	RND:	     waves/tubespit/seq-022-tosSt2.txt (-) (  65 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-023-tosSt2.txt (-) (  84 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-024-tosSt2.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-025-tosSt2.txt (-) ( 195 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-026-tosSt2.txt (-) ( 400 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.545	NDG: 0 	RND:	     waves/tubespit/seq-027-cycleX.txt (-) ( 400 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.385	NDG: 0 	RND:	     waves/tubespit/seq-028-scrtch.txt (-) (  52 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.421	NDG: 0 	RND:	     waves/tubespit/seq-029-toslp2.txt (-) (  57 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.554	NDG: 0 	RND:	     waves/tubespit/seq-030-toslp2.txt (-) (  56 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.486	NDG: 0 	RND:	     waves/tubespit/seq-031-t0edge.txt (-) (  37 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-032-combo1.txt (-) ( 265 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.682	NDG: 0 	RND:	     waves/tubespit/seq-033-imprf1.txt (-) (  66 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-034-imprf2.txt (-) (  67 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.603	NDG: 0 	RND:	     waves/tubespit/seq-035-imprf3.txt (-) (  58 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.602	NDG: 0 	RND:	     waves/tubespit/seq-036-imprf4.txt (-) (  83 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.538	NDG: 0 	RND:	     waves/tubespit/seq-037-imprfk.txt (-) (  93 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.553	NDG: 0 	RND:	     waves/tubespit/seq-038-imprft.txt (-) ( 103 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.517	NDG: 0 	RND:	     waves/tubespit/seq-039-imprfk.txt (-) ( 118 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.587	NDG: 0 	RND:	     waves/tubespit/seq-040-imprfk.txt (-) ( 104 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.667	NDG: 0 	RND:	     waves/tubespit/seq-041-RNAnuc.txt (-) (  42 nt) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-041-notRNA.txt (-) (  42 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.846	NDG: 0 	RND:	     waves/tubespit/seq-041-protin.txt (-) ( 312 aa) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.464	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta1.txt (-) ( 140 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.846	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta2.txt (-) ( 312 aa) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.647	NDG: 0 	RND:	     waves/tubespit/seq-043-timprf.txt (-) (  34 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-044-tosimp.txt (-) (  88 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.761	NDG: 0 	RND:	     waves/tubespit/seq-045-cinky1.txt (-) ( 134 bp) REC:1000	M: 1	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-046-cinky2.txt (-) ( 182 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.350	NDG: 0 	RND:	     waves/tubespit/seq-047-cycle6.txt (-) (  40 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.484	NDG: 0 	RND:	     waves/tubespit/seq-048-tbdslp.txt (-) ( 122 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:17 2020	 x0	1000	0.517	NDG: 0 	RND:	     waves/tubespit/seq-049-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:18 2020	 x0	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-050-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:18 2020	 x0	1000	0.454	NDG: 0 	RND:	     waves/tubespit/seq-051-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:18 2020	 x0	1000	0.499	NDG: 0 	RND:	     waves/tubespit/seq-052-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:18 2020	 x0	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-053-impkhp.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:18 2020	 x0	1000	0.464	NDG: 0 	RND:	     waves/tubespit/seq-054-impkhp.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:18 2020	 x0	1000	0.527	NDG: 0 	RND:	     waves/tubespit/seq-055-impkhp.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:18 2020	 x0	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-056-tbslp2.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.425	NDG: 0 	RND:	     waves/tubespit/seq-057-tbslp2.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.579	NDG: 0 	RND:	     waves/tubespit/seq-058-tcycle.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.544	NDG: 0 	RND:	     waves/tubespit/seq-059-tcycle.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-060-tbslp2.txt (-) ( 800 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.519	NDG: 0 	RND:	     waves/tubespit/seq-061-tghost.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-062-tuckup.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-063-cnudge.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge0.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.630	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge1.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.550	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge2.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge3.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:19 2020	 x0	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge4.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge5.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge6.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.430	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge7.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge8.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge9.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-065-consen.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.660	NDG: 0 	RND:	     waves/tubespit/seq-066-consen.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-067-bslclr.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-068-dRaggd.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.680	NDG: 0 	RND:	     waves/tubespit/seq-069-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-070-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-071-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.340	NDG: 0 	RND:	     waves/tubespit/seq-072-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-073-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-074-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-075-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.540	NDG: 0 	RND:	     waves/tubespit/seq-076-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-077-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-078-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-079-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-080-kcheck.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.410	NDG: 0 	RND:	     waves/tubespit/seq-081-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.550	NDG: 0 	RND:	     waves/tubespit/seq-082-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.620	NDG: 0 	RND:	     waves/tubespit/seq-083-shadow.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-084-shadow.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-085-adjDTH.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-086-adjDTH.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.510	NDG: 0 	RND:	     waves/tubespit/seq-087-adjDTH.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.562	NDG: 0 	RND:	     waves/tubespit/seq-088-ndgLst.txt (-) (  16 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-089-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-090-v327_52.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-091-v343_01.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.640	NDG: 0 	RND:	    waves/tubespit/seq-092-v343_02.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-093-v343_03.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-094-v343_04.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-095-v343_05.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-096-v343_06.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-097-v343_07.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-098-v343_08.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-099-v343_09.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-100-v343_10.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.360	NDG: 0 	RND:	    waves/tubespit/seq-101-v343_11.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-102-v343_12.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-103-v343_13.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-104-v343_14.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-105-v343_17.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:20 2020	 x0	1000	0.610	NDG: 0 	RND:	    waves/tubespit/seq-106-v343_18.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-107-v343_19.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-108-v343_20.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-109-v343_21.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-110-v343_22.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.680	NDG: 0 	RND:	    waves/tubespit/seq-111-v343_23.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.420	NDG: 0 	RND:	    waves/tubespit/seq-112-v343_24.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.400	NDG: 0 	RND:	    waves/tubespit/seq-113-v343_25.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-116-v344_03.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-118-v344_05.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-119-v344_06.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-114-v344_01.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-115-v344_02.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-117-v344_04.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-120-v344_07.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-121-v344_08.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-122-v344_09.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-123-v344_10.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-124-v344_11.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-125-v344_12.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-126-v344_13.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.420	NDG: 0 	RND:	    waves/tubespit/seq-127-v344_14.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-128-v344_15.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-130-v344_17.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-131-v344_18.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-132-v344_19.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.430	NDG: 0 	RND:	    waves/tubespit/seq-133-v344_20.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-134-v344_21.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-135-v344_22.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-136-v344_23.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-137-v344_24.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.440	NDG: 0 	RND:	    waves/tubespit/seq-138-v344_25.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.650	NDG: 0 	RND:	    waves/tubespit/seq-139-v344_26.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-140-v344_27.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-141-v344_28.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-142-v344_29.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-143-v344_30.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-144-v344_31.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-145-v344_32.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-146-v344_33.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-147-v344_34.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-148-v344_35.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-149-v344_36.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-155-v369_02.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:21 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-156-v369_03.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:22 2020	 x0	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-157-v369_04.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:22 2020	 x0	1000	0.647	NDG: 0 	RND:	waves/tubespit/seq-150-v377_cycAB1.txt (-) (  17 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:22 2020	 x0	1000	0.529	NDG: 0 	RND:	waves/tubespit/seq-151-v377_cycAB2.txt (-) (  17 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:22 2020	 x0	1000	0.412	NDG: 0 	RND:	waves/tubespit/seq-152-v377_cycAB3.txt (-) (  17 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:22 2020	 x0	1000	0.294	NDG: 0 	RND:	waves/tubespit/seq-153-v377_cycAB4.txt (-) (  17 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:22 2020	 x0	1000	0.507	NDG: 0 	RND:	waves/tubespit/seq-154-v427_cycABs.txt (-) ( 138 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:22 2020	 x1	1000	0.356	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_a.txt (-) (  87 ch) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:22 2020	 x1	1000	0.250	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_b.txt (-) (  84 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:22 2020	 x1	1000	0.216	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_c.txt (-) ( 102 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:22 2020	 x1	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_d.txt (-) ( 121 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:22 2020	 x1	1000	0.468	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_e.txt (-) ( 109 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:22 2020	 x1	1000	0.269	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_f.txt (-) ( 156 ch) REC:1000	M:14	-
+v4.31	Apr 13 18:46:22 2020	 x1	1000	0.533	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_g.txt (-) (  45 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:22 2020	 x1	1000	0.696	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_h.txt (-) (  69 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:22 2020	 x1	1000	0.502	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (-) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:22 2020	 x1	1000	0.498	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmaur.txt (-) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:22 2020	 x1	1000	0.494	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsech.txt (-) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:23 2020	 x1	1000	0.498	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsimu.txt (-) ( 956 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:23 2020	 x1	1000	0.475	NDG: 0 	RND:	         waves/seals/vnd_ex3_Derec.txt (-) ( 962 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:23 2020	 x1	1000	0.444	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsant.txt (-) ( 959 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:23 2020	 x1	1000	0.444	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dyaku.txt (-) ( 957 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:24 2020	 x1	1000	0.494	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbiar.txt (-) ( 974 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:24 2020	 x1	1000	0.473	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dsuzu.txt (-) ( 980 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:24 2020	 x1	1000	0.432	NDG: 0 	RND:	         waves/seals/vnd_ex3_Danan.txt (-) ( 962 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:24 2020	 x1	1000	0.485	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dbipe.txt (-) ( 950 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:24 2020	 x1	1000	0.539	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmela.txt (-) (1008 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:25 2020	 x1	1000	0.526	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dmaur.txt (-) (1006 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:25 2020	 x1	1000	0.515	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsech.txt (-) (1002 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:25 2020	 x1	1000	0.515	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsimu.txt (-) (1007 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:25 2020	 x1	1000	0.524	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Derec.txt (-) (1005 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:25 2020	 x1	1000	0.485	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsant.txt (-) (1093 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:26 2020	 x1	1000	0.490	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dyaku.txt (-) (1063 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:26 2020	 x1	1000	0.516	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dbiar.txt (-) (1063 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:26 2020	 x1	1000	0.528	NDG: 0 	RND:	        waves/sharks/vnd_NEE_Dsuzu.txt (-) (1064 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:26 2020	 x1	1000	0.473	NDG: 0 	RND:	       waves/sharks/nab_DWME_Dmela.txt (-) ( 764 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:26 2020	 x1	1000	0.458	NDG: 0 	RND:	     waves/tubespit/seq-001-toslip.txt (-) (  72 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:26 2020	 x1	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-002-toslip.txt (-) (  66 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:26 2020	 x1	1000	0.672	NDG: 0 	RND:	     waves/tubespit/seq-003-tosSt1.txt (-) (  61 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:26 2020	 x1	1000	0.535	NDG: 0 	RND:	     waves/tubespit/seq-004-tos-ct.txt (-) (  71 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:26 2020	 x1	1000	0.613	NDG: 0 	RND:	     waves/tubespit/seq-005-koshp1.txt (-) (  62 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:26 2020	 x1	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-006-koslip.txt (-) ( 138 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-007-koslip.txt (-) (  84 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.556	NDG: 0 	RND:	     waves/tubespit/seq-008-koslp2.txt (-) (  81 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.523	NDG: 0 	RND:	     waves/tubespit/seq-009-koslp3.txt (-) (  65 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.509	NDG: 0 	RND:	     waves/tubespit/seq-010-cycle1.txt (-) ( 106 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.503	NDG: 0 	RND:	     waves/tubespit/seq-011-cycle1.txt (-) ( 159 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-012-cycle1.txt (-) (  55 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-013-cycle2.txt (-) ( 123 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.565	NDG: 0 	RND:	     waves/tubespit/seq-014-cycle3.txt (-) ( 138 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.516	NDG: 0 	RND:	     waves/tubespit/seq-015-cycle4.txt (-) ( 157 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.368	NDG: 0 	RND:	     waves/tubespit/seq-016-cyc3_a.txt (-) (  68 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (-) (  39 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.581	NDG: 0 	RND:	     waves/tubespit/seq-018-koshp2.txt (-) (  74 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.515	NDG: 0 	RND:	     waves/tubespit/seq-019-koslp4.txt (-) (  68 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.506	NDG: 0 	RND:	     waves/tubespit/seq-020-cyc3_b.txt (-) (  77 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.337	NDG: 0 	RND:	     waves/tubespit/seq-021-cyc3_c.txt (-) (  95 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.538	NDG: 0 	RND:	     waves/tubespit/seq-022-tosSt2.txt (-) (  65 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-023-tosSt2.txt (-) (  84 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.520	NDG: 0 	RND:	     waves/tubespit/seq-024-tosSt2.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.477	NDG: 0 	RND:	     waves/tubespit/seq-025-tosSt2.txt (-) ( 195 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.452	NDG: 0 	RND:	     waves/tubespit/seq-026-tosSt2.txt (-) ( 400 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.507	NDG: 0 	RND:	     waves/tubespit/seq-027-cycleX.txt (-) ( 400 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.404	NDG: 0 	RND:	     waves/tubespit/seq-028-scrtch.txt (-) (  52 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.421	NDG: 0 	RND:	     waves/tubespit/seq-029-toslp2.txt (-) (  57 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.554	NDG: 0 	RND:	     waves/tubespit/seq-030-toslp2.txt (-) (  56 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.486	NDG: 0 	RND:	     waves/tubespit/seq-031-t0edge.txt (-) (  37 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.502	NDG: 0 	RND:	     waves/tubespit/seq-032-combo1.txt (-) ( 265 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-033-imprf1.txt (-) (  66 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.687	NDG: 0 	RND:	     waves/tubespit/seq-034-imprf2.txt (-) (  67 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.603	NDG: 0 	RND:	     waves/tubespit/seq-035-imprf3.txt (-) (  58 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.614	NDG: 0 	RND:	     waves/tubespit/seq-036-imprf4.txt (-) (  83 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.548	NDG: 0 	RND:	     waves/tubespit/seq-037-imprfk.txt (-) (  93 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.563	NDG: 0 	RND:	     waves/tubespit/seq-038-imprft.txt (-) ( 103 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.517	NDG: 0 	RND:	     waves/tubespit/seq-039-imprfk.txt (-) ( 118 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.587	NDG: 0 	RND:	     waves/tubespit/seq-040-imprfk.txt (-) ( 104 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.667	NDG: 0 	RND:	     waves/tubespit/seq-041-RNAnuc.txt (-) (  42 nt) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-041-notRNA.txt (-) (  42 ch) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-041-protin.txt (-) ( 312 aa) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.464	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta1.txt (-) ( 140 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.731	NDG: 0 	RND:	     waves/tubespit/seq-042-fasta2.txt (-) ( 312 aa) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:27 2020	 x1	1000	0.647	NDG: 0 	RND:	     waves/tubespit/seq-043-timprf.txt (-) (  34 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-044-tosimp.txt (-) (  88 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.575	NDG: 0 	RND:	     waves/tubespit/seq-045-cinky1.txt (-) ( 134 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.445	NDG: 0 	RND:	     waves/tubespit/seq-046-cinky2.txt (-) ( 182 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.350	NDG: 0 	RND:	     waves/tubespit/seq-047-cycle6.txt (-) (  40 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.484	NDG: 0 	RND:	     waves/tubespit/seq-048-tbdslp.txt (-) ( 122 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.512	NDG: 0 	RND:	     waves/tubespit/seq-049-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.572	NDG: 0 	RND:	     waves/tubespit/seq-050-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.442	NDG: 0 	RND:	     waves/tubespit/seq-051-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.486	NDG: 0 	RND:	     waves/tubespit/seq-052-cyctip.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.472	NDG: 0 	RND:	     waves/tubespit/seq-053-impkhp.txt (-) ( 800 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-054-impkhp.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:28 2020	 x1	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-055-impkhp.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:29 2020	 x1	1000	0.498	NDG: 2 	RND:	     waves/tubespit/seq-056-tbslp2.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:29 2020	 x1	1000	0.411	NDG: 0 	RND:	     waves/tubespit/seq-057-tbslp2.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:29 2020	 x1	1000	0.566	NDG: 0 	RND:	     waves/tubespit/seq-058-tcycle.txt (-) ( 800 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:29 2020	 x1	1000	0.533	NDG: 0 	RND:	     waves/tubespit/seq-059-tcycle.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:29 2020	 x1	1000	0.524	NDG: 0 	RND:	     waves/tubespit/seq-060-tbslp2.txt (-) ( 800 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:29 2020	 x1	1000	0.512	NDG: 0 	RND:	     waves/tubespit/seq-061-tghost.txt (-) ( 800 bp) REC:1000	M: 3	bslip sum 1
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.440	NDG: 0 	RND:	     waves/tubespit/seq-062-tuckup.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.450	NDG: 0 	RND:	     waves/tubespit/seq-063-cnudge.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge0.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge1.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.480	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge2.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.390	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge3.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge4.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge5.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge6.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge7.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge8.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.420	NDG: 0 	RND:	     waves/tubespit/seq-064-sndge9.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-065-consen.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-066-consen.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.370	NDG: 0 	RND:	     waves/tubespit/seq-067-bslclr.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.580	NDG: 0 	RND:	     waves/tubespit/seq-068-dRaggd.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.620	NDG: 0 	RND:	     waves/tubespit/seq-069-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-070-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-071-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.340	NDG: 0 	RND:	     waves/tubespit/seq-072-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-073-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.490	NDG: 0 	RND:	     waves/tubespit/seq-074-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.430	NDG: 0 	RND:	     waves/tubespit/seq-075-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-076-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-077-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-078-ktrans.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-079-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-080-kcheck.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.410	NDG: 0 	RND:	     waves/tubespit/seq-081-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.560	NDG: 0 	RND:	     waves/tubespit/seq-082-kcheck.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-083-shadow.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.570	NDG: 0 	RND:	     waves/tubespit/seq-084-shadow.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.460	NDG: 0 	RND:	     waves/tubespit/seq-085-adjDTH.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.500	NDG: 0 	RND:	     waves/tubespit/seq-086-adjDTH.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.470	NDG: 0 	RND:	     waves/tubespit/seq-087-adjDTH.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.562	NDG: 0 	RND:	     waves/tubespit/seq-088-ndgLst.txt (-) (  16 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.480	NDG: 0 	RND:	     waves/tubespit/seq-089-ktrans.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.610	NDG: 0 	RND:	    waves/tubespit/seq-090-v327_52.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-091-v343_01.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-092-v343_02.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-093-v343_03.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-094-v343_04.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-095-v343_05.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.620	NDG: 0 	RND:	    waves/tubespit/seq-096-v343_06.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-097-v343_07.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:30 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-098-v343_08.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-099-v343_09.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-100-v343_10.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.360	NDG: 0 	RND:	    waves/tubespit/seq-101-v343_11.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-102-v343_12.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.380	NDG: 0 	RND:	    waves/tubespit/seq-103-v343_13.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.410	NDG: 0 	RND:	    waves/tubespit/seq-104-v343_14.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-105-v343_17.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-106-v343_18.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-107-v343_19.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-108-v343_20.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-109-v343_21.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-110-v343_22.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.600	NDG: 0 	RND:	    waves/tubespit/seq-111-v343_23.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.420	NDG: 0 	RND:	    waves/tubespit/seq-112-v343_24.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-113-v343_25.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-116-v344_03.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.420	NDG: 0 	RND:	    waves/tubespit/seq-118-v344_05.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-119-v344_06.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.580	NDG: 0 	RND:	    waves/tubespit/seq-114-v344_01.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.530	NDG: 0 	RND:	    waves/tubespit/seq-115-v344_02.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-117-v344_04.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-120-v344_07.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-121-v344_08.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-122-v344_09.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-123-v344_10.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.480	NDG: 0 	RND:	    waves/tubespit/seq-124-v344_11.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.620	NDG: 0 	RND:	    waves/tubespit/seq-125-v344_12.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-126-v344_13.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.400	NDG: 0 	RND:	    waves/tubespit/seq-127-v344_14.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-128-v344_15.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.460	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-130-v344_17.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.400	NDG: 0 	RND:	    waves/tubespit/seq-131-v344_18.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-132-v344_19.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.450	NDG: 0 	RND:	    waves/tubespit/seq-133-v344_20.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.370	NDG: 0 	RND:	    waves/tubespit/seq-134-v344_21.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.480	NDG: 0 	RND:	    waves/tubespit/seq-135-v344_22.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.520	NDG: 0 	RND:	    waves/tubespit/seq-136-v344_23.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-137-v344_24.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-138-v344_25.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.650	NDG: 0 	RND:	    waves/tubespit/seq-139-v344_26.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.550	NDG: 0 	RND:	    waves/tubespit/seq-140-v344_27.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-141-v344_28.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:31 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-142-v344_29.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-143-v344_30.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-144-v344_31.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.560	NDG: 0 	RND:	    waves/tubespit/seq-145-v344_32.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.540	NDG: 0 	RND:	    waves/tubespit/seq-146-v344_33.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.620	NDG: 0 	RND:	    waves/tubespit/seq-147-v344_34.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.500	NDG: 0 	RND:	    waves/tubespit/seq-148-v344_35.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.570	NDG: 0 	RND:	    waves/tubespit/seq-149-v344_36.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.470	NDG: 0 	RND:	    waves/tubespit/seq-155-v369_02.txt (-) ( 100 bp) REC:1000	M: 4	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.440	NDG: 0 	RND:	    waves/tubespit/seq-156-v369_03.txt (-) ( 100 bp) REC:1000	M: 3	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.490	NDG: 0 	RND:	    waves/tubespit/seq-157-v369_04.txt (-) ( 100 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.647	NDG: 0 	RND:	waves/tubespit/seq-150-v377_cycAB1.txt (-) (  17 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.529	NDG: 0 	RND:	waves/tubespit/seq-151-v377_cycAB2.txt (-) (  17 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.412	NDG: 0 	RND:	waves/tubespit/seq-152-v377_cycAB3.txt (-) (  17 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.294	NDG: 0 	RND:	waves/tubespit/seq-153-v377_cycAB4.txt (-) (  17 bp) REC:1000	M: 2	-
+v4.31	Apr 13 18:46:32 2020	 x1	1000	0.507	NDG: 0 	RND:	waves/tubespit/seq-154-v427_cycABs.txt (-) ( 138 bp) REC:1000	M: 3	-

@@ -591,6 +591,13 @@ int *x_history = NULL;
 					}
 				}
 
+				/* This incantation made 4/7 pieces of remaining chowder disappear. Should be tried further up for time considerations. */
+				/* This also suggests that cinch_k could be simplified and focused only on fractal TRs marked in mark_tela. */
+				if (nuctransit && keep_checking && k>1 && tela[symbol_count+k].stat == st_Fract.sym && 
+					col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)<0 && col_isclear(align2D,n+k-1,m,1)>0) {
+					keep_checking = imperfect_TR = 0;
+				}
+
 				if (keep_checking || imperfect_TR) {
 					if (k>0 && dev_print(CINCH,__LINE__)) {
 						printf("cinch-k taking k-mer=%2d at symbol_count=%3d; x=%d, y=%d.", k, symbol_count, x,y);
