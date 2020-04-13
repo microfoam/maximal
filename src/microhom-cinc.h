@@ -574,8 +574,7 @@ int *x_history = NULL;
 					for (l = 0; l < k; l++) {
 						/* CHECK MISMATCHES FROM PUSHING BOTTOM ROW TO LEFT OF REPEATS AFTER SLIP */
 						if ((i=col_isclear(align2D,n+l,m,1)) > -1 &&
-							(letr=align2D[i][n+l]) != consensus[n-x-k+l] && 
-							 letr != tolower(consensus[n-x-k+l])) {
+							(letr=align2D[i][n+l]) != consensus[n-x-k+l] && letr != tolower(consensus[n-x-k+l])) {
 							imperfect_TR = 0;
 							break;
 						}
@@ -584,8 +583,8 @@ int *x_history = NULL;
 
 				/*** LAST CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
 				if (keep_checking || imperfect_TR) {
-					for (i=n+1; i<=lenseq; i++) {
-						if (tela[i].k && tela[i].x > n && tela[i].x < n+k && tela[i].y > m+cik_row) {
+					for (i=symbol_count+1; i<=lenseq; i++) {
+						if (tela[i].k && tela[i].x > n && tela[i].x < n+k) {
 							keep_checking = imperfect_TR = 0;
 							break;
 						}
@@ -594,7 +593,7 @@ int *x_history = NULL;
 
 				if (keep_checking || imperfect_TR) {
 					if (k>0 && dev_print(CINCH,__LINE__)) {
-						printf("cinch-k taking k-mer=%2d at symbol_count=%3d (lenseq = %3d); x=%d, y=%d.", k, symbol_count, lenseq, x,y);
+						printf("cinch-k taking k-mer=%2d at symbol_count=%3d; x=%d, y=%d.", k, symbol_count, x,y);
 					}
 
 					push_gPnt_kmer(symbol_count+k,k,1);
@@ -604,6 +603,17 @@ int *x_history = NULL;
 						pathbox[m+cik_row+1][n-x+l] = align2D[m][n+l+k];
 						x_history[n+l] = x;					/* x_history WRITE-IN FOR NEW TR COLS */
 					}
+
+					/* UPDATE TELA FOR CINCH-K CINCH; SHOULD BE OWN FUNCTION? */
+					for (i=symbol_count+k; i<=lenseq; i++) 
+						++tela[i].y;
+					for (i=0; isalpha(align2D[m][n+k+i]); i++) 
+						tela[symbol_count+k+i].x -= k;
+					if (col_isclear(align2D,n+k,m,1)<0) {	
+						for ( ; i<=lenseq; i++) 
+							tela[i].x -= k;
+					}
+
 					symbol_count += k;
 					pathbox[m+cik_row  ][n-x+k  ] = slip.sym;
 					pathbox[m+cik_row  ][n-x+k+1] = '\0';

@@ -79,6 +79,7 @@ int push_gPnt_kmer(int pos, int kmer, int reps)
 		return(top_left);
 }
 
+/****************************************************************/
 short unsigned int assign_tela(int pos, int eM, int eN, int mode)
 {
 	if (!mode)
