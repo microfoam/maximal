@@ -530,7 +530,7 @@ int *x_history = NULL;
 					}
 				}
 
-				if (keep_checking && n > scrimmage_line && k>1) { 
+				if (keep_checking && n > scrimmage_line) { 
 					int p=0, q=0;
 
 					if (col_isclear(pathbox,n-x+k,m+cik_row,-1)>-1 && col_isclear(align2D,n+k,m,1)<0) {
