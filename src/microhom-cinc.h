@@ -551,7 +551,7 @@ int *x_history = NULL;
 								break;
 					    }    
 
-						if (nuctransit && (p=n-x+k)<=Current.pass_W && (q=n-x+r*k)<=Current.pass_W) {
+						if (nuctransit && (p=n-x+k)<=Current.pass_W && (q=n-x+r*k)<=Current.pass_W && col_isclear(align2D,q+k,m,-1)<0) {
 							if ((letr=consensus[p])!='R' && letr!='Y' && (letr3=consensus[q])!='R' && letr3!='Y') 
 						        keep_checking = 0; 
 						}
