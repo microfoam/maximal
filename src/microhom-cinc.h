@@ -411,16 +411,14 @@ int *x_history = NULL;
 							}
 	
 							if (nuctransit && keep_checking) {
-								if (n == scrimmage_line || col_isclear(align2D,n,m,1) < 0 || scrimmage_line<0) {
-									y = 0;		/* RESET y VAR. B/C NO LONGER NEED TO ADJUST CONSENSUS COORDINATES */
-								}
-								if (n>scrimmage_line && ((letr2=consensus[n-x+y+l]) == 'R' || letr2 == 'Y') /* && tela[symbol_count+l].e != letr2 */) {
+								if (n>scrimmage_line && ((letr2=consensus[n-x+y+l])=='R' || letr2=='Y') /* && k>1 && tela[symbol_count+l].t != letr2 */ ) {
 									keep_checking = 0;
 								}
-								else if (((letr3=consensus[n-x+y+k+l]) == 'R' || letr3 == 'Y') /* && tela[symbol_count+k+l].e != letr3 */) {
+								else if (((letr3=consensus[n-x+y+k+l])=='R' || letr3=='Y')  /* && tela[symbol_count+k+l].t != letr3*/ ) {
 									keep_checking = 0;
 								}
 							}
+
 							if (keep_checking && align2D[m][n+l] != align2D[m][n+k+l]) {
 								keep_checking = 0;
 								if (nuctransit && k >= PISO) {
