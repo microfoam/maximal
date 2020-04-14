@@ -411,12 +411,10 @@ int *x_history = NULL;
 							}
 	
 							if (nuctransit && keep_checking) {
-								if (n>scrimmage_line && ((letr2=consensus[n-x+y+l])=='R' || letr2=='Y') /* && k>1 && tela[symbol_count+l].t != letr2 */ ) {
+								if (n>scrimmage_line && ( (letr2=consensus[n-x+y+l])=='R' || letr2=='Y') /* && k>1 */ ) 
 									keep_checking = 0;
-								}
-								else if (((letr3=consensus[n-x+y+k+l])=='R' || letr3=='Y')  /* && tela[symbol_count+k+l].t != letr3*/ ) {
+								else if ((letr3=consensus[n-x+y+k+l])=='R' || letr3=='Y') 
 									keep_checking = 0;
-								}
 							}
 
 							if (keep_checking && align2D[m][n+l] != align2D[m][n+k+l]) {
@@ -428,13 +426,10 @@ int *x_history = NULL;
 						}
 					} /* END OF FOR l SCAN LOOPS */
 
-					if (homopolyflag && keep_checking) {		/* IF HOMOPOLYFLAG=1 WAS NOT SET TO ZERO */
-						keep_checking = 0;
-					}
-					if (homopolyflag && check_imperf) {			/* TURN THIS O-F-F AS WELL */
-						check_imperf = 0; 
-					}
-						homopolyflag = 0;		/* RESET */
+					if (homopolyflag) 		/* IF HOMOPOLYFLAG=1 WAS NOT SET TO ZERO */
+						keep_checking = check_imperf = 0;
+
+					homopolyflag = 0;		/* RESET */
 				} 
 				
 				/* CHECK FOR TRANSITIONS IF DNA AND NEED REMAINS */
@@ -589,7 +584,7 @@ int *x_history = NULL;
 					}
 				}
 
-				/* This incantation made 4/7 pieces of remaining chowder disappear. Should be tried further up for time considerations. */
+				/* This block made 4/7 pieces of remaining chowder disappear. Should be tried further up for time considerations. */
 				/* This also suggests that cinch_k could be simplified and focused only on fractal TRs marked in mark_tela. */
 				if (nuctransit && keep_checking && tela[symbol_count+k].stat == st_Fract.sym && 
 					col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)<0 && col_isclear(align2D,n+k-1,m,1)>0) {
