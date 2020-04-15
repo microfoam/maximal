@@ -9,5 +9,5 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 clear
-./surfboard-checklog | tee -a corduroy.log
+./surfboard-checklog | tee -a Corduroy.log
 

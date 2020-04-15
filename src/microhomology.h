@@ -223,12 +223,11 @@ struct segment {
 	char topc;		/* character of spine position */
 };
 
-
 char align2D[MAXROW+1][MAXROW] = {{0}};
 char pathbox[MAXROW+1][MAXROW] = {{0}};
 char consensus[MAXROW] = {0};
 char file_name[255] = "internal_default";
-char dev_notes[32] = "-";             /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
+char dev_notes[32] = "-";      		    /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
 short unsigned int cinchled=0;			/* BIT FLAG FOR CINCH-L WRAPS */
 char letr_unit[4] = {0};				/* UNIT STRING: "bp" FOR DNA, "nt" FOR RNA, 'aa' FOR PROTEINS, 'ch' FOR ALL OTHER; SET IN MAIN() */
 FILE *fp_out;                           /* FILE FOR OUTPUT.LOG */

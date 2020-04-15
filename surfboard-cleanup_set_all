@@ -1,12 +1,12 @@
 #!/bin/bash
-echo >> corduroy.log
-echo 'All:' >> corduroy.log
+echo >> Corduroy.log
+echo '                                               < cleanup_set_all >' >> Corduroy.log
 
 while getopts c option
 do
 case "${option}"
 in
-c) 	echo 'with fresh compile (-c)' >> corduroy.log
+c) 	echo 'with fresh compile (-c)' >> Corduroy.log
 	./surfboard-Pop_Up
 	;;
 esac
@@ -836,5 +836,5 @@ fi
 ./maximal -CKRnx waves/tubespit/seq-161-wuhCor1-03-synth2.txt
 
 ./surfboard-checkmha
-echo 'Commit WCR avgs: -> 0.504737 (extra tests +/-x, +/-C 816 total)' | tee -a corduroy.log
-echo
+echo 'Commit WCR avgs: -> 0.504737 (extra tests +/-x, +/-C 816 total)' | tee -a Corduroy.log
+echo | tee -a Corduroy.log

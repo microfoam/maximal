@@ -1,10 +1,12 @@
 #!/bin/bash
 
+echo '                                               < vnd_getworked_ragdoll >' >> Corduroy.log
+
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
-for i in {1..2500}
+for i in {1..50}
 do
 	./maximal -Rn -X 2 waves/seals/vnd_ex3_Dmela.txt
 	./maximal -Rn -X 2 waves/seals/vnd_ex3_Dsimu.txt
@@ -24,20 +26,4 @@ do
 done
 
 ./surfboard-checkmha
-
-grep -c ex3_Dmela Surf_wavereport.log
-grep -c ex3_Dsimu Surf_wavereport.log
-grep -c ex3_Derec Surf_wavereport.log
-grep -c ex3_Dyaku Surf_wavereport.log
-grep -c ex3_Dbiar Surf_wavereport.log
-grep -c ex3_Dsuzu Surf_wavereport.log
-grep -c ex3_Danan Surf_wavereport.log
-grep -c ex3_Dbipe Surf_wavereport.log
-grep -c NEE_Dbiar Surf_wavereport.log
-grep -c NEE_Derec Surf_wavereport.log
-grep -c NEE_Dmela Surf_wavereport.log
-grep -c NEE_Dsimu Surf_wavereport.log
-grep -c NEE_Dsuzu Surf_wavereport.log
-grep -c NEE_Dyaku Surf_wavereport.log
-grep -c WME_Dmela Surf_wavereport.log
 

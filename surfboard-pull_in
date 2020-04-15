@@ -1,4 +1,5 @@
 #!/bin/bash
+
 if [ -f Surf_wavereport.mha ]; then
 	rm Surf_wavereport.mha
 fi

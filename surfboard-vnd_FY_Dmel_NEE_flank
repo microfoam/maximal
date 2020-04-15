@@ -1,4 +1,7 @@
 #!/bin/bash
+
+echo '                                               < Fisher-Yates D. mel. vnd NEE flank >' >> Corduroy.log
+
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
