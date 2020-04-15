@@ -2,66 +2,69 @@
 if [ -f Surf_wavereport.mha ]; then
 	rm Surf_wavereport.mha
 fi
-if [ -f Surf_barrels.log ]; then
-	rm Surf_barrels.log
-fi
 if [ -f TUBES.mha ]; then
 	rm TUBES.mha
 fi
+if [ -f TUBES.barrels ]; then
+	mv TUBES.barrels local_tmp/
+fi
+if [ -f TUBES.curls ]; then
+	mv TUBES.curls local_tmp/
+fi
 
-date > TUBES.log
-echo >> TUBES.log
-echo '1. vnd_edgeNEE_Dmaur.txt' >> TUBES.log
-echo '2. vnd_edgeNEE_Dsimu.txt' >> TUBES.log
+date > TUBES.curls
+echo >> TUBES.curls
+echo '1. vnd_edgeNEE_Dmaur.txt' >> TUBES.curls
+echo '2. vnd_edgeNEE_Dsimu.txt' >> TUBES.curls
 ./maximal -O 2    waves/sharks/vnd_edgeNEE_Dmaur.txt
 ./maximal -O 2    waves/sharks/vnd_edgeNEE_Dsimu.txt TUBES.mha
-cat TUBES.mha >> TUBES.log
+cat TUBES.mha >> TUBES.curls
 rm TUBES.mha
 
-echo >> TUBES.log
-echo '1. vnd_edgeNEE_Dsimu.txt' >> TUBES.log
-echo '2. vnd_edgeNEE_Dmaur.txt' >> TUBES.log
+echo >> TUBES.curls
+echo '1. vnd_edgeNEE_Dsimu.txt' >> TUBES.curls
+echo '2. vnd_edgeNEE_Dmaur.txt' >> TUBES.curls
 ./maximal -O 2    waves/sharks/vnd_edgeNEE_Dsimu.txt
 ./maximal -O 2    waves/sharks/vnd_edgeNEE_Dmaur.txt TUBES.mha
-cat TUBES.mha >> TUBES.log
-echo >> TUBES.log
+cat TUBES.mha >> TUBES.curls
+echo >> TUBES.curls
 rm TUBES.mha
 
-date >> TUBES.log
-echo >> TUBES.log
-echo '1. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.log
-echo '2. vnd_edgeNEE_Dsimu.txt' >> TUBES.log
+date >> TUBES.curls
+echo >> TUBES.curls
+echo '1. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.curls
+echo '2. vnd_edgeNEE_Dsimu.txt' >> TUBES.curls
 ./maximal -v 3 -O 2 -x waves/sharks/vnd_edgeNEE_Dmaur.txt
 ./maximal -v 3 -O 2    waves/sharks/vnd_edgeNEE_Dsimu.txt TUBES.mha
-cat TUBES.mha >> TUBES.log
+cat TUBES.mha >> TUBES.curls
 rm TUBES.mha
 
-echo >> TUBES.log
-echo '1. vnd_edgeNEE_Dsimu.txt' >> TUBES.log
-echo '2. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.log
+echo >> TUBES.curls
+echo '1. vnd_edgeNEE_Dsimu.txt' >> TUBES.curls
+echo '2. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.curls
 ./maximal -O 2    waves/sharks/vnd_edgeNEE_Dsimu.txt
 ./maximal -O 2 -x waves/sharks/vnd_edgeNEE_Dmaur.txt TUBES.mha
-cat TUBES.mha >> TUBES.log
-echo >> TUBES.log
+cat TUBES.mha >> TUBES.curls
+echo >> TUBES.curls
 rm TUBES.mha
 
-date >> TUBES.log
-echo >> TUBES.log
-echo '1. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.log
-echo '2. vnd_edgeNEE_Dsimu.txt -x' >> TUBES.log
+date >> TUBES.curls
+echo >> TUBES.curls
+echo '1. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.curls
+echo '2. vnd_edgeNEE_Dsimu.txt -x' >> TUBES.curls
 ./maximal -O 2 -x waves/sharks/vnd_edgeNEE_Dmaur.txt
 ./maximal -O 2 -x waves/sharks/vnd_edgeNEE_Dsimu.txt TUBES.mha
-cat TUBES.mha >> TUBES.log
+cat TUBES.mha >> TUBES.curls
 rm TUBES.mha
 
-echo >> TUBES.log
-echo '1. vnd_edgeNEE_Dsimu.txt -x' >> TUBES.log
-echo '2. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.log
+echo >> TUBES.curls
+echo '1. vnd_edgeNEE_Dsimu.txt -x' >> TUBES.curls
+echo '2. vnd_edgeNEE_Dmaur.txt -x' >> TUBES.curls
 ./maximal -O 2 -x waves/sharks/vnd_edgeNEE_Dsimu.txt
 ./maximal -O 2 -x waves/sharks/vnd_edgeNEE_Dmaur.txt TUBES.mha
-cat TUBES.mha >> TUBES.log
-echo >> TUBES.log
+cat TUBES.mha >> TUBES.curls
+echo >> TUBES.curls
 rm TUBES.mha
 
-mv Surf_wavereport.mha Surf_wavereport-tubes.log
+mv Surf_wavereport.mha Surf_wavereport.tubes
 

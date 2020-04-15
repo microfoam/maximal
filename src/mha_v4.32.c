@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
  	char ralign2D[MAXROW+1][MAXROW] = {{0}};	/* 'R'EAD ALIGN2D FROM PREVIOUS AUTO-MHA */ 	
 	
 	FILE *file_ptr;
-	FILE *fp_cons;							/* FILE FOR CONSENSUS STRING Surf_barrels.log */
+	FILE *fp_cons;							/* FILE FOR CONSENSUS STRING TUBES.barrels */
   	FILE *fp_pairwise;						/* FILE FOR MHA MSA "TUBES.mha" */
 	FILE *fp_tricksy;						/* DEV. FILE FOR IMPERFECT 2-D ALIGNED STRINGS waves/foam_and_chowder.mha */
 
@@ -1765,7 +1765,7 @@ int main(int argc, char *argv[])
 		printf("\n\n");
 
 	if (opt_O.bit) {							/* OPTION TO OUTPUT 2-D ALIGNMENT & CONSENSUS STRING TO FILE */
-		fp_cons = fopen("Surf_barrels.log", "a");
+		fp_cons = fopen("TUBES.barrels", "a");
 		fprintf(fp_cons,">%s (%d > %d %s) x%d\n", 
 			file_name, Clean.pass_W, Cinch_D.pass_W, letr_unit, opt_x.val);	
 
