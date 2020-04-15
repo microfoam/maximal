@@ -810,7 +810,31 @@ fi
 ./maximal -CRnx waves/tubespit/seq-152-v377_cycAB3.txt
 ./maximal -CRnx waves/tubespit/seq-153-v377_cycAB4.txt
 ./maximal -CRnx waves/tubespit/seq-154-v427_cycABs.txt
+./maximal -KRn   waves/tubespit/seq-158-WY20-snippet0.txt
+./maximal -KRnx  waves/tubespit/seq-158-WY20-snippet0.txt
+./maximal -CKRn  waves/tubespit/seq-158-WY20-snippet0.txt
+./maximal -CKRnx waves/tubespit/seq-158-WY20-snippet0.txt
+./maximal -KRn   waves/tubespit/seq-158-WY20-snippet1.txt
+./maximal -KRnx  waves/tubespit/seq-158-WY20-snippet1.txt
+./maximal -CKRn  waves/tubespit/seq-158-WY20-snippet1.txt
+./maximal -CKRnx waves/tubespit/seq-158-WY20-snippet1.txt
+./maximal -KRn   waves/tubespit/seq-159-WY20.txt
+./maximal -KRnx  waves/tubespit/seq-159-WY20.txt
+./maximal -CKRn  waves/tubespit/seq-159-WY20.txt
+./maximal -CKRnx waves/tubespit/seq-159-WY20.txt
+./maximal -KRn   waves/tubespit/seq-160-WY3-5.txt
+./maximal -KRnx  waves/tubespit/seq-160-WY3-5.txt
+./maximal -CKRn  waves/tubespit/seq-160-WY3-5.txt
+./maximal -CKRnx waves/tubespit/seq-160-WY3-5.txt
+./maximal -KRn   waves/tubespit/seq-161-wuhCor1-03-synth1.txt
+./maximal -KRnx  waves/tubespit/seq-161-wuhCor1-03-synth1.txt
+./maximal -CKRn  waves/tubespit/seq-161-wuhCor1-03-synth1.txt
+./maximal -CKRnx waves/tubespit/seq-161-wuhCor1-03-synth1.txt
+./maximal -KRn   waves/tubespit/seq-161-wuhCor1-03-synth2.txt
+./maximal -KRnx  waves/tubespit/seq-161-wuhCor1-03-synth2.txt
+./maximal -CKRn  waves/tubespit/seq-161-wuhCor1-03-synth2.txt
+./maximal -CKRnx waves/tubespit/seq-161-wuhCor1-03-synth2.txt
 
 ./surfboard-checkmha
-echo 'Commit WCR avgs: -> 0.509284 (mark_tela) -> 0.509285 (cinch_k clean-up) -> 0.509289 (+block in cinch-k) -> 0.509280 (+2 cinch-k lines)' | tee -a corduroy.log
+echo 'Commit WCR avgs: -> 0.504737 (extra tests +/-x, +/-C 816 total)' | tee -a corduroy.log
 echo
