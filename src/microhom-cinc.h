@@ -411,7 +411,7 @@ int *x_history = NULL;
 							}
 	
 							if (nuctransit && keep_checking) {
-								if (n>scrimmage_line && ( (letr2=consensus[n-x+y+l])=='R' || letr2=='Y') /* && k>1 */ ) 
+								if (n>scrimmage_line && ((letr2=consensus[n-x+y+l])=='R' || letr2=='Y')) 
 									keep_checking = 0;
 								else if ((letr3=consensus[n-x+y+k+l])=='R' || letr3=='Y') 
 									keep_checking = 0;
@@ -584,10 +584,9 @@ int *x_history = NULL;
 					}
 				}
 
-				/* This block made 4/7 pieces of remaining chowder disappear. Should be tried further up for time considerations. */
+				/* This block made 5/7 chunks of remaining chowder disappear. Should be tried further up for time considerations. */
 				/* This also suggests that cinch_k could be simplified and focused only on fractal TRs marked in mark_tela. */
-				if (nuctransit && keep_checking && tela[symbol_count+k].stat == st_Fract.sym && 
-					col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)<0 && col_isclear(align2D,n+k-1,m,1)>0) {
+				if (nuctransit && keep_checking && col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)<0 && col_isclear(align2D,n+k-1,m,1)>0) {
 					keep_checking = imperfect_TR = 0;
 				}
 
