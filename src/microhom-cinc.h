@@ -411,7 +411,9 @@ int *x_history = NULL;
 							}
 	
 							if (nuctransit && keep_checking) {
-								if (n>scrimmage_line && ((letr2=consensus[n-x+y+l])=='R' || letr2=='Y')) 
+								if (k==1 && col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)>0)
+									;
+								else if (n>scrimmage_line && ((letr2=consensus[n-x+y+l])=='R' || letr2=='Y')) 
 									keep_checking = 0;
 								else if ((letr3=consensus[n-x+y+k+l])=='R' || letr3=='Y') 
 									keep_checking = 0;
@@ -574,7 +576,7 @@ int *x_history = NULL;
 					}
 				}
 
-				/*** LAST CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
+				/* 2nd TO LAST CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
 				if (keep_checking || imperfect_TR) {
 					for (i=symbol_count+1; i<=lenseq; i++) {
 						if (tela[i].k && tela[i].x > n && tela[i].x < n+k) {
@@ -584,12 +586,12 @@ int *x_history = NULL;
 					}
 				}
 
-				/* This block made 5/7 chunks of remaining chowder disappear. Should be tried further up for time considerations. */
-				/* This also suggests that cinch_k could be simplified and focused only on fractal TRs marked in mark_tela. */
-				if (nuctransit && keep_checking && col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)<0 && col_isclear(align2D,n+k-1,m,1)>0) {
+				/* This if-block made 5/7 chunks of remaining chowder disappear. Should be tried further up for time considerations. */
+				if (nuctransit && keep_checking && col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)<0 && col_isclear(align2D,n+k-1,m,1)>0) 
 					keep_checking = imperfect_TR = 0;
-				}
 
+
+				/**************************************************************************************************/
 				if (keep_checking || imperfect_TR) {
 					if (k>0 && dev_print(CINCH,__LINE__)) {
 						printf("cinch-k taking k-mer=%2d at symbol_count=%3d; x=%d, y=%d.", k, symbol_count, x,y);

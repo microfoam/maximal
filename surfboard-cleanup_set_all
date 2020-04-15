@@ -812,5 +812,5 @@ fi
 ./maximal -CRnx waves/tubespit/seq-154-v427_cycABs.txt
 
 ./surfboard-checkmha
-echo 'Commit WCR avgs: -> 0.509664 (cinch-k clean-up) -> 0.509284 (mark_tela) -> 0.509285 (cinch_k clean-up) -> 0.509289 (+block in cinch-k)' | tee -a corduroy.log
+echo 'Commit WCR avgs: -> 0.509284 (mark_tela) -> 0.509285 (cinch_k clean-up) -> 0.509289 (+block in cinch-k) -> 0.509280 (+2 cinch-k lines)' | tee -a corduroy.log
 echo
