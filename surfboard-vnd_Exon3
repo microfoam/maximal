@@ -5,9 +5,8 @@ fi
 
 for i in {1..1000}
 do
-	./maximal -RnXXY 640 waves/2019a/vnd_intronic-func_Dmel.txt
+	./maximal -Rn -X 2 -Y 956 waves/2019a/vnd_exonic-func_Dmel.txt
 done
 
 ./surfboard-checkmha
 
-grep -c XX vnd_intronic-func_Dmel.txt
