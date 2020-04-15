@@ -836,5 +836,5 @@ fi
 ./maximal -CKRnx waves/tubespit/seq-161-wuhCor1-03-synth2.txt
 
 ./surfboard-checkmha
-echo 'Commit WCR avgs: -> 0.504737 (extra tests +/-x, +/-C 816 total)' | tee -a Corduroy.log
+echo 'Commit WCR avgs: -> 0.504737 (extra tests +/-x, +/-C 816 total) -> 0.504314 (smarter ratcheting in settle_tiescores)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

@@ -1530,7 +1530,14 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 	int match = MATCH;
 	int transition = TRANSITION;
 	int lenseq = Clean.pass_W;
-	int max_count=0, ratchet=0;
+	int max_count=0, ratchet=0, ratchet_up=0, ratchet_dn=0;
+	unsigned short int nuctype = Clean.pass_V;
+	unsigned short int nuctransit = 0;
+	int up_score=0, dn_score=0;
+
+	if (nuctype == 1) {		/* IF DNA */
+		nuctransit = 1;
+	}
 
 	if (dev_print(TELA,__LINE__)) {
 		printf("settle_tiescores() engaged at n=%d, max_score=%d, iteration=%d.", n, max_score, iteration);
@@ -1538,40 +1545,57 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 
 	for (i=n; i<n+span; i++) {
 		if (tela[i].all_S == max_score) {
+			ratchet_up = ratchet_dn = ratchet = up_score = dn_score = 0;
 			k = tela[i].ok;
-			m = i-k;					/* DEFINES START OF FIRST REPEAT UNIT */
-			o = i+k*(tela[i].or-1);	/* DEFINES START OF LAST REPEAT UNIT */
-			up = m - k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AT m-1 */
-			dn = o + k*iteration;		/* DEFINES THE GHOST FLANKING UNIT STARTING AFTER REPEATS */
+			m = i-k;						/* DEFINES START OF FIRST REPEAT UNIT */
+			o = i+k*(tela[i].or-1);			/* DEFINES START OF LAST REPEAT UNIT */
+			up = m-1 - k*(iteration-1);		/* DEFINES THE GHOST FLANKING UNIT STARTING AT m-1, ADJUSTED FOR MOVING LEFTWARDS */
+			dn = o + k*iteration;			/* DEFINES THE GHOST FLANKING UNIT STARTING AFTER REPEATS */
 			for (j=0; j<k; j++) {
-				if (up+j >= 0 && tela[up+j].e == tela[m-k*(iteration-1)+j].e) {
-					if (tela[up+j].c == ambig.sym)
+				if (ratchet_up >= 0) {
+					if (up-j<0 || (nuctransit && tela[up-j].c == ambig.sym))
+						ratchet_up = -1;
+					else if (tela[up-j].c == tela[up-j+k].c) {
+						up_score += match;
+						ratchet_up++;
 						ratchet++;
-					else if (tela[up+j].c == tela[m-k*(iteration-1)+j].c) {
-						tela[i].all_Z += match;
+					}
+					else if (tela[up-j].e == tela[up-j+k].e){
+						up_score += transition;
+						ratchet_up++;
 						ratchet++;
 					}
 					else {
-						tela[i].all_Z += transition;
+						ratchet_up++;
 						ratchet++;
 					}
 				}
-				if (dn+j<=lenseq && tela[dn+j].e == tela[o+k*(iteration-1)+j].e) {
-					if (tela[dn+j].c == ambig.sym)
+				if (ratchet_dn >= 0) {
+					if (dn+j > lenseq || (nuctransit && tela[dn+j].c == ambig.sym))
+						ratchet_dn = -1;
+					else if (tela[dn+j].c == tela[dn+j-k].c) {
+						dn_score += match;
+						ratchet_dn++;
 						ratchet++;
-					else if (tela[dn+j].c == tela[o+k*(iteration-1)+j].c) {
-						tela[i].all_Z += match;
+					}
+					else if (tela[dn+j].e == tela[dn+j-k].e) {
+						dn_score += transition;
+						ratchet_dn++;
 						ratchet++;
 					}
 					else {
-						tela[i].all_Z += transition;
+						ratchet_dn++;
 						ratchet++;
 					}
 				}
 			}
+			if (ratchet_up == k)
+				tela[i].all_Z += up_score;
+			if (ratchet_dn == k)
+				tela[i].all_Z += dn_score;
 		}
 	}
-	if (!ratchet)		/* IF NO RATCHETING, THEN GHOST ITERATIONS ARE OUT-OF-BOUNDS AND UNEFFECTIVE TIE-BREAKERS */
+	if (!ratchet)		/* IF NO RATCHETING, THEN GHOST ITERATIONS ARE OUT-OF-BOUNDS AND INEFFECTIVE TIE-BREAKERS */
 		return(0);
 	max_score = tela[n].all_Z;
 	for (i=n+1; i<n+span; i++) {
@@ -1583,7 +1607,7 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 			max_count++;
 	}
 	if (max_count == 1) {				/* THERE IS ONE OPTIMAL CINCH LOCATION AND NO CONFLICT SO ERASE ALL OTHERS */
-		clearall_tela(n, span, max_score, TWO);		/* O-F-F, ONE, OR TWO */
+		clearall_tela(n, span, max_score, ONE);		/* O-F-F, ONE, OR TWO */
 		for (i=n; i<n+span; i++) {
 			if (tela[i].all_Z != max_score)
 				push_mem(i, 17);
