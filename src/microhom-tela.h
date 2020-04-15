@@ -1087,12 +1087,6 @@ int i=0, f=0;
 int width = 56;	    /* 60 x 3 = 180 COLS, PRACTICAL DISPLAY WIDTH DEPENDS ON SCREEN SIZE */
 int lenseq = Clean.pass_W;
 
-/*
-	if (a<0 || a>lenseq) 
-		a = 0;
-	if (b>lenseq)
-		b = lenseq;
-*/
 	a += OFFSET;
 	b += OFFSET;
 	if (b>lenseq && lenseq > b-a) {
@@ -1167,14 +1161,14 @@ int lenseq = Clean.pass_W;
 			else
 				printf("  .");
 		}
+		printf("\n y:");
+		for (i=a; i<=b; i++)
+			printf("%3d", tela[i].y);
+	
+		printf("\n x:");
+		for (i=a; i<=b; i++)
+			printf("%3d", tela[i].x);
 	}
-	printf("\n y:");
-	for (i=a; i<=b; i++)
-		printf("%3d", tela[i].y);
-
-	printf("\n x:");
-	for (i=a; i<=b; i++)
-		printf("%3d", tela[i].x);
 
 	printf("\nst:");
 	for (i=a; i<=b; i++) {
@@ -1545,7 +1539,7 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 
 	for (i=n; i<n+span; i++) {
 		if (tela[i].all_S == max_score) {
-			ratchet_up = ratchet_dn = ratchet = up_score = dn_score = 0;
+			ratchet_up = ratchet_dn = up_score = dn_score = 0;
 			k = tela[i].ok;
 			m = i-k;						/* DEFINES START OF FIRST REPEAT UNIT */
 			o = i+k*(tela[i].or-1);			/* DEFINES START OF LAST REPEAT UNIT */
