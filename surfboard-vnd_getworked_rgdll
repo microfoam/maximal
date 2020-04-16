@@ -8,21 +8,36 @@ fi
 
 for i in {1..2500}
 do
-	./maximal -Rn -X 2 waves/seals/vnd_ex3_Dmela.txt
-	./maximal -Rn -X 2 waves/seals/vnd_ex3_Dsimu.txt
-	./maximal -Rn -X 2 waves/seals/vnd_ex3_Derec.txt
-	./maximal -Rn -X 2 waves/seals/vnd_ex3_Dyaku.txt
-	./maximal -Rn -X 2 waves/seals/vnd_ex3_Dbiar.txt
-	./maximal -Rn -X 2 waves/seals/vnd_ex3_Dsuzu.txt
-	./maximal -Rn -X 2 waves/seals/vnd_ex3_Danan.txt
-	./maximal -Rn -X 2 waves/seals/vnd_ex3_Dbipe.txt
-	./maximal -Rn -X 2 waves/sharks/vnd_NEE_Dmela.txt
-	./maximal -Rn -X 2 waves/sharks/vnd_NEE_Dsimu.txt
-	./maximal -Rn -X 2 waves/sharks/vnd_NEE_Derec.txt
-	./maximal -Rn -X 2 waves/sharks/vnd_NEE_Dyaku.txt
-	./maximal -Rn -X 2 waves/sharks/vnd_NEE_Dbiar.txt
-	./maximal -Rn -X 2 waves/sharks/vnd_NEE_Dsuzu.txt
-	./maximal -Rn -X 2 waves/sharks/nab_DWME_Dmela.txt
+	./maximal -R -X 2 waves/seals/vnd_ex3_Dmela.txt
+	./maximal -R -X 2 waves/seals/vnd_ex3_Dsimu.txt
+	./maximal -R -X 2 waves/seals/vnd_ex3_Derec.txt
+	./maximal -R -X 2 waves/seals/vnd_ex3_Dyaku.txt
+	./maximal -R -X 2 waves/seals/vnd_ex3_Dbiar.txt
+	./maximal -R -X 2 waves/seals/vnd_ex3_Dsuzu.txt
+	./maximal -R -X 2 waves/seals/vnd_ex3_Danan.txt
+	./maximal -R -X 2 waves/seals/vnd_ex3_Dbipe.txt
+	./maximal -R -X 2 waves/sharks/vnd_NEE_Dmela.txt
+	./maximal -R -X 2 waves/sharks/vnd_NEE_Dsimu.txt
+	./maximal -R -X 2 waves/sharks/vnd_NEE_Derec.txt
+	./maximal -R -X 2 waves/sharks/vnd_NEE_Dyaku.txt
+	./maximal -R -X 2 waves/sharks/vnd_NEE_Dbiar.txt
+	./maximal -R -X 2 waves/sharks/vnd_NEE_Dsuzu.txt
+	./maximal -R -X 2 waves/sharks/nab_DWME_Dmela.txt
+	./maximal -Rx -X 2 waves/seals/vnd_ex3_Dmela.txt
+	./maximal -Rx -X 2 waves/seals/vnd_ex3_Dsimu.txt
+	./maximal -Rx -X 2 waves/seals/vnd_ex3_Derec.txt
+	./maximal -Rx -X 2 waves/seals/vnd_ex3_Dyaku.txt
+	./maximal -Rx -X 2 waves/seals/vnd_ex3_Dbiar.txt
+	./maximal -Rx -X 2 waves/seals/vnd_ex3_Dsuzu.txt
+	./maximal -Rx -X 2 waves/seals/vnd_ex3_Danan.txt
+	./maximal -Rx -X 2 waves/seals/vnd_ex3_Dbipe.txt
+	./maximal -Rx -X 2 waves/sharks/vnd_NEE_Dmela.txt
+	./maximal -Rx -X 2 waves/sharks/vnd_NEE_Dsimu.txt
+	./maximal -Rx -X 2 waves/sharks/vnd_NEE_Derec.txt
+	./maximal -Rx -X 2 waves/sharks/vnd_NEE_Dyaku.txt
+	./maximal -Rx -X 2 waves/sharks/vnd_NEE_Dbiar.txt
+	./maximal -Rx -X 2 waves/sharks/vnd_NEE_Dsuzu.txt
+	./maximal -Rx -X 2 waves/sharks/nab_DWME_Dmela.txt
 done
 
 ./surfboard-checkmha

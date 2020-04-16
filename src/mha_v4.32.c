@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 	int numarg=0;
 	int sumspan=0;
 	int homopoly_flag=0;
-	unsigned int FY_size = 100;				/* DEFAULT SIZE OF FISHER-YATES RANDOMIZED STRING */
+	unsigned int FY_size = 240;				/* DEFAULT SIZE OF FISHER-YATES RANDOMIZED STRING */
 
 	int homopolyend_flag=0, overslip=0, TRcheck = 0;
 	unsigned int recovery_flag = 0;
