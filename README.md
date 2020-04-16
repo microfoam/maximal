@@ -5,16 +5,20 @@ MHA methodology is philosophically-distinct from gapped alignment in embracing l
 As a prototype implementation of MHA, the current versions of maximal feature a rich set of run options in order to encourage a free, open-minded, heuristics-friendly development cycle.
 Program options can be seen by running ./maximal without any options specified.
 
-Version v4.31 is the most recent stable (development) version.
+Version v4.32 is the most recent stable (development) version.
 Version v3.64 is the version associated with the most recent preprint (see 'Pointbreak/' sub-directory).
-Version numbers represent convenient prototype program development versions that increase in steps of 0.01.
+There have been two distinct preprints in each of the last two springs (2018 cinch pathfinding, and 2019 axiomatic struct conversion I),
+and a new one is in preparation for Spring 2020 (axiomatic struct conversion II).
+
+Version numbers represent program development versions that increase in steps of 0.01.
 Version 4.00 is simply the 400th version in the development repository.
 We are 'pre-release' of the first official release, a little bit of the 'journey is the destination' with public access.
-Nonetheless, at this moment we can say that the construction work has moved up from the south-east and south-west and joined here,
-carried out by two great armies of workers, and some angels.
+Nonetheless, at this moment and this perspective, we can say that the construction work has moved up from the south-east and south-west and joined here,
+carried out by two great armies of workers, and some angels. 
 
 The file "maximal" currently corresponds to a MAC OS-compatible executible.
 Older code versions are saved in the "Pointbreak/" directory.
+Some of the file descriptions below may be a bit outdated but still convey the spirit of this project.
 
 _______________________________________________
 FILE: Surf_wavereport.(log|mha)
@@ -58,4 +62,4 @@ If this file is present it has record of newly identified "tricksy" strings with
 Typically, this file is committed after a -XX Fischer-Yates run and is named with additional version and run information.
 _______________________________________________
 
-*Last updated*: 1/31/2020
+*Last updated*: 4/15/2020
