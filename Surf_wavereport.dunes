@@ -1,20 +1,20 @@
-v4.32	Apr 15 15:44:50 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Apr 15 15:44:53 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (+) (  39 bp) REC:1000	M: 3	-
-v4.32	Apr 15 15:44:54 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (-) (  39 bp) REC:1000	M: 3	-
-v4.32	Apr 15 15:44:54 2020	 x0	1000	0.478	NDG: 0 	RND:	waves/tubespit/seq-154-v427_cycABs.txt (+) ( 138 bp) REC:1000	M: 4	bslip sum 160
-v4.32	Apr 15 15:44:56 2020	 x0	1000	0.250	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_b.txt (+) (  84 ch) REC:1000	M: 2	-
-v4.32	Apr 15 15:44:58 2020	 x0	1000	0.216	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_c.txt (+) ( 102 ch) REC:1000	M: 2	-
-v4.32	Apr 15 15:44:58 2020	 x0	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_d.txt (+) ( 121 ch) REC:1000	M:10	-
-v4.32	Apr 15 15:44:59 2020	 x0	1000	0.413	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_e.txt (+) ( 109 ch) REC:1000	M: 2	-
-v4.32	Apr 15 15:45:00 2020	 x0	1000	0.269	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_f.txt (+) ( 156 ch) REC:1000	M: 5	-
-v4.32	Apr 15 15:45:00 2020	 x1	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-033-imprf1.txt (+) (  66 bp) REC:1000	M: 2	-
-v4.32	Apr 15 15:45:01 2020	 x0	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-100-v343_10.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Apr 15 15:45:02 2020	 x0	1000	0.556	NDG: 0 	RND:	 waves/chowder/seq6-koslip-snippet.txt (+) (  27 bp) REC:1000	M: 5	-
-v4.32	Apr 15 15:45:03 2020	 x0	1000	0.273	NDG: 0 	RND:	        waves/chowder/abba_zabba_1.txt (+) (  11 ch) REC:1000	M: 1	-
-v4.32	Apr 15 15:45:03 2020	 x0	1000	0.136	NDG: 0 	RND:	        waves/chowder/abba_zabba_2.txt (+) (  22 ch) REC:1000	M: 2	-
-v4.32	Apr 15 15:45:04 2020	 x0	1000	0.273	NDG: 0 	RND:	        waves/chowder/abba_zabba_3.txt (+) (  11 ch) REC:1000	M: 1	-
-v4.32	Apr 15 15:45:04 2020	 x0	1000	0.136	NDG: 0 	RND:	        waves/chowder/abba_zabba_4.txt (+) (  22 ch) REC:1000	M: 2	-
-v4.32	Apr 15 15:45:05 2020	 x0	1000	0.471	NDG: 0 	RND:	       waves/chowder/seq26-snippet.txt (+) (  68 bp) REC:1000	M: 3	-
-v4.32	Apr 15 15:45:06 2020	 x0	1000	0.274	NDG: 0 	RND:	         waves/chowder/gal11-knot1.txt (+) ( 124 bp) REC:1000	M: 6	-
-v4.32	Apr 15 15:45:06 2020	 x0	1000	0.320	NDG: 0 	RND:	   waves/chowder/seq26-variations1.txt (+) (  75 bp) REC:1000	M: 4	-
-v4.32	Apr 15 15:45:07 2020	 x0	1000	0.297	NDG: 0 	RND:	   waves/chowder/seq26-variations2.txt (+) (  91 bp) REC:1000	M: 4	bslip sum 2
+v4.32	Apr 15 19:50:36 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.32	Apr 15 19:50:37 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (+) (  39 bp) REC:1000	M: 3	-
+v4.32	Apr 15 19:50:38 2020	 x0	1000	0.590	NDG: 0 	RND:	     waves/tubespit/seq-017-cycle5.txt (-) (  39 bp) REC:1000	M: 3	-
+v4.32	Apr 15 19:50:39 2020	 x0	1000	0.478	NDG: 0 	RND:	waves/tubespit/seq-154-v427_cycABs.txt (+) ( 138 bp) REC:1000	M: 4	bslip sum 160
+v4.32	Apr 15 19:50:39 2020	 x0	1000	0.250	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_b.txt (+) (  84 ch) REC:1000	M: 2	-
+v4.32	Apr 15 19:50:40 2020	 x0	1000	0.216	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_c.txt (+) ( 102 ch) REC:1000	M: 2	-
+v4.32	Apr 15 19:50:41 2020	 x0	1000	0.455	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_d.txt (+) ( 121 ch) REC:1000	M:10	-
+v4.32	Apr 15 19:50:41 2020	 x0	1000	0.413	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_e.txt (+) ( 109 ch) REC:1000	M: 2	-
+v4.32	Apr 15 19:50:42 2020	 x0	1000	0.269	NDG: 0 	RND:	     waves/tubespit/seq-000-orig_f.txt (+) ( 156 ch) REC:1000	M: 5	-
+v4.32	Apr 15 19:50:42 2020	 x1	1000	0.636	NDG: 0 	RND:	     waves/tubespit/seq-033-imprf1.txt (+) (  66 bp) REC:1000	M: 2	-
+v4.32	Apr 15 19:50:43 2020	 x0	1000	0.340	NDG: 0 	RND:	    waves/tubespit/seq-100-v343_10.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Apr 15 19:50:43 2020	 x0	1000	0.556	NDG: 0 	RND:	 waves/chowder/seq6-koslip-snippet.txt (+) (  27 bp) REC:1000	M: 5	-
+v4.32	Apr 15 19:50:44 2020	 x0	1000	0.273	NDG: 0 	RND:	        waves/chowder/abba_zabba_1.txt (+) (  11 ch) REC:1000	M: 1	-
+v4.32	Apr 15 19:50:45 2020	 x0	1000	0.136	NDG: 0 	RND:	        waves/chowder/abba_zabba_2.txt (+) (  22 ch) REC:1000	M: 2	-
+v4.32	Apr 15 19:50:46 2020	 x0	1000	0.273	NDG: 0 	RND:	        waves/chowder/abba_zabba_3.txt (+) (  11 ch) REC:1000	M: 1	-
+v4.32	Apr 15 19:50:46 2020	 x0	1000	0.136	NDG: 0 	RND:	        waves/chowder/abba_zabba_4.txt (+) (  22 ch) REC:1000	M: 2	-
+v4.32	Apr 15 19:50:47 2020	 x0	1000	0.471	NDG: 0 	RND:	       waves/chowder/seq26-snippet.txt (+) (  68 bp) REC:1000	M: 3	-
+v4.32	Apr 15 19:50:48 2020	 x0	1000	0.274	NDG: 0 	RND:	         waves/chowder/gal11-knot1.txt (+) ( 124 bp) REC:1000	M: 6	-
+v4.32	Apr 15 19:50:49 2020	 x0	1000	0.320	NDG: 0 	RND:	   waves/chowder/seq26-variations1.txt (+) (  75 bp) REC:1000	M: 4	-
+v4.32	Apr 15 19:50:50 2020	 x0	1000	0.297	NDG: 0 	RND:	   waves/chowder/seq26-variations2.txt (+) (  91 bp) REC:1000	M: 4	bslip sum 2

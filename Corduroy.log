@@ -27,8 +27,8 @@ Number of tests with checktransits:
 WCR AVERAGE: 0.37815
 
 First and last runs:
-v4.32	Apr 15 17:29:55 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Apr 15 17:29:59 2020	 x0	1000	0.297	NDG: 0 	RND:	   waves/chowder/seq26-variations2.txt (+) (  91 bp) REC:1000	M: 4	bslip sum 2
+v4.32	Apr 15 19:58:38 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.32	Apr 15 19:58:49 2020	 x0	1000	0.297	NDG: 0 	RND:	   waves/chowder/seq26-variations2.txt (+) (  91 bp) REC:1000	M: 4	bslip sum 2
 
 Tests with PASS < 1000:
 Tests with REC < 1000:
@@ -40,8 +40,8 @@ Line counts:
      107 src/microhom-devl.h
      113 src/microhom-skor.h
     1670 src/microhom-tela.h
-    1678 src/microhomology.h
-    6764 total
+    1715 src/microhomology.h
+    6801 total
 
 sand_dunes benchmark WCR average of 20: 0.37815
 
@@ -60,27 +60,25 @@ Number of tests completed:
 816
 
 Number of tests with PASS 1000:
-815
+816
 
 Number of tests with perfect 1-D recovery (REC:1000):
-815
+816
 
 Number of tests using nudging
-1
+0
 
 Number of tests with checktransits:
-1
+0
 
-WCR AVERAGE: 0.504314
+WCR AVERAGE: 0.503877
 
 First and last runs:
-v4.32	Apr 15 17:30:07 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	Apr 15 17:30:49 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
+v4.32	Apr 15 19:58:55 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.32	Apr 15 19:59:36 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
 
 Tests with PASS < 1000:
-v4.32	Apr 15 17:30:49 2020	 x1	-111	0.321	NDG: 1 	RND:	waves/tubespit/seq-158-WY20-snippet0.txt (+) (  84 bp) REC: 773	M: 3	checktransit=17 at n=9
 Tests with REC < 1000:
-v4.32	Apr 15 17:30:49 2020	 x1	-111	0.321	NDG: 1 	RND:	waves/tubespit/seq-158-WY20-snippet0.txt (+) (  84 bp) REC: 773	M: 3	checktransit=17 at n=9
 Tests canceled (shown with preceding runs for context):
 
 Line counts:
@@ -89,8 +87,8 @@ Line counts:
      107 src/microhom-devl.h
      113 src/microhom-skor.h
     1670 src/microhom-tela.h
-    1678 src/microhomology.h
-    6764 total
+    1715 src/microhomology.h
+    6801 total
 
-Commit WCR avgs: -> 0.504737 (extra tests +/-x, +/-C 816 total) -> 0.504314 (smarter ratcheting in settle_tiescores)
+Commit WCR avgs: ->0.504737 (extra tests 816 total) ->0.504314 (smart ratcheting settle_tiescores) ->0.503877 (check_fractals_in_imperfect)
 

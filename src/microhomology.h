@@ -264,7 +264,7 @@ char 				*nmer_prefix(int i);		/* CONVERTS INTEGER TO N-MER PREFIX WRITTEN NAME 
 void 				free_2D(int **p2D, int lenseq);
 struct segment 		makesegment(int top, int bottom);
 struct segment * 	makesnake(char *array, int height, int width, int w_plus_rattle, short unsigned int zcol);
-
+short unsigned int check_fractals_in_imperfect(int kmer, int n);
 
 #include "microhom-devl.h"	
 
@@ -1669,6 +1669,43 @@ void free_2D(int **p2D, int lenseq)
         free(p2D[row]); // free allocated memory
     }
     free(p2D);
+}
+
+/**************************************************************/
+short unsigned int check_fractals_in_imperfect(int kmer, int n) 
+{
+	int lenseq = Clean.pass_W;
+	int allowed_transits(int k);
+
+	if (kmer<6 || n<5 || n>lenseq-5) 	/* SIX NOT A M-A-G-I-C NUMBER; IS MATH B/C 2*3 = 6 */
+		return(0);
+	else {
+		int i, k;
+		int transits, max_transits;
+		for (k = kmer-3; k>2; k--) {
+			max_transits = allowed_transits(kmer);
+			if (kmer%k==0) {
+				int m = n-kmer;
+				transits = 0;
+
+				for (i=0; i<k; i++) {
+					if (tela[m+i].e != tela[m+k+i].e || tela[n+i].e != tela[n+k+i].e) 
+						return(0);		/* NOT IMPERFECT PARENT B/C BASED ON NON-TRANSIT MISMATCHES */
+					else if (tela[m+i].c == tela[m+k+i].c && tela[n+i].c == tela[n+k+i].c)
+						;
+					else if (transits<=max_transits) 
+						transits++;
+					else if (transits > max_transits) 
+						return(0);
+				}
+				if (i==k && transits && transits<=max_transits) 
+					return(1);			/* FLAG THAT IT IS THE CASE THAT THE PARENT IMPERFECT TR IS BASED ON SUB-FRACTAL TRs */
+				else 
+					return(0);
+			}
+		}
+		return(0);
+	}
 }
 
 #endif		/* !FILE_LOGY_SEEN */

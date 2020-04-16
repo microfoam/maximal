@@ -415,13 +415,13 @@ void push_tela_or(int n)
 int get_k2(int n, int k1, short unsigned int seqtype) 
 {
 	int lenseq = Clean.pass_W;
-	int i=0, m=0, k=0;
+	int i=0, m=0, k=0, transits=0;
+	int allowed_transits(int k);
 
 	if (n+k1 > lenseq+1)
 		return(0);
 	else if (seqtype==1 && k1-1>PISO) {
-		int maxtransits, transits;
-		int allowed_transits(int k);
+		int maxtransits=0;
 
 		for (k = k1-1; k>0; k--) {
 			m = n-k;
@@ -490,7 +490,7 @@ void mark_tela(void)
 		for (k=WIDTH; k>floor; k--) {
 			k2 = k1 = k_tmp=0;
 			if ((k_tmp=get_k2(n,k,nuctype))>floor) {
-				if (!tela[n].k1) {
+				if (!tela[n].k1 && !check_fractals_in_imperfect(k_tmp,n)) {
 					tela[n].k1 = k1 = k_tmp;
 					if ((k_tmp=get_k2(n,k1,nuctype))>floor) {
 						if (k_tmp==tela[n-1].k1 && k1%k_tmp==0) {
