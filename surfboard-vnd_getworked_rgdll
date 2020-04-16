@@ -6,7 +6,7 @@ if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
-for i in {1..50}
+for i in {1..2500}
 do
 	./maximal -Rn -X 2 waves/seals/vnd_ex3_Dmela.txt
 	./maximal -Rn -X 2 waves/seals/vnd_ex3_Dsimu.txt
