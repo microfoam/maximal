@@ -27,8 +27,8 @@ Number of tests with checktransits:
 WCR AVERAGE: 0.37815
 
 First and last runs:
-v4.32	Apr 15 19:58:38 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Apr 15 19:58:49 2020	 x0	1000	0.297	NDG: 0 	RND:	   waves/chowder/seq26-variations2.txt (+) (  91 bp) REC:1000	M: 4	bslip sum 2
+v4.32	Apr 16 11:35:13 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.32	Apr 16 11:35:21 2020	 x0	1000	0.297	NDG: 0 	RND:	   waves/chowder/seq26-variations2.txt (+) (  91 bp) REC:1000	M: 4	bslip sum 2
 
 Tests with PASS < 1000:
 Tests with REC < 1000:
@@ -74,8 +74,8 @@ Number of tests with checktransits:
 WCR AVERAGE: 0.503877
 
 First and last runs:
-v4.32	Apr 15 19:58:55 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	Apr 15 19:59:36 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
+v4.32	Apr 16 11:35:27 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.32	Apr 16 11:36:11 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
 
 Tests with PASS < 1000:
 Tests with REC < 1000:
