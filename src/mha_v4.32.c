@@ -235,7 +235,7 @@ int main(int argc, char *argv[])
 
 	/**************************************/
 	/* SET OPTIONS FROM ARGUMENTS  ********/
-	const char* optstring = "cdfg::hklm::noprstu::v::xzB::CDFHKLM::O::PRTX::Y:";
+	const char* optstring = "cdfg::hklm::noprstu::v::xzB::CDFHKLM::O::PRS::TX::Y:";
 	opterr=0;
 	int opt_count=0;	/* INDEX TO COUNT NUMBER OF OPTIONS */
 
@@ -377,6 +377,11 @@ int main(int argc, char *argv[])
 				break;
 		case 'R':						/* OPTION TO PRINT RECOVERED 1-D SEQUENCE FROM LAST 2-D */
 				opt_R.bit = 1;
+				break;
+		case 'S':						/* OPTION TO TAKE A NUMBER ARGUMENT THAT IS ADDED TO SEED GENERATOR */
+				opt_S.bit = 1;
+				numarg = atoi(optarg);
+				opt_S.val = numarg;
 				break;
 		case 'T':
 				opt_T.bit = 1;
@@ -586,7 +591,7 @@ int main(int argc, char *argv[])
 	}
 	else if (opt_X.bit) {		/* USE RANDOMIZED SEQUENCE */
 		strcpy(Seq_r, Seq);
-		srand(time(0));
+		srand( time(0) + opt_S.val );
 
 		if (opt_X.val == 1) {
 			mha_randomize1(Seq_r);

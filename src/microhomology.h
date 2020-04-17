@@ -130,7 +130,7 @@ struct {
 	opt_P = {0, 0, 'P', 	"Show Pathbox grid.                                             "},
 	opt_Q = {0, 0, 'Q', {0}},
 	opt_R = {0, 0, 'R', 	"Recover sequence from 2-D.                                     "},
-	opt_S = {0, 0, 'S', {0}},
+	opt_S = {0, 0, 'S', 	"Take a number argument that is added to random seed generator.*"},
 	opt_T = {0, 0, 'T', 	"Show diagonal threshold values for transitions scoring.        "},
 	opt_U = {0, 0, 'U', {0}},
 	opt_V = {0, 0, 'V', {0}},
