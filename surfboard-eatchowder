@@ -29,5 +29,9 @@ fi
 ./maximal -DKR waves/chowder/jetsam-12-Dbip_vnd_ex3_FY-100mer.txt
 ./maximal -DKR waves/chowder/jetsam-13-Dana_vnd_ex3_FY-100mer.txt
 ./maximal -DKR waves/chowder/jetsam-14-Dsuz_vnd_NEE_FY-100mer.txt
+./maximal -DKR waves/chowder/jetsam-15-Dana_vnd_ex3_FY-100mer.txt
+./maximal -DKR waves/chowder/jetsam-16-Dbip_vnd_ex3_FY-100mer.txt
+./maximal -DKR waves/chowder/jetsam-17-Dbia_vnd_NEE_FY-100mer.txt
+./maximal -DKR waves/chowder/jetsam-18-Dbip_vnd_ex3_FY-100mer.txt
 
 ./surfboard-checkmha
