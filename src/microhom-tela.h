@@ -907,6 +907,28 @@ void mark_tela(void)
 		}
 	}
 
+	/* IDENTIFY IRREDEMABLE CONFLICT ISLANDS IN THE SHADOW OF DOWNSTREAM CYCLING ISLANDS */
+	for (n=0; n<=lenseq; n++) {
+		if (tela[n].all_L && (k=tela[n].ok) && !tela[n-1].ok) {
+			m = n-k;
+			prev_k=0;	/* INITIALIZE TO ZERO STATE TO USE AS TEST FOR SETTING ONLY ONCE */
+			for (i=m+1; i<n; i++) {
+				if (!prev_k && tela[i].ok && tela[i].ok<k && k%tela[i].ok && i-tela[i].ok<m && tela[i].or<tela[n].or && tela[i].stat != st_fract.sym && tela[i].all_R==n) {
+					prev_k = tela[i].ok;			/* IDEA IS THAT PREV_K GETS ASSIGNED ONLY ONCE */
+					clearall_tela(i, 1, -1, TWO);	/* O-F-F, ONE, OR TWO */
+					push_mem(i, 16);				/* TEMP NUMERIC ASSIGNMENT */
+				}
+				else if (prev_k && tela[i].ok==prev_k && i-tela[i].ok<m && tela[i].stat != st_fract.sym && tela[i].all_R==n) {
+					clearall_tela(i, 1, -1, TWO);	/* O-F-F, ONE, OR TWO */
+					push_mem(i, 16);				/* TEMP NUMERIC ASSIGNMENT */
+				}
+				else if (prev_k && tela[i].ok != prev_k)
+					break;
+			}
+
+		}
+	}
+
 	/* IDENTIFY CYCLING ISLANDS WITHOUT CONFLICT AND DETERMINE TIE-BREAKER SCENARIOS */
 	/* IDENTIFY CYCLING ISLANDS WITH SOME TYPES OF CONFLICT AND RESOLVE PICK */
 	for (n=0; n<=lenseq; n++) {
