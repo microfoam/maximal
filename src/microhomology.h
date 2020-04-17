@@ -1633,7 +1633,7 @@ void print1D(void)
 				printf("%c", tela[i].echoes);
 			}
 			if (j+1 == blocks)
-				printf(" <==== (((( {  REVERB  } ))))");
+				printf(" <==== (((( {  REVERB  } ))))\n");
 			/**********************************************/
 			head_start = (j * par_wrap.set) % 10;
 			if (j+1 < blocks) {
