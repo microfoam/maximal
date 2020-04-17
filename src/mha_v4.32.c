@@ -1374,8 +1374,8 @@ int main(int argc, char *argv[])
 	
 						if (dev_print(MAIN,__LINE__)) {
 							p = (int) a2D_n; q = lenseq;
-							printf("\n               | via 2-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,p, TWO));
-							printf("\n               | via 1-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).\n", check_tela(0,q, ONE));
+							printf("| via 2-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,p, TWO));
+							printf("\n               | via 1-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,q, ONE));
 							printf("\n               | print_tela for k=%d and r=%d at n=%d.", k, r, n);
 							print_tela(prtela_A, prtela_B);
 						}
