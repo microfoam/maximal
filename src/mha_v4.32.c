@@ -1562,18 +1562,21 @@ int main(int argc, char *argv[])
 			l = 0;
 
 		if (l) {
-			warnhead('d');
+			warnhead('!');
 			printf("1-D sequence differs in length from 2-D recovered 1-D sequence by %d letter(s).\n", l); 
 		}
 
 		q = 0;	/* ADJUSTS LINE NUMBERS IF SEQS DIFFERENT LENGTHS */
+
 		for (j = 0; j < blocks; j++) {
 			printf("\n");
+
+			/********************************** PRINT 1-D SEQENCE ******************************************/
 			line_end(START, j+1, 0);	
 	   		for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && dashed_string[n] != Term->sym; n++) {
 				printf("%1c", dashed_string[n]);
 			}
-			if (tela[n].c == Term->sym) {
+			if (dashed_string[n] == Term->sym) {
 				printf("%1c", dashed_string[n]);  /* PRINTS TERMINAL CHARACTER */
 				if (opt_L.bit) 
 					line_end(END, lenseq, 0);
@@ -1591,6 +1594,7 @@ int main(int argc, char *argv[])
 					printf("\n");
 			}
 	
+			/********************************** PRINT ALIGNMENT LINES (| OR *)  ***************************/
 			line_end(SLIPS, j+1, 0);	
 	   		for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && n < m; n++) {
 				if (seqtype == 1 || seqtype == 2) {			/* IF DNA OR RNA */
@@ -1620,8 +1624,9 @@ int main(int argc, char *argv[])
 			}
 			printf("\n");
 	
+			/********************************** PRINT 2-D SEQENCE ******************************************/
 			line_end(START, j+1, 0);	
-	   		for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && recovered[n] != Term->sym; n++) {
+	   		for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && recovered[n] != Term->sym; n++) {
 				printf("%1c", recovered[n]);
 			}
 			if (recovered[n] == Term->sym) {
