@@ -948,14 +948,14 @@ char c;
 void mha_head(int lcl_width)
 {
 			 /*0123456789*/
-char h1[]=	"\n\n_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
-			    "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
-			    "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
-			    "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//";
-char h2[]=	"\n\n\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
-			    "\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
-			    "\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
-			    "\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_";
+char h1[]=	"\n_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
+			  "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
+			  "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
+			  "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//";
+char h2[]=	"\n\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
+			  "\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
+			  "\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
+			  "\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_";
 char *h_rule = h1;						/* DEFAULT BANNER STYLE */
 int min_len = 80;						/* MINIMUM LENGTH */
 int med_len = 12*(lcl_width/10);		/* MEDIUM LENGTH, SCALING */
@@ -1350,12 +1350,13 @@ short unsigned int lcl_opt_F;
 
 	if (c == lenseq && mmsites == 0) {
 		Current.pass_Q = 1000;	
+		print_section_spacer();
 		return(0);
 	}
 	else if (c == lenseq) {
 		Current.pass_Q = round((1000*(cinchwidth-mmsites))/cinchwidth);	
-		printf("\n This %d %s sequence was not auto-aligned correctly at this stage, but further cinching may fix it.\n", 
-						c, letr_unit);
+		printf("\n This %d %s sequence was not auto-aligned correctly at this stage, but further cinching may fix it.", c, letr_unit);
+		print_section_spacer();
 		return(Current.pass_Q);
 	}
 	else if (c < lenseq) {
@@ -1396,12 +1397,14 @@ short unsigned int lcl_opt_F;
 				}
 			}
 		}
+		print_section_spacer();
 		return(0);
 	}
 	else {
 		Current.pass_Q = round((1000*(cinchwidth-mmsites-(c-lenseq)))/cinchwidth);	
 		warnhead('+');
-		printf(" 2-D auto-alignment contains an extra %d %s(s)!\n\n", c-lenseq, letr_unit);
+		printf(" 2-D auto-alignment contains an extra %d %s(s)!", c-lenseq, letr_unit);
+		print_section_spacer();
 		return(0);
 	}
 }
@@ -1630,9 +1633,7 @@ void print1D(void)
 				printf("%c", tela[i].echoes);
 			}
 			if (j+1 == blocks)
-				printf(" <==== (((( {  REVERB  } ))))\n");
-			else
-				printf("\n");
+				printf(" <==== (((( {  REVERB  } ))))");
 			/**********************************************/
 			head_start = (j * par_wrap.set) % 10;
 			if (j+1 < blocks) {
@@ -1645,6 +1646,7 @@ void print1D(void)
 		}   /* END OF opt_l PRINT MODULE */ 
 
 	} /* END OF FOR j LOOP */
+	print_section_spacer();
 }
 
 /*************************/

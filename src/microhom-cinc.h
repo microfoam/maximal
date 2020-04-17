@@ -660,7 +660,7 @@ int *x_history = NULL;
 
 		if (cik_row > 0) {
 			mha_writeback(pathbox, align2D); 
-			printf("\n Next: cinch-k for k = %d...", k);
+			printf("\n Next: cinch-k for k = %d...\n", k);
 			print_2Dseq();
 		}
 
@@ -1086,7 +1086,6 @@ char blnk = Fill->sym;
 		if (!tot_repeats) {
 			Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
 		}
-		printf("\n");
 	}
 	else {
 		Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
