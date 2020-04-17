@@ -62,8 +62,9 @@ void dev_prompt(short unsigned int mode, int line_no, char *filename)
 		return;
 	}
 	else if (opt_D.bit) {	/* IF opt_D DEV_PROMPTS ON */
-		dev_linehead(mode, line_no);		
-		printf("Press <enter> to continue with '-x%d' run of %s (%c). ", opt_x.val, filename, Strand->sym);
+		if (opt_v.val>1)
+			dev_linehead(mode, line_no);		
+		printf("\nPress <enter> to continue with '-x%d' run of %s (%c). ", opt_x.val, filename, Strand->sym);
 		getchar();
 		return;
 	}

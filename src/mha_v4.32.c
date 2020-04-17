@@ -537,7 +537,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	/***************************************************************************/
-	Clean.pass_V = seqtype = cleanseq(Seq);	/* opt_D: STORES SEQTYPE: 1=DNA, 2=RNA, 3=PROTEIN, 0=OTHER */
+	Clean.pass_V = seqtype = cleanseq(Seq);	/* SEQTYPE: 1=DNA, 2=RNA, 3=PROTEIN, 0=OTHER */
 	lenseq = strlen(Seq);
 	Clean.pass_W = Current.pass_W = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT */
 
