@@ -264,7 +264,8 @@ char 				*nmer_prefix(int i);		/* CONVERTS INTEGER TO N-MER PREFIX WRITTEN NAME 
 void 				free_2D(int **p2D, int lenseq);
 struct segment 		makesegment(int top, int bottom);
 struct segment * 	makesnake(char *array, int height, int width, int w_plus_rattle, short unsigned int zcol);
-short unsigned int check_fractals_in_imperfect(int kmer, int n);
+short unsigned int 	check_fractals_in_imperfect(int kmer, int n);
+void 				print_section_spacer(void);
 
 #include "microhom-devl.h"	
 
@@ -1706,6 +1707,12 @@ short unsigned int check_fractals_in_imperfect(int kmer, int n)
 		}
 		return(0);
 	}
+}
+
+/**************************************************/
+/* TO CONTROL SPACING BETWEEN SECTIONS UNIFORMLY. */
+void print_section_spacer(void) {
+	printf("\n\n");
 }
 
 #endif		/* !FILE_LOGY_SEEN */

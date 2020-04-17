@@ -1526,7 +1526,9 @@ int main(int argc, char *argv[])
 	/********** 8. RECOVER_1D*************************************************/
 	/* OPTION TO PRINT VALUES OF RECOVERED 1-D ALIGN BOX *********************/
 
-	if (opt_R.bit) { 
+	if (!opt_R.bit)	
+		printf("\n");
+	else { 
 		printf("\nChecking 1-D recovery from 2-D self-MHA:\n");
 
 		char dashed_string[MAXROW+WIDTH] = {0};
@@ -1645,20 +1647,18 @@ int main(int argc, char *argv[])
 					printf("\n");
 			}
 		} /* END OF FOR j LOOP */
-		printf("\n");
 
 		Recover.pass_W = recover_char;			/* STORE NUMBER OF RECOVERED CHARACTERS */
 
 		if (recovery_flag) {		/* LAST ROW OF array2D WILL STORE CONSENSUS, SO NEED TO KEEP CLEAR */
-			warnhead('R');
-			printf("Imperfect recovery of 1-D sequence from 2-D self-MHA.\n");
 			Recover.pass_Q = 1000*(lenseq-recovery_flag)/lenseq;
 		}
 		else {
 			line_end(SLIPS, 0, 0);
-			printf("Perfect recovery of 1-D sequence.\n");
 			Recover.pass_Q = 1000; 
+			printf("\n   Perfect recovery of 1-D sequence.");
 		}
+		print_section_spacer();
 	} /* END of opt_R */
 
 	/* PRINT OPTION FOR K-MER REPORT AFTER cinch_t **********************/
@@ -1672,22 +1672,24 @@ int main(int argc, char *argv[])
 			printf(" %smers:%3d \n", nmer_prefix(i), slips[i]);
 		for (i = 11; i <= WIDTH; i++)
 			printf(" %d-mers:%2d\n", i, slips[i]);
+
+		print_section_spacer();
 	}
 	/***************************************************************************/
 
 	if (seqtype == 3 && opt_x.bit && opt_v.bit)
 		print_protein_waxes();
 
+	printf("\nWidth cinch history for ");
 	if (seqtype == 1)		
-		printf(   "\n   PASS      Width cinch history for %s (DNA)\n", Seq_head);
+		printf("%s (DNA)", Seq_head);
 	else if (seqtype==2)	
-		printf(   "\n   PASS      Width cinch history for %s (RNA)\n", Seq_head);
+		printf("%s (RNA)", Seq_head);
 	else if (seqtype==3)	
-		printf(   "\n   PASS      Width cinch history for %s (PROTEIN)\n", Seq_head);
+		printf("%s (PROTEIN)", Seq_head);
 	else if (seqtype==0)
-		printf(   "\n   PASS      Width cinch history for %s (BABYLONIAN)\n", Seq_head);
-	else
-		printf(   "\n   PASS      Width cinch history:\n");
+		printf("%s (BABYLONIAN)", Seq_head);
+	printf(":\n\n PASS QUAL.      2-D WIDTH\n");
 
 	for (i = 0; i<8 && Cinches[i]->pass_W != '\0'; i++) {
 		printf("  %5d       => %4d ", Cinches[i]->pass_Q, Cinches[i]->pass_W);
