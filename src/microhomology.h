@@ -1525,7 +1525,7 @@ void usage(char *usage_version)
 void warnhead(char l)
 { 
 /*	printf("%c", 7); */	/* BELL CHARACTER */
-	printf("\n\n  * Notice (%c): ", l);
+	printf("\n  * Notice (%c): ", l);
 } 
 
 /*************************************************************************************************/

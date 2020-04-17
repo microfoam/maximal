@@ -913,7 +913,8 @@ void mark_tela(void)
 			m = n-k;
 			prev_k=0;	/* INITIALIZE TO ZERO STATE TO USE AS TEST FOR SETTING ONLY ONCE */
 			for (i=m+1; i<n; i++) {
-				if (!prev_k && tela[i].ok && tela[i].ok<k && k%tela[i].ok && i-tela[i].ok<m && tela[i].or<tela[n].or && tela[i].stat != st_fract.sym && tela[i].all_R==n) {
+				if (!prev_k && tela[i].ok && tela[i].ok<k && k%tela[i].ok && i-tela[i].ok<m && tela[i].stat != st_fract.sym && tela[i].all_R==n) {
+					printf("\n\n**** n=%d, k=%d, i=%d.\n\n",n,k,i);
 					prev_k = tela[i].ok;			/* IDEA IS THAT PREV_K GETS ASSIGNED ONLY ONCE */
 					clearall_tela(i, 1, -1, TWO);	/* O-F-F, ONE, OR TWO */
 					push_mem(i, 16);				/* TEMP NUMERIC ASSIGNMENT */
@@ -925,7 +926,6 @@ void mark_tela(void)
 				else if (prev_k && tela[i].ok != prev_k)
 					break;
 			}
-
 		}
 	}
 

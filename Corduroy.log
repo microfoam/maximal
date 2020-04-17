@@ -7,16 +7,16 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 Number of tests initiated:
-21
+22
 
 Number of tests completed:
-21
+22
 
 Number of tests with PASS 1000:
-21
+22
 
 Number of tests with perfect 1-D recovery (REC:1000):
-21
+22
 
 Number of tests using nudging
 0
@@ -24,11 +24,11 @@ Number of tests using nudging
 Number of tests with checktransits:
 0
 
-WCR AVERAGE: 0.378476
+WCR AVERAGE: 0.378318
 
 First and last runs:
-v4.32	Apr 17 15:51:02 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Apr 17 15:51:11 2020	 x0	1000	0.385	NDG: 0 	RND:	   waves/chowder/jetsam-01-snippet.txt (+) (  26 bp) REC:1000	M: 2	-
+v4.32	Apr 17 17:11:38 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.32	Apr 17 17:11:42 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/jetsam-03-snippet.txt (+) (  16 bp) REC:1000	M: 2	-
 
 Tests with PASS < 1000:
 Tests with REC < 1000:
@@ -39,11 +39,11 @@ Line counts:
     1266 src/microhom-cinc.h
      108 src/microhom-devl.h
      113 src/microhom-skor.h
-    1692 src/microhom-tela.h
+    1693 src/microhom-tela.h
     1724 src/microhomology.h
-    6844 total
+    6845 total
 
-sand_dunes benchmark WCR average of 21: 0.378476
+sand_dunes benchmark WCR average of 22: 0.378318
 
 
                                                < cleanup_set_all >
@@ -66,16 +66,16 @@ Number of tests with perfect 1-D recovery (REC:1000):
 816
 
 Number of tests using nudging
-0
+1
 
 Number of tests with checktransits:
 0
 
-WCR AVERAGE: 0.503952
+WCR AVERAGE: 0.504404
 
 First and last runs:
-v4.32	Apr 17 15:51:31 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	Apr 17 15:52:13 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
+v4.32	Apr 17 17:11:51 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.32	Apr 17 17:12:32 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
 
 Tests with PASS < 1000:
 Tests with REC < 1000:
@@ -86,9 +86,54 @@ Line counts:
     1266 src/microhom-cinc.h
      108 src/microhom-devl.h
      113 src/microhom-skor.h
-    1692 src/microhom-tela.h
+    1693 src/microhom-tela.h
     1724 src/microhomology.h
-    6844 total
+    6845 total
 
-Commit WCR avgs: ->0.504314 (smart ratcheting settle_tiescores) ->0.503877 (check_fractals_in_imperfect) ->0.503952 (jetsam mark_tela)
+Commit WCR avgs: ->0.504314 (smart ratcheting settle_ties) ->0.503877 (check_fractals_in_imp) ->0.503952->0.504404 (jetsam mark_tela)
+
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+Number of tests initiated:
+16
+
+Number of tests completed:
+16
+
+Number of tests with PASS 1000:
+15
+
+Number of tests with perfect 1-D recovery (REC:1000):
+15
+
+Number of tests using nudging
+1
+
+Number of tests with checktransits:
+0
+
+WCR AVERAGE: 0.475625
+
+First and last runs:
+v4.32	Apr 17 17:12:46 2020	 x0	1000	0.510	NDG: 0 	RND:	waves/chowder/jetsam-03-Dsuz_vnd_NEE_FY-100mer.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Apr 17 17:12:52 2020	 x0	1000	0.460	NDG: 0 	RND:	waves/chowder/jetsam-18-Dbip_vnd_ex3_FY-100mer.txt (+) ( 100 bp) REC:1000	M: 2	-
+
+Tests with PASS < 1000:
+v4.32	Apr 17 17:12:48 2020	 x0	 947	0.440	NDG: 1 	RND:	waves/chowder/jetsam-05-Dana_vnd_ex3_FY-100mer.txt (+) ( 100 bp) REC: 970	M: 2	bslip sum 2
+Tests with REC < 1000:
+v4.32	Apr 17 17:12:48 2020	 x0	 947	0.440	NDG: 1 	RND:	waves/chowder/jetsam-05-Dana_vnd_ex3_FY-100mer.txt (+) ( 100 bp) REC: 970	M: 2	bslip sum 2
+Tests canceled (shown with preceding runs for context):
+
+Line counts:
+    1941 src/mha_v4.32.c
+    1266 src/microhom-cinc.h
+     108 src/microhom-devl.h
+     113 src/microhom-skor.h
+    1693 src/microhom-tela.h
+    1724 src/microhomology.h
+    6845 total
 

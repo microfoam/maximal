@@ -1,2 +1,2 @@
->jetsam-01-snippet_Target-0.385
+>Target-0.385_jetsam-01-snippet
 ACACTGCACCACCCACCCACAgGCGC
