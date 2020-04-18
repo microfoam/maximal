@@ -913,8 +913,8 @@ void mark_tela(void)
 			m = n-k;
 			prev_k=0;	/* INITIALIZE TO ZERO STATE TO USE AS TEST FOR SETTING ONLY ONCE */
 
-			for (i=m+1; i<n; i++) {
-				if (nuctype<3 && !prev_k && tela[i].ok && tela[i].ok<k && !(k%3) && !(tela[i].ok%3)) {
+			for (i=m+1; i<n; i++) {		/* THE THREE BELOW IS ONLY A SEMI-MAGIC NUMBER; IS BASED ON WEIRD TRIPLET CODING ORF PATTERNS */
+				if (nuctype && nuctype<3 && !prev_k && tela[i].ok && tela[i].ok<k && !(k%3) && !(tela[i].ok%3)) {
 					clearall_tela(n, 1, -1, TWO);	/* O-F-F, ONE, OR TWO */
 					push_mem(n, 15);				/* TEMP NUMERIC ASSIGNMENT */
 					while (tela[n+1].ok == k) {
