@@ -30,12 +30,17 @@ echo 'First and last runs:'
 head -n 1 Surf_wavereport.log
 tail -n 1 Surf_wavereport.log
 echo
+echo 'Tests canceled (if any, w/ preceding run for context):'
+grep -B1 Canceled Surf_wavereport.log | sed '/^--$/d'
+echo
 echo 'Tests with PASS < 1000 (if any):'
 grep ^v Surf_wavereport.log | grep -vE '\t1000' 
+echo
 echo 'Tests with REC. < 1000 (if any):'
 grep ^v Surf_wavereport.log | grep -vE 'REC:1000' 
-echo 'Tests canceled (if any, shown w/ preceding run for context):'
-grep -B1 Canceled Surf_wavereport.log | sed '/^--$/d'
+echo
+echo 'Tests with nudging (if any):'
+grep ^v Surf_wavereport.log | grep -vE 'NDG: 0' 
 echo
 echo 'Line counts:'
 wc -l src/*.c src/*.h
