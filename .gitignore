@@ -1,5 +1,5 @@
 # maximal-specific ignores
-local-tmp/*
+local-tmp/**
 
 # Prerequisites
 *.d
