@@ -1918,7 +1918,7 @@ int main(int argc, char *argv[])
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
-		if (Current.pass_Q != 1000 || Nudge.pass_R > CYCMAX) {
+		if (Current.pass_Q != 1000 || Nudge.pass_R) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
 			fprintf(fp_tricksy, "v%s\t%.20s\t x%d\t%4d\t%.3f\tNDG:%2d \tRND:-%.*s\t%s (%c) (%d %s) REC:%4d\t%s\n", 
 					version, time0+4, opt_x.val, Current.pass_Q, ratio1, Nudge.pass_R, opt_X.val, "XX", 
