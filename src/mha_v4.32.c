@@ -337,7 +337,7 @@ int main(int argc, char *argv[])
 		case 'C':						/* OPTION TO USE REVERSE COMPLEMENT */
 				opt_C.bit = 1;
 				break;
-		case 'D':
+		case 'D':						/* OPTION TO ENGAGE dev_prompt USER PAUSES WHERE EVER dev_prompt() IS CALLED */
 				opt_D.bit = 1;
 				break;
 		case 'F':						/* OPTION TO USE BLANK FILL CHAR W/ SCRIMMAGELINE */
@@ -391,9 +391,8 @@ int main(int argc, char *argv[])
 				numarg = atoi(optarg);
 				if (numarg<2 && !(opt_X.val))
 					opt_X.val = 1;
-				else {
+				else 
 					opt_X.val = 2;
-				}
 				break;
 		case 'Y':						/* OPTION TO SPECIFY FY_size	*/
 				opt_Y.bit = 1;
@@ -477,12 +476,10 @@ int main(int argc, char *argv[])
 		if (opt_M.bit) 
 			printf(" -M %d", opt_M.bit);	/* opt_M.val is a multiple of opt_M.bit, which is command arg */
 		if (opt_X.bit) {
-			if (opt_X.val==1) {
+			if (opt_X.val==1) 
 				printf(" -X 1 (using pseudo-random shuffling)");
-			}
-			else {
+			else 
 				printf(" -X 2 (using Fisher-Yates shuffling)");
-			}
 		}
 	}
 	else 
@@ -580,24 +577,27 @@ int main(int argc, char *argv[])
 		Seq_r[lenseq] = Term->sym;
 		strcpy(Seq, Seq_r);
 		if (opt_v.bit) {			/* opt_v VERBOSITY */
-			printf("\nReverse complement: \n\"");
+			if (seqtype==1 || seqtype==2)
+				printf("\nReverse complement: \n\"");
+			else
+				printf("\nReverse sequence: \n\"");
+
 			for (i = 0; i<lenseq; i++)
 				printf("%c", Seq_r[i]);
+
 			printf("\"\n");
 		}
-		Seq = Seq_r;
-		if (opt_X.bit)
-			opt_X.bit = opt_X.val = 0;		/* USE RANDOMIZED SEQUENCE DISABLED IF R.C. REQUESTED */
+		strcpy(Seq, Seq_r);
 	}
-	else if (opt_X.bit) {		/* USE RANDOMIZED SEQUENCE */
+
+	if (opt_X.bit) {		/* USE RANDOMIZED SEQUENCE */
 		strcpy(Seq_r, Seq);
 		srand( time(0) + opt_S.val );
 
-		if (opt_X.val == 1) {
-			mha_randomize1(Seq_r);
-		}
+		if (opt_X.val == 1) 
+			mha_randomize1(Seq_r);				/* lenseq will be the same */
 		else {
-			mha_randomize2(Seq_r, FY_size);
+			mha_randomize2(Seq_r, FY_size);		/* lenseq will be either default FY_SIZE or user-specified */
 			lenseq = Clean.pass_W = FY_size;
 		}
 
@@ -606,7 +606,7 @@ int main(int argc, char *argv[])
 			printf("%c", Seq_r[i]);
 		}
 		printf("\"\n");
-		Seq = Seq_r;
+		strcpy(Seq, Seq_r);
 	}
 
 	Start.pass_Q = 1000;

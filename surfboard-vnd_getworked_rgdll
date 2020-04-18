@@ -5,24 +5,27 @@ echo '                                               < vnd_getworked_ragdoll >' 
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
+if [ -f waves/foam_and_chowder.mha ]; then
+        rm waves/foam_and_chowder.mha
+fi
 
 for i in {1..2500}
 do
-	./maximal -Rn -X 2 -S $i waves/seals/vnd_ex3_Dmela.txt
-	./maximal -Rn -X 2 -S $i waves/seals/vnd_ex3_Dsimu.txt
-	./maximal -Rn -X 2 -S $i waves/seals/vnd_ex3_Derec.txt
-	./maximal -Rn -X 2 -S $i waves/seals/vnd_ex3_Dyaku.txt
-	./maximal -Rn -X 2 -S $i waves/seals/vnd_ex3_Dbiar.txt
-	./maximal -Rn -X 2 -S $i waves/seals/vnd_ex3_Danan.txt
-	./maximal -Rn -X 2 -S $i waves/sharks/vnd_NEE_Dmela.txt
-	./maximal -Rn -X 2 -S $i waves/sharks/vnd_NEE_Dsimu.txt
-	./maximal -Rn -X 2 -S $i waves/sharks/vnd_NEE_Derec.txt
-	./maximal -Rn -X 2 -S $i waves/sharks/vnd_NEE_Dyaku.txt
-	./maximal -Rn -X 2 -S $i waves/sharks/vnd_NEE_Dbiar.txt
-	./maximal -Rn -X 2 -S $i waves/sharks/vnd_NEE_Dsuzu.txt
-	./maximal -Rn -X 2 -S $i waves/sharks/nab_DWME_Dmela.txt
-	./maximal -Rn -X 2 -S $i waves/seals/vnd_ex3_Dbipe.txt
-	./maximal -Rn -X 2 -S $i waves/seals/vnd_ex3_Dsuzu.txt
+	./maximal -Rn  -X 2 -S $i waves/seals/vnd_ex3_Dmela.txt
+	./maximal -Rn  -X 2 -S $i waves/seals/vnd_ex3_Derec.txt
+	./maximal -Rn  -X 2 -S $i waves/seals/vnd_ex3_Dbiar.txt
+	./maximal -Rn  -X 2 -S $i waves/seals/vnd_ex3_Danan.txt
+	./maximal -Rn  -X 2 -S $i waves/sharks/nab_DWME_Dmela.txt
+	./maximal -Rn  -X 2 -S $i waves/sharks/vnd_NEE_Dmela.txt
+	./maximal -Rn  -X 2 -S $i waves/sharks/vnd_NEE_Derec.txt
+	./maximal -Rn  -X 2 -S $i waves/sharks/vnd_NEE_Dbiar.txt
+	./maximal -RnC -X 2 -S $i waves/seals/vnd_ex3_Dsimu.txt
+	./maximal -RnC -X 2 -S $i waves/seals/vnd_ex3_Dyaku.txt
+	./maximal -RnC -X 2 -S $i waves/seals/vnd_ex3_Dsuzu.txt
+	./maximal -RnC -X 2 -S $i waves/seals/vnd_ex3_Dbipe.txt
+	./maximal -RnC -X 2 -S $i waves/sharks/vnd_NEE_Dsimu.txt
+	./maximal -RnC -X 2 -S $i waves/sharks/vnd_NEE_Dyaku.txt
+	./maximal -RnC -X 2 -S $i waves/sharks/vnd_NEE_Dsuzu.txt
 done
 
 ./surfboard-checkmha
