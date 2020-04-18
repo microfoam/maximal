@@ -6,22 +6,22 @@ echo '\\\_M                                                                     
 echo '\\\\\_H                                                                                            \v/                        '
 echo '\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._'
 echo '```````^:^````````                                                                                 /|\                        '
-echo 'Number of tests initiated:'
+echo 'Number of tests initiated:         ' | tr -d "\n"
 grep -c waves Surf_wavereport.log
 echo
-echo 'Number of tests completed:'
+echo 'Number of tests completed:         ' | tr -d "\n"
 grep -cE '^v' Surf_wavereport.log
 echo
-echo 'Number of tests with PASS 1000:'
+echo 'Number of tests w/ PASS 1000:      ' | tr -d "\n"
 grep -cE '\t1000' Surf_wavereport.log 
 echo
-echo 'Number of tests with perfect 1-D recovery (REC:1000):'
+echo 'Number of tests w/  REC 1000:      ' | tr -d "\n"
 grep -cE 'C.1000' Surf_wavereport.log 
 echo
-echo 'Number of tests using nudging'
-grep -cE -v 'NDG: 0' Surf_wavereport.log 
+echo 'Number of tests w/ nudging:        ' | tr -d "\n"
+grep -cE -v 'NDG: 0' Surf_wavereport.log
 echo
-echo 'Number of tests with checktransits:'
+echo 'Number of tests w/ checktransits:  ' | tr -d "\n"
 grep -cE 'checktransit' Surf_wavereport.log 
 echo
 awk -F'[\t]' '{sum+=$5} END {print "WCR AVERAGE: " sum/NR}' Surf_wavereport.log 
