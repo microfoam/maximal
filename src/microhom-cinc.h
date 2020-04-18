@@ -590,7 +590,6 @@ int *x_history = NULL;
 				if (nuctransit && keep_checking && col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)<0 && col_isclear(align2D,n+k-1,m,1)>0) 
 					keep_checking = imperfect_TR = 0;
 
-
 				/**************************************************************************************************/
 				if (keep_checking || imperfect_TR) {
 					if (k>0 && dev_print(CINCH,__LINE__)) {

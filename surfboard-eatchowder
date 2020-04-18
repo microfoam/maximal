@@ -15,6 +15,6 @@ fi
 
 
 # DIAGNOSTIC TESTS START ON LINE 21
-./maximal -DKR waves/chowder/jetsam-05-Dana_vnd_ex3_FY-100mer.txt
+./maximal -DKR waves/chowder/snippet-jetsam-05.txt
 
 ./surfboard-checkmha
