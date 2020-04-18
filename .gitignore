@@ -1,3 +1,6 @@
+# maximal-specific ignores
+local-tmp/
+
 # Prerequisites
 *.d
 
