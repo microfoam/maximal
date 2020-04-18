@@ -1,3 +1,18 @@
+The file 'foam_and_chowder.log' is the standard output file for program runs that 
+finish with <1000 for either pass quality or recovery of perfect 1-D 
+sequence from the 2-D alignment. Most recently, 'maximal' has been set to also
+write runs requiring nudging, now that maximal is rarely encountering sequences
+it cannot handle. We consider nudging to be a stop-gap tool to recover from errors
+in 2-D alignment columns, but not the preferred solution. The preferred solution 
+is to not produce the errors in the first place. This is why they are now considered
+minor chowder bits to work on.
+
+The file 'foam_and_chowder.ragdoll' is a collation of the unsorted chowder produced
+after running the ragdoll script ('surfboard_vnd_getworked_rgdll').
+
+-AJE April 18th, 2020 (COVID-bound in the sun room).
+
+
 F.A.Q. for the 'maximal/waves/' directory 
 
 ********************************************************
