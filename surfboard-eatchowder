@@ -13,8 +13,50 @@ if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
+# Solved but leaving here as a temporary record:
+./maximal -DKRn waves/chowder/flotsam_06F.txt
+./maximal -DKRn waves/chowder/flotsam_09F.txt
+./maximal -DKRn waves/chowder/flotsam_15F.txt
+./maximal -DKRn waves/chowder/flotsam_22R.txt
+./maximal -DKRn waves/chowder/flotsam_26R.txt
+./maximal -DKRn waves/chowder/flotsam_27R.txt
+./maximal -DKRn waves/chowder/flotsam_32R.txt
+./maximal -DKRn waves/chowder/flotsam_33F.txt
+./maximal -DKRn waves/chowder/flotsam_38F.txt
 
-# DIAGNOSTIC TESTS START ON LINE 21
-./maximal -DKR waves/chowder/snippet-jetsam-05.txt
+# EXTANT CHOWDER STARTS BELOW
+./maximal -DKRn waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt 
+./maximal -DKRn waves/chowder/jetsam-05-Dana_vnd_ex3_FY-100mer.txt 
+./maximal -DKRn waves/chowder/snippet-jetsam-05.txt
+./maximal -DKRn waves/chowder/flotsam_01F.txt
+./maximal -DKRn waves/chowder/flotsam_02F.txt
+./maximal -DKRn waves/chowder/flotsam_03F.txt
+./maximal -DKRn waves/chowder/flotsam_04F.txt
+./maximal -DKRn waves/chowder/flotsam_05F.txt
+./maximal -DKRn waves/chowder/flotsam_07F.txt
+./maximal -DKRn waves/chowder/flotsam_08F.txt
+./maximal -DKRn waves/chowder/flotsam_10F.txt
+./maximal -DKRn waves/chowder/flotsam_11F.txt
+./maximal -DKRn waves/chowder/flotsam_12F.txt
+./maximal -DKRn waves/chowder/flotsam_13F.txt
+./maximal -DKRn waves/chowder/flotsam_14F.txt
+./maximal -DKRn waves/chowder/flotsam_16F.txt
+./maximal -DKRn waves/chowder/flotsam_17F.txt
+./maximal -DKRn waves/chowder/flotsam_18F.txt
+./maximal -DKRn waves/chowder/flotsam_19F.txt
+./maximal -DKRn waves/chowder/flotsam_20R.txt
+./maximal -DKRn waves/chowder/flotsam_21R.txt
+./maximal -DKRn waves/chowder/flotsam_23R.txt
+./maximal -DKRn waves/chowder/flotsam_24R.txt
+./maximal -DKRn waves/chowder/flotsam_25R.txt
+./maximal -DKRn waves/chowder/flotsam_28F.txt
+./maximal -DKRn waves/chowder/flotsam_29R.txt
+./maximal -DKRn waves/chowder/flotsam_30R.txt
+./maximal -DKRn waves/chowder/flotsam_31R.txt
+./maximal -DKRn waves/chowder/flotsam_34R.txt
+./maximal -DKRn waves/chowder/flotsam_35R.txt
+./maximal -DKRn waves/chowder/flotsam_36R.txt
+./maximal -DKRn waves/chowder/flotsam_37F.txt
+./maximal -DKRn waves/chowder/flotsam_39F.txt
 
 ./surfboard-checkmha
