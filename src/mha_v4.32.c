@@ -1682,13 +1682,13 @@ int main(int argc, char *argv[])
 
 	printf("Width cinch history for ");
 	if (seqtype == 1)		
-		printf("%s (DNA)", Seq_head);
+		printf("%s (DNA sequence)", Seq_head);
 	else if (seqtype==2)	
-		printf("%s (RNA)", Seq_head);
+		printf("%s (RNA sequence)", Seq_head);
 	else if (seqtype==3)	
-		printf("%s (PROTEIN)", Seq_head);
+		printf("%s (protein sequence)", Seq_head);
 	else if (seqtype==0)
-		printf("%s (BABYLONIAN)", Seq_head);
+		printf("%s (non-biological sequence)", Seq_head);
 	printf(":\n\n PASS QUAL.      2-D WIDTH\n");
 
 	for (i = 0; i<8 && Cinches[i]->pass_W != '\0'; i++) {
