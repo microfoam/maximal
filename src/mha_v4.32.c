@@ -154,7 +154,9 @@ int main(int argc, char *argv[])
 					fscanf(file_ptr, "%[^!]c", Seq_i);
 					fclose (file_ptr);
 					strcpy(file_name, argv[i]);
-					printf("\n %2d. Detecting sequence from file: '%s'.", ++j, file_name);
+					
+					if (opt_v.bit)
+						printf("\n %2d. Detecting sequence from file: '%s'.", ++j, file_name);
 	
 					/* CHECK FOR FASTA HEADER AND SAVE IN Seq_head, THEN MASK IN Seq */
 					if (Seq_i[0] == fastahead.sym) {
@@ -495,9 +497,10 @@ int main(int argc, char *argv[])
 
 	if (opt_p.bit) {		/* opt_p SHOW RUN PARAMETERS */
 		printf("\nParameters");
-		printf("\n Match: %d\n Transition: %d\n Mismatch: %d\n Bandwidth: %d\n Default block width: %d\n Transition matching floor: k-mers > %d\n",  
-				 match, transition, mismatch, WIDTH, par_wrap.set, PISO);
-		printf("\nFisher-Yates length: %d", FY_size);
+		printf("\n Match: %d\n Transition: %d\n Mismatch: %d\n Bandwidth: %d\n Default block width: %d",  
+				 match, transition, mismatch, WIDTH, par_wrap.set);
+		printf("\n Transitions threshold: k > %d", PISO);
+		printf("\n Fisher-Yates length: %d \t(Change with '-Y #' argument on command line.)", FY_size);
 		if (opt_u.val == 1) {
 			printf("\n * Print width increased by 10 columns.\n");
 		}
@@ -1499,10 +1502,10 @@ int main(int argc, char *argv[])
 
 	if (dev_print(MAIN,__LINE__)) {
 		if (nuctransit) {
-			printf("Pre-cinch_d report (p = perfect, i = imperfect tandem repeat):");
+			printf("Pre-cinch_d report (p = perfect, i = imperfect tandem repeat):\n");
 		}
 		else {
-			printf("Pre-cinch_d report:");
+			printf("Pre-cinch_d report:\n");
 		}
 	}
 	intraTR_reps = cinch_d(0);

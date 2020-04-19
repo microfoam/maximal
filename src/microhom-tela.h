@@ -1086,7 +1086,7 @@ void mark_tela(void)
 	Cinch_T.pass_V = max_k;  
 
 	if (opt_D.val==1 || dev_print(TELA,__LINE__)) {
-		printf("\nPre-marking of tela completed as shown below. (Change OFFSET definition in 'src/microhom-devl.h' to shift print_tela window.)\n");
+		printf("\n\nPre-marking of tela completed as shown below. (To shift output window, change OFFSET definition in 'src/microhom-devl.h'.)\n");
 		print_tela(prtela_A, prtela_B);
 	}
 }
