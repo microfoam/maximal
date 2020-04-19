@@ -18,28 +18,28 @@ fi
 
 
 # DIAGNOSTIC TESTS START ON LINE 21
-./maximal -DKRn  waves/tubespit/seq-017-variant.txt
-./maximal -DKRn  waves/tubespit/seq-017-cycle5.txt
-./maximal -DKRnC waves/tubespit/seq-017-cycle5.txt
-./maximal -DKRn  waves/tubespit/seq-154-v427_cycABs.txt
-./maximal -DKR   waves/tubespit/seq-000-orig_b.txt 
-./maximal -DKRn  waves/tubespit/seq-000-orig_c.txt 
-./maximal -DKR   waves/tubespit/seq-000-orig_d.txt 
-./maximal -DKR   waves/tubespit/seq-000-orig_e.txt 
-./maximal -DKR   waves/tubespit/seq-000-orig_f.txt 
-./maximal -DKRx  waves/tubespit/seq-033-imprf1.txt 
-./maximal -DKR   waves/tubespit/seq-100-v343_10.txt 
-./maximal -DKRn  waves/chowder/seq6-koslip-snippet.txt 
-./maximal -DKRn  waves/chowder/abba_zabba_1.txt 
-./maximal -DKRn  waves/chowder/abba_zabba_2.txt 
-./maximal -DKRn  waves/chowder/abba_zabba_3.txt 
-./maximal -DKRn  waves/chowder/abba_zabba_4.txt 
-./maximal -DKR   waves/chowder/seq26-snippet.txt 
-./maximal -DKR   waves/chowder/gal11-knot1.txt 
-./maximal -DKR   waves/chowder/seq26-variations1.txt 
-./maximal -DKR   waves/chowder/seq26-variations2.txt 
-./maximal -DKRn  waves/chowder/snippet-jetsam-01.txt 
-./maximal -DKRn  waves/chowder/snippet-jetsam-03.txt 
+./maximal -D 8 -KRn  waves/tubespit/seq-017-variant.txt
+./maximal -D 8 -KRn  waves/tubespit/seq-017-cycle5.txt
+./maximal -D 8 -KRnC waves/tubespit/seq-017-cycle5.txt
+./maximal -D 8 -KRn  waves/tubespit/seq-154-v427_cycABs.txt
+./maximal -D 8 -KR   waves/tubespit/seq-000-orig_b.txt 
+./maximal -D 8 -KRn  waves/tubespit/seq-000-orig_c.txt 
+./maximal -D 8 -KR   waves/tubespit/seq-000-orig_d.txt 
+./maximal -D 8 -KR   waves/tubespit/seq-000-orig_e.txt 
+./maximal -D 8 -KR   waves/tubespit/seq-000-orig_f.txt 
+./maximal -D 8 -KRx  waves/tubespit/seq-033-imprf1.txt 
+./maximal -D 8 -KR   waves/tubespit/seq-100-v343_10.txt 
+./maximal -D 8 -KRn  waves/chowder/seq6-koslip-snippet.txt 
+./maximal -D 8 -KRn  waves/chowder/abba_zabba_1.txt 
+./maximal -D 8 -KRn  waves/chowder/abba_zabba_2.txt 
+./maximal -D 8 -KRn  waves/chowder/abba_zabba_3.txt 
+./maximal -D 8 -KRn  waves/chowder/abba_zabba_4.txt 
+./maximal -D 8 -KR   waves/chowder/seq26-snippet.txt 
+./maximal -D 8 -KR   waves/chowder/gal11-knot1.txt 
+./maximal -D 8 -KR   waves/chowder/seq26-variations1.txt 
+./maximal -D 8 -KR   waves/chowder/seq26-variations2.txt 
+./maximal -D 8 -KRn  waves/chowder/snippet-jetsam-01.txt 
+./maximal -D 8 -KRn  waves/chowder/snippet-jetsam-03.txt 
 
 ./surfboard-checkmha
 echo 'sand_dunes benchmark WCR average of 22: 0.378318' | tee -a Corduroy.log
