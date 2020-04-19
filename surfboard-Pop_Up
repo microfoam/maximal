@@ -2,8 +2,8 @@
 
 #clear
 echo
-echo 'Tri-fin dawn patrol: Compiling maximal v4.32.' | tee -a Corduroy.log
-echo >> Corduroy.log
+echo 'Tri-fin dawn patrol: Compiling maximal v4.32.' | tee -a Corduroy.*
+echo | tee -a Corduroy.*
 echo '                                                                                                            '
 echo '.~.                                                                                                         '
 echo '///_M                                                                                                       '
