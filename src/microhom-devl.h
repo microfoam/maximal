@@ -64,8 +64,10 @@ void dev_prompt(short unsigned int mode, int line_no, char *filename)
 	else if (opt_D.bit) {	/* IF opt_D DEV_PROMPTS ON */
 		if (opt_v.val>1)
 			dev_linehead(mode, line_no);		
-		printf("\nPress <enter> to continue with '-x%d' run of %s (%c). ", opt_x.val, filename, Strand->sym);
-		getchar();
+		printf("\nPress <enter> to continue with '-x%d' run of %s (%c), or enter 'q' to quit.\n Choice: ", opt_x.val, filename, Strand->sym);
+		char key=getchar();
+		if (key=='q' || key=='Q')
+			exit(17);
 		return;
 	}
 }
