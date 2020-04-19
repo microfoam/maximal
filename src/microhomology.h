@@ -107,15 +107,15 @@ struct {
 	opt_s = {0, 0, 's', 	"Silence writing to normal output file ('Surf_wavereport.mha'). "},
 	opt_t = {0, 0, 't', 	"Skip cinch-t module and proceed to remaining modules.          "},
 	opt_u = {0, 0, 'u', 	"Unwrap display of 2-D output (adds 10 columns to wrap).*       "},
-	opt_v = {0, 0, 'v', 	"Increment verbosity level.***                                  "},
+	opt_v = {0, 0, 'v', 	"Increment verbosity level.*3                                   "},
 	opt_w = {0, 0, 'w', {0}},
 	opt_x = {0, 0, 'x', 	"Reduce thresholds for transition matching by one.              "},
 	opt_y = {0, 0, 'y', {0}},
 	opt_z = {0, 0, 'z', 	"Set mismatch score from default to zero (visible in Pathbox).  "},
 	opt_A = {0, 0, 'A', {0}},
-	opt_B = {0, 0, 'B', 	"Reset blank character (default '.') to space (' ').****        "},
+	opt_B = {0, 0, 'B', 	"Reset blank character (default '.') to space (' ').*4          "},
 	opt_C = {0, 0, 'C', 	"Use the reverse complement (- strand) or reverse as allowed.   "},
-	opt_D = {0, 0, 'D', 	"Turn on program development prompts (user-controlled pauses).  "},
+	opt_D = {0, 0, 'D', 	"Turn on program development prompts (user-controlled pauses).*8"},
 	opt_E = {0, 0, 'E', {0}},
 	opt_F = {0, 0, 'F', 	"Fill recessed line ends with spacer marks as a visual aid.     "},
 	opt_G = {0, 0, 'G', {0}},
@@ -126,7 +126,7 @@ struct {
 	opt_L = {0, 0, 'L', 	"Show 1-D locations at line ends.                               "},
 	opt_M = {0,10, 'M', 	"Double the default wrap length for long homomonomer tracts.*   "},
 	opt_N = {0, 0, 'N', {0}},
-	opt_O = {0, 0, 'O', 	"Append 2-D alignment to consensus file or raw input file.**    "},
+	opt_O = {0, 0, 'O', 	"Append 2-D alignment to consensus file or raw input file.*2    "},
 	opt_P = {0, 0, 'P', 	"Show Pathbox grid.                                             "},
 	opt_Q = {0, 0, 'Q', {0}},
 	opt_R = {0, 0, 'R', 	"Recover sequence from 2-D.                                     "},
@@ -135,7 +135,7 @@ struct {
 	opt_U = {0, 0, 'U', {0}},
 	opt_V = {0, 0, 'V', {0}},
 	opt_W = {0, 0, 'W', {0}},
-	opt_X = {0, 0, 'X', 	"Scramble sequence with basic or Fisher-Yates randomization.**  "},
+	opt_X = {0, 0, 'X', 	"Scramble sequence with basic or Fisher-Yates randomization.*2  "},
 	opt_Y = {0, 0, 'Y', 	"Set Fisher-Yates length (FY_size) specified by run argument.   "},
 	opt_Z = {0, 0, 'Z', {0}};
                            /*.........|.........|.........|.........|.........|.........|...X*/	
@@ -1514,9 +1514,8 @@ void usage(char *usage_version)
 			printf("\n\t\t -%c\t%s",Options[i]->sym, Options[i]->description);
 	}
 	printf("\n\n");
-	printf("   *  This option takes an optional number argument with a monotonically-increasing effect.\n");
-	printf(" (**) This option takes an optional number argument specifying which mode to use.\n");
-	printf("      The number of modes is indicated by the number of asterisks.\n");
+	printf("  *   This option takes an optional number argument with a monotonically-increasing effect.\n");
+	printf("  *#  This option takes an optional number argument specifying which mode to use among a set of size #.\n");
 	printf("\n Usage examples: ./maximal -v  sequence_file.txt              [Run in verbose user mode]");
 	printf("\n                 ./maximal -Kn sequence_file.txt -X 2 -Y 800  [Show consensus row; no relax-2D; Fisher-Yates scrambled to length 800 bp]\n");
 	printf("\n Citations:");

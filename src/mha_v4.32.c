@@ -235,7 +235,7 @@ int main(int argc, char *argv[])
 
 	/**************************************/
 	/* SET OPTIONS FROM ARGUMENTS  ********/
-	const char* optstring = "cdfg::hklm::noprstu::v::xzB::CDFHKLM::O::PRS::TX::Y:";
+	const char* optstring = "cdfg::hklm::noprstu::v::xzB::CD::FHKLM::O::PRS::TX::Y:";
 	opterr=0;
 	int opt_count=0;	/* INDEX TO COUNT NUMBER OF OPTIONS */
 
@@ -337,8 +337,13 @@ int main(int argc, char *argv[])
 		case 'C':						/* OPTION TO USE REVERSE COMPLEMENT */
 				opt_C.bit = 1;
 				break;
-		case 'D':						/* OPTION TO ENGAGE dev_prompt USER PAUSES WHERE EVER dev_prompt() IS CALLED */
+		case 'D':						/* OPTION TO ENGAGE dev_prompt USER PAUSES AT STAGE SPECIFIED BY VAL ARG */
 				opt_D.bit = 1;
+				numarg = atoi(optarg);
+				if (numarg>8 || !numarg)
+					opt_D.val = 8;		/* PROMPT AT THE VERY END; USEFUL FOR INSPECTING EACH RUN IN A SERIES CALLED BY A SCRIPT */	
+				else
+					opt_D.val = numarg;
 				break;
 		case 'F':						/* OPTION TO USE BLANK FILL CHAR W/ SCRIMMAGELINE */
 				opt_F.bit = 1;
@@ -637,6 +642,8 @@ int main(int argc, char *argv[])
 	}
 	mark_tela();			/* WILL MARK ALL TRs WITHOUT CINCHING AND RECORD IN tela[].ok, or, all_S, all_L/R */
 	Clean.pass_Q = 1000;	/* mark_tela() is completed; used to count half a pass for print_tela() */
+	if (opt_D.val==1)
+		dev_prompt(MAIN,__LINE__,file_name); 
 
 	if (opt_t.bit) {
 		strcpy(align2D[0],Seq);
@@ -1442,6 +1449,8 @@ int main(int argc, char *argv[])
 	if (recoverlen()==lenseq) {
 		update_tela();
 	}
+	if (opt_D.val==2)
+		dev_prompt(MAIN,__LINE__,file_name); 
 
 	/********** 3. cinch_l MODULE: WRAPS HOMOPOLYMERIC RUNS IF >= 20 (2 * wrap VAR.) ********/
 	++Current.pass_V;
@@ -1451,6 +1460,8 @@ int main(int argc, char *argv[])
 		print_2Dseq();
 
 	Cinch_L.pass_Q = Current.pass_Q;
+	if (opt_D.val==3)
+		dev_prompt(MAIN,__LINE__,file_name); 
 
 	/********* 4. cinch_k MODULE: HANDLES k-mers FROM SIZE WIDTH DOWN TO k=1 ***********/
 	++Current.pass_V;
@@ -1461,6 +1472,8 @@ int main(int argc, char *argv[])
 	if (dev_print(MAIN,__LINE__)) {
 		print_tela(prtela_A, prtela_B);
 	}
+	if (opt_D.val==4)
+		dev_prompt(MAIN,__LINE__,file_name); 
 
 	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT ***************/
 	i = ++Current.pass_V;
@@ -1478,6 +1491,8 @@ int main(int argc, char *argv[])
 		Cinches[i]->pass_W = Cinches[i-1]->pass_W;
 	}
 	Nudge.pass_Q = Current.pass_Q;
+	if (opt_D.val==5)
+		dev_prompt(MAIN,__LINE__,file_name); 
 
 	/********* 6. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
 	++Current.pass_V;
@@ -1505,6 +1520,8 @@ int main(int argc, char *argv[])
 		Cinch_D.pass_V = Cinch_D.pass_R;
 	}
 	Cinch_D.pass_Q = Current.pass_Q;
+	if (opt_D.val==6)
+		dev_prompt(MAIN,__LINE__,file_name); 
 
 	/********* 7. relax_2D MODULE: DE-CINCHES HOMOPOLYMER RUNS IF THEY DID NOT AID CINCH-D *******/
 	if (!opt_n.bit) {		/* opt_n DO NOT DO RELAX-2D */
@@ -1523,6 +1540,9 @@ int main(int argc, char *argv[])
 			print_2Dseq();
 		Relax.pass_Q = Current.pass_Q;
 	}	
+	if (opt_D.val==7)
+		dev_prompt(MAIN,__LINE__,file_name); 
+
 
 	/********** 8. RECOVER_1D*************************************************/
 	/* OPTION TO PRINT VALUES OF RECOVERED 1-D ALIGN BOX *********************/
@@ -1931,7 +1951,8 @@ int main(int argc, char *argv[])
 			fclose(fp_tricksy);
 		}
 	}
-	dev_prompt(MAIN,__LINE__,file_name); 
+	if (opt_D.val==8)
+		dev_prompt(MAIN,__LINE__,file_name); 
 
 	return(EXIT_GOOD);	/* Exit main(). */
 } 

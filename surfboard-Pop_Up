@@ -2,7 +2,7 @@
 
 #clear
 echo
-echo 'Tri-fin dawn patrol: Compiling maximal v4.32.' | tee -a Corduroy.*
+echo 'Tri-fin dawn patrol: Compiling maximal v4.32.' | tee -a Corduroy.log
 echo | tee -a Corduroy.*
 echo '                                                                                                            '
 echo '.~.                                                                                                         '
