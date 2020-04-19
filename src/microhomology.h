@@ -950,20 +950,22 @@ char c;
 /*****************************************************************************************/
 void mha_head(int lcl_width)
 {
-			 /*0123456789*/
+/*
 char h1[]=	"\n_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
 			  "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
-			  "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//"
 			  "_MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//__MHA___//";
+*/
+char h1[]=	"\n__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),"
+			  "__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),"
+			  "__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),__mha__/O)),";
 char h2[]=	"\n\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
-			  "\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
 			  "\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_"
 			  "\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_\\____//^_";
 char *h_rule = h1;						/* DEFAULT BANNER STYLE */
-int min_len = 80;						/* MINIMUM LENGTH */
+/*int min_len = 80;*/					/* MINIMUM LENGTH */
 int med_len = 12*(lcl_width/10);		/* MEDIUM LENGTH, SCALING */
 int max_len = par_wrap.set+8;			/* MAXIMUM LENGTH */
-int hr_len = min_len;					/* DEFAULT LENGTH OF HEADER BANNER */
+int hr_len = max_len;					/* DEFAULT LENGTH OF HEADER BANNER */
 
 	if (lcl_width > MAXROW && dev_print(LOGY, __LINE__)) {
 		printf("Bad news bears: Unexpectedly, lcl_width > MAXROW. Current.pass_V=%d, lcl_width=%d.\n", Current.pass_V, lcl_width);

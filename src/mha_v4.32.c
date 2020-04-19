@@ -460,9 +460,10 @@ int main(int argc, char *argv[])
 		warnhead('S');
 		printf("No sequences specfied. Using example sequence.");
 	}
-		
-	mha_head(par_wrap.set);
-	printf("micro homology alignment (MHA) ");
+	
+	printf("\n");	
+	mha_head(par_wrap.set+8);
+	printf("micro-homology alignment (MHA) ");
 	if (opt_count) {
 		printf("-");
 		for (i = 1; i < 53; i++) {			/* UPPER-CASE LETTER OPTIONS */
