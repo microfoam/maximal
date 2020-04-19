@@ -926,6 +926,16 @@ void mark_tela(void)
 				}
 
 				if (!prev_k && tela[i].ok && tela[i].ok<k && k%tela[i].ok && i-tela[i].ok<m && tela[i].stat != st_fract.sym && tela[i].all_R==n) {
+					while (tela[i-1].ok==tela[i].ok) {
+						i--;
+						if (tela[i].all_S>tela[n].all_S) {
+							prev_k = -1;	/* USING AS FLAG TO BREAK OUT OF BOTH WHILE LOOP AND FOR LOOP THROUGH SHADOW */
+							break; 
+						}
+					}
+					if (prev_k<0)
+						break;				/* BREAK OUT OF FOR LOOP THROUGH SHADOW */
+
 					prev_k = tela[i].ok;			/* IDEA IS THAT PREV_K GETS ASSIGNED ONLY ONCE */
 					clearall_tela(i, 1, -1, ONE);	/* O-F-F, ONE, OR TWO */
 					push_mem(i, 16);				/* TEMP NUMERIC ASSIGNMENT */

@@ -1,4 +1,7 @@
 #!/bin/bash
+echo >> Corduroy.log
+echo '                                               < eatchowder >' >> Corduroy.log
+
 
 while getopts c option
 do
@@ -17,6 +20,7 @@ fi
 ./maximal -DKRn waves/chowder/flotsam_06F.txt
 ./maximal -DKRn waves/chowder/flotsam_09F.txt
 ./maximal -DKRn waves/chowder/flotsam_15F.txt
+./maximal -DKRn waves/chowder/flotsam_16F.txt
 ./maximal -DKRn waves/chowder/flotsam_22R.txt
 ./maximal -DKRn waves/chowder/flotsam_26R.txt
 ./maximal -DKRn waves/chowder/flotsam_27R.txt
@@ -40,7 +44,6 @@ fi
 ./maximal -DKRn waves/chowder/flotsam_12F.txt
 ./maximal -DKRn waves/chowder/flotsam_13F.txt
 ./maximal -DKRn waves/chowder/flotsam_14F.txt
-./maximal -DKRn waves/chowder/flotsam_16F.txt
 ./maximal -DKRn waves/chowder/flotsam_17F.txt
 ./maximal -DKRn waves/chowder/flotsam_18F.txt
 ./maximal -DKRn waves/chowder/flotsam_19F.txt
