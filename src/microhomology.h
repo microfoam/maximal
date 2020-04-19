@@ -231,6 +231,7 @@ char dev_notes[32] = "-";      		    /* STRING WRITTEN AS LAST FIELD IN OUTPUT F
 short unsigned int cinchled=0;			/* BIT FLAG FOR CINCH-L WRAPS */
 char letr_unit[4] = {0};				/* UNIT STRING: "bp" FOR DNA, "nt" FOR RNA, 'aa' FOR PROTEINS, 'ch' FOR ALL OTHER; SET IN MAIN() */
 FILE *fp_out;                           /* FILE FOR OUTPUT.LOG */
+int nudgecolmem = -1;					/* LAST NUDGE COLUMN */
 
 void 				clear_2D_ar(char wipe_align2D[][MAXROW]);
 void 				clear_right(char swipe_align2D[][MAXROW]);
@@ -657,6 +658,8 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 						if (nudge_row==0) {
 							nudge_row=m;
 							nudge_col=n;
+							if (nudgecolmem<0)
+								nudgecolmem = n;
 							if (nuctransit && (conletr=='R' || conletr=='Y')) {
 								if      (conletr=='R') {
 									while (nudge_row <= height && con_align2D[nudge_row][nudge_col]!='A' && con_align2D[nudge_row][nudge_col]!='G')

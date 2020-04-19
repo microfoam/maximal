@@ -1736,11 +1736,11 @@ int main(int argc, char *argv[])
 				printf("%s post nudgelize [pass #5]\n", letr_unit);
 			else if (Nudge.pass_R == 1) {	
 				if (Nudge.pass_V == 3)
-					printf("%s post nudgelize [pass #5: one nudge was required]\n", letr_unit);
+					printf("%s post nudgelize [pass #5: one nudge was required at column %d]\n", letr_unit, nudgecolmem+1);
 			}
 			else {	/* IN WHICH CASE k WILL BE NON-ZERO */
 				if (Nudge.pass_V == 3)
-					printf("%s post nudgelize [pass #5: %d nudges were required]\n", letr_unit, Nudge.pass_R);
+					printf("%s post nudgelize [pass #5: %d nudges were required at column %d]\n", letr_unit, Nudge.pass_R, nudgecolmem+1);
 			}
 			break;
 		case 6:	
