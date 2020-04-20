@@ -27,11 +27,11 @@ fi
 ./maximal -D 8 -KRn waves/chowder/flotsam_32R.txt
 ./maximal -D 8 -KRn waves/chowder/flotsam_33F.txt
 ./maximal -D 8 -KRn waves/chowder/flotsam_38F.txt
+./maximal -D 8 -KRn waves/chowder/jetsam-05-Dana_vnd_ex3_FY-100mer.txt 
+./maximal -D 8 -KRn waves/chowder/snippet-jetsam-05.txt
 
 # EXTANT CHOWDER STARTS BELOW
 ./maximal -D 8 -KRn waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt 
-./maximal -D 8 -KRn waves/chowder/jetsam-05-Dana_vnd_ex3_FY-100mer.txt 
-./maximal -D 8 -KRn waves/chowder/snippet-jetsam-05.txt
 ./maximal -D 8 -KRn waves/chowder/flotsam_01F.txt
 ./maximal -D 8 -KRn waves/chowder/flotsam_02F.txt
 ./maximal -D 8 -KRn waves/chowder/flotsam_03F.txt

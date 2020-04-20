@@ -930,6 +930,10 @@ void mark_tela(void)
 						i--;
 						if (tela[i].all_S>tela[n].all_S) {
 							prev_k = -1;	/* USING AS FLAG TO BREAK OUT OF BOTH WHILE LOOP AND FOR LOOP THROUGH SHADOW */
+							if (tela[n].k2) {
+								clearall_tela(n, 1, -1, ONE);	/* O-F-F, ONE, OR TWO */
+								push_mem(n, 15);				/* TEMP NUMERIC ASSIGNMENT */
+							}
 							break; 
 						}
 					}
