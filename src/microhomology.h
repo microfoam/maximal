@@ -1207,12 +1207,9 @@ short unsigned int lcl_opt_F;
 	if (opt_B.val > 1)
 		tick = blnk;
 
-	if (cinchwidth > MAXROW && dev_print(LOGY,__LINE__)) {
+	if (cinchwidth > MAXROW && dev_print(LOGY,__LINE__)) 
 		printf("Bad news bears: Unexpectedly, cinchwidth > MAXROW. cinchwidth=%d", cinchwidth);
-	}
-	if (cinchwidth > MAXROW && dev_print(LOGY,__LINE__)) {
-		printf("Bad news bears: Unexpectedly, cinchwidth > MAXROW. cinchwidth=%d.", cinchwidth);
-	}
+	
 	mha_head(cinchwidth);
 
 	blocks2D = count_wrap_blocks(cinchwidth, linewrap);
