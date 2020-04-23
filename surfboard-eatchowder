@@ -2,6 +2,8 @@
 echo >> Corduroy.log
 echo '                                               < eatchowder >' >> Corduroy.log
 
+answer="n"
+
 while getopts c option
 do
 case "${option}"
@@ -15,59 +17,83 @@ if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
+	./maximal -D 8 -KRn waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt 
+	./maximal -D 8 -KRn waves/chowder/flotsam_42F.txt
 # EXTANT CHOWDER STARTS BELOW; FIRST GROUP CINCH-T, SECOND CINCH-K
-./maximal -D 8 -KRn waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt 
-./maximal -D 8 -KRn waves/chowder/flotsam_24R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_30R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_01F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_03F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_08F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_17F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_20R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_23R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_29R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_37F.txt
+tput bel
+echo
+echo "$0: Hit <enter> to run the cinch-t nudged runs, or enter 'q' to quit script entirely."
+read -s -n1 answer
+if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
+	exit 1
+else
+	./maximal -D 8 -KRn waves/chowder/flotsam_24R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_30R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_01F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_03F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_08F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_17F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_20R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_23R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_29R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_37F.txt
+fi
 
-./maximal -D 8 -KRn waves/chowder/flotsam_42F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_02F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_04F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_05F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_07F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_10F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_11F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_12F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_13F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_14F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_18F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_19F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_21R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_25R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_28F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_31R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_34R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_35R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_36R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_39F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_40R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_41R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_43R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_44R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_45F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_46R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_47R.txt
+tput bel
+echo
+echo "$0: Hit <enter> to run the cinch-k nudged runs. Or, enter 'q' to quit script entirely."
+read -s -n1 answer
+if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
+	exit 1
+else
+	./maximal -D 8 -KRn waves/chowder/flotsam_02F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_04F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_05F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_07F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_10F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_11F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_12F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_13F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_14F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_18F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_19F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_21R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_25R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_28F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_31R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_34R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_35R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_36R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_39F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_40R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_41R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_43R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_44R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_45F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_46R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_47R.txt
+fi
 
 # Solved but leaving here to keep track of their status:
-./maximal -D 8 -KRn waves/chowder/flotsam_06F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_09F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_15F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_16F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_22R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_26R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_27R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_32R.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_33F.txt
-./maximal -D 8 -KRn waves/chowder/flotsam_38F.txt
-./maximal -D 8 -KRn waves/chowder/jetsam-05-Dana_vnd_ex3_FY-100mer.txt 
-./maximal -D 8 -KRn waves/chowder/snippet-jetsam-05.txt
+tput bel
+echo
+echo "$0: Hit <enter> to run the solved chowder runs. Or, enter 'q' to quit script entirely."
+read -s -n1 answer
+if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
+	exit 1
+else
+	./maximal -D 8 -KRn waves/chowder/flotsam_06F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_09F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_15F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_16F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_22R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_26R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_27R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_32R.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_33F.txt
+	./maximal -D 8 -KRn waves/chowder/flotsam_38F.txt
+	./maximal -D 8 -KRn waves/chowder/jetsam-05-Dana_vnd_ex3_FY-100mer.txt 
+	./maximal -D 8 -KRn waves/chowder/snippet-jetsam-05.txt
+fi
 
 ./surfboard-checkmha
