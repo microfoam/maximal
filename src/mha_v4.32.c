@@ -135,6 +135,7 @@ int main(int argc, char *argv[])
 
 	/* IS THERE A FILE NAME ARGUMENT? */
 	for (i = 1; i < argc; i++) {
+		j=0;	/* count for line numbers */
 		if (*argv[i] != '-' && !(isdigit(*argv[i]))) {
 			if (strcmp(argv[i],"TUBES.mha")) {		/* strcmp EVALUATES TO 0 ONLY IF STRINGS ARE THE SAME */
 				if ((file_ptr = fopen(argv[i], "r") ) == NULL) {
@@ -463,11 +464,6 @@ int main(int argc, char *argv[])
 		opt_n.bit = 1;		/* opt_n NO RELAX 2-D */
 	}
 
-	if (j == 0) {
-		warnhead('S');
-		printf("No sequences specfied. Using example sequence.");
-	}
-	
 	printf("\n");	
 	mha_head(par_wrap.set+8);
 	printf("micro-homology alignment (MHA) ");
@@ -1441,7 +1437,7 @@ int main(int argc, char *argv[])
 
 	print1D();
 
-	/********** 2. cinch_t MODULE: WRAPS LARGEST EXACT k-mers, IGNORES INTRA-TR TRs **********/
+	/********* 2. cinch_t MODULE: WRAPS LARGEST EXACT k-mers, IGNORES INTRA-TR TRs *****************/
 	++Current.pass_V;
 	if (opt_B.val==2)
 		ZTick = &tick;		/* reset pointer of zero tick character */
@@ -1455,7 +1451,7 @@ int main(int argc, char *argv[])
 	if (opt_D.val==2)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
-	/********** 3. cinch_l MODULE: WRAPS HOMOPOLYMERIC RUNS IF >= 20 (2 * wrap VAR.) ********/
+	/********* 3. cinch_l MODULE: WRAPS HOMOPOLYMERIC RUNS IF >= 20 (2 * wrap VAR.) ****************/
 	++Current.pass_V;
 
 	Cinch_L.pass_R = (int) cinch_l();
@@ -1466,7 +1462,7 @@ int main(int argc, char *argv[])
 	if (opt_D.val==3)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
-	/********* 4. cinch_k MODULE: HANDLES k-mers FROM SIZE WIDTH DOWN TO k=1 ***********/
+	/********* 4. cinch_k MODULE: HANDLES k-mers FROM SIZE WIDTH DOWN TO k=1 ***********************/
 	++Current.pass_V;
 
 	Cinch_K.pass_R = cinch_k();
@@ -1478,7 +1474,7 @@ int main(int argc, char *argv[])
 	if (opt_D.val==4)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
-	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT ***************/
+	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT *********************/
 	i = ++Current.pass_V;
 
 	if (Cinch_K.pass_Q!=1000 || align2D[0][0] == blank) {
@@ -1489,6 +1485,8 @@ int main(int argc, char *argv[])
 			++Nudge.pass_R;
 			++Nudge.pass_W;
 		}
+		if (Nudge.pass_W==Cinch_K.pass_W && Nudge.pass_R==1)
+			Nudge.pass_R = 0;
 	}
 	else {	
 		Cinches[i]->pass_W = Cinches[i-1]->pass_W;
@@ -1526,7 +1524,7 @@ int main(int argc, char *argv[])
 	if (opt_D.val==6)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
-	/********* 7. relax_2D MODULE: DE-CINCHES HOMOPOLYMER RUNS IF THEY DID NOT AID CINCH-D *******/
+	/********* 7. relax_2D MODULE: DE-CINCHES HOMOPOLYMER RUNS IF THEY DID NOT AID CINCH-D *********/
 	if (!opt_n.bit) {		/* opt_n DO NOT DO RELAX-2D */
 		++Current.pass_V;
 
@@ -1546,10 +1544,7 @@ int main(int argc, char *argv[])
 	if (opt_D.val==7)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
-
-	/********** 8. RECOVER_1D*************************************************/
-	/* OPTION TO PRINT VALUES OF RECOVERED 1-D ALIGN BOX *********************/
-
+	/********* 8. recover_1D: OPTIONAL MODULE TO PRINT VALUES OF RECOVERED 1-D ALIGN BOX ***********/
 	if (!opt_R.bit)	
 		printf("\n");
 	else { 
