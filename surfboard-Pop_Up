@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #clear
-echo
+echo "$(date)" | tee -a Corduroy.log
 echo 'Tri-fin dawn patrol: Compiling maximal v4.32.' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
 echo '                                                                                                            '
