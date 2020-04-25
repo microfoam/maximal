@@ -157,7 +157,7 @@ void assign_transit(int n, int kr_src)
 /****** TELA: A FABRIC, UNDER AXIOMATIC LAWS **********************/
 int check_tela(int eM, int eN, short unsigned int mode_dim) 
 {
-	if (!mode_dim)	/* check_tela called in O-F-F mode, but will return 1+2 = success */
+	if (!mode_dim || mode_dim >2)	/* check_tela called in O-F-F or nonsense mode, but will return 1+2 = success */
 		return(3);
 	else {
 		int i=0, j=0, lineM=0, lineN=0, axioms=0, badflag=0;
@@ -167,15 +167,10 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 			if (dev_print(TELA,__LINE__)) {
 				printf("Need to call check_tela explicitly with %d-D positions eN > eM.", mode_dim);
 			}
-			exit(1);
+			return(0);
 		}
 	
-		if (mode_dim==1) {
-			/* GET 2-D COORDINATES FROM 1-D COORDINATES */
-			lineM = tela[eM].x;	
-			lineN = tela[eN].x;	
-		}
-		else if (mode_dim==2) {
+		if (mode_dim==2) {
 			/* SAVE 2-D COORDINATES */
 			lineM = eM;	
 			lineN = eN;	
@@ -188,12 +183,6 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 			while (tela[j].x != lineN && j>0)
 				j--;
 			eN = j;
-		}
-		else {
-			if (dev_print(TELA,__LINE__)) {
-				printf("Need to call check_tela() explicitly with dimension dim=1 or dim=2.\n");
-			}
-			exit(1);
 		}
 	
 		/* AXIOM ONE: CONTINUITY */
