@@ -1210,7 +1210,6 @@ char letr, next;
 char blnk  = Fill->sym;			/* opt_B blank character */
 int cinchwidth = Current.pass_W;		
 int   lenseq = Clean.pass_W;
-int   height = Current.pass_H;
 int head_start;							/* USE TO PASS RULER O-F-F-SET TO line_end() */
 int scrimmageline;						/* USE TO INCREMENT AND TEST IF FILLER IS NEEDED, CAN BE OPTION TO DO SO */
 char tick = fill10.sym;
@@ -1377,40 +1376,6 @@ short unsigned int lcl_opt_F;
 		Current.pass_Q = round((1000*(cinchwidth-mmsites-(lenseq-c)))/cinchwidth);
 		warnhead(gap.sym);
 		printf(" 2-D auto-alignment is missing %d %s(s)!\n\n", lenseq-c, letr_unit); 
-
-		/* ENSURE THERE ARE NO MISSING MHA ROW TERMINATORS */
-		for (m=0; m<height; m++) {
-			for (n=0; n<cinchwidth; n++) {
-				while (align2D[m][n]==blnk) {
-					n++;
-				}
-				if (align2D[m][n]==monoL.sym) {
-					n++;
-				}
-				while (isalpha(align2D[m][n])) {
-					n++;
-				}
-				if (m<height-1 && (letr=align2D[m][n]) != slip.sym && letr!=monoR.sym) {
-					align2D[m][n  ] = slip.sym;
-					align2D[m][n+1] = '\0';
-					if (dev_print(LOGY,__LINE__)) {
-						printf("print_2Dseq() adding missing line terminator at row=%d, col=%d.", m,n);
-					}
-					break;
-				}
-				else if (m==height-1 && align2D[m][n] != Term->sym) {
-					align2D[m  ][n] = Term->sym;
-					align2D[m+1][0] = '\0';
-					if (dev_print(LOGY,__LINE__)) {
-						printf("print_2Dseq() adding missing final terminator at row=%d, col=%d.", m,n);
-					}
-					break;
-				}
-				else {
-					break;
-				}
-			}
-		}
 		print_section_spacer();
 		return(0);
 	}
