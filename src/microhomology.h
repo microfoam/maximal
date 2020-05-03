@@ -1426,52 +1426,26 @@ int m=0, n=0;
 int alpha_count=0;
 char  blnk = Fill->sym;
 int  width = Current.pass_W;
-int lenseq = Clean.pass_W;
 int height = Current.pass_H;
-char letr;
-
-	/* CHECK BASIC ASSUMPTIONS */
-	if (lenseq>MAXROW || height>MAXROW || width>lenseq || height>lenseq) {
-		return(0);
-	}
 
 	for (m=0; m<height; m++) {
 		for (n=0; n<width; n++) {
 			while (align2D[m][n]==blnk) {
 				n++;
 			}
-			if (align2D[m][n]==monoL.sym) {
+			if (align2D[m][n]==monoL.sym) 
 				n++;
-			}
+
 			while(isalpha(align2D[m][n])) {
 				n++;
 				alpha_count++;
 			}
-			if (m<height-1 && ((letr=align2D[m][n]) != slip.sym && letr!=monoR.sym)) {
-				align2D[m][n  ] = slip.sym;
-				align2D[m][n+1] = '\0';
-				if (dev_print(LOGY,__LINE__)) {
-					printf("recoverlen() is adding a missing line terminator at m=%d, n=%d.", m,n);
-				}
-				break;
-			}
-			else if (m==height-1 && align2D[m][n] != Term->sym) {
-				align2D[m][n  ] = Term->sym;
-				align2D[m][n+1] = '\0';
-				if (dev_print(LOGY,__LINE__)) {
-					printf("recoverlen() is adding a missing final terminator at m=%d, n=%d.", m,n);
-				}
+			if (align2D[m][n] == Term->sym) 
 				return(alpha_count);
-			}
-			else if (align2D[m][n] == Term->sym) {
-				return(alpha_count);
-			}
-			else {
+			else 
 				break;
-			}
 		} 
 	}
-
 	return(alpha_count);
 }
 
