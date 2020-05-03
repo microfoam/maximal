@@ -154,7 +154,8 @@ struct {
 	par_wrap = {100, "columns", "Sets screen wrap length for 2-D alignment.                    ", "opt_u"};
 
 
-/* This unnamed struct type organizes a set of pointers and names for mha's 2-D alignment character set */
+/* This unnamed struct type organizes a set of pointers and names for mha's 2-D alignment character set.               */
+/* Note that much of maximal's legacy code relies on isalpha(), so many symbols cannot be changed to alpha characters. */
 struct {
 	char	sym;	/* character symbol      */
 	int		cod;	/* decimal unicode value */
@@ -248,7 +249,7 @@ void 				mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW]);
 void 				mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW]);
 void 				print1D(void);
 short unsigned int	print_2Dseq(void);
-void 				print_blockhead(int a, int b);	
+void 				print_blockhead(int numbl, int totbl);
 void				print_protein_waxes(void);
 short int 			pushdown(char pusharray[][MAXROW], int push_m, int push_n); 
 int 				span_ork(int point);
@@ -370,12 +371,15 @@ int m=0, n=0;
 int lenseq = Clean.pass_W;
 int twidth = Cinch_T.pass_W;
 int height = Current.pass_H;
+char *aptr_start = &wipe_align2D[0][0];
+char *aptr = aptr_start;
 
-	for (n=0; n <= lenseq; n++)
-		wipe_align2D[0][n] = '\0';
+	for (n=0; n <= lenseq; n++, aptr++)
+		*aptr = '\0';
 	for (m=1; m <= height; m++) {
-		for (n=0; n <= twidth; n++)
-			wipe_align2D[m][n] = '\0';
+		aptr = aptr_start + m*MAXROW;
+		for (n=0; n <= twidth; n++, aptr++)
+			*aptr = '\0';
 	}
 }
 /*****************************************************************************************/
@@ -387,19 +391,23 @@ int m=0, n=0;
 int twidth = Cinch_T.pass_W;
 int height = Current.pass_H;
 char letr;
+char *aptr_start = &swipe_align2D[0][0];
+char *aptr = aptr_start;
 
 	/* CLEAR TO THE RIGHT OF ROW TERMINATORS */
 	for (m=1; m < height; m++) {
 		n = 0;
-		while ( (letr=swipe_align2D[m][n]) != slip.sym && letr != monoR.sym && letr != Term->sym) {
+		while ( (letr=swipe_align2D[m][n]) == Fill->sym || isalpha(letr) || letr==monoL.sym) {
 			n++;
 		}
-		for (n = n+1; n <= twidth; n++)
-			swipe_align2D[m][n] = '\0';
+		aptr = aptr_start + m*MAXROW + n + 1;
+		for (n = n+1; n <= twidth; n++, aptr++)
+			*aptr = '\0';
 		if (letr == Term->sym) {
+			aptr = aptr_start + (m+1)*MAXROW;
 			for (m=m+1; m < height; m++) {
-				for (n=0; n <=twidth; n++) {
-					swipe_align2D[m][n] = '\0';
+				for (n=0; n <=twidth; n++, aptr++) {
+					*aptr = '\0';
 				}
 			}
 			break;
@@ -1436,15 +1444,15 @@ unsigned int i=0;
 	printf("  !\n\n");
 }
 
-/*****************************************************************************************/
-void print_blockhead(int a, int b)              /**/
-{                                               /**/
-	if (a == 1)                                 /**/
-	    printf("   Block %d of %d:\n", a, b);   /**/
-	else                                        /**/
-	    printf("\n   Block %d of %d:\n", a, b); /**/
-}                                               /**/
-/**************************************************/
+/**********************************************************/
+void print_blockhead(int numbl, int totbl)      		/**/
+{                                               		/**/
+	if (numbl == 1)                           		    /**/
+	    printf("   Block %d of %d:\n", numbl, totbl);   /**/
+	else                                        		/**/
+	    printf("\n   Block %d of %d:\n", numbl, totbl);	/**/
+}                                               		/**/
+/**********************************************************/
 
 /*****************************************************************************************/
 short unsigned int recoverlen(void) 
