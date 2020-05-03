@@ -368,9 +368,13 @@ void clear_2D_ar(char wipe_align2D[][MAXROW])
 {
 int m=0, n=0;
 int lenseq = Clean.pass_W;
+int twidth = Cinch_T.pass_W;
+int height = Current.pass_H;
 
-	for (m=0; m <= lenseq; m++) {
-		for (n=0; n <= lenseq; n++)
+	for (n=0; n <= lenseq; n++)
+		wipe_align2D[0][n] = '\0';
+	for (m=1; m <= height; m++) {
+		for (n=0; n <= twidth; n++)
 			wipe_align2D[m][n] = '\0';
 	}
 }
@@ -380,21 +384,21 @@ int lenseq = Clean.pass_W;
 void clear_right(char swipe_align2D[][MAXROW])
 {
 int m=0, n=0;
-int lenseq = Clean.pass_W;	
+int twidth = Cinch_T.pass_W;
 int height = Current.pass_H;
 char letr;
 
 	/* CLEAR TO THE RIGHT OF ROW TERMINATORS */
-	for (m=0; m < height; m++) {
+	for (m=1; m < height; m++) {
 		n = 0;
 		while ( (letr=swipe_align2D[m][n]) != slip.sym && letr != monoR.sym && letr != Term->sym) {
 			n++;
 		}
-		for (n = n+1; n <= lenseq; n++)
+		for (n = n+1; n <= twidth; n++)
 			swipe_align2D[m][n] = '\0';
 		if (letr == Term->sym) {
 			for (m=m+1; m < height; m++) {
-				for (n=0; n <=lenseq; n++) {
+				for (n=0; n <=twidth; n++) {
 					swipe_align2D[m][n] = '\0';
 				}
 			}
