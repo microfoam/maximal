@@ -189,7 +189,8 @@ struct {
 	st_parent= {'p',112},		/* MHA mark_tela() status mark                 */
 	st_fract = {'f',102},		/* MHA mark_tela() status mark, confirmed fr.  */
 	st_Fract = {'F', 70},		/* MHA mark_tela() status mark, orphan Fractal */
-	st_overl = {'o', 79},		/* MHA mark_tela() status mark, overlapping    */
+	st_lowcm = {'L', 76},		/* MHA mark_tela() status mark, low-complexity */
+	st_overl = {'o',111},		/* MHA mark_tela() status mark, overlapping    */
 	st_cycle = {'c', 99},		/* MHA mark_tela() status mark                 */
 	st_clash = {'!', 33},		/* MHA mark_tela() status mark                 */
 	st_skip0 = {'_', 95},		/* MHA mark_tela() status mark                 */

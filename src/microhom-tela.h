@@ -807,6 +807,58 @@ void mark_tela(void)
 		}
 	}
 
+	/* MARK LOW-COMPLEXITY REGIONS WITH TWO OR MORE k-mers MARKED AT COLUMN. */
+	/* HERE, LOW-COMPLEXITY MEANS REPEATS ARE BASED ON TWO SYMBOLS OR LESS.  */
+	for (n=2; n<lenseq; n++) {
+		if (tela[n].k1 && tela[n].k2) {
+			int symb1=0, symb2=0;		/* WILL USE INTS AND RELY ON CHAR VALUES */
+			k = tela[n].k1;
+			m = n-k;
+			for (i=m; i<n+k; i++) {
+				if (!symb1)
+					symb1 = tela[i].c;
+				else if (!symb2)
+					symb2 = tela[i].c;
+				else if (tela[i].c != symb1 && tela[i].c != symb2) {
+					symb1 = symb2 = 0;
+					break;
+				}
+			}
+			if (symb2) {
+				int max_S = tela[n].all_S;
+				for (i=m; i<n+k; i++) {
+					tela[i].stat2 = st_lowcm.sym;		/* MARK AS LOW-COMPLEXITY */
+					if (tela[i].all_S > max_S)
+						max_S = tela[i].all_S;
+				}
+				/* EXTEND MARKS UPSTREAM AND DOWNSTREAM TO MARK EXTENT OF LOW-COMPLEXITY "ISLAND" */
+				/* THEN POKE A HOLE AT MAX_S */
+				for (i=m-1; i>=0; i--) {
+					if (tela[i].c == symb1 || tela[i].c == symb2) {
+						tela[i].stat2 = st_lowcm.sym;
+						if (tela[i].all_S > max_S)
+							max_S = tela[i].all_S;
+					}
+					else
+						break;
+				}
+				for (j=n+k; j<lenseq; j++) {
+					if (tela[j].c == symb1 || tela[j].c == symb2) {
+						tela[j].stat2 = st_lowcm.sym;
+						if (tela[j].all_S > max_S)
+							max_S = tela[j].all_S;
+					}
+					else
+						break;
+				}
+				for (int l=i+1; l<j; l++) {
+					if (tela[l].all_S == max_S)
+						tela[l].stat2 = '\0';
+				}			
+			}
+		}
+	}
+
 	/* NOW MARK ALL CONFLICTING TRs */
 	for (n=lenseq; n>0; n--) {
 		if (tela[n].ok) {
