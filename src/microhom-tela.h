@@ -813,19 +813,30 @@ void mark_tela(void)
 			k = tela[n].ok;
 			m = n - k;
 
-			if (tela[m].or>1 && tela[m].ok < k && m+span_ork(m)<=n) {
-				/* REDUCE REPEAT NUMBER IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T */
-				int k_at_m = tela[m].ok;
-				int less_r = tela[m].or - 1;
-				tela[m].or = 1;
+			int case_X=0;		/* TO HANDLE CASES FOR ENTRY INTO IF BLOCK */
+			int splitcol = m;
+			if (tela[m].or) {
+				if (tela[m].or>1)
+					case_X = 1;
+				else if (m>1 && tela[m-1].or>1 && tela[m-1].ok==tela[m].ok && !tela[m-2].ok && !tela[n+1].ok) {
+					case_X = 2;
+					splitcol = m-1;
+				}
+			}
+
+			if (case_X && tela[splitcol].ok < k && splitcol+span_ork(splitcol)<=n) {
+				/* REDUCE REPEAT NUMBER IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T; aka FRACTAL SPLITTING */
+				int k_at_m = tela[splitcol].ok;
+				int less_r = tela[splitcol].or - 1;
+				tela[splitcol].or = 1;
 
 				i = 1;
 				int jump = 0;
-				while (tela[(jump=(m-i*k_at_m))].ok == k_at_m && tela[jump].stat == st_cycle.sym) {
+				while (tela[(jump=(splitcol-i*k_at_m))].ok == k_at_m && tela[jump].stat == st_cycle.sym) {
 					tela[jump].or -= less_r;
 					++i;
 				}
-				jump = m - (--i)*k_at_m;
+				jump = splitcol - (--i)*k_at_m;
 				if (tela[--jump].ok == k_at_m)
 					tela[jump].or -= less_r;
 			}

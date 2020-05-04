@@ -1664,7 +1664,7 @@ short unsigned int check_fractals_in_imperfect(int kmer, int n)
 }
 
 /**************************************************/
-/* TO CONTROL SPACING BETWEEN SECTIONS UNIFORMLY. */
+/****  SETS UNIFORM SPACING BETWEEN SECTIONS.  ****/
 void print_section_spacer(void) {
 	printf("\n\n");
 }
