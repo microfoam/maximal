@@ -17,7 +17,6 @@ if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
-	./maximal -KRn -D 8 waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt 
 	./maximal -KRn -D 8 waves/chowder/flotsam_42F.txt
 # EXTANT CHOWDER STARTS BELOW; FIRST GROUP CINCH-T, SECOND CINCH-K
 tput bel
@@ -72,7 +71,7 @@ fi
 # Solved but leaving here to keep track of their status:
 tput bel
 echo
-echo "$0: Hit <enter> to run the solved chowder runs. Or, enter 'q' to quit script entirely."
+echo "$0: Hit <enter> to run recently solved chowder runs. Or, enter 'q' to quit script entirely."
 read -s -n1 answer
 if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
 	exit 1
@@ -94,6 +93,7 @@ else
 	./maximal -KRn -D 8 waves/chowder/flotsam_17F.txt 
 	./maximal -KRn -D 8 waves/chowder/flotsam_20R.txt 
 	./maximal -KRn -D 8 waves/chowder/flotsam_37F.txt 
+	./maximal -KRn -D 8 waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt 
 fi
 
 ./surfboard-checkmha
