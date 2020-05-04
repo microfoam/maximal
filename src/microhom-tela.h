@@ -816,9 +816,9 @@ void mark_tela(void)
 			int case_X=0;		/* TO HANDLE CASES FOR ENTRY INTO IF BLOCK */
 			int splitcol = m;
 			if (tela[m].or) {
-				if (tela[m].or>1)
+				if (tela[m].or>1 && tela[n].all_S>=tela[m].all_S)
 					case_X = 1;
-				else if (m>1 && tela[m-1].or>1 && tela[m-1].ok==tela[m].ok && !tela[m-2].ok && !tela[n+1].ok) {
+				else if (m>1 && tela[m-1].or>1 && tela[m-1].ok==tela[m].ok && !tela[m-2].ok && !tela[n+1].ok && tela[n].all_S>=tela[m-1].all_S) {
 					case_X = 2;
 					splitcol = m-1;
 				}

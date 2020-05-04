@@ -836,5 +836,5 @@ fi
 ./maximal -CKRnx waves/tubespit/seq-161-wuhCor1-03-synth2.txt
 
 ./surfboard-checkmha
-echo 'Commit WCR avgs: ->0.503952 ->0.504404 ->0.50432 ->0.504398 (jetsam & flotsam ->mark_tela) ->0.504865 (fractal-splitting)' | tee -a Corduroy.log
+echo 'Commit WCR avgs: ->0.503952 ->0.504404 ->0.50432 ->0.504398 (jetsam & flotsam ->mark_tela) ->0.504865 ->0.504407 (fractal-splitting)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
