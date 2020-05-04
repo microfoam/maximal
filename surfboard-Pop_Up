@@ -11,7 +11,6 @@ echo '/////_H                    _     _     _     _     _     _     _     _    
 echo '///////_A__________.~._~.~.) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `'
 echo '```````^:^`````````          m           a           x           i           m           a           l      '
 gcc -o maximal -Wall -Wextra -Wstrict-prototypes -O2 src/mha_v4.32.c -lm
-#clear
 echo
 echo 'Tri-fin dawn patrol: Surfs up!'
 echo

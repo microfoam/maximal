@@ -8,9 +8,11 @@ case "${option}"
 in
 c) 	echo 'with fresh compile (-c)' >> Corduroy.log
 	./surfboard-Pop_Up
+	sleep 2 # TO GIVE CHANCE TO SEE IF ANY COMPILE ERRORS
 	;;
 esac
 done
+
 
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha

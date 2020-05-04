@@ -1273,7 +1273,7 @@ short unsigned int lcl_opt_F;
 
 			line_end(START, m+1, 0);
 
-			for (n = j_start; n < j_end  && (letr=align2D[m][n])!=Term->sym && letr!=monoR.sym && letr!='\0'; n++) {
+			for (n = j_start; n < j_end  && (letr=align2D[m][n])!=Term->sym && letr!=monoR.sym; n++) {
 				if (d+b == 0) {		/* HANDLES BLOCK CONTINUATION LINES THAT HAVE ZERO CHARACTERS B/C OF ITS TUCK & LENGTH */
 					break;
 				}
@@ -1303,11 +1303,11 @@ short unsigned int lcl_opt_F;
 			next = align2D[m][n];	/* TERMINAL CHARACTERS WILL ALSO PRINT AT END OF BLOCK IF...	*/ 
 										/* ...THEY ARE FIRST CHARACTER OF NEXT BLOCK					*/
 
-			if (next == slip.sym || next == monoR.sym)		/* TO INDICATE ADJACENCY TO SLIP, WHICH ALSO WILL SHOW IN NEXT BLOCK */
+			if (next == slip.sym || next == monoR.sym) 		/* TO INDICATE ADJACENCY TO SLIP, WHICH ALSO WILL SHOW IN NEXT BLOCK */
 				printf("%c", next);
 			else if (next==blnk || (isalpha(next) && d+b != 0))	/* TRUE IF AT EDGE OF opt_w WINDOW */
 				printf("=>");			/* TO INDICATE CONTINUATION TO NEXT BLOCK */
-			else if (next == '\0' && n == j_start)		
+			else if (next == '\0' && n == j_start)
 				printf("%c", blnk);
 			else if (next == Term->sym) {		/* LAST CHARACTER */
 				printf("%c", next);
@@ -1427,6 +1427,7 @@ int alpha_count=0;
 char  blnk = Fill->sym;
 int  width = Current.pass_W;
 int height = Current.pass_H;
+char letr;
 
 	for (m=0; m<height; m++) {
 		for (n=0; n<width; n++) {
@@ -1440,7 +1441,24 @@ int height = Current.pass_H;
 				n++;
 				alpha_count++;
 			}
-			if (align2D[m][n] == Term->sym) 
+
+			if (m<height-1 && ((letr=align2D[m][n]) != slip.sym && letr!=monoR.sym)) {
+				align2D[m][n  ] = slip.sym;
+				align2D[m][n+1] = '\0';
+				if (dev_print(LOGY,__LINE__)) {
+					printf("recoverlen() is adding a missing line terminator at m=%d, n=%d.", m,n);
+				}
+				break;
+			}
+			else if (m==height-1 && align2D[m][n] != Term->sym) {
+				align2D[m][n  ] = Term->sym;
+				align2D[m][n+1] = '\0';
+				if (dev_print(LOGY,__LINE__)) {
+					printf("recoverlen() is adding a missing final terminator at m=%d, n=%d.", m,n);
+				}
+				return(alpha_count);
+			}
+			else if (align2D[m][n] == Term->sym) 
 				return(alpha_count);
 			else 
 				break;
