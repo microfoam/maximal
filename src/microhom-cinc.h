@@ -433,7 +433,22 @@ int *x_history = NULL;
 
 					homopolyflag = 0;		/* RESET */
 				} 
-				
+
+				/* THIS PATTERN CANNOT BE FRACTAL; THIS BLOCK PROOF OF PRINCIPLE; COULD LIKELY BE WRITTEN IN MARK_TELA */
+				if ((keep_checking || check_imperf) && col_isclear(align2D,n      ,m, 1)<0
+													&& col_isclear(align2D,n+2*k-1,m,-1)<0) {
+					int case_X=1;
+					for (i=0; i<2; i++) {
+						if (align2D[m][n+k-i]!=align2D[m-1][n+k-i] ||
+							align2D[m][n+k+i]!=align2D[m+1][n+k+i]) {
+							case_X=0;
+							break;
+						}
+					}
+					if (case_X)
+						keep_checking = check_imperf = 0;
+				}
+
 				/* CHECK FOR TRANSITIONS IF DNA AND NEED REMAINS */
 				if (check_imperf) { 
 					/* LET MISMATCHES PASS THROUGH WITHOUT BREAKING IF ANNOTATED AS TRANSITIONS */

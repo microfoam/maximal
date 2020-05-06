@@ -38,25 +38,18 @@ read -s -n1 answer
 if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
 	exit 1
 else
-	./maximal -KRn -D 8 waves/chowder/flotsam_02F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_04F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_05F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_07F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_10F.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_11F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_12F.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_13F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_14F.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_18F.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_19F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_21R.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_25R.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_28F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_31R.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_34R.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_35R.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_36R.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_39F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_40R.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_41R.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_43R.txt
@@ -64,17 +57,14 @@ else
 	./maximal -KRn -D 8 waves/chowder/flotsam_45F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_46R.txt
     ./maximal -KRn -D 8 waves/chowder/s06-k.txt
-    ./maximal -KRn -D 8 waves/chowder/s08-k.txt
     ./maximal -KRn -D 8 waves/chowder/s10-k.txt
     ./maximal -KRn -D 8 waves/chowder/s14-k.txt
-    ./maximal -KRn -D 8 waves/chowder/s18-k.txt
     ./maximal -KRn -D 8 waves/chowder/s20-k.txt
     ./maximal -KRn -D 8 waves/chowder/s22-k.txt
     ./maximal -KRn -D 8 waves/chowder/s24-k.txt
     ./maximal -KRn -D 8 waves/chowder/s26-k.txt
     ./maximal -KRn -D 8 waves/chowder/s28-k.txt
     ./maximal -KRn -D 8 waves/chowder/s32-k.txt
-    ./maximal -KRn -D 8 waves/chowder/s34-k.txt
     ./maximal -KRn -D 8 waves/chowder/s36-k.txt
     ./maximal -KRn -D 8 waves/chowder/s38-k.txt
     ./maximal -KRn -D 8 waves/chowder/s40-k.txt
@@ -84,8 +74,6 @@ else
     ./maximal -KRn -D 8 waves/chowder/s48-k.txt
     ./maximal -KRn -D 8 waves/chowder/s50-k.txt
     ./maximal -KRn -D 8 waves/chowder/st02-k.txt
-    ./maximal -KRn -D 8 waves/chowder/st04-k.txt
-    ./maximal -KRn -D 8 waves/chowder/st06-k.txt
     ./maximal -KRn -D 8 waves/chowder/st08-k.txt
     ./maximal -KRn -D 8 waves/chowder/st10-k.txt
 fi
@@ -120,6 +108,18 @@ else
 	./maximal -KRn -D 8 waves/chowder/flotsam_47R.txt						# solved-2
 	./maximal -KRn -D 8 waves/chowder/flotsam_24R.txt						# solved-3 
 	./maximal -KRn -D 8 waves/chowder/flotsam_30R.txt 						# solved-3
+	./maximal -KRn -D 8 waves/chowder/flotsam_02F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+	./maximal -KRn -D 8 waves/chowder/flotsam_11F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+	./maximal -KRn -D 8 waves/chowder/flotsam_13F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+	./maximal -KRn -D 8 waves/chowder/flotsam_18F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+	./maximal -KRn -D 8 waves/chowder/flotsam_19F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+	./maximal -KRn -D 8 waves/chowder/flotsam_34R.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+	./maximal -KRn -D 8 waves/chowder/flotsam_39F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+    ./maximal -KRn -D 8 waves/chowder/s08-k.txt			# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+    ./maximal -KRn -D 8 waves/chowder/s18-k.txt			# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+    ./maximal -KRn -D 8 waves/chowder/s34-k.txt			# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+    ./maximal -KRn -D 8 waves/chowder/st04-k.txt		# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+    ./maximal -KRn -D 8 waves/chowder/st06-k.txt		# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
 fi
 
 ./surfboard-checkmha
