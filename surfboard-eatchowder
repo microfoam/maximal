@@ -25,8 +25,6 @@ read -s -n1 answer
 if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
 	exit 1
 else
-	./maximal -KRn -D 8 waves/chowder/flotsam_24R.txt 
-	./maximal -KRn -D 8 waves/chowder/flotsam_30R.txt 
 	./maximal -KRn -D 8 waves/chowder/flotsam_01F.txt 
 	./maximal -KRn -D 8 waves/chowder/flotsam_23R.txt 
 	./maximal -KRn -D 8 waves/chowder/flotsam_29R.txt 
@@ -91,9 +89,11 @@ else
 	./maximal -KRn -D 8 waves/chowder/flotsam_17F.txt 
 	./maximal -KRn -D 8 waves/chowder/flotsam_20R.txt 
 	./maximal -KRn -D 8 waves/chowder/flotsam_37F.txt 
-	./maximal -KRn -D 8 waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt 
-	./maximal -KRn -D 8 waves/chowder/flotsam_42F.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_47R.txt
+	./maximal -KRn -D 8 waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt 	# solved-1
+	./maximal -KRn -D 8 waves/chowder/flotsam_42F.txt						# solved-2
+	./maximal -KRn -D 8 waves/chowder/flotsam_47R.txt						# solved-2
+	./maximal -KRn -D 8 waves/chowder/flotsam_24R.txt						# solved-3 
+	./maximal -KRn -D 8 waves/chowder/flotsam_30R.txt 						# solved-3
 fi
 
 ./surfboard-checkmha

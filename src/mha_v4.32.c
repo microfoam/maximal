@@ -955,7 +955,8 @@ int main(int argc, char *argv[])
 								break;
 							}
 						}
-						reps = tela[n].or;		/* all_r is adjusted for fractal sub-set splitting */
+						if (k==tela[n].ok)
+							reps = tela[n].or;		/* all_r is adjusted for fractal sub-set splitting */
 	
 						badslip_type = 0;
 						/* SKIP CINCH IF TR PRIOR TO m SPANS INTO PRESENT TR */
