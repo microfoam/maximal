@@ -435,14 +435,33 @@ int *x_history = NULL;
 				} 
 
 				/* THIS PATTERN CANNOT BE FRACTAL; THIS BLOCK PROOF OF PRINCIPLE; COULD LIKELY BE WRITTEN IN MARK_TELA */
-				if ((keep_checking || check_imperf) && col_isclear(align2D,n      ,m, 1)<0
+				if ((keep_checking || check_imperf) && col_isclear(align2D,n      ,m, 1)<0 && n>2 
 													&& col_isclear(align2D,n+2*k-1,m,-1)<0) {
-					int case_X=1;
-					for (i=0; i<2; i++) {
-						if (align2D[m][n+k-i]!=align2D[m-1][n+k-i] ||
-							align2D[m][n+k+i]!=align2D[m+1][n+k+i]) {
+					int case_X = 1;
+					for (i=n-1; i<=n; i++) {
+						if (align2D[m][i]!=align2D[m-1][i]) {
 							case_X=0;
 							break;
+						}
+					}
+					if (case_X) {
+						for (i=n+1; i<n+2*k-2; i++) {
+							if (align2D[m][i]==align2D[m-1][i] ||
+								align2D[m][i]==align2D[m+1][i]) {
+								;
+							}
+							else {
+								case_X=0;
+								break;
+							}
+						}
+					}
+					if (case_X) {
+						for (i=n+2*k-2; i<n+2*k; i++) {
+							if (align2D[m][i]!=align2D[m+1][i]) {
+								case_X=0;
+								break;
+							}
 						}
 					}
 					if (case_X)
