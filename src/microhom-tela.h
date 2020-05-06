@@ -854,6 +854,7 @@ void mark_tela(void)
 				for (int l=i+1; l<j; l++) {
 					if (tela[l].all_S == max_S)
 						tela[l].stat2 = '\0';
+						tela[l].stat  = '\0';
 				}			
 			}
 		}

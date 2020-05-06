@@ -1,5 +1,5 @@
 PISO-4
-Mon May  4 17:26:21 CDT 2020
+Tue May  5 20:08:51 CDT 2020
 Tri-fin dawn patrol: Compiling maximal v4.32.
 
 
@@ -25,8 +25,8 @@ Number of tests w/ checktransits:  0
 WCR AVERAGE: 0.378318
 
 First and last runs:
-v4.32	May  4 17:26:36 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	May  4 17:26:55 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:26 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:35 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -41,9 +41,9 @@ Line counts:
     1265 src/microhom-cinc.h
      110 src/microhom-devl.h
      113 src/microhom-skor.h
-    1768 src/microhom-tela.h
+    1769 src/microhom-tela.h
     1695 src/microhomology.h
-    6912 total
+    6913 total
 
 sand_dunes benchmark WCR average of 22: 0.378318
 
@@ -59,71 +59,68 @@ Number of tests initiated:         50
 
 Number of tests completed:         50
 
-Number of tests w/ PASS 1000:      49
+Number of tests w/ PASS 1000:      50
 
-Number of tests w/ REC. 1000:      49
+Number of tests w/ REC. 1000:      50
 
-Number of tests w/ nudging:        33
+Number of tests w/ nudging:        31
 
 Number of tests w/ checktransits:  3
 
-WCR AVERAGE: 0.47734
+WCR AVERAGE: 0.47754
 
 First and last runs:
-v4.32	May  4 17:27:03 2020	 x0	1000	0.480	NDG: 0 	RND:	waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:26 2020	 x0	1000	0.550	NDG: 0 	RND:	         waves/chowder/flotsam_37F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:42 2020	 x0	1000	0.460	NDG: 3 	RND:	         waves/chowder/flotsam_24R.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=1 at n=13
+v4.32	May  5 20:10:05 2020	 x0	1000	0.440	NDG: 0 	RND:	         waves/chowder/flotsam_47R.txt (+) ( 100 bp) REC:1000	M: 3	-
 
 Tests canceled (if any, w/ preceding run for context):
 
 Tests with PASS < 1000 (if any):
-v4.32	May  4 17:27:06 2020	 x0	 921	0.510	NDG: 1 	RND:	         waves/chowder/flotsam_42F.txt (+) ( 100 bp) REC: 980	M: 2	-
 
 Tests with REC. < 1000 (if any):
-v4.32	May  4 17:27:06 2020	 x0	 921	0.510	NDG: 1 	RND:	         waves/chowder/flotsam_42F.txt (+) ( 100 bp) REC: 980	M: 2	-
 
 Tests with nudging (if any):
-v4.32	May  4 17:27:06 2020	 x0	 921	0.510	NDG: 1 	RND:	         waves/chowder/flotsam_42F.txt (+) ( 100 bp) REC: 980	M: 2	-
-v4.32	May  4 17:27:08 2020	 x0	1000	0.460	NDG: 3 	RND:	         waves/chowder/flotsam_24R.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=1 at n=13
-v4.32	May  4 17:27:09 2020	 x0	1000	0.460	NDG: 3 	RND:	         waves/chowder/flotsam_30R.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=1 at n=13
-v4.32	May  4 17:27:09 2020	 x0	1000	0.500	NDG: 6 	RND:	         waves/chowder/flotsam_01F.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=22 at n=51
-v4.32	May  4 17:27:09 2020	 x0	1000	0.470	NDG: 5 	RND:	         waves/chowder/flotsam_23R.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.32	May  4 17:27:10 2020	 x0	1000	0.470	NDG: 5 	RND:	         waves/chowder/flotsam_29R.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.32	May  4 17:27:11 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_02F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:11 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_04F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:27:12 2020	 x0	1000	0.480	NDG: 2 	RND:	         waves/chowder/flotsam_05F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:27:12 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_07F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:27:12 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:12 2020	 x0	1000	0.470	NDG: 2 	RND:	         waves/chowder/flotsam_11F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:13 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_12F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:13 2020	 x0	1000	0.560	NDG: 2 	RND:	         waves/chowder/flotsam_13F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:13 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_14F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:14 2020	 x0	1000	0.570	NDG: 2 	RND:	         waves/chowder/flotsam_18F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:14 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_19F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:14 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_21R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:27:15 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_25R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:27:15 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_28F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:27:15 2020	 x0	1000	0.330	NDG: 2 	RND:	         waves/chowder/flotsam_31R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:27:16 2020	 x0	1000	0.600	NDG: 2 	RND:	         waves/chowder/flotsam_34R.txt (+) ( 100 bp) REC:1000	M: 7	-
-v4.32	May  4 17:27:16 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_35R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:27:16 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_36R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:27:17 2020	 x0	1000	0.510	NDG: 2 	RND:	         waves/chowder/flotsam_39F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:17 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_40R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:27:17 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_41R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:18 2020	 x0	1000	0.420	NDG: 1 	RND:	         waves/chowder/flotsam_43R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:27:18 2020	 x0	1000	0.500	NDG: 2 	RND:	         waves/chowder/flotsam_44R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:18 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_45F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:19 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_46R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:19 2020	 x0	1000	0.440	NDG: 1 	RND:	         waves/chowder/flotsam_47R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:27:22 2020	 x0	1000	0.590	NDG: 2 	RND:	         waves/chowder/flotsam_26R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:42 2020	 x0	1000	0.460	NDG: 3 	RND:	         waves/chowder/flotsam_24R.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=1 at n=13
+v4.32	May  5 20:09:43 2020	 x0	1000	0.460	NDG: 3 	RND:	         waves/chowder/flotsam_30R.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=1 at n=13
+v4.32	May  5 20:09:44 2020	 x0	1000	0.500	NDG: 6 	RND:	         waves/chowder/flotsam_01F.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=22 at n=51
+v4.32	May  5 20:09:44 2020	 x0	1000	0.470	NDG: 5 	RND:	         waves/chowder/flotsam_23R.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	May  5 20:09:45 2020	 x0	1000	0.470	NDG: 5 	RND:	         waves/chowder/flotsam_29R.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	May  5 20:09:47 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_02F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:47 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_04F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:48 2020	 x0	1000	0.480	NDG: 2 	RND:	         waves/chowder/flotsam_05F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:48 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_07F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:48 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:49 2020	 x0	1000	0.470	NDG: 2 	RND:	         waves/chowder/flotsam_11F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:49 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_12F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:49 2020	 x0	1000	0.560	NDG: 2 	RND:	         waves/chowder/flotsam_13F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:50 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_14F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:50 2020	 x0	1000	0.570	NDG: 2 	RND:	         waves/chowder/flotsam_18F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:51 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_19F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:51 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_21R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:51 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_25R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:52 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_28F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:52 2020	 x0	1000	0.330	NDG: 2 	RND:	         waves/chowder/flotsam_31R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:52 2020	 x0	1000	0.600	NDG: 2 	RND:	         waves/chowder/flotsam_34R.txt (+) ( 100 bp) REC:1000	M: 7	-
+v4.32	May  5 20:09:53 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_35R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:53 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_36R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:53 2020	 x0	1000	0.510	NDG: 2 	RND:	         waves/chowder/flotsam_39F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:54 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_40R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:54 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_41R.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:55 2020	 x0	1000	0.420	NDG: 1 	RND:	         waves/chowder/flotsam_43R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:09:55 2020	 x0	1000	0.500	NDG: 2 	RND:	         waves/chowder/flotsam_44R.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:56 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_45F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:09:56 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_46R.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:10:01 2020	 x0	1000	0.590	NDG: 2 	RND:	         waves/chowder/flotsam_26R.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Line counts:
     1961 src/mha_v4.32.c
     1265 src/microhom-cinc.h
      110 src/microhom-devl.h
      113 src/microhom-skor.h
-    1768 src/microhom-tela.h
+    1769 src/microhom-tela.h
     1695 src/microhomology.h
-    6912 total
+    6913 total
+
 
 
                                                < cleanup_set_all >
@@ -148,37 +145,37 @@ Number of tests w/ checktransits:  1
 WCR AVERAGE: 0.500782
 
 First and last runs:
-v4.32	May  4 17:27:39 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	May  4 17:28:20 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
+v4.32	May  5 20:11:32 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.32	May  5 20:12:16 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
 
 Tests canceled (if any, w/ preceding run for context):
 
 Tests with PASS < 1000 (if any):
-v4.32	May  4 17:28:10 2020	 x1	 962	0.530	NDG: 1 	RND:	    waves/tubespit/seq-129-v344_16.txt (+) ( 100 bp) REC: 980	M: 4	bslip sum 50
-v4.32	May  4 17:28:19 2020	 x1	 958	0.480	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (-) ( 100 bp) REC: 980	M: 4	bslip sum 50
+v4.32	May  5 20:12:04 2020	 x1	 962	0.530	NDG: 1 	RND:	    waves/tubespit/seq-129-v344_16.txt (+) ( 100 bp) REC: 980	M: 4	bslip sum 50
+v4.32	May  5 20:12:15 2020	 x1	 958	0.480	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (-) ( 100 bp) REC: 980	M: 4	bslip sum 50
 
 Tests with REC. < 1000 (if any):
-v4.32	May  4 17:28:10 2020	 x1	 962	0.530	NDG: 1 	RND:	    waves/tubespit/seq-129-v344_16.txt (+) ( 100 bp) REC: 980	M: 4	bslip sum 50
-v4.32	May  4 17:28:19 2020	 x1	 958	0.480	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (-) ( 100 bp) REC: 980	M: 4	bslip sum 50
+v4.32	May  5 20:12:04 2020	 x1	 962	0.530	NDG: 1 	RND:	    waves/tubespit/seq-129-v344_16.txt (+) ( 100 bp) REC: 980	M: 4	bslip sum 50
+v4.32	May  5 20:12:15 2020	 x1	 958	0.480	NDG: 0 	RND:	    waves/tubespit/seq-129-v344_16.txt (-) ( 100 bp) REC: 980	M: 4	bslip sum 50
 
 Tests with nudging (if any):
-v4.32	May  4 17:28:04 2020	 x1	1000	0.512	NDG:17 	RND:	        waves/sharks/vnd_NEE_Dsuzu.txt (+) (1064 bp) REC:1000	M: 4	checktransit=3 at n=485
-v4.32	May  4 17:28:10 2020	 x1	 962	0.530	NDG: 1 	RND:	    waves/tubespit/seq-129-v344_16.txt (+) ( 100 bp) REC: 980	M: 4	bslip sum 50
-v4.32	May  4 17:28:16 2020	 x1	1000	0.485	NDG: 1 	RND:	     waves/tubespit/seq-052-cyctip.txt (-) ( 800 bp) REC:1000	M: 4	bslip sum 1
+v4.32	May  5 20:11:58 2020	 x1	1000	0.512	NDG:17 	RND:	        waves/sharks/vnd_NEE_Dsuzu.txt (+) (1064 bp) REC:1000	M: 4	checktransit=3 at n=485
+v4.32	May  5 20:12:04 2020	 x1	 962	0.530	NDG: 1 	RND:	    waves/tubespit/seq-129-v344_16.txt (+) ( 100 bp) REC: 980	M: 4	bslip sum 50
+v4.32	May  5 20:12:11 2020	 x1	1000	0.485	NDG: 1 	RND:	     waves/tubespit/seq-052-cyctip.txt (-) ( 800 bp) REC:1000	M: 4	bslip sum 1
 
 Line counts:
     1961 src/mha_v4.32.c
     1265 src/microhom-cinc.h
      110 src/microhom-devl.h
      113 src/microhom-skor.h
-    1768 src/microhom-tela.h
+    1769 src/microhom-tela.h
     1695 src/microhomology.h
-    6912 total
+    6913 total
 
 Commit WCR avgs: ->0.503952 ->0.504404 ->0.50432 ->0.504398 (jetsam & flotsam ->mark_tela) ->0.504865 ->0.504407 (fractal-splitting)
 
 PISO-5
-Mon May  4 17:29:41 CDT 2020
+Tue May  5 20:13:09 CDT 2020
 Tri-fin dawn patrol: Compiling maximal v4.32.
 
 
@@ -204,8 +201,8 @@ Number of tests w/ checktransits:  0
 WCR AVERAGE: 0.378318
 
 First and last runs:
-v4.32	May  4 17:29:46 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	May  4 17:29:52 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:16 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:33 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -220,9 +217,9 @@ Line counts:
     1265 src/microhom-cinc.h
      110 src/microhom-devl.h
      113 src/microhom-skor.h
-    1768 src/microhom-tela.h
+    1769 src/microhom-tela.h
     1695 src/microhomology.h
-    6912 total
+    6913 total
 
 sand_dunes benchmark WCR average of 22: 0.378318
 
@@ -238,70 +235,66 @@ Number of tests initiated:         50
 
 Number of tests completed:         50
 
-Number of tests w/ PASS 1000:      49
+Number of tests w/ PASS 1000:      50
 
-Number of tests w/ REC. 1000:      49
+Number of tests w/ REC. 1000:      50
 
-Number of tests w/ nudging:        32
+Number of tests w/ nudging:        30
 
 Number of tests w/ checktransits:  3
 
-WCR AVERAGE: 0.47734
+WCR AVERAGE: 0.47754
 
 First and last runs:
-v4.32	May  4 17:29:58 2020	 x0	1000	0.480	NDG: 0 	RND:	waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:20 2020	 x0	1000	0.550	NDG: 0 	RND:	         waves/chowder/flotsam_37F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:41 2020	 x0	1000	0.460	NDG: 3 	RND:	         waves/chowder/flotsam_24R.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=1 at n=13
+v4.32	May  5 20:14:08 2020	 x0	1000	0.440	NDG: 0 	RND:	         waves/chowder/flotsam_47R.txt (+) ( 100 bp) REC:1000	M: 3	-
 
 Tests canceled (if any, w/ preceding run for context):
 
 Tests with PASS < 1000 (if any):
-v4.32	May  4 17:29:59 2020	 x0	 921	0.510	NDG: 1 	RND:	         waves/chowder/flotsam_42F.txt (+) ( 100 bp) REC: 980	M: 2	-
 
 Tests with REC. < 1000 (if any):
-v4.32	May  4 17:29:59 2020	 x0	 921	0.510	NDG: 1 	RND:	         waves/chowder/flotsam_42F.txt (+) ( 100 bp) REC: 980	M: 2	-
 
 Tests with nudging (if any):
-v4.32	May  4 17:29:59 2020	 x0	 921	0.510	NDG: 1 	RND:	         waves/chowder/flotsam_42F.txt (+) ( 100 bp) REC: 980	M: 2	-
-v4.32	May  4 17:30:01 2020	 x0	1000	0.460	NDG: 3 	RND:	         waves/chowder/flotsam_24R.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=1 at n=13
-v4.32	May  4 17:30:01 2020	 x0	1000	0.460	NDG: 3 	RND:	         waves/chowder/flotsam_30R.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=1 at n=13
-v4.32	May  4 17:30:02 2020	 x0	1000	0.500	NDG: 6 	RND:	         waves/chowder/flotsam_01F.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=22 at n=51
-v4.32	May  4 17:30:02 2020	 x0	1000	0.470	NDG: 5 	RND:	         waves/chowder/flotsam_23R.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.32	May  4 17:30:02 2020	 x0	1000	0.470	NDG: 5 	RND:	         waves/chowder/flotsam_29R.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.32	May  4 17:30:04 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_02F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:04 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_04F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:05 2020	 x0	1000	0.480	NDG: 2 	RND:	         waves/chowder/flotsam_05F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:05 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_07F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:05 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:06 2020	 x0	1000	0.470	NDG: 2 	RND:	         waves/chowder/flotsam_11F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:06 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_12F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:06 2020	 x0	1000	0.560	NDG: 2 	RND:	         waves/chowder/flotsam_13F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:07 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_14F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:07 2020	 x0	1000	0.570	NDG: 2 	RND:	         waves/chowder/flotsam_18F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:07 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_19F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:07 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_21R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:08 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_25R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:08 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_28F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:08 2020	 x0	1000	0.330	NDG: 2 	RND:	         waves/chowder/flotsam_31R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:08 2020	 x0	1000	0.600	NDG: 2 	RND:	         waves/chowder/flotsam_34R.txt (+) ( 100 bp) REC:1000	M: 7	-
-v4.32	May  4 17:30:08 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_35R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:09 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_36R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:09 2020	 x0	1000	0.510	NDG: 2 	RND:	         waves/chowder/flotsam_39F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:10 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_40R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:10 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_41R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:10 2020	 x0	1000	0.420	NDG: 1 	RND:	         waves/chowder/flotsam_43R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:11 2020	 x0	1000	0.500	NDG: 2 	RND:	         waves/chowder/flotsam_44R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May  4 17:30:11 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_45F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:11 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_46R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May  4 17:30:12 2020	 x0	1000	0.440	NDG: 1 	RND:	         waves/chowder/flotsam_47R.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:41 2020	 x0	1000	0.460	NDG: 3 	RND:	         waves/chowder/flotsam_24R.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=1 at n=13
+v4.32	May  5 20:13:43 2020	 x0	1000	0.460	NDG: 3 	RND:	         waves/chowder/flotsam_30R.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=1 at n=13
+v4.32	May  5 20:13:43 2020	 x0	1000	0.500	NDG: 6 	RND:	         waves/chowder/flotsam_01F.txt (+) ( 100 bp) REC:1000	M: 2	checktransit=22 at n=51
+v4.32	May  5 20:13:44 2020	 x0	1000	0.470	NDG: 5 	RND:	         waves/chowder/flotsam_23R.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	May  5 20:13:45 2020	 x0	1000	0.470	NDG: 5 	RND:	         waves/chowder/flotsam_29R.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	May  5 20:13:48 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_02F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:50 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_04F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:50 2020	 x0	1000	0.480	NDG: 2 	RND:	         waves/chowder/flotsam_05F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:50 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_07F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:51 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:51 2020	 x0	1000	0.470	NDG: 2 	RND:	         waves/chowder/flotsam_11F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:51 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_12F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:52 2020	 x0	1000	0.560	NDG: 2 	RND:	         waves/chowder/flotsam_13F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:52 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_14F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:52 2020	 x0	1000	0.570	NDG: 2 	RND:	         waves/chowder/flotsam_18F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:53 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_19F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:53 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_21R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:53 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_25R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:53 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_28F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:54 2020	 x0	1000	0.330	NDG: 2 	RND:	         waves/chowder/flotsam_31R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:54 2020	 x0	1000	0.600	NDG: 2 	RND:	         waves/chowder/flotsam_34R.txt (+) ( 100 bp) REC:1000	M: 7	-
+v4.32	May  5 20:13:55 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_35R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:55 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_36R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:55 2020	 x0	1000	0.510	NDG: 2 	RND:	         waves/chowder/flotsam_39F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:56 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_40R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:56 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_41R.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:57 2020	 x0	1000	0.420	NDG: 1 	RND:	         waves/chowder/flotsam_43R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:57 2020	 x0	1000	0.500	NDG: 2 	RND:	         waves/chowder/flotsam_44R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	May  5 20:13:58 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_45F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	May  5 20:13:58 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_46R.txt (+) ( 100 bp) REC:1000	M: 3	-
 
 Line counts:
     1961 src/mha_v4.32.c
     1265 src/microhom-cinc.h
      110 src/microhom-devl.h
      113 src/microhom-skor.h
-    1768 src/microhom-tela.h
+    1769 src/microhom-tela.h
     1695 src/microhomology.h
-    6912 total
+    6913 total
 
 
                                                < cleanup_set_all >
@@ -326,8 +319,8 @@ Number of tests w/ checktransits:  0
 WCR AVERAGE: 0.504407
 
 First and last runs:
-v4.32	May  4 17:30:39 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	May  4 17:31:20 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
+v4.32	May  5 20:14:26 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.32	May  5 20:15:07 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -342,9 +335,9 @@ Line counts:
     1265 src/microhom-cinc.h
      110 src/microhom-devl.h
      113 src/microhom-skor.h
-    1768 src/microhom-tela.h
+    1769 src/microhom-tela.h
     1695 src/microhomology.h
-    6912 total
+    6913 total
 
 Commit WCR avgs: ->0.503952 ->0.504404 ->0.50432 ->0.504398 (jetsam & flotsam ->mark_tela) ->0.504865 ->0.504407 (fractal-splitting)
 

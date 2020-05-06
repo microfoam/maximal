@@ -17,7 +17,6 @@ if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
-	./maximal -KRn -D 8 waves/chowder/flotsam_42F.txt
 # EXTANT CHOWDER STARTS BELOW; FIRST GROUP CINCH-T, SECOND CINCH-K
 tput bel
 echo
@@ -65,7 +64,6 @@ else
 	./maximal -KRn -D 8 waves/chowder/flotsam_44R.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_45F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_46R.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_47R.txt
 fi
 
 # Solved but leaving here to keep track of their status:
@@ -94,6 +92,8 @@ else
 	./maximal -KRn -D 8 waves/chowder/flotsam_20R.txt 
 	./maximal -KRn -D 8 waves/chowder/flotsam_37F.txt 
 	./maximal -KRn -D 8 waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt 
+	./maximal -KRn -D 8 waves/chowder/flotsam_42F.txt
+	./maximal -KRn -D 8 waves/chowder/flotsam_47R.txt
 fi
 
 ./surfboard-checkmha
