@@ -434,7 +434,7 @@ int *x_history = NULL;
 					homopolyflag = 0;		/* RESET */
 				} 
 
-				/* THIS PATTERN CANNOT BE FRACTAL; THIS BLOCK PROOF OF PRINCIPLE; COULD LIKELY BE WRITTEN IN MARK_TELA */
+				/* THIS BLOCK SPOTS NON-FRACTAL TRs AT NEXUS OF TWO OVERLAPPING AND/OR ABUTTING TRs AND SKIPS THEM */
 				if ((keep_checking || check_imperf) && col_isclear(align2D,n      ,m, 1)<0 && n>2 
 													&& col_isclear(align2D,n+2*k-1,m,-1)<0) {
 					int case_X = 1;
@@ -444,7 +444,7 @@ int *x_history = NULL;
 							break;
 						}
 					}
-					if (case_X) {
+					if (OFF && case_X) {
 						for (i=n+1; i<n+2*k-2; i++) {
 							if (align2D[m][i]==align2D[m-1][i] ||
 								align2D[m][i]==align2D[m+1][i]) {
