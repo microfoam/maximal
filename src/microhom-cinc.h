@@ -435,34 +435,15 @@ int *x_history = NULL;
 				} 
 
 				/* THIS BLOCK SPOTS NON-FRACTAL TRs AT NEXUS OF TWO OVERLAPPING AND/OR ABUTTING TRs AND SKIPS THEM */
-				if ((keep_checking || check_imperf) && col_isclear(align2D,n      ,m, 1)<0 && n>2 
+				if ((keep_checking || check_imperf) && col_isclear(align2D,n      ,m, 1)<0 
 													&& col_isclear(align2D,n+2*k-1,m,-1)<0) {
 					int case_X = 1;
-					for (i=n; i<=n; i++) {
-						if (align2D[m][i]!=align2D[m-1][i]) {
-							case_X=0;
-							break;
-						}
-					}
-					if (OFF && case_X) {
-						for (i=n+1; i<n+2*k-2; i++) {
-							if (align2D[m][i]==align2D[m-1][i] ||
-								align2D[m][i]==align2D[m+1][i]) {
-								;
-							}
-							else {
-								case_X=0;
-								break;
-							}
-						}
-					}
+					if (align2D[m][n]!=align2D[m-1][n]) 
+						case_X=0;
 					if (case_X) {
-						for (i=n+2*k-2; i<n+2*k; i++) {
-							if (align2D[m][i]!=align2D[m+1][i]) {
-								case_X=0;
-								break;
-							}
-						}
+						i=n+2*k-2;
+						if (align2D[m][i]!=align2D[m+1][i]) 
+							case_X=0;
 					}
 					if (case_X)
 						keep_checking = check_imperf = 0;
