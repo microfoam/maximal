@@ -55,9 +55,6 @@ else
 	./maximal -KRn -D 8 waves/chowder/s06-k.txt
 	./maximal -KRn -D 8 waves/chowder/s10-k.txt
 	./maximal -KRn -D 8 waves/chowder/s14-k.txt
-	./maximal -KRn -D 8 waves/chowder/s20-k.txt
-	./maximal -KRn -D 8 waves/chowder/s22-k.txt
-	./maximal -KRn -D 8 waves/chowder/s24-k.txt
 	./maximal -KRn -D 8 waves/chowder/s26-k.txt
 	./maximal -KRn -D 8 waves/chowder/s28-k.txt
 	./maximal -KRn -D 8 waves/chowder/s32-k.txt
@@ -122,7 +119,10 @@ else
 	./maximal -KRn -D 8 waves/chowder/flotsam_05F.txt	# solved-5 generalization of #4
 	./maximal -KRn -D 8 waves/chowder/flotsam_07F.txt	# solved-5 generalization of #4
 	./maximal -KRn -D 8 waves/chowder/st02-k.txt		# solved-5 generalization of #4
-	./maximal -KRn -D 8 waves/chowder/flotsam_43R.txt	# solved-6 generalization of #4, loosening
+	./maximal -KRn -D 8 waves/chowder/flotsam_43R.txt	# solved-6 generalization of #4, loosening condition 2
+	./maximal -KRn -D 8 waves/chowder/s20-k.txt			# solved-7 generalization oy #4, loosening condition 1
+	./maximal -KRn -D 8 waves/chowder/s22-k.txt			# solved-7 generalization oy #4, loosening condition 1
+	./maximal -KRn -D 8 waves/chowder/s24-k.txt			# solved-7 generalization oy #4, loosening condition 1
 fi
 
 ./surfboard-checkmha

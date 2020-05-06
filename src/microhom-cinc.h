@@ -438,7 +438,7 @@ int *x_history = NULL;
 				if ((keep_checking || check_imperf) && col_isclear(align2D,n      ,m, 1)<0 && n>2 
 													&& col_isclear(align2D,n+2*k-1,m,-1)<0) {
 					int case_X = 1;
-					for (i=n-1; i<=n; i++) {
+					for (i=n; i<=n; i++) {
 						if (align2D[m][i]!=align2D[m-1][i]) {
 							case_X=0;
 							break;
