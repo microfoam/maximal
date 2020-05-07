@@ -37,8 +37,8 @@ read -s -n1 answer
 if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
 	exit 1
 else
-	./maximal -KRn -D 8 waves/chowder/flotsam_10F.txt	# multi-line non-fractal TRs at nexus of overlapping TRs
-	./maximal -KRn -D 8 waves/chowder/flotsam_14F.txt
+	./maximal -KRn -D 8 waves/chowder/flotsam_10F.txt	# multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KRn -D 8 waves/chowder/flotsam_14F.txt	# multi-line partially-fractal TR at nexus of overlapping TRs
 	./maximal -KRn -D 8 waves/chowder/flotsam_21R.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_28F.txt
 	./maximal -KRn -D 8 waves/chowder/flotsam_31R.txt
