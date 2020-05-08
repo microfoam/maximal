@@ -482,8 +482,17 @@ void mark_tela(void)
 				if (!tela[n].k1 && !check_fractals_in_imperfect(k_tmp,n)) {
 					tela[n].k1 = k1 = k_tmp;
 					if ((k_tmp=get_k2(n,k1,nuctype))>floor) {
-						if (k_tmp==tela[n-1].k1 && k1%k_tmp==0) {
-							tela[n].k1 = k1 = k_tmp;	/* BECAUSE LARGER k1 IS A HIGH-REPEAT NUMBER ARTIFACT */
+						if (k_tmp==tela[n-1].k1 && k1%k_tmp==0 && k1-k_tmp==k_tmp) {
+							for (i=0; i<k1-k_tmp; i++) {
+								if (tela[n+i].c!=tela[n+i+k_tmp].c)
+									break;
+							}
+							if (i==k1-k_tmp)
+								tela[n].k1 = k1 = k_tmp;	/* BECAUSE LARGER k1 IS A HIGH-REPEAT NUMBER ARTIFACT */
+							else {
+								tela[n].k2 = k2 = k_tmp;
+								break;						/* BREAK BECAUSE CURRENTLY ONLY STORING TOP TWO k-MERS AT n */
+							}
 						}
 						else {
 							tela[n].k2 = k2 = k_tmp;
