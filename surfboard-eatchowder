@@ -72,6 +72,7 @@ else
 	./maximal -KRn -D 8 waves/chowder/stri08-k.txt
 	./maximal -KRn -D 8 waves/chowder/stri10-k.txt
 	./maximal -KRn -D 8 waves/chowder/stri12-k.txt
+	./maximal -KRn -D 8 waves/chowder/strin02-k.txt 
 fi
 
 # Solved but leaving here to keep track of their status:
