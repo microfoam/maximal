@@ -884,6 +884,15 @@ void mark_tela(void)
 					case_X = 2;
 					splitcol = m-1;
 				}
+				else if (tela[n].stat != st_cycle.sym && tela[m].stat == st_cycle.sym && tela[m-1].ok == tela[m].ok) {
+					while (tela[splitcol-1].ok == tela[splitcol].ok)
+						splitcol--;
+
+					if (tela[splitcol].all_S == tela[n].all_S) {
+						while (splitcol + span_ork(splitcol) - m > tela[splitcol].ok && tela[splitcol].or>1)
+							tela[splitcol].or--;
+					}
+				}
 			}
 
 			if (case_X && tela[splitcol].ok < k && splitcol+span_ork(splitcol)<=n) {

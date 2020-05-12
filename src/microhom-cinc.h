@@ -1012,7 +1012,7 @@ char blnk = Fill->sym;
 							++Cinch_D.pass_R;
 						}
 						m = 0;
-						while (isalpha(align2D[m][n+k]) == 0) {
+						while (!(isalpha(align2D[m][n+k]))) {
 							m++;
 						}
 						if (dev_print(CINCH,__LINE__)) {

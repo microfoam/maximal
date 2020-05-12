@@ -17,18 +17,6 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
-# EXTANT CHOWDER STARTS BELOW; FIRST GROUP CINCH-T, SECOND CINCH-K
-tput bel
-echo
-echo "$0: Hit <enter> to run the cinch-t nudged runs, or enter 'q' to quit script entirely."
-read -s -n1 answer
-if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
-	exit 1
-else
-	./maximal -KRn -D 8 waves/chowder/flotsam_23R.txt 	# not solved yet, but a split fractal variety
-	./maximal -KRn -D 8 waves/chowder/s30-t.txt
-fi
-
 tput bel
 echo
 echo "$0: Hit <enter> to run the cinch-k nudged runs. Or, enter 'q' to quit script entirely."
@@ -126,6 +114,8 @@ else
 	./maximal -KRn -D 8 waves/chowder/s22-k.txt			# solved-7 generalization oy #4, loosening condition 1
 	./maximal -KRn -D 8 waves/chowder/s24-k.txt			# solved-7 generalization oy #4, loosening condition 1
 	./maximal -KRn -D 8 waves/chowder/flotsam_01F.txt 	# solved-8 explicit test of fractality in mark_tela block invoking get_k2
+	./maximal -KRn -D 8 waves/chowder/flotsam_23R.txt 	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
+	./maximal -KRn -D 8 waves/chowder/s30-t.txt		 	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
 fi
 
 ./surfboard-checkmha
