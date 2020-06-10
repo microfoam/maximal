@@ -490,6 +490,7 @@ int main(int argc, char *argv[])
 		printf(" < no options specified >");
 	printf("\n Version %s: ", version);
 	printf("%s", time0);
+	printf("\n BLACK LIVES MATTER.");
 
 	if (opt_p.bit) {		/* opt_p SHOW RUN PARAMETERS */
 		printf("\nParameters");
