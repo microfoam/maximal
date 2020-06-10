@@ -1466,7 +1466,7 @@ int main(int argc, char *argv[])
 	/********* 4. cinch_k MODULE: HANDLES k-mers FROM SIZE WIDTH DOWN TO k=1 ***********************/
 	++Current.pass_V;
 
-	Cinch_K.pass_R = cinch_k();
+	Cinch_K.pass_R = cinch_k(1);		/* 0 = SKIP = OFF; 1 => k=1 ONLY; >1 => all k */
 	Cinch_K.pass_Q = Current.pass_Q;
 
 	if (dev_print(MAIN,__LINE__)) {
@@ -1734,8 +1734,8 @@ int main(int argc, char *argv[])
 				printf("%s post cinch-t   [pass #2: SKIPPED BY REQUEST]\n", letr_unit);
 			else 
 				printf("No effective cinch-t cinches taken.\n");
-			break;												/*  "cinch-x" VERSUS 'cinch_x' programming calls 				*/ 
-		case 3:													/*  USEFUL FOR SEARCHING CODE.									*/
+			break;
+		case 3:	
 			if (!Cinch_L.pass_R)
 				printf("%s post cinch-l   [pass #3]\n", letr_unit);
 			else if (Cinch_L.pass_R == 1)

@@ -10,7 +10,7 @@
 short unsigned int 	cleanseq(char *s);
 /*					cinch_t = main() */
 int 				cinch_l(void); 
-int 				cinch_k(void);
+int 				cinch_k(short unsigned int mode);
 unsigned int 		nudgelize(void);
 unsigned int 		cinch_d(short unsigned int cinch_d_opt);
 void 				relax_2D(void);
@@ -230,21 +230,26 @@ char blnk = Fill->sym;		/* opt_B blank character		*/
 
 
 /******************************************************************/
-int cinch_k(void) 
+int cinch_k(short unsigned int mode) 
 {
-int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0; 
-int first_mwrap_start=0, last_mwrap=0;
-unsigned short int first_mwrap=0, keep_checking=1;
-unsigned short int nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
-unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
-unsigned short int homopolyflag=0, imperfect_TR=0;
-int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
-char letr, letr2, letr3;
-char blnk = Fill->sym;				/* opt_B fill character */
-int max_k = WIDTH/2;
-int lenseq = Clean.pass_W;
-int symbol_count = 0;
-int *x_history = NULL;
+
+	if (!mode) {
+		return(0);
+	}
+
+	int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0; 
+	int first_mwrap_start=0, last_mwrap=0;
+	unsigned short int first_mwrap=0, keep_checking=1;
+	unsigned short int nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
+	unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
+	unsigned short int homopolyflag=0, imperfect_TR=0;
+	int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
+	char letr, letr2, letr3;
+	char blnk = Fill->sym;				/* opt_B fill character */
+	int max_k = WIDTH/2;
+	int lenseq = Clean.pass_W;
+	int symbol_count = 0;
+	int *x_history = NULL;
 
 	x_history = (int *)calloc(lenseq, sizeof(int));
 	clear_pathbox();
@@ -255,7 +260,7 @@ int *x_history = NULL;
 	if (dev_print(CINCH,__LINE__)) {
 		printf("Post cinch-t max_k = %d. Cinch_T.pass_Q = %d", max_k, Cinch_T.pass_Q);
 	}
-	if (Cinch_T.pass_V<1)
+	if (Cinch_T.pass_V<1 || mode==1)
 		max_k = 1;
 
 	if (dev_print(CINCH,__LINE__)) {
