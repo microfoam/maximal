@@ -878,8 +878,11 @@ void mark_tela(void)
 			int case_X=0;		/* TO HANDLE CASES FOR ENTRY INTO IF BLOCK */
 			int splitcol = m;
 			if (tela[m].or) {
-				if (tela[m].or>1 && tela[n].all_S>=tela[m].all_S)
+				if (tela[m].or>1 && tela[n].all_S>=tela[m].all_S) {
 					case_X = 1;
+					while (OFF && splitcol-1>0 && tela[splitcol-1].ok==tela[m].ok)
+						splitcol--;
+				}
 				else if (m>1 && tela[m-1].or>1 && tela[m-1].ok==tela[m].ok && !tela[m-2].ok && !tela[n+1].ok && tela[n].all_S>=tela[m-1].all_S) {
 					case_X = 2;
 					splitcol = m-1;
@@ -894,6 +897,8 @@ void mark_tela(void)
 					}
 				}
 			}
+			if (case_X && dev_print(TELA,__LINE__))
+				printf("For n=%d: case_X = %d, splitcol = %d.", n,case_X,splitcol);
 
 			if (case_X && tela[splitcol].ok < k && splitcol+span_ork(splitcol)<=n) {
 				/* REDUCE REPEAT NUMBER IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T; aka FRACTAL SPLITTING */
@@ -1128,7 +1133,7 @@ void mark_tela(void)
 					if (tela[(p=m+i*k+j)].ok != tela[(q=n+i*k+j)].ok && !tela[p].k2) { 
 						if (dev_print(TELA,__LINE__)) {
 							printf("mark_tela at n=%d evaluating differences between potential fractal TRs"
-									"and calling clearall at p=%d and q=%d.", n, p, q);
+								   " and calling clearall at p=%d and q=%d.", n, p, q);
 						}
 						if (tela[p].ok) {
 							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */

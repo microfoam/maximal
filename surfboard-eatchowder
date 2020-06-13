@@ -19,48 +19,58 @@ fi
 
 tput bel
 echo
-echo "$0: Hit <enter> to run the cinch-k nudged runs. Or, enter 'q' to quit script entirely."
+echo "$0: Hit <enter> to run the cinch-t nudged runs (currently only one). Or, enter 'q' to quit script entirely."
 read -s -n1 answer
 if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
 	exit 1
 else
-	./maximal -KRn -D 8 waves/chowder/flotsam_10F.txt	# multi-line partially-fractal TR at nexus of overlapping TRs
-	./maximal -KRn -D 8 waves/chowder/flotsam_14F.txt	# multi-line partially-fractal TR at nexus of overlapping TRs
-	./maximal -KRn -D 8 waves/chowder/flotsam_21R.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_28F.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_31R.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_35R.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_36R.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_40R.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_41R.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_44R.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_45F.txt
-	./maximal -KRn -D 8 waves/chowder/flotsam_46R.txt
-	./maximal -KRn -D 8 waves/chowder/s06-k.txt
-	./maximal -KRn -D 8 waves/chowder/s10-k.txt
-	./maximal -KRn -D 8 waves/chowder/s14-k.txt
-	./maximal -KRn -D 8 waves/chowder/s26-k.txt
-	./maximal -KRn -D 8 waves/chowder/s28-k.txt
-	./maximal -KRn -D 8 waves/chowder/s32-k.txt
-	./maximal -KRn -D 8 waves/chowder/s36-k.txt
-	./maximal -KRn -D 8 waves/chowder/s38-k.txt
-	./maximal -KRn -D 8 waves/chowder/s40-k.txt
-	./maximal -KRn -D 8 waves/chowder/s42-k.txt
-	./maximal -KRn -D 8 waves/chowder/s44-k.txt
-	./maximal -KRn -D 8 waves/chowder/s46-k.txt
-	./maximal -KRn -D 8 waves/chowder/s48-k.txt
-	./maximal -KRn -D 8 waves/chowder/s50-k.txt
-	./maximal -KRn -D 8 waves/chowder/st08-k.txt
-	./maximal -KRn -D 8 waves/chowder/st10-k.txt
-	./maximal -KRn -D 8 waves/chowder/str02-k.txt
-	./maximal -KRn -D 8 waves/chowder/str04-k.txt
-	./maximal -KRn -D 8 waves/chowder/str06-k.txt
-	./maximal -KRn -D 8 waves/chowder/stri02-k.txt
-	./maximal -KRn -D 8 waves/chowder/stri04-k.txt
-	./maximal -KRn -D 8 waves/chowder/stri08-k.txt
-	./maximal -KRn -D 8 waves/chowder/stri10-k.txt
-	./maximal -KRn -D 8 waves/chowder/stri12-k.txt
-	./maximal -KRn -D 8 waves/chowder/strin02-k.txt 
+	./maximal -KRn -D 2 waves/chowder/string02-t.txt 
+fi
+
+tput bel
+echo
+echo "$0: Hit <enter> to run the cinch-k nudged runs (currently many). Or, enter 'q' to quit script entirely."
+read -s -n1 answer
+if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
+	exit 1
+else
+	./maximal -KRn -D 4 waves/chowder/flotsam_10F.txt	# multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KRn -D 4 waves/chowder/flotsam_14F.txt	# multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KRn -D 4 waves/chowder/flotsam_21R.txt
+	./maximal -KRn -D 4 waves/chowder/flotsam_28F.txt
+	./maximal -KRn -D 4 waves/chowder/flotsam_31R.txt
+	./maximal -KRn -D 4 waves/chowder/flotsam_35R.txt
+	./maximal -KRn -D 4 waves/chowder/flotsam_36R.txt
+	./maximal -KRn -D 4 waves/chowder/flotsam_40R.txt
+	./maximal -KRn -D 4 waves/chowder/flotsam_41R.txt
+	./maximal -KRn -D 4 waves/chowder/flotsam_44R.txt
+	./maximal -KRn -D 4 waves/chowder/flotsam_45F.txt
+	./maximal -KRn -D 4 waves/chowder/flotsam_46R.txt
+	./maximal -KRn -D 4 waves/chowder/s06-k.txt
+	./maximal -KRn -D 4 waves/chowder/s10-k.txt
+	./maximal -KRn -D 4 waves/chowder/s14-k.txt
+	./maximal -KRn -D 4 waves/chowder/s26-k.txt
+	./maximal -KRn -D 4 waves/chowder/s28-k.txt
+	./maximal -KRn -D 4 waves/chowder/s32-k.txt
+	./maximal -KRn -D 4 waves/chowder/s36-k.txt
+	./maximal -KRn -D 4 waves/chowder/s38-k.txt
+	./maximal -KRn -D 4 waves/chowder/s40-k.txt
+	./maximal -KRn -D 4 waves/chowder/s42-k.txt
+	./maximal -KRn -D 4 waves/chowder/s44-k.txt
+	./maximal -KRn -D 4 waves/chowder/s46-k.txt
+	./maximal -KRn -D 4 waves/chowder/s48-k.txt
+	./maximal -KRn -D 4 waves/chowder/s50-k.txt
+	./maximal -KRn -D 4 waves/chowder/st08-k.txt
+	./maximal -KRn -D 4 waves/chowder/st10-k.txt
+	./maximal -KRn -D 4 waves/chowder/str02-k.txt
+	./maximal -KRn -D 4 waves/chowder/str04-k.txt
+	./maximal -KRn -D 4 waves/chowder/str06-k.txt
+	./maximal -KRn -D 4 waves/chowder/stri02-k.txt
+	./maximal -KRn -D 4 waves/chowder/stri04-k.txt
+	./maximal -KRn -D 4 waves/chowder/stri08-k.txt
+	./maximal -KRn -D 4 waves/chowder/stri10-k.txt
+	./maximal -KRn -D 4 waves/chowder/stri12-k.txt
+	./maximal -KRn -D 4 waves/chowder/strin02-k.txt 
 fi
 
 # Solved but leaving here to keep track of their status:

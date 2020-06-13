@@ -1,6 +1,3 @@
-Tue May 12 17:21:18 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
 
                                                < sand_dunes >
 Surf wave report summary: 
@@ -24,8 +21,8 @@ Number of tests w/ checktransit:   0
 WCR AVERAGE: 0.378318
 
 First and last runs:
-v4.32	May 12 17:21:24 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	May 12 17:21:39 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:23:50 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:07 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -36,13 +33,13 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1962 src/mha_v4.32.c
-    1280 src/microhom-cinc.h
-     110 src/microhom-devl.h
+    1963 src/mha_v4.32.c
+    1285 src/microhom-cinc.h
+     111 src/microhom-devl.h
      113 src/microhom-skor.h
-    1787 src/microhom-tela.h
+    1792 src/microhom-tela.h
     1695 src/microhomology.h
-    6947 total
+    6959 total
 
 sand_dunes benchmark WCR average of 22: 0.378318
 
@@ -54,23 +51,23 @@ Surf wave report summary:
 \\\\\_H                                                                                            \v/                        
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         82
+Number of tests initiated:         83
 
-Number of tests completed:         82
+Number of tests completed:         83
 
-Number of tests w/ PASS 1000:      82
+Number of tests w/ PASS 1000:      83
 
-Number of tests w/ REC. 1000:      82
+Number of tests w/ REC. 1000:      83
 
-Number of tests w/ nudging:        37
+Number of tests w/ nudging:        38
 
 Number of tests w/ checktransit:   0
 
-WCR AVERAGE: 0.468378
+WCR AVERAGE: 0.466349
 
 First and last runs:
-v4.32	May 12 17:21:51 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:22:16 2020	 x0	1000	0.410	NDG: 0 	RND:	               waves/chowder/s30-t.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	Jun 13 18:24:31 2020	 x0	1000	0.300	NDG: 2 	RND:	          waves/chowder/string02-t.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	Jun 13 18:24:50 2020	 x0	1000	0.410	NDG: 0 	RND:	               waves/chowder/s30-t.txt (+) ( 100 bp) REC:1000	M: 4	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -79,52 +76,53 @@ Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
 Tests with nudging (if any):
-v4.32	May 12 17:21:51 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:21:56 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_14F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:21:57 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_21R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:21:57 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_28F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:21:57 2020	 x0	1000	0.330	NDG: 2 	RND:	         waves/chowder/flotsam_31R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:21:58 2020	 x0	1000	0.450	NDG: 2 	RND:	         waves/chowder/flotsam_35R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:21:58 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_36R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:21:58 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_40R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:21:58 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_41R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:21:59 2020	 x0	1000	0.500	NDG: 2 	RND:	         waves/chowder/flotsam_44R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:21:59 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_45F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:21:59 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_46R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:21:59 2020	 x0	1000	0.460	NDG: 2 	RND:	               waves/chowder/s06-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:22:00 2020	 x0	1000	0.480	NDG: 2 	RND:	               waves/chowder/s10-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:22:00 2020	 x0	1000	0.450	NDG: 2 	RND:	               waves/chowder/s14-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:22:00 2020	 x0	1000	0.420	NDG: 2 	RND:	               waves/chowder/s26-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:01 2020	 x0	1000	0.530	NDG: 2 	RND:	               waves/chowder/s28-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:01 2020	 x0	1000	0.380	NDG: 2 	RND:	               waves/chowder/s32-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:01 2020	 x0	1000	0.390	NDG: 2 	RND:	               waves/chowder/s36-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:01 2020	 x0	1000	0.550	NDG: 2 	RND:	               waves/chowder/s38-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:02 2020	 x0	1000	0.560	NDG: 2 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:02 2020	 x0	1000	0.370	NDG: 1 	RND:	               waves/chowder/s42-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:02 2020	 x0	1000	0.370	NDG: 1 	RND:	               waves/chowder/s44-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:03 2020	 x0	1000	0.420	NDG: 2 	RND:	               waves/chowder/s46-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:22:03 2020	 x0	1000	0.430	NDG: 2 	RND:	               waves/chowder/s48-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:03 2020	 x0	1000	0.490	NDG: 2 	RND:	               waves/chowder/s50-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:03 2020	 x0	1000	0.520	NDG: 2 	RND:	              waves/chowder/st08-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:04 2020	 x0	1000	0.470	NDG: 2 	RND:	              waves/chowder/st10-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:04 2020	 x0	1000	0.530	NDG: 2 	RND:	             waves/chowder/str02-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:22:04 2020	 x0	1000	0.400	NDG: 2 	RND:	             waves/chowder/str04-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:04 2020	 x0	1000	0.490	NDG: 1 	RND:	             waves/chowder/str06-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:05 2020	 x0	1000	0.400	NDG: 2 	RND:	            waves/chowder/stri02-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:05 2020	 x0	1000	0.560	NDG: 2 	RND:	            waves/chowder/stri04-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:22:05 2020	 x0	1000	0.580	NDG: 2 	RND:	            waves/chowder/stri08-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:22:05 2020	 x0	1000	0.420	NDG: 2 	RND:	            waves/chowder/stri10-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	May 12 17:22:06 2020	 x0	1000	0.440	NDG: 2 	RND:	            waves/chowder/stri12-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	May 12 17:22:06 2020	 x0	1000	0.350	NDG: 2 	RND:	           waves/chowder/strin02-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:31 2020	 x0	1000	0.300	NDG: 2 	RND:	          waves/chowder/string02-t.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	Jun 13 18:24:37 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:39 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_14F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:39 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_21R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:40 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_28F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:40 2020	 x0	1000	0.330	NDG: 2 	RND:	         waves/chowder/flotsam_31R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:41 2020	 x0	1000	0.450	NDG: 2 	RND:	         waves/chowder/flotsam_35R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:41 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_36R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:41 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_40R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:41 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_41R.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:41 2020	 x0	1000	0.500	NDG: 2 	RND:	         waves/chowder/flotsam_44R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:42 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_45F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:42 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_46R.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:42 2020	 x0	1000	0.460	NDG: 2 	RND:	               waves/chowder/s06-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:42 2020	 x0	1000	0.480	NDG: 2 	RND:	               waves/chowder/s10-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:42 2020	 x0	1000	0.450	NDG: 2 	RND:	               waves/chowder/s14-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:42 2020	 x0	1000	0.420	NDG: 2 	RND:	               waves/chowder/s26-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:42 2020	 x0	1000	0.530	NDG: 2 	RND:	               waves/chowder/s28-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:42 2020	 x0	1000	0.380	NDG: 2 	RND:	               waves/chowder/s32-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:42 2020	 x0	1000	0.390	NDG: 2 	RND:	               waves/chowder/s36-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.550	NDG: 2 	RND:	               waves/chowder/s38-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.560	NDG: 2 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.370	NDG: 1 	RND:	               waves/chowder/s42-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.370	NDG: 1 	RND:	               waves/chowder/s44-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.420	NDG: 2 	RND:	               waves/chowder/s46-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.430	NDG: 2 	RND:	               waves/chowder/s48-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.490	NDG: 2 	RND:	               waves/chowder/s50-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.520	NDG: 2 	RND:	              waves/chowder/st08-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.470	NDG: 2 	RND:	              waves/chowder/st10-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.530	NDG: 2 	RND:	             waves/chowder/str02-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.400	NDG: 2 	RND:	             waves/chowder/str04-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:43 2020	 x0	1000	0.490	NDG: 1 	RND:	             waves/chowder/str06-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:44 2020	 x0	1000	0.400	NDG: 2 	RND:	            waves/chowder/stri02-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:44 2020	 x0	1000	0.560	NDG: 2 	RND:	            waves/chowder/stri04-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:45 2020	 x0	1000	0.580	NDG: 2 	RND:	            waves/chowder/stri08-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:45 2020	 x0	1000	0.420	NDG: 2 	RND:	            waves/chowder/stri10-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:24:45 2020	 x0	1000	0.440	NDG: 2 	RND:	            waves/chowder/stri12-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:24:45 2020	 x0	1000	0.350	NDG: 2 	RND:	           waves/chowder/strin02-k.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Line counts:
-    1962 src/mha_v4.32.c
-    1280 src/microhom-cinc.h
-     110 src/microhom-devl.h
+    1963 src/mha_v4.32.c
+    1285 src/microhom-cinc.h
+     111 src/microhom-devl.h
      113 src/microhom-skor.h
-    1787 src/microhom-tela.h
+    1792 src/microhom-tela.h
     1695 src/microhomology.h
-    6947 total
+    6959 total
 
 
                                                < cleanup_set_all >
@@ -149,8 +147,8 @@ Number of tests w/ checktransit:   0
 WCR AVERAGE: 0.504548
 
 First and last runs:
-v4.32	May 12 17:22:33 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	May 12 17:23:14 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
+v4.32	Jun 13 18:25:31 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.32	Jun 13 18:26:14 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -161,941 +159,23 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1962 src/mha_v4.32.c
-    1280 src/microhom-cinc.h
-     110 src/microhom-devl.h
+    1963 src/mha_v4.32.c
+    1285 src/microhom-cinc.h
+     111 src/microhom-devl.h
      113 src/microhom-skor.h
-    1787 src/microhom-tela.h
+    1792 src/microhom-tela.h
     1695 src/microhomology.h
-    6947 total
+    6959 total
 
 Commit WCR avgs: ... ->0.504555 ->0.504531 ->0.504548 (cinch-k block to skip non-fractal TRs at nexus of overlapping TRs)
 
-
-                                               < cleanup_set_all >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         816
-
-Number of tests completed:         816
-
-Number of tests w/ PASS 1000:      816
-
-Number of tests w/ REC. 1000:      816
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.504548
-
-First and last runs:
-v4.32	Jun  9 19:36:13 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	Jun  9 19:36:54 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1280 src/microhom-cinc.h
-     110 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6947 total
-
-Commit WCR avgs: ... ->0.504555 ->0.504531 ->0.504548 (cinch-k block to skip non-fractal TRs at nexus of overlapping TRs)
-
-
-                                               < sand_dunes >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         22
-
-Number of tests completed:         22
-
-Number of tests w/ PASS 1000:      22
-
-Number of tests w/ REC. 1000:      22
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.378318
-
-First and last runs:
-v4.32	Jun  9 19:37:59 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:38:58 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1280 src/microhom-cinc.h
-     110 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6947 total
-
-sand_dunes benchmark WCR average of 22: 0.378318
-
-
-                                               < eatchowder >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         82
-
-Number of tests completed:         82
-
-Number of tests w/ PASS 1000:      82
-
-Number of tests w/ REC. 1000:      82
-
-Number of tests w/ nudging:        37
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.468378
-
-First and last runs:
-v4.32	Jun  9 19:39:37 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:40:09 2020	 x0	1000	0.410	NDG: 0 	RND:	               waves/chowder/s30-t.txt (+) ( 100 bp) REC:1000	M: 4	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-v4.32	Jun  9 19:39:37 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:40 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_14F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:41 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_21R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:41 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_28F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:42 2020	 x0	1000	0.330	NDG: 2 	RND:	         waves/chowder/flotsam_31R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:42 2020	 x0	1000	0.450	NDG: 2 	RND:	         waves/chowder/flotsam_35R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:43 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_36R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:43 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_40R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:43 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_41R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:44 2020	 x0	1000	0.500	NDG: 2 	RND:	         waves/chowder/flotsam_44R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:44 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_45F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:44 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_46R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:44 2020	 x0	1000	0.460	NDG: 2 	RND:	               waves/chowder/s06-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:45 2020	 x0	1000	0.480	NDG: 2 	RND:	               waves/chowder/s10-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:45 2020	 x0	1000	0.450	NDG: 2 	RND:	               waves/chowder/s14-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:45 2020	 x0	1000	0.420	NDG: 2 	RND:	               waves/chowder/s26-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:45 2020	 x0	1000	0.530	NDG: 2 	RND:	               waves/chowder/s28-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:45 2020	 x0	1000	0.380	NDG: 2 	RND:	               waves/chowder/s32-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:46 2020	 x0	1000	0.390	NDG: 2 	RND:	               waves/chowder/s36-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:46 2020	 x0	1000	0.550	NDG: 2 	RND:	               waves/chowder/s38-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:46 2020	 x0	1000	0.560	NDG: 2 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:47 2020	 x0	1000	0.370	NDG: 1 	RND:	               waves/chowder/s42-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:47 2020	 x0	1000	0.370	NDG: 1 	RND:	               waves/chowder/s44-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:48 2020	 x0	1000	0.420	NDG: 2 	RND:	               waves/chowder/s46-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:49 2020	 x0	1000	0.430	NDG: 2 	RND:	               waves/chowder/s48-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:50 2020	 x0	1000	0.490	NDG: 2 	RND:	               waves/chowder/s50-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:51 2020	 x0	1000	0.520	NDG: 2 	RND:	              waves/chowder/st08-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:51 2020	 x0	1000	0.470	NDG: 2 	RND:	              waves/chowder/st10-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:52 2020	 x0	1000	0.530	NDG: 2 	RND:	             waves/chowder/str02-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:52 2020	 x0	1000	0.400	NDG: 2 	RND:	             waves/chowder/str04-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:53 2020	 x0	1000	0.490	NDG: 1 	RND:	             waves/chowder/str06-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:53 2020	 x0	1000	0.400	NDG: 2 	RND:	            waves/chowder/stri02-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:54 2020	 x0	1000	0.560	NDG: 2 	RND:	            waves/chowder/stri04-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:54 2020	 x0	1000	0.580	NDG: 2 	RND:	            waves/chowder/stri08-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:55 2020	 x0	1000	0.420	NDG: 2 	RND:	            waves/chowder/stri10-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 19:39:55 2020	 x0	1000	0.440	NDG: 2 	RND:	            waves/chowder/stri12-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:39:55 2020	 x0	1000	0.350	NDG: 2 	RND:	           waves/chowder/strin02-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1280 src/microhom-cinc.h
-     110 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6947 total
-
-Tue Jun  9 19:56:17 CDT 2020
+Sat Jun 13 18:30:40 CDT 2020
 Tri-fin dawn patrol: Compiling maximal v4.32.
-
-Tue Jun  9 19:56:44 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-
-                                               < cleanup_set_all >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         816
-
-Number of tests completed:         816
-
-Number of tests w/ PASS 1000:      816
-
-Number of tests w/ REC. 1000:      816
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.504548
-
-First and last runs:
-v4.32	Jun  9 19:56:51 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	Jun  9 19:57:32 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1284 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6952 total
-
-Commit WCR avgs: ... ->0.504555 ->0.504531 ->0.504548 (cinch-k block to skip non-fractal TRs at nexus of overlapping TRs)
-
-
-                                               < cleanup_set_all >
-with fresh compile (-c)
-Tue Jun  9 19:57:53 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         816
-
-Number of tests completed:         816
-
-Number of tests w/ PASS 1000:      816
-
-Number of tests w/ REC. 1000:      816
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.799071
-
-First and last runs:
-v4.32	Jun  9 19:57:58 2020	 x0	1000	0.859	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	Jun  9 19:58:25 2020	 x1	1000	0.727	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1284 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6952 total
-
-Commit WCR avgs: ... ->0.504555 ->0.504531 ->0.504548 (cinch-k block to skip non-fractal TRs at nexus of overlapping TRs)
-
-
-                                               < sand_dunes >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         22
-
-Number of tests completed:         22
-
-Number of tests w/ PASS 1000:      22
-
-Number of tests w/ REC. 1000:      22
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.586773
-
-First and last runs:
-v4.32	Jun  9 19:59:24 2020	 x0	1000	0.769	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 19:59:30 2020	 x0	1000	0.625	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1284 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6952 total
-
-sand_dunes benchmark WCR average of 22: 0.378318
-
-
-                                               < eatchowder >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         82
-
-Number of tests completed:         82
-
-Number of tests w/ PASS 1000:      82
-
-Number of tests w/ REC. 1000:      82
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.784549
-
-First and last runs:
-v4.32	Jun  9 20:00:38 2020	 x0	1000	0.830	NDG: 0 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 20:03:13 2020	 x0	1000	0.700	NDG: 0 	RND:	               waves/chowder/s30-t.txt (+) ( 100 bp) REC:1000	M: 4	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1284 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6952 total
-
-Tue Jun  9 20:19:03 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-
-                                               < cleanup_set_all >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         816
-
-Number of tests completed:         816
-
-Number of tests w/ PASS 1000:      816
-
-Number of tests w/ REC. 1000:      816
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.504548
-
-First and last runs:
-v4.32	Jun  9 20:19:11 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	Jun  9 20:19:52 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1284 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6952 total
-
-Commit WCR avgs: ... ->0.504555 ->0.504531 ->0.504548 (cinch-k block to skip non-fractal TRs at nexus of overlapping TRs)
-
-
-                                               < cleanup_set_all >
-with fresh compile (-c)
-Tue Jun  9 20:25:14 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         816
-
-Number of tests completed:         816
-
-Number of tests w/ PASS 1000:      816
-
-Number of tests w/ REC. 1000:      816
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.508418
-
-First and last runs:
-v4.32	Jun  9 20:25:19 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	Jun  9 20:26:00 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1284 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6952 total
-
-Commit WCR avgs: ... ->0.504555 ->0.504531 ->0.504548 (cinch-k block to skip non-fractal TRs at nexus of overlapping TRs)
-
-
-                                               < sand_dunes >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         22
-
-Number of tests completed:         22
-
-Number of tests w/ PASS 1000:      22
-
-Number of tests w/ REC. 1000:      22
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.441227
-
-First and last runs:
-v4.32	Jun  9 20:27:11 2020	 x0	1000	0.641	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 20:27:26 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1284 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6952 total
-
-sand_dunes benchmark WCR average of 22: 0.378318
-
-
-                                               < eatchowder >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         82
-
-Number of tests completed:         82
-
-Number of tests w/ PASS 1000:      82
-
-Number of tests w/ REC. 1000:      82
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.474598
-
-First and last runs:
-v4.32	Jun  9 20:28:05 2020	 x0	1000	0.520	NDG: 0 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 20:28:23 2020	 x0	1000	0.410	NDG: 0 	RND:	               waves/chowder/s30-t.txt (+) ( 100 bp) REC:1000	M: 4	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1284 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6952 total
-
-
-                                               < eatchowder >
-Tue Jun  9 20:38:23 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         82
-
-Number of tests completed:         82
-
-Number of tests w/ PASS 1000:      82
-
-Number of tests w/ REC. 1000:      82
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.784549
-
-First and last runs:
-v4.32	Jun  9 20:38:27 2020	 x0	1000	0.830	NDG: 0 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 20:38:51 2020	 x0	1000	0.700	NDG: 0 	RND:	               waves/chowder/s30-t.txt (+) ( 100 bp) REC:1000	M: 4	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1286 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6954 total
-
-
-                                               < eatchowder >
-Tue Jun  9 20:40:39 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         82
-
-Number of tests completed:         82
-
-Number of tests w/ PASS 1000:      82
-
-Number of tests w/ REC. 1000:      82
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.784549
-
-First and last runs:
-v4.32	Jun  9 20:40:45 2020	 x0	1000	0.830	NDG: 0 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 20:41:07 2020	 x0	1000	0.700	NDG: 0 	RND:	               waves/chowder/s30-t.txt (+) ( 100 bp) REC:1000	M: 4	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1287 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6955 total
-
-
-                                               < sand_dunes >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         22
-
-Number of tests completed:         22
-
-Number of tests w/ PASS 1000:      22
-
-Number of tests w/ REC. 1000:      22
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.586773
-
-First and last runs:
-v4.32	Jun  9 20:49:14 2020	 x0	1000	0.769	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 20:50:38 2020	 x0	1000	0.625	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1287 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6955 total
-
-sand_dunes benchmark WCR average of 22: 0.378318
-
-Tue Jun  9 20:50:43 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-
-                                               < sand_dunes >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         22
-
-Number of tests completed:         22
-
-Number of tests w/ PASS 1000:      22
-
-Number of tests w/ REC. 1000:      22
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.586773
-
-First and last runs:
-v4.32	Jun  9 20:50:50 2020	 x0	1000	0.769	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 20:51:36 2020	 x0	1000	0.625	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1287 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6955 total
-
-sand_dunes benchmark WCR average of 22: 0.378318
-
-Tue Jun  9 20:51:39 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-
-                                               < sand_dunes >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         22
-
-Number of tests completed:         22
-
-Number of tests w/ PASS 1000:      22
-
-Number of tests w/ REC. 1000:      22
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.586773
-
-First and last runs:
-v4.32	Jun  9 20:51:46 2020	 x0	1000	0.769	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 20:52:52 2020	 x0	1000	0.625	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1287 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6955 total
-
-sand_dunes benchmark WCR average of 22: 0.378318
-
-Tue Jun  9 20:52:54 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-
-                                               < sand_dunes >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         22
-
-Number of tests completed:         22
-
-Number of tests w/ PASS 1000:      22
-
-Number of tests w/ REC. 1000:      22
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.586773
-
-First and last runs:
-v4.32	Jun  9 20:52:58 2020	 x0	1000	0.769	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 20:53:24 2020	 x0	1000	0.625	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1287 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6955 total
-
-sand_dunes benchmark WCR average of 22: 0.378318
-
-Tue Jun  9 20:53:26 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-
-                                               < sand_dunes >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         22
-
-Number of tests completed:         22
-
-Number of tests w/ PASS 1000:      22
-
-Number of tests w/ REC. 1000:      22
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.586773
-
-First and last runs:
-v4.32	Jun  9 20:53:32 2020	 x0	1000	0.769	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 20:59:45 2020	 x0	1000	0.625	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1287 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6955 total
-
-sand_dunes benchmark WCR average of 22: 0.378318
 
 
                                                < sand_dunes >
 with fresh compile (-c)
-Tue Jun  9 20:59:48 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         22
-
-Number of tests completed:         22
-
-Number of tests w/ PASS 1000:      22
-
-Number of tests w/ REC. 1000:      22
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.441227
-
-First and last runs:
-v4.32	Jun  9 20:59:51 2020	 x0	1000	0.641	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:00:34 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1287 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6955 total
-
-sand_dunes benchmark WCR average of 22: 0.378318
-
-
-                                               < sand_dunes >
-with fresh compile (-c)
-Tue Jun  9 21:00:48 CDT 2020
+Sat Jun 13 18:30:55 CDT 2020
 Tri-fin dawn patrol: Compiling maximal v4.32.
 
 Surf wave report summary: 
@@ -1119,8 +199,8 @@ Number of tests w/ checktransit:   0
 WCR AVERAGE: 0.378318
 
 First and last runs:
-v4.32	Jun  9 21:00:51 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:03:24 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:30:59 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:31:54 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -1131,18 +211,96 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1962 src/mha_v4.32.c
-    1287 src/microhom-cinc.h
+    1963 src/mha_v4.32.c
+    1285 src/microhom-cinc.h
      111 src/microhom-devl.h
      113 src/microhom-skor.h
-    1787 src/microhom-tela.h
+    1792 src/microhom-tela.h
     1695 src/microhomology.h
-    6955 total
+    6959 total
 
 sand_dunes benchmark WCR average of 22: 0.378318
 
-Tue Jun  9 21:11:27 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
+
+                                               < eatchowder >
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+Number of tests initiated:         83
+
+Number of tests completed:         83
+
+Number of tests w/ PASS 1000:      83
+
+Number of tests w/ REC. 1000:      83
+
+Number of tests w/ nudging:        38
+
+Number of tests w/ checktransit:   0
+
+WCR AVERAGE: 0.466349
+
+First and last runs:
+v4.32	Jun 13 18:32:04 2020	 x0	1000	0.300	NDG: 2 	RND:	          waves/chowder/string02-t.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	Jun 13 18:32:18 2020	 x0	1000	0.410	NDG: 0 	RND:	               waves/chowder/s30-t.txt (+) ( 100 bp) REC:1000	M: 4	-
+
+Tests canceled (if any, w/ preceding run for context):
+
+Tests with PASS < 1000 (if any):
+
+Tests with REC. < 1000 (if any):
+
+Tests with nudging (if any):
+v4.32	Jun 13 18:32:04 2020	 x0	1000	0.300	NDG: 2 	RND:	          waves/chowder/string02-t.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	Jun 13 18:32:07 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:07 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_14F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:08 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_21R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:08 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_28F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:08 2020	 x0	1000	0.330	NDG: 2 	RND:	         waves/chowder/flotsam_31R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:09 2020	 x0	1000	0.450	NDG: 2 	RND:	         waves/chowder/flotsam_35R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:09 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_36R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:09 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_40R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:09 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_41R.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:10 2020	 x0	1000	0.500	NDG: 2 	RND:	         waves/chowder/flotsam_44R.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:10 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_45F.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:10 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_46R.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:10 2020	 x0	1000	0.460	NDG: 2 	RND:	               waves/chowder/s06-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.480	NDG: 2 	RND:	               waves/chowder/s10-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.450	NDG: 2 	RND:	               waves/chowder/s14-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.420	NDG: 2 	RND:	               waves/chowder/s26-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.530	NDG: 2 	RND:	               waves/chowder/s28-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.380	NDG: 2 	RND:	               waves/chowder/s32-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.390	NDG: 2 	RND:	               waves/chowder/s36-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.550	NDG: 2 	RND:	               waves/chowder/s38-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.560	NDG: 2 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.370	NDG: 1 	RND:	               waves/chowder/s42-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.370	NDG: 1 	RND:	               waves/chowder/s44-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.420	NDG: 2 	RND:	               waves/chowder/s46-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:11 2020	 x0	1000	0.430	NDG: 2 	RND:	               waves/chowder/s48-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:12 2020	 x0	1000	0.490	NDG: 2 	RND:	               waves/chowder/s50-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:12 2020	 x0	1000	0.520	NDG: 2 	RND:	              waves/chowder/st08-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:12 2020	 x0	1000	0.470	NDG: 2 	RND:	              waves/chowder/st10-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:13 2020	 x0	1000	0.530	NDG: 2 	RND:	             waves/chowder/str02-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:13 2020	 x0	1000	0.400	NDG: 2 	RND:	             waves/chowder/str04-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:13 2020	 x0	1000	0.490	NDG: 1 	RND:	             waves/chowder/str06-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:13 2020	 x0	1000	0.400	NDG: 2 	RND:	            waves/chowder/stri02-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:13 2020	 x0	1000	0.560	NDG: 2 	RND:	            waves/chowder/stri04-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:13 2020	 x0	1000	0.580	NDG: 2 	RND:	            waves/chowder/stri08-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:13 2020	 x0	1000	0.420	NDG: 2 	RND:	            waves/chowder/stri10-k.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.32	Jun 13 18:32:13 2020	 x0	1000	0.440	NDG: 2 	RND:	            waves/chowder/stri12-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 13 18:32:13 2020	 x0	1000	0.350	NDG: 2 	RND:	           waves/chowder/strin02-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+
+Line counts:
+    1963 src/mha_v4.32.c
+    1285 src/microhom-cinc.h
+     111 src/microhom-devl.h
+     113 src/microhom-skor.h
+    1792 src/microhom-tela.h
+    1695 src/microhomology.h
+    6959 total
 
 
                                                < cleanup_set_all >
@@ -1167,8 +325,8 @@ Number of tests w/ checktransit:   0
 WCR AVERAGE: 0.504548
 
 First and last runs:
-v4.32	Jun  9 21:11:34 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	Jun  9 21:12:16 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
+v4.32	Jun 13 18:32:40 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.32	Jun 13 18:33:24 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -1179,274 +337,13 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1962 src/mha_v4.32.c
+    1963 src/mha_v4.32.c
     1285 src/microhom-cinc.h
      111 src/microhom-devl.h
      113 src/microhom-skor.h
-    1787 src/microhom-tela.h
+    1792 src/microhom-tela.h
     1695 src/microhomology.h
-    6953 total
+    6959 total
 
 Commit WCR avgs: ... ->0.504555 ->0.504531 ->0.504548 (cinch-k block to skip non-fractal TRs at nexus of overlapping TRs)
-
-
-                                               < sand_dunes >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         22
-
-Number of tests completed:         22
-
-Number of tests w/ PASS 1000:      22
-
-Number of tests w/ REC. 1000:      22
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.378318
-
-First and last runs:
-v4.32	Jun  9 21:12:48 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:12:53 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1285 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6953 total
-
-sand_dunes benchmark WCR average of 22: 0.378318
-
-
-                                               < eatchowder >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         82
-
-Number of tests completed:         82
-
-Number of tests w/ PASS 1000:      82
-
-Number of tests w/ REC. 1000:      82
-
-Number of tests w/ nudging:        37
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.468378
-
-First and last runs:
-v4.32	Jun  9 21:13:09 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:19 2020	 x0	1000	0.410	NDG: 0 	RND:	               waves/chowder/s30-t.txt (+) ( 100 bp) REC:1000	M: 4	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-v4.32	Jun  9 21:13:09 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:10 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_14F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:10 2020	 x0	1000	0.410	NDG: 2 	RND:	         waves/chowder/flotsam_21R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:10 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_28F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:10 2020	 x0	1000	0.330	NDG: 2 	RND:	         waves/chowder/flotsam_31R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:10 2020	 x0	1000	0.450	NDG: 2 	RND:	         waves/chowder/flotsam_35R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:10 2020	 x0	1000	0.430	NDG: 2 	RND:	         waves/chowder/flotsam_36R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_40R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_41R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.500	NDG: 2 	RND:	         waves/chowder/flotsam_44R.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.520	NDG: 2 	RND:	         waves/chowder/flotsam_45F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.420	NDG: 2 	RND:	         waves/chowder/flotsam_46R.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.460	NDG: 2 	RND:	               waves/chowder/s06-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.480	NDG: 2 	RND:	               waves/chowder/s10-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.450	NDG: 2 	RND:	               waves/chowder/s14-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.420	NDG: 2 	RND:	               waves/chowder/s26-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.530	NDG: 2 	RND:	               waves/chowder/s28-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.380	NDG: 2 	RND:	               waves/chowder/s32-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:11 2020	 x0	1000	0.390	NDG: 2 	RND:	               waves/chowder/s36-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:12 2020	 x0	1000	0.550	NDG: 2 	RND:	               waves/chowder/s38-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:13 2020	 x0	1000	0.560	NDG: 2 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:13 2020	 x0	1000	0.370	NDG: 1 	RND:	               waves/chowder/s42-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:13 2020	 x0	1000	0.370	NDG: 1 	RND:	               waves/chowder/s44-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.420	NDG: 2 	RND:	               waves/chowder/s46-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.430	NDG: 2 	RND:	               waves/chowder/s48-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.490	NDG: 2 	RND:	               waves/chowder/s50-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.520	NDG: 2 	RND:	              waves/chowder/st08-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.470	NDG: 2 	RND:	              waves/chowder/st10-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.530	NDG: 2 	RND:	             waves/chowder/str02-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.400	NDG: 2 	RND:	             waves/chowder/str04-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.490	NDG: 1 	RND:	             waves/chowder/str06-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.400	NDG: 2 	RND:	            waves/chowder/stri02-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.560	NDG: 2 	RND:	            waves/chowder/stri04-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.580	NDG: 2 	RND:	            waves/chowder/stri08-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:14 2020	 x0	1000	0.420	NDG: 2 	RND:	            waves/chowder/stri10-k.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:13:15 2020	 x0	1000	0.440	NDG: 2 	RND:	            waves/chowder/stri12-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:13:15 2020	 x0	1000	0.350	NDG: 2 	RND:	           waves/chowder/strin02-k.txt (+) ( 100 bp) REC:1000	M: 2	-
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1285 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6953 total
-
-Tue Jun  9 21:13:48 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-
-                                               < cleanup_set_all >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         816
-
-Number of tests completed:         816
-
-Number of tests w/ PASS 1000:      816
-
-Number of tests w/ REC. 1000:      816
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.508418
-
-First and last runs:
-v4.32	Jun  9 21:14:15 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	Jun  9 21:14:57 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1285 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6953 total
-
-Commit WCR avgs: ... ->0.504555 ->0.504531 ->0.504548 (cinch-k block to skip non-fractal TRs at nexus of overlapping TRs)
-
-
-                                               < sand_dunes >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         22
-
-Number of tests completed:         22
-
-Number of tests w/ PASS 1000:      22
-
-Number of tests w/ REC. 1000:      22
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.441227
-
-First and last runs:
-v4.32	Jun  9 21:15:39 2020	 x0	1000	0.641	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun  9 21:15:47 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1285 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6953 total
-
-sand_dunes benchmark WCR average of 22: 0.378318
-
-
-                                               < eatchowder >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         82
-
-Number of tests completed:         82
-
-Number of tests w/ PASS 1000:      82
-
-Number of tests w/ REC. 1000:      82
-
-Number of tests w/ nudging:        0
-
-Number of tests w/ checktransit:   0
-
-WCR AVERAGE: 0.474598
-
-First and last runs:
-v4.32	Jun  9 21:15:56 2020	 x0	1000	0.520	NDG: 0 	RND:	         waves/chowder/flotsam_10F.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.32	Jun  9 21:16:09 2020	 x0	1000	0.410	NDG: 0 	RND:	               waves/chowder/s30-t.txt (+) ( 100 bp) REC:1000	M: 4	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-
-Line counts:
-    1962 src/mha_v4.32.c
-    1285 src/microhom-cinc.h
-     111 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1787 src/microhom-tela.h
-    1695 src/microhomology.h
-    6953 total
 

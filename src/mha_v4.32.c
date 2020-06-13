@@ -1467,7 +1467,7 @@ int main(int argc, char *argv[])
 	/********* 4. cinch_k MODULE: HANDLES k-mers FROM SIZE WIDTH DOWN TO k=1 ***********************/
 	++Current.pass_V;
 
-	Cinch_K.pass_R = cinch_k(1);		/* 0 = SKIP = OFF; 1 => k=1 ONLY; >1 => all k */
+	Cinch_K.pass_R = cinch_k(2);		/* 	MODES 	0: SKIP/OFF; 	1: k=1 ONLY; 	>1: all k 	*/
 	Cinch_K.pass_Q = Current.pass_Q;
 
 	if (dev_print(MAIN,__LINE__)) {
