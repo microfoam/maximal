@@ -884,7 +884,7 @@ void mark_tela(void)
 						printf("For n=%d: case_X = %d, splitcol = %d.", n,case_X,splitcol);
 				}
 				else if (tela[n].stat != st_cycle.sym && tela[m-1].ok == tela[m].ok) { /* GENERALIZE TO HANDLE CASE 1 TOO? (W/ CODE REVIEW) */
-					while (splitcol && tela[splitcol-1].ok <= tela[splitcol].ok) {
+					while (splitcol && tela[splitcol].ok && tela[splitcol-1].ok <= tela[splitcol].ok) {
 
 						if (tela[splitcol].all_S <= tela[n].all_S) {
 							while (splitcol + span_ork(splitcol) - m > tela[splitcol].ok && tela[splitcol].or>1)
