@@ -24,7 +24,7 @@ echo
 echo 'Number of tests w/ checktransit:   ' | tr -d "\n"
 grep -cE 'checktransit' Surf_wavereport.log 
 echo
-awk -F'[\t]' '{sum+=$5} END {print "WCR AVERAGE: " sum/NR}' Surf_wavereport.log 
+awk -F'[\t]' '{sum+=$5} END {print "WCR average: " sum/NR}' Surf_wavereport.log 
 echo
 echo 'First and last runs:'
 head -n 1 Surf_wavereport.log

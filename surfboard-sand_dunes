@@ -42,5 +42,6 @@ fi
 ./maximal -D 8 -KRn  waves/chowder/snippet-jetsam-03.txt 
 
 ./surfboard-checkmha
-echo 'sand_dunes benchmark WCR average of 22: 0.378318' | tee -a Corduroy.log
+echo 'Previous commit WCR average of 22 allowing all k-mers in cinch-k: 0.378318' | tee -a Corduroy.log
+echo 'Previous commit WCR average of 22 allowing only k = 1 in cinch-k: 0.437818' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
