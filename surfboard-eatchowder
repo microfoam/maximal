@@ -19,16 +19,6 @@ fi
 
 tput bel
 echo
-echo "$0: Hit <enter> to run the cinch-t nudged runs (currently only one). Or, enter 'q' to quit script entirely."
-read -s -n1 answer
-if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
-	exit 1
-else
-	./maximal -KRn -D 2 waves/chowder/string02-t.txt 
-fi
-
-tput bel
-echo
 echo "$0: Hit <enter> to run the cinch-k nudged runs (currently many). Or, enter 'q' to quit script entirely."
 read -s -n1 answer
 if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
@@ -126,6 +116,9 @@ else
 	./maximal -KRn -D 8 waves/chowder/flotsam_01F.txt 	# solved-8 explicit test of fractality in mark_tela block invoking get_k2
 	./maximal -KRn -D 8 waves/chowder/flotsam_23R.txt 	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
 	./maximal -KRn -D 8 waves/chowder/s30-t.txt		 	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
+	./maximal -KRn -D 2 waves/chowder/string02-t.txt 	# solved-10 after code review of split fractal cases in mark_tela
 fi
 
 ./surfboard-checkmha
+echo 'Commit WCR avg: 0.46659' | tee -a Corduroy.log
+echo | tee -a Corduroy.log

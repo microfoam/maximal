@@ -875,26 +875,27 @@ void mark_tela(void)
 			k = tela[n].ok;
 			m = n - k;
 
-			int case_X=0;		/* TO HANDLE CASES FOR ENTRY INTO IF BLOCK */
+			int case_X=0;		/* TO DISTINGUISH ENTRIES INTO IF BLOCK THAT HANDLES LEGACY FRACTAL SPLITTING */
 			int splitcol = m;
 			if (tela[m].or) {
-				if (tela[m].or>1 && tela[n].all_S>=tela[m].all_S) {
+				if (tela[m].or>1 && tela[m].all_S<=tela[n].all_S && m>1 && tela[m-1].ok != tela[m].ok) {
 					case_X = 1;
-					while (OFF && splitcol-1>0 && tela[splitcol-1].ok==tela[m].ok)
-						splitcol--;
 				}
 				else if (m>1 && tela[m-1].or>1 && tela[m-1].ok==tela[m].ok && !tela[m-2].ok && !tela[n+1].ok && tela[n].all_S>=tela[m-1].all_S) {
 					case_X = 2;
 					splitcol = m-1;
 				}
-				else if (tela[n].stat != st_cycle.sym && tela[m].stat == st_cycle.sym && tela[m-1].ok == tela[m].ok) {
-					while (tela[splitcol-1].ok == tela[splitcol].ok)
-						splitcol--;
+				else if (tela[n].stat != st_cycle.sym && tela[m-1].ok == tela[m].ok) { /* NEED GENERALIZE TO HANDLE PREVIOUS CASES (W/ CODE REVIEW) */
+					while (splitcol && tela[splitcol-1].ok <= tela[splitcol].ok) {
 
-					if (tela[splitcol].all_S == tela[n].all_S) {
-						while (splitcol + span_ork(splitcol) - m > tela[splitcol].ok && tela[splitcol].or>1)
-							tela[splitcol].or--;
+						if (tela[splitcol].all_S <= tela[n].all_S) {
+							while (splitcol + span_ork(splitcol) - m > tela[splitcol].ok && tela[splitcol].or>1)
+								tela[splitcol].or--;
+						}
+						splitcol--;
 					}
+					if (dev_print(TELA,__LINE__))
+						printf("For n=%d: case_X = %d, splitcol = %d.", n,case_X,splitcol);
 				}
 			}
 			if (case_X && dev_print(TELA,__LINE__))

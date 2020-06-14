@@ -1,4 +1,4 @@
->Target_0.320_Split_fractal_GAGA_variations-1
+>Target-0.320_Fractal_splitting_GAGA_variations-1
 GCGAGAGATGAGATAAATGtgnn
 GCgaGAGAGATGAGATAAATGtgnn
 GCgagaGAGAGATGAGATAAATGtgnn
