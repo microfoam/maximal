@@ -877,15 +877,13 @@ void mark_tela(void)
 
 			int case_X=0;		/* TO DISTINGUISH ENTRIES INTO IF BLOCK THAT HANDLES LEGACY FRACTAL SPLITTING */
 			int splitcol = m;
-			if (tela[m].or) {
+			if (tela[m].or && tela[splitcol].ok < k) {
 				if (tela[m].or>1 && tela[m].all_S<=tela[n].all_S && m>1 && tela[m-1].ok != tela[m].ok) {
 					case_X = 1;
+					if (dev_print(TELA,__LINE__))
+						printf("For n=%d: case_X = %d, splitcol = %d.", n,case_X,splitcol);
 				}
-				else if (m>1 && tela[m-1].or>1 && tela[m-1].ok==tela[m].ok && !tela[m-2].ok && !tela[n+1].ok && tela[n].all_S>=tela[m-1].all_S) {
-					case_X = 2;
-					splitcol = m-1;
-				}
-				else if (tela[n].stat != st_cycle.sym && tela[m-1].ok == tela[m].ok) { /* NEED GENERALIZE TO HANDLE PREVIOUS CASES (W/ CODE REVIEW) */
+				else if (tela[n].stat != st_cycle.sym && tela[m-1].ok == tela[m].ok) { /* GENERALIZE TO HANDLE CASE 1 TOO? (W/ CODE REVIEW) */
 					while (splitcol && tela[splitcol-1].ok <= tela[splitcol].ok) {
 
 						if (tela[splitcol].all_S <= tela[n].all_S) {
@@ -898,10 +896,7 @@ void mark_tela(void)
 						printf("For n=%d: case_X = %d, splitcol = %d.", n,case_X,splitcol);
 				}
 			}
-			if (case_X && dev_print(TELA,__LINE__))
-				printf("For n=%d: case_X = %d, splitcol = %d.", n,case_X,splitcol);
-
-			if (case_X && tela[splitcol].ok < k && splitcol+span_ork(splitcol)<=n) {
+			if (case_X && splitcol+span_ork(splitcol)<=n) {
 				/* REDUCE REPEAT NUMBER IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T; aka FRACTAL SPLITTING */
 				int k_at_m = tela[splitcol].ok;
 				int less_r = tela[splitcol].or - 1;

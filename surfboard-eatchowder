@@ -116,7 +116,7 @@ else
 	./maximal -KRn -D 8 waves/chowder/flotsam_01F.txt 	# solved-8 explicit test of fractality in mark_tela block invoking get_k2
 	./maximal -KRn -D 8 waves/chowder/flotsam_23R.txt 	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
 	./maximal -KRn -D 8 waves/chowder/s30-t.txt		 	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
-	./maximal -KRn -D 2 waves/chowder/string02-t.txt 	# solved-10 after code review of split fractal cases in mark_tela
+	./maximal -KRn -D 8 waves/chowder/string02-t.txt 	# solved-10 after code review of split fractal cases in mark_tela
 fi
 
 ./surfboard-checkmha
