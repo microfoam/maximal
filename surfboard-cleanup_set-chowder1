@@ -21,7 +21,6 @@ fi
 	./maximal -aKR -D 8 waves/chowder/s32-k.txt
 	./maximal -aKR -D 8 waves/chowder/s40-k.txt
 	./maximal -aKR -D 8 waves/chowder/s42-k.txt
-	./maximal -aKR -D 8 waves/chowder/s44-k.txt
 	./maximal -aKR -D 8 waves/chowder/str06-k.txt
 	./maximal -aKR -D 8 waves/chowder/stri04-k.txt
 
