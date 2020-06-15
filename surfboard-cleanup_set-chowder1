@@ -57,5 +57,5 @@ fi
 	./maximal -aKR -D 8 waves/chowder/strin02-k.txt 
 
 ./surfboard-checkmha
-echo 'Previous commit WCR average allowing all k-mers in cinch-k: 0.46659 ' | tee -a Corduroy.log
+echo 'Previous commit WCR average of 37, allowing all k-mers in cinch-k: 0.457297' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
