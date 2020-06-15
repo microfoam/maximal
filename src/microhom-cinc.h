@@ -234,13 +234,14 @@ int cinch_k(short unsigned int mode)
 {
 
 	if (!mode) {
-		return(0);
+		Cinch_K.pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS i WIDTH HISTORY 			*/
+		return(Cinch_K.pass_V);				/* RETURNS 0; Cinch_K.pass_V holds cumulative cinch-k runs. */
 	}
 
 	int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0; 
 	int first_mwrap_start=0, last_mwrap=0;
 	unsigned short int first_mwrap=0, keep_checking=1;
-	unsigned short int nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
+	unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 	unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 	unsigned short int homopolyflag=0, imperfect_TR=0;
 	int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
@@ -596,12 +597,42 @@ int cinch_k(short unsigned int mode)
 					}
 				}
 
-				/* 2nd TO LAST CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
+				/* 3rd TO LAST CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
 				if (keep_checking || imperfect_TR) {
 					for (i=symbol_count+1; i<=lenseq; i++) {
 						if (tela[i].k && tela[i].x > n && tela[i].x < n+k) {
 							keep_checking = imperfect_TR = 0;
 							break;
+						}
+					}
+				}
+
+				/* 2nd TO LAST CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
+				if ((keep_checking || imperfect_TR) && k>1 && isalpha(letr=align2D[m-1][n+k])) {
+					printf("\n This is the case for m=%d, n=%d, k=%d, and letr=%c.", m,n,k,letr);
+					
+					int toprow = m-1;
+					int j = k;	/* DO THIS TO ENTER WHILE LOOP FIRST TIME */
+					while (j==k && toprow>=0) {
+	
+						for (j=0; j<k; j++) {
+							if (align2D[toprow][n+k+j]!=align2D[m][n+j])
+								break;
+						}
+						if (j==k) {
+							if (isalpha(letr=align2D[toprow-1][n+k]))
+								toprow--;
+							else
+								break;
+						}
+					}
+					if (j<k) {
+						int checkcol = n+2*k;
+						for (i=m; i<=lenseq; i++) {
+							if (isalpha(letr2=align2D[i][checkcol]) && letr2 != letr) {
+								keep_checking = imperfect_TR = 0;
+								break;
+							}
 						}
 					}
 				}

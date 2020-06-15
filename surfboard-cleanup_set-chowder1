@@ -1,6 +1,6 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < eat chowder cinch-k all k-mers>' >> Corduroy.log
+echo '                                               < eat chowder 1: cinch-k all k-mers>' >> Corduroy.log
 
 answer="n"
 
@@ -17,6 +17,13 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
+
+	./maximal -aKR -D 8 waves/chowder/s32-k.txt
+	./maximal -aKR -D 8 waves/chowder/s40-k.txt
+	./maximal -aKR -D 8 waves/chowder/s42-k.txt
+	./maximal -aKR -D 8 waves/chowder/s44-k.txt
+	./maximal -aKR -D 8 waves/chowder/str06-k.txt
+	./maximal -aKR -D 8 waves/chowder/stri04-k.txt
 
 	./maximal -aKR -D 8 waves/chowder/flotsam_10F.txt	# multi-line partially-fractal TR at nexus of overlapping TRs
 	./maximal -aKR -D 8 waves/chowder/flotsam_14F.txt	# multi-line partially-fractal TR at nexus of overlapping TRs
@@ -35,12 +42,8 @@ fi
 	./maximal -aKR -D 8 waves/chowder/s14-k.txt
 	./maximal -aKR -D 8 waves/chowder/s26-k.txt
 	./maximal -aKR -D 8 waves/chowder/s28-k.txt
-	./maximal -aKR -D 8 waves/chowder/s32-k.txt
 	./maximal -aKR -D 8 waves/chowder/s36-k.txt
 	./maximal -aKR -D 8 waves/chowder/s38-k.txt
-	./maximal -aKR -D 8 waves/chowder/s40-k.txt
-	./maximal -aKR -D 8 waves/chowder/s42-k.txt
-	./maximal -aKR -D 8 waves/chowder/s44-k.txt
 	./maximal -aKR -D 8 waves/chowder/s46-k.txt
 	./maximal -aKR -D 8 waves/chowder/s48-k.txt
 	./maximal -aKR -D 8 waves/chowder/s50-k.txt
@@ -48,14 +51,12 @@ fi
 	./maximal -aKR -D 8 waves/chowder/st10-k.txt
 	./maximal -aKR -D 8 waves/chowder/str02-k.txt
 	./maximal -aKR -D 8 waves/chowder/str04-k.txt
-	./maximal -aKR -D 8 waves/chowder/str06-k.txt
 	./maximal -aKR -D 8 waves/chowder/stri02-k.txt
-	./maximal -aKR -D 8 waves/chowder/stri04-k.txt
 	./maximal -aKR -D 8 waves/chowder/stri08-k.txt
 	./maximal -aKR -D 8 waves/chowder/stri10-k.txt
 	./maximal -aKR -D 8 waves/chowder/stri12-k.txt
 	./maximal -aKR -D 8 waves/chowder/strin02-k.txt 
 
 ./surfboard-checkmha
-echo 'Previous commit WCR average of 37, allowing all k-mers in cinch-k: 0.457297' | tee -a Corduroy.log
+echo 'Previous commit WCR averages of 37, allowing all k-mers in cinch-k: 0.457297 (37 nudgings) ->0.458649 (6 nudgings)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

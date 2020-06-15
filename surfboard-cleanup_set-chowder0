@@ -1,6 +1,6 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < eatchowder (0) >' >> Corduroy.log
+echo '                                               < eatchowder 0: cinch-k k=1 only >' >> Corduroy.log
 
 answer="n"
 
@@ -24,43 +24,13 @@ read -s -n1 answer
 if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
 	exit 1
 else
-	./maximal -KR -D 8 waves/chowder/flotsam_10F.txt	# multi-line partially-fractal TR at nexus of overlapping TRs
-	./maximal -KR -D 8 waves/chowder/flotsam_14F.txt	# multi-line partially-fractal TR at nexus of overlapping TRs
-	./maximal -KR -D 8 waves/chowder/flotsam_21R.txt
-	./maximal -KR -D 8 waves/chowder/flotsam_28F.txt
-	./maximal -KR -D 8 waves/chowder/flotsam_31R.txt
-	./maximal -KR -D 8 waves/chowder/flotsam_35R.txt
-	./maximal -KR -D 8 waves/chowder/flotsam_36R.txt
-	./maximal -KR -D 8 waves/chowder/flotsam_40R.txt
-	./maximal -KR -D 8 waves/chowder/flotsam_41R.txt
-	./maximal -KR -D 8 waves/chowder/flotsam_44R.txt
-	./maximal -KR -D 8 waves/chowder/flotsam_45F.txt
-	./maximal -KR -D 8 waves/chowder/flotsam_46R.txt
-	./maximal -KR -D 8 waves/chowder/s06-k.txt
-	./maximal -KR -D 8 waves/chowder/s10-k.txt
-	./maximal -KR -D 8 waves/chowder/s14-k.txt
-	./maximal -KR -D 8 waves/chowder/s26-k.txt
-	./maximal -KR -D 8 waves/chowder/s28-k.txt
 	./maximal -KR -D 8 waves/chowder/s32-k.txt
-	./maximal -KR -D 8 waves/chowder/s36-k.txt
-	./maximal -KR -D 8 waves/chowder/s38-k.txt
 	./maximal -KR -D 8 waves/chowder/s40-k.txt
 	./maximal -KR -D 8 waves/chowder/s42-k.txt
 	./maximal -KR -D 8 waves/chowder/s44-k.txt
-	./maximal -KR -D 8 waves/chowder/s46-k.txt
-	./maximal -KR -D 8 waves/chowder/s48-k.txt
-	./maximal -KR -D 8 waves/chowder/s50-k.txt
-	./maximal -KR -D 8 waves/chowder/st08-k.txt
-	./maximal -KR -D 8 waves/chowder/st10-k.txt
-	./maximal -KR -D 8 waves/chowder/str02-k.txt
-	./maximal -KR -D 8 waves/chowder/str04-k.txt
 	./maximal -KR -D 8 waves/chowder/str06-k.txt
-	./maximal -KR -D 8 waves/chowder/stri02-k.txt
 	./maximal -KR -D 8 waves/chowder/stri04-k.txt
-	./maximal -KR -D 8 waves/chowder/stri08-k.txt
-	./maximal -KR -D 8 waves/chowder/stri10-k.txt
-	./maximal -KR -D 8 waves/chowder/stri12-k.txt
-	./maximal -KR -D 8 waves/chowder/strin02-k.txt 
+
 fi
 
 # Solved but leaving here to keep track of their status:
@@ -117,9 +87,39 @@ else
 	./maximal -KR -D 8 waves/chowder/flotsam_23R.txt 	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
 	./maximal -KR -D 8 waves/chowder/s30-t.txt		 	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
 	./maximal -KR -D 8 waves/chowder/string02-t.txt 	# solved-10 after code review of split fractal cases in mark_tela
+	./maximal -KR -D 8 waves/chowder/flotsam_10F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/flotsam_14F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/flotsam_21R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/flotsam_28F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/flotsam_31R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/flotsam_35R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/flotsam_36R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/flotsam_40R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/flotsam_41R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/flotsam_44R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/flotsam_45F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/flotsam_46R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s06-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s10-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s14-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s26-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s28-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s36-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s38-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s46-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s48-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s50-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/st08-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/st10-k.txt			# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/str02-k.txt		# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/str04-k.txt		# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/stri02-k.txt		# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/stri08-k.txt		# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/stri10-k.txt		# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/stri12-k.txt		# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/strin02-k.txt 		# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
 fi
 
 ./surfboard-checkmha
-echo 'Previous commit WCR average allowing all k-mers in cinch-k: 0.46659  (with chowder)' | tee -a Corduroy.log
 echo 'Previous commit WCR average allowing only k = 1 in cinch-k: 0.472976 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

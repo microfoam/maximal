@@ -1,6 +1,6 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < eat chowder cinch-k all k-mers>' >> Corduroy.log
+echo '                                               < eat chowder: three snippet test cases >' >> Corduroy.log
 
 answer="n"
 
