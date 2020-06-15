@@ -1,6 +1,6 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < eatchowder >' >> Corduroy.log
+echo '                                               < eatchowder (0) >' >> Corduroy.log
 
 answer="n"
 
