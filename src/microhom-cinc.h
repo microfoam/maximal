@@ -609,7 +609,6 @@ int cinch_k(short unsigned int mode)
 
 				/* 2nd TO LAST CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
 				if ((keep_checking || imperfect_TR) && k>1 && isalpha(letr=align2D[m-1][n+k])) {
-					printf("\n This is the case for m=%d, n=%d, k=%d, and letr=%c.", m,n,k,letr);
 					
 					int toprow = m-1;
 					int j = k;	/* DO THIS TO ENTER WHILE LOOP FIRST TIME */

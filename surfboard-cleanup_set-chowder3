@@ -1,6 +1,6 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < eat chowder 3: last six nudgings from cinch-k all k-mers>' >> Corduroy.log
+echo '                                               < eat chowder 3: last five nudgings from cinch-k all k-mers, whittled >' >> Corduroy.log
 
 answer="n"
 
@@ -18,13 +18,12 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 
-	./maximal -aKR -D 8 waves/chowder/s32-k.txt
-	./maximal -aKR -D 8 waves/chowder/s40-k.txt
-	./maximal -aKR -D 8 waves/chowder/s42-k.txt
-	./maximal -aKR -D 8 waves/chowder/s44-k.txt
-	./maximal -aKR -D 8 waves/chowder/str06-k.txt
-	./maximal -aKR -D 8 waves/chowder/stri04-k.txt
+	./maximal -aKR -D 8 waves/chowder/snippet-s32-k.txt
+	./maximal -aKR -D 8 waves/chowder/snippet-s42-k.txt
+	./maximal -aKR -D 8 waves/chowder/snippet-str06-k.txt
+	./maximal -aKR -D 8 waves/chowder/snippet-s40-k.txt
+	./maximal -aKR -D 8 waves/chowder/snippet-stri04-k.txt
 
 ./surfboard-checkmha
-echo 'Previous commit WCR averages of 6, allowing all k-mers in cinch-k: 0.455 (6 nudgings)' | tee -a Corduroy.log
+echo 'Commit WCR average of 5, allowing all k-mers in cinch-k: 0.3888 (5 nudgings)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
