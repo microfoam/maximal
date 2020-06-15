@@ -120,6 +120,6 @@ else
 fi
 
 ./surfboard-checkmha
-echo 'Previous commit WCR average allowing all k-mers in cinch-k: 0.46659 ' | tee -a Corduroy.log
-echo 'Previous commit WCR average allowing only k = 1 in cinch-k: 0.472976' | tee -a Corduroy.log
+echo 'Previous commit WCR average allowing all k-mers in cinch-k: 0.46659  (with chowder)' | tee -a Corduroy.log
+echo 'Previous commit WCR average allowing only k = 1 in cinch-k: 0.472976 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
