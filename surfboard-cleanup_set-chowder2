@@ -1,0 +1,29 @@
+#!/bin/bash
+echo >> Corduroy.log
+echo '                                               < eat chowder cinch-k all k-mers>' >> Corduroy.log
+
+answer="n"
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	./surfboard-Pop_Up
+	;;
+esac
+done
+
+if [ -f Surf_wavereport.mha ]; then
+	    rm Surf_wavereport.mha
+fi
+
+
+	./maximal -KR -D 8 waves/chowder/snippet-flotsam_10F.txt
+	./maximal -KR -D 8 waves/chowder/snippet-flotsam_10F.txt -a
+	./maximal -KR -D 8 waves/chowder/snippet-flotsam_14F.txt
+	./maximal -KR -D 8 waves/chowder/snippet-flotsam_14F.txt -a
+	./maximal -KR -D 8 waves/chowder/snippet-flotsam_21R.txt
+	./maximal -KR -D 8 waves/chowder/snippet-flotsam_21R.txt -a
+
+./surfboard-checkmha
+echo | tee -a Corduroy.log
