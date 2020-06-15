@@ -1,6 +1,6 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < eat chowder: three snippet test cases >' >> Corduroy.log
+echo '                                               < eat chowder 2: three snippet test cases >' >> Corduroy.log
 
 answer="n"
 

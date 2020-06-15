@@ -17,9 +17,9 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
+	./maximal -aKR -D 8 waves/chowder/s40-k.txt
 
 	./maximal -aKR -D 8 waves/chowder/s32-k.txt
-	./maximal -aKR -D 8 waves/chowder/s40-k.txt
 	./maximal -aKR -D 8 waves/chowder/s42-k.txt
 	./maximal -aKR -D 8 waves/chowder/str06-k.txt
 	./maximal -aKR -D 8 waves/chowder/stri04-k.txt
@@ -57,5 +57,5 @@ fi
 	./maximal -aKR -D 8 waves/chowder/strin02-k.txt 
 
 ./surfboard-checkmha
-echo 'Previous commit WCR averages of 36, allowing all k-mers in cinch-k: 0.461111 (5 nudgings)' | tee -a Corduroy.log
+echo 'Previous commit WCR average of 36, allowing all k-mers in cinch-k: 0.460556 (1 nudging)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

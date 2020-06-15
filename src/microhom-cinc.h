@@ -597,7 +597,7 @@ int cinch_k(short unsigned int mode)
 					}
 				}
 
-				/* 3rd TO LAST CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
+				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
 				if (keep_checking || imperfect_TR) {
 					for (i=symbol_count+1; i<=lenseq; i++) {
 						if (tela[i].k && tela[i].x > n && tela[i].x < n+k) {
@@ -607,7 +607,7 @@ int cinch_k(short unsigned int mode)
 					}
 				}
 
-				/* 2nd TO LAST CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
+				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
 				if ((keep_checking || imperfect_TR) && k>1 && isalpha(letr=align2D[m-1][n+k])) {
 					
 					int toprow = m-1;
@@ -634,6 +634,11 @@ int cinch_k(short unsigned int mode)
 							}
 						}
 					}
+				}
+
+				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
+				if ((keep_checking || imperfect_TR) && k>1 && isalpha(letr=align2D[m+1][n+k-1]) && !isalpha(align2D[m+1][n])) {
+					keep_checking = imperfect_TR = 0;
 				}
 
 				/* This if-block made 5/7 chunks of remaining chowder disappear. Should be tried further up for time considerations. */

@@ -1,6 +1,6 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < eatchowder 0: cinch-k k=1 only >' >> Corduroy.log
+echo '                                               < eat chowder 0: cinch-k k=1 only >' >> Corduroy.log
 
 answer="n"
 
@@ -24,12 +24,7 @@ read -s -n1 answer
 if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
 	exit 1
 else
-	./maximal -KR -D 8 waves/chowder/s32-k.txt
 	./maximal -KR -D 8 waves/chowder/s40-k.txt
-	./maximal -KR -D 8 waves/chowder/s42-k.txt
-	./maximal -KR -D 8 waves/chowder/str06-k.txt
-	./maximal -KR -D 8 waves/chowder/stri04-k.txt
-
 fi
 
 # Solved but leaving here to keep track of their status:
@@ -117,6 +112,10 @@ else
 	./maximal -KR -D 8 waves/chowder/stri10-k.txt		# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
 	./maximal -KR -D 8 waves/chowder/stri12-k.txt		# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
 	./maximal -KR -D 8 waves/chowder/strin02-k.txt 		# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s32-k.txt			# solved-12 multi-line conflict at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/s42-k.txt			# solved-12 multi-line conflict at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/str06-k.txt		# solved-12 multi-line conflict at nexus of overlapping TRs
+	./maximal -KR -D 8 waves/chowder/stri04-k.txt		# solved-12 multi-line conflict at nexus of overlapping TRs
 fi
 
 ./surfboard-checkmha
