@@ -238,7 +238,7 @@ int main(int argc, char *argv[])
 
 	/**************************************/
 	/* SET OPTIONS FROM ARGUMENTS  ********/
-	const char* optstring = "cdfg::hklm::noprstu::v::xzB::CD::FHKLM::O::PRS::TX::Y:";
+	const char* optstring = "acdfg::hklm::noprstu::v::xzB::CD::FHKLM::O::PRS::TX::Y:";
 	opterr=0;
 	int opt_count=0;	/* INDEX TO COUNT NUMBER OF OPTIONS */
 
@@ -246,6 +246,9 @@ int main(int argc, char *argv[])
 	while ((opt = getopt(argc, argv, optstring)) != -1) {
 		++opt_count;
 		switch (opt) {
+		case 'a':						/* OPTION TO CINCH ALL K-MERS IN CINCH-K; DEFAULT IS K=1 ONLY */
+				opt_a.bit = 1;
+				break;
 		case 'c':						/* SHOW BASE 62 CODE */
 				opt_c.bit = 1;
 				print_base62_table();
@@ -1467,7 +1470,7 @@ int main(int argc, char *argv[])
 	/********* 4. cinch_k MODULE: HANDLES k-mers FROM SIZE WIDTH DOWN TO k=1 ***********************/
 	++Current.pass_V;
 
-	Cinch_K.pass_R = cinch_k(1);		/* 	MODES 	0: SKIP/OFF; 	1: k=1 ONLY; 	>1: all k 	*/
+	Cinch_K.pass_R = cinch_k(1+opt_a.bit);		/* 	MODES 	0: SKIP/OFF; 	1: k=1 ONLY; 	>1: all k 	*/
 	Cinch_K.pass_Q = Current.pass_Q;
 
 	if (dev_print(MAIN,__LINE__)) {
