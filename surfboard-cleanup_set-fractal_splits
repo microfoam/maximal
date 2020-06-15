@@ -18,12 +18,12 @@ fi
 
 
 # DIAGNOSTIC TESTS START ON LINE 21
-./maximal -D 8 -KR  waves/chowder/seq26-snippet.txt 
-./maximal -D 8 -KR  waves/chowder/gal11-knot1.txt 
-./maximal -D 8 -KR  waves/chowder/seq26-variations1.txt 
-./maximal -D 8 -KR  waves/chowder/seq26-variations2.txt 
-./maximal -D 8 -KR  waves/chowder/snippet-string02-t.txt
-./maximal -D 8 -KR  waves/chowder/snippet-seq-014-cycle3.txt 
+./maximal -D 8 -aKR  waves/chowder/seq26-snippet.txt 
+./maximal -D 8 -aKR  waves/chowder/gal11-knot1.txt 
+./maximal -D 8 -aKR  waves/chowder/seq26-variations1.txt 
+./maximal -D 8 -aKR  waves/chowder/seq26-variations2.txt 
+./maximal -D 8 -aKR  waves/chowder/snippet-string02-t.txt
+./maximal -D 8 -aKR  waves/chowder/snippet-seq-014-cycle3.txt 
 
 ./surfboard-checkmha
 echo 'Previous commit WCR average of 6 allowing all k-mers in cinch-k: 0.372   ' | tee -a Corduroy.log
