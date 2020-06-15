@@ -1,1 +1,11 @@
-GTTATTAATAATAATATAATAATAACGTA
+>Target_pattern_given_in_source
+GT/
+.TAT/
+...TA/
+..ATA/
+..ATA/
+..AT/
+..ATA/
+..ATA/
+..ATA/
+....ACGTA

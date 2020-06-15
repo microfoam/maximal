@@ -17,24 +17,7 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
-tput bel
-echo
-echo "$0: Hit <enter> to run the cinch-k nudged runs (currently many). Or, enter 'q' to quit script entirely."
-read -s -n1 answer
-if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
-	exit 1
-else
-	./maximal -KR -D 8 waves/chowder/s40-k.txt
-fi
 
-# Solved but leaving here to keep track of their status:
-tput bel
-echo
-echo "$0: Hit <enter> to run recently solved chowder runs. Or, enter 'q' to quit script entirely."
-read -s -n1 answer
-if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
-	exit 1
-else
 	./maximal -KR -D 8 waves/chowder/flotsam_06F.txt
 	./maximal -KR -D 8 waves/chowder/flotsam_09F.txt
 	./maximal -KR -D 8 waves/chowder/flotsam_15F.txt
@@ -116,7 +99,7 @@ else
 	./maximal -KR -D 8 waves/chowder/s42-k.txt			# solved-12 multi-line conflict at nexus of overlapping TRs
 	./maximal -KR -D 8 waves/chowder/str06-k.txt		# solved-12 multi-line conflict at nexus of overlapping TRs
 	./maximal -KR -D 8 waves/chowder/stri04-k.txt		# solved-12 multi-line conflict at nexus of overlapping TRs
-fi
+	./maximal -KR -D 8 waves/chowder/s40-k.txt			# solved-13 mini cinch-k block
 
 ./surfboard-checkmha
 echo 'Previous commit WCR average allowing only k = 1 in cinch-k: 0.473988 (82 chowder-free)' | tee -a Corduroy.log

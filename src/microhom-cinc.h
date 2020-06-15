@@ -641,6 +641,14 @@ int cinch_k(short unsigned int mode)
 					keep_checking = imperfect_TR = 0;
 				}
 
+				/* CHECK FOR CONFLICT OVERHEAD */
+				if ((keep_checking || imperfect_TR) && isalpha(align2D[m-1][n+k]) && !isalpha(align2D[m-1][n+2*k-1])) {
+					for (i=0; i<k; i++) {
+						if (isalpha(letr=align2D[m-1][n+k+i]) && isalpha(letr2=align2D[m][n+2*k+i]) && letr!=letr2)
+							keep_checking = imperfect_TR = 0;
+					}
+				}
+
 				/* This if-block made 5/7 chunks of remaining chowder disappear. Should be tried further up for time considerations. */
 				if (nuctransit && keep_checking && col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)<0 && col_isclear(align2D,n+k-1,m,1)>0) 
 					keep_checking = imperfect_TR = 0;
