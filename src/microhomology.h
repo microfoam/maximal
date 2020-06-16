@@ -1605,6 +1605,8 @@ void print1D(void)
 			}
 			if (j+1 == blocks)
 				printf(" <==== (((( {  REVERB  } ))))\n");
+			else
+				printf("\n");
 			/**********************************************/
 			head_start = (j * par_wrap.set) % 10;
 			if (j+1 < blocks) {
