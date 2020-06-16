@@ -86,7 +86,7 @@ struct {
 
 }	*Options[53] = {},
                            /*.........|.........|.........|.........|.........|.........|...X*/	
-	opt_a = {0, 0, 'a', 	"Cinch all intra-TR (tandem repeat) k-mers (default k=1 only).  "},
+	opt_a = {0, 2, 'a', 	"Cinch-k mode 2: all k (default); 1: k=1 only; 0: skip all k.*3 "},
 	opt_b = {0, 0, 'b', {0}},
 	opt_c = {0, 0, 'c', 	"Show base 62 single character code used for k-size and number. "},
 	opt_d = {0, 0, 'd',		"Skip cinch-d module. Also automatically skips relax-2D module. "},

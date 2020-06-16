@@ -1,6 +1,6 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < eat chowder 2: three snippet test cases >' >> Corduroy.log
+echo '                                               < chowder 2: three snippet test cases >' >> Corduroy.log
 
 answer="n"
 
@@ -19,11 +19,8 @@ fi
 
 
 	./maximal -KR -D 8 waves/chowder/snippet-flotsam_10F.txt
-	./maximal -KR -D 8 waves/chowder/snippet-flotsam_10F.txt -a
 	./maximal -KR -D 8 waves/chowder/snippet-flotsam_14F.txt
-	./maximal -KR -D 8 waves/chowder/snippet-flotsam_14F.txt -a
 	./maximal -KR -D 8 waves/chowder/snippet-flotsam_21R.txt
-	./maximal -KR -D 8 waves/chowder/snippet-flotsam_21R.txt -a
 
 ./surfboard-checkmha
 echo | tee -a Corduroy.log
