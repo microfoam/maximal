@@ -18,13 +18,13 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 # Solved but leaving here to keep track of their status:
-tput bel
-echo
-echo "$0: Hit <enter> to run recently solved chowder runs. Or, enter 'q' to quit script entirely."
-read -s -n1 answer
-if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
-	exit 1
-else
+# tput bel
+# echo
+# echo "$0: Hit <enter> to run recently solved chowder runs. Or, enter 'q' to quit script entirely."
+# read -s -n1 answer
+# if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
+# 	exit 1
+# else
 	./maximal -KR waves/chowder/flotsam_06F.txt							# solved in the script commenting before-time
 	./maximal -KR waves/chowder/flotsam_09F.txt							# solved in the script commenting before-time
 	./maximal -KR waves/chowder/flotsam_15F.txt							# solved in the script commenting before-time
@@ -107,7 +107,7 @@ else
 	./maximal -KR waves/chowder/str06-k.txt			# solved-12 multi-line conflict at nexus of overlapping TRs
 	./maximal -KR waves/chowder/stri04-k.txt		# solved-12 multi-line conflict at nexus of overlapping TRs
 	./maximal -KR waves/chowder/s40-k.txt			# solved-13 cinch-k mini-block
-fi
+# fi
 
 ./surfboard-checkmha
 echo 'Previous commit WCR average of 82, allowing all k-mers in cinch-k: 0.468134' | tee -a Corduroy.log
