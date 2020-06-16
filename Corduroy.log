@@ -592,3 +592,51 @@ Line counts:
     1695 src/microhomology.h
     7003 total
 
+
+                                               < eat nuggets >
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+Number of tests initiated:         3
+
+Number of tests completed:         3
+
+Number of tests w/ PASS 1000:      3
+
+Number of tests w/ REC. 1000:      3
+
+Number of tests w/ nudging:        3
+
+Number of tests w/ checktransit:   0
+
+WCR average: 0.42
+
+First and last runs:
+v4.32	Jun 16 14:13:19 2020	 x0	1000	0.460	NDG: 4 	RND:	        waves/chowder/nugget-42356.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	Jun 16 14:13:26 2020	 x0	1000	0.430	NDG: 2 	RND:	        waves/chowder/nugget-50546.txt (+) ( 100 bp) REC:1000	M: 3	-
+
+Tests canceled (if any, w/ preceding run for context):
+
+Tests with PASS < 1000 (if any):
+
+Tests with REC. < 1000 (if any):
+
+Tests with nudging (if any):
+v4.32	Jun 16 14:13:19 2020	 x0	1000	0.460	NDG: 4 	RND:	        waves/chowder/nugget-42356.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	Jun 16 14:13:23 2020	 x0	1000	0.370	NDG: 1 	RND:	        waves/chowder/nugget-47633.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	Jun 16 14:13:26 2020	 x0	1000	0.430	NDG: 2 	RND:	        waves/chowder/nugget-50546.txt (+) ( 100 bp) REC:1000	M: 3	-
+
+Line counts:
+    1968 src/mha_v4.32.c
+    1328 src/microhom-cinc.h
+     111 src/microhom-devl.h
+     113 src/microhom-skor.h
+    1788 src/microhom-tela.h
+    1695 src/microhomology.h
+    7003 total
+
+Commit WCR average of 3: 0.42
+
