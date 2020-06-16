@@ -1,0 +1,27 @@
+#!/bin/bash
+echo >> Corduroy.log
+echo '                                               < eat nuggets >' >> Corduroy.log
+
+answer="n"
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	./surfboard-Pop_Up
+	;;
+esac
+done
+
+if [ -f Surf_wavereport.mha ]; then
+	    rm Surf_wavereport.mha
+fi
+
+
+	./maximal -KR -D 8 waves/chowder/nugget-42356.txt	
+	./maximal -KR -D 8 waves/chowder/nugget-47633.txt	
+	./maximal -KR -D 8 waves/chowder/nugget-50546.txt	
+
+./surfboard-checkmha
+echo 'Commit WCR average of 3: 0.42' | tee -a Corduroy.log
+echo | tee -a Corduroy.log

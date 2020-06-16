@@ -18,9 +18,9 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 
-	./maximal -KR -D 8 waves/chowder/snippet-flotsam_10F.txt
-	./maximal -KR -D 8 waves/chowder/snippet-flotsam_14F.txt
-	./maximal -KR -D 8 waves/chowder/snippet-flotsam_21R.txt
+	./maximal -KR waves/chowder/snippet-flotsam_10F.txt
+	./maximal -KR waves/chowder/snippet-flotsam_14F.txt
+	./maximal -KR waves/chowder/snippet-flotsam_21R.txt
 
 ./surfboard-checkmha
 echo 'Commit WCR average of three: 0.537667' | tee -a Corduroy.log

@@ -18,11 +18,11 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 
-	./maximal -KR -D 8 waves/chowder/snippet-s32-k.txt		# solved-12
-	./maximal -KR -D 8 waves/chowder/snippet-s42-k.txt		# solved-12
-	./maximal -KR -D 8 waves/chowder/snippet-str06-k.txt	# solved-12
-	./maximal -KR -D 8 waves/chowder/snippet-stri04-k.txt	# solved-12
-	./maximal -KR -D 8 waves/chowder/snippet-s40-k.txt		# solved-13
+	./maximal -KR waves/chowder/snippet-s32-k.txt		# solved-12
+	./maximal -KR waves/chowder/snippet-s42-k.txt		# solved-12
+	./maximal -KR waves/chowder/snippet-str06-k.txt		# solved-12
+	./maximal -KR waves/chowder/snippet-stri04-k.txt	# solved-12
+	./maximal -KR waves/chowder/snippet-s40-k.txt		# solved-13
 
 ./surfboard-checkmha
 echo 'Commit WCR average of 5, allowing all k-mers in cinch-k: 0.372' | tee -a Corduroy.log
