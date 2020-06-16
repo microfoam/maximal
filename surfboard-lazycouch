@@ -1,0 +1,46 @@
+#!/bin/bash
+
+if [ -f Corduroy.log ]; then
+        mv Corduroy.log local_tmp/
+fi
+
+answer="n"
+
+./surfboard-Pop_up
+echo "$0: Hit <enter> to continue to cleanup_set-all. Or, enter 'q' to quit script entirely."
+read -s -n1 answer
+
+if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
+    exit 1
+else
+	./surfboard-cleanup_set-all 
+	echo "$0: Hit <enter> to continue to cleanup_set-eatchowder."
+	read -s -n1 answer
+	
+	./surfboard-cleanup_set-eatchowder 
+	echo "$0: Hit <enter> to continue to cleanup_set-fractal_splits."
+	read -s -n1 answer
+	
+	./surfboard-cleanup_set-fractal_splits 
+	echo "$0: Hit <enter> to continue to cleanup_set-chowder1."
+	read -s -n1 answer
+	
+	./surfboard-cleanup_set-chowder1 
+	echo "$0: Hit <enter> to continue to cleanup_set-chowder2."
+	read -s -n1 answer
+	
+	./surfboard-cleanup_set-chowder2
+	echo "$0: Hit <enter> to continue to cleanup_set-chowder3."
+	read -s -n1 answer
+	
+	./surfboard-cleanup_set-chowder3
+	echo "$0: Hit <enter> to step through cleanup_set-sand_dunes."
+	read -s -n1 answer
+	
+	./surfboard-cleanup_set-sand_dunes 
+	echo "$0: Hit <enter> to step through cleanup_set-eatnuggets."
+	read -s -n1 answer
+	
+	./surfboard-cleanup_set-eatnuggets
+fi
+

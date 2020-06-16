@@ -869,15 +869,15 @@ void mark_tela(void)
 		}
 	}
 
-	/* NOW MARK ALL CONFLICTING TRs */
-	for (n=lenseq; n>0; n--) {
+	/* FRACTAL SPLITTING */
+	for (n=lenseq; n>1; n--) {
 		if (tela[n].ok) {
 			k = tela[n].ok;
 			m = n - k;
 
 			int case_X=0;		/* TO DISTINGUISH ENTRIES INTO IF BLOCK THAT HANDLES LEGACY FRACTAL SPLITTING */
 			int splitcol = m;
-			if (tela[m].or && tela[splitcol].ok < k) {
+			if (tela[m].or && tela[m].ok < k) {
 				if (tela[m].or>1 && tela[m].all_S<=tela[n].all_S && m>1 && tela[m-1].ok != tela[m].ok) {
 					case_X = 1;
 					if (dev_print(TELA,__LINE__))
@@ -912,8 +912,16 @@ void mark_tela(void)
 				if (tela[--jump].ok == k_at_m)
 					tela[jump].or -= less_r;
 			}
+		}
+	}
 
+	/* NOW MARK ALL CONFLICTING TRs */
+	for (n=lenseq; n>0; n--) {
+		if (tela[n].ok) {
+			k = tela[n].ok;
+			m = n - k;
 			j = n - 1;
+
 			while (tela[j].ok) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
 				j--;
 			}
