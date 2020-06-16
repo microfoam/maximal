@@ -1452,9 +1452,9 @@ int main(int argc, char *argv[])
 	print_2Dseq();
 	Cinch_T.pass_Q = Current.pass_Q;
 
-	if (recoverlen()==lenseq) {
+	if (recoverlen()==lenseq)
 		update_tela();
-	}
+
 	if (opt_D.val==2)
 		dev_prompt(MAIN,__LINE__,file_name); 
 

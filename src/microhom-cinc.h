@@ -642,7 +642,7 @@ int cinch_k(short unsigned int mode)
 				}
 
 				/* CHECK FOR CONFLICT OVERHEAD */
-				if ((keep_checking || imperfect_TR) && isalpha(align2D[m-1][n+k]) && !isalpha(align2D[m-1][n+2*k-1])) {
+				if ((keep_checking || imperfect_TR) && m>0 && isalpha(align2D[m-1][n+k]) && !isalpha(align2D[m-1][n+2*k-1])) {
 					for (i=0; i<k; i++) {
 						if (isalpha(letr=align2D[m-1][n+k+i]) && isalpha(letr2=align2D[m][n+2*k+i]) && letr!=letr2)
 							keep_checking = imperfect_TR = 0;
