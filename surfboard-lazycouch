@@ -18,10 +18,6 @@ else
 	read -s -n1 answer
 	
 	./surfboard-cleanup_set-eatchowder 
-	echo "$0: Hit <enter> to continue to cleanup_set-fractal_splits."
-	read -s -n1 answer
-	
-	./surfboard-cleanup_set-fractal_splits 
 	echo "$0: Hit <enter> to continue to cleanup_set-chowder1."
 	read -s -n1 answer
 	
@@ -34,13 +30,17 @@ else
 	read -s -n1 answer
 	
 	./surfboard-cleanup_set-chowder3
-	echo "$0: Hit <enter> to step through cleanup_set-sand_dunes."
+	echo "$0: Hit <enter> to continue to cleanup_set-fractal_splits."
 	read -s -n1 answer
-	
-	./surfboard-cleanup_set-sand_dunes 
+
+	./surfboard-cleanup_set-fractal_splits 
 	echo "$0: Hit <enter> to step through cleanup_set-eatnuggets."
 	read -s -n1 answer
 	
 	./surfboard-cleanup_set-eatnuggets
+	echo "$0: Hit <enter> to step through cleanup_set-sand_dunes."
+	read -s -n1 answer
+	
+	./surfboard-cleanup_set-sand_dunes 
 fi
 
