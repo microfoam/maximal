@@ -9,6 +9,8 @@ if [ -f waves/foam_and_chowder.mha ]; then
         rm waves/foam_and_chowder.mha
 fi
 
+./surfboard-Pop_up
+
 for i in {1..2500}
 do
 	./maximal -Rn  -X 2 -S $i waves/seals/vnd_ex3_Dmela.txt
