@@ -101,6 +101,12 @@ fi
 	./maximal -a 1 -KR waves/chowder/stri04-k.txt		# solved-12 multi-line conflict at nexus of overlapping TRs
 	./maximal -a 1 -KR waves/chowder/s40-k.txt			# solved-13 mini cinch-k block
 
+echo
+echo
+echo
+echo "$0"
+echo
+echo
 ./surfboard-checkmha
 echo 'Current commit WCR average of 82, allowing only k = 1 in cinch-k: 0.473134 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

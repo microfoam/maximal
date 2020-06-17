@@ -109,6 +109,12 @@ fi
 	./maximal -KR waves/chowder/s40-k.txt			# solved-13 cinch-k mini-block
 # fi
 
+echo
+echo
+echo
+echo "$0"
+echo
+echo
 ./surfboard-checkmha
 echo 'Current commit WCR average of 82, allowing all k-mers in cinch-k: 0.467768' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

@@ -668,13 +668,18 @@ int cinch_k(short unsigned int mode)
 					}
 
 					/* UPDATE TELA FOR CINCH-K CINCH; SHOULD BE OWN FUNCTION? */
-					for (i=symbol_count+k; i<=lenseq; i++) 
-						++tela[i].y;
-					for (i=0; isalpha(align2D[m][n+k+i]); i++) 
-						tela[symbol_count+k+i].x -= k;
-					if (col_isclear(align2D,n+k,m,1)<0) {	
-						for ( ; i<=lenseq; i++) 
+					if (ON) {
+						for (i=symbol_count+k; i<=lenseq; i++) 
+							++tela[i].y;
+
+						int row = m+cik_row+1;
+						for (i=symbol_count+k; i<= lenseq && tela[i].y==row; i++) 
 							tela[i].x -= k;
+
+						if (col_isclear(align2D,n+k,m,1)<0) {	
+							for ( ; i<=lenseq; i++) 
+								tela[i].x -= k;
+						}
 					}
 
 					symbol_count += k;
@@ -721,8 +726,10 @@ int cinch_k(short unsigned int mode)
 		}   /* END OF FOR m LOOPS */
 
 		if (cik_row > 0) {
-			mha_writeback(pathbox, align2D); 
 			printf("\n Next: cinch-k for k = %d...\n", k);
+			mha_writeback(pathbox, align2D); 
+		    if (dev_print(CINCH,__LINE__)) 
+		        print_tela(prtela_A, prtela_B);
 			print_2Dseq();
 		}
 

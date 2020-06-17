@@ -8,6 +8,6 @@ if [ -f Surf_wavereport.mha ]; then
 	mv Surf_wavereport.mha Surf_wavereport.log
 fi
 
-clear
+#clear
 ./surfboard-checklog | tee -a Corduroy.log
 

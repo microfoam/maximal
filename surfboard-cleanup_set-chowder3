@@ -24,6 +24,12 @@ fi
 	./maximal -KR waves/chowder/snippet-stri04-k.txt	# solved-12
 	./maximal -KR waves/chowder/snippet-s40-k.txt		# solved-13
 
+echo
+echo
+echo
+echo "$0"
+echo
+echo
 ./surfboard-checkmha
 echo 'Commit WCR average of 5: 0.372' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

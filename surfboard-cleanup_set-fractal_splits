@@ -25,6 +25,12 @@ fi
 ./maximal  -KnR -D 4 waves/chowder/snippet-string02-t.txt
 ./maximal  -KnR -D 4 waves/chowder/snippet-seq-014-cycle3.txt 
 
+echo
+echo
+echo
+echo "$0"
+echo
+echo
 ./surfboard-checkmha
 echo 'Current commit WCR average of 6: 0.372   ' | tee -a Corduroy.log
 

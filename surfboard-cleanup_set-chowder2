@@ -22,6 +22,12 @@ fi
 	./maximal -KR waves/chowder/snippet-flotsam_14F.txt
 	./maximal -KR waves/chowder/snippet-flotsam_21R.txt
 
+echo
+echo
+echo
+echo "$0"
+echo
+echo
 ./surfboard-checkmha
 echo 'Commit WCR average of three: 0.537667' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
