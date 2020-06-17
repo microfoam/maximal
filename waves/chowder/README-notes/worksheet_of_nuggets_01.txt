@@ -1,0 +1,55 @@
+For chowder/README file. 2/3 chowder bits, mined at 3 in 0.5 million shuffling runs (100 bp each) have the same pattern.
+Nudgelizing recovers the runs, but working on avoiding issue in the first place. 
+
+snippet-47633.txt
+ 2-D pass #2: cinch-t (width = 16)
+
+   >GAGGCGC/
+    ..GGCGCGCTGG/
+    .....GCGCTGGT/
+    .........:.GTAGT>
+    _________|______
+             10        
+    GAGGCGCGCTGGTAGT
+
+ Next: cinch-k for k = 2...
+ 2-D pass #4: cinch-k (width = 14)
+
+   >GAGGC/
+    ...GC/
+    ..GGC/
+    ...GC/
+    ...GCTGG/
+    .....GC/
+    .....GCTGGT/
+    .........GTAGT>
+    _________|____
+             10        
+    GAGGCTGGGGTAGT
+    .....GCT......
+
+snippet-50546.txt
+ 2-D pass #2: cinch-t (width = 19)
+
+   >GCACGCG/
+    ..ACGCGCGGGT/
+    .....CGCGGGTCCTCGGC>
+    _________|_________
+             10        
+    GCACGCGCGGGTCCTCGGC
+
+ Next: cinch-k for k = 2...
+ 2-D pass #4: cinch-k (width = 17)
+
+   >GCACG/
+    ...CG/
+    ..ACG/
+    ...CG/
+    ...CGGGT/
+    .....CG/
+    .....CGGGTCCTCGGC>
+    _________|_______
+             10        
+    GCACGGGTGTCCTCGGC
+    .....C.G.........
+
