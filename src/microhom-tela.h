@@ -1019,14 +1019,17 @@ void mark_tela(void)
 					}
 					if (prev_k<0)
 						break;				/* BREAK OUT OF FOR LOOP THROUGH SHADOW */
-
-					prev_k = tela[i].ok;			/* IDEA IS THAT PREV_K GETS ASSIGNED ONLY ONCE */
-					clearall_tela(i, 1, -1, ONE);	/* O-F-F, ONE, OR TWO */
-					push_mem(i, 16);				/* TEMP NUMERIC ASSIGNMENT */
+					else {
+						prev_k = tela[i].ok;			/* IDEA IS THAT PREV_K GETS ASSIGNED ONLY ONCE */
+						if (tela[i].all_R==n) {
+							clearall_tela(i, 1, -1, ONE);	/* O-F-F, ONE, OR TWO */
+							push_mem(i, 16);				/* TEMP NUMERIC ASSIGNMENT */
+						}
+					}
 				}
 				else if (prev_k && tela[i].ok==prev_k && i-tela[i].ok<m && tela[i].stat != st_fract.sym && tela[i].all_R==n) {
 					clearall_tela(i, 1, -1, ONE);	/* O-F-F, ONE, OR TWO */
-					push_mem(i, 16);				/* TEMP NUMERIC ASSIGNMENT */
+					push_mem(i, 19);				/* TEMP NUMERIC ASSIGNMENT */
 				}
 				else if (prev_k && tela[i].ok != prev_k)
 					break;

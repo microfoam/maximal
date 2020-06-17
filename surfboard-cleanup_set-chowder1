@@ -102,5 +102,5 @@ fi
 	./maximal -a 1 -KR waves/chowder/s40-k.txt			# solved-13 mini cinch-k block
 
 ./surfboard-checkmha
-echo 'Previous commit WCR average allowing only k = 1 in cinch-k: 0.473988 (82 chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, allowing only k = 1 in cinch-k: 0.473134 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

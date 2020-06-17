@@ -838,6 +838,5 @@ fi
 ./maximal -CKRnx waves/tubespit/seq-161-wuhCor1-03-synth2.txt
 
 ./surfboard-checkmha
-echo 'Previous commit WCR average allowing all k-mers in cinch-k: 0.504548' | tee -a Corduroy.log
-echo 'Previous commit WCR average allowing only k = 1 in cinch-k: 0.508419' | tee -a Corduroy.log
+echo 'Current commit WCR average: 0.504477' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

@@ -110,5 +110,5 @@ fi
 # fi
 
 ./surfboard-checkmha
-echo 'Previous commit WCR average of 82, allowing all k-mers in cinch-k: 0.468134' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, allowing all k-mers in cinch-k: 0.467768' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
