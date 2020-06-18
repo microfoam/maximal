@@ -921,7 +921,11 @@ void mark_tela(void)
 				else if (tela[n].stat != st_cycle.sym && tela[m-1].ok == tela[m].ok) { /* GENERALIZE TO HANDLE CASE 1 TOO? (W/ CODE REVIEW) */
 					while (splitcol && tela[splitcol].ok && tela[splitcol-1].ok <= tela[splitcol].ok) {
 
-						if (tela[splitcol].all_S <= tela[n].all_S) {
+						if (tela[splitcol].all_S == tela[n].all_S && splitcol && !tela[splitcol-1].ok && tela[splitcol].stat == st_cycle.sym) {
+							clearall_tela(splitcol, 1, -1, TWO);	/* O-F-F, ONE, OR TWO */
+							push_mem(splitcol, 9);					/* TEMP NUMERIC ASSIGNMENT */
+						}
+						else if (tela[splitcol].all_S <= tela[n].all_S) {
 							while (splitcol + span_ork(splitcol) - m > tela[splitcol].ok && tela[splitcol].or>1)
 								tela[splitcol].or--;
 						}
@@ -1023,13 +1027,13 @@ void mark_tela(void)
 						prev_k = tela[i].ok;			/* IDEA IS THAT PREV_K GETS ASSIGNED ONLY ONCE */
 						if (tela[i].all_R==n) {
 							clearall_tela(i, 1, -1, ONE);	/* O-F-F, ONE, OR TWO */
-							push_mem(i, 16);				/* TEMP NUMERIC ASSIGNMENT */
+							push_mem(i, 15);				/* TEMP NUMERIC ASSIGNMENT */
 						}
 					}
 				}
 				else if (prev_k && tela[i].ok==prev_k && i-tela[i].ok<m && tela[i].stat != st_fract.sym && tela[i].all_R==n) {
 					clearall_tela(i, 1, -1, ONE);	/* O-F-F, ONE, OR TWO */
-					push_mem(i, 19);				/* TEMP NUMERIC ASSIGNMENT */
+					push_mem(i, 16);				/* TEMP NUMERIC ASSIGNMENT */
 				}
 				else if (prev_k && tela[i].ok != prev_k)
 					break;
