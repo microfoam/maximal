@@ -18,12 +18,14 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
-	./maximal -KR -D 8 waves/chowder/nugget-42356.txt	
 	./maximal -KR -D 8 waves/chowder/nugget-00001.txt	
 
 	# conflict begins in cinch-k
 	./maximal -KR -D 8 waves/chowder/nugget-47633.txt	
 	./maximal -KR -D 8 waves/chowder/nugget-50546.txt	
+
+	# solved
+	./maximal -KR -D 8 waves/chowder/nugget-42356.txt	
 
 echo
 echo

@@ -869,6 +869,41 @@ void mark_tela(void)
 		}
 	}
 
+	/* NOW MARK ALL CONFLICTING TRs */
+	for (n=lenseq; n>0; n--) {
+		if (tela[n].ok) {
+			k = tela[n].ok;
+			m = n - k;
+			j = n - 1;
+
+			while (tela[j].ok) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
+				j--;
+			}
+			for (i=j-1; i>0; i--) {
+				int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
+				if (tela[i].ok && i-tela[i].ok >= m && span_ork(i)<=n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
+					tela[i].stat = tela[i+k].stat = st_fract.sym;
+					tela[n].stat = st_parent.sym;
+					if (dev_print(TELA,__LINE__))
+						printf("Calling parent at %d.", n);
+
+					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
+					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
+					recslips += span_ork(i); 
+				}
+				else if (tela[i].ok && (i + tela[i].ok * (tela[i].or-1)) > m-recslips) {
+					/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
+					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
+					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
+				}
+			}
+			if (tela[m].or && tela[m].all_S < tela[n].all_S && m+tela[m].or*(tela[m].ok)>n) {
+				clearall_tela(m, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+				push_mem(m, 8);
+			}
+		}
+	}
+
 	/* FRACTAL SPLITTING */
 	for (n=lenseq; n>1; n--) {
 		if (tela[n].ok && tela[n-1].k1 != tela[n].k1) {
@@ -911,41 +946,6 @@ void mark_tela(void)
 				jump = splitcol - (--i)*k_at_m;
 				if (tela[--jump].ok == k_at_m)
 					tela[jump].or -= less_r;
-			}
-		}
-	}
-
-	/* NOW MARK ALL CONFLICTING TRs */
-	for (n=lenseq; n>0; n--) {
-		if (tela[n].ok) {
-			k = tela[n].ok;
-			m = n - k;
-			j = n - 1;
-
-			while (tela[j].ok) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
-				j--;
-			}
-			for (i=j-1; i>0; i--) {
-				int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
-				if (tela[i].ok && i-tela[i].ok >= m && span_ork(i)<=n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
-					tela[i].stat = tela[i+k].stat = st_fract.sym;
-					tela[n].stat = st_parent.sym;
-					if (dev_print(TELA,__LINE__))
-						printf("Calling parent at %d.", n);
-
-					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
-					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-					recslips += span_ork(i); 
-				}
-				else if (tela[i].ok && (i + tela[i].ok * (tela[i].or-1)) > m-recslips) {
-					/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
-					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
-					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-				}
-			}
-			if (tela[m].or && tela[m].all_S < tela[n].all_S && m+tela[m].or*(tela[m].ok)>n) {
-				clearall_tela(m, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-				push_mem(m, 8);
 			}
 		}
 	}

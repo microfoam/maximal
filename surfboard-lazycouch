@@ -30,7 +30,7 @@ else
 	read -s -n1 answer
 	
 	./surfboard-cleanup_set-chowder3
-	echo "$0: Hit <enter> to continue to cleanup_set-fractal_splits."
+	echo "$0: Hit <enter> to step through cleanup_set-fractal_splits."
 	read -s -n1 answer
 
 	./surfboard-cleanup_set-fractal_splits 
