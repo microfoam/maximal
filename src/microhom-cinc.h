@@ -274,6 +274,7 @@ int cinch_k(short unsigned int mode)
 		scrimmage_line = -1;
 
 		for (m = 0; align2D[m][0] != '\0'; m++) {
+			int scrimmage_row = 0;
 			y = 0;
 
 			if (cinchled) {
@@ -589,8 +590,7 @@ int cinch_k(short unsigned int mode)
 					}
 				}
 
-				if (imperfect_TR && n > scrimmage_line && 
-					isupper(align2D[m][n]) && align2D[m+1][n] == blnk) { 
+				if (imperfect_TR && n > scrimmage_line && isupper(align2D[m][n]) && align2D[m+1][n] == blnk) { 
 					for (l = 0; l < k; l++) {
 						/* CHECK MISMATCHES FROM PUSHING BOTTOM ROW TO LEFT OF REPEATS AFTER SLIP */
 						if ((i=col_isclear(align2D,n+l,m,1)) > -1 &&
@@ -711,9 +711,18 @@ int cinch_k(short unsigned int mode)
 							y = y + k;	/* TO KEEP TRACK OF UNSHIFTED CONSENSUS ROW */
 						}
 					}
-					x = x + k;			/* FUTURE SPACING TO BE SUBTRACTED B/C k-MER TUCKED UNDER 1st UNIT */
+
+					if (OFF && m && scrimmage_line == n-k && scrimmage_row == m) {
+						scrimmage_line = n+k;
+					}
+					else {
+						scrimmage_line = n;
+					}
+					scrimmage_row = m;
+
+					x += k;				/* FUTURE SPACING TO BE SUBTRACTED B/C k-MER TUCKED UNDER 1st UNIT */
 					x_history[n] = x;
-					scrimmage_line = n;
+
 					n = n + k - 1;		/* ADVANCE ADJUSTMENT. NOTE UPCOMING n++ IN FOR n LOOP */
 					++cik_row;
 
