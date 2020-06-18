@@ -863,7 +863,6 @@ void mark_tela(void)
 				for (int l=i+1; l<j; l++) {
 					if (tela[l].all_S == max_S)
 						tela[l].stat2 = '\0';
-						tela[l].stat  = '\0';
 				}			
 			}
 		}
@@ -924,6 +923,7 @@ void mark_tela(void)
 						if (tela[splitcol].all_S == tela[n].all_S && splitcol && !tela[splitcol-1].ok && tela[splitcol].stat == st_cycle.sym) {
 							clearall_tela(splitcol, 1, -1, TWO);	/* O-F-F, ONE, OR TWO */
 							push_mem(splitcol, 9);					/* TEMP NUMERIC ASSIGNMENT */
+							tela[splitcol].echoes = cyc_skip.sym;	/* MARK THIS SO CAN CHECK IN ANY CINCH MODULE TO SKIP */
 						}
 						else if (tela[splitcol].all_S <= tela[n].all_S) {
 							while (splitcol + span_ork(splitcol) - m > tela[splitcol].ok && tela[splitcol].or>1)
@@ -1795,6 +1795,7 @@ int update_tela(void)
 	}
 	return(c);	/* SHOULD BE lenseq IF SUCCESSFUL */
 }
+
 
 #endif		/*!FILE_TELA_SEEN */
 

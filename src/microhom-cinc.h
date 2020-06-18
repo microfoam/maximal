@@ -440,6 +440,10 @@ int cinch_k(short unsigned int mode)
 					homopolyflag = 0;		/* RESET */
 				} 
 
+				if ((keep_checking || check_imperf) && k>1 && tela[symbol_count+k].stat==st_cycle.sym && tela[symbol_count+k].echoes==cyc_skip.sym) {
+					keep_checking = check_imperf = 0;
+				}
+
 				/* THIS BLOCK SPOTS NON-FRACTAL TRs AT NEXUS OF TWO OVERLAPPING AND/OR ABUTTING TRs AND SKIPS THEM */
 				if ((keep_checking || check_imperf) && col_isclear(align2D,n      ,m, 1)<0 
 													&& col_isclear(align2D,n+2*k-1,m,-1)<0) {
@@ -910,6 +914,7 @@ unsigned short int nuctransit=0;						/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSI
 unsigned short int imperfect_TR=0;
 char letr, ltr2;
 char blnk = Fill->sym;
+int lenseq = Clean.pass_W;
 
 	clear_pathbox();
 	nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA, TWO IF RNA */
@@ -1070,6 +1075,16 @@ char blnk = Fill->sym;
 						while (!(isalpha(align2D[m][n+k]))) {
 							m++;
 						}
+
+						/* SCAN TELA STRUCT FOR COORDINATES */
+						for (l=0; l< lenseq; l++) {
+							if (tela[l].y==m && tela[l].x==n) {
+								break;
+							}
+						}
+						if (l!=lenseq && tela[l+k].echoes==cyc_skip.sym)
+							break;
+
 						if (dev_print(CINCH,__LINE__)) {
 							printf("%4d. Working on %2d-mer consensus TR (%dx) at position %4d, row %4d.", 
 									Cinch_D.pass_R, k, num, n, m);
