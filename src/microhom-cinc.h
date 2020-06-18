@@ -274,7 +274,6 @@ int cinch_k(short unsigned int mode)
 		scrimmage_line = -1;
 
 		for (m = 0; align2D[m][0] != '\0'; m++) {
-			int scrimmage_row = 0;
 			y = 0;
 
 			if (cinchled) {
@@ -294,8 +293,8 @@ int cinch_k(short unsigned int mode)
 				keep_checking = 1;			/* THIS FLAG HANDLES THE CONTINUED NEED TO CHECK FOR INTRA-TR REPEATS   */
 				imperfect_TR = 0;			/* THIS FLAG IS TURNED ON (SET TO ONE) WHEN TR W/ TRANSITION MISMATCHES IS FOUND */
 
-				if (n == 0 && isalpha(align2D[m][0])) {
-					x = 0;
+				if (!n && isalpha(align2D[m][0])) {
+					x = 0;												/* x-VAR INITIALIZED, TOP OF FOR n LOOP */
 					x_history[0] = x;
 				}
 
@@ -306,7 +305,7 @@ int cinch_k(short unsigned int mode)
 				}
 
 				/* CHECK FOR NEED TO ADD ADDITIONAL BLANKS & ADJUST x */
-				if (n <= scrimmage_line) {
+				if (n <= scrimmage_line) {								/* x-VAR PROXIMAL B.S. FIX */
 					for (i = n-x; i < scrimmage_line; i++)
 						pathbox[m+cik_row][i] = blnk;
 					if (n > 1) {
@@ -708,20 +707,15 @@ int cinch_k(short unsigned int mode)
 							consensus[i] = '\0';
 						}
 						else if (n >= scrimmage_line) {
-							y = y + k;	/* TO KEEP TRACK OF UNSHIFTED CONSENSUS ROW */
+							y += k;		/* TO KEEP TRACK OF UNSHIFTED CONSENSUS ROW */
 						}
 					}
 
-					if (OFF && m && scrimmage_line == n-k && scrimmage_row == m) {
-						scrimmage_line = n+k;
-					}
-					else {
-						scrimmage_line = n;
-					}
-					scrimmage_row = m;
+					scrimmage_line = n;
 
-					x += k;				/* FUTURE SPACING TO BE SUBTRACTED B/C k-MER TUCKED UNDER 1st UNIT */
-					x_history[n] = x;
+					x += k;				/* x-VAR UPDATED. FUTURE SPACING TO BE SUBTRACTED B/C k-MER TUCKED UNDER 1st UNIT */
+					for (i=n; i<=Current.pass_W; i++)
+						x_history[i] = x;
 
 					n = n + k - 1;		/* ADVANCE ADJUSTMENT. NOTE UPCOMING n++ IN FOR n LOOP */
 					++cik_row;
