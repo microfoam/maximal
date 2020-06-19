@@ -908,7 +908,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 /******************************************************************/
 unsigned int cinch_d(short unsigned int cinch_d_opt)
 {
-int cid_mrow=0, cid_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, w=0, x=0, tot_repeats=0, uniq_TRs=0, num_transits=0;
+int delta_mrow=0, delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, w=0, x=0, tot_repeats=0, uniq_TRs=0, num_transits=0;
 int cidwidth = Current.pass_W; 
 int height = Current.pass_H;		/* height slot */
 int translimit = 0;
@@ -1093,7 +1093,7 @@ int lenseq = Clean.pass_W;
 									Cinch_D.pass_R, k, num, n, m);
 						}
 
-						if (imperfect_TR == 1) {
+						if (imperfect_TR) {
 							for (l=0; l < k; l++) {
 								letr=consensus[n+l];
 								if (letr != consensus[n+k+l]) {
@@ -1107,11 +1107,11 @@ int lenseq = Clean.pass_W;
 
 						mha_writeback(align2D, pathbox); 
 						pathbox[m][n+k  ] = slip.sym;
-						pathbox[m][n+k+1] = '\0';
+
 						first_write = 0;	/* TURN O-F-F NEED TO WRITE REMAINING PART OF 2-D ALIGNMENT */
 
-						cid_ncol = k;
-						cid_mrow = 1;
+						delta_ncol = k;
+						delta_mrow = 1;
 
 						/* DEAL WITH LOOSE SLIP CONNECTIONS PRODUCED BY NUDGELIZING */
 						for (j = 0; j < n+k; j++) {
@@ -1121,20 +1121,19 @@ int lenseq = Clean.pass_W;
 						}
 						if (j == n+k) {
 							if (pathbox[m-1][n] == slip.sym)
-								cid_mrow = -1;
+								delta_mrow = -1;
 							else 
-								cid_mrow = 0;
+								delta_mrow = 0;
 						}
 
 						for (i = m; i < MAXROW; i++) {
-							for (j = n+k; j < Current.pass_W+1; j++) {
-								letr = pathbox[i+cid_mrow][j-cid_ncol] = align2D[i][j];
+							for (j = n+k; j <= Current.pass_W+1; j++) {
+								letr = pathbox[i+delta_mrow][j-delta_ncol] = align2D[i][j];
 								if (letr==slip.sym || letr==monoR.sym) 
-									pathbox[i+cid_mrow][j-cid_ncol+1] = '\0';
+									pathbox[i+delta_mrow][j-delta_ncol+1] = '\0';
 								else if (letr==Term->sym) {
 									for (h=0; h<n; h++)
-										pathbox[i+cid_mrow][h] = blnk;
-									pathbox[i+cid_mrow+1][0] = '\0';
+										pathbox[i+delta_mrow][h] = blnk;
 									i = MAXROW;
 									break;
 								}
@@ -1149,10 +1148,11 @@ int lenseq = Clean.pass_W;
 							consensus[i] = '\0';
 						} 
 
-						if (letr == Term->sym && j-cid_ncol-1 < cidwidth) {
-							Current.pass_W = j-cid_ncol-1;
+						if (letr == Term->sym && j-delta_ncol-1 <= cidwidth) {
+							Current.pass_W = j-delta_ncol-1;
 							mha_writeback(pathbox, align2D);
 						}
+
 					} /* END OF IF first_write EQUALS ONE */
 				} /*********************************************************************************************/
 				else if (dev_print(CINCH,__LINE__)) {		/* ELSE IF PRE-CINCH-D AND DEV_PRINT OPTION */
@@ -1176,7 +1176,7 @@ int lenseq = Clean.pass_W;
 	}
 	else {
 		Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
-		if (!cid_ncol && !opt_v.bit) {
+		if (!delta_ncol && !opt_v.bit) {
 			opt_K.bit = 1;						/* EVEN IF NOT OPTIONED, GOOD TO SHOW FOR LAST RUN */
 			print_2Dseq();
 			return(0);

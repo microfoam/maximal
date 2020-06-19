@@ -37,5 +37,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 7: 0.43 (3/7 solved; 4/7 nudging required)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7: 0.462857 (3/7 solved; 4/7 nudging required)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

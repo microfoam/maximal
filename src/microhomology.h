@@ -1099,7 +1099,7 @@ int m=0, n=0, widest_n=0;
 	clear_2D_ar(align2D_prev);
 	for (m = 0; lcl_align2D[m][0] != '\0' && m <= lenseq; m++) {
 		for (n = 0; (letr=lcl_align2D[m][n]) != slip.sym && letr != Term->sym && letr != monoR.sym; n++) {
-			align2D_prev[m][n] = letr;
+			align2D_prev[m][n] = lcl_align2D[m][n];
 			if (letr == monoL.sym && lcl_align2D[m][n+opt_M.val+1] == monoR.sym) 
 				align2D_prev[m][n+opt_M.val+2] = '\0';
 		}
@@ -1110,6 +1110,8 @@ int m=0, n=0, widest_n=0;
 			Current.pass_W = widest_n;	/* ASSIGN 2-D WIDTH  */
 			Current.pass_H = m+1;		/* ASSIGN 2-D HEIGHT */
 		}
+		for (int i=n+1; i<Clean.pass_W; i++)
+			align2D_prev[m][i] = '\0';
 	}
 }
 
