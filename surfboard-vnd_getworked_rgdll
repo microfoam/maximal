@@ -28,6 +28,7 @@ fi
 
 for i in {1..2500}
 do
+	echo "                                                                                                                                                $i"
 	./maximal -Rn  -X 2 -S $i waves/seals/vnd_ex3_Dmela.txt
 	./maximal -Rn  -X 2 -S $i waves/seals/vnd_ex3_Derec.txt
 	./maximal -Rn  -X 2 -S $i waves/seals/vnd_ex3_Dbiar.txt
