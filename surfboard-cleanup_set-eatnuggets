@@ -23,12 +23,12 @@ fi
 	./maximal -KR -D 8 waves/chowder/nugget-00004.txt	
 
 	# conflict begins in cinch-k
-	./maximal -KR -D 8 waves/chowder/nugget-00002.txt	
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/nugget-42356.txt	# solved-13	
 	./maximal -KR -D 8 waves/chowder/nugget-47633.txt	# solved-14 cinch-k x_history propagation
 	./maximal -KR -D 8 waves/chowder/nugget-50546.txt	# solved-14 cinch-k x_history propagation
+	./maximal -KR -D 8 waves/chowder/nugget-00002.txt	# solved-15 delete unnecessary cinch-k block blocking needed cinch
 
 echo
 echo
@@ -37,5 +37,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 7: 0.462857 (3/7 solved; 4/7 nudging required)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7: 0.462857 (4 solved; 3 nudge-solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

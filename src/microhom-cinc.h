@@ -601,16 +601,6 @@ int cinch_k(short unsigned int mode)
 				}
 
 				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
-				if (keep_checking || imperfect_TR) {
-					for (i=symbol_count+1; i<=lenseq; i++) {
-						if (tela[i].k && tela[i].x > n && tela[i].x < n+k) {
-							keep_checking = imperfect_TR = 0;
-							break;
-						}
-					}
-				}
-
-				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
 				if ((keep_checking || imperfect_TR) && k>1 && isalpha(letr=align2D[m-1][n+k])) {
 					
 					int toprow = m-1;
