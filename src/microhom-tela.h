@@ -708,7 +708,7 @@ void mark_tela(void)
 									tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
 									tela[n  ].stat = st_cycle.sym;
 								}
-								else if (tela[n-proj_k].ok == k  /* && n-k >= projector && n + span_ork(n) <= projector+proj_k */ ) {
+								else if (tela[n-proj_k].ok == k) {
 									tela[projector].stat = st_parent.sym;
 									if (dev_print(TELA,__LINE__))
 										printf("Calling parent at %d.", projector);
@@ -880,11 +880,16 @@ void mark_tela(void)
 			}
 			for (i=j-1; i>0; i--) {
 				int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
-				if (tela[i].ok && i-tela[i].ok >= m && span_ork(i)<=n && tela[i].all_S == tela[i+k].all_S) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
-					tela[i].stat = tela[i+k].stat = st_fract.sym;
+				if (tela[i].ok && i-tela[i].ok >= m && span_ork(i)<=n && tela[i].k == tela[i+k].k) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
+
+					if (tela[i].all_S == tela[i+k].all_S)
+						tela[i].stat = tela[i+k].stat = st_fract.sym;
+					else
+						tela[i].stat2= tela[i+k].stat2= st_fract.sym;
+
 					tela[n].stat = st_parent.sym;
 					if (dev_print(TELA,__LINE__))
-						printf("Calling parent at %d.", n);
+						printf("Calling parent at %d with fractals at i=%d and i+k=%d.", n,i,i+k);
 
 					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
