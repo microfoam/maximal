@@ -18,8 +18,10 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
+	./maximal -KR -D 8 waves/chowder/nugget-00005.txt
 
 	# conflict begins in cinch-k
+	./maximal -KR -D 8 waves/chowder/nugget-00006.txt
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/nugget-42356.txt	# solved-13	
@@ -37,5 +39,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 7: 0.457143 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7: 0.463333 (7/9 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
