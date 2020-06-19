@@ -714,7 +714,7 @@ int cinch_k(short unsigned int mode)
 					scrimmage_line = n;
 
 					x += k;				/* x-VAR UPDATED. FUTURE SPACING TO BE SUBTRACTED B/C k-MER TUCKED UNDER 1st UNIT */
-					for (i=n; i<=n+2*k; i++)
+					for (i=n; i<=n+k; i++)
 						x_history[i] = x;
 
 					n = n + k - 1;		/* ADVANCE ADJUSTMENT. NOTE UPCOMING n++ IN FOR n LOOP */
