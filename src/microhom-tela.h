@@ -401,7 +401,7 @@ void push_tela_or(int n)
 
 
 /* Return k-mer repeat size smaller than k if it exists, otherwise return 0 */
-int get_k2(int n, int k1, short unsigned int seqtype) 
+int next_k(int n, int k1, short unsigned int seqtype) 
 {
 	int lenseq = Clean.pass_W;
 	int i=0, m=0, k=0, transits=0;
@@ -478,10 +478,10 @@ void mark_tela(void)
 	for (n=1; n<lenseq; n++) {
 		for (k=WIDTH; k>floor; k--) {
 			k2 = k1 = k_tmp=0;
-			if ((k_tmp=get_k2(n,k,nuctype))>floor) {
+			if ((k_tmp=next_k(n,k,nuctype))>floor) {
 				if (!tela[n].k1 && !check_fractals_in_imperfect(k_tmp,n)) {
 					tela[n].k1 = k1 = k_tmp;
-					if ((k_tmp=get_k2(n,k1,nuctype))>floor) {
+					if ((k_tmp=next_k(n,k1,nuctype))>floor) {
 						if (k_tmp==tela[n-1].k1 && k1%k_tmp==0 && k1-k_tmp==k_tmp) {
 							for (i=0; i<k1-k_tmp; i++) {
 								if (tela[n+i].c!=tela[n+i+k_tmp].c)
@@ -537,9 +537,7 @@ void mark_tela(void)
 				homopoly_flag = 0;
 
 			/* FOR ROW m LOOP 5/5: START COUNTING SCORE (EQUIV. TO: IF PATHBOX POSITION HAS VALUE > MISMATCH) */
-			if (OFF && tela[n].k1 && k>tela[n].k1 && k%tela[n].k1 == 0 && tela[n-1].ok == tela[n].k1 && tela[n-1].stat==st_cycle.sym)
-				;
-			else if (n+k <= lenseq) {
+			if (n+k <= lenseq) {
 				Dtr = imperfect_TR = 0;		/* INITIALIZATION */
 
 				/* IF SUMMING PATHBOX DIAGONAL 1/4: COMPUTE SCORES OF IDENTITY LINE AND REPEAT DIAGONAL*/
@@ -910,7 +908,7 @@ void mark_tela(void)
 
 	/* FRACTAL SPLITTING */
 	for (n=lenseq; n>1; n--) {
-		if (tela[n].ok && tela[n-1].k1 != tela[n].k1) {
+		if (tela[n].ok && (tela[n-1].k1!=tela[n].k1 || !tela[n-1].ok)) {
 			k = tela[n].ok;
 			m = n - k;
 
