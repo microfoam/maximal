@@ -788,28 +788,31 @@ void mark_tela(void)
 		} /* END OF FOR m */
 	} /* END OF FOR n */
 
-	/* FILL IN CYCLING GAPS CAUSED BY BELOW THRESHOLD FRAMES: THIS SUPPRESSES INTRA-TR CONFLICT REPORTING */
 	for (n=0; n<=lenseq; n++) {
-		if (tela[n].ok && !tela[n+1].ok) {
+		if (tela[n].ok) {
 			k = tela[n].ok;
-			gapcheck = 0;
-			for (i=n+2; i <= n + k * tela[n].or; i++) {
-				if (tela[i].ok && tela[i].ok != k) {
-					gapcheck = 0;
-					break;
+
+			/* FILL IN CYCLING GAPS CAUSED BY BELOW THRESHOLD FRAMES: THIS SUPPRESSES INTRA-TR CONFLICT REPORTING */
+			if (!tela[n+1].ok) {
+				gapcheck = 0;
+				for (i=n+2; i <= n + k * tela[n].or; i++) {
+					if (tela[i].ok && tela[i].ok != k) {
+						gapcheck = 0;
+						break;
+					}
+					else if (tela[i].ok == k) {
+						gapcheck = 1;
+						break;
+					}
 				}
-				else if (tela[i].ok == k) {
-					gapcheck = 1;
-					break;
-				}
-			}
-			if (gapcheck) {
-				if (dev_print(TELA,__LINE__)) {
-					printf("         mark_tela filling in gap between %d and %d, inclusive of these points, for k-mer=%d.", i-1,n-1,k);
-				}
-				for (j=i-1; j>n; j--) {
-					tela[j].ok = k;
-					tela[j].or = 0;
+				if (gapcheck) {
+					if (dev_print(TELA,__LINE__)) {
+						printf("         mark_tela filling in gap between %d and %d, inclusive of these points, for k-mer=%d.", i-1,n-1,k);
+					}
+					for (j=i-1; j>n; j--) {
+						tela[j].ok = k;
+						tela[j].or = 0;
+					}
 				}
 			}
 		}
@@ -903,6 +906,27 @@ void mark_tela(void)
 			if (tela[m].or && tela[m].all_S < tela[n].all_S && m+tela[m].or*(tela[m].ok)>n) {
 				clearall_tela(m, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 				push_mem(m, 8);
+			}
+		}
+	}
+
+	for (n=0; n<=lenseq; n++) {
+		if (tela[n].ok) {
+			/* CANCEL MARK IF OVERLAPS PARENT W/ FRACTALS AND PARENT K > k */
+			if (!tela[n-1].ok && tela[n].stat==st_cycle.sym) {
+				k = tela[n].ok;
+				for (i=n-1; i>n-k; i--) {
+					if (tela[i].stat==st_fract.sym) {
+						for (j=i-1; j>0; j--) {
+							if (tela[j].stat==st_parent.sym && tela[j].ok > k) {
+								clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+								push_mem(n, 8);
+								break;
+							}
+						}
+						break;
+					}
+				}
 			}
 		}
 	}

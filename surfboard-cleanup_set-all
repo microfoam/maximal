@@ -844,5 +844,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average: 0.504516 -> 0.504369 (new skip condition in mark_tela and with cinch-k block)' | tee -a Corduroy.log
+echo 'Commit WCR average: 0.504516 -> 0.504369 -> 0.504244 (new mark_tela module)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
