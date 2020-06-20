@@ -431,8 +431,9 @@ int next_k(int n, int k1, short unsigned int seqtype)
 						break;
 				}
 			}
-			if (i && i==k && k<k1)
+			if (i==k && k<k1) {
 				return(k);
+			}
 		}
 		return(0);
 	}
@@ -1151,6 +1152,10 @@ void mark_tela(void)
 						}
 						if (tela[p].ok) {
 							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
+							if (tela[p].stat==st_fract.sym && tela[n].stat != st_cycle.sym) {
+								clearall_tela(n,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
+								tela[n].echoes = cyc_skip.sym;	/* MARK THIS SO CAN CHECK IN ANY CINCH MODULE TO SKIP */
+							}
 							push_mem(p, 13);
 							push_mem(n, 13);
 						}

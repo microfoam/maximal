@@ -21,7 +21,6 @@ fi
 	./maximal -KR -D 8 waves/chowder/nugget-00005.txt
 
 	# conflict begins in cinch-k
-	./maximal -KR -D 8 waves/chowder/nugget-00006.txt
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/nugget-42356.txt	# solved-13	
@@ -31,6 +30,7 @@ fi
 	./maximal -KR -D 8 waves/chowder/nugget-00001.txt	# solved-16 less strict entry into split fractal block in mark_tela
 	./maximal -KR -D 8 waves/chowder/nugget-00003.txt	# solved-16 less strict entry into split fractal block in mark_tela
 	./maximal -KR -D 8 waves/chowder/nugget-00004.txt	# solved-16 less strict entry into split fractal block in mark_tela
+	./maximal -KR -D 8 waves/chowder/nugget-00006.txt	# solved-17 new skip condition in mark_tela; simplified check in cinch_k
 
 echo
 echo
@@ -39,5 +39,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 7: 0.463333 (7/9 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7: 0.465556 (8/9 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

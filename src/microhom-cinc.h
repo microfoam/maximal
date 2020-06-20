@@ -440,7 +440,7 @@ int cinch_k(short unsigned int mode)
 					homopolyflag = 0;		/* RESET */
 				} 
 
-				if ((keep_checking || check_imperf) && k>1 && tela[symbol_count+k].stat==st_cycle.sym && tela[symbol_count+k].echoes==cyc_skip.sym) {
+				if ((keep_checking || check_imperf) && k>1 && tela[symbol_count+k].echoes==cyc_skip.sym) {
 					keep_checking = check_imperf = 0;
 				}
 

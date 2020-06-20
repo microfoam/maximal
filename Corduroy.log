@@ -1,4 +1,4 @@
-Fri Jun 19 17:19:31 CDT 2020
+Fri Jun 19 21:18:55 CDT 2020
 Tri-fin dawn patrol: Compiling maximal v4.32.
 
 
@@ -21,11 +21,11 @@ Number of tests w/ nudging:        0
 
 Number of tests w/ checktransit:   0
 
-WCR average: 0.504516
+WCR average: 0.504369
 
 First and last runs:
-v4.32	Jun 19 17:19:37 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.32	Jun 19 17:20:21 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
+v4.32	Jun 19 21:19:21 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.32	Jun 19 21:20:04 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -40,11 +40,11 @@ Line counts:
     1343 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    1807 src/microhom-tela.h
+    1812 src/microhom-tela.h
     1699 src/microhomology.h
-    7069 total
+    7074 total
 
-Commit WCR average: 0.504513 (mark_tela conflict marking < fractal splitting) -> 0.504516 (new exclusion in fractal splitting)
+Commit WCR average: 0.504516 -> 0.504369 (new skip condition in mark_tela and with cinch-k block)
 
 
                                                < eat chowder >
@@ -69,8 +69,8 @@ Number of tests w/ checktransit:   0
 WCR average: 0.467768
 
 First and last runs:
-v4.32	Jun 19 17:22:27 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun 19 17:22:29 2020	 x0	1000	0.560	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 19 21:20:25 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 19 21:20:27 2020	 x0	1000	0.560	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -85,9 +85,9 @@ Line counts:
     1343 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    1807 src/microhom-tela.h
+    1812 src/microhom-tela.h
     1699 src/microhomology.h
-    7069 total
+    7074 total
 
 Current commit WCR average of 82, allowing all k-mers in cinch-k: 0.467768
 
@@ -114,8 +114,8 @@ Number of tests w/ checktransit:   0
 WCR average: 0.473134
 
 First and last runs:
-v4.32	Jun 19 17:22:51 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun 19 17:22:54 2020	 x0	1000	0.580	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 19 21:20:58 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 19 21:21:00 2020	 x0	1000	0.580	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -130,9 +130,9 @@ Line counts:
     1343 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    1807 src/microhom-tela.h
+    1812 src/microhom-tela.h
     1699 src/microhomology.h
-    7069 total
+    7074 total
 
 Current commit WCR average of 82, allowing only k = 1 in cinch-k: 0.473134 (chowder-free)
 
@@ -159,8 +159,8 @@ Number of tests w/ checktransit:   0
 WCR average: 0.537667
 
 First and last runs:
-v4.32	Jun 19 17:23:08 2020	 x0	1000	0.529	NDG: 0 	RND:	 waves/chowder/snippet-flotsam_10F.txt (+) (  34 bp) REC:1000	M: 3	-
-v4.32	Jun 19 17:23:08 2020	 x0	1000	0.524	NDG: 0 	RND:	 waves/chowder/snippet-flotsam_21R.txt (+) (  21 bp) REC:1000	M: 2	-
+v4.32	Jun 19 21:21:03 2020	 x0	1000	0.529	NDG: 0 	RND:	 waves/chowder/snippet-flotsam_10F.txt (+) (  34 bp) REC:1000	M: 3	-
+v4.32	Jun 19 21:21:03 2020	 x0	1000	0.524	NDG: 0 	RND:	 waves/chowder/snippet-flotsam_21R.txt (+) (  21 bp) REC:1000	M: 2	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -175,9 +175,9 @@ Line counts:
     1343 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    1807 src/microhom-tela.h
+    1812 src/microhom-tela.h
     1699 src/microhomology.h
-    7069 total
+    7074 total
 
 Commit WCR average of three: 0.537667
 
@@ -204,8 +204,8 @@ Number of tests w/ checktransit:   0
 WCR average: 0.372
 
 First and last runs:
-v4.32	Jun 19 17:23:27 2020	 x0	1000	0.400	NDG: 0 	RND:	       waves/chowder/snippet-s32-k.txt (+) (  20 bp) REC:1000	M: 2	-
-v4.32	Jun 19 17:23:27 2020	 x0	1000	0.379	NDG: 0 	RND:	       waves/chowder/snippet-s40-k.txt (+) (  29 bp) REC:1000	M: 2	-
+v4.32	Jun 19 21:21:06 2020	 x0	1000	0.400	NDG: 0 	RND:	       waves/chowder/snippet-s32-k.txt (+) (  20 bp) REC:1000	M: 2	-
+v4.32	Jun 19 21:21:06 2020	 x0	1000	0.379	NDG: 0 	RND:	       waves/chowder/snippet-s40-k.txt (+) (  29 bp) REC:1000	M: 2	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -220,9 +220,9 @@ Line counts:
     1343 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    1807 src/microhom-tela.h
+    1812 src/microhom-tela.h
     1699 src/microhomology.h
-    7069 total
+    7074 total
 
 Commit WCR average of 5: 0.372
 
@@ -249,8 +249,8 @@ Number of tests w/ checktransit:   0
 WCR average: 0.372
 
 First and last runs:
-v4.32	Jun 19 17:23:43 2020	 x0	1000	0.471	NDG: 0 	RND:	       waves/chowder/seq26-snippet.txt (+) (  68 bp) REC:1000	M: 2	-
-v4.32	Jun 19 17:23:50 2020	 x0	1000	0.484	NDG: 0 	RND:	waves/chowder/snippet-seq-014-cycle3.txt (+) (  31 bp) REC:1000	M: 4	-
+v4.32	Jun 19 21:21:07 2020	 x0	1000	0.471	NDG: 0 	RND:	       waves/chowder/seq26-snippet.txt (+) (  68 bp) REC:1000	M: 2	-
+v4.32	Jun 19 21:21:13 2020	 x0	1000	0.484	NDG: 0 	RND:	waves/chowder/snippet-seq-014-cycle3.txt (+) (  31 bp) REC:1000	M: 4	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -265,9 +265,9 @@ Line counts:
     1343 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    1807 src/microhom-tela.h
+    1812 src/microhom-tela.h
     1699 src/microhomology.h
-    7069 total
+    7074 total
 
 Current commit WCR average of 6: 0.372   
 
@@ -279,23 +279,23 @@ Surf wave report summary:
 \\\\\_H                                                                                            \v/                        
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         7
+Number of tests initiated:         9
 
-Number of tests completed:         7
+Number of tests completed:         9
 
-Number of tests w/ PASS 1000:      7
+Number of tests w/ PASS 1000:      9
 
-Number of tests w/ REC. 1000:      7
+Number of tests w/ REC. 1000:      9
 
-Number of tests w/ nudging:        0
+Number of tests w/ nudging:        1
 
 Number of tests w/ checktransit:   0
 
-WCR average: 0.457143
+WCR average: 0.465556
 
 First and last runs:
-v4.32	Jun 19 17:24:09 2020	 x0	1000	0.480	NDG: 0 	RND:	        waves/chowder/nugget-42356.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.32	Jun 19 17:24:16 2020	 x0	1000	0.570	NDG: 0 	RND:	        waves/chowder/nugget-00004.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	Jun 19 21:21:17 2020	 x0	1000	0.470	NDG: 2 	RND:	        waves/chowder/nugget-00005.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.32	Jun 19 21:21:23 2020	 x0	1000	0.520	NDG: 0 	RND:	        waves/chowder/nugget-00006.txt (+) ( 100 bp) REC:1000	M: 3	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -304,17 +304,18 @@ Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
 Tests with nudging (if any):
+v4.32	Jun 19 21:21:17 2020	 x0	1000	0.470	NDG: 2 	RND:	        waves/chowder/nugget-00005.txt (+) ( 100 bp) REC:1000	M: 4	-
 
 Line counts:
     1968 src/mha_v4.32.c
     1343 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    1807 src/microhom-tela.h
+    1812 src/microhom-tela.h
     1699 src/microhomology.h
-    7069 total
+    7074 total
 
-Commit WCR average of 7: 0.457143 (chowder-free)
+Commit WCR average of 7: 0.465556 (8/9 solved)
 
 
                                                < sand_dunes >
@@ -336,11 +337,11 @@ Number of tests w/ nudging:        0
 
 Number of tests w/ checktransit:   0
 
-WCR average: 0.378318
+WCR average: 0.375955
 
 First and last runs:
-v4.32	Jun 19 17:24:44 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.32	Jun 19 17:24:59 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
+v4.32	Jun 19 21:21:32 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.32	Jun 19 21:21:46 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -355,103 +356,9 @@ Line counts:
     1343 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    1807 src/microhom-tela.h
+    1812 src/microhom-tela.h
     1699 src/microhomology.h
-    7069 total
+    7074 total
 
-Current commit WCR average of 22: 0.378318
-
-                                               < vnd_getworked_ragdoll >
-Fri Jun 19 17:31:59 CDT 2020
-Tri-fin dawn patrol: Compiling maximal v4.32.
-
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         37500
-
-Number of tests completed:         37500
-
-Number of tests w/ PASS 1000:      37500
-
-Number of tests w/ REC. 1000:      37500
-
-Number of tests w/ nudging:        2
-
-Number of tests w/ checktransit:   0
-
-WCR average: 0.520568
-
-First and last runs:
-v4.32	Jun 19 17:32:03 2020	 x0	1000	0.580	NDG: 0 	RND:XX	         waves/seals/vnd_ex3_Dmela.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.32	Jun 19 17:46:56 2020	 x0	1000	0.530	NDG: 0 	RND:XX	        waves/sharks/vnd_NEE_Dsuzu.txt (-) ( 100 bp) REC:1000	M: 2	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-v4.32	Jun 19 17:38:58 2020	 x0	1000	0.470	NDG: 2 	RND:XX	         waves/seals/vnd_ex3_Danan.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.32	Jun 19 17:39:34 2020	 x0	1000	0.500	NDG: 4 	RND:XX	        waves/sharks/vnd_NEE_Dsimu.txt (-) ( 100 bp) REC:1000	M: 3	-
-
-Line counts:
-    1968 src/mha_v4.32.c
-    1343 src/microhom-cinc.h
-     139 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1807 src/microhom-tela.h
-    1699 src/microhomology.h
-    7069 total
-
-
-                                               < eat nuggets >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-Number of tests initiated:         9
-
-Number of tests completed:         9
-
-Number of tests w/ PASS 1000:      9
-
-Number of tests w/ REC. 1000:      9
-
-Number of tests w/ nudging:        2
-
-Number of tests w/ checktransit:   0
-
-WCR average: 0.463333
-
-First and last runs:
-v4.32	Jun 19 17:57:42 2020	 x0	1000	0.470	NDG: 2 	RND:	        waves/chowder/nugget-00005.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.32	Jun 19 17:57:47 2020	 x0	1000	0.570	NDG: 0 	RND:	        waves/chowder/nugget-00004.txt (+) ( 100 bp) REC:1000	M: 4	-
-
-Tests canceled (if any, w/ preceding run for context):
-
-Tests with PASS < 1000 (if any):
-
-Tests with REC. < 1000 (if any):
-
-Tests with nudging (if any):
-v4.32	Jun 19 17:57:42 2020	 x0	1000	0.470	NDG: 2 	RND:	        waves/chowder/nugget-00005.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.32	Jun 19 17:57:44 2020	 x0	1000	0.500	NDG: 4 	RND:	        waves/chowder/nugget-00006.txt (+) ( 100 bp) REC:1000	M: 3	-
-
-Line counts:
-    1968 src/mha_v4.32.c
-    1343 src/microhom-cinc.h
-     139 src/microhom-devl.h
-     113 src/microhom-skor.h
-    1807 src/microhom-tela.h
-    1699 src/microhomology.h
-    7069 total
-
-Commit WCR average of 7: 0.463333 (7/9 solved)
+Current commit WCR average of 22: 0.378318 -> 0.375955
 
