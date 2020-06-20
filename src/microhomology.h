@@ -750,7 +750,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 	if (frstletr > -1) {
 		while (con_align2D[nudge_row-1][frstletr  ]==con_align2D[nudge_row][frstletr] &&
 			   con_align2D[nudge_row-1][frstletr-1]==blnk &&
-			   con_align2D[nudge_row-1][frstletr+1]== slip.sym) {
+			   con_align2D[nudge_row-1][frstletr+1]==slip.sym) {
 			--nudge_row;
 		}
 	}
@@ -773,6 +773,20 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 		con_align2D[MAXROW][n] = consensus_ar[1][n];
 	}
 	con_align2D[MAXROW][n] = blnk;
+
+	for (n=nudge_span; n<=n_end; n++) {
+		if (isalpha(con_align2D[nudge_row][n]) && !isalpha(con_align2D[nudge_row][n-1]) && con_align2D[nudge_row-1][n]==slip.sym) {
+			printf("\n Finishing nudgelize by merging row %d with previous row at column %d.\n", nudge_row, n);
+			int i, j;
+			for (j=n; j<n_end+2; j++)
+				con_align2D[nudge_row-1][j] = con_align2D[nudge_row][j];
+			for (i= nudge_row; con_align2D[i+1][0] != '\0'; i++) {
+				for (j=0; j<n_end+2; j++)
+					con_align2D[i][j] = con_align2D[i+1][j];
+			}
+			break;
+		}
+	}
 
 	++Current.pass_W;
 	if (checktransit) {
