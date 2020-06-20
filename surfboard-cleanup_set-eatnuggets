@@ -18,7 +18,6 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
-	./maximal -KR -D 8 waves/chowder/nugget-00005.txt
 
 	# conflict begins in cinch-k
 
@@ -31,6 +30,7 @@ fi
 	./maximal -KR -D 8 waves/chowder/nugget-00003.txt	# solved-16 less strict entry into split fractal block in mark_tela
 	./maximal -KR -D 8 waves/chowder/nugget-00004.txt	# solved-16 less strict entry into split fractal block in mark_tela
 	./maximal -KR -D 8 waves/chowder/nugget-00006.txt	# solved-17 new skip condition in mark_tela; simplified check in cinch_k
+	./maximal -KR -D 8 waves/chowder/nugget-00005.txt	# solved-18 adjustment to next_k() w.r.t. imperfect TRs
 
 echo
 echo
@@ -39,5 +39,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 7: 0.465556 (8/9 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7: 0.467778 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
