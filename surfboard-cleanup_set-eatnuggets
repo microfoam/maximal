@@ -20,6 +20,7 @@ fi
 	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
+	./maximal -KR -D 8 waves/chowder/nugget-00008.txt	# found as 1 in 75 k random 100-mers
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/nugget-42356.txt	# solved-13	
@@ -40,5 +41,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 10: 0.463 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11: 0.459091 (10/11 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
