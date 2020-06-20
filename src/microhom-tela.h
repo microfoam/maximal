@@ -912,12 +912,27 @@ void mark_tela(void)
 
 	for (n=0; n<=lenseq; n++) {
 		if (tela[n].ok) {
+			k = tela[n].ok;
+
 			/* CANCEL MARK IF OVERLAPS PARENT W/ FRACTALS AND PARENT K > k */
 			if (!tela[n-1].ok && tela[n].stat==st_cycle.sym) {
-				k = tela[n].ok;
 				for (i=n-1; i>n-k; i--) {
 					if (tela[i].stat==st_fract.sym) {
 						for (j=i-1; j>0; j--) {
+							if (tela[j].stat==st_parent.sym && tela[j].ok > k) {
+								clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+								push_mem(n, 8);
+								break;
+							}
+						}
+						break;
+					}
+				}
+			}
+			else if (!tela[n+1].ok) {
+				for (i=n+1; i<n+k; i++) {
+					if (tela[i].stat==st_fract.sym) {
+						for (j=i+1; j<lenseq; j++) {
 							if (tela[j].stat==st_parent.sym && tela[j].ok > k) {
 								clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 								push_mem(n, 8);

@@ -292,6 +292,7 @@ int cinch_k(short unsigned int mode)
 			for (n = 0; align2D[m][n] != '\0'; n++) { 
 				keep_checking = 1;			/* THIS FLAG HANDLES THE CONTINUED NEED TO CHECK FOR INTRA-TR REPEATS   */
 				imperfect_TR = 0;			/* THIS FLAG IS TURNED ON (SET TO ONE) WHEN TR W/ TRANSITION MISMATCHES IS FOUND */
+				r = 0;
 
 				if (!n && isalpha(align2D[m][0])) {
 					x = 0;												/* x-VAR INITIALIZED, TOP OF FOR n LOOP */
@@ -569,7 +570,7 @@ int cinch_k(short unsigned int mode)
 								r++;        /* INCREMENT NUMBER OF REPEATS */
 							else
 								break;
-					    }    
+					    }
 
 						if (nuctransit && (p=n-x+k)<=Current.pass_W && (q=n-x+r*k)<=Current.pass_W && col_isclear(align2D,q+k,m,-1)<0) {
 							if ((letr=consensus[p])!='R' && letr!='Y' && (letr3=consensus[q])!='R' && letr3!='Y') 

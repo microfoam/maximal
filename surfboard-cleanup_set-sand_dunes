@@ -48,5 +48,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Current commit WCR average of 22: 0.378318 -> 0.375955' | tee -a Corduroy.log
+echo 'Current commit WCR average of 22: 0.373591 (seq17-cycle5 +/- strand symmetric at 0.538 each)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

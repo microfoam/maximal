@@ -20,7 +20,6 @@ fi
 	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
-	./maximal -KR -D 8 waves/chowder/nugget-00008.txt	# found as 1 in 75 k random 100-mers
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/nugget-42356.txt	# solved-13	
@@ -33,6 +32,9 @@ fi
 	./maximal -KR -D 8 waves/chowder/nugget-00006.txt	# solved-17 new skip condition in mark_tela; simplified check in cinch_k
 	./maximal -KR -D 8 waves/chowder/nugget-00005.txt	# solved-18 adjustment to next_k() w.r.t. imperfect TRs
 	./maximal -KR -D 8 waves/chowder/nugget-00007.txt	# solved-19 new mark_tela() module to skip 1st of cycling isle if overlapping upstream parent w/ fractals
+														# nugget found at 1 in 150,000 shuffled 100-mers
+	./maximal -KR -D 8 waves/chowder/nugget-00008.txt	# solved-20 strand symmetric module to new mark_tela() module of solved-19/previous nugget
+														# nugget found at 1 in  75,000 shuffled 100-mers
 
 echo
 echo
@@ -41,5 +43,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 11: 0.459091 (10/11 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11: 0.457273 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
