@@ -21,21 +21,35 @@ Older code versions are saved in the "Pointbreak/" directory.
 Some of the file descriptions below may be a bit outdated but still convey the spirit of this project.
 
 _______________________________________________
-FILE: Surf_wavereport.(log|mha)
+FILES: surfboard-*
+
+Files with the "surfboard" base name are bash script files for compiling the program, running the program in different modes on batteries of tests, 
+and/or for processing program output.
+Many of these surfboard programs are for program development and testing.
+These scripts facilitate having routine standard tests that use different run parameters invoked as command-line options.
+
+The surfboard-Pop_Up file is a compile script.
+
+The surfboard-cleanup_set-* files are for running benchmark tests. 
+Some of these are set with options to run each test automatically, 
+while others are set to run in a "visually-inspect" mode where the user is prompted to hit enter before each run.
+The surfboard-lazycouch runs all of the benchmark tests.
+
+The surfboard-getworked_rgdoll is the metaphorical washing machine, the turbulent surf in which a downed surfer gets rolled like a ragdoll.
+This script has been used to run the program on thousands of randomly shuffled biological sequences. 
+This has been useful for identifying trick sequences used in program development.
+It has also been useful as a control comparison group with biological sequences.
+
+_______________________________________________
+FILE: Surf_wavereport.(log|mha), Corduroy.log
 
 This is the standard ouput report to which maximal writes. 
 Every run of maximal appends run data to the end of this file and is a log of run-time information and performance.
+Files that end in *.mha are typically temporary files.
 
-Other informational report files also begin with the "Surf_" base file name.
-_______________________________________________
-FILES: surfboard-cleanup_set_(all|glassy|gnarly +/- RC), surfboard-get_worked(_clean), surfboard-check(mha|log), surfboard-Pop_Up, surfboard-pull_in
+Corduroy.log is a summary report based on information extracted from Surf_wavereport.log.
+The Corduroy.log report gets new summaries appended to it after each batch of tests ('surfboard-cleanup_set*' scripts).
 
-All files with the "surfboard" base name are bash script files.
-The surfboard-get_worked files test all of the internal sample strings (-a to -h), the solved-tricksy, and Drosophila example corpus. 
-The first script runs in default mode (glassy), while the second tests in both default and -x mode (gnarly), which adds extra transition squeezing. 
-The surf_wavereport.log file in the top level directory corresponds to the output from the surfboard-cleanup_set_gnarly run.
-
-The surfboard-Pop_Up file is a compile script, while the surfboard-Pull_In file is a sample script to begin to assemble sequences for MSA runs.
 _______________________________________________
 FILE: waves/solved-##-DESCRP_tricksy.txt ("##-DESCRP" provides a historical index number and a short 6 letter description of the originating issue)
 
@@ -45,8 +59,13 @@ After developing the code to conduct MHA successfully on a new tricksy string it
 These file names and sequences should never be modified because they are used for historical comparisons of different versions of maximal. 
 These files are now stored in waves/ subdirectory.
 
-UPDATE FOR RECENT VERSIONS (surf-themed): Solved synthetic sequences in the example corpus are saved in the waves/tubespit/ sub-directory. Solved
-natural sequences are saved in the waves/animals sub-directory. Unsolved tricksy sequences are saved in the waves/chowder/ sub-directory.
+UPDATE #1 FOR RECENT VERSIONS (surf-themed): Solved synthetic sequences in the example corpus are saved in the waves/tubespit/ sub-directory. 
+Solved natural sequences are saved in the waves/animals sub-directory. Unsolved tricksy sequences are saved in the waves/chowder/ sub-directory.
+
+UPDATE #2: As hundreds more tricksy sequences have been solved, the sequences in the various sub-directories 
+'waves/seals', 'waves/sharks', 'waves/tubespit', and 'waves/chowder'
+now merely represent different generations of solved sequence patterns. 
+To say a bit more, we have deemed it useful to keep these example corpora in separate sub-directories.
 
 _______________________________________________
 FILE: waves/Dxxxx_ex3.txt, Dxxxx_NEE.txt ("xxxx" is a Drosophila species name)
@@ -55,11 +74,13 @@ Files named in this format represent gene sequences from the Drosophila vnd locu
 Sequences correspond either to a conserved protein-coding region (exon 3) or an intronic enhancer (the neurogenic ectoderm enhancer, or NEE) from several species. 
 These file names and sequences should never be modified because they are used for historical comparisons of different developmenal versions of maximal. 
 
-_______________________________________________
-FILE: surf_foam_and_chowder.log, waves/surf_foam_and_chowder.log
+UPDATE #1: These files now live either in 'waves/seals' (protein-coding sequences) or 'waves/sharks' (non-protein-coding enhancer sequences). 
 
-If this file is present it has record of newly identified "tricksy" strings with problematic cinching as identified by the associated version of maximal. 
+_______________________________________________
+FILE: waves/foam_and_chowder.log
+
+If this file is present it has record of existing "tricksy" strings with problematic cinching as identified by the associated version of maximal. 
 Typically, this file is committed after a -XX Fischer-Yates run and is named with additional version and run information.
 _______________________________________________
 
-*Last updated*: 4/15/2020
+*Last updated*: 6/21/2020
