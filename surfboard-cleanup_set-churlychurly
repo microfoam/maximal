@@ -18,15 +18,15 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
+	./maximal -KR -D 8 waves/chowder/churly-05.txt	# p2 w/ recovery issue (point substitution)
 
 	# conflict begins in cinch-k
-	./maximal -KR -D 8 waves/chowder/churly-05.txt	# p1 w/ recovery issue (point substitution)
 	./maximal -KR -D 8 waves/chowder/churly-01.txt	# p1 
 	./maximal -KR -D 8 waves/chowder/churly-02.txt	# p1
 	./maximal -KR -D 8 waves/chowder/churly-03.txt	# p1
 	./maximal -KR -D 8 waves/chowder/churly-04.txt	# p1
-	./maximal -KR -D 8 waves/chowder/churly-06.txt	# p2
-	./maximal -KR -D 8 waves/chowder/churly-07.txt	# p3
+	./maximal -KR -D 8 waves/chowder/churly-06.txt	# p3
+	./maximal -KR -D 8 waves/chowder/churly-07.txt	# p4
 
 	# solved (start at solved-21)
 
