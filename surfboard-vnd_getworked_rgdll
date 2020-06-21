@@ -26,7 +26,7 @@ fi
 
 ./surfboard-Pop_up
 
-for i in {1..2500}
+for i in {1..10000}
 do
 	echo "                                                                                                                                                $i"
 	./maximal -Rn  -X 2 -S $i waves/seals/vnd_ex3_Dmela.txt
