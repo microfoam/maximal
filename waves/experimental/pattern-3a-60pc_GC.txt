@@ -1,4 +1,4 @@
->Source_sequence_for_FY-shuffling_60%_GC-content
+>Source_sequence_for_FY-shuffling_60%_GC-content_version-a
 GGGCCCAATT
 GGGCCCAATT
 GGGCCCAATT
