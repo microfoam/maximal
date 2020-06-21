@@ -1,0 +1,41 @@
+#!/bin/bash
+echo >> Corduroy.log
+echo '                                               < churly churly >' >> Corduroy.log
+
+answer="n"
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	./surfboard-Pop_Up
+	;;
+esac
+done
+
+if [ -f Surf_wavereport.mha ]; then
+	    rm Surf_wavereport.mha
+fi
+
+	# conflict begins in cinch-t
+
+	# conflict begins in cinch-k
+	./maximal -KR -D 8 waves/chowder/churly-05.txt	# p1 w/ recovery issue (point substitution)
+	./maximal -KR -D 8 waves/chowder/churly-01.txt	# p1 
+	./maximal -KR -D 8 waves/chowder/churly-02.txt	# p1
+	./maximal -KR -D 8 waves/chowder/churly-03.txt	# p1
+	./maximal -KR -D 8 waves/chowder/churly-04.txt	# p1
+	./maximal -KR -D 8 waves/chowder/churly-06.txt	# p2
+	./maximal -KR -D 8 waves/chowder/churly-07.txt	# p3
+
+	# solved (start at solved-21)
+
+echo
+echo
+echo
+echo "$0"
+echo
+echo
+./surfboard-checkmha
+echo 'Commit WCR average of 7: 0.502857 ' | tee -a Corduroy.log
+echo | tee -a Corduroy.log
