@@ -962,13 +962,7 @@ void mark_tela(void)
 				}
 				else if (tela[n].stat != st_cycle.sym && tela[m-1].ok == tela[m].ok) { /* GENERALIZE TO HANDLE CASE 1 TOO? (W/ CODE REVIEW) */
 					while (splitcol && tela[splitcol].ok && tela[splitcol-1].ok <= tela[splitcol].ok) {
-
-						if (tela[splitcol].all_S == tela[n].all_S && splitcol && !tela[splitcol-1].ok && tela[splitcol].stat == st_cycle.sym) {
-							clearall_tela(splitcol, 1, -1, TWO);	/* O-F-F, ONE, OR TWO */
-							push_mem(splitcol, 9);					/* TEMP NUMERIC ASSIGNMENT */
-							tela[splitcol].echoes = cyc_skip.sym;	/* MARK THIS SO CAN CHECK IN ANY CINCH MODULE TO SKIP */
-						}
-						else if (tela[splitcol].all_S <= tela[n].all_S) {
+						if (tela[splitcol].all_S <= tela[n].all_S) {
 							while (splitcol + span_ork(splitcol) - m > tela[splitcol].ok && tela[splitcol].or>1)
 								tela[splitcol].or--;
 						}

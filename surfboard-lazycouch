@@ -42,5 +42,9 @@ else
 	read -s -n1 answer
 	
 	./surfboard-cleanup_set-sand_dunes 
+	echo "$0: Hit <enter> to step through cleanup_set-churlychurly."
+	read -s -n1 answer
+	
+	./surfboard-cleanup_set-churlychurly 
 fi
 

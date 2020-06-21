@@ -18,17 +18,17 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
-	./maximal -KR -D 8 waves/chowder/churly-05.txt	# p2 w/ recovery issue (point substitution)
+	./maximal -KR -D 8 waves/chowder/churly-05.txt	# plus recovery issue (point substitution)
 
 	# conflict begins in cinch-k
-	./maximal -KR -D 8 waves/chowder/churly-01.txt	# p1 
-	./maximal -KR -D 8 waves/chowder/churly-02.txt	# p1
-	./maximal -KR -D 8 waves/chowder/churly-03.txt	# p1
-	./maximal -KR -D 8 waves/chowder/churly-04.txt	# p1
-	./maximal -KR -D 8 waves/chowder/churly-06.txt	# p3
-	./maximal -KR -D 8 waves/chowder/churly-07.txt	# p4
 
-	# solved (start at solved-21)
+	# solved
+	./maximal -KR -D 8 waves/chowder/churly-01.txt	# solved-21 delete clear_mem module in mark_tela 
+	./maximal -KR -D 8 waves/chowder/churly-02.txt	# solved-21 delete clear_mem module in mark_tela 
+	./maximal -KR -D 8 waves/chowder/churly-03.txt	# solved-21 delete clear_mem module in mark_tela 
+	./maximal -KR -D 8 waves/chowder/churly-04.txt	# solved-21 delete clear_mem module in mark_tela 
+	./maximal -KR -D 8 waves/chowder/churly-06.txt	# solved-21 delete clear_mem module in mark_tela 
+	./maximal -KR -D 8 waves/chowder/churly-07.txt	# solved-21 delete clear_mem module in mark_tela 
 
 echo
 echo
@@ -37,5 +37,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 7: 0.502857 ' | tee -a Corduroy.log
+echo 'Commit WCR average of 7: 0.478571 (6/7 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
