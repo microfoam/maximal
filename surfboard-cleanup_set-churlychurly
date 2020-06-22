@@ -16,8 +16,6 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
-	./maximal -KR -D 8 waves/chowder/churly-05.txt	# plus recovery issue (point substitution)
-	./maximal -KR -D 8 waves/chowder/churly-09.txt	# plus recovery issue (point substitution)
 
 	# conflict begins in cinch-k
 	./maximal -KR -D 8 waves/chowder/churly-08.txt	# 
@@ -29,6 +27,8 @@ fi
 	./maximal -KR -D 8 waves/chowder/churly-04.txt	# solved-21 delete clear_mem module in mark_tela 
 	./maximal -KR -D 8 waves/chowder/churly-06.txt	# solved-21 delete clear_mem module in mark_tela 
 	./maximal -KR -D 8 waves/chowder/churly-07.txt	# solved-21 delete clear_mem module in mark_tela 
+	./maximal -KR -D 8 waves/chowder/churly-05.txt	# solved-22 adjustment to cyclelize_tela()
+	./maximal -KR -D 8 waves/chowder/churly-09.txt	# solved-22 adjustment to cyclelize_tela()
 
 echo
 echo
@@ -37,5 +37,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 9: 0.453333 (6/9 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 9: 0.453333 (8/9 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

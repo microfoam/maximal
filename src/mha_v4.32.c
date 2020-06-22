@@ -1250,7 +1250,6 @@ int main(int argc, char *argv[])
 													if (dev_print(MAIN,__LINE__)) {
 														printf("badslip type %d at n=%d for k=%d with TR at l=%d, delta=%d.", badslip_type, n, k, l, j-i);
 													}
-	
 													a2D_n = tela[n].x+k; 
 													row   = tela[n].y-1;
 												}

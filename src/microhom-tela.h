@@ -296,27 +296,34 @@ int cyclelize_tela(int cpos, int delta, int npos)
 	if (k && reps && tela[cpos].cyc_o == cyc_take.sym) {
 		for (r=0; r<reps; r++) {
 			for (j=0; j<delta; j++) {
-				z++;												/* VAR z is 1D cycling position */
 				c = tela[(i=cpos+r*k+j)].c;
 				m = tela[i].y;
 				n = tela[i].x;
 
 				align2D[m][n] = blnk;
-				m = m-1;
-				n = n+k;
+				m -= 1;
+				n += k;
 				tela[i].y = m;
 				tela[i].x = n;
 				align2D[m][n] = c;
+				z++;												/* VAR z is 1D cycling position */
 			}
 			if (r < reps - 1) {
 				align2D[m][n+1] = slip.sym;
 				align2D[m][n+2] = '\0';
 			}
 			else if (r == reps-1) {
-				for (j = z+1; j < npos; j++) {
+				int cycle_end = cpos+delta+k*tela[cpos+delta].or;
+				n -= (cycle_end-z) - delta;							/* NOTE THIS LINE WAS ARRIVED AT BY CODE VOO-DOO */
+				for (j = z+1; j < cycle_end; j++) {
 					align2D[m][++n] = tela[j].c;
 					tela[j].y = m;
-					tela[j].x = n;
+					tela[j].x = n - delta;
+				}
+				for (j = cycle_end; j < npos; j++) {
+					align2D[m][++n] = tela[j].c;
+					tela[j].y = m;
+					tela[j].x += k;
 				}
 			}
 		}
