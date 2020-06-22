@@ -270,32 +270,33 @@ void clearall_tela(int n, int span, int keep_score, int mode)
 }
 
 
-/**** FUNCTION TO CYCLELIZE REPEAT AT POSITION BY DELTA *****/
+/* FUNCTION TO CYCLELIZE UPSTREAM TR MARKED AT CPOS BY DELTA SO DOESN'T CONFLICT WITH TR MARKED AT NPOS */
 int cyclelize_tela(int cpos, int delta, int npos)
 {
-	int    k = tela[cpos].k;
-	int reps = tela[cpos].r;
-	int i, j, m, n, r, z=0;
 	int lenseq = Clean.pass_W;
-	char c;
-	char blnk = Fill->sym;		/* opt_B blank character */
 
 	if      ( cpos>lenseq ||  cpos<0 || tela[cpos].cyc_l < 2)
 		return(0);
 	else if (delta>lenseq || delta<0 || delta > tela[cpos].cyc_l)
 		return(0);
 
+	int    k = tela[cpos].k;
+	int reps = tela[cpos].r;
+	int i, j, m, n, r;
+	int z = cpos;
+	char blnk = Fill->sym;		/* opt_B blank character */
+	char c;
+
 	for (i=cpos; i<npos; i++) {
-		tela[i].gPnt.rel_xy = XDIR;
-		tela[i].gPnt.prevPar = tela[i].gPnt.topPar = i;
+		tela[i].gPnt.rel_xy = XDIR;									/* CLEARS rel_xy --> 0; YDIR = 1 */
+		tela[i].gPnt.prevPar = tela[i].gPnt.topPar = i;				/* RESETS prev_Par and topPar to default no paralogy */
 	}
 	push_gPnt_kmer(cpos+delta, k, tela[cpos+delta].or);
 
 	if (k && reps && tela[cpos].cyc_o == cyc_take.sym) {
-		z = cpos;
 		for (r=0; r<reps; r++) {
 			for (j=0; j<delta; j++) {
-				z++;					/* VAR z is 1D cycling position */
+				z++;												/* VAR z is 1D cycling position */
 				c = tela[(i=cpos+r*k+j)].c;
 				m = tela[i].y;
 				n = tela[i].x;
@@ -317,11 +318,11 @@ int cyclelize_tela(int cpos, int delta, int npos)
 					tela[j].y = m;
 					tela[j].x = n;
 				}
-				m++;
-				tela[npos].y = m = tela[(npos - tela[npos].k)].y + 1;
-				tela[npos].x = n = tela[(npos - tela[npos].k)].x;
 			}
-		}	
+		}
+		m = tela[npos].y = tela[(npos - tela[npos].k)].y + 1;
+		    tela[npos].x = tela[(npos - tela[npos].k)].x;
+
 		for (j=0; j<lenseq; j++)
 			align2D[m][j] = '\0';
 
