@@ -2,8 +2,6 @@
 echo >> Corduroy.log
 echo '                                               < eat nuggets >' >> Corduroy.log
 
-answer="n"
-
 while getopts c option
 do
 case "${option}"

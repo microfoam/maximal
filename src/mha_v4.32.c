@@ -1209,7 +1209,7 @@ int main(int argc, char *argv[])
 											tela[l].cyc_o = cyc_take.sym;
 										}
 										if (dev_print(MAIN,__LINE__)) 
-											printf("\n max_count=%d, sumspan=%d, c=%d", max_count, sumspan, c);
+											printf("max_count=%d, sumspan=%d, c=%d", max_count, sumspan, c);
 										
 										if (l != series && tela[(tela[l].cyc_Lf)].cyc_o == cyc_take.sym) {
 											badslip_type = 10;							/* FROM SEQUENCE IN TYPES: 1-3-5- (10) -30-50-100-300-500 */
@@ -1242,7 +1242,7 @@ int main(int argc, char *argv[])
 												i--;
 											if (tela[i].cyc_o == cyc_take.sym) {
 												if (dev_print(MAIN,__LINE__)) 
-													printf("\n i=%d (cpos), j-i=%d (delta), n=%d (npos)", i,j-i,n);
+													printf("i=%d (cpos), j-i=%d (delta), n=%d (npos)", i,j-i,n);
 												if (cyclelize_tela(i, j-i, n)) {
 													badslip_type = 30;					/* FROM SEQUENCE IN TYPES: 1-3-5-10- (30) -50-100-300-500 */
 													Current.pass_R += badslip_type;
