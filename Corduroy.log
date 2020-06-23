@@ -406,3 +406,141 @@ Line counts:
 
 Commit WCR average of 9: 0.451111 (chowder-free)
 
+                                               < vnd_getworked_ragdoll >
+Mon Jun 22 22:06:43 CDT 2020
+Tri-fin dawn patrol: Compiling maximal v4.32.
+
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v4.32	Jun 22 22:06:46 2020	 x0	1000	0.590	NDG: 0 	RND:XX	         waves/seals/vnd_ex3_Dmela.txt (+) ( 100 bp) REC:1000	M: 5	-
+v4.32	Jun 22 23:05:56 2020	 x0	1000	0.530	NDG: 0 	RND:XX	        waves/sharks/vnd_NEE_Dsuzu.txt (-) ( 100 bp) REC:1000	M: 3	-
+
+Number of tests initiated:         150000
+
+Number of tests completed:         150000
+
+Number of tests w/ PASS 1000:      150000
+
+Number of tests w/ REC. 1000:      150000
+
+Number of tests w/ nudging:        0
+
+Number of tests w/ checktransit:   0
+
+WCR average: 0.520093
+
+Tests with PASS < 1000 (if any):
+
+Tests with REC. < 1000 (if any):
+
+Tests with nudging (if any):
+
+Tests canceled (if any, w/ preceding run for context):
+
+Line counts:
+    1967 src/mha_v4.32.c
+    1348 src/microhom-cinc.h
+     139 src/microhom-devl.h
+     113 src/microhom-skor.h
+    1853 src/microhom-tela.h
+    1713 src/microhomology.h
+    7133 total
+
+                                               < ragdoll washing machine >
+Mon Jun 22 23:07:49 CDT 2020
+Tri-fin dawn patrol: Compiling maximal v4.32.
+
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v4.32	Jun 22 23:07:53 2020	 x0	1000	0.360	NDG: 0 	RND:XX	waves/experimental/pattern-1a-20pc_GC.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 22 23:31:59 2020	 x0	1000	0.490	NDG: 0 	RND:XX	waves/experimental/pattern-3b-60pc_GC.txt (+) ( 100 bp) REC:1000	M: 3	-
+
+Number of tests initiated:         60000
+
+Number of tests completed:         60000
+
+Number of tests w/ PASS 1000:      60000
+
+Number of tests w/ REC. 1000:      60000
+
+Number of tests w/ nudging:        1
+
+Number of tests w/ checktransit:   0
+
+WCR average: 0.46519
+
+Tests with PASS < 1000 (if any):
+
+Tests with REC. < 1000 (if any):
+
+Tests with nudging (if any):
+v4.32	Jun 22 23:23:21 2020	 x0	1000	0.330	NDG: 2 	RND:XX	waves/experimental/pattern-1b-80pc_GC.txt (+) ( 100 bp) REC:1000	M: 2	-
+
+Tests canceled (if any, w/ preceding run for context):
+
+Line counts:
+    1967 src/mha_v4.32.c
+    1348 src/microhom-cinc.h
+     139 src/microhom-devl.h
+     113 src/microhom-skor.h
+    1853 src/microhom-tela.h
+    1713 src/microhomology.h
+    7133 total
+
+
+
+                                               < churly churly >
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v4.32	Jun 22 23:42:44 2020	 x0	1000	0.330	NDG: 2 	RND:	           waves/chowder/churly-10.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.32	Jun 22 23:42:48 2020	 x0	1000	0.400	NDG: 0 	RND:	           waves/chowder/churly-08.txt (+) ( 100 bp) REC:1000	M: 3	-
+
+Number of tests initiated:         10
+
+Number of tests completed:         10
+
+Number of tests w/ PASS 1000:      10
+
+Number of tests w/ REC. 1000:      10
+
+Number of tests w/ nudging:        1
+
+Number of tests w/ checktransit:   0
+
+WCR average: 0.439
+
+Tests with PASS < 1000 (if any):
+
+Tests with REC. < 1000 (if any):
+
+Tests with nudging (if any):
+v4.32	Jun 22 23:42:44 2020	 x0	1000	0.330	NDG: 2 	RND:	           waves/chowder/churly-10.txt (+) ( 100 bp) REC:1000	M: 2	-
+
+Tests canceled (if any, w/ preceding run for context):
+
+Line counts:
+    1967 src/mha_v4.32.c
+    1348 src/microhom-cinc.h
+     139 src/microhom-devl.h
+     113 src/microhom-skor.h
+    1853 src/microhom-tela.h
+    1713 src/microhomology.h
+    7133 total
+
+Commit WCR average of 9: 0.439 (9/10 solved)
+

@@ -18,6 +18,7 @@ fi
 	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
+	./maximal -KR -D 8 waves/chowder/churly-10.txt	# 
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/churly-01.txt	# solved-21 delete clear_mem module in mark_tela 
@@ -37,5 +38,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 9: 0.451111 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 9: 0.439 (9/10 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
