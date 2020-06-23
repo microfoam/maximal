@@ -719,8 +719,8 @@ void mark_tela(void)
 									tela[projector].stat = st_parent.sym;
 									if (dev_print(TELA,__LINE__))
 										printf("Calling parent at %d.", projector);
-									tela[n        ].stat = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
-									tela[n-proj_k ].stat = st_fract.sym;		/* MATCHING PAIR */
+									tela[n       ].stat = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
+									tela[n-proj_k].stat = st_fract.sym;		/* MATCHING PAIR */
 									i = n-proj_k-1;
 									while (tela[i].ok == k && tela[i].stat == st_cycle.sym && i>=projector-proj_k && tela[i].or<2) {
 										clearall_tela(i,1,-1,TWO);
