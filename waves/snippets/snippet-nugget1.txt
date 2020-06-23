@@ -1,0 +1,2 @@
+>v4.32	Jun 17 19:34:11 2020	 x0	1000	0.420	NDG: 3 	RND:-XX	waves/sharks/vnd_NEE_Dbiar.txt (+) 
+AGCATAATGTTGGCTCTCTGCCTCTGC

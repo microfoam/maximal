@@ -1,0 +1,2 @@
+>v4.32	Jun 19 17:39:34 2020	 x0	1000	0.500	NDG: 4 	RND:-XX	waves/sharks/vnd_NEE_Dsimu.txt (-) 
+TCGAGATTCGAGATAGATGCGTCACGAC
