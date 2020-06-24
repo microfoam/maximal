@@ -441,9 +441,8 @@ int next_k(int n, int k1, short unsigned int seqtype)
 						break;
 				}
 			}
-			if (i==k && k<k1) {
+			if (i==k && k<k1)
 				return(k);
-			}
 		}
 		return(0);
 	}

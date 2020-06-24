@@ -1125,7 +1125,8 @@ int main(int argc, char *argv[])
 										}
 										else
 											tela[n+l].mem[0] = ++f;	/* USE ROW 0 TO STORE ROW # OF FRAME */
-	
+
+										tela[0].mem[f] = 1;			/* BIT SLOT TO RECORD ROW HAS VALUES AND SHOULD BE PRINTED IF REQUESTED. */
 										for (j = 0; j < tela[n+l].or; j++) {
 											if (j==0) {		/* WRITE FOR UNIT REPEAT STARTING AT m ONETIME */
 												for (o = 0; o < k; o++) 
@@ -1159,9 +1160,8 @@ int main(int argc, char *argv[])
 											l=series+j-k;
 											for (f = tela[series+j].mem[0] - 1 - j; f > 0; f--) {
 												if (tela[l].mem[f] == 1) {
-													int backstop;
-													backstop = tela[n].X - tela[(tela[n].X)].k;					/* WHY IS THIS NOT BEST? */
-													backstop = 0; 												/* !!!!!!!!!!!!!!!!!!!!! */
+													int backstop = 0;
+													/* backstop = tela[n].X - tela[(tela[n].X)].k;					 Why is this not best? */
 
 													while (tela[l].cyc_o != cyc_take.sym && tela[l].cyc_o != cyc_skip.sym && l>backstop) 
 														l--;
@@ -1291,9 +1291,11 @@ int main(int argc, char *argv[])
 												Current.pass_R += badslip_type;
 												sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 												if (dev_print(MAIN,__LINE__)) {
-													printf("badslip type %d at n=%d (k=%d) w/ TR at cycto=%d, ser.=%d.", badslip_type, n, k, cycto, series);
+													printf("badslip type %d at n=%d (k=%d) w/ TR at cycto=%d, series=%d.", badslip_type, n, k, cycto, series);
 												}
-	
+												tela[series].cyc_o = cyc_skip.sym;
+												align2D[tela[series].y][(tela[cycto].x+tela[cycto].ok)] = slip.sym;
+
 												a2D_n = tela[n].x+k; 
 												row   = tela[n].y-1; 
 											}

@@ -844,5 +844,6 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average: 0.504091 (low complexity case in cinch-k) ->0.504105 (opt_x dependence for next_k)' | tee -a Corduroy.log
+echo 'Commit WCR average (PISO = 5): 0.504105 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average (PISO = 4): 0.500478 (two chowder bits originating in cinch-k)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
