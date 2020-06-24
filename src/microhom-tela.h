@@ -429,10 +429,12 @@ int next_k(int n, int k1, short unsigned int seqtype)
 				if (seqtype==1 && tela[n+i].c == ambig.sym)
 					break;
 				if (tela[m+i].c != tela[n+i].c) {
-					if (k>PISO+1 && tela[m+i].e == tela[n+i].e) {
-						if (++transits <= maxtransits) 
-							;
-						else
+					if (opt_x.bit && k>PISO && tela[m+i].e == tela[n+i].e) {
+						if (++transits > maxtransits) 
+							break;
+					}
+					else if (k>PISO && tela[m+i].e == tela[n+i].e) {
+						if (++transits >= maxtransits) 
 							break;
 					}
 					else
