@@ -446,7 +446,13 @@ int cinch_k(short unsigned int mode)
 				}
 				else if (keep_checking && k>2 && tela[symbol_count  ].stat2==st_lowcm.sym &&
 												 tela[symbol_count+1].stat2==st_lowcm.sym) {
-					keep_checking = 0;
+					for (l=0; l<2*k; l++) {
+						if (tela[symbol_count+l].stat==st_fract.sym || tela[symbol_count+l].stat2==st_fract.sym) {
+							break;
+						}
+					}
+					if (l==2*k)
+						keep_checking = 0;
 				}
 
 				/* THIS BLOCK SPOTS NON-FRACTAL TRs AT NEXUS OF TWO OVERLAPPING AND/OR ABUTTING TRs AND SKIPS THEM */
