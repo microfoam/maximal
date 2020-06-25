@@ -736,8 +736,6 @@ int cinch_k(short unsigned int mode)
 		if (cik_row > 0) {
 			printf("\n Next: cinch-k for k = %d...\n", k);
 			mha_writeback(pathbox, align2D); 
-		    if (dev_print(CINCH,__LINE__)) 
-		        print_tela(prtela_A, prtela_B);
 			print_2Dseq();
 		}
 
