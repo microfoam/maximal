@@ -657,6 +657,23 @@ int cinch_k(short unsigned int mode)
 				if (nuctransit && keep_checking && col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)<0 && col_isclear(align2D,n+k-1,m,1)>0) 
 					keep_checking = imperfect_TR = 0;
 
+				/* Handles block of cinching fractal TRs in the first row if they overlay cryptic overlapping TRs in lower rows; churly11 is index case */
+				if ((keep_checking||imperfect_TR) && align2D[m-1][n+1]==slip.sym) {
+					i = m+1;
+					int j = n+k-1;
+
+					while (align2D[i][n]!=blnk || !isalpha(align2D[i][j]) || col_isclear(align2D,j,i,1)) {
+						if (col_isclear(align2D,j,i+1,1)<0) {
+							i++;
+							break;
+						}
+						else
+							i++;
+					}
+					if (align2D[i][0] && align2D[i][n]==blnk && isalpha(align2D[i][j]))
+							keep_checking = imperfect_TR = 0;
+				}
+
 				/**************************************************************************************************/
 				if (keep_checking || imperfect_TR) {
 					if (k>0 && dev_print(CINCH,__LINE__)) {
