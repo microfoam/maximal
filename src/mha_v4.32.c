@@ -1031,7 +1031,7 @@ int main(int argc, char *argv[])
 						tela[n].k = k = n-m;
 						slips[k]++;
 						TRcheck = 1;
-	
+
 						while (TRcheck) {
 							Atr = 0;
 	
@@ -1085,7 +1085,7 @@ int main(int argc, char *argv[])
 								}
 								cycle[i] = '\0';
 								tela[n].o = i;	/* STORE CYCLE LENGTH */
-	
+
 								if (!badslip_type) {
 									/* NUMBER POSITIONS OF COLUMNS IN FRAME */
 									for (l = 0; l < tela[n].cyc_l; l++) {

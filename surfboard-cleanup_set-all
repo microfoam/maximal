@@ -844,6 +844,6 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average (PISO = 5): 0.504105 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average (PISO = 5): 0.504105 -> 0.504153 (return fractal splitting < conflict marking)' | tee -a Corduroy.log
 echo 'Commit WCR average (PISO = 4): 0.500478 (two chowder bits originating in cinch-k)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

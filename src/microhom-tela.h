@@ -879,6 +879,54 @@ void mark_tela(void)
 		}
 	}
 
+	/* FRACTAL SPLITTING */
+	for (n=lenseq; n>1; n--) {
+		if (tela[n].ok && (tela[n-1].k1!=tela[n].k1 || !tela[n-1].ok)) {
+			k = tela[n].ok;
+			m = n - k;
+
+			int case_X=0;		/* TO DISTINGUISH ENTRIES INTO IF BLOCK THAT HANDLES LEGACY FRACTAL SPLITTING */
+			int splitcol = m;
+			if (tela[m].or && tela[m].ok < k) {
+				if (tela[m].or>1 && tela[m].all_S<=tela[n].all_S && m>1 && tela[m-1].ok != tela[m].ok)
+					case_X = 1;
+				else if (tela[n].stat!=st_cycle.sym && tela[m-1].ok == tela[m].ok) {
+					while (splitcol && tela[splitcol].ok && tela[splitcol-1].ok <= tela[splitcol].ok) {
+						if (tela[splitcol].all_S <= tela[n].all_S) {
+							while (splitcol + span_ork(splitcol) - m > tela[splitcol].ok && tela[splitcol].or>1)
+								tela[splitcol].or--;
+						}
+						splitcol--;
+					}
+				}
+				else if (k!=4 && tela[m-1].ok == tela[m].ok) {
+					while (splitcol && tela[splitcol-1].ok==tela[m].ok) 
+						splitcol--;
+					if (tela[splitcol].all_S <= tela[n].all_S) {
+						while (splitcol + span_ork(splitcol) - m > tela[splitcol].ok && tela[splitcol].or>1)
+							tela[splitcol].or--;
+					}
+				}
+			}
+			if (case_X && splitcol+span_ork(splitcol)<=n) {
+				/* REDUCE REPEAT NUMBER IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T; aka FRACTAL SPLITTING */
+				int k_at_m = tela[splitcol].ok;
+				int less_r = tela[splitcol].or - 1;
+				tela[splitcol].or = 1;
+
+				i = 1;
+				int jump = 0;
+				while (tela[(jump=(splitcol-i*k_at_m))].ok == k_at_m && tela[jump].stat == st_cycle.sym) {
+					tela[jump].or -= less_r;
+					++i;
+				}
+				jump = splitcol - (--i)*k_at_m;
+				if (tela[--jump].ok == k_at_m)
+					tela[jump].or -= less_r;
+			}
+		}
+	}
+
 	/* NOW MARK ALL CONFLICTING TRs */
 	for (n=lenseq; n>0; n--) {
 		if (tela[n].ok) {
@@ -951,51 +999,6 @@ void mark_tela(void)
 						break;
 					}
 				}
-			}
-		}
-	}
-
-	/* FRACTAL SPLITTING */
-	for (n=lenseq; n>1; n--) {
-		if (tela[n].ok && (tela[n-1].k1!=tela[n].k1 || !tela[n-1].ok)) {
-			k = tela[n].ok;
-			m = n - k;
-
-			int case_X=0;		/* TO DISTINGUISH ENTRIES INTO IF BLOCK THAT HANDLES LEGACY FRACTAL SPLITTING */
-			int splitcol = m;
-			if (tela[m].or && tela[m].ok < k) {
-				if (tela[m].or>1 && tela[m].all_S<=tela[n].all_S && m>1 && tela[m-1].ok != tela[m].ok) {
-					case_X = 1;
-					if (dev_print(TELA,__LINE__))
-						printf("For n=%d: case_X = %d, splitcol = %d.", n,case_X,splitcol);
-				}
-				else if (tela[n].stat != st_cycle.sym && tela[m-1].ok == tela[m].ok) { /* GENERALIZE TO HANDLE CASE 1 TOO? (W/ CODE REVIEW) */
-					while (splitcol && tela[splitcol].ok && tela[splitcol-1].ok <= tela[splitcol].ok) {
-						if (tela[splitcol].all_S <= tela[n].all_S) {
-							while (splitcol + span_ork(splitcol) - m > tela[splitcol].ok && tela[splitcol].or>1)
-								tela[splitcol].or--;
-						}
-						splitcol--;
-					}
-					if (dev_print(TELA,__LINE__))
-						printf("For n=%d: case_X = %d, splitcol = %d.", n,case_X,splitcol);
-				}
-			}
-			if (case_X && splitcol+span_ork(splitcol)<=n) {
-				/* REDUCE REPEAT NUMBER IF A SUBSET OF REPEATS ARE FRACTAL AND SLATED FOR SKIPPING IN CINCH-T; aka FRACTAL SPLITTING */
-				int k_at_m = tela[splitcol].ok;
-				int less_r = tela[splitcol].or - 1;
-				tela[splitcol].or = 1;
-
-				i = 1;
-				int jump = 0;
-				while (tela[(jump=(splitcol-i*k_at_m))].ok == k_at_m && tela[jump].stat == st_cycle.sym) {
-					tela[jump].or -= less_r;
-					++i;
-				}
-				jump = splitcol - (--i)*k_at_m;
-				if (tela[--jump].ok == k_at_m)
-					tela[jump].or -= less_r;
 			}
 		}
 	}
