@@ -20,19 +20,17 @@ fi
 	# conflict begins in cinch-k
 
 	# solved
-	./maximal -KR -D 8 waves/chowder/nugget-42356.txt	# solved-13	
-	./maximal -KR -D 8 waves/chowder/nugget-47633.txt	# solved-14 cinch-k x_history propagation
-	./maximal -KR -D 8 waves/chowder/nugget-50546.txt	# solved-14 cinch-k x_history propagation
-	./maximal -KR -D 8 waves/chowder/nugget-00002.txt	# solved-15 delete unnecessary cinch-k block blocking needed cinch
-	./maximal -KR -D 8 waves/chowder/nugget-00001.txt	# solved-16 less strict entry into split fractal block in mark_tela
-	./maximal -KR -D 8 waves/chowder/nugget-00003.txt	# solved-16 less strict entry into split fractal block in mark_tela
-	./maximal -KR -D 8 waves/chowder/nugget-00004.txt	# solved-16 less strict entry into split fractal block in mark_tela
-	./maximal -KR -D 8 waves/chowder/nugget-00006.txt	# solved-17 new skip condition in mark_tela; simplified check in cinch_k
-	./maximal -KR -D 8 waves/chowder/nugget-00005.txt	# solved-18 adjustment to next_k() w.r.t. imperfect TRs
-	./maximal -KR -D 8 waves/chowder/nugget-00007.txt	# solved-19 new mark_tela() module to skip 1st of cycling isle if overlapping upstream parent w/ fractals
-														# nugget found at 1 in 150,000 shuffled 100-mers
-	./maximal -KR -D 8 waves/chowder/nugget-00008.txt	# solved-20 strand symmetric module to new mark_tela() module of solved-19/previous nugget
-														# nugget found at 1 in  75,000 shuffled 100-mers
+	./maximal -KR waves/chowder/nugget-42356.txt	# solved-13	
+	./maximal -KR waves/chowder/nugget-47633.txt	# solved-14 cinch-k x_history propagation
+	./maximal -KR waves/chowder/nugget-50546.txt	# solved-14 cinch-k x_history propagation
+	./maximal -KR waves/chowder/nugget-00002.txt	# solved-15 delete unnecessary cinch-k block blocking needed cinch
+	./maximal -KR waves/chowder/nugget-00001.txt	# solved-16 less strict entry into split fractal block in mark_tela
+	./maximal -KR waves/chowder/nugget-00003.txt	# solved-16 less strict entry into split fractal block in mark_tela
+	./maximal -KR waves/chowder/nugget-00004.txt	# solved-16 less strict entry into split fractal block in mark_tela
+	./maximal -KR waves/chowder/nugget-00006.txt	# solved-17 new skip condition in mark_tela; simplified check in cinch_k
+	./maximal -KR waves/chowder/nugget-00005.txt	# solved-18 adjustment to next_k() w.r.t. imperfect TRs
+	./maximal -KR waves/chowder/nugget-00007.txt	# solved-19 new mark_tela() module to skip 1st of cycling isle if overlapping upstream parent w/ fractals
+	./maximal -KR waves/chowder/nugget-00008.txt	# solved-20 strand symmetric module to new mark_tela() module of solved-19/previous nugget
 
 echo
 echo

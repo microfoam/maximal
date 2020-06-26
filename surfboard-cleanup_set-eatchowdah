@@ -1,6 +1,6 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < chowder 1: cinch-k k=1 only >' >> Corduroy.log
+echo '                                               < eat chowdah: cinch-k k=1 only >' >> Corduroy.log
 
 answer="n"
 
@@ -108,5 +108,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Current commit WCR average of 82, allowing only k = 1 in cinch-k: 0.473622 (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, allowing only k = 1 in cinch-k: 0.473622 (chowdah-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
