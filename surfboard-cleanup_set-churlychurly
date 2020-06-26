@@ -17,6 +17,7 @@ fi
 
 	# conflict begins in cinch-t
 	./maximal -KR -D 8 waves/chowder/churly-14.txt	# unsolved
+	./maximal -KR -D 8 waves/chowder/churly-15.txt	# unsolved
 
 	# conflict begins in cinch-k
 	./maximal -KR -D 8 waves/chowder/churly-12.txt	# unsolved
@@ -43,5 +44,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 14: 0.461429 (11/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 15: 0.46 (11/15 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
