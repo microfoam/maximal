@@ -658,7 +658,7 @@ int cinch_k(short unsigned int mode)
 					keep_checking = imperfect_TR = 0;
 
 				/* Handles block of cinching fractal TRs in the first row if they overlay cryptic overlapping TRs in lower rows; churly11 is index case */
-				if ((keep_checking||imperfect_TR) && align2D[m-1][n+1]==slip.sym) {
+				if ((keep_checking||imperfect_TR) && (align2D[m-1][n+k-1]==slip.sym || align2D[m-1][n+k]==slip.sym)) {
 					i = m+1;
 					int j = n+k-1;
 

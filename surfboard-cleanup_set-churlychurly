@@ -20,8 +20,6 @@ fi
 	./maximal -KR -D 8 waves/chowder/churly-15.txt	# unsolved
 
 	# conflict begins in cinch-k
-	./maximal -KR -D 8 waves/chowder/churly-12.txt	# unsolved
-	./maximal -KR -D 8 waves/chowder/churly-13.txt	# unsolved
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/churly-01.txt	# solved-21 delete clear_mem module in mark_tela 
@@ -36,6 +34,8 @@ fi
 	./maximal -KR -D 8 waves/chowder/churly-10.txt	# solved-24 adjustment to new low-complexity block in cinch-k
 													# solved-25--26 -> PISO4 script
 	./maximal -KR -D 8 waves/chowder/churly-11.txt	# solved-27 new cinch-k cluster-f*ck block
+	./maximal -KR -D 8 waves/chowder/churly-12.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
+	./maximal -KR -D 8 waves/chowder/churly-13.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
 
 echo
 echo
@@ -44,5 +44,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 15: 0.46 (11/15 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 15: 0.456 (13/15 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
