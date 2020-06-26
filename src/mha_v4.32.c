@@ -820,6 +820,10 @@ int main(int argc, char *argv[])
 					assign_tela(n++, row, a2D_n++, ONE);		/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 					break;	/* GO TO NEXT n */
 				}
+				else if (k==tela[n].k1 && tela[n].echoes==cyc_skip.sym) {
+					assign_tela(n++, row, a2D_n++, ONE);		/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
+					break;	/* GO TO NEXT n */
+				}
 	
 				/* FOR ROW m LOOP 5/6: SET HOMOPOLYMER RUN STATUS UNKNOWN; USED TO RULE OUT k>1 MONONUCLEOTIDE "REPEATS" */
 				homopoly_flag = 2;

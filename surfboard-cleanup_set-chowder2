@@ -21,6 +21,11 @@ fi
 	./maximal -KR waves/chowder/snippet-flotsam_10F.txt
 	./maximal -KR waves/chowder/snippet-flotsam_14F.txt
 	./maximal -KR waves/chowder/snippet-flotsam_21R.txt
+    ./maximal -KR waves/chowder/snippet-s32-k.txt       # solved-12
+    ./maximal -KR waves/chowder/snippet-s42-k.txt       # solved-12
+    ./maximal -KR waves/chowder/snippet-str06-k.txt     # solved-12
+    ./maximal -KR waves/chowder/snippet-stri04-k.txt    # solved-12
+    ./maximal -KR waves/chowder/snippet-s40-k.txt       # solved-13
 
 echo
 echo

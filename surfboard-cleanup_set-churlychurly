@@ -16,8 +16,6 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
-	./maximal -KR -D 8 waves/chowder/churly-14.txt	# unsolved
-	./maximal -KR -D 8 waves/chowder/churly-15.txt	# unsolved
 
 	# conflict begins in cinch-k
 
@@ -36,6 +34,8 @@ fi
 	./maximal -KR -D 8 waves/chowder/churly-11.txt	# solved-27 new cinch-k cluster-f*ck block
 	./maximal -KR -D 8 waves/chowder/churly-12.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
 	./maximal -KR -D 8 waves/chowder/churly-13.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
+	./maximal -KR -D 8 waves/chowder/churly-14.txt	# solved-29 new mark_tela() block for conflict marking
+	./maximal -KR -D 8 waves/chowder/churly-15.txt	# solved-29 new mark_tela() block for conflict marking
 
 echo
 echo
@@ -44,5 +44,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 15: 0.456 (13/15 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 15: 0.460667 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
