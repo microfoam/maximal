@@ -36,6 +36,7 @@ fi
 	./maximal -KR -D 8 waves/chowder/churly-13.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
 	./maximal -KR -D 8 waves/chowder/churly-14.txt	# solved-29 new mark_tela() block for conflict marking
 	./maximal -KR -D 8 waves/chowder/churly-15.txt	# solved-29 new mark_tela() block for conflict marking
+	./maximal -KR -D 8 waves/chowder/churly-16.txt	# solved-30 adjustment for new cinch-k block of solved 27-28
 
 echo
 echo
@@ -44,5 +45,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 15: 0.460667 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 16: 0.455 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
