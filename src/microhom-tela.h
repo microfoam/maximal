@@ -419,12 +419,13 @@ int next_k(int n, int k1, short unsigned int seqtype)
 		return(0);
 	else if (seqtype==1 && k1-1>PISO) {
 		int maxtransits;
-		short int purA=0, purG=0, pyrC=0, pyrT=0;
+		short int purA, purG, pyrC, pyrT;
 
 		for (k = k1-1; k>1; k--) {
 			m = n-k;
 			maxtransits = allowed_transits(k);
 			transits=0;
+			purA = purG = pyrC = pyrT = 0;
 
 			for (i=0; i<k; i++) {
 				if (seqtype==1 && tela[n+i].c == ambig.sym)
@@ -450,7 +451,7 @@ int next_k(int n, int k1, short unsigned int seqtype)
 				else if (tela[m+i].c=='A' || tela[n+i].c=='A')
 					purA++;
 				else if (tela[m+i].c=='T' || tela[n+i].c=='T')
-					pyrC++;
+					pyrT++;
 			}
 			if (i==k) {
 				if ( ((purA||purG) && !pyrC && !pyrT) ||
@@ -553,7 +554,7 @@ void mark_tela(void)
 			}
 
 			/* FOR ROW m LOOP 3/5: SKIP k=ONE */
-			if (k == 1) {
+			if (k == 1 || k == tela[n].k0) {
 				break;	/* GO TO NEXT n */
 			}
 
