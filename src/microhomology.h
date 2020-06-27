@@ -427,7 +427,7 @@ short unsigned int nuctransit = 0;					/* BIT FLAG FOR HANDLING NUCLEAR TRANSITI
 short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
 short unsigned int checktransit=0;					/* BIT FLAG FOR CHECKING GOOD TRANSITION MARK */
 char blnk = Fill->sym; 
-char letr=blnk, ltr2=blnk, conletr=blnk;
+char letr, ltr2, conletr;
 int con_maxrows=26;
 int checktransit_n = -1;
 char checktransletr=blnk;
@@ -469,19 +469,21 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 					checktransit = 25;
 				consensus_ar[1][n+1] = conletr;
 			}
-			else conletr = blnk;
+			else
+				conletr = blnk;
 		}
 
 		for (m = 0; align2D[m][0] != '\0'; m++) {
-			if (isalpha(letr=align2D[m][n])) {
+			if (isalpha(align2D[m][n])) {
+				letr=align2D[m][n];
 				ltr2=toupper(letr);
 				if (nuctransit && ((conletr=='R' && (ltr2=='G' || ltr2=='A')) || (conletr=='Y' && (ltr2=='C' || ltr2=='T'))) ) {
 					if (conletr=='R') {
 						if (checktransit==18) {
 							if (ltr2=='A')
-								checktransit = checktransit -  1;
+								checktransit -=  1;
 							else if (ltr2=='G')
-								checktransit = checktransit - 17;
+								checktransit -= 17;
 						}
 						else if (checktransit==17 && ltr2=='G')
 							checktransit = 0;
@@ -491,9 +493,9 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 					if (conletr=='Y') {
 						if (checktransit==25) {
 							if (ltr2=='C')
-								checktransit = checktransit -  3;
+								checktransit -=  3;
 							else if (ltr2=='T')
-								checktransit = checktransit - 22;
+								checktransit -= 22;
 						}
 						else if (checktransit==22 && ltr2=='T')
 							checktransit = 0;
@@ -501,7 +503,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 							checktransit = 0;
 					}
 				}
-				else if (letr!=ambig.sym && letr != consensus_ar[1][n+1]) {
+				else if (letr!=ambig.sym && letr!=consensus_ar[1][n+1]) {
 					if (consensus_ar[0][n+1] == 1) {	/* IF THIS IS THE FIRST CONFLICT NOTED AT THIS POSITION */
 						++badsites;						/* COUNT ADDITIONAL BAD SITE COLUMN */
 						++consensus_ar[0][n+1];			/* INCREMENT COUNTER FOR DIFFERENT LETTERS AT COLUMN */
@@ -530,11 +532,11 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 				consensus_ar[1][n+1] = letr;
 				Current.pass_H = m+1;		/* STORE HEIGHT IN HEIGHT SLOT */
 			}
-		} 
+		} /* END OF m LOOP THROUGH COLUMN n */
+
 		if (checktransit) {		/* IF checktransit IS STILL POSITIVE THEN IT'S SUPPOSED TO NOT HAVE CHECKED OUT */
 			checktransletr = consensus_ar[1][n+1];
 			consensus_ar[1][n+1] = letr;
-
 			plustransit = 0;
 			if (Current.pass_V) { /* IF PASS NUMBER */
 				checktransit_n = n;
@@ -554,7 +556,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 				if (isalpha(letr=consensus_ar[m][n+1]))
 					printf("%c", letr); 
 				else
-					printf(".");
+					printf("%c",blnk);
 			}
 			printf("\n");
 			if (checktransit_n >= 0) {
