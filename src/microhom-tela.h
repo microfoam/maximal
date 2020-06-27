@@ -418,9 +418,10 @@ int next_k(int n, int k1, short unsigned int seqtype)
 	if (n+k1 > lenseq+1)
 		return(0);
 	else if (seqtype==1 && k1-1>PISO) {
-		int maxtransits=0;
+		int maxtransits;
+		short int purA=0, purG=0, pyrC=0, pyrT=0;
 
-		for (k = k1-1; k>0; k--) {
+		for (k = k1-1; k>1; k--) {
 			m = n-k;
 			maxtransits = allowed_transits(k);
 			transits=0;
@@ -428,6 +429,7 @@ int next_k(int n, int k1, short unsigned int seqtype)
 			for (i=0; i<k; i++) {
 				if (seqtype==1 && tela[n+i].c == ambig.sym)
 					break;
+
 				if (tela[m+i].c != tela[n+i].c) {
 					if (opt_x.bit && k>PISO && tela[m+i].e == tela[n+i].e) {
 						if (++transits > maxtransits) 
@@ -440,9 +442,23 @@ int next_k(int n, int k1, short unsigned int seqtype)
 					else
 						break;
 				}
+
+				if      (tela[m+i].c=='G' || tela[n+i].c=='G')
+					purG++;
+				else if (tela[m+i].c=='C' || tela[n+i].c=='C')
+					pyrC++;
+				else if (tela[m+i].c=='A' || tela[n+i].c=='A')
+					purA++;
+				else if (tela[m+i].c=='T' || tela[n+i].c=='T')
+					pyrC++;
 			}
-			if (i==k && k<k1)
-				return(k);
+			if (i==k) {
+				if ( ((purA||purG) && !pyrC && !pyrT) ||
+					 ((pyrC||pyrT) && !purA && !purG)) {
+					tela[n].k0 = k;			/* SAVE k-MER FOR CINCH-K */
+				}
+				else return(k);
+			}
 		}
 		return(0);
 	}

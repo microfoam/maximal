@@ -117,5 +117,6 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Current commit WCR average of 82, allowing all k-mers in cinch-k (PISO = 5|4|3): 0.468256 (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, allowing all k-mers in cinch-k (PISO=5|4): 0.468256 (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, allowing all k-mers in cinch-k (PISO = 3): 0.468378 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
