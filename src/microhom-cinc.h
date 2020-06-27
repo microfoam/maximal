@@ -418,7 +418,7 @@ int cinch_k(short unsigned int mode)
 							}
 	
 							if (nuctransit && keep_checking) {
-								if (k==1 && col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)>0)
+								if (k==1 && col_isclear(align2D,n,m,-1)>-1 && col_isclear(align2D,n,m,1))
 									;
 								else if (n>scrimmage_line && ((letr2=consensus[n-x+y+l])=='R' || letr2=='Y')) 
 									keep_checking = 0;
