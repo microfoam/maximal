@@ -39,5 +39,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 11 (PISO = 5|4|3): 0.453636 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (PISO = 5|4|3): 0.451818 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

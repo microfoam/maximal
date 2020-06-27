@@ -1,4 +1,4 @@
-Sat Jun 27 16:56:22 CDT 2020
+Sat Jun 27 17:43:03 CDT 2020
 Tri-fin dawn patrol: Compiling maximal v4.33.
 
 
@@ -10,8 +10,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 27 16:57:05 2020	 x0	1000	0.513	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.33	Jun 27 16:57:49 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
+v4.33	Jun 27 17:43:11 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.33	Jun 27 17:43:55 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
 
 Number of tests initiated:         816
 
@@ -25,7 +25,7 @@ Number of tests w/ nudging:        0
 
 Number of tests w/ checktransit:   0
 
-WCR average: 0.501342
+WCR average: 0.500684
 
 Tests with PASS < 1000 (if any):
 
@@ -44,9 +44,9 @@ Line counts:
     1715 src/microhomology.h
     7208 total
 
-Commit WCR average (PISO = 5): 0.504786 (chowder-free)
-Commit WCR average (PISO = 4): 0.501342 (chowder-free)
-Commit WCR average (PISO = 3): 0.493804 (one chowder chunk)
+Commit WCR average (PISO = 5): 0.50423  (chowder-free)
+Commit WCR average (PISO = 4): 0.500684 (chowder-free)
+Commit WCR average (PISO = 3): 0.493011 (two chowder chunks)
 
 
                                                < eat chowder >
@@ -57,8 +57,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 27 16:58:02 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.33	Jun 27 16:58:04 2020	 x0	1000	0.560	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.33	Jun 27 17:44:53 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 27 17:44:55 2020	 x0	1000	0.560	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         82
 
@@ -72,7 +72,7 @@ Number of tests w/ nudging:        0
 
 Number of tests w/ checktransit:   0
 
-WCR average: 0.467524
+WCR average: 0.468256
 
 Tests with PASS < 1000 (if any):
 
@@ -91,8 +91,7 @@ Line counts:
     1715 src/microhomology.h
     7208 total
 
-Current commit WCR average of 82 (PISO= 5 ): 0.467280 (chowder-free)
-Current commit WCR average of 82 (PISO=4|3): 0.467524 (chowder-free)
+Current commit WCR average of 82 (PISO=5|4|3): 0.468256 (chowder-free)
 
 
                                                < eat chowdah: cinch-k k=1 only >
@@ -103,8 +102,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 27 16:58:10 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.33	Jun 27 16:58:12 2020	 x0	1000	0.580	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.33	Jun 27 17:44:59 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 27 17:45:00 2020	 x0	1000	0.580	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         82
 
@@ -118,7 +117,7 @@ Number of tests w/ nudging:        0
 
 Number of tests w/ checktransit:   0
 
-WCR average: 0.471915
+WCR average: 0.473622
 
 Tests with PASS < 1000 (if any):
 
@@ -137,7 +136,7 @@ Line counts:
     1715 src/microhomology.h
     7208 total
 
-Current commit WCR average of 82, allowing only k = 1 in cinch-k (PISO=5|4|3): 0.471915 (chowdah-free)
+Current commit WCR average of 82, allowing only k = 1 in cinch-k (PISO=5|4|3): 0.473622 (chowdah-free)
 
 
                                                < eat nuggets >
@@ -148,8 +147,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 27 16:58:18 2020	 x0	1000	0.460	NDG: 0 	RND:	        waves/chowder/nugget-42356.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.33	Jun 27 16:58:18 2020	 x0	1000	0.400	NDG: 0 	RND:	        waves/chowder/nugget-00008.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.33	Jun 27 17:45:50 2020	 x0	1000	0.460	NDG: 0 	RND:	        waves/chowder/nugget-42356.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 27 17:45:50 2020	 x0	1000	0.400	NDG: 0 	RND:	        waves/chowder/nugget-00008.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         11
 
@@ -163,7 +162,7 @@ Number of tests w/ nudging:        0
 
 Number of tests w/ checktransit:   0
 
-WCR average: 0.453636
+WCR average: 0.451818
 
 Tests with PASS < 1000 (if any):
 
@@ -182,7 +181,7 @@ Line counts:
     1715 src/microhomology.h
     7208 total
 
-Commit WCR average of 11 (PISO = 5|4|3): 0.453636 (chowder-free)
+Commit WCR average of 11 (PISO = 5|4|3): 0.451818 (chowder-free)
 
 
                                                < fractal_splitting >
@@ -193,8 +192,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 27 16:58:26 2020	 x0	1000	0.471	NDG: 0 	RND:	       waves/chowder/seq26-snippet.txt (+) (  68 bp) REC:1000	M: 2	-
-v4.33	Jun 27 16:58:28 2020	 x0	1000	0.484	NDG: 0 	RND:	waves/chowder/snippet-seq-014-cycle3.txt (+) (  31 bp) REC:1000	M: 4	-
+v4.33	Jun 27 17:45:51 2020	 x0	1000	0.471	NDG: 0 	RND:	       waves/chowder/seq26-snippet.txt (+) (  68 bp) REC:1000	M: 3	-
+v4.33	Jun 27 17:45:52 2020	 x0	1000	0.484	NDG: 0 	RND:	waves/chowder/snippet-seq-014-cycle3.txt (+) (  31 bp) REC:1000	M: 4	-
 
 Number of tests initiated:         6
 
@@ -238,8 +237,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 27 16:58:38 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.33	Jun 27 16:59:22 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
+v4.33	Jun 27 17:45:53 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.33	Jun 27 17:45:54 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         22
 
@@ -283,8 +282,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 27 16:59:26 2020	 x0	1000	0.510	NDG: 0 	RND:	           waves/chowder/churly-01.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.33	Jun 27 16:59:31 2020	 x0	1000	0.370	NDG: 0 	RND:	           waves/chowder/churly-16.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.33	Jun 27 17:45:55 2020	 x0	1000	0.510	NDG: 0 	RND:	           waves/chowder/churly-01.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 27 17:45:57 2020	 x0	1000	0.370	NDG: 0 	RND:	           waves/chowder/churly-16.txt (+) ( 100 bp) REC:1000	M: 3	-
 
 Number of tests initiated:         16
 
@@ -298,7 +297,7 @@ Number of tests w/ nudging:        0
 
 Number of tests w/ checktransit:   0
 
-WCR average: 0.46125
+WCR average: 0.455
 
 Tests with PASS < 1000 (if any):
 
@@ -317,5 +316,5 @@ Line counts:
     1715 src/microhomology.h
     7208 total
 
-Commit WCR average of 16 (PISO = 5|4|3): 0.46125 (chowder-free)
+Commit WCR average of 16 (PISO = 5|4|3): 0.455 (chowder-free)
 

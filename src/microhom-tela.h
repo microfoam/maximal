@@ -454,8 +454,8 @@ int next_k(int n, int k1, short unsigned int seqtype)
 					pyrT++;
 			}
 			if (i==k) {
-				if ( ((purA||purG) && !pyrC && !pyrT) ||
-					 ((pyrC||pyrT) && !purA && !purG)) {
+				if (transits && (((purA||purG) && !pyrC && !pyrT) ||
+					 			 ((pyrC||pyrT) && !purA && !purG)) ) {
 					tela[n].k0 = k;			/* SAVE k-MER FOR CINCH-K */
 				}
 				else return(k);
