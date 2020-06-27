@@ -797,7 +797,7 @@ void mark_tela(void)
 		} /* END OF FOR m */
 	} /* END OF FOR n */
 
-	for (n=0; n<=lenseq; n++) {
+	for (n=1; n<lenseq; n++) {
 		if (tela[n].ok) {
 			k = tela[n].ok;
 
@@ -826,6 +826,18 @@ void mark_tela(void)
 			}
 		}
 	}
+
+	/* CANCEL MARKS AT EDGES OF CYCLING ISLANDS THAT HAVE MORE TRANSITIONS THAN ADJACENT COLUMN */
+	for (n=2; n<lenseq; n++) {
+		if (tela[n].ok && (tela[n-1].ok || tela[n+1].ok) && (!tela[n-1].ok || !tela[n+1].ok) && 
+			tela[n].ok   == tela[n-1].ok    + tela[n+1].ok &&
+			tela[n].or   == tela[n-1].or    + tela[n+1].or &&
+			tela[n].all_S < tela[n-1].all_S + tela[n+1].all_S) {
+			clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+			push_mem(n, 8);
+		}
+	}
+
 
 	/* MARK LOW-COMPLEXITY REGIONS WITH TWO OR MORE k-mers MARKED AT COLUMN. */
 	/* HERE, LOW-COMPLEXITY MEANS REPEATS ARE BASED ON TWO SYMBOLS OR LESS.  */
