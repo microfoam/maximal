@@ -428,13 +428,12 @@ short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES
 short unsigned int checktransit=0;					/* BIT FLAG FOR CHECKING GOOD TRANSITION MARK */
 char blnk = Fill->sym; 
 char letr, ltr2, conletr;
-int con_maxrows=26;
-int checktransit_n = -1;
 char checktransletr=blnk;
-int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
-                                       		/* ROW m=0 FOR COUNTER */
-											/* ROW m=1 FOR CONSENSUS */
-											/* ROWS m>1 FOR VARIANTS STORAGE */
+int conrows = 26; 						/* COL   n=0 FOR BIT FLAG */
+int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
+										/* ROW   m=1 FOR CONSENSUS */
+										/* ROWS 2-24 FOR VARIANTS STORAGE */
+										/* ROW  m=25 FOR CHECKTRANSITS UNICODE */
 	n_end = n_start + n_width;
 
 	if (nuctype == 1)	/* IF DNA */
@@ -511,7 +510,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 						consensus_ar[2][n+1] = letr;
 					}
 					else {		/* ELSE CHECK IF THIS IS A NEW LETTER AT THIS COLUMN */	
-						for (x = 2; x < con_maxrows; x++) {
+						for (x = 2; x < conrows-1; x++) {
 							if (letr == consensus_ar[x][n+1]) 
 								break;
 							else if (consensus_ar[x][n+1] == '\0') {
@@ -523,7 +522,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 						}
 					}
 				}
-				else if (x >= con_maxrows)
+				else if (x >= conrows-1)
 					break;
 			}
 			else if (letr == Term->sym) {
@@ -536,11 +535,12 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 
 		if (checktransit) {		/* IF checktransit IS STILL POSITIVE THEN IT'S SUPPOSED TO NOT HAVE CHECKED OUT */
 			checktransletr = consensus_ar[1][n+1];
-			consensus_ar[1][n+1] = letr;
-			plustransit = 0;
+/*			consensus_ar[1][n+1] = letr;
+*/			plustransit = 0;
 			if (Current.pass_V) { /* IF PASS NUMBER */
-				checktransit_n = n;
-				sprintf(dev_notes, "checktransit=%d at n=%d", checktransit, checktransit_n);
+				consensus_ar[25][0]=1;
+				consensus_ar[25][n+1]=checktransletr;
+				sprintf(dev_notes, "checktransit=%d at n=%d", checktransit, n);
 			}
 		}
 		else if (plustransit)
@@ -549,9 +549,9 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 
 	if (opt_K.bit) {							/* opt_K SHOW CONSENSUS ROW */	
 		/* PRINT CONSENSUS ROWS */
-		for (m = 1; consensus_ar[m][0] != '\0' && m < con_maxrows; m++) {
+		for (m = 1; consensus_ar[m][0] != '\0' && m<conrows-1; m++) {
 			line_end(BLOCKHEAD, 9, 9);
-			printf(" ");								/* OPEN CONSENSUS PARENTHESES */
+			printf(" ");
 			for (n = n_start; n < n_end; n++) {
 				if (isalpha(letr=consensus_ar[m][n+1]))
 					printf("%c", letr); 
@@ -559,17 +559,17 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 					printf("%c",blnk);
 			}
 			printf("\n");
-			if (checktransit_n >= 0) {
-				line_end(BLOCKHEAD, 9, 9);
-				printf(" ");							/* OPEN CONSENSUS PARENTHESES */
-				for (n = n_start; n < n_end; n++) {
-					if (n==checktransit_n)
-						printf("%c", checktransletr); 
-					else
-						printf(".");
-				}
-				printf(" <= check transition\n");
+		}
+		if (consensus_ar[25][0]) {		/* IF CHECKTRANSITS INCOMPLETE */
+			line_end(BLOCKHEAD, 9, 9);
+			printf(" ");
+			for (n = n_start; n < n_end; n++) {
+				if (consensus_ar[25][n])
+					printf("%c", consensus_ar[25][n]); 
+				else
+					printf(".");
 			}
+			printf(" <= check transition\n");
 		}
 		if (badsites > 0) {
 			line_end(BLOCKHEAD, 9, 9);	
@@ -581,9 +581,9 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 		    printf("\n");
 			warnhead('C');
 			if (badsites == 1)
-				printf("There is one site with mimatched letters.\n");
+				printf("There is one column with mimatched letters.\n");
 			else if (badsites > 1)
-				printf("There are %d sites with mismatched letters.\n", badsites);
+				printf("There are %d columns with mismatched letters.\n", badsites);
 		}
 	} 
 
