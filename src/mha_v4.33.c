@@ -933,7 +933,7 @@ int main(int argc, char *argv[])
 						reps = 1;
 						while (TRcheck) {
 							Atr = Aimperfect_TR = 0;
-							if (m + (reps+1)*k >= lenseq) { 
+							if (m + (reps+1)*k > lenseq) { 
 								Atr = 0;
 								break;
 							}

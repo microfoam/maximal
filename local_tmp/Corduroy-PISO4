@@ -1,4 +1,4 @@
-Sun Jun 28 14:26:23 CDT 2020
+Sun Jun 28 14:24:15 CDT 2020
 Tri-fin dawn patrol: Compiling maximal v4.33.
 
 
@@ -10,8 +10,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 28 14:26:31 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.33	Jun 28 14:27:15 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
+v4.33	Jun 28 14:24:22 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.33	Jun 28 14:25:06 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	bslip sum 1
 
 Number of tests initiated:         816
 
@@ -25,7 +25,7 @@ Number of tests w/ nudging:        0
 
 Number of tests w/ checktransit:   0
 
-WCR average: 0.50423
+WCR average: 0.500684
 
 Tests with PASS < 1000 (if any):
 
@@ -57,8 +57,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 28 14:27:19 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.33	Jun 28 14:27:20 2020	 x0	1000	0.560	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.33	Jun 28 14:25:13 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 28 14:25:15 2020	 x0	1000	0.560	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         82
 
@@ -102,8 +102,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 28 14:27:23 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.33	Jun 28 14:27:25 2020	 x0	1000	0.580	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.33	Jun 28 14:25:16 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 28 14:25:18 2020	 x0	1000	0.580	NDG: 0 	RND:	               waves/chowder/s40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         82
 
@@ -147,8 +147,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 28 14:27:27 2020	 x0	1000	0.460	NDG: 0 	RND:	        waves/chowder/nugget-42356.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.33	Jun 28 14:27:27 2020	 x0	1000	0.400	NDG: 0 	RND:	        waves/chowder/nugget-00008.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.33	Jun 28 14:25:21 2020	 x0	1000	0.460	NDG: 0 	RND:	        waves/chowder/nugget-42356.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 28 14:25:21 2020	 x0	1000	0.400	NDG: 0 	RND:	        waves/chowder/nugget-00008.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         11
 
@@ -192,8 +192,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 28 14:27:35 2020	 x0	1000	0.471	NDG: 0 	RND:	       waves/chowder/seq26-snippet.txt (+) (  68 bp) REC:1000	M: 3	-
-v4.33	Jun 28 14:27:37 2020	 x0	1000	0.484	NDG: 0 	RND:	waves/chowder/snippet-seq-014-cycle3.txt (+) (  31 bp) REC:1000	M: 4	-
+v4.33	Jun 28 14:25:23 2020	 x0	1000	0.471	NDG: 0 	RND:	       waves/chowder/seq26-snippet.txt (+) (  68 bp) REC:1000	M: 3	-
+v4.33	Jun 28 14:25:24 2020	 x0	1000	0.484	NDG: 0 	RND:	waves/chowder/snippet-seq-014-cycle3.txt (+) (  31 bp) REC:1000	M: 4	-
 
 Number of tests initiated:         6
 
@@ -237,8 +237,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 28 14:27:47 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.33	Jun 28 14:27:55 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
+v4.33	Jun 28 14:25:26 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.33	Jun 28 14:25:40 2020	 x0	1000	0.375	NDG: 0 	RND:	   waves/chowder/snippet-jetsam-03.txt (+) (  16 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         22
 
@@ -282,8 +282,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.33	Jun 28 14:27:58 2020	 x0	1000	0.510	NDG: 0 	RND:	           waves/chowder/churly-01.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.33	Jun 28 14:28:00 2020	 x0	1000	0.460	NDG: 0 	RND:	           waves/chowder/churly-17.txt (+) ( 100 bp) REC:1000	M: 4	bslip sum 30
+v4.33	Jun 28 14:25:58 2020	 x0	1000	0.510	NDG: 0 	RND:	           waves/chowder/churly-01.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 28 14:26:02 2020	 x0	1000	0.460	NDG: 0 	RND:	           waves/chowder/churly-17.txt (+) ( 100 bp) REC:1000	M: 4	bslip sum 30
 
 Number of tests initiated:         17
 

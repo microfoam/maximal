@@ -690,7 +690,7 @@ void mark_tela(void)
 					tela[n].all_S = Dtr;	/* SAVE INITIAL UNIT SCORE */
 					while (TRcheck) {
 						Atr = 0;
-						if (m + (reps+1)*k >= lenseq) { 
+						if (m + (reps+1)*k > lenseq) { 
 							Atr = 0;
 							tela[n].or = reps;
 							push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
