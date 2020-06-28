@@ -858,14 +858,22 @@ void mark_tela(void)
 		}
 	}
 
-	/* CANCEL MARKS AT EDGES OF CYCLING ISLANDS THAT HAVE MORE TRANSITIONS THAN ADJACENT COLUMN */
 	for (n=2; n<lenseq; n++) {
-		if (tela[n].ok && (tela[n-1].ok || tela[n+1].ok) && (!tela[n-1].ok || !tela[n+1].ok) && 
-			tela[n].ok   == tela[n-1].ok    + tela[n+1].ok &&
-			tela[n].or   == tela[n-1].or    + tela[n+1].or &&
-			tela[n].all_S < tela[n-1].all_S + tela[n+1].all_S) {
-			clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-			push_mem(n, 8);
+		if (tela[n].ok) {
+			/* CANCEL MARKS AT EDGES OF CYCLING ISLANDS THAT HAVE MORE TRANSITIONS THAN ADJACENT COLUMN */
+			if ((tela[n-1].ok || tela[n+1].ok) && (!tela[n-1].ok || !tela[n+1].ok) && 
+				tela[n].ok   == tela[n-1].ok    + tela[n+1].ok &&
+				tela[n].or   == tela[n-1].or    + tela[n+1].or &&
+				tela[n].all_S < tela[n-1].all_S + tela[n+1].all_S) {
+					clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+					push_mem(n, 8);
+			}
+			/* CANCEL MARKS AT UPSTREAM EDGE OF CYCLING ISLAND IF THEY HAVE A TRANSITION OVERLAPPING AN UPSTREAM TR AND CAN CYCLE */
+			else if (!tela[n-1].ok && tela[n].stat==st_cycle.sym && tela[(m=n-tela[n].ok)].ok && tela[m].ok<tela[n].ok && 
+						tela[m].stat!=st_cycle.sym && tela[m].all_S==MATCH*span_ork(m) && tela[m].c != tela[n].c) {
+				clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+				push_mem(n, 8);
+			}
 		}
 	}
 

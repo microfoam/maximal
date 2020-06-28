@@ -9,7 +9,7 @@
 #define MATCH       8       /* MATCH SCORE */
 #define MISMATCH   -1		/* MISMATCH SCORE */
 #define TRANSITION	4		/* TRANSITION = HALF MATCH SCORE */
-#define PISO        4       /* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
+#define PISO        5       /* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
 
 int 	allowed_transits(int k);
 int 	score_DTHR(int kmer);
