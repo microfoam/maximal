@@ -16,6 +16,7 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
+	./maximal -KR -D 8 waves/chowder/churly-17.txt	#  
 
 	# conflict begins in cinch-k
 
