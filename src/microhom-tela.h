@@ -286,6 +286,11 @@ int cyclelize_tela(int cpos, int delta, int npos)
 	int z = cpos;
 	char blnk = Fill->sym;		/* opt_B blank character */
 	char c;
+	short int nuctype = Clean.pass_V;
+	short int nuctransit = 0;
+
+	if (nuctype==1)
+		nuctransit++;
 
 	for (i=cpos; i<npos; i++) {
 		tela[i].gPnt.rel_xy = XDIR;									/* CLEARS rel_xy --> 0; YDIR = 1 */
@@ -336,6 +341,15 @@ int cyclelize_tela(int cpos, int delta, int npos)
 		flatline_after_TR(npos);	
 
 		tela[cpos+delta].cyc_o = cyc_take.sym;
+
+		/* DEAL WITH TRANSITION MARKS IF ANY */
+		if (nuctransit) {
+			for (j=cpos+delta; j<npos; j++) {
+				consensus[(tela[j].x)] = '\0';
+				if (tela[j].c != tela[j].t)
+					consensus[(tela[j].x)] = tela[j].t;
+			}
+		}
 
 		return (1);		/* RETURN SUCCESS, BUT EVENTUALLY ADD A CHECK_TELA CALL IN HERE */
 	}
