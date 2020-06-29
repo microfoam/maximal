@@ -318,3 +318,150 @@ Line counts:
 
 Commit WCR average of 21 (PISO = 5|4|3): 0.457619 (chowder-free)
 
+                                               < vnd_getworked_ragdoll >
+Mon Jun 29 11:59:05 CDT 2020
+Tri-fin dawn patrol: Compiling maximal v4.33.
+
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v4.33	Jun 29 11:59:09 2020	 x0	1000	0.480	NDG: 0 	RND:XX	         waves/seals/vnd_ex3_Dmela.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.33	Jun 29 12:55:10 2020	 x0	1000	0.620	NDG: 0 	RND:XX	        waves/sharks/vnd_NEE_Dsuzu.txt (-) ( 100 bp) REC:1000	M: 2	-
+
+Number of tests initiated:         150000
+
+Number of tests completed:         150000
+
+Number of tests w/ PASS 1000:      150000
+
+Number of tests w/ REC. 1000:      150000
+
+Number of tests w/ nudging:        0
+
+Number of tests w/ checktransit:   0
+
+WCR average: 0.519381
+
+Tests with PASS < 1000 (if any):
+
+Tests with REC. < 1000 (if any):
+
+Tests with nudging (if any):
+
+Tests canceled (if any, w/ preceding run for context):
+
+Line counts:
+    1972 src/mha_v4.33.c
+    1369 src/microhom-cinc.h
+     139 src/microhom-devl.h
+     113 src/microhom-skor.h
+    1918 src/microhom-tela.h
+    1715 src/microhomology.h
+    7226 total
+
+                                               < ragdoll washing machine >
+Mon Jun 29 12:56:02 CDT 2020
+Tri-fin dawn patrol: Compiling maximal v4.33.
+
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v4.33	Jun 29 12:56:07 2020	 x0	1000	0.490	NDG: 0 	RND:XX	waves/experimental/pattern-1a-20pc_GC.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.33	Jun 29 13:19:59 2020	 x0	1000	0.580	NDG: 0 	RND:XX	waves/experimental/pattern-3b-60pc_GC.txt (+) ( 100 bp) REC:1000	M: 2	-
+
+Number of tests initiated:         60000
+
+Number of tests completed:         60000
+
+Number of tests w/ PASS 1000:      59999
+
+Number of tests w/ REC. 1000:      59999
+
+Number of tests w/ nudging:        4
+
+Number of tests w/ checktransit:   0
+
+WCR average: 0.463797
+
+Tests with PASS < 1000 (if any):
+v4.33	Jun 29 13:05:34 2020	 x0	 976	0.420	NDG: 1 	RND:XX	waves/experimental/pattern-1b-80pc_GC.txt (+) ( 100 bp) REC: 990	M: 4	bslip sum 30
+
+Tests with REC. < 1000 (if any):
+v4.33	Jun 29 13:05:34 2020	 x0	 976	0.420	NDG: 1 	RND:XX	waves/experimental/pattern-1b-80pc_GC.txt (+) ( 100 bp) REC: 990	M: 4	bslip sum 30
+
+Tests with nudging (if any):
+v4.33	Jun 29 13:05:34 2020	 x0	 976	0.420	NDG: 1 	RND:XX	waves/experimental/pattern-1b-80pc_GC.txt (+) ( 100 bp) REC: 990	M: 4	bslip sum 30
+v4.33	Jun 29 13:12:40 2020	 x0	1000	0.450	NDG: 2 	RND:XX	waves/experimental/pattern-1a-20pc_GC.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 29 13:12:40 2020	 x0	1000	0.450	NDG: 2 	RND:XX	waves/experimental/pattern-2a-50pc_GC.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 29 13:18:11 2020	 x0	1000	0.520	NDG: 3 	RND:XX	waves/experimental/pattern-1b-80pc_GC.txt (+) ( 100 bp) REC:1000	M: 2	-
+
+Tests canceled (if any, w/ preceding run for context):
+
+Line counts:
+    1972 src/mha_v4.33.c
+    1369 src/microhom-cinc.h
+     139 src/microhom-devl.h
+     113 src/microhom-skor.h
+    1918 src/microhom-tela.h
+    1715 src/microhomology.h
+    7226 total
+
+
+                                               < churly churly >
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v4.33	Jun 29 15:16:51 2020	 x0	 979	0.420	NDG: 1 	RND:	           waves/chowder/churly-22.txt (+) ( 100 bp) REC: 990	M: 4	bslip sum 30
+v4.33	Jun 29 15:16:59 2020	 x0	1000	0.510	NDG: 0 	RND:	           waves/chowder/churly-21.txt (+) ( 100 bp) REC:1000	M: 3	-
+
+Number of tests initiated:         25
+
+Number of tests completed:         25
+
+Number of tests w/ PASS 1000:      24
+
+Number of tests w/ REC. 1000:      24
+
+Number of tests w/ nudging:        4
+
+Number of tests w/ checktransit:   0
+
+WCR average: 0.458
+
+Tests with PASS < 1000 (if any):
+v4.33	Jun 29 15:16:51 2020	 x0	 979	0.420	NDG: 1 	RND:	           waves/chowder/churly-22.txt (+) ( 100 bp) REC: 990	M: 4	bslip sum 30
+
+Tests with REC. < 1000 (if any):
+v4.33	Jun 29 15:16:51 2020	 x0	 979	0.420	NDG: 1 	RND:	           waves/chowder/churly-22.txt (+) ( 100 bp) REC: 990	M: 4	bslip sum 30
+
+Tests with nudging (if any):
+v4.33	Jun 29 15:16:51 2020	 x0	 979	0.420	NDG: 1 	RND:	           waves/chowder/churly-22.txt (+) ( 100 bp) REC: 990	M: 4	bslip sum 30
+v4.33	Jun 29 15:16:54 2020	 x0	1000	0.450	NDG: 2 	RND:	           waves/chowder/churly-23.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 29 15:16:55 2020	 x0	1000	0.450	NDG: 2 	RND:	           waves/chowder/churly-24.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.33	Jun 29 15:16:55 2020	 x0	1000	0.520	NDG: 3 	RND:	           waves/chowder/churly-25.txt (+) ( 100 bp) REC:1000	M: 2	-
+
+Tests canceled (if any, w/ preceding run for context):
+
+Line counts:
+    1972 src/mha_v4.33.c
+    1369 src/microhom-cinc.h
+     139 src/microhom-devl.h
+     113 src/microhom-skor.h
+    1918 src/microhom-tela.h
+    1715 src/microhomology.h
+    7226 total
+
+Commit WCR average of (first) 21 (PISO = 5|4|3): 0.457619 (chowder-free)
+

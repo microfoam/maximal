@@ -6,10 +6,10 @@
 #ifndef FILE_SKOR_SEEN
 #define FILE_SKOR_SEEN
 
-#define MATCH       8       /* MATCH SCORE */
+#define MATCH       8		/* MATCH SCORE */
 #define MISMATCH   -1		/* MISMATCH SCORE */
-#define TRANSITION	4		/* TRANSITION = HALF MATCH SCORE */
-#define PISO        5       /* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
+#define TRANSITION  4		/* TRANSITION = HALF MATCH SCORE */
+#define PISO        5		/* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
 
 int 	allowed_transits(int k);
 int 	score_DTHR(int kmer);

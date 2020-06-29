@@ -16,8 +16,12 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
+	./maximal -KR -D 8 waves/chowder/churly-22.txt	# 
 
 	# conflict begins in cinch-k
+	./maximal -KR -D 8 waves/chowder/churly-23.txt	# 
+	./maximal -KR -D 8 waves/chowder/churly-24.txt	# 
+	./maximal -KR -D 8 waves/chowder/churly-25.txt	# 
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/churly-01.txt	# solved-21 delete clear_mem module in mark_tela 
@@ -50,5 +54,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 21 (PISO = 5|4|3): 0.457619 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of (first) 21 (PISO = 5|4|3): 0.457619 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
