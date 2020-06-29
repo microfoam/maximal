@@ -18,6 +18,11 @@ fi
 	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
+	# 18--21 PISO 3 ejecta but still chowder at PISO 4 & 5
+	./maximal -KR -D 8 waves/chowder/churly-18.txt	# 
+	./maximal -KR -D 8 waves/chowder/churly-19.txt	# 
+	./maximal -KR -D 8 waves/chowder/churly-20.txt	# 
+	./maximal -KR -D 8 waves/chowder/churly-21.txt	# 
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/churly-01.txt	# solved-21 delete clear_mem module in mark_tela 
@@ -46,5 +51,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 17 (PISO = 5|4|3): 0.455294 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of (first) 17 (PISO = 5|4|3): 0.455294 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
