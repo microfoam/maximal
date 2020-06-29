@@ -18,11 +18,6 @@ fi
 	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
-	# 18--21 PISO 3 ejecta but still chowder at PISO 4 & 5
-	./maximal -KR -D 8 waves/chowder/churly-18.txt	# 
-	./maximal -KR -D 8 waves/chowder/churly-19.txt	# 
-	./maximal -KR -D 8 waves/chowder/churly-20.txt	# 
-	./maximal -KR -D 8 waves/chowder/churly-21.txt	# 
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/churly-01.txt	# solved-21 delete clear_mem module in mark_tela 
@@ -43,6 +38,10 @@ fi
 	./maximal -KR -D 8 waves/chowder/churly-15.txt	# solved-29 new mark_tela() block for conflict marking
 	./maximal -KR -D 8 waves/chowder/churly-16.txt	# solved-30 adjustment for new cinch-k block of solved 27-28
 	./maximal -KR -D 8 waves/chowder/churly-17.txt	# solved-31 trivial lenseq boundary condition in cinch-t & mark_tela, > not >=
+	./maximal -KR -D 8 waves/chowder/churly-18.txt	# solved-32 push_mem 13/14 edits and deletions in mark_tela
+	./maximal -KR -D 8 waves/chowder/churly-19.txt	# solved-32 push_mem 13/14 edits and deletions in mark_tela 
+	./maximal -KR -D 8 waves/chowder/churly-20.txt	# solved-33 push_mem 13/14 continued w/ an add'l exclusion for push_mem 8 fractals
+	./maximal -KR -D 8 waves/chowder/churly-21.txt	# solved-33 push_mem 13/14 continued w/ an add'l exclusion for push_mem 8 fractals 
 
 echo
 echo
@@ -51,5 +50,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of (first) 17 (PISO = 5|4|3): 0.455294 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 21 (PISO = 5|4|3): 0.457619 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

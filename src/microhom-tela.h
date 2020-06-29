@@ -1024,7 +1024,8 @@ void mark_tela(void)
 			m = n-k;
 			int prev_k;
 			for (i=m+1; i<n-1; i++) {
-				if (tela[i].ok && (prev_k=tela[i].ok)<k && i-prev_k<m && !tela[i].all_L && tela[i].all_S<tela[n].all_S && i+span_ork(i)<n) {
+				if (tela[i].ok && tela[i].stat!=st_fract.sym && (prev_k=tela[i].ok)<k && i-prev_k<m && 
+						!tela[i].all_L && tela[i].all_S<tela[n].all_S && i+span_ork(i)<n) {
 					clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 					push_mem(i, 8);
 					tela[i].echoes = cyc_skip.sym;		/* MARK THIS SO CAN CHECK IN ANY CINCH MODULE TO SKIP */
@@ -1249,7 +1250,7 @@ void mark_tela(void)
 
 	/* CHECK TO SEE IF THERE ARE CYCLING DIFFERENCES BETWEEN INTERNAL REPEATS */
 	for (n=2; n+1<lenseq; n++) {
-		if (!tela[n-1].ok && tela[n].ok && !tela[n+1].ok) {
+		if (!tela[n-1].ok && tela[n].ok && !tela[n+1].ok && tela[n].stat!=st_parent.sym) {
 			int p,q;
 			k = tela[n].ok;
 			m = n - k;
@@ -1274,11 +1275,6 @@ void mark_tela(void)
 							push_mem(q, 14);
 							push_mem(n, 14);
 						}
-					}
-					else if (tela[p].ok != tela[q].ok && tela[p].k2 == tela[q].ok) { 
-						clearall_tela(p,1,-1, THREE);	/* O-F-F, ONE, TWO, OR THREE */
-						tela[p].stat = st_fract.sym;
-						tela[q].stat = st_fract.sym;
 					}
 				}
 			}

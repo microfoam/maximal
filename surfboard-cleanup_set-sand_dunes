@@ -30,16 +30,16 @@ fi
 ./maximal -D 8 -KRx  waves/tubespit/seq-033-imprf1.txt 
 ./maximal -D 8 -KR   waves/tubespit/seq-100-v343_10.txt 
 ./maximal -D 8 -KRn  waves/chowder/seq6-koslip-snippet.txt 
-./maximal -D 8 -KRn  waves/chowder/abba_zabba_1.txt 
-./maximal -D 8 -KRn  waves/chowder/abba_zabba_2.txt 
-./maximal -D 8 -KRn  waves/chowder/abba_zabba_3.txt 
-./maximal -D 8 -KRn  waves/chowder/abba_zabba_4.txt 
 ./maximal -D 8 -KR   waves/chowder/seq26-snippet.txt 
 ./maximal -D 8 -KR   waves/chowder/gal11-knot1.txt 
 ./maximal -D 8 -KR   waves/chowder/seq26-variations1.txt 
 ./maximal -D 8 -KR   waves/chowder/seq26-variations2.txt 
 ./maximal -D 8 -KRn  waves/chowder/snippet-jetsam-01.txt 
 ./maximal -D 8 -KRn  waves/chowder/snippet-jetsam-03.txt 
+./maximal -D 8 -KRn  waves/chowder/abba_zabba_1.txt 
+./maximal -D 8 -KRn  waves/chowder/abba_zabba_2.txt 
+./maximal -D 8 -KRn  waves/chowder/abba_zabba_3.txt 
+./maximal -D 8 -KRn  waves/chowder/abba_zabba_4.txt 
 
 echo
 echo
