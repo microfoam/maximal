@@ -1225,7 +1225,7 @@ int main(int argc, char *argv[])
 											pull_tela(n);
 											assign_transit(l,TWO); 	/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
 	
-											for (j = n; j < l; j++) {
+											for (int t=n; t<l; t++) {
 												assign_tela(n++, row, a2D_n++, TWO);	/* MODES O-F-F, ONE--FIVE: ONE=FLATLINE AT N, TWO=ASSIGN  */
 											}
 	
@@ -1245,7 +1245,7 @@ int main(int argc, char *argv[])
 												i--;
 											if (tela[i].cyc_o == cyc_take.sym) {
 												if (dev_print(MAIN,__LINE__)) 
-													printf("i=%d (cpos), j-i=%d (delta), n=%d (npos)", i,j-i,n);
+													printf("i=%d (cpos), j-i=%d (delta), n=%d (npos), series=%d", i,j-i,n,series);
 												if (cyclelize_tela(i, j-i, n)) {
 													badslip_type = 30;					/* FROM SEQUENCE IN TYPES: 1-3-5-10- (30) -50-100-300-500 */
 													Current.pass_R += badslip_type;
@@ -1253,8 +1253,8 @@ int main(int argc, char *argv[])
 													if (dev_print(MAIN,__LINE__)) {
 														printf("badslip type %d at n=%d for k=%d with TR at l=%d, delta=%d.", badslip_type, n, k, l, j-i);
 													}
-													a2D_n = tela[n].x+k; 
-													row   = tela[n].y-1;
+													a2D_n = tela[n].x + k; 
+													row   = tela[n].y - 1;
 												}
 											}
 										}

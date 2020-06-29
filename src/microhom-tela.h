@@ -299,6 +299,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 	push_gPnt_kmer(cpos+delta, k, tela[cpos+delta].or);
 
 	if (k && reps && tela[cpos].cyc_o == cyc_take.sym) {
+		int cycle_end = npos;		/* TEMPORARY SAFE-INITIALIZATION */
 		for (r=0; r<reps; r++) {
 			for (j=0; j<delta; j++) {
 				c = tela[(i=cpos+r*k+j)].c;
@@ -318,13 +319,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 				align2D[m][n+2] = '\0';
 			}
 			else if (r == reps-1) {
-				int cycle_end = cpos+delta+k*tela[cpos+delta].or;
-				n -= (cycle_end-z) - delta;							/* NOTE THIS LINE WAS ARRIVED AT BY CODE VOO-DOO */
-				for (j = z+1; j < cycle_end; j++) {
-					align2D[m][++n] = tela[j].c;
-					tela[j].y = m;
-					tela[j].x = n - delta;
-				}
+				cycle_end = cpos+delta+k*tela[(cpos+delta)].or;
 				for (j = cycle_end; j < npos; j++) {
 					align2D[m][++n] = tela[j].c;
 					tela[j].y = m;
@@ -340,6 +335,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 
 		flatline_after_TR(npos);	
 
+		tela[cpos].cyc_o = cyc_skip.sym;
 		tela[cpos+delta].cyc_o = cyc_take.sym;
 
 		/* DEAL WITH TRANSITION MARKS IF ANY */

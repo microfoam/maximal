@@ -581,9 +581,9 @@ int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
 		    printf("\n");
 			warnhead('C');
 			if (badsites == 1)
-				printf("There is one column with mimatched letters.\n");
+				printf("There is one column with mimatched letters.");
 			else if (badsites > 1)
-				printf("There are %d columns with mismatched letters.\n", badsites);
+				printf("There are %d columns with mismatched letters.", badsites);
 		}
 	} 
 
@@ -1394,14 +1394,14 @@ short unsigned int lcl_opt_F;
 	else if (c < lenseq) {
 		Current.pass_Q = round((1000*(cinchwidth-mmsites-(lenseq-c)))/cinchwidth);
 		warnhead(gap.sym);
-		printf(" 2-D auto-alignment is missing %d %s(s)!\n\n", lenseq-c, letr_unit); 
+		printf("2-D auto-alignment is missing %d %s(s)!\n\n", lenseq-c, letr_unit); 
 		print_section_spacer();
 		return(0);
 	}
 	else {
 		Current.pass_Q = round((1000*(cinchwidth-mmsites-(c-lenseq)))/cinchwidth);	
 		warnhead('+');
-		printf(" 2-D auto-alignment contains an extra %d %s(s)!", c-lenseq, letr_unit);
+		printf("2-D auto-alignment contains an extra %d %s(s)!", c-lenseq, letr_unit);
 		print_section_spacer();
 		return(0);
 	}
