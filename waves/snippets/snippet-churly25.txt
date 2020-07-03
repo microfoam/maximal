@@ -1,0 +1,3 @@
+>v4.33	Jun 29 13:18:11 2020	 x0	1000	0.520	NDG: 3 	RND:-XX	waves/experimental/pattern-1b-80pc_GC.txt (+) 
+AGCGCCGCGCGGGCGCCGCGCGGGG
+nGCGCCGA
