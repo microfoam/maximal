@@ -25,9 +25,6 @@ echo
 echo 'Number of tests w/ nudging:        ' | tr -d "\n"
 grep -cE -v 'NDG: 0' Surf_wavereport.log
 echo
-echo 'Number of tests w/ checktransit:   ' | tr -d "\n"
-grep -cE 'checktransit' Surf_wavereport.log 
-echo
 awk -F'[\t]' '{sum+=$5} END {print "WCR average: " sum/NR}' Surf_wavereport.log 
 echo
 echo 'Tests with PASS < 1000 (if any):'

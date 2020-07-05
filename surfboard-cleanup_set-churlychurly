@@ -18,8 +18,6 @@ fi
 	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
-	./maximal -KR -D 8 waves/chowder/churly-23.txt	# 
-	./maximal -KR -D 8 waves/chowder/churly-24.txt	# 
 	./maximal -KR -D 8 waves/chowder/churly-25.txt	# 
 
 	# solved
@@ -46,6 +44,8 @@ fi
 	./maximal -KR -D 8 waves/chowder/churly-20.txt	# solved-33 push_mem 13/14 continued w/ an add'l exclusion for push_mem 8 fractals
 	./maximal -KR -D 8 waves/chowder/churly-21.txt	# solved-33 push_mem 13/14 continued w/ an add'l exclusion for push_mem 8 fractals 
 	./maximal -KR -D 8 waves/chowder/churly-22.txt	# solved-34 simplification to cyclelize_tela(); related to solved-22 edits
+	./maximal -KR -D 8 waves/chowder/churly-23.txt	# solved-35 cinch-k module based on tela struct logic
+	./maximal -KR -D 8 waves/chowder/churly-24.txt	# solved-35 cinch-k module based on tela struct logic 
 
 echo
 echo
@@ -54,5 +54,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 25 (PISO = 5|4|3): 0.458 (22/25 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (PISO = 5|4|3): 0.458 (24/25 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

@@ -444,7 +444,17 @@ int cinch_k(short unsigned int mode)
 				if ((keep_checking || check_imperf) && k>1 && tela[symbol_count+k].echoes==cyc_skip.sym) {
 					keep_checking = check_imperf = 0;
 				}
-				else if (keep_checking && k>2 && tela[symbol_count  ].stat2==st_lowcm.sym &&
+				else if (nuctransit && k>1 && isalpha(letr=consensus[n-x+y+2*k]) && tela[symbol_count+k].stat!=st_fract.sym && 
+							tela[symbol_count+k].stat2!=st_fract.sym){
+					for (l=1; l<=symbol_count; l++) {
+						if (tela[l].x==n+k && tela[l].c!=letr) {
+							keep_checking = check_imperf = 0;
+						}
+					}
+
+				}
+
+				if (keep_checking && k>2 && tela[symbol_count  ].stat2==st_lowcm.sym &&
 												 tela[symbol_count+1].stat2==st_lowcm.sym) {
 					for (l=0; l<2*k; l++) {
 						if (tela[symbol_count+l].stat==st_fract.sym || tela[symbol_count+l].stat2==st_fract.sym) {
@@ -758,7 +768,7 @@ int cinch_k(short unsigned int mode)
 
 		Cinch_K.pass_V += cik_row;			/* STORE ROWS ADDED */
 		if (cik_row && dev_print(CINCH,__LINE__)) {
-			printf("Post cinch-k k=%d loop: symbol_count=%3d (lenseq = %3d).", k, symbol_count, lenseq);
+			printf("Post cinch-k k=%d loop: symbol_count=%3d (lenseq = %3d).\n", k, symbol_count, lenseq);
 		}
 
 		if (k > 1)	/* NOT NEEDED AFTER k EQUALS ONE */

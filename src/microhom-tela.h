@@ -36,6 +36,7 @@ int push_gPnt(short unsigned int ymode, int pos, int prev_par)
 		return(-1);
 	}
 
+
 	if (!ymode && pos == prev_par) {	
 		/* No paralogy, increment in the x-direction */
 		tela[pos].gPnt.rel_xy = 0;
@@ -798,11 +799,11 @@ void mark_tela(void)
 												printf("Calling parent at %d.", n);
 											tela[i  ].stat = st_fract.sym;
 											tela[i+k].stat = st_fract.sym;
-											push_mem(i, 5)		/* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+											push_mem(i, 5);			/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 										}
 										else {
 											tela[i].stat = st_Fract.sym;
-											push_mem(i, 6)          /* MARKING IN CLEARALL ROW BUT NOT CLEARING */;
+											push_mem(i, 6);          /* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 										}
 									}
 								}
@@ -872,7 +873,6 @@ void mark_tela(void)
 			}
 		}
 	}
-
 
 	/* MARK LOW-COMPLEXITY REGIONS WITH TWO OR MORE k-mers MARKED AT COLUMN. */
 	/* HERE, LOW-COMPLEXITY MEANS REPEATS ARE BASED ON TWO SYMBOLS OR LESS.  */

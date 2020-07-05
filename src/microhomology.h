@@ -535,13 +535,12 @@ int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
 
 		if (checktransit) {		/* IF checktransit IS STILL POSITIVE THEN IT'S SUPPOSED TO NOT HAVE CHECKED OUT */
 			checktransletr = consensus_ar[1][n+1];
-/*			consensus_ar[1][n+1] = letr;
-*/			plustransit = 0;
+			plustransit = 0;
 			if (Current.pass_V) { /* IF PASS NUMBER */
 				consensus_ar[25][0]=1;
 				consensus_ar[25][n+1]=checktransletr;
-				sprintf(dev_notes, "checktransit=%d at n=%d", checktransit, n);
-			}
+/*				sprintf(dev_notes, "checktransit=%d at n=%d", checktransit, n);
+*/			}
 		}
 		else if (plustransit)
 			++consensus_ar[0][n+1];
@@ -564,8 +563,10 @@ int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
 			line_end(BLOCKHEAD, 9, 9);
 			printf(" ");
 			for (n = n_start; n < n_end; n++) {
-				if (consensus_ar[25][n])
+				if (consensus_ar[25][n]) {
 					printf("%c", consensus_ar[25][n]); 
+					consensus_ar[1][n] = blnk;
+				}
 				else
 					printf(".");
 			}
