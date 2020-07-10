@@ -249,7 +249,7 @@ int cinch_k(short unsigned int mode)
 	char blnk = Fill->sym;				/* opt_B fill character */
 	int max_k = WIDTH/2;
 	int lenseq = Clean.pass_W;
-	int symbol_count = 0;
+	int tela_m = 0, tela_n = 0;
 	int *x_history = NULL;
 
 	x_history = (int *)calloc(lenseq, sizeof(int));
@@ -270,7 +270,7 @@ int cinch_k(short unsigned int mode)
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
 	for (k = max_k; k > 0; k--) {
-		cik_row = x = symbol_count = 0;	
+		cik_row = x = tela_m = 0;
 		scrimmage_line = -1;
 
 		for (m = 0; align2D[m][0] != '\0'; m++) {
@@ -293,6 +293,7 @@ int cinch_k(short unsigned int mode)
 				keep_checking = 1;			/* THIS FLAG HANDLES THE CONTINUED NEED TO CHECK FOR INTRA-TR REPEATS   */
 				imperfect_TR = 0;			/* THIS FLAG IS TURNED ON (SET TO ONE) WHEN TR W/ TRANSITION MISMATCHES IS FOUND */
 				r = 0;
+				tela_n = tela_m + k;	/* SHORTER AND AVOIDS HAVING TO DO THIS SUM MANY TIMES */
 
 				if (!n && isalpha(align2D[m][0])) {
 					x = 0;												/* x-VAR INITIALIZED, TOP OF FOR n LOOP */
@@ -319,7 +320,7 @@ int cinch_k(short unsigned int mode)
 				if (cinchled) {
 					/* CHECK FOR & DEAL WITH LONG HOMOPOLYMER RUN WRAPS (1ST ONE OR SUBSEQUENT ONES) */
 					if (first_mwrap && n == first_mwrap_start) {		
-						symbol_count += opt_M.val;
+						tela_m += opt_M.val;
 						for (n = first_mwrap_start; (letr=align2D[m][n]) != '\0'; n++) {
 							pathbox[m+cik_row][n-x] = letr;
 							if (isalpha(letr)) {
@@ -332,7 +333,7 @@ int cinch_k(short unsigned int mode)
 					}
 					else if (last_mwrap) {
 						if (align2D[m][n] == monoL.sym && align2D[m][n+opt_M.val+1] == monoR.sym) {		
-							symbol_count += opt_M.val;
+							tela_m += opt_M.val;
 							pathbox[m+cik_row][n-x] = monoL.sym;
 							n++;
 							while ( (letr=align2D[m][n]) != monoR.sym) {
@@ -345,7 +346,7 @@ int cinch_k(short unsigned int mode)
 							break;										/* BREAK OUT OF n LOOP	*/
 						}
 						else if (align2D[m][n] == monoL.sym && align2D[m][n+opt_M.val+1] != monoR.sym) {
-							symbol_count += opt_M.val;
+							tela_m += opt_M.val;
 							last_mwrap = 0;
 							for (i = 0; i <= opt_M.val; i++) {
 								pathbox[m+cik_row][n-x+i] = align2D[m][n+i];
@@ -353,12 +354,12 @@ int cinch_k(short unsigned int mode)
 							letr = align2D[m][n+1];
 							n = n + opt_M.val;
 							while (align2D[m][n] == letr) {
-								symbol_count++;
+								tela_m++;
 								pathbox[m+cik_row][n-x] = letr;
 								x_history[n] = x;
 								n++;
 							}
-							symbol_count--;		/* EACH BLOCK OF MWRAPS OVERCOUNTS BY ONE AFTER THE LAST WHILE LOOP */
+							tela_m--;		/* EACH BLOCK OF MWRAPS OVERCOUNTS BY ONE AFTER THE LAST WHILE LOOP */
 						}
 					}
 				} /* END OF A CINCHLD BLOCK */
@@ -371,7 +372,7 @@ int cinch_k(short unsigned int mode)
 					for (i = n; (letr=align2D[m][i]) != '\0'; i++) {
 						pathbox[m+cik_row][i-x] = align2D[m][i];
 						if (isalpha(letr)) {
-							symbol_count++;
+							tela_m++;
 							x_history[i] = x;				/* x_history WRITE-IN FOR LINE ENDS TOO SHORT FOR TR */
 						}
 					}
@@ -384,7 +385,7 @@ int cinch_k(short unsigned int mode)
 						homopolyflag = 1;	/* SET HOMOPOLYFLAG STATUS TO UNKNOWN/NEED TO CHECK */
 					else if (nuctransit) {
 						letr = align2D[m][n];
-						if (tela[symbol_count].t != tela[symbol_count].c || tela[symbol_count+1].t != tela[symbol_count+1].c) {
+						if (tela[tela_m].t != tela[tela_m].c || tela[tela_n].t != tela[tela_n].c) {
 							keep_checking = 0;
 						}
 					}
@@ -441,12 +442,12 @@ int cinch_k(short unsigned int mode)
 					homopolyflag = 0;		/* RESET */
 				} 
 
-				if ((keep_checking || check_imperf) && k>1 && tela[symbol_count+k].echoes==cyc_skip.sym) {
+				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym) {
 					keep_checking = check_imperf = 0;
 				}
-				else if (nuctransit && k>1 && isalpha( letr=consensus[n-x+y+k*(1+tela[symbol_count+k].or)] )
-							 && tela[symbol_count+k].stat!=st_fract.sym && tela[symbol_count+k].stat!=st_parent.sym ){
-					for (l=1; l<=symbol_count; l++) {
+				else if (nuctransit && k>1 && isalpha( letr=consensus[n-x+y+k*(1+tela[tela_n].or)] )
+							 && tela[tela_n].stat!=st_fract.sym && tela[tela_n].stat!=st_parent.sym ){
+					for (l=1; l<=tela_m; l++) {
 						if (tela[l].x==n+k && tela[l].c!=letr) {
 							keep_checking = check_imperf = 0;
 						}
@@ -454,10 +455,10 @@ int cinch_k(short unsigned int mode)
 
 				}
 
-				if (keep_checking && k>2 && tela[symbol_count  ].stat2==st_lowcm.sym &&
-												 tela[symbol_count+1].stat2==st_lowcm.sym) {
+				if (keep_checking && k>2 && tela[tela_m  ].stat2==st_lowcm.sym &&
+											tela[tela_m+1].stat2==st_lowcm.sym) {
 					for (l=0; l<2*k; l++) {
-						if (tela[symbol_count+l].stat==st_fract.sym || tela[symbol_count+l].stat2==st_fract.sym) {
+						if (tela[tela_m+l].stat==st_fract.sym || tela[tela_m+l].stat2==st_fract.sym) {
 							break;
 						}
 					}
@@ -539,7 +540,7 @@ int cinch_k(short unsigned int mode)
 					check_imperf = 0;			/* RESET check_imperf HERE */
 				} /* END OF IF check_imperf */
 
-				if (k>1 && tela[symbol_count+k].stat==st_fract.sym && tela[symbol_count+k].echoes==cyc_skip.sym)
+				if (k>1 && tela[tela_n].stat==st_fract.sym && tela[tela_n].echoes==cyc_skip.sym)
 					keep_checking = imperfect_TR = 0;
 
 				if ((keep_checking || imperfect_TR) && col_isclear(align2D,n,m,-1)<0 && col_isclear(align2D,n,m,1)<0) {
@@ -604,7 +605,7 @@ int cinch_k(short unsigned int mode)
 					/* CHECK FOR SLIPS OVER-HEAD (LOWER ROWS) OF SECOND UNIT */
 					for (i=m-1; i>=0; i--) {
 						for (int j=n+k+1; j<n+2*k; j++) {
-							if (align2D[i][j] == slip.sym && tela[symbol_count-1].c != tela[symbol_count+2*k].c) {
+							if (align2D[i][j] == slip.sym && tela[tela_m-1].c != tela[tela_n+k].c) {
 								i = -1;
 								keep_checking = imperfect_TR = 0;
 								break;
@@ -690,10 +691,10 @@ int cinch_k(short unsigned int mode)
 				/**************************************************************************************************/
 				if (keep_checking || imperfect_TR) {
 					if (k>0 && dev_print(CINCH,__LINE__)) {
-						printf("cinch-k taking k-mer=%2d at symbol_count=%3d; x=%d, y=%d.", k, symbol_count, x,y);
+						printf("cinch-k taking k-mer=%2d at tela_m=%3d; x=%d, y=%d.", k, tela_m, x,y);
 					}
 
-					push_gPnt_kmer(symbol_count+k,k,1);
+					push_gPnt_kmer(tela_n,k,1);
 
 					for (l = 0; l < k; l++) {
 						pathbox[m+cik_row  ][n-x+l] = align2D[m][n+l  ];	
@@ -703,11 +704,11 @@ int cinch_k(short unsigned int mode)
 
 					/* UPDATE TELA FOR CINCH-K CINCH; SHOULD BE OWN FUNCTION? */
 					if (ON) {
-						for (i=symbol_count+k; i<=lenseq; i++) 
+						for (i=tela_n; i<=lenseq; i++) 
 							++tela[i].y;
 
 						int row = m+cik_row+1;
-						for (i=symbol_count+k; i<= lenseq && tela[i].y==row; i++) 
+						for (i=tela_n; i<= lenseq && tela[i].y==row; i++) 
 							tela[i].x -= k;
 
 						if (col_isclear(align2D,n+k,m,1)<0) {	
@@ -747,13 +748,13 @@ int cinch_k(short unsigned int mode)
 					for (i=n; i<=n+k; i++)
 						x_history[i] = x;
 
-					if (tela[symbol_count+k].stat==st_fract.sym) {
-						for (i=symbol_count+k; i<symbol_count+2*k; i++)
+					if (tela[tela_n].stat==st_fract.sym) {
+						for (i=tela_n; i<tela_n+k; i++)
 							tela[i].echoes = cyc_skip.sym;
 					}
 
-					symbol_count += k;
-					n += k-1;				/* -1 BECAUSE UPCOMING n++ IN FOR n LOOP */
+					tela_m = tela_n;		/* SAME AS "tela_m += k" */
+					n += k-1;					/* -1 BECAUSE UPCOMING n++ IN FOR n LOOP */
 					cik_row++;
 
 				}   /* END OF TR ASSIGN LOOPS */
@@ -761,7 +762,7 @@ int cinch_k(short unsigned int mode)
 					letr = pathbox[m+cik_row][n-x] = align2D[m][n];
 					x_history[n] = x;
 					if (isalpha(letr)) {
-						symbol_count++;
+						tela_m++;
 					}
 				}
 
@@ -776,7 +777,7 @@ int cinch_k(short unsigned int mode)
 
 		Cinch_K.pass_V += cik_row;			/* STORE ROWS ADDED */
 		if (cik_row && dev_print(CINCH,__LINE__)) {
-			printf("Post cinch-k k=%d loop: symbol_count=%3d (lenseq = %3d).\n", k, symbol_count, lenseq);
+			printf("Post cinch-k k=%d loop: tela_m=%3d (lenseq = %3d).\n", k, tela_m, lenseq);
 		}
 
 		if (k > 1)	/* NOT NEEDED AFTER k EQUALS ONE */
