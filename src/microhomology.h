@@ -1293,7 +1293,7 @@ short unsigned int lcl_opt_F;
 
 			line_end(START, m+1, 0);
 
-			for (n = j_start; n < j_end  && (letr=align2D[m][n])!=Term->sym && letr!=monoR.sym; n++) {
+			for (n = j_start; n < j_end  && (letr=align2D[m][n])!='\0' && letr!=Term->sym && letr!=monoR.sym; n++) {
 				if (d+b == 0) {		/* HANDLES BLOCK CONTINUATION LINES THAT HAVE ZERO CHARACTERS B/C OF ITS TUCK & LENGTH */
 					break;
 				}
