@@ -444,8 +444,8 @@ int cinch_k(short unsigned int mode)
 				if ((keep_checking || check_imperf) && k>1 && tela[symbol_count+k].echoes==cyc_skip.sym) {
 					keep_checking = check_imperf = 0;
 				}
-				else if (nuctransit && k>1 && isalpha(letr=consensus[n-x+y+2*k]) && tela[symbol_count+k].stat!=st_fract.sym && 
-							tela[symbol_count+k].stat2!=st_fract.sym){
+				else if (nuctransit && k>1 && isalpha( letr=consensus[n-x+y+k*(1+tela[symbol_count+k].or)] )
+							 && tela[symbol_count+k].stat!=st_fract.sym && tela[symbol_count+k].stat!=st_parent.sym ){
 					for (l=1; l<=symbol_count; l++) {
 						if (tela[l].x==n+k && tela[l].c!=letr) {
 							keep_checking = check_imperf = 0;
