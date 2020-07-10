@@ -779,7 +779,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 
 	for (n=nudge_span; n<=n_end; n++) {
 		if (isalpha(con_align2D[nudge_row][n]) && !isalpha(con_align2D[nudge_row][n-1]) && con_align2D[nudge_row-1][n]==slip.sym) {
-			printf("\n Finishing nudgelize by merging row %d with previous row at column %d.\n", nudge_row, n);
+			printf("\n Nudgelizing and merging row %d with previous row at column %d.\n", nudge_row, n);
 			int i, j;
 			for (j=n; j<n_end+2; j++)
 				con_align2D[nudge_row-1][j] = con_align2D[nudge_row][j];
@@ -1381,16 +1381,17 @@ short unsigned int lcl_opt_F;
 		}
 	} /* END OF FOR j PRINTING LOOP */
 
-	if (c == lenseq && mmsites == 0) {
-		Current.pass_Q = 1000;	
-		print_section_spacer();
-		return(0);
-	}
-	else if (c == lenseq) {
-		Current.pass_Q = round((1000*(cinchwidth-mmsites))/cinchwidth);	
-		printf("\n This %d %s sequence was not auto-aligned correctly at this stage, but further cinching may fix it.", c, letr_unit);
-		print_section_spacer();
-		return(Current.pass_Q);
+	if (c == lenseq) {
+		if (!mmsites) {
+			Current.pass_Q = 1000;	
+			print_section_spacer();
+			return(0);
+		}
+		else {
+			Current.pass_Q = round((1000*(cinchwidth-mmsites))/cinchwidth);	
+			print_section_spacer();
+			return(Current.pass_Q);
+		}
 	}
 	else if (c < lenseq) {
 		Current.pass_Q = round((1000*(cinchwidth-mmsites-(lenseq-c)))/cinchwidth);
