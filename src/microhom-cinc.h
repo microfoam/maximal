@@ -539,6 +539,9 @@ int cinch_k(short unsigned int mode)
 					check_imperf = 0;			/* RESET check_imperf HERE */
 				} /* END OF IF check_imperf */
 
+				if (k>1 && tela[symbol_count+k].stat==st_fract.sym && tela[symbol_count+k].echoes==cyc_skip.sym)
+					keep_checking = imperfect_TR = 0;
+
 				if ((keep_checking || imperfect_TR) && col_isclear(align2D,n,m,-1)<0 && col_isclear(align2D,n,m,1)<0) {
 					for (i=1; i<k; i++) {
 						if (col_isclear(align2D,n+l,m,1)>=0) {
@@ -713,7 +716,6 @@ int cinch_k(short unsigned int mode)
 						}
 					}
 
-					symbol_count += k;
 					pathbox[m+cik_row  ][n-x+k  ] = slip.sym;
 					pathbox[m+cik_row  ][n-x+k+1] = '\0';
 
@@ -745,8 +747,14 @@ int cinch_k(short unsigned int mode)
 					for (i=n; i<=n+k; i++)
 						x_history[i] = x;
 
-					n = n + k - 1;		/* ADVANCE ADJUSTMENT. NOTE UPCOMING n++ IN FOR n LOOP */
-					++cik_row;
+					if (tela[symbol_count+k].stat==st_fract.sym) {
+						for (i=symbol_count+k; i<symbol_count+2*k; i++)
+							tela[i].echoes = cyc_skip.sym;
+					}
+
+					symbol_count += k;
+					n += k-1;				/* -1 BECAUSE UPCOMING n++ IN FOR n LOOP */
+					cik_row++;
 
 				}   /* END OF TR ASSIGN LOOPS */
 				else {

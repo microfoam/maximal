@@ -18,7 +18,6 @@ fi
 	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
-	./maximal -KR -D 8 waves/chowder/churly-25.txt	# 
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/churly-01.txt	# solved-21 delete clear_mem module in mark_tela 
@@ -31,7 +30,7 @@ fi
 	./maximal -KR -D 8 waves/chowder/churly-09.txt	# solved-22 adjustment to cyclelize_tela()
 	./maximal -KR -D 8 waves/chowder/churly-08.txt	# solved-23 new cinch-k low-complexity block
 	./maximal -KR -D 8 waves/chowder/churly-10.txt	# solved-24 adjustment to new low-complexity block in cinch-k
-													# solved-25--26 -> PISO4 script
+													# solved-25--26 -> PISO4 script (deprecated script)
 	./maximal -KR -D 8 waves/chowder/churly-11.txt	# solved-27 new cinch-k cluster-f*ck block
 	./maximal -KR -D 8 waves/chowder/churly-12.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
 	./maximal -KR -D 8 waves/chowder/churly-13.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
@@ -46,6 +45,7 @@ fi
 	./maximal -KR -D 8 waves/chowder/churly-22.txt	# solved-34 simplification to cyclelize_tela(); related to solved-22 edits
 	./maximal -KR -D 8 waves/chowder/churly-23.txt	# solved-35 cinch-k module based on tela struct logic
 	./maximal -KR -D 8 waves/chowder/churly-24.txt	# solved-35 cinch-k module based on tela struct logic 
+	./maximal -KR -D 8 waves/chowder/churly-25.txt	# solved-36 cinch-k tela struct logic continued
 
 echo
 echo
@@ -54,5 +54,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 25 (PISO = 5|4|3): 0.4580 -> 0.4572 (24/25 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (PISO = 5|4|3): 0.4568 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
