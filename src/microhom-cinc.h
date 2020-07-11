@@ -446,13 +446,13 @@ int cinch_k(short unsigned int mode)
 					keep_checking = check_imperf = 0;
 				}
 				else if (nuctransit && k>1 && isalpha( letr=consensus[n-x+y+k*(1+tela[tela_n].or)] )
-							 && tela[tela_n].stat!=st_fract.sym && tela[tela_n].stat!=st_parent.sym ){
+							 && tela[tela_n].stat!=st_fract.sym && tela[tela_n-k].stat!=st_parent.sym ){
 					for (l=1; l<=tela_m; l++) {
 						if (tela[l].x==n+k && tela[l].c!=letr) {
 							keep_checking = check_imperf = 0;
+							break;
 						}
 					}
-
 				}
 
 				if (keep_checking && k>2 && tela[tela_m  ].stat2==st_lowcm.sym &&
@@ -540,9 +540,11 @@ int cinch_k(short unsigned int mode)
 					check_imperf = 0;			/* RESET check_imperf HERE */
 				} /* END OF IF check_imperf */
 
-				if (k>1 && tela[tela_n].stat==st_fract.sym && tela[tela_n].echoes==cyc_skip.sym)
+				if (k>1 && (tela[tela_n].stat==st_fract.sym || tela[tela_n].stat2==st_fract.sym) && align2D[m][n-1]!=blnk && 
+					tela[tela_n-k].stat!=st_parent.sym && tela[tela_n].echoes==cyc_skip.sym) {
 					keep_checking = imperfect_TR = 0;
-
+				}
+ 
 				if ((keep_checking || imperfect_TR) && col_isclear(align2D,n,m,-1)<0 && col_isclear(align2D,n,m,1)<0) {
 					for (i=1; i<k; i++) {
 						if (col_isclear(align2D,n+l,m,1)>=0) {
@@ -748,7 +750,7 @@ int cinch_k(short unsigned int mode)
 					for (i=n; i<=n+k; i++)
 						x_history[i] = x;
 
-					if (tela[tela_n].stat==st_fract.sym) {
+					if (tela[tela_n].stat==st_fract.sym || tela[tela_n].stat2==st_fract.sym) {
 						for (i=tela_n; i<tela_n+k; i++)
 							tela[i].echoes = cyc_skip.sym;
 					}

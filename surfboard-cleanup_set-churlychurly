@@ -18,6 +18,7 @@ fi
 	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
+	./maximal -KR -D 8 waves/chowder/churly-28.txt	# 
 
 	# solved
 	./maximal -KR -D 8 waves/chowder/churly-01.txt	# solved-21 delete clear_mem module in mark_tela 
@@ -46,6 +47,16 @@ fi
 	./maximal -KR -D 8 waves/chowder/churly-23.txt	# solved-35 cinch-k module based on tela struct logic
 	./maximal -KR -D 8 waves/chowder/churly-24.txt	# solved-35 cinch-k module based on tela struct logic 
 	./maximal -KR -D 8 waves/chowder/churly-25.txt	# solved-36 cinch-k tela struct logic continued
+	./maximal -KR -D 8 waves/chowder/churly-26.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela
+	./maximal -KR -D 8 waves/chowder/churly-27.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+	./maximal -KR -D 8 waves/chowder/churly-29.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+	./maximal -KR -D 8 waves/chowder/churly-30.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+	./maximal -KR -D 8 waves/chowder/churly-31.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+	./maximal -KR -D 8 waves/chowder/churly-32.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+	./maximal -KR -D 8 waves/chowder/churly-33.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+	./maximal -KR -D 8 waves/chowder/churly-34.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+	./maximal -KR -D 8 waves/chowder/churly-35.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+	./maximal -KR -D 8 waves/chowder/churly-36.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
 
 echo
 echo
@@ -54,5 +65,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 25 (PISO = 5|4|3): 0.4568 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (PISO = 5|4|3): 0.472778 (35/36 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
