@@ -446,7 +446,8 @@ int cinch_k(short unsigned int mode)
 					keep_checking = check_imperf = 0;
 				}
 				else if (nuctransit && k>1 && isalpha( letr=consensus[n-x+y+k*(1+tela[tela_n].or)] )
-							 && tela[tela_n].stat!=st_fract.sym && tela[tela_m].stat!=st_parent.sym ){
+							&& tela[tela_n].stat !=st_fract.sym && tela[tela_m].stat!=st_parent.sym 
+							&& tela[tela_n].stat2!=st_fract.sym){
 					for (l=1; l<=tela_m; l++) {
 						if (tela[l].x==n+k && tela[l].c!=letr) {
 							keep_checking = check_imperf = 0;
