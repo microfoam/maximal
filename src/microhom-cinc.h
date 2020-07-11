@@ -446,7 +446,7 @@ int cinch_k(short unsigned int mode)
 					keep_checking = check_imperf = 0;
 				}
 				else if (nuctransit && k>1 && isalpha( letr=consensus[n-x+y+k*(1+tela[tela_n].or)] )
-							 && tela[tela_n].stat!=st_fract.sym && tela[tela_n-k].stat!=st_parent.sym ){
+							 && tela[tela_n].stat!=st_fract.sym && tela[tela_m].stat!=st_parent.sym ){
 					for (l=1; l<=tela_m; l++) {
 						if (tela[l].x==n+k && tela[l].c!=letr) {
 							keep_checking = check_imperf = 0;
@@ -541,7 +541,7 @@ int cinch_k(short unsigned int mode)
 				} /* END OF IF check_imperf */
 
 				if (k>1 && (tela[tela_n].stat==st_fract.sym || tela[tela_n].stat2==st_fract.sym) && align2D[m][n-1]!=blnk && 
-					tela[tela_n-k].stat!=st_parent.sym && tela[tela_n].echoes==cyc_skip.sym) {
+					tela[tela_m].stat!=st_parent.sym && tela[tela_n].echoes==cyc_skip.sym) {
 					keep_checking = imperfect_TR = 0;
 				}
  
@@ -689,6 +689,18 @@ int cinch_k(short unsigned int mode)
 					if (align2D[i][0] && align2D[i][n]==blnk && isalpha(align2D[i][j]))
 							keep_checking = imperfect_TR = 0;
 				}
+
+				if ((keep_checking||imperfect_TR) && (tela[tela_n].stat==st_fract.sym || tela[tela_n].stat2==st_fract.sym) && isalpha(letr=align2D[m][n+2*k])) {
+					int mrow = m;
+					while (align2D[mrow+1][0]) {
+						if (!isalpha(align2D[mrow+1][n+k]) && isalpha(align2D[mrow+1][n+2*k-1])) {
+							keep_checking = imperfect_TR = 0;
+							break;
+						}
+
+						mrow++;
+					}
+				}	
 
 				/**************************************************************************************************/
 				if (keep_checking || imperfect_TR) {
