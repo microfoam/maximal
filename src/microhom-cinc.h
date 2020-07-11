@@ -446,8 +446,7 @@ int cinch_k(short unsigned int mode)
 					keep_checking = check_imperf = 0;
 				}
 				else if (nuctransit && k>1 && isalpha( letr=consensus[n-x+y+k*(1+tela[tela_n].or)] )
-							&& tela[tela_n].stat !=st_fract.sym && tela[tela_m].stat!=st_parent.sym 
-							&& tela[tela_n].stat2!=st_fract.sym){
+							&& tela[tela_n].statf!=st_fract.sym && tela[tela_m].stat!=st_parent.sym ) {
 					for (l=1; l<=tela_m; l++) {
 						if (tela[l].x==n+k && tela[l].c!=letr) {
 							keep_checking = check_imperf = 0;
@@ -455,13 +454,10 @@ int cinch_k(short unsigned int mode)
 						}
 					}
 				}
-
-				if (keep_checking && k>2 && tela[tela_m  ].stat2==st_lowcm.sym &&
-											tela[tela_m+1].stat2==st_lowcm.sym) {
+				if (keep_checking && k>2 && tela[tela_m].statl==st_lowcm.sym && tela[tela_m+1].statl==st_lowcm.sym) {
 					for (l=0; l<2*k; l++) {
-						if (tela[tela_m+l].stat==st_fract.sym || tela[tela_m+l].stat2==st_fract.sym) {
+						if (tela[tela_m+l].statf==st_fract.sym) 
 							break;
-						}
 					}
 					if (l==2*k)
 						keep_checking = 0;
@@ -541,7 +537,7 @@ int cinch_k(short unsigned int mode)
 					check_imperf = 0;			/* RESET check_imperf HERE */
 				} /* END OF IF check_imperf */
 
-				if (k>1 && (tela[tela_n].stat==st_fract.sym || tela[tela_n].stat2==st_fract.sym) && align2D[m][n-1]!=blnk && 
+				if (k>1 && tela[tela_n].statf==st_fract.sym && align2D[m][n-1]!=blnk && 
 					tela[tela_m].stat!=st_parent.sym && tela[tela_n].echoes==cyc_skip.sym) {
 					keep_checking = imperfect_TR = 0;
 				}
@@ -691,7 +687,7 @@ int cinch_k(short unsigned int mode)
 							keep_checking = imperfect_TR = 0;
 				}
 
-				if ((keep_checking||imperfect_TR) && (tela[tela_n].stat==st_fract.sym || tela[tela_n].stat2==st_fract.sym) && isalpha(letr=align2D[m][n+2*k])) {
+				if ((keep_checking||imperfect_TR) && tela[tela_n].statf==st_fract.sym && isalpha(letr=align2D[m][n+2*k])) {
 					int mrow = m;
 					while (align2D[mrow+1][0]) {
 						if (!isalpha(align2D[mrow+1][n+k]) && isalpha(align2D[mrow+1][n+2*k-1])) {
@@ -763,9 +759,10 @@ int cinch_k(short unsigned int mode)
 					for (i=n; i<=n+k; i++)
 						x_history[i] = x;
 
-					if (tela[tela_n].stat==st_fract.sym || tela[tela_n].stat2==st_fract.sym) {
-						for (i=tela_n; i<tela_n+k; i++)
+					if (tela[tela_n].statf==st_fract.sym) {
+						for (i=tela_n; i<tela_n+k; i++) {
 							tela[i].echoes = cyc_skip.sym;
+						}
 					}
 
 					tela_m = tela_n;		/* SAME AS "tela_m += k" */

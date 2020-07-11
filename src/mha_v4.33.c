@@ -777,7 +777,8 @@ int main(int argc, char *argv[])
 		for (n = 1; n<=lenseq; ) {
 			/* FOR COLUMN n LOOP 1/3 */
 			if (!opt_t.bit) {			/* SKIP TO NEXT MARKED TR */	
-				while ((!(tela[n].all_S) || tela[n].stat==st_fract.sym || tela[n].stat==st_Fract.sym || tela[n].stat2==st_lowcm.sym) && n!=lenseq) {
+				while ((!(tela[n].all_S) || (tela[n].statf==st_fract.sym && tela[n].stat!=st_parent.sym) || 
+						tela[n].stat==st_Fract.sym || tela[n].statl==st_lowcm.sym) && n!=lenseq) {
 					assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 				}
 			}

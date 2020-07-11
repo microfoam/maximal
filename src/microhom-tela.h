@@ -748,8 +748,8 @@ void mark_tela(void)
 									tela[projector].stat = st_parent.sym;
 									if (dev_print(TELA,__LINE__))
 										printf("Calling parent at %d.", projector);
-									tela[n       ].stat = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
-									tela[n-proj_k].stat = st_fract.sym;		/* MATCHING PAIR */
+									tela[n       ].statf = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
+									tela[n-proj_k].statf = st_fract.sym;		/* MATCHING PAIR */
 									i = n-proj_k-1;
 									while (tela[i].ok == k && tela[i].stat == st_cycle.sym && i>=projector-proj_k && tela[i].or<2) {
 										clearall_tela(i,1,-1,TWO);
@@ -788,7 +788,7 @@ void mark_tela(void)
 										}
 									}
 									if (!mono_sep) {
-										tela[i].stat2 = st_overl.sym;
+										tela[i].statl = st_overl.sym;
 									}
 								}
 								else if (tela[n].all_S > tela[i].all_S) {	/* m+2 B/C IS EARLIEST CAN HAVE FRACTAL DINUCL REPEAT IN SHADOW */
@@ -797,8 +797,8 @@ void mark_tela(void)
 											tela[ n ].stat = st_parent.sym;
 											if (dev_print(TELA,__LINE__))
 												printf("Calling parent at %d.", n);
-											tela[i  ].stat = st_fract.sym;
-											tela[i+k].stat = st_fract.sym;
+											tela[i  ].statf = st_fract.sym;
+											tela[i+k].statf = st_fract.sym;
 											push_mem(i, 5);			/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 										}
 										else {
@@ -812,7 +812,7 @@ void mark_tela(void)
 
 						/* MARK FRACTAL TR's AT m, MASKED BY PARENT TR */
 						if (tela[m].ok && tela[m].ok != k && tela[m].ok==tela[n].k2 && m+span_ork(m) <= n) {
-							tela[m].stat = st_fract.sym;
+							tela[m].statf = st_fract.sym;
 							push_mem(m, 7);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 						}
 					}
@@ -894,7 +894,7 @@ void mark_tela(void)
 			if (symb2) {
 				int max_S = tela[n].all_S;
 				for (i=m; i<n+k; i++) {
-					tela[i].stat2 = st_lowcm.sym;		/* MARK AS LOW-COMPLEXITY */
+					tela[i].statl = st_lowcm.sym;		/* MARK AS LOW-COMPLEXITY */
 					if (tela[i].all_S > max_S)
 						max_S = tela[i].all_S;
 				}
@@ -902,7 +902,7 @@ void mark_tela(void)
 				/* THEN POKE A HOLE AT MAX_S */
 				for (i=m-1; i>=0; i--) {
 					if (tela[i].c == symb1 || tela[i].c == symb2) {
-						tela[i].stat2 = st_lowcm.sym;
+						tela[i].statl = st_lowcm.sym;
 						if (tela[i].all_S > max_S)
 							max_S = tela[i].all_S;
 					}
@@ -911,7 +911,7 @@ void mark_tela(void)
 				}
 				for (j=n+k; j<lenseq; j++) {
 					if (tela[j].c == symb1 || tela[j].c == symb2) {
-						tela[j].stat2 = st_lowcm.sym;
+						tela[j].statl = st_lowcm.sym;
 						if (tela[j].all_S > max_S)
 							max_S = tela[j].all_S;
 					}
@@ -920,7 +920,7 @@ void mark_tela(void)
 				}
 				for (int l=i+1; l<j; l++) {
 					if (tela[l].all_S == max_S)
-						tela[l].stat2 = '\0';
+						tela[l].statl = '\0';
 				}			
 			}
 		}
@@ -989,9 +989,10 @@ void mark_tela(void)
 				if (tela[i].ok && i-tela[i].ok >= m && span_ork(i)<=n && tela[i].k == tela[i+k].k) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
 
 					if (tela[i].all_S == tela[i+k].all_S)
-						tela[i].stat = tela[i+k].stat = st_fract.sym;
-					else
-						tela[i].stat2= tela[i+k].stat2= st_fract.sym;
+						tela[i].statf = tela[i+k].statf = st_fract.sym;
+					else {
+						tela[i].statf = tela[i+k].statf = st_fract.sym;
+					}
 
 					tela[n].stat = st_parent.sym;
 					if (dev_print(TELA,__LINE__))
@@ -1020,7 +1021,7 @@ void mark_tela(void)
 			m = n-k;
 			int prev_k;
 			for (i=m+1; i<n-1; i++) {
-				if (tela[i].ok && tela[i].stat!=st_fract.sym && (prev_k=tela[i].ok)<k && i-prev_k<m && 
+				if (tela[i].ok && tela[i].statf!=st_fract.sym && (prev_k=tela[i].ok)<k && i-prev_k<m && 
 						!tela[i].all_L && tela[i].all_S<tela[n].all_S && i+span_ork(i)<n) {
 					clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 					push_mem(i, 8);
@@ -1037,7 +1038,7 @@ void mark_tela(void)
 			/* CANCEL MARK IF OVERLAPS PARENT W/ FRACTALS AND PARENT K > k */
 			if (!tela[n-1].ok && tela[n].stat==st_cycle.sym) {
 				for (i=n-1; i>n-k; i--) {
-					if (tela[i].stat==st_fract.sym) {
+					if (tela[i].statf==st_fract.sym) {
 						for (j=i-1; j>0; j--) {
 							if (tela[j].stat==st_parent.sym && tela[j].ok > k) {
 								clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
@@ -1050,7 +1051,7 @@ void mark_tela(void)
 			}
 			else if (!tela[n+1].ok) {
 				for (i=n+1; i<n+k; i++) {
-					if (tela[i].stat==st_fract.sym) {
+					if (tela[i].statf==st_fract.sym) {
 						for (j=i+1; j<lenseq; j++) {
 							if (tela[j].stat==st_parent.sym && tela[j].ok > k) {
 								clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
@@ -1109,7 +1110,7 @@ void mark_tela(void)
 			prev_k=0;	/* INITIALIZE TO ZERO STATE TO USE AS TEST FOR SETTING ONLY ONCE */
 
 			for (i=m+1; i<n; i++) {
-				if (!prev_k && tela[i].ok && tela[i].ok<k && k%tela[i].ok && i-tela[i].ok<m && tela[i].stat != st_fract.sym && tela[i].all_R==n) {
+				if (!prev_k && tela[i].ok && tela[i].ok<k && k%tela[i].ok && i-tela[i].ok<m && tela[i].statf!=st_fract.sym && tela[i].all_R==n) {
 					while (tela[i-1].ok==tela[i].ok) {
 						i--;
 						if (tela[i].all_S>tela[n].all_S) {
@@ -1131,7 +1132,7 @@ void mark_tela(void)
 						}
 					}
 				}
-				else if (prev_k && tela[i].ok==prev_k && i-tela[i].ok<m && tela[i].stat != st_fract.sym && tela[i].all_R==n) {
+				else if (prev_k && tela[i].ok==prev_k && i-tela[i].ok<m && tela[i].statf!=st_fract.sym && tela[i].all_R==n) {
 					clearall_tela(i, 1, -1, ONE);	/* O-F-F, ONE, OR TWO */
 					push_mem(i, 16);				/* TEMP NUMERIC ASSIGNMENT */
 				}
@@ -1248,7 +1249,7 @@ void mark_tela(void)
 						}
 						if (tela[p].ok) {
 							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-							if (tela[p].stat==st_fract.sym && tela[n].stat != st_cycle.sym) {
+							if (tela[p].statf==st_fract.sym && tela[n].stat != st_cycle.sym) {
 								clearall_tela(n,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
 								tela[n].echoes = cyc_skip.sym;	/* MARK THIS SO CAN CHECK IN ANY CINCH MODULE TO SKIP */
 							}
@@ -1409,10 +1410,17 @@ int lenseq = Clean.pass_W;
 		else
 			printf("  .");
 	}
-	printf("\nol:");
+	printf("\nfr:");
 	for (i=a; i<=b; i++) {
-		if (tela[i].stat2)
-			printf("%3c", tela[i].stat2);
+		if (tela[i].statf)
+			printf("%3c", tela[i].statf);
+		else
+			printf("  .");
+	}
+	printf("\nlc:");
+	for (i=a; i<=b; i++) {
+		if (tela[i].statl)
+			printf("%3c", tela[i].statl);
 		else
 			printf("  .");
 	}

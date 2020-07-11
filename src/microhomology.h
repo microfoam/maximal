@@ -67,7 +67,8 @@ struct coord {
 	int all_R;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON RHS 	*/
 	int all_L;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON LHS 	*/
 	char stat;		/* ALL SERIES: PRE-CINCH-T: STATUS                            	*/
-	char stat2;		/* ALL SERIES: PRE-CINCH-T: STATUS                            	*/
+	char statf;		/* ALL SERIES: PRE-CINCH-T: STATUS - FRACTAL TR               	*/
+	char statl;		/* ALL SERIES: PRE-CINCH-T: STATUS - LOW-COMPLEXITY           	*/
 	/*************************************************************************************************/
 	int cyc_Lf;		/* Left-side overlapping TR */
 	int cyc_Rt;		/* Right-side overlapping TR */
