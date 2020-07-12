@@ -638,12 +638,20 @@ void mark_tela(void)
 						Dtr = 0; 
 					}
 					else if (prev_k>k && prev_k % k && tela[n-prev_k].ok != k) {
-						push_mem(n  ,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-						push_mem(n  ,2);
-						tela[n  ].stat = st_Fract.sym;
-						if (tela[n-1-prev_k].stat == st_cycle.sym) {
-							push_mem(n-1,2);
-							tela[n-1].stat = st_Fract.sym;
+						if (tela[n-prev_k].k2==k) {
+							push_mem(n  ,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+							push_mem(n  ,2);
+							tela[n-prev_k].statf = st_fract.sym;
+							tela[n       ].statf = st_fract.sym;
+						}
+						else {
+							push_mem(n  ,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+							push_mem(n  ,2);
+							tela[n  ].stat = st_Fract.sym;
+							if (tela[n-1-prev_k].stat == st_cycle.sym) {
+								push_mem(n-1,2);
+								tela[n-1].stat = st_Fract.sym;
+							}
 						}
 						n += prev_k-2;
 						Dtr = 0; 
@@ -733,7 +741,7 @@ void mark_tela(void)
 										printf("Advancing projection at n=%d to %d.", n,projection);
 									}
 	
-									if (k == tela[n-1].ok) {
+									if (k == tela[n-1].ok && tela[n].stat!=st_parent.sym) {
 										tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
 										tela[n  ].stat = st_cycle.sym;
 									}
@@ -741,8 +749,10 @@ void mark_tela(void)
 							}
 							else {
 								if (tela[n-1].ok && (k == tela[n-1].ok || tela[n-1].ok % k == 0)) {
-									tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
-									tela[n  ].stat = st_cycle.sym;
+									if (tela[n-1].stat!=st_parent.sym)
+										tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
+									if (tela[n  ].stat!=st_parent.sym)
+										tela[n  ].stat = st_cycle.sym;
 								}
 								else if (tela[n-proj_k].ok == k) {
 									tela[projector].stat = st_parent.sym;
@@ -963,7 +973,7 @@ void mark_tela(void)
 
 				i = 1;
 				int jump = 0;
-				while (tela[(jump=(splitcol-i*k_at_m))].ok == k_at_m && tela[jump].stat == st_cycle.sym) {
+				while (tela[(jump=(splitcol-i*k_at_m))].ok==k_at_m && tela[jump].stat==st_cycle.sym) {
 					tela[jump].or -= less_r;
 					++i;
 				}
