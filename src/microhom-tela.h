@@ -757,7 +757,7 @@ void mark_tela(void)
 										i--;
 									}
 								}
-								else
+								else			/* DISPENSABLE W/ LITTLE OR NO WCR WIGGLE AT MOST PISO's AND NO CHOWDER. v4.33, 7/11/2020 */
 									tela[n].stat = st_Fract.sym;
 							}
 							TRcheck = 0;
@@ -801,7 +801,7 @@ void mark_tela(void)
 											tela[i+k].statf = st_fract.sym;
 											push_mem(i, 5);			/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 										}
-										else {
+										else {						/* NOT DISPENSABLE W/O SOME CHOWDER v4.33 7/11/2020 */
 											tela[i].stat = st_Fract.sym;
 											push_mem(i, 6);          /* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 										}
