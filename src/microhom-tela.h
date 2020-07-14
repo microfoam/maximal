@@ -534,7 +534,7 @@ void mark_tela(void)
 			}
 
 			if  (k_tmp>floor || k1>floor) {
-				if (!tela[n].k1 && !checkfractals_in_imperfect(k_tmp,n)) {
+				if (!checkfractals_in_imperfect(k_tmp,n)) {
 					if (k1>floor)
 						tela[n].k1 = k_tmp = k1;
 					else
@@ -558,6 +558,8 @@ void mark_tela(void)
 							break;						/* BREAK BECAUSE CURRENTLY ONLY STORING TOP TWO k-MERS AT n */
 						}
 					}
+					else
+						break;
 				}
 			}
 		}
