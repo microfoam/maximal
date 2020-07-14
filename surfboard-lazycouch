@@ -7,7 +7,8 @@ fi
 answer="n"
 
 ./surfboard-Pop_up
-
+grep 'define PISO' src/microhom-skor.h | tee -a Corduroy.log
+echo | tee -a Corduroy.log
 echo "$0: Hit <enter> to continue to cleanup_set-all. Or, enter 'q' to quit script entirely."
 read -s -n1 answer
 

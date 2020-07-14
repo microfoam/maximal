@@ -306,3 +306,46 @@ Line counts:
 
 Commit WCR average of 38 (PISO=6|5|4|3): 0.479211 (chowder-free)
 
+                                               < vnd_getworked_ragdoll >
+Mon Jul 13 21:06:53 CDT 2020
+Tri-fin dawn patrol: Compiling maximal v4.34.
+
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v4.34	Jul 13 21:06:56 2020	 x0	1000	0.620	NDG: 0 	RND:XX	         waves/seals/vnd_ex3_Dmela.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.34	Jul 13 22:03:00 2020	 x0	1000	0.640	NDG: 0 	RND:XX	        waves/sharks/vnd_NEE_Dsuzu.txt (-) ( 100 bp) REC:1000	M: 3	-
+
+Number of tests initiated:         150000
+
+Number of tests completed:         150000
+
+Number of tests w/ PASS 1000:      150000
+
+Number of tests w/ REC. 1000:      150000
+
+Number of tests w/ nudging:        0
+
+WCR average: 0.519351
+
+Tests with PASS < 1000 (if any):
+
+Tests with REC. < 1000 (if any):
+
+Tests with nudging (if any):
+
+Tests canceled (if any, w/ preceding run for context):
+
+Line counts:
+    1976 src/mha_v4.34.c
+    1398 src/microhom-cinc.h
+     139 src/microhom-devl.h
+     113 src/microhom-skor.h
+    1950 src/microhom-tela.h
+    1718 src/microhomology.h
+    7294 total
+
