@@ -1,0 +1,58 @@
+#!/bin/bash
+echo >> Corduroy.log
+echo '                                               < squeegee >' >> Corduroy.log
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	./surfboard-Pop_Up
+	grep 'define PISO' src/microhom-skor.h | tee -a Corduroy.log
+	;;
+esac
+done
+
+if [ -f Surf_wavereport.mha ]; then
+	    rm Surf_wavereport.mha
+fi
+
+
+	# conflict begins in cinch-t, poor recovery
+	#./maximal -KR  -D 2 waves/squeegee/squee112.txt
+	 ./maximal -KRx -D 2 waves/squeegee/squee112.txt
+	#./maximal -KR  -D 2 waves/squeegee/squee216.txt
+	 ./maximal -KRx -D 2 waves/squeegee/squee216.txt
+	#./maximal -KR  -D 2 waves/squeegee/squee224.txt
+	 ./maximal -KRx -D 2 waves/squeegee/squee224.txt
+
+	# conflict begins in cinch-t, w/ good recovery
+	#./maximal -KR  -D 2 waves/squeegee/squee006.txt
+	 ./maximal -KRx -D 2 waves/squeegee/squee006.txt
+	#./maximal -KR  -D 2 waves/squeegee/squee010.txt
+	 ./maximal -KRx -D 2 waves/squeegee/squee010.txt
+
+	# conflict begins in cinch-k
+	 ./maximal -KRx -D 4 waves/squeegee/squee001.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee002.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee003.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee004.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee005.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee007.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee008.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee009.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee282.txt
+
+	# solved, start at solved-41
+
+echo
+echo
+echo
+echo "$0"
+echo
+echo
+./surfboard-checkmha
+echo 'Commit WCR average of 14 (PISO=6): 0.466429 (13/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (PISO=5): 0.477143 (10/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (PISO=4): 0.469286 ( 6/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (PISO=3): 0.469286 ( 0/14 solved)' | tee -a Corduroy.log
+echo | tee -a Corduroy.log
