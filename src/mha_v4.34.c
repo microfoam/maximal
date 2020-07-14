@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	int match      = MATCH;
 	int transition = TRANSITION;			
 	int mismatch   = MISMATCH;
-	char version[] = "4.33";				/* current development version number */
+	char version[] = "4.34";				/* current development version number */
 
 	int c=0, f=0, i=0; 
 	short unsigned int pairwise = 0;	
@@ -908,7 +908,7 @@ int main(int argc, char *argv[])
 						}
 					}
 	
-					/* IF SUMMING PATHBOX DIAGONAL 5/: SKIP CINCH IF IMPERFECT WHILE CONTAINING PERFECT TR AT SAME COLUMN OF SMALLER K */
+					/* IF SUMMING PATHBOX DIAGONAL 5/: SKIP CINCH IF IMPERFECT WHILE CONTAINING PERFECT TR AT SAME SITE OF SMALLER K */
 					if (imperfect_TR && tela[n].or < 2) {
 						for (l=k/2; l>1; l--) {
 							for (i=0; i<l; i++) {
@@ -916,7 +916,11 @@ int main(int argc, char *argv[])
 									break;	
 							}
 							if (i==l) {
+								if (dev_print(MAIN,__LINE__))
+									printf("Skipping imperfect TR (k=%d) in favor of smaller perfect k-mer (k=%d) at same site n=%d.", k,l,n);
 								Dtr = imperfect_TR = 0;
+								tela[n].X = '\0';
+								m = n-l - 1;			/* TAKE ADVANTAGE OF KNOWN PERFECT SMALLER k-MER & ADVANCE ROW; -1 B/C UPCOMING INCREMENT */
 								break;
 							}
 						}
@@ -1015,7 +1019,7 @@ int main(int argc, char *argv[])
 							Dtr = imperfect_TR = 0;
 							pull_tela(n);
 							if (dev_print(MAIN,__LINE__)) {
-								printf("push_tela violations=%d (+1 CONT, +2 EQUIV). Skipping k=%d-mer at n=%d.", o, k, n);
+								printf("push_tela violations=%d (+1 CONT, +2 EQUIV). Skipping k=%d-mer at n=%d, imperfect_TR=%d.",o,k,n,imperfect_TR);
 								print_tela(prtela_A, prtela_B);
 							}
 						}
@@ -1053,7 +1057,7 @@ int main(int argc, char *argv[])
 							if (r<reps) {
 								p = r*k;
 								push_tela(n+p, m+p, THREE);
-	
+
 								if (imperfect_TR) {
 									for (i=0; i<k; i++) {
 										pathbox[n+p+i][m+i] = 82; 	/* "R" LOWER-LEFT */
@@ -1066,10 +1070,9 @@ int main(int argc, char *argv[])
 							else {
 								Atr = Did = Dtr = TRcheck = sumspan = conflict_flag = 0;
 								int series;				/* POSITION OF SERIES OF PRODUCTS & SUMS OF PRODUCTS */
-	
-								if (imperfect_TR) {
+
+								if (imperfect_TR)
 									assign_transit(n,THREE); 	/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
-								}
 	
 								/* IF CYCLE REPEAT, STORE CYCLE RUN. CYCLIC REPEATS CAN BE REPEATS IN MORE THAN ONE FRAME. MUST BE >2k */
 								i = 0;			/* CYCLE[] ARRAY INDEX */

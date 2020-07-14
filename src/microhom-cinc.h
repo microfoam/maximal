@@ -379,6 +379,15 @@ int cinch_k(short unsigned int mode)
 					break;		/* BREAK OUT OF FOR n LOOP */
 				}
 
+				if (nuctransit && keep_checking && k<=PISO) {			/* SKIP IF CANNOT BE CINCHED B/C OF SUB-THRESHOLD FRACTALS AT ANY PARALOGOUS POSITION */
+					for (l=0; l<k; l++) {
+						if (tela[tela_m+l].t!=tela[tela_m+l].c || tela[tela_n+l].t!=tela[tela_n+l].c) {
+							keep_checking = check_imperf = 0;
+							break;
+						}
+					}
+				}
+
 				/* CHECK FOR TR OF SIZE k-MER */
 				if (keep_checking) {
 					if (k>1)
@@ -445,7 +454,7 @@ int cinch_k(short unsigned int mode)
 				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym) {
 					keep_checking = check_imperf = 0;
 				}
-				else if (nuctransit && k>1 && isalpha( letr=consensus[n-x+y+k*(1+tela[tela_n].or)] )
+				else if (keep_checking && nuctransit && k>1 && isalpha( letr=consensus[n-x+y+k*(1+tela[tela_n].or)] )
 							&& tela[tela_n].statf!=st_fract.sym && tela[tela_m].stat!=st_parent.sym ) {
 					for (l=1; l<=tela_m; l++) {
 						if (tela[l].x==n+k && tela[l].c!=letr) {
@@ -454,6 +463,7 @@ int cinch_k(short unsigned int mode)
 						}
 					}
 				}
+
 				if (keep_checking && k>2 && tela[tela_m].statl==st_lowcm.sym && tela[tela_m+1].statl==st_lowcm.sym) {
 					for (l=0; l<2*k; l++) {
 						if (tela[tela_m+l].statf==st_fract.sym) 
@@ -686,18 +696,6 @@ int cinch_k(short unsigned int mode)
 					if (align2D[i][0] && align2D[i][n]==blnk && isalpha(align2D[i][j]))
 							keep_checking = imperfect_TR = 0;
 				}
-
-				if ((keep_checking||imperfect_TR) && tela[tela_n].statf==st_fract.sym && isalpha(letr=align2D[m][n+2*k])) {
-					int mrow = m;
-					while (align2D[mrow+1][0]) {
-						if (!isalpha(align2D[mrow+1][n+k]) && isalpha(align2D[mrow+1][n+2*k-1])) {
-							keep_checking = imperfect_TR = 0;
-							break;
-						}
-
-						mrow++;
-					}
-				}	
 
 				/**************************************************************************************************/
 				if (keep_checking || imperfect_TR) {

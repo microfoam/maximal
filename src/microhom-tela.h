@@ -455,13 +455,22 @@ int next_k(int n, int k1, short unsigned int seqtype)
 						break;
 				}
 
-				if      (tela[m+i].c=='G' || tela[n+i].c=='G')
+				if      (tela[m+i].c=='G')
 					purG++;
-				else if (tela[m+i].c=='C' || tela[n+i].c=='C')
+				else if (tela[m+i].c=='C')
 					pyrC++;
-				else if (tela[m+i].c=='A' || tela[n+i].c=='A')
+				else if (tela[m+i].c=='A')
 					purA++;
-				else if (tela[m+i].c=='T' || tela[n+i].c=='T')
+				else if (tela[m+i].c=='T')
+					pyrT++;
+
+				if      (tela[n+i].c=='G')
+					purG++;
+				else if (tela[n+i].c=='C')
+					pyrC++;
+				else if (tela[n+i].c=='A')
+					purA++;
+				else if (tela[n+i].c=='T')
 					pyrT++;
 			}
 			if (i==k) {
@@ -469,7 +478,10 @@ int next_k(int n, int k1, short unsigned int seqtype)
 					 			 ((pyrC||pyrT) && !purA && !purG)) ) {
 					tela[n].k0 = k;			/* SAVE k-MER FOR CINCH-K */
 				}
-				else return(k);
+				else if (transits)
+					return(-k);			/* RETURN NEGATIVE VALUE TO INDICATE IMPERFECT TR */
+				else 
+					return(k);
 			}
 		}
 		return(0);
@@ -516,12 +528,19 @@ void mark_tela(void)
 	for (n=1; n<lenseq; n++) {
 		for (k=WIDTH; k>floor; k--) {
 			k2 = k1 = k_tmp=0;
-			if ((k_tmp=next_k(n,k,nuctype))>floor) {
+			if ((k_tmp=next_k(n,k,nuctype))<0)
+				 k1=next_k(n,k_tmp,nuctype);
+
+			if  (k_tmp>floor || k1>floor) {
 				if (!tela[n].k1 && !check_fractals_in_imperfect(k_tmp,n)) {
-					tela[n].k1 = k1 = k_tmp;
+					if (k1>floor)
+						tela[n].k1 = k_tmp = k1;
+					else
+						tela[n].k1 = k1 = k_tmp;
+
 					if ((k_tmp=next_k(n,k1,nuctype))>floor) {
-						if (k_tmp==tela[n-1].k1 && k1%k_tmp==0 && k1-k_tmp==k_tmp) {
-							for (i=0; i<k1-k_tmp; i++) {
+						if (k_tmp==tela[n-1].k1 && k1==2*k_tmp && !(k1%k_tmp)) {
+							for (i=0; i<k_tmp; i++) {
 								if (tela[n+i].c!=tela[n+i+k_tmp].c)
 									break;
 							}
@@ -627,13 +646,13 @@ void mark_tela(void)
 							break;
 						}
 					}
-					if (k2_check && k>prev_k && k % prev_k) {
-						push_mem(n,  0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+					if (k2_check && k>prev_k && k % prev_k) {	/* CAN BE TURNED O F F, BUT WIDER WCR's INCLUDING ABBA-ZABBA SERIES. v4.33, 7/12/2020 */
+						push_mem(n,  0);						/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 						push_mem(n-1,1);
 						push_mem(n  ,1);
-						tela[n-1].stat = st_Fract.sym;
+						tela[n-1].stat = st_Fract.sym;			/* st_Fract = orphan fractal */
 						tela[n  ].stat = st_Fract.sym;
-						tela[n  ].cyc_k = k;			/* IN CASE all_k GETS OVER-WRITTEN CAN LOOK HERE FOR CANCELED ONE */
+						tela[n  ].cyc_k = k;					/* IN CASE all_k GETS OVER-WRITTEN CAN LOOK HERE FOR CANCELED ONE */
 						n += k-1;
 						Dtr = 0; 
 					}
@@ -644,7 +663,7 @@ void mark_tela(void)
 							tela[n-prev_k].statf = st_fract.sym;
 							tela[n       ].statf = st_fract.sym;
 						}
-						else {
+						else {						/* CAN BE TURNED O F F WITH WIGGLE IN WCR (WIDER) BUT NOT EXTRA CHOWDER. v4.33, 7/12/2020 */
 							push_mem(n  ,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 							push_mem(n  ,2);
 							tela[n  ].stat = st_Fract.sym;
@@ -771,7 +790,6 @@ void mark_tela(void)
 									tela[n].stat = st_Fract.sym;
 							}
 							TRcheck = 0;
-							break;			/* BREAK OUT OF WHILE (TRCHECK) */
 						}
 					}
 					if (dev_print(TELA,__LINE__)) {
@@ -1011,6 +1029,15 @@ void mark_tela(void)
 					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 					recslips += span_ork(i); 
+
+					if (tela[n].or>1) {				/* PROPAGATE FRACTAL STATUS TO REST OF REPEATS */
+						for (i=1; i<tela[n].or; i++) {
+							for (j=0; j<tela[n].ok; j++) {
+								if (tela[n+j].statf==st_fract.sym)
+									tela[n+j+k*i].statf = st_fract.sym;
+							}
+						}
+					}
 				}
 				else if (tela[i].ok && (i + tela[i].ok * (tela[i].or-1)) > m-recslips) {
 					/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
@@ -1634,7 +1661,8 @@ void pull_tela(int n)
 	}
 
 	tela[n].r = 0;
-	tela[n].echoes = tela[n].cyc_o = cyc_skip.sym;
+/*	tela[n].echoes = tela[n].cyc_o = cyc_skip.sym;
+*/
 }
 
 
