@@ -529,7 +529,8 @@ void mark_tela(void)
 		for (k=WIDTH; k>floor; k--) {
 			k2 = k1 = k_tmp=0;
 			if ((k_tmp=next_k(n,k,nuctype))<0) {
-				k1=next_k(n,k_tmp,0);
+				k1=next_k(n,abs(k_tmp),nuctype);
+				k = abs(k_tmp);
 			}
 
 			if  (k_tmp>floor || k1>floor) {

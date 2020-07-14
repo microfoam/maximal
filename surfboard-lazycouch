@@ -40,5 +40,9 @@ else
 	echo "$0: Hit <enter> to step through cleanup_set-churlychurly."
 	read -s -n1 answer
 	./surfboard-cleanup_set-churlychurly 
+
+	echo "$0: Hit <enter> to continue to cleanup_set-squeegee."
+	read -s -n1 answer
+	./surfboard-cleanup_set-squeegee
 fi
 

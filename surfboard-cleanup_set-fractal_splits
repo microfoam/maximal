@@ -18,12 +18,12 @@ fi
 
 
 # DIAGNOSTIC TESTS START ON LINE 21
-./maximal  -KnR -D 8 waves/chowder/seq26-snippet.txt 
-./maximal  -KnR -D 8 waves/chowder/gal11-knot1.txt 
-./maximal  -KnR -D 8 waves/chowder/seq26-variations1.txt 
-./maximal  -KnR -D 8 waves/chowder/seq26-variations2.txt 
-./maximal  -KnR -D 8 waves/chowder/snippet-string02-t.txt
-./maximal  -KnR -D 8 waves/chowder/snippet-seq-014-cycle3.txt 
+./maximal  -KnR waves/chowder/seq26-snippet.txt 
+./maximal  -KnR waves/chowder/gal11-knot1.txt 
+./maximal  -KnR waves/chowder/seq26-variations1.txt 
+./maximal  -KnR waves/chowder/seq26-variations2.txt 
+./maximal  -KnR waves/chowder/snippet-string02-t.txt
+./maximal  -KnR waves/chowder/snippet-seq-014-cycle3.txt 
 
 echo
 echo
