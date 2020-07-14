@@ -526,15 +526,15 @@ void mark_tela(void)
 	/* Annotations of the largest (k1) and second largest (k2) k-mers at position n are permanent. */
 	/* Annotation at all_k is eraseable and is the operational k-mer used at that position.        */
 	for (n=1; n<lenseq; n++) {
+		k2 = k1 = k_tmp=0;
 		for (k=WIDTH; k>floor; k--) {
-			k2 = k1 = k_tmp=0;
 			if ((k_tmp=next_k(n,k,nuctype))<0) {
 				k = abs(k_tmp);
 				k1=next_k(n,k,nuctype);
 			}
 
 			if  (k_tmp>floor || k1>floor) {
-				if (!tela[n].k1 && !check_fractals_in_imperfect(k_tmp,n)) {
+				if (!tela[n].k1 && !checkfractals_in_imperfect(k_tmp,n)) {
 					if (k1>floor)
 						tela[n].k1 = k_tmp = k1;
 					else
