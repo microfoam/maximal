@@ -512,9 +512,6 @@ void mark_tela(void)
 	unsigned short int nuctransit=0, TRcheck=0, imperfect_TR=0, Aimperfect_TR=0, gapcheck=0;
 	int homopoly_flag=0, Did=0, Dtr=0, Atr=0;
 	unsigned short int checkconflict=0;
-	int transit_ctr = 0;
-	int transitloc[4] = {-1};
-	short unsigned int transitlocsize = 4;
 	int prev_k;
 	int k1=0, k2=0, k_tmp=0;
 	short unsigned int floor=1;
@@ -568,9 +565,6 @@ void mark_tela(void)
 
 	for (n = 1; n<=lenseq; n++) {
 		for (m = 0; m < n; m++) {
-			transit_ctr = 0;
-			for (i = 0; i<transitlocsize; i++)
-				transitloc[i] = -1; 
 
 			/* FOR ROW m LOOP 1/5: SLIDE DOWN TO ROW WITHIN POPULATED HEMIDIAGONAL */
 			if (n-m > WIDTH+1) 
@@ -611,10 +605,8 @@ void mark_tela(void)
 					}
 					else if (tela[m+j].c == tela[n+j].c) 
 						Dtr += MATCH;	
-					else if (nuctransit && tela[m+j].e == tela[n+j].e && transit_ctr<transitlocsize) {
+					else if (nuctransit && tela[m+j].e == tela[n+j].e) 
 						Dtr += TRANSITION;
-						transitloc[transit_ctr++]=j;
-					}
 					else {
 						Dtr = 0;
 						break;
@@ -634,9 +626,8 @@ void mark_tela(void)
 
 				/* IF SUMMING PATHBOX DIAGONAL 3/4: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
 				if (nuctransit && Dtr && Dtr!=Did) { 
-					if (k>PISO && 100*Dtr/Did > threshold)	{	
-						imperfect_TR = 1;			/* CALLING TR W/ TRANSITIONS FOR n BLOCK VS m BLOCK */
-					}
+					if (k>PISO && 100*Dtr/Did > threshold)
+						imperfect_TR = 1;
 					else 
 						Dtr = 0;
 				}
@@ -684,26 +675,19 @@ void mark_tela(void)
 
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPLEGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
 				/* IF SO, CANCEL TR AT n */
-				if (Dtr && imperfect_TR) {
-					int t = 0;
-					while ((j=transitloc[t]) != -1 && t<transitlocsize) {
-						for (fract_k = 2; fract_k <= (int) k/2; fract_k++) {
-							for (i = fract_k; i < k-fract_k; i++) {
-								if (fract_k<=PISO && tela[m+i].ok == fract_k && j>=i-fract_k && j<=i+span_ork(m+i) && i+span_ork(m+i)<=k) {
-									if (dev_print(TELA,__LINE__)) {
-										printf("Calling conflict between perfect and imperfect fractal TRs for parent " 
-												"k=%d at n=%d, transition at j=%d, and fractal TR at m+i=%d.", k, n, j, m+i); 
-									}
+				if (Dtr && imperfect_TR && k%3) {
+					for (i=m+1; i<n; i++) {
+						if ((fract_k=tela[i].ok) && fract_k<=PISO && i + span_ork(i) <= n) {
+							for (j=i-fract_k; j<i+fract_k; j++) {
+								if (tela[j].c!=tela[j+k].c) {
 									clearall_tela(n,1,-1,TWO);
 									push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 									push_mem(n,3);
 									Dtr=0;
-									t = transitlocsize; 	/* To cause break out of fract_k loop */
-									break; 					/* To break out of i loop */
+									break;
 								}
 							}
 						}
-						t++;
 					}
 				}
 

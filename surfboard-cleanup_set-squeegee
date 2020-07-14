@@ -18,31 +18,26 @@ fi
 
 
 	# conflict begins in cinch-t, poor recovery
-	#./maximal -KR  -D 2 waves/squeegee/squee112.txt
-	 ./maximal -KRx -D 2 waves/squeegee/squee112.txt
-	#./maximal -KR  -D 2 waves/squeegee/squee216.txt
 	 ./maximal -KRx -D 2 waves/squeegee/squee216.txt
-	#./maximal -KR  -D 2 waves/squeegee/squee224.txt
 	 ./maximal -KRx -D 2 waves/squeegee/squee224.txt
 
 	# conflict begins in cinch-t, w/ good recovery
-	#./maximal -KR  -D 2 waves/squeegee/squee006.txt
 	 ./maximal -KRx -D 2 waves/squeegee/squee006.txt
-	#./maximal -KR  -D 2 waves/squeegee/squee010.txt
 	 ./maximal -KRx -D 2 waves/squeegee/squee010.txt
 
 	# conflict begins in cinch-k
-	 ./maximal -KRx -D 4 waves/squeegee/squee001.txt
-	 ./maximal -KRx -D 4 waves/squeegee/squee002.txt
-	 ./maximal -KRx -D 4 waves/squeegee/squee003.txt
-	 ./maximal -KRx -D 4 waves/squeegee/squee004.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee004.txt	# multi-PISO chowder
 	 ./maximal -KRx -D 4 waves/squeegee/squee005.txt
-	 ./maximal -KRx -D 4 waves/squeegee/squee007.txt
-	 ./maximal -KRx -D 4 waves/squeegee/squee008.txt
 	 ./maximal -KRx -D 4 waves/squeegee/squee009.txt
-	 ./maximal -KRx -D 4 waves/squeegee/squee282.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee002.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee007.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee001.txt
+	 ./maximal -KRx -D 4 waves/squeegee/squee003.txt
 
 	# solved, start at solved-41
+	 ./maximal -KRx -D 2 waves/squeegee/squee112.txt	# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
+	 ./maximal -KRx -D 4 waves/squeegee/squee008.txt	# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
+	 ./maximal -KRx -D 4 waves/squeegee/squee282.txt	# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
 
 echo
 echo
@@ -54,5 +49,5 @@ echo
 echo 'Commit WCR average of 14 (PISO=6): 0.466429 (13/14 solved)' | tee -a Corduroy.log
 echo 'Commit WCR average of 14 (PISO=5): 0.477143 (10/14 solved)' | tee -a Corduroy.log
 echo 'Commit WCR average of 14 (PISO=4): 0.469286 ( 6/14 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (PISO=3): 0.469286 ( 0/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (PISO=3): 0.460714 ( 3/14 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
