@@ -528,8 +528,9 @@ void mark_tela(void)
 	for (n=1; n<lenseq; n++) {
 		for (k=WIDTH; k>floor; k--) {
 			k2 = k1 = k_tmp=0;
-			if ((k_tmp=next_k(n,k,nuctype))<0)
-				 k1=next_k(n,k_tmp,nuctype);
+			if ((k_tmp=next_k(n,k,nuctype))<0) {
+				k1=next_k(n,k_tmp,0);
+			}
 
 			if  (k_tmp>floor || k1>floor) {
 				if (!tela[n].k1 && !check_fractals_in_imperfect(k_tmp,n)) {
@@ -538,7 +539,7 @@ void mark_tela(void)
 					else
 						tela[n].k1 = k1 = k_tmp;
 
-					if ((k_tmp=next_k(n,k1,nuctype))>floor) {
+					if ((k_tmp=next_k(n,k1,0))>floor) {
 						if (k_tmp==tela[n-1].k1 && k1==2*k_tmp && !(k1%k_tmp)) {
 							for (i=0; i<k_tmp; i++) {
 								if (tela[n+i].c!=tela[n+i+k_tmp].c)
