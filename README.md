@@ -20,6 +20,8 @@ The file "maximal" currently corresponds to a MAC OS-compatible executible.
 Older code versions are saved in the "Pointbreak/" directory.
 Some of the file descriptions below may be a bit outdated but still convey the spirit of this project.
 
+Most of the scripts in this directory are for program development and testing purposes.
+
 _______________________________________________
 FILES: surfboard-*
 
