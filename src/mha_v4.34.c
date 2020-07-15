@@ -808,6 +808,13 @@ int main(int argc, char *argv[])
 				/* FOR ROW m LOOP 2/6: SLIDE DOWN TO ROW WITHIN POPULATED HEMIDIAGONAL */
 				if (n-m > WIDTH+1) 
 					m = n-WIDTH;
+
+				if (!tela[n].k1) {				/* THIS BLOCK SKIPS IMPERFECT k-MERS THAT ARE MULTIMERS OF A SMALLER UNIT SIZE */
+					int k1=abs(k=next_k(n,n-m,1)); 
+					int k2=0;
+					if (k<0 && (k2=next_k(n,k1,1))<0 && !(k1%abs(k2)))
+						m = n + k2;
+				}
 	
 				/* FOR ROW m LOOP 3/6: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
 				k = n-m;
@@ -1249,7 +1256,7 @@ int main(int argc, char *argv[])
 												i--;
 											if (tela[i].cyc_o == cyc_take.sym) {
 												if (dev_print(MAIN,__LINE__)) 
-													printf("i=%d (cpos), j-i=%d (delta), n=%d (npos), series=%d", i,j-i,n,series);
+													printf("bslip type 30 info: i=%d (cpos), j-i=%d (delta), n=%d (npos), series=%d", i,j-i,n,series);
 												if (cyclelize_tela(i, j-i, n)) {
 													badslip_type = 30;					/* FROM SEQUENCE IN TYPES: 1-3-5-10- (30) -50-100-300-500 */
 													Current.pass_R += badslip_type;

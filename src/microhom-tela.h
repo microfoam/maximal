@@ -323,8 +323,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 				cycle_end = cpos+delta+k*tela[(cpos+delta)].or;
 				for (j = cycle_end; j < npos; j++) {
 					align2D[m][++n] = tela[j].c;
-					tela[j].y = m;
-					tela[j].x += k;
+					tela[j].y = m+1;
 				}
 			}
 		}
