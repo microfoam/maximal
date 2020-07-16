@@ -633,7 +633,7 @@ void mark_tela(void)
 
 				/** MOD TESTS. Original example for if part: seq-146-v344_33-snippet.txt    **/
 				/**            Original example for if else part: seq-15-cycle4-snippet.txt **/
-				if (Dtr && (prev_k=tela[n-1].ok) && prev_k != k) {
+				if (Dtr && (prev_k=tela[n-1].ok) && prev_k!=k) {
 					short unsigned int k2_check=1;
 					for (i=n; i<n+k; i++) {
 						if (tela[i].k2) {
@@ -761,7 +761,7 @@ void mark_tela(void)
 									if (tela[n  ].stat!=st_parent.sym)
 										tela[n  ].stat = st_cycle.sym;
 								}
-								else if (tela[n-proj_k].ok==k && n-k>=projector) {
+								else if ((tela[n-proj_k].ok==k || tela[n-proj_k].k1==k) && n-k>=projector) {
 									tela[projector].stat = st_parent.sym;
 									if (dev_print(TELA,__LINE__))
 										printf("Calling parent at %d.", projector);
