@@ -525,8 +525,9 @@ void mark_tela(void)
 		k2 = k1 = k_tmp=0;
 		for (k=WIDTH; k>floor; k--) {
 			if ((k_tmp=next_k(n,k,nuctype))<0) {
+				tela[n].impk = k_tmp;
 				k = abs(k_tmp);
-				k1=next_k(n,k,nuctype);
+				k1 = next_k(n,k,nuctype);
 			}
 
 			if  (k_tmp>floor || k1>floor) {
@@ -674,7 +675,7 @@ void mark_tela(void)
 
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPLEGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
 				/* IF SO, CANCEL TR AT n */
-				if (Dtr && imperfect_TR && k%3) {
+				if (Dtr && imperfect_TR && (k<9 || k%3)) {
 					for (i=m+1; i<n; i++) {
 						if ((fract_k=tela[i].ok) && fract_k<=PISO && i + span_ork(i) <= n) {
 							for (j=i-fract_k; j<i+fract_k; j++) {
@@ -687,6 +688,11 @@ void mark_tela(void)
 								}
 							}
 						}
+					else if ((fract_k=tela[i].k1) && fract_k<=PISO && i + tela[i].k1 <= n && !tela[i+k].k1) {
+						tela[i  ].statf = st_fract.sym;
+						tela[n  ].stat  = st_parent.sym;
+						tela[i+k].stat  = st_Fract.sym;
+					}
 					}
 				}
 
@@ -1465,6 +1471,13 @@ int lenseq = Clean.pass_W;
 	for (i=a; i<=b; i++) {
 		if (tela[i].k2)
 			printf("%3d", tela[i].k2);
+		else
+			printf("  .");
+	}
+	printf("\nik:");
+	for (i=a; i<=b; i++) {
+		if (tela[i].impk<0)
+			printf("%3d", tela[i].impk);
 		else
 			printf("  .");
 	}

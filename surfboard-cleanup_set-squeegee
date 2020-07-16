@@ -1,6 +1,6 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < squeegee >' >> Corduroy.log
+echo '                                               < squeegee: PISO 3 -x chowder >' >> Corduroy.log
 
 while getopts c option
 do
@@ -15,9 +15,8 @@ done
 if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
-
-	# conflict begins in cinch-t, w/ good recovery
-	 ./maximal -KRx -D 2 waves/squeegee/squee006.txt	# chowder at PISO 3
+														# LISTINGS AS CHOWDER UNDER PISO = 3
+	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
 	 ./maximal -KRx -D 4 waves/squeegee/squee004.txt	# multi-PISO chowder
@@ -35,6 +34,7 @@ fi
 	 ./maximal -KRx -D 2 waves/squeegee/squee216.txt	# solved-42 squash imperfect k-mer that is a multiple of underlying imperfect TR
 	 ./maximal -KRx -D 2 waves/squeegee/squee224.txt	# solved-43 needed extra condition for calling parents and fractals pushmem 4; 7286 lines
 	 ./maximal -KRx -D 2 waves/squeegee/squee010.txt	# solved-44 allowing fractal call based on k1 in addition to ok; 7286 lines
+	 ./maximal -KRx -D 2 waves/squeegee/squee006.txt	# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines
 
 echo
 echo
@@ -44,7 +44,7 @@ echo
 echo
 ./surfboard-checkmha
 echo 'Commit WCR average of 14 (PISO=6): 0.466429 (13/14 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (PISO=5): 0.477143 (11/14 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (PISO=4): 0.466429 ( 9/14 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (PISO=3): 0.460714 ( 6/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (PISO=5): 0.477143 (12/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (PISO=4): 0.467143 ( 9/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (PISO=3): 0.461429 ( 7/14 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

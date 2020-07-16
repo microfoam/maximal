@@ -61,6 +61,7 @@ struct coord {
 	int k0;			/* ALL SERIES: PRE-CINCH-T: k-MER; largest k at pos. n, undone	*/	
 	int k1;			/* ALL SERIES: PRE-CINCH-T: k-MER; largest k at pos. n        	*/
 	int k2;			/* ALL SERIES: PRE-CINCH-T: k-MER; smaller k at pos. n        	*/
+	int impk;		/* ALL SERIES: PRE-CINCH-T: imperfect k-mer not called for k1	*/
 	int all_S;		/* ALL SERIES: PRE-CINCH-T: SUM OF SCORES OVER ALL UNITS      	*/
 	char  DEV;		/* DEV-use; MARKS FOR INTERPRETATION NOT FOR CHANGING BEHAVIOR	*/
 	int all_Z;		/* ALL SERIES: PRE-CINCH-T: ALL_S + TIE-BREAKERS			  	*/
