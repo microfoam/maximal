@@ -17,8 +17,8 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t, w/ good recovery
-	 ./maximal -KRx -D 2 waves/squeegee/squee006.txt
-	 ./maximal -KRx -D 2 waves/squeegee/squee010.txt
+	 ./maximal -KRx -D 2 waves/squeegee/squee010.txt	# chowder at PISO 3, 4, and 5
+	 ./maximal -KRx -D 2 waves/squeegee/squee006.txt	# chowder at PISO 3
 
 	# conflict begins in cinch-k
 	 ./maximal -KRx -D 4 waves/squeegee/squee004.txt	# multi-PISO chowder
