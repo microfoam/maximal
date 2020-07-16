@@ -35,7 +35,7 @@ fi
 	 ./maximal -KRx -D 2 waves/squeegee/squee216.txt	# solved-42 squash imperfect k-mer that is a multiple of underlying imperfect TR
 	 ./maximal -KRx -D 2 waves/squeegee/squee224.txt	# solved-43 needed extra condition for calling parents and fractals pushmem 4; 7286 lines
 	 ./maximal -KRx -D 2 waves/squeegee/squee006.txt	# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines
-	 ./maximal -KRx -D 4 waves/squeegee/squee004.txt	# solved-46 multi-PISO chowder, cinch-k tela logic conversion of nuctransit check
+	 ./maximal -KRx -D 4 waves/squeegee/squee004.txt	# solved-46 multi-PISO chowder, cinch-k tela logic conversion of nuctransit check; 7300 lines
 
 echo
 echo
