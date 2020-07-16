@@ -761,12 +761,15 @@ void mark_tela(void)
 									if (tela[n  ].stat!=st_parent.sym)
 										tela[n  ].stat = st_cycle.sym;
 								}
-								else if (tela[n-proj_k].ok == k) {
+								else if (tela[n-proj_k].ok==k && n-k>=projector) {
 									tela[projector].stat = st_parent.sym;
 									if (dev_print(TELA,__LINE__))
 										printf("Calling parent at %d.", projector);
 									tela[n       ].statf = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
 									tela[n-proj_k].statf = st_fract.sym;		/* MATCHING PAIR */
+									push_mem(n, 4);
+									push_mem(projector, 4);
+									push_mem(n-proj_k, 4);
 									i = n-proj_k-1;
 									while (tela[i].ok == k && tela[i].stat == st_cycle.sym && i>=projector-proj_k && tela[i].or<2) {
 										clearall_tela(i,1,-1,TWO);
@@ -784,9 +787,10 @@ void mark_tela(void)
 						printf("Repeats=%d (n=%d for k-mer=%d)", reps,n,k);
 					}
 					/* v4.30: MARK FRACTAL TR'S FOR CINCH-T TO SKIP, AND LEAVE FOR CINCH-K */
-					if (n>3 /* && !tela[n-1].ok */) { 
+					if (n>3) {
 						for (i=m+1; i<n; i++) {	
-							if ((fract_k=tela[i].ok)) {
+							if (tela[i].ok) {
+								fract_k = tela[i].ok;			/* POSSIBLE FRACTAL TO BE CHECKED */
 								if (fract_k > (int) k/2) { 	
 									short unsigned int mono_sep = 0;
 									if (i+fract_k < n) {
@@ -807,9 +811,9 @@ void mark_tela(void)
 										tela[i].statl = st_overl.sym;
 									}
 								}
-								else if (tela[n].all_S > tela[i].all_S) {	/* m+2 B/C IS EARLIEST CAN HAVE FRACTAL DINUCL REPEAT IN SHADOW */
+								else if (tela[n].all_S > tela[i].all_S) {
 									if (i + span_ork(i) <= n && tela[i].ok != k)  {
-										if (i-tela[i].ok >= m && tela[i].all_S == tela[i+k].all_S) {
+										if (i-fract_k>=m+fract_k && tela[i].all_S==tela[i+k].all_S) {
 											tela[ n ].stat = st_parent.sym;
 											if (dev_print(TELA,__LINE__))
 												printf("Calling parent at %d.", n);
@@ -825,12 +829,6 @@ void mark_tela(void)
 								}
 							}
 						} /* END OF FOR LOOP THROUGH SHADOW STARTING AT m+1 */
-
-						/* MARK FRACTAL TR's AT m, MASKED BY PARENT TR */
-						if (tela[m].ok && tela[m].ok != k && tela[m].ok==tela[n].k2 && m+span_ork(m) <= n) {
-							tela[m].statf = st_fract.sym;
-							push_mem(m, 7);	/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
-						}
 					}
 					if (!skip_break)
 						break;				/* OTHERWISE MAY OVERWRITE TR WITH ONE OF SMALLER K */

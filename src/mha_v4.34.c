@@ -813,7 +813,7 @@ int main(int argc, char *argv[])
 					int k1=abs(k=next_k(n,n-m,1)); 
 					int k2=0;
 					if (k<0 && (k2=next_k(n,k1,1))<0 && !(k1%abs(k2)))
-						m = n + k2;
+						m = n + k2;		/* k2 IS NEGATIVE */
 				}
 	
 				/* FOR ROW m LOOP 3/6: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
