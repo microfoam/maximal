@@ -19,23 +19,23 @@ fi
 	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
-	 ./maximal -KRx -D 4 waves/squeegee/squee005.txt
-	 ./maximal -KRx -D 4 waves/squeegee/squee002.txt
-	 ./maximal -KRx -D 2 waves/squeegee/squee010.txt	# solved-44 allowing fractal call based on k1 in addition to ok; 7286 lines
+	 ./maximal -KRx -D 4 waves/squeegee/squee010.txt	# solved-44 allowing fractal call based on k1 in addition to ok; 7286 lines
 														# re-appeared for PISO 4 and 5 with solved-46; different issue; captured in same snippet
 
 	# solved, start at solved-41
-	 ./maximal -KRx -D 2 waves/squeegee/squee112.txt	# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
-	 ./maximal -KRx -D 4 waves/squeegee/squee008.txt	# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
-	 ./maximal -KRx -D 4 waves/squeegee/squee282.txt	# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
-	 ./maximal -KRx -D 2 waves/squeegee/squee216.txt	# solved-42 squash imperfect k-mer that is a multiple of underlying imperfect TR
-	 ./maximal -KRx -D 2 waves/squeegee/squee224.txt	# solved-43 needed extra condition for calling parents and fractals pushmem 4; 7286 lines
-	 ./maximal -KRx -D 2 waves/squeegee/squee006.txt	# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines
-	 ./maximal -KRx -D 4 waves/squeegee/squee004.txt	# solved-46 multi-PISO chowder, cinch-k tela logic conversion of nuctransit check; 7300 lines
-	 ./maximal -KRx -D 4 waves/squeegee/squee009.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
-	 ./maximal -KRx -D 4 waves/squeegee/squee007.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
-	 ./maximal -KRx -D 4 waves/squeegee/squee001.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
-	 ./maximal -KRx -D 4 waves/squeegee/squee003.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
+	 ./maximal -KRx waves/squeegee/squee112.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
+	 ./maximal -KRx waves/squeegee/squee008.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
+	 ./maximal -KRx waves/squeegee/squee282.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
+	 ./maximal -KRx waves/squeegee/squee216.txt		# solved-42 squash imperfect k-mer that is a multiple of underlying imperfect TR
+	 ./maximal -KRx waves/squeegee/squee224.txt		# solved-43 needed extra condition for calling parents and fractals pushmem 4; 7286 lines
+	 ./maximal -KRx waves/squeegee/squee006.txt		# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines
+	 ./maximal -KRx waves/squeegee/squee004.txt		# solved-46 multi-PISO chowder, cinch-k tela logic conversion of nuctransit check; 7300 lines
+	 ./maximal -KRx waves/squeegee/squee009.txt		# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
+	 ./maximal -KRx waves/squeegee/squee007.txt		# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
+	 ./maximal -KRx waves/squeegee/squee001.txt		# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
+	 ./maximal -KRx waves/squeegee/squee003.txt		# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
+	 ./maximal -KRx waves/squeegee/squee002.txt		# solved-48 condition a cinch-k block to only k>1; 7298 lines
+	 ./maximal -KRx waves/squeegee/squee005.txt		# solved-48 condition a cinch-k block to only k>1; 7298 lines
 
 echo
 echo
@@ -45,7 +45,7 @@ echo
 echo
 ./surfboard-checkmha
 echo 'Commit WCR average of 14 (PISO=6): 0.465714 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (PISO=5): 0.478571 (12/14 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (PISO=4): 0.465714 (11/14 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (PISO=3): 0.454286 (12/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (PISO=5): 0.474286 (13/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (PISO=4): 0.457857 (13/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (PISO=3): 0.446429 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

@@ -393,8 +393,7 @@ int cinch_k(short unsigned int mode)
 					if (k>1)
 						homopolyflag = 1;	/* SET HOMOPOLYFLAG STATUS TO UNKNOWN/NEED TO CHECK */
 					else if (nuctransit) {
-						letr = align2D[m][n];
-						if (tela[tela_m].t != tela[tela_m].c || tela[tela_n].t != tela[tela_n].c) {
+						if (tela[tela_m].t!=tela[tela_m].c || tela[tela_n].t!=tela[tela_n].c) {
 							keep_checking = 0;
 						}
 					}
@@ -426,13 +425,12 @@ int cinch_k(short unsigned int mode)
 									homopolyflag = 0;
 								}
 							}
-
 							if (nuctransit && keep_checking) {
 								if (ON && ((letr2=tela[tela_m+l].t)=='R' || letr2=='Y')) 
 									keep_checking = 0;
-								else if (OFF && ((letr2=consensus[n-x+y+l])=='R' || letr2=='Y'))
+								else if (OFF && !x && ((letr2=consensus[n-x+y+l])=='R' || letr2=='Y'))
 									keep_checking = 0;
-								else if ((letr3=consensus[n-x+y+k+l])=='R' || letr3=='Y') 
+								else if (!y && ((letr3=consensus[n-x+k+l])=='R' || letr3=='Y'))
 									keep_checking = 0;
 							}
 
@@ -584,7 +582,7 @@ int cinch_k(short unsigned int mode)
 					}
 				}
 				
-				if (keep_checking && n > scrimmage_line) { 
+				if (keep_checking && k>1 && n>scrimmage_line) {
 					int p=0, q=0;
 
 					if (col_isclear(pathbox,n-x+k,m+cik_row,-1)>-1 && col_isclear(align2D,n+k,m,1)<0) {
