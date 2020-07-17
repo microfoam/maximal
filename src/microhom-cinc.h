@@ -428,9 +428,9 @@ int cinch_k(short unsigned int mode)
 							}
 
 							if (nuctransit && keep_checking) {
-								if (k==1 && col_isclear(align2D,n,m,-1)>-1 && col_isclear(align2D,n,m,1))
-									;
-								else if (n>scrimmage_line && ((letr2=tela[tela_m+l].t)=='R' || letr2=='Y')) 
+								if (ON && ((letr2=tela[tela_m+l].t)=='R' || letr2=='Y')) 
+									keep_checking = 0;
+								else if (OFF && ((letr2=consensus[n-x+y+l])=='R' || letr2=='Y'))
 									keep_checking = 0;
 								else if ((letr3=consensus[n-x+y+k+l])=='R' || letr3=='Y') 
 									keep_checking = 0;
