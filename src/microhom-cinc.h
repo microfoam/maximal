@@ -459,7 +459,7 @@ int cinch_k(short unsigned int mode)
 				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym) {
 					keep_checking = check_imperf = 0;
 				}
-				else if (keep_checking && nuctransit && k>1 && isalpha( letr=consensus[n-x+y+k*(1+tela[tela_n].or)] )
+				else if (keep_checking && nuctransit && k>1 && isalpha( letr=unshifted[n+k*(1+tela[tela_n].or)] )
 							&& tela[tela_n].statf!=st_fract.sym && tela[tela_m].stat!=st_parent.sym ) {
 					for (l=1; l<=tela_m; l++) {
 						if (tela[l].x==n+k && tela[l].c!=letr) {
@@ -515,34 +515,30 @@ int cinch_k(short unsigned int mode)
 						}
 
 						if (align2D[m][n+l] != align2D[m][n+k+l]) { 
-							if ( (letr =consensus[n-x+y + l]) != 'R' && letr  != 'Y' &&
-								 (letr2=consensus[n-x+y+k+l]) != 'R' && letr2 != 'Y' ) {
+							if ( (letr =unshifted[n  +l]) != 'R' && letr  != 'Y' &&
+								 (letr2=unshifted[n+k+l]) != 'R' && letr2 != 'Y' ) {
 								break;
 							}
 
 							/* MAKE SURE A MISMATCH IS NOT BEING GIVEN A PASS WHILE NOT CONFORMING TO TRANSITION TYPE */
-							if ( (letr=consensus[n-x+y+l]) == 'R' && 
-								( (letr2=align2D[m][n+l+k]) == 'C' || letr2 == 'T') ) {
+							if ((letr=unshifted[n+l])=='R' && ((letr2=align2D[m][n+l+k])=='C' || letr2=='T')) {
 								break;
 							}
-							else if (letr == 'Y' && 
-								( (letr2=align2D[m][n+l+k]) == 'A' || letr2 == 'G')) {
+							else if (letr == 'Y' && ((letr2=align2D[m][n+l+k])=='A' || letr2=='G')) {
 								break;
 							}
 
-							if ( (letr=consensus[n-x+y+l+k]) == 'R' && 
-								( (letr2=align2D[m][n+l]) == 'C' || letr2 == 'T') ) {
+							if ((letr=unshifted[n+l+k])=='R' && ((letr2=align2D[m][n+l])=='C' || letr2=='T')) {
 								break;
 							}
-							else if (letr == 'Y' && 
-								( (letr2=align2D[m][n+l]) == 'A' || letr2 == 'G')) {
+							else if (letr == 'Y' && ((letr2=align2D[m][n+l])=='A' || letr2=='G')) {
 								break;
 							}
 
 							sum4score += MATCH;		/* JUSTIFICATION: MATCHES TRANSITION CALL */
 						}
 						/* IF LETTER AT n+l EQUAL TO LETTER AT n+l+k except 'n' */
-						else if ((align2D[m][n+l] != ambig.sym) && (align2D[m][n+l+k] != ambig.sym))	
+						else if (align2D[m][n+l]!=ambig.sym && align2D[m][n+l+k]!=ambig.sym)
 							sum4score += MATCH;
 					} /* END OF FOR l SCAN LOOPS */
 
@@ -600,7 +596,7 @@ int cinch_k(short unsigned int mode)
 						while (i==k) {
 							for (i = 0; i < k; i++) {
 								q = n+r*k+i;
-						    	if (q>=Current.pass_W || n+i>=Current.pass_W || ((letr=align2D[m][n+i]) != (letr2=align2D[m][q]) && isalpha(letr) && isalpha(letr2))) {
+							if (q>=Current.pass_W || n+i>=Current.pass_W || ((letr=align2D[m][n+i])!=(letr2=align2D[m][q]) && isalpha(letr) && isalpha(letr2))) {
 									break;
 								}
 					        }    
