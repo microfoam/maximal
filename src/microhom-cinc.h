@@ -251,6 +251,10 @@ int cinch_k(short unsigned int mode)
 	int lenseq = Clean.pass_W;
 	int tela_m = 0, tela_n = 0;
 	int *x_history = NULL;
+	char unshifted[MAXROW] = {0};
+
+	for (i=0; i<=Current.pass_W; i++)
+		unshifted[i] = consensus[i];
 
 	x_history = (int *)calloc(lenseq, sizeof(int));
 	clear_pathbox();
@@ -379,13 +383,18 @@ int cinch_k(short unsigned int mode)
 					break;		/* BREAK OUT OF FOR n LOOP */
 				}
 
-				if (nuctransit && keep_checking && k<=PISO) {			/* SKIP IF CANNOT BE CINCHED B/C OF SUB-THRESHOLD FRACTALS AT ANY PARALOGOUS POSITION */
-					for (l=0; l<k; l++) {
-						if (tela[tela_m+l].t!=tela[tela_m+l].c || tela[tela_n+l].t!=tela[tela_n+l].c) {
-							keep_checking = check_imperf = 0;
-							break;
+				if (nuctransit && keep_checking) {
+					if (k<=PISO) {			/* SKIP IF CANNOT BE CINCHED B/C OF SUB-THRESHOLD FRACTALS AT ANY PARALOGOUS POSITION */
+						for (l=0; l<k; l++) {
+							if (tela[tela_m+l].t!=tela[tela_m+l].c || tela[tela_n+l].t!=tela[tela_n+l].c) {
+								keep_checking = check_imperf = 0;
+								break;
+							}
 						}
 					}
+
+					if (k==1 && ((letr=unshifted[n])=='R' || letr=='Y')) 
+						keep_checking = check_imperf = 0;
 				}
 
 				/* CHECK FOR TR OF SIZE k-MER */
@@ -426,9 +435,7 @@ int cinch_k(short unsigned int mode)
 								}
 							}
 							if (nuctransit && keep_checking) {
-								if (ON && ((letr2=tela[tela_m+l].t)=='R' || letr2=='Y')) 
-									keep_checking = 0;
-								else if (OFF && !x && ((letr2=consensus[n-x+y+l])=='R' || letr2=='Y'))
+								if ((letr=tela[tela_m+l].t)=='R' || letr=='Y')
 									keep_checking = 0;
 								else if (!y && ((letr3=consensus[n-x+k+l])=='R' || letr3=='Y'))
 									keep_checking = 0;
@@ -698,7 +705,7 @@ int cinch_k(short unsigned int mode)
 				/**************************************************************************************************/
 				if (keep_checking || imperfect_TR) {
 					if (k>0 && dev_print(CINCH,__LINE__)) {
-						printf("cinch-k taking k-mer=%2d at tela_m=%3d; x=%d, y=%d.", k, tela_m, x,y);
+						printf("cinch-k taking k-mer=%2d at tela_m=%3d; m=%2d, n=%2d, x=%d, y=%d.", k, tela_m, m,n,x,y);
 					}
 
 					push_gPnt_kmer(tela_n,k,1);
@@ -739,21 +746,18 @@ int cinch_k(short unsigned int mode)
 								if ((letr=consensus[i]) != 'R' && letr != 'Y')
 									consensus[i] = consensus[i+k];
 							}
-							for (i = n-x+k; i+k <= lenseq; i++) {
+							for (i = n-x+k; i <= Current.pass_W; i++)
 								consensus[i] = consensus[i+k];
-							}
-							consensus[i] = '\0';
 						}
-						else if (n >= scrimmage_line) {
+						else if (n >= scrimmage_line) 
 							y += k;		/* TO KEEP TRACK OF UNSHIFTED CONSENSUS ROW */
-						}
 					}
-
-					scrimmage_line = n;
 
 					x += k;				/* x-VAR UPDATED. FUTURE SPACING TO BE SUBTRACTED B/C k-MER TUCKED UNDER 1st UNIT */
 					for (i=n; i<=n+k; i++)
 						x_history[i] = x;
+
+					scrimmage_line = n;
 
 					if (tela[tela_n].statf==st_fract.sym) {
 						for (i=tela_n; i<tela_n+k; i++) {
