@@ -32,10 +32,10 @@ fi
 	 ./maximal -KRx -D 2 waves/squeegee/squee224.txt	# solved-43 needed extra condition for calling parents and fractals pushmem 4; 7286 lines
 	 ./maximal -KRx -D 2 waves/squeegee/squee006.txt	# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines
 	 ./maximal -KRx -D 4 waves/squeegee/squee004.txt	# solved-46 multi-PISO chowder, cinch-k tela logic conversion of nuctransit check; 7300 lines
-	 ./maximal -KRx -D 4 waves/squeegee/squee009.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee
-	 ./maximal -KRx -D 4 waves/squeegee/squee007.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee
-	 ./maximal -KRx -D 4 waves/squeegee/squee001.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee
-	 ./maximal -KRx -D 4 waves/squeegee/squee003.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee
+	 ./maximal -KRx -D 4 waves/squeegee/squee009.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
+	 ./maximal -KRx -D 4 waves/squeegee/squee007.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
+	 ./maximal -KRx -D 4 waves/squeegee/squee001.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
+	 ./maximal -KRx -D 4 waves/squeegee/squee003.txt	# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
 
 echo
 echo
