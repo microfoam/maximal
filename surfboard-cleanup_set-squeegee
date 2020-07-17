@@ -15,10 +15,12 @@ done
 if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
-														# LISTINGS AS CHOWDER UNDER PISO = 3
+
 	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
+	 ./maximal -KRx -D 8 waves/squeegee/squee018.txt	# chowder at P4- and P5- only
+	 ./maximal -KRx -D 8 waves/squeegee/squee015.txt	# chowder at P3-only
 
 	# solved, start at solved-41
 	 ./maximal -KRx waves/squeegee/squee112.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
@@ -37,6 +39,14 @@ fi
 	 ./maximal -KRx waves/squeegee/squee010.txt		# solved-44 allowing fractal call based on k1 in addition to ok; 7286 lines
 													# re-appeared for PISO 4 and 5 with solved-46; different issue; captured in same snippet
 													# solved-49 new k=1 block in cinch-k based on unshifted consensus row; 7302 lines
+	 ./maximal -KRx waves/squeegee/squee011.txt		# already solved
+	 ./maximal -KRx waves/squeegee/squee012.txt		# already solved
+	 ./maximal -KRx waves/squeegee/squee013.txt		# already solved
+	 ./maximal -KRx waves/squeegee/squee014.txt		# already solved
+	 ./maximal -KRx waves/squeegee/squee016.txt		# already solved
+	 ./maximal -KRx waves/squeegee/squee017.txt		# already solved
+	 ./maximal -KRx waves/squeegee/squee019.txt		# already solved
+	 ./maximal -KRx waves/squeegee/squee010.txt		# already solved
 
 echo
 echo
@@ -45,8 +55,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 14 (PISO=6): 0.465714 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (PISO=5): 0.472143 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (PISO=4): 0.455714 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (PISO=3): 0.446429 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=6): 0.47625  (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=5): 0.48     (23/24 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=4): 0.46625  (23/24 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=3): 0.448333 (23/24 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
