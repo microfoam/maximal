@@ -393,8 +393,10 @@ int cinch_k(short unsigned int mode)
 						}
 					}
 
-					if (k==1 && ((letr=unshifted[n])=='R' || letr=='Y')) 
-						keep_checking = check_imperf = 0;
+					if (k==1 && (((letr=unshifted[n  ])=='R' || letr=='Y') || 
+								 ((letr=unshifted[n+1])=='R' || letr=='Y'))) {
+							keep_checking = check_imperf = 0;
+					}
 				}
 
 				/* CHECK FOR TR OF SIZE k-MER */

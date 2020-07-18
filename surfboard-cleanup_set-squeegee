@@ -19,8 +19,6 @@ fi
 	# conflict begins in cinch-t
 
 	# conflict begins in cinch-k
-	 ./maximal -KRx -D 8 waves/squeegee/squee018.txt	# chowder at P4- and P5- only
-	 ./maximal -KRx -D 8 waves/squeegee/squee015.txt	# chowder at P3-only
 
 	# solved, start at solved-41
 	 ./maximal -KRx waves/squeegee/squee112.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
@@ -47,6 +45,8 @@ fi
 	 ./maximal -KRx waves/squeegee/squee017.txt		# already solved
 	 ./maximal -KRx waves/squeegee/squee019.txt		# already solved
 	 ./maximal -KRx waves/squeegee/squee010.txt		# already solved
+	 ./maximal -KRx waves/squeegee/squee018.txt		# solved-50 symmetric condition for n position as the m position of solved-49; 7300 lines
+	 ./maximal -KRx waves/squeegee/squee015.txt		# solved-50 symmetric condition for n position as the m position of solved-49; 7300 lines
 
 echo
 echo
@@ -56,7 +56,7 @@ echo
 echo
 ./surfboard-checkmha
 echo 'Commit WCR average of 24 (PISO=6): 0.47625  (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 24 (PISO=5): 0.48     (23/24 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 24 (PISO=4): 0.46625  (23/24 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 24 (PISO=3): 0.448333 (23/24 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=5): 0.479167 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=4): 0.465417 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=3): 0.448333 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
