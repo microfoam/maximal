@@ -502,7 +502,7 @@ int next_k(int n, int k1, short unsigned int seqtype)
 /**************** FUNCTION TO MARK ALL POSSIBLE k-MERs BEFORE LEGACY CINCH-T PASS ******************************/
 void mark_tela(void) 
 {
-	int i, j, l, m, n, k, reps, span, min_k; 
+	int i, j, l, m, n, k, reps, span, smallest_k; 
 	int threshold=0, max_score=0, max_count=0;
 	int projection=0, projector=0, proj_k=0, fract_k=0;
 	unsigned short int skip_break=0;
@@ -513,7 +513,7 @@ void mark_tela(void)
 	unsigned short int checkconflict=0;
 	int prev_k;
 	int k1=0, k2=0, k_tmp=0;
-	short unsigned int floor=1;
+	short unsigned int min_k=2; 				/* MINIMUM LIMIT k-MER SIZE MARKED */
 
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
@@ -523,22 +523,22 @@ void mark_tela(void)
 	/* Annotation at all_k (now ok) is eraseable and is the operational k-mer used at that position.	*/
 	for (n=1; n<lenseq; n++) {
 		k2 = k1 = k_tmp=0;
-		for (k=WIDTH; k>floor; k--) {
+		for (k=WIDTH; k>=min_k; k--) {
 			if ((k_tmp=next_k(n,k,nuctype))<0) {
 				tela[n].impk = k_tmp;
 				k = abs(k_tmp);
 				k1 = next_k(n,k,nuctype);
 			}
 
-			if  (k_tmp>floor || k1>floor) {
+			if  (k_tmp>=min_k || k1>=min_k) {
 				if ( (k_tmp && !checkfractals_in_imperfect(k_tmp,n)) ||
 					 (k1    && !checkfractals_in_imperfect(k1   ,n)) ) {
-					if (k1>floor)
+					if (k1>=min_k)
 						tela[n].k1 = k_tmp = k1;
 					else
 						tela[n].k1 = k1 = k_tmp;
 
-					if ((k_tmp=next_k(n,k1,0))>floor) {
+					if ((k_tmp=next_k(n,k1,0))>=min_k) {
 						if (k_tmp==tela[n-1].k1 && k1==2*k_tmp && !(k1%k_tmp)) {
 							for (i=0; i<k_tmp; i++) {
 								if (tela[n+i].c!=tela[n+i+k_tmp].c)
@@ -578,14 +578,11 @@ void mark_tela(void)
 				m = n - k;
 			}
 
-			if (nuctransit) {
-				threshold = score_DTHR(k);
-			}
-
-			/* FOR ROW m LOOP 3/5: SKIP k=ONE */
-			if (k == 1 || k == tela[n].k0) {
+			/* FOR ROW m LOOP 3/5: SKIP k = O N E */
+			if (k == 1 || k == tela[n].k0)
 				break;	/* GO TO NEXT n */
-			}
+			else if (nuctransit) 
+				threshold = score_DTHR(k);
 
 			/* FOR ROW m LOOP 4/5: SET HOMOPOLYMER RUN STATUS UNKNOWN; USED TO RULE OUT k>1 MONONUCLEOTIDE "REPEATS" */
 			homopoly_flag = 2;
@@ -1177,7 +1174,7 @@ void mark_tela(void)
 		if (tela[n].all_S) {
 			checkconflict = span = 1;
 			max_count = 0;
-			min_k = k = tela[n].ok;
+			smallest_k = k = tela[n].ok;
 			max_score = tela[n].all_S;
 			if (tela[n].all_L || tela[n].all_R) {
 				checkconflict = 0;
@@ -1191,8 +1188,8 @@ void mark_tela(void)
 					else {
 						if (tela[i].all_S > max_score) 
 							max_score = tela[i].all_S;
-						if (tela[i].ok < min_k) 
-							min_k= tela[i].ok;
+						if (tela[i].ok < smallest_k) 
+							smallest_k = tela[i].ok;
 					}
 				}
 			}
@@ -1237,7 +1234,7 @@ void mark_tela(void)
 			}
 			else {
 				for (i=n; i<n+span; i++) {
-					if (tela[i].all_S == max_score && tela[i].ok == min_k) {
+					if (tela[i].all_S == max_score && tela[i].ok == smallest_k) {
 						max_count++;
 						tela[i].all_Z = tela[i].all_S;
 					}
@@ -1263,14 +1260,24 @@ void mark_tela(void)
 		}
 	}
 
-	/* CHECK TO SEE IF THERE ARE CYCLING DIFFERENCES BETWEEN INTERNAL REPEATS */
+	/* CHECK TO SEE IF THERE ARE CYCLING DIFFERENCES BETWEEN INTERNAL? REPEATS */
 	for (n=2; n+1<lenseq; n++) {
-		if (!tela[n-1].ok && tela[n].ok && !tela[n+1].ok && tela[n].stat!=st_parent.sym) {
-			int p,q;
+		if (tela[n].ok && !tela[n-1].ok && !tela[n+1].ok && tela[n].stat!=st_parent.sym) {
 			k = tela[n].ok;
 			m = n - k;
+
+			if (tela[n].statf!=st_fract.sym && tela[n-1].c==tela[n].c && tela[n].or==1) {
+				for (i=m; i<n; i++) {
+					if (tela[i].statf==st_fract.sym && i+tela[i].ok==n)
+						tela[n].stat = st_Fract.sym;	/* TO SKIP CINCH-T */
+						tela[n].echoes = cyc_skip.sym;	/* TO SKIP CINCH-K AT k>1 */
+						push_mem(n, 7);
+				}
+			}
+
+			int p,q;
 			for (i=0; i<tela[n].or; i++) {
-				for (j = 1; j < tela[n].ok-1; j++) {
+				for (j=min_k; j<tela[n].ok-1; j++) {
 					if (tela[(p=m+i*k+j)].ok != tela[(q=n+i*k+j)].ok && !tela[p].k2) { 
 						if (dev_print(TELA,__LINE__)) {
 							printf("mark_tela at n=%d evaluating differences between potential fractal TRs"
@@ -1281,13 +1288,14 @@ void mark_tela(void)
 							if (tela[p].statf==st_fract.sym && tela[n].stat != st_cycle.sym) {
 								clearall_tela(n,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
 								tela[n].echoes = cyc_skip.sym;	/* MARK THIS SO CAN CHECK IN ANY CINCH MODULE TO SKIP */
+								push_mem(n, 13);
 							}
-							push_mem(p, 13);
-							push_mem(n, 13);
+							push_mem(p, 12);
 						}
+
 						if (tela[q].ok) {
 							clearall_tela(q,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_mem(q, 14);
+							push_mem(q, 13);
 							push_mem(n, 14);
 						}
 					}
@@ -1555,10 +1563,11 @@ int lenseq = Clean.pass_W;
 			else
 				printf("  .");
 		}
-		printf("\n E:");
-		for (i=a; i<=b; i++)
-			printf("%3c", tela[i].echoes);
 	}
+	printf("\n E:");
+	for (i=a; i<=b; i++)
+		printf("%3c", tela[i].echoes);
+
 	printf("\nDEV");
 		for (i=a; i<=b; i++)
 			if (tela[i].DEV)

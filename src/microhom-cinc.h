@@ -458,9 +458,8 @@ int cinch_k(short unsigned int mode)
 					homopolyflag = 0;		/* RESET */
 				} 
 
-				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym) {
+				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym)
 					keep_checking = check_imperf = 0;
-				}
 				else if (keep_checking && nuctransit && k>1 && isalpha( letr=unshifted[n+k*(1+tela[tela_n].or)] )
 							&& tela[tela_n].statf!=st_fract.sym && tela[tela_m].stat!=st_parent.sym ) {
 					for (l=1; l<=tela_m; l++) {
@@ -755,16 +754,15 @@ int cinch_k(short unsigned int mode)
 					for (i=n; i<=n+k; i++)
 						x_history[i] = x;
 
-					scrimmage_line = n;
-
-					if (tela[tela_n].statf==st_fract.sym) {
+					if (tela[tela_n].statf==st_fract.sym) {		/* CHURLY-25 ONLY? 7/18/2020 v3.44 series; but also speed bump */
 						for (i=tela_n; i<tela_n+k; i++) {
 							tela[i].echoes = cyc_skip.sym;
 						}
 					}
 
+					scrimmage_line = n;
 					tela_m = tela_n;		/* SAME AS "tela_m += k" */
-					n += k-1;					/* -1 BECAUSE UPCOMING n++ IN FOR n LOOP */
+					n += k-1;				/* -1 BECAUSE UPCOMING n++ IN FOR n LOOP */
 					cik_row++;
 
 				}   /* END OF TR ASSIGN LOOPS */
