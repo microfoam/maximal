@@ -17,8 +17,30 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
+	./maximal -KRx -D 8 waves/squeegee/squeez-14.txt	# P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-18.txt	# P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-22.txt	# P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-28.txt	# P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-38.txt	# P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-02.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-08.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-32.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-34.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-36.txt	# P3-only
 
 	# conflict begins in cinch-k
+	./maximal -KRx -D 8 waves/squeegee/squeez-20.txt	# P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-24.txt	# P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-26.txt	# P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-40.txt	# P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-04.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-12.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-16.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-30.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-42.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-44.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-46.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-48.txt	# P3-only
 
 	# solved, start at solved-41
 	./maximal -KRx waves/squeegee/squee112.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
@@ -57,6 +79,8 @@ fi
 	./maximal -KRx waves/squeegee/squee029.txt		# already solved
 	./maximal -KRx waves/squeegee/squee030.txt		# already solved
 	./maximal -KRx waves/squeegee/squee024.txt		# solved-51 chow at P3--6; changes in cinch_k() & mark_tela() to solve and hold; 7301 lines
+	./maximal -KRx waves/squeegee/squeez-06.txt		# already solved
+	./maximal -KRx waves/squeegee/squeez-10.txt		# already solved
 
 echo
 echo
@@ -65,8 +89,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 34 (PISO=6): 0.483824 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 34 (PISO=5): 0.482353 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 34 (PISO=4): 0.470882 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 34 (PISO=3): 0.455882 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=6): 0.482069 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=5): 0.478448 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=4): 0.473276 (49/58 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=3): 0.456897 (36/58 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
