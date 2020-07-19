@@ -1869,10 +1869,8 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 					}
 				}
 			}
-			if (ratchet_up == k)
-				tela[i].all_Z += up_score;
-			if (ratchet_dn == k)
-				tela[i].all_Z += dn_score;
+			tela[i].all_Z += up_score;
+			tela[i].all_Z += dn_score;
 		}
 	}
 	if (!ratchet)		/* IF NO RATCHETING, THEN GHOST ITERATIONS ARE OUT-OF-BOUNDS AND INEFFECTIVE TIE-BREAKERS */

@@ -177,7 +177,7 @@ char blnk = Fill->sym;		/* opt_B blank character		*/
 			/* letr ASSIGNED */
 			if ((letr=align2D[m][n]) != slip.sym || letr != '\0') {	/* letr != '\0' USEFUL IF BLANKS FILLED TO SCRIMMAGE */ 
 				pathbox[m+cil_row][n-x] = letr;	
-				if (letr == align2D[m][n-1]) 
+				if (n>1 && letr==align2D[m][n-1])
 					run++;
 				else
 					run = 1;
@@ -369,9 +369,11 @@ int cinch_k(short unsigned int mode)
 				} /* END OF A CINCHLD BLOCK */
 
 				/* CHECK FOR & DEAL WITH LINE ENDS TOO SHORT TO HARBOR TR OF SIZE k */
-				if (align2D[m][n+2*k] == Term->sym && col_isclear(align2D, n,m,-1)>=0) {
+				if (align2D[m][n+2*k] == Term->sym && col_isclear(align2D, n,m,-1)>=0)
 					keep_checking = 0;
-				}
+				else if (k==1 && align2D[m+1][n]==monoL.sym)
+					keep_checking = 0;
+
 				if (!isalpha(align2D[m][n+2*k-1])) {	/* TRUE IF WINDOW < 2x k-MER, WRITE REST OF LINE TO pathbox */
 					for (i = n; (letr=align2D[m][i]) != '\0'; i++) {
 						pathbox[m+cik_row][i-x] = align2D[m][i];
