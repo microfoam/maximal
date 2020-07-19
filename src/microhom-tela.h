@@ -1005,13 +1005,8 @@ void mark_tela(void)
 				int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
 				if (tela[i].ok && i-tela[i].ok >= m && span_ork(i)<=n && tela[i].k == tela[i+k].k) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
 
-					if (tela[i].all_S == tela[i+k].all_S)
-						tela[i].statf = tela[i+k].statf = st_fract.sym;
-					else {
-						tela[i].statf = tela[i+k].statf = st_fract.sym;
-					}
-
 					tela[n].stat = st_parent.sym;
+					tela[i].statf = tela[i+k].statf = st_fract.sym;
 					if (dev_print(TELA,__LINE__))
 						printf("Calling parent at %d with fractals at i=%d and i+k=%d.", n,i,i+k);
 
@@ -1028,10 +1023,14 @@ void mark_tela(void)
 						}
 					}
 				}
-				else if (tela[i].ok && (i + tela[i].ok * (tela[i].or-1)) > m-recslips) {
+				else if ( (tela[i].ok && (i + tela[i].ok * (tela[i].or-1)) > m-recslips) || i+tela[i].ok>n) {
 					/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
 					tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 					tela[i].all_R = n;				/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
+					if (tela[i].stat==st_cycle.sym && tela[n].stat!=st_cycle.sym && i && !tela[i-1].all_R && tela[i].ok>k && tela[i].ok%k) {
+						clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+						push_mem(i, 7);
+					}
 				}
 			}
 			if (tela[m].or && tela[m].all_S < tela[n].all_S && m+tela[m].or*(tela[m].ok)>n) {

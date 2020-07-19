@@ -32,8 +32,8 @@ void 				devprint_pathbox(int num);
 void 				dev_prompt(short unsigned int mode, int line_no, char *filename);
 void 				signal_callback_handler(int signum);
 
-int prtela_A =  80;		/* DEVELOPMENT VARIABLE TO GLOBALLY SET PRINT TELA START AND END POINT FOR DIAGNOSTICS */
-int prtela_B = 136;		/* SET TO SOMETHING APPROPRIATE FOR GIVEN COMPUTER SCREEN */	
+int prtela_A =   0;		/* DEVELOPMENT VARIABLE TO GLOBALLY SET PRINT TELA START AND END POINT FOR DIAGNOSTICS */
+int prtela_B =  56;		/* SET TO SOMETHING APPROPRIATE FOR GIVEN COMPUTER SCREEN */	
 int dev_count =  0;		/* USED AS A COUNTER IN CERTAIN PLACES TO LIMIT THE NUMBER OF DEV_PRINTS */
 int dev_limit = 42;		/* USED TO LIMIT THE NUMBER OF DEV_PRINTS */
 
