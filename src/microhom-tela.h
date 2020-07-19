@@ -330,6 +330,15 @@ int cyclelize_tela(int cpos, int delta, int npos)
 		m = tela[npos].y = tela[(npos - tela[npos].k)].y + 1;
 		    tela[npos].x = tela[(npos - tela[npos].k)].x;
 
+		int mpos = npos - tela[npos].k;
+		int x_start = tela[mpos].x;
+		int y_start = tela[mpos].y;
+		for (i=1; i< tela[npos].k; i++) {
+			tela[mpos+i].x = tela[npos+i].x = x_start + i;
+			tela[mpos+i].y = y_start;
+			tela[npos+i].y = y_start + 1;
+		}
+
 		for (j=0; j<lenseq; j++)
 			align2D[m][j] = '\0';
 
@@ -340,10 +349,11 @@ int cyclelize_tela(int cpos, int delta, int npos)
 
 		/* DEAL WITH TRANSITION MARKS IF ANY */
 		if (nuctransit) {
-			for (j=cpos+delta; j<npos; j++) {
-				consensus[(tela[j].x)] = '\0';
+			for (j=npos-tela[npos].k; j<npos; j++) {
 				if (tela[j].c != tela[j].t)
 					consensus[(tela[j].x)] = tela[j].t;
+				else
+					consensus[(tela[j].x)] = '\0';
 			}
 		}
 

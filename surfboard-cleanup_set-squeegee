@@ -17,10 +17,8 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
-	./maximal -KRx -D 8 waves/squeegee/squeez-02.txt	# P3-only
 	./maximal -KRx -D 8 waves/squeegee/squeez-08.txt	# P3-only
 	./maximal -KRx -D 8 waves/squeegee/squeez-32.txt	# P3-only
-	./maximal -KRx -D 8 waves/squeegee/squeez-34.txt	# P3-only
 	./maximal -KRx -D 8 waves/squeegee/squeez-36.txt	# P3-only
 
 	# conflict begins in cinch-k
@@ -36,7 +34,9 @@ fi
 	./maximal -KRx -D 8 waves/squeegee/squeez-46.txt	# P3-only
 	./maximal -KRx -D 8 waves/squeegee/squeez-48.txt	# P3-only
 
-	# solved, start at solved-41, push new solved runs onto stack (reverse order of solving)
+	# solved: start push new solved runs onto top stack (reverse order of solving) starting w/ solved-41
+	./maximal -KRx waves/squeegee/squeez-02.txt		# solved-54 cyclelize_tela() transitions updating, P3-only; 7317 lines
+	./maximal -KRx waves/squeegee/squeez-34.txt		# solved-54 cyclelize_tela() transitions updating, P3-only; 7317 lines
 	./maximal -KRx waves/squeegee/squeez-18.txt		# solved-53 new part to conflict calling in mark tela(); 7306 lines; P3- & P4- only
 	./maximal -KRx waves/squeegee/squeez-28.txt		# solved-53 new part to conflict calling in mark tela(); 7306 lines; P3- & P4- only
 	./maximal -KRx waves/squeegee/squeez-38.txt		# solved-53 new part to conflict calling in mark tela(); 7306 lines; P3- & P4- only
@@ -75,7 +75,7 @@ fi
 	./maximal -KRx waves/squeegee/squee004.txt		# solved-46 multi-PISO chowder, cinch-k tela logic conversion of nuctransit check; 7300 lines
 	./maximal -KRx waves/squeegee/squee006.txt		# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines
 	#./maximal -KRx waves/squeegee/squee010.txt		# solved-44 allowing fractal call based on k1 in addition to ok; 7286 lines
-													# re-appeared for PISO 4 and 5 with solved-46; different issue; captured in same snippet
+													# reappeared w/ another issue for PISO 4/5 with solved-46
 	./maximal -KRx waves/squeegee/squee224.txt		# solved-43 needed extra condition for calling parents and fractals pushmem 4; 7286 lines
 	./maximal -KRx waves/squeegee/squee216.txt		# solved-42 squash imperfect k-mer that is a multiple of underlying imperfect TR
 	./maximal -KRx waves/squeegee/squee112.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
@@ -92,5 +92,5 @@ echo
 echo 'Commit WCR average of 58 (PISO=6): 0.482069 (chowder-free)' | tee -a Corduroy.log
 echo 'Commit WCR average of 58 (PISO=5): 0.477759 (chowder-free)' | tee -a Corduroy.log
 echo 'Commit WCR average of 58 (PISO=4): 0.468621 (54/58 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=3): 0.453621 (42/58 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=3): 0.453103 (44/58 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

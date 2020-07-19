@@ -1300,6 +1300,7 @@ int main(int argc, char *argv[])
 											}
 										}
 										if (cycto != series) {
+											tela[n].k = k;			/* TO PASS K SIZE TO CYCLELIZE TELA */
 											if (cyclelize_tela(series, cycto-series, n)) {	/* REMINDER: cyclelize_tela(int cpos, int delta, int npos) */
 												badslip_type = 50;					/* FROM SEQUENCE IN TYPES: 1-3-5-10-30- (50) -100-300-500 */
 												Current.pass_R += badslip_type;

@@ -1,0 +1,5 @@
+>Target-0.400 -x with transition in position two (0.367 without -x)
+CGTCGGGCG
+GGCGGGGT
+GACGGGGT
+nTCTC
