@@ -684,10 +684,8 @@ void mark_tela(void)
 				/* IF SO, CANCEL TR AT n */
 				if (Dtr && imperfect_TR && (k<9 || k%3)) {
 
-					short unsigned int no_extra_code = 1;		/* SEEMS LIKE THIS EXTRA CODE SHOULD BE NECESSARY BUT IS NOT BETTER */
-
 					for (i=m+1; i<n; i++) {
-						if ((fract_k=tela[i].ok) && fract_k<=PISO && i + span_ork(i) <= n  && (no_extra_code || (i-fract_k>=m)) ) {
+						if ((fract_k=tela[i].ok) && fract_k<=PISO && i + span_ork(i) <= n   /* Why not && i-fract_k>=m ? */  ) {
 							for (j=i-fract_k; j<i+fract_k; j++) {
 								if (tela[j].c!=tela[j+k].c) {
 									push_mem(n,3);
