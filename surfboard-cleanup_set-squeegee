@@ -34,7 +34,7 @@ fi
 	./maximal -KRx -D 8 waves/squeegee/squeez-46.txt	# P3-only
 	./maximal -KRx -D 8 waves/squeegee/squeez-48.txt	# P3-only
 
-	# solved: start push new solved runs onto top stack (reverse order of solving) starting w/ solved-41
+	# solved: push new solved runs onto top of stack (reverse order of solving), starting w/ solved-41
 	./maximal -KRx waves/squeegee/squeez-02.txt		# solved-54 cyclelize_tela() transitions updating, P3-only; 7317 lines
 	./maximal -KRx waves/squeegee/squeez-34.txt		# solved-54 cyclelize_tela() transitions updating, P3-only; 7317 lines
 	./maximal -KRx waves/squeegee/squeez-18.txt		# solved-53 new part to conflict calling in mark tela(); 7306 lines; P3- & P4- only
