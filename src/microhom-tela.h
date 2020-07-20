@@ -509,6 +509,7 @@ int next_k(int n, int k1, short unsigned int seqtype)
 	}
 }
 
+
 /**************** FUNCTION TO MARK ALL POSSIBLE k-MERs BEFORE LEGACY CINCH-T PASS ******************************/
 void mark_tela(void) 
 {
@@ -680,6 +681,28 @@ void mark_tela(void)
 					}
 				}
 
+				/* CHECK TO SEE IF THERE ARE CYCLING ISLANDS THAT ARE PARTIALLY FRACTAL TO A PARENT & CANCEL NON-FRACTAL PART IF SIMPLE. squid~34 */
+				if (Dtr /*&& !imperfect_TR*/) {
+					for (i=n+k-1; i>=n+min_k; i--) {
+						if (tela[i].k1 && tela[i].stat!=st_cycle.sym && (fract_k=tela[i].k1)<k && i-fract_k>=n && 
+																fract_k==tela[i-k].ok && fract_k==tela[i-k-1].ok) {
+							tela[i-k].statf = tela[i].statf = st_fract.sym;
+							tela[n].stat = st_parent.sym;
+
+							j = 1;
+							while (tela[i-k - j].ok == fract_k) {
+								push_mem(i-k - j,6);
+								clearall_tela(i-k - j++,1,-1,TWO);
+							}
+							j = 1;
+							while (tela[n+j].k1==k && i-fract_k<n+j) {
+								push_mem(n + j,6);
+								tela[n + j++].k1 = '\0';
+							}
+						}
+					}
+				}
+
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPLEGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
 				/* IF SO, CANCEL TR AT n */
 				if (Dtr && imperfect_TR && (k<9 || k%3)) {
@@ -700,6 +723,7 @@ void mark_tela(void)
 							tela[i  ].statf = st_fract.sym;
 							tela[n  ].stat  = st_parent.sym;
 							tela[i+k].stat  = st_Fract.sym;
+							push_mem(i+k,3);
 						}
 					}
 				}
@@ -791,8 +815,10 @@ void mark_tela(void)
 										i--;
 									}
 								}
-								else			/* DISPENSABLE W/ LITTLE OR NO WCR WIGGLE AT MOST PISO's AND NO CHOWDER. v4.33, 7/11/2020 */
+								else {			/* DISPENSABLE W/ LITTLE OR NO WCR WIGGLE AT MOST PISO's AND NO CHOWDER. v4.33, 7/11/2020 */
 									tela[n].stat = st_Fract.sym;
+									push_mem(i, 4);
+								}
 							}
 							TRcheck = 0;
 						}
@@ -837,7 +863,7 @@ void mark_tela(void)
 										}
 										else {						/* NOT DISPENSABLE W/O SOME CHOWDER v4.33 7/11/2020 */
 											tela[i].stat = st_Fract.sym;
-											push_mem(i, 6);          /* MARKING IN CLEARALL ROW BUT NOT CLEARING */
+											push_mem(i, 6);			/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 										}
 									}
 								}
@@ -1282,7 +1308,7 @@ void mark_tela(void)
 					if (tela[i].statf==st_fract.sym && i+tela[i].ok==n)
 						tela[n].stat = st_Fract.sym;	/* TO SKIP CINCH-T */
 						tela[n].echoes = cyc_skip.sym;	/* TO SKIP CINCH-K AT k>1 */
-						push_mem(n, 7);
+						push_mem(n, 6);
 				}
 			}
 

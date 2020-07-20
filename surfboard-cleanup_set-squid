@@ -17,18 +17,17 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squid~08.txt		# P3-only if not indicated
-	./maximal -KnxR -D 8 waves/squeegee/squid~44.txt		#
+	./maximal -KnxR -D 8 waves/squeegee/squid~08.txt	# P3-only if not indicated
+	./maximal -KnxR -D 8 waves/squeegee/squid~44.txt	#
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squid~34.txt		# previously solved by max-04 and max-05; P3/4/5/6
-	./maximal -KnxR -D 8 waves/squeegee/squid~22.txt		# previously solved by max-04; P3/4/5/6
-	./maximal -KnxR -D 8 waves/squeegee/squid~36.txt		# P3/4/5/6
-	./maximal -KnxR -D 8 waves/squeegee/squid~42.txt		# P3/4/5/6
-	./maximal -KnxR -D 8 waves/squeegee/squid~46.txt		# P3/4/5/6
-	./maximal -KnxR -D 8 waves/squeegee/squid~14.txt		# P3/4
-	./maximal -KnxR -D 8 waves/squeegee/squid~20.txt		# P3/4
-	./maximal -KnxR -D 8 waves/squeegee/squid~38.txt		# previously solved by max-04 and max-05; P3-only
+	./maximal -KnxR -D 8 waves/squeegee/squid~22.txt	# previously solved by max-04; P3/4/5/6
+	./maximal -KnxR -D 8 waves/squeegee/squid~36.txt	# P3/4/5/6
+	./maximal -KnxR -D 8 waves/squeegee/squid~42.txt	# P3/4/5/6
+	./maximal -KnxR -D 8 waves/squeegee/squid~46.txt	# P3/4/5/6
+	./maximal -KnxR -D 8 waves/squeegee/squid~14.txt	# P3/4
+	./maximal -KnxR -D 8 waves/squeegee/squid~20.txt	# P3/4
+	./maximal -KnxR -D 8 waves/squeegee/squid~38.txt	# previously solved by max-04 and max-05; P3-only
 	./maximal -KnxR -D 8 waves/squeegee/squid~02.txt
 	./maximal -KnxR -D 8 waves/squeegee/squid~04.txt
 	./maximal -KnxR -D 8 waves/squeegee/squid~06.txt
@@ -43,8 +42,9 @@ fi
 	./maximal -KnxR -D 8 waves/squeegee/squid~40.txt
 	./maximal -KnxR -D 8 waves/squeegee/squid~48.txt
 
-	# solved: push new solved runs onto top of stack, starting w/ solved-55 coordinated with active squeegee solving
-	./maximal -KnxR -D 8 waves/squeegee/squid~24.txt		# solved-55 7319 lines; previously solved by max-04 and max-05; mark_tela adjust
+	# solved: push new solved runs onto top of stack starting w/ solved-55 coordinated with active squeegee solving
+	./maximal -KnxR -D 8 waves/squeegee/squid~34.txt	# solved-56; new mark_tela code for partially fractal cycling islands; only recently chowder; P3/4/5/6;
+	./maximal -KnxR -D 8 waves/squeegee/squid~24.txt	# solved-55 7319 lines; previously solved by max-04 and max-05; mark_tela adjust
 
 echo
 echo
@@ -53,8 +53,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 24 (PISO=6): 0.479583 (19/24 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 24 (PISO=5): 0.475833 (19/24 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 24 (PISO=4): 0.492917 (14/24 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 24 (PISO=3): 0.472083 (01/24 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=6): 0.477917 (20/24 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=5): 0.475833 (20/24 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=4): 0.492917 (15/24 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=3): 0.47375  ( 2/24 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
