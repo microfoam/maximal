@@ -523,7 +523,7 @@ void mark_tela(void)
 	unsigned short int checkconflict=0;
 	int prev_k;
 	int k1=0, k2=0, k_tmp=0;
-	short unsigned int min_k=2; 				/* MINIMUM LIMIT k-MER SIZE MARKED */
+	short unsigned int min_k=2; 		/* MINIMUM LIMIT k-MER SIZE MARKED; ALWAYS USE THIS INSTEAD OF VALUE */
 
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
@@ -683,23 +683,26 @@ void mark_tela(void)
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPLEGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
 				/* IF SO, CANCEL TR AT n */
 				if (Dtr && imperfect_TR && (k<9 || k%3)) {
+
+					short unsigned int no_extra_code = 1;		/* SEEMS LIKE THIS EXTRA CODE SHOULD BE NECESSARY BUT IS NOT BETTER */
+
 					for (i=m+1; i<n; i++) {
-						if ((fract_k=tela[i].ok) && fract_k<=PISO && i + span_ork(i) <= n) {
+						if ((fract_k=tela[i].ok) && fract_k<=PISO && i + span_ork(i) <= n  && (no_extra_code || (i-fract_k>=m)) ) {
 							for (j=i-fract_k; j<i+fract_k; j++) {
 								if (tela[j].c!=tela[j+k].c) {
+									push_mem(n,3);
+									push_mem(i,3);
 									clearall_tela(n,1,-1,TWO);
 									push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-									push_mem(n,3);
 									Dtr=0;
-									break;
 								}
 							}
 						}
-					else if ((fract_k=tela[i].k1) && fract_k<=PISO && i + tela[i].k1 <= n && !tela[i+k].k1) {
-						tela[i  ].statf = st_fract.sym;
-						tela[n  ].stat  = st_parent.sym;
-						tela[i+k].stat  = st_Fract.sym;
-					}
+						else if ((fract_k=tela[i].k1) && fract_k<=PISO && i + tela[i].k1 <= n && !tela[i+k].k1) {
+							tela[i  ].statf = st_fract.sym;
+							tela[n  ].stat  = st_parent.sym;
+							tela[i+k].stat  = st_Fract.sym;
+						}
 					}
 				}
 
