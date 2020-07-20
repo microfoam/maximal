@@ -43,7 +43,7 @@ fi
 	./maximal -KnxR -D 8 waves/squeegee/squid~48.txt
 
 	# solved: push new solved runs onto top of stack starting w/ solved-55 coordinated with active squeegee solving
-	./maximal -KnxR -D 8 waves/squeegee/squid~34.txt	# solved-56; new mark_tela code for partially fractal cycling islands; only recently chowder; P3/4/5/6;
+	./maximal -KnxR -D 8 waves/squeegee/squid~34.txt	# solved-56; mark_tela code for partially fractal cycling isl.; recently chowder P3/4/5/6; 7345 lines
 	./maximal -KnxR -D 8 waves/squeegee/squid~24.txt	# solved-55 7319 lines; previously solved by max-04 and max-05; mark_tela adjust
 
 echo
