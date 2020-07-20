@@ -34,7 +34,7 @@ fi
 	./maximal -KRx -D 8 waves/squeegee/squeez-46.txt	# P3-only
 	./maximal -KRx -D 8 waves/squeegee/squeez-48.txt	# P3-only
 
-	# solved: push new solved runs onto top of stack (reverse order of solving), starting w/ solved-41
+	# solved: push new solved runs onto top of stack (reverse order of solving), starting w/ solved-41, after solved-54 coordinate w/ squid script
 	./maximal -KRx waves/squeegee/squeez-02.txt		# solved-54 cyclelize_tela() transitions updating, P3-only; 7317 lines
 	./maximal -KRx waves/squeegee/squeez-34.txt		# solved-54 cyclelize_tela() transitions updating, P3-only; 7317 lines
 	./maximal -KRx waves/squeegee/squeez-18.txt		# solved-53 new part to conflict calling in mark tela(); 7306 lines; P3- & P4- only
@@ -89,8 +89,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 58 (PISO=6): 0.482069 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=5): 0.477759 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=4): 0.468621 (54/58 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=3): 0.453103 (44/58 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=6): 0.482069 -> 0.482069 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=5): 0.477759 -> 0.477759 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=4): 0.468621 -> 0.469828 (54/58 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=3): 0.453103 -> 0.45431  (44/58 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

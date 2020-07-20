@@ -1,0 +1,60 @@
+#!/bin/bash
+echo >> Corduroy.log
+echo '                                               < squid: PISO 3 -x trial 4 chowder >' >> Corduroy.log
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	./surfboard-Pop_Up
+	grep 'define PISO' src/microhom-skor.h | tee -a Corduroy.log
+	;;
+esac
+done
+
+if [ -f Surf_wavereport.mha ]; then
+	    rm Surf_wavereport.mha
+fi
+
+	# cinch-t originating 2-D conflict
+	./maximal -KnxR -D 8 waves/squeegee/squid~08.txt		# P3-only if not indicated
+	./maximal -KnxR -D 8 waves/squeegee/squid~44.txt		#
+
+	# cinch-k originating 2-D conflict
+	./maximal -KnxR -D 8 waves/squeegee/squid~34.txt		# previously solved by max-04 and max-05; P3/4/5/6
+	./maximal -KnxR -D 8 waves/squeegee/squid~22.txt		# previously solved by max-04; P3/4/5/6
+	./maximal -KnxR -D 8 waves/squeegee/squid~36.txt		# P3/4/5/6
+	./maximal -KnxR -D 8 waves/squeegee/squid~42.txt		# P3/4/5/6
+	./maximal -KnxR -D 8 waves/squeegee/squid~46.txt		# P3/4/5/6
+	./maximal -KnxR -D 8 waves/squeegee/squid~14.txt		# P3/4
+	./maximal -KnxR -D 8 waves/squeegee/squid~20.txt		# P3/4
+	./maximal -KnxR -D 8 waves/squeegee/squid~38.txt		# previously solved by max-04 and max-05; P3-only
+	./maximal -KnxR -D 8 waves/squeegee/squid~02.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~04.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~06.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~10.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~12.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~16.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~18.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~26.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~28.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~30.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~32.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~40.txt
+	./maximal -KnxR -D 8 waves/squeegee/squid~48.txt
+
+	# solved: push new solved runs onto top of stack, starting w/ solved-55 coordinated with active squeegee solving
+	./maximal -KnxR -D 8 waves/squeegee/squid~24.txt		# solved-55 7319 lines; previously solved by max-04 and max-05; mark_tela adjust
+
+echo
+echo
+echo
+echo "$0"
+echo
+echo
+./surfboard-checkmha
+echo 'Commit WCR average of 24 (PISO=6): 0.479583 (19/24 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=5): 0.475833 (19/24 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=4): 0.492917 (14/24 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 24 (PISO=3): 0.472083 (01/24 solved)' | tee -a Corduroy.log
+echo | tee -a Corduroy.log
