@@ -17,22 +17,22 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
-	./maximal -KRx -D 8 waves/squeegee/squeez-08.txt	# P3-only
-	./maximal -KRx -D 8 waves/squeegee/squeez-32.txt	# P3-only
-	./maximal -KRx -D 8 waves/squeegee/squeez-36.txt	# P3-only
+	./maximal -KRx waves/squeegee/squeez-08.txt	# P3-only
+	./maximal -KRx waves/squeegee/squeez-32.txt	# P3-only
+	./maximal -KRx waves/squeegee/squeez-36.txt	# P3-only
 
 	# conflict begins in cinch-k
-	./maximal -KRx -D 8 waves/squeegee/squeez-20.txt	# P3- & P4- only
-	./maximal -KRx -D 8 waves/squeegee/squeez-24.txt	# P3- & P4- only
-	./maximal -KRx -D 8 waves/squeegee/squeez-26.txt	# P3- & P4- only
-	./maximal -KRx -D 8 waves/squeegee/squeez-40.txt	# P3- & P4- only
-	./maximal -KRx -D 8 waves/squeegee/squeez-04.txt	# P3-only
-	./maximal -KRx -D 8 waves/squeegee/squeez-16.txt	# P3-only
-	./maximal -KRx -D 8 waves/squeegee/squeez-30.txt	# P3-only
-	./maximal -KRx -D 8 waves/squeegee/squeez-42.txt	# P3-only
-	./maximal -KRx -D 8 waves/squeegee/squeez-44.txt	# P3-only
-	./maximal -KRx -D 8 waves/squeegee/squeez-46.txt	# P3-only
-	./maximal -KRx -D 8 waves/squeegee/squeez-48.txt	# P3-only
+	./maximal -KRx waves/squeegee/squeez-20.txt	# P3- & P4- only
+	./maximal -KRx waves/squeegee/squeez-24.txt	# P3- & P4- only
+	./maximal -KRx waves/squeegee/squeez-26.txt	# P3- & P4- only
+	./maximal -KRx waves/squeegee/squeez-40.txt	# P3- & P4- only
+	./maximal -KRx waves/squeegee/squeez-04.txt	# P3-only
+	./maximal -KRx waves/squeegee/squeez-16.txt	# P3-only
+	./maximal -KRx waves/squeegee/squeez-30.txt	# P3-only
+	./maximal -KRx waves/squeegee/squeez-42.txt	# P3-only
+	./maximal -KRx waves/squeegee/squeez-44.txt	# P3-only
+	./maximal -KRx waves/squeegee/squeez-46.txt	# P3-only
+	./maximal -KRx waves/squeegee/squeez-48.txt	# P3-only
 
 	# solved: push new solved runs onto top of stack (reverse order of solving), starting w/ solved-41, after solved-54 coordinate w/ squid script
 	./maximal -KRx waves/squeegee/squeez-02.txt		# solved-54 cyclelize_tela() transitions updating, P3-only; 7317 lines

@@ -589,28 +589,29 @@ int cinch_k(short unsigned int mode)
 				}
 				
 				if (keep_checking && k>1 && n>scrimmage_line) {
-					int p=0, q=0;
+					int q=0;
 
-					if (col_isclear(pathbox,n-x+k,m+cik_row,-1)>-1 && col_isclear(align2D,n+k,m,1)<0) {
-
+					if (nuctransit && col_isclear(pathbox,n-x+k,m+cik_row,-1)>-1 && col_isclear(align2D,n+k,m,1)<0) {
 						/* CHECK IF WILL PULL IN ADJACENT MISMATCHES AFTER RUN OF REPEATS */
 					    r = 1; 
 						i = k;  /* VAR i SET TO k ONLY TO ENTER WHILE LOOP */
 						while (i==k) {
 							for (i = 0; i < k; i++) {
-								q = n+r*k+i;
-							if (q>=Current.pass_W || n+i>=Current.pass_W || ((letr=align2D[m][n+i])!=(letr2=align2D[m][q]) && isalpha(letr) && isalpha(letr2))) {
+								if ((q=n+r*k+i)>=Current.pass_W)
 									break;
-								}
-					        }    
+								else if (col_isclear(align2D,q,m,-1)<0)
+									break;
+								else if (align2D[m][n+i]!=align2D[m][q])
+									break;
+					        }
 					        if (i == k)
 								r++;        /* INCREMENT NUMBER OF REPEATS */
 							else
 								break;
 					    }
 
-						if (nuctransit && (p=n-x+k)<=Current.pass_W && (q=n-x+r*k)<=Current.pass_W && col_isclear(align2D,q+k,m,-1)<0) {
-							if ((letr=consensus[p])!='R' && letr!='Y' && (letr3=consensus[q])!='R' && letr3!='Y') 
+						if (q-x<=Current.pass_W && col_isclear(align2D,n+r*k,m,-1)<0) {
+							if ((letr3=unshifted[q])!='R' && letr3!='Y')
 						        keep_checking = imperfect_TR = 0; 
 						}
 			    	}
