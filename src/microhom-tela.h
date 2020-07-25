@@ -510,6 +510,50 @@ int next_k(int n, int k1, short unsigned int seqtype)
 }
 
 
+/**************** FUNCTION TO CHECK IF POSITION i IS FRACTAL TO PARENT AT n ************************************/
+int isfractal(int i, int n, int k) {
+
+		int candk=tela[i].ok;					/* candidate k: k-mer size of candidate fractal */
+		short int mfract=0;						/* switches --- perfect=1; imperfect=-1; nfract not necessary */
+
+		if (!candk) {
+			if (tela[i].impk<0) {				/* candidate k is an imperfect TR */
+				candk = -tela[i].impk;
+				mfract = -1;
+			}
+			else
+				return(0);
+		}
+
+		if (candk>=k)
+			return(0);
+		else if (i-candk<n-k)
+			return(0);
+		else if (i+span_ork(i)>n)
+			return(0);
+		else if (candk == tela[i+k].k1)			/* Note: tela[i+k].ok might not be filled yet. */
+			return(candk);
+		else if (candk == -tela[i+k].impk) {
+			if (mfract>0)
+				return (candk);
+			else {								/* ELSE both are imperfect so check to see they are concordantly so */
+				int transits=0;
+				for (int j=i-candk; j<i+candk; j++) {
+					if (tela[j].c!=tela[j+k].c && tela[j].e==tela[j+k].e)
+						++transits;
+					if (transits>2)				/* APPROX. MOSTLY CORRECT */
+						return(0);
+				}
+				return(candk);
+			}
+		}
+		else if (candk==tela[i+k].k2)
+			return(candk);
+		else
+			return(0);
+}
+
+
 /**************** FUNCTION TO MARK ALL POSSIBLE k-MERs BEFORE LEGACY CINCH-T PASS ******************************/
 void mark_tela(void) 
 {
@@ -703,27 +747,24 @@ void mark_tela(void)
 					}
 				}
 
-				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPLEGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
-				/* IF SO, CANCEL TR AT n */
+				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPELGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
 				if (Dtr && imperfect_TR && (k<9 || k%3)) {
-
-					for (i=m+1; i<n; i++) {
-						if ((fract_k=tela[i].ok) && fract_k<=PISO && i + span_ork(i) <= n   /* Why not && i-fract_k>=m ? */  ) {
-							for (j=i-fract_k; j<i+fract_k; j++) {
-								if (tela[j].c!=tela[j+k].c) {
-									push_mem(n,3);
-									push_mem(i,3);
-									clearall_tela(n,1,-1,TWO);
-									push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-									Dtr=0;
-								}
-							}
+					for (i=m+min_k; i<n; i++) {
+						if ((fract_k=isfractal(i,n,k))) {
+							push_mem(n,0);
+							push_mem(n,3);
+							clearall_tela(n,1,-1,TWO);
+							Dtr=0;
 						}
-						else if ((fract_k=tela[i].k1) && fract_k<=PISO && i + tela[i].k1 <= n && !tela[i+k].k1) {
-							tela[i  ].statf = st_fract.sym;
-							tela[n  ].stat  = st_parent.sym;
-							tela[i+k].stat  = st_Fract.sym;
-							push_mem(i+k,3);
+						else if ( ((fract_k=tela[i  ].k1) && fract_k<=PISO && !tela[i+k].k1 && i  -fract_k>=m && i+span_ork(i)<=n) ||
+								  ((fract_k=tela[i+k].k1) && fract_k<=PISO && !tela[i  ].k1 && i+k-fract_k>=n && i+k+tela[i+k].k1<=n+fract_k) ) {
+							push_mem(n,0);
+							push_mem(n,4);
+							tela[n  ].stat = st_parent.sym;
+							tela[i  ].stat = st_Fract.sym;
+							tela[i  ].stat = cyc_skip.sym;
+							tela[i+k].stat = st_Fract.sym;
+							tela[i+k].stat = cyc_skip.sym;
 						}
 					}
 				}

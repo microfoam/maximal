@@ -17,24 +17,29 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
-	./maximal -KRx waves/squeegee/squeez-08.txt	# P3-only
-	./maximal -KRx waves/squeegee/squeez-32.txt	# P3-only
-	./maximal -KRx waves/squeegee/squeez-36.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squee112.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating-->re-upped w/ solved-58
+	./maximal -KRx -D 8 waves/squeegee/squee028.txt		# already solved --> re-upped w/ solved-58; P3
+	./maximal -KRx -D 8 waves/squeegee/squee029.txt		# already solved --> re-upped w/ solved-58; P34
+	./maximal -KRx -D 8 waves/squeegee/squeez-08.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-32.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-36.txt	# P3-only
+	./maximal -KRx waves/squeegee/squee006.txt			# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines
+														# re-upped w/ solved-58; P3-only
 
 	# conflict begins in cinch-k
-	./maximal -KRx waves/squeegee/squeez-20.txt	# P3- & P4- only
-	./maximal -KRx waves/squeegee/squeez-24.txt	# P3- & P4- only
-	./maximal -KRx waves/squeegee/squeez-26.txt	# P3- & P4- only
-	./maximal -KRx waves/squeegee/squeez-40.txt	# P3- & P4- only
-	./maximal -KRx waves/squeegee/squeez-04.txt	# P3-only
-	./maximal -KRx waves/squeegee/squeez-16.txt	# P3-only
-	./maximal -KRx waves/squeegee/squeez-30.txt	# P3-only
-	./maximal -KRx waves/squeegee/squeez-42.txt	# P3-only
-	./maximal -KRx waves/squeegee/squeez-44.txt	# P3-only
-	./maximal -KRx waves/squeegee/squeez-46.txt	# P3-only
-	./maximal -KRx waves/squeegee/squeez-48.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-40.txt	# P3- & P4- only --> P3--P6 w/ solved-58
+	./maximal -KRx -D 8 waves/squeegee/squeez-20.txt	# P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-24.txt	# P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-16.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-30.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-44.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-46.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-48.txt	# P3-only
 
 	# solved: push new solved runs onto top of stack (reverse order of solving), starting w/ solved-41, after solved-54 coordinate w/ squid script
+	./maximal -KRx -D 8 waves/squeegee/squeez-26.txt	# w/ solved-58; P3- & P4- only
+	./maximal -KRx -D 8 waves/squeegee/squeez-04.txt	# w/ solved-58; P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-42.txt	# w/ solved-58; P3-only
 	./maximal -KRx waves/squeegee/squeez-02.txt		# solved-54 cyclelize_tela() transitions updating, P3-only; 7317 lines
 	./maximal -KRx waves/squeegee/squeez-34.txt		# solved-54 cyclelize_tela() transitions updating, P3-only; 7317 lines
 	./maximal -KRx waves/squeegee/squeez-18.txt		# solved-53 new part to conflict calling in mark tela(); 7306 lines; P3- & P4- only
@@ -52,8 +57,6 @@ fi
 	./maximal -KRx waves/squeegee/squee025.txt		# already solved
 	./maximal -KRx waves/squeegee/squee026.txt		# already solved
 	./maximal -KRx waves/squeegee/squee027.txt		# already solved
-	./maximal -KRx waves/squeegee/squee028.txt		# already solved
-	./maximal -KRx waves/squeegee/squee029.txt		# already solved
 	./maximal -KRx waves/squeegee/squee030.txt		# already solved
 	./maximal -KRx waves/squeegee/squee018.txt		# solved-50 symmetric condition for n position as the m position of solved-49; 7300 lines
 	./maximal -KRx waves/squeegee/squee015.txt		# solved-50 symmetric condition for n position as the m position of solved-49; 7300 lines
@@ -73,12 +76,10 @@ fi
 	./maximal -KRx waves/squeegee/squee001.txt		# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
 	./maximal -KRx waves/squeegee/squee003.txt		# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
 	./maximal -KRx waves/squeegee/squee004.txt		# solved-46 multi-PISO chowder, cinch-k tela logic conversion of nuctransit check; 7300 lines
-	./maximal -KRx waves/squeegee/squee006.txt		# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines
 	#./maximal -KRx waves/squeegee/squee010.txt		# solved-44 allowing fractal call based on k1 in addition to ok; 7286 lines
 													# reappeared w/ another issue for PISO 4/5 with solved-46
 	./maximal -KRx waves/squeegee/squee224.txt		# solved-43 needed extra condition for calling parents and fractals pushmem 4; 7286 lines
 	./maximal -KRx waves/squeegee/squee216.txt		# solved-42 squash imperfect k-mer that is a multiple of underlying imperfect TR
-	./maximal -KRx waves/squeegee/squee112.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
 	./maximal -KRx waves/squeegee/squee008.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
 	./maximal -KRx waves/squeegee/squee282.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
 
@@ -89,8 +90,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 58 (PISO=6): 0.482069 -> 0.482069 -> 0.482586 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=5): 0.477759 -> 0.477759 -> 0.479138 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=4): 0.468621 -> 0.469828 -> 0.470862 (54/58 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=3): 0.453103 -> 0.45431  -> 0.453793 (44/58 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=6): 0.484483 (57/58 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=5): 0.478448 (57/58 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=4): 0.47069  (54/58 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=3): 0.455    (43/58 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
