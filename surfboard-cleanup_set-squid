@@ -24,10 +24,8 @@ fi
 	./maximal -KnxR -D 8 waves/squeegee/squid~42.txt	# P3/4/5/6 --> P3/P4-only w/ solved-58
 	./maximal -KnxR -D 8 waves/squeegee/squid~14.txt	# P3/4
 	./maximal -KnxR -D 8 waves/squeegee/squid~20.txt	# P3/4
-	./maximal -KnxR -D 8 waves/squeegee/squid~38.txt	# previously solved by max-04 and max-05; P3-only
 	./maximal -KnxR -D 8 waves/squeegee/squid~02.txt
 	./maximal -KnxR -D 8 waves/squeegee/squid~06.txt
-	./maximal -KnxR -D 8 waves/squeegee/squid~10.txt
 	./maximal -KnxR -D 8 waves/squeegee/squid~12.txt
 	./maximal -KnxR -D 8 waves/squeegee/squid~16.txt
 	./maximal -KnxR -D 8 waves/squeegee/squid~18.txt
@@ -38,14 +36,16 @@ fi
 	./maximal -KnxR -D 8 waves/squeegee/squid~48.txt
 
 	# solved: push new solved runs onto top of stack starting w/ solved-55 coordinated with active squeegee solving
-	./maximal -KnxR -D 8 waves/squeegee/squid~08.txt	# solved-58 new isfractal(); squid~08 P3-only chow w/ <1000 REC; 7387 lines
-	./maximal -KnxR -D 8 waves/squeegee/squid~36.txt	# P3/4/5/6; w/ solved-58
-	./maximal -KnxR -D 8 waves/squeegee/squid~40.txt	# w/ solved-58
-	./maximal -KnxR -D 8 waves/squeegee/squid~04.txt	# w/ solved-58
-	./maximal -KnxR -D 8 waves/snippets/snippet-P6-chow-01.txt	# solved-57, cinch_k module; 7346 lines
-	./maximal -KnxR -D 8 waves/squeegee/squid~22.txt	# solved-57, cinch_k_module; 7346 lines; previously solved by max-04; P3/4/5/6
-	./maximal -KnxR -D 8 waves/squeegee/squid~34.txt	# solved-56; mark_tela code for partially fractal cycling isl.; recently chowder P3/4/5/6; 7345 lines
-	./maximal -KnxR -D 8 waves/squeegee/squid~24.txt	# solved-55 7319 lines; previously solved by max-04 and max-05; mark_tela adjust
+	./maximal -KnxR waves/squeegee/squid~38.txt	# solved-59 another sub-in for isfractal(); 7397 lines <--prev. solved by max-04 max-05; P3-only
+	./maximal -KnxR waves/squeegee/squid~10.txt	# solved-59 another sub-in for isfractal(); 7397 lines
+	./maximal -KnxR waves/squeegee/squid~08.txt	# solved-58 new isfractal(); squid~08 P3-only chow w/ <1000 REC; 7387 lines
+	./maximal -KnxR waves/squeegee/squid~36.txt	# P3/4/5/6; w/ solved-58
+	./maximal -KnxR waves/squeegee/squid~40.txt	# w/ solved-58
+	./maximal -KnxR waves/squeegee/squid~04.txt	# w/ solved-58
+	./maximal -KnxR waves/snippets/snippet-P6-chow-01.txt	# solved-57, cinch_k module; 7346 lines
+	./maximal -KnxR waves/squeegee/squid~22.txt	# solved-57, cinch_k_module; 7346 lines; previously solved by max-04; P3/4/5/6
+	./maximal -KnxR waves/squeegee/squid~34.txt	# solved-56; mark_tela code for partially fractal cycling isl.; recently chowder P3/4/5/6; 7345 lines
+	./maximal -KnxR waves/squeegee/squid~24.txt	# solved-55 7319 lines; previously solved by max-04 and max-05; mark_tela adjust
 
 echo
 echo
@@ -57,5 +57,5 @@ echo
 echo 'Commit WCR average of 25 (PISO=6): 0.473  (24/25 solved)' | tee -a Corduroy.log
 echo 'Commit WCR average of 25 (PISO=5): 0.4726 (24/25 solved)' | tee -a Corduroy.log
 echo 'Commit WCR average of 25 (PISO=4): 0.4782 (19/25 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (PISO=3): 0.4618 ( 8/25 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (PISO=3): 0.4586 (10/25 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

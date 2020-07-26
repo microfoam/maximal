@@ -607,9 +607,17 @@ void mark_tela(void)
 							}
 						}
 						else {
+							/* CLEANS UP TELA ANNOTATION IN RARE CASES; NOT MEASUREABLY HELPFUL ATM v4.34 7/25/2020 */
+							if (k_tmp==tela[n-k1].k1 && tela[n-1].k2==k_tmp && tela[n-1-k1].k1!=k_tmp)
+								tela[n-1].k2 = '\0';
+
 							tela[n].k2 = k2 = k_tmp;
 							break;						/* BREAK BECAUSE CURRENTLY ONLY STORING TOP TWO k-MERS AT n */
 						}
+					}
+					else if (tela[n-1].k2) {
+						tela[n].k1 = tela[n].impk = '\0';
+						break;
 					}
 					else
 						break;
@@ -731,6 +739,8 @@ void mark_tela(void)
 						if (tela[i].k1 && tela[i].stat!=st_cycle.sym && (fract_k=tela[i].k1)<k && i-fract_k>=n && 
 																fract_k==tela[i-k].ok && fract_k==tela[i-k-1].ok) {
 							tela[i-k].statf = tela[i].statf = st_fract.sym;
+							push_mem(i-k,6);
+							push_mem(i  ,6);
 							tela[n].stat = st_parent.sym;
 
 							j = 1;
@@ -868,7 +878,7 @@ void mark_tela(void)
 						printf("Repeats=%d (n=%d for k-mer=%d)", reps,n,k);
 					}
 					/* v4.30: MARK FRACTAL TR'S FOR CINCH-T TO SKIP, AND LEAVE FOR CINCH-K */
-					if (n>3) {
+					if (n>=2*min_k) {
 						for (i=m+1; i<n; i++) {	
 							if (tela[i].ok) {
 								fract_k = tela[i].ok;			/* POSSIBLE FRACTAL TO BE CHECKED */
@@ -1081,12 +1091,12 @@ void mark_tela(void)
 			}
 			for (i=j-1; i>0; i--) {
 				if (tela[i].ok) {
-					if (i-tela[i].ok >= m && span_ork(i)<=n && tela[i].k == tela[i+k].k) {		/* n + (i-m) = n + (i-(n-k)) = i + k */
+					if (isfractal(i,n,k)) {
 						int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
 						tela[n].stat = st_parent.sym;
 						tela[i].statf = tela[i+k].statf = st_fract.sym;
-						if (dev_print(TELA,__LINE__))
-							printf("Calling parent at %d with fractals at i=%d and i+k=%d.", n,i,i+k);
+						push_mem(i  , 4);
+						push_mem(i+k, 4);
 
 						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;					/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
