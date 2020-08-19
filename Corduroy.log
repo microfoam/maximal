@@ -1,4 +1,4 @@
-Wed Aug 19 16:12:05 CDT 2020
+Wed Aug 19 18:10:34 CDT 2020
 Tri-fin dawn patrol: Compiling maximal v4.34.
 
 #define PISO        3		/* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
@@ -12,8 +12,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.34	Aug 19 16:12:25 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
-v4.34	Aug 19 16:13:12 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	-
+v4.34	Aug 19 18:10:39 2020	 x0	1000	0.510	NDG: 0 	RND:	         waves/seals/vnd_ex3_Dmela.txt (+) ( 956 bp) REC:1000	M: 4	-
+v4.34	Aug 19 18:11:27 2020	 x1	1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-) (  44 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         816
 
@@ -40,9 +40,9 @@ Line counts:
     1401 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    2048 src/microhom-tela.h
+    2060 src/microhom-tela.h
     1719 src/microhomology.h
-    7424 total
+    7436 total
 
 Commit WCR avgs (PISO=6): 0.504347 (chowder-free)
 Commit WCR avgs (PISO=5): 0.502283 (chowder-free)
@@ -58,8 +58,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.34	Aug 19 16:13:28 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.34	Aug 19 16:13:30 2020	 x0	1000	0.560	NDG: 0 	RND:	        waves/chowder/stringA-40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.34	Aug 19 18:11:34 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.34	Aug 19 18:11:36 2020	 x0	1000	0.560	NDG: 0 	RND:	        waves/chowder/stringA-40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         82
 
@@ -86,9 +86,9 @@ Line counts:
     1401 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    2048 src/microhom-tela.h
+    2060 src/microhom-tela.h
     1719 src/microhomology.h
-    7424 total
+    7436 total
 
 Current commit WCR average of 82 (PISO=6|5|4|3): 0.461866 (chowder-free)
 
@@ -101,8 +101,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.34	Aug 19 16:13:32 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.34	Aug 19 16:13:34 2020	 x0	1000	0.580	NDG: 0 	RND:	        waves/chowder/stringA-40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.34	Aug 19 18:11:38 2020	 x0	1000	0.470	NDG: 0 	RND:	         waves/chowder/flotsam_06F.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.34	Aug 19 18:11:40 2020	 x0	1000	0.580	NDG: 0 	RND:	        waves/chowder/stringA-40-k.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         82
 
@@ -129,9 +129,9 @@ Line counts:
     1401 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    2048 src/microhom-tela.h
+    2060 src/microhom-tela.h
     1719 src/microhomology.h
-    7424 total
+    7436 total
 
 Current commit WCR average of 82, cinch-k k=1 only (PISO=6|5|4|3): 0.467476 (chowdah-free)
 
@@ -144,8 +144,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.34	Aug 19 16:13:37 2020	 x0	1000	0.460	NDG: 0 	RND:	        waves/chowder/nugget-42356.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.34	Aug 19 16:13:37 2020	 x0	1000	0.400	NDG: 0 	RND:	        waves/chowder/nugget-00008.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:11:42 2020	 x0	1000	0.460	NDG: 0 	RND:	        waves/chowder/nugget-42356.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.34	Aug 19 18:11:42 2020	 x0	1000	0.400	NDG: 0 	RND:	        waves/chowder/nugget-00008.txt (+) ( 100 bp) REC:1000	M: 3	-
 
 Number of tests initiated:         11
 
@@ -172,9 +172,9 @@ Line counts:
     1401 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    2048 src/microhom-tela.h
+    2060 src/microhom-tela.h
     1719 src/microhomology.h
-    7424 total
+    7436 total
 
 Commit WCR average of 11 (PISO=6|5|4|3): 0.451818 (chowder-free)
 
@@ -187,8 +187,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.34	Aug 19 16:13:38 2020	 x0	1000	0.471	NDG: 0 	RND:	       waves/chowder/seq26-snippet.txt (+) (  68 bp) REC:1000	M: 2	-
-v4.34	Aug 19 16:13:38 2020	 x0	1000	0.484	NDG: 0 	RND:	waves/chowder/snippet-seq-014-cycle3.txt (+) (  31 bp) REC:1000	M: 2	-
+v4.34	Aug 19 18:11:44 2020	 x0	1000	0.471	NDG: 0 	RND:	       waves/chowder/seq26-snippet.txt (+) (  68 bp) REC:1000	M: 2	-
+v4.34	Aug 19 18:11:44 2020	 x0	1000	0.484	NDG: 0 	RND:	waves/chowder/snippet-seq-014-cycle3.txt (+) (  31 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         6
 
@@ -215,9 +215,9 @@ Line counts:
     1401 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    2048 src/microhom-tela.h
+    2060 src/microhom-tela.h
     1719 src/microhomology.h
-    7424 total
+    7436 total
 
 Current commit WCR average of 6 (PISO=6|5|4|3): 0.368 (chowder-free)
 
@@ -230,8 +230,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.34	Aug 19 16:13:40 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
-v4.34	Aug 19 16:13:40 2020	 x0	1000	0.136	NDG: 0 	RND:	        waves/chowder/abba_zabba_4.txt (+) (  22 ch) REC:1000	M: 2	-
+v4.34	Aug 19 18:11:45 2020	 x0	1000	0.590	NDG: 0 	RND:	    waves/tubespit/seq-017-variant.txt (+) (  39 bp) REC:1000	M: 2	-
+v4.34	Aug 19 18:11:46 2020	 x0	1000	0.136	NDG: 0 	RND:	        waves/chowder/abba_zabba_4.txt (+) (  22 ch) REC:1000	M: 2	-
 
 Number of tests initiated:         22
 
@@ -258,9 +258,9 @@ Line counts:
     1401 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    2048 src/microhom-tela.h
+    2060 src/microhom-tela.h
     1719 src/microhomology.h
-    7424 total
+    7436 total
 
 Current commit WCR average of 22 (PISO=6    ): 0.365227 (chowder-free)
 Current commit WCR average of 22 (PISO=5|4|3): 0.367955 (chowder-free)
@@ -274,8 +274,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.34	Aug 19 16:13:43 2020	 x0	1000	0.510	NDG: 0 	RND:	           waves/chowder/churly-01.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.34	Aug 19 16:13:44 2020	 x0	1000	0.620	NDG: 0 	RND:	           waves/chowder/churly-38.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.34	Aug 19 18:11:48 2020	 x0	1000	0.510	NDG: 0 	RND:	           waves/chowder/churly-01.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.34	Aug 19 18:11:49 2020	 x0	1000	0.620	NDG: 0 	RND:	           waves/chowder/churly-38.txt (+) ( 100 bp) REC:1000	M: 2	-
 
 Number of tests initiated:         38
 
@@ -302,9 +302,9 @@ Line counts:
     1401 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    2048 src/microhom-tela.h
+    2060 src/microhom-tela.h
     1719 src/microhomology.h
-    7424 total
+    7436 total
 
 Commit WCR average of 38 (PISO=6|5|4|3): 0.478158 (chowder-free)
 
@@ -317,8 +317,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.34	Aug 19 16:13:46 2020	 x1	 934	0.510	NDG: 0 	RND:	           waves/squeegee/squee112.txt (+) ( 100 bp) REC: 960	M: 5	bslip sum 50
-v4.34	Aug 19 16:13:52 2020	 x1	1000	0.430	NDG: 0 	RND:	           waves/squeegee/squee282.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:11:51 2020	 x1	 934	0.510	NDG: 0 	RND:	           waves/squeegee/squee112.txt (+) ( 100 bp) REC: 960	M: 5	bslip sum 50
+v4.34	Aug 19 18:11:59 2020	 x1	1000	0.430	NDG: 0 	RND:	           waves/squeegee/squee282.txt (+) ( 100 bp) REC:1000	M: 3	-
 
 Number of tests initiated:         58
 
@@ -333,24 +333,24 @@ Number of tests w/ nudging:        12
 WCR average: 0.451897
 
 Tests with PASS < 1000 (if any):
-v4.34	Aug 19 16:13:46 2020	 x1	 934	0.510	NDG: 0 	RND:	           waves/squeegee/squee112.txt (+) ( 100 bp) REC: 960	M: 5	bslip sum 50
+v4.34	Aug 19 18:11:51 2020	 x1	 934	0.510	NDG: 0 	RND:	           waves/squeegee/squee112.txt (+) ( 100 bp) REC: 960	M: 5	bslip sum 50
 
 Tests with REC. < 1000 (if any):
-v4.34	Aug 19 16:13:46 2020	 x1	 934	0.510	NDG: 0 	RND:	           waves/squeegee/squee112.txt (+) ( 100 bp) REC: 960	M: 5	bslip sum 50
+v4.34	Aug 19 18:11:51 2020	 x1	 934	0.510	NDG: 0 	RND:	           waves/squeegee/squee112.txt (+) ( 100 bp) REC: 960	M: 5	bslip sum 50
 
 Tests with nudging (if any):
-v4.34	Aug 19 16:13:46 2020	 x1	1000	0.610	NDG: 4 	RND:	           waves/squeegee/squee028.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:13:47 2020	 x1	1000	0.400	NDG: 4 	RND:	          waves/squeegee/squeez-08.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:13:47 2020	 x1	1000	0.510	NDG: 8 	RND:	          waves/squeegee/squeez-32.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:13:48 2020	 x1	1000	0.460	NDG: 4 	RND:	          waves/squeegee/squeez-36.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:13:48 2020	 x1	1000	0.440	NDG: 3 	RND:	           waves/squeegee/squee006.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:13:48 2020	 x1	1000	0.380	NDG: 3 	RND:	          waves/squeegee/squeez-40.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.34	Aug 19 16:13:49 2020	 x1	1000	0.540	NDG: 4 	RND:	          waves/squeegee/squeez-24.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:13:49 2020	 x1	1000	0.510	NDG: 8 	RND:	          waves/squeegee/squeez-16.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:13:49 2020	 x1	1000	0.460	NDG: 6 	RND:	          waves/squeegee/squeez-30.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:13:50 2020	 x1	1000	0.440	NDG: 3 	RND:	          waves/squeegee/squeez-44.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.34	Aug 19 16:13:50 2020	 x1	1000	0.470	NDG: 3 	RND:	          waves/squeegee/squeez-46.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.34	Aug 19 16:13:51 2020	 x1	1000	0.280	NDG: 3 	RND:	          waves/squeegee/squeez-48.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.34	Aug 19 18:11:53 2020	 x1	1000	0.610	NDG: 4 	RND:	           waves/squeegee/squee028.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:11:54 2020	 x1	1000	0.400	NDG: 4 	RND:	          waves/squeegee/squeez-08.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:11:54 2020	 x1	1000	0.510	NDG: 8 	RND:	          waves/squeegee/squeez-32.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:11:54 2020	 x1	1000	0.460	NDG: 4 	RND:	          waves/squeegee/squeez-36.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:11:55 2020	 x1	1000	0.440	NDG: 3 	RND:	           waves/squeegee/squee006.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:11:55 2020	 x1	1000	0.380	NDG: 3 	RND:	          waves/squeegee/squeez-40.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.34	Aug 19 18:11:55 2020	 x1	1000	0.540	NDG: 4 	RND:	          waves/squeegee/squeez-24.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:11:56 2020	 x1	1000	0.510	NDG: 8 	RND:	          waves/squeegee/squeez-16.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:11:56 2020	 x1	1000	0.460	NDG: 6 	RND:	          waves/squeegee/squeez-30.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:11:57 2020	 x1	1000	0.440	NDG: 3 	RND:	          waves/squeegee/squeez-44.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.34	Aug 19 18:11:57 2020	 x1	1000	0.470	NDG: 3 	RND:	          waves/squeegee/squeez-46.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.34	Aug 19 18:11:58 2020	 x1	1000	0.280	NDG: 3 	RND:	          waves/squeegee/squeez-48.txt (+) ( 100 bp) REC:1000	M: 4	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -359,9 +359,9 @@ Line counts:
     1401 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    2048 src/microhom-tela.h
+    2060 src/microhom-tela.h
     1719 src/microhomology.h
-    7424 total
+    7436 total
 
 Commit WCR average of 58 (PISO=6): 0.484138 (57/58 solved)
 Commit WCR average of 58 (PISO=5): 0.478103 (57/58 solved)
@@ -377,8 +377,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.34	Aug 19 16:14:09 2020	 x1	1000	0.520	NDG: 4 	RND:	           waves/squeegee/squid~44.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:14:14 2020	 x1	1000	0.450	NDG: 0 	RND:	           waves/squeegee/squid~24.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.34	Aug 19 18:12:05 2020	 x1	1000	0.520	NDG: 4 	RND:	           waves/squeegee/squid~44.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:10 2020	 x1	1000	0.450	NDG: 0 	RND:	           waves/squeegee/squid~24.txt (+) ( 100 bp) REC:1000	M: 4	-
 
 Number of tests initiated:         25
 
@@ -397,21 +397,21 @@ Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
 Tests with nudging (if any):
-v4.34	Aug 19 16:14:09 2020	 x1	1000	0.520	NDG: 4 	RND:	           waves/squeegee/squid~44.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:14:10 2020	 x1	1000	0.700	NDG: 5 	RND:	           waves/squeegee/squid~46.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.34	Aug 19 16:14:11 2020	 x1	1000	0.420	NDG: 5 	RND:	           waves/squeegee/squid~42.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.34	Aug 19 16:14:11 2020	 x1	1000	0.480	NDG: 7 	RND:	           waves/squeegee/squid~14.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:14:11 2020	 x1	1000	0.450	NDG: 3 	RND:	           waves/squeegee/squid~20.txt (+) ( 100 bp) REC:1000	M: 2	-
-v4.34	Aug 19 16:14:11 2020	 x1	1000	0.570	NDG:12 	RND:	           waves/squeegee/squid~02.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:14:11 2020	 x1	1000	0.390	NDG: 2 	RND:	           waves/squeegee/squid~06.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:14:11 2020	 x1	1000	0.560	NDG: 7 	RND:	           waves/squeegee/squid~12.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:14:12 2020	 x1	1000	0.410	NDG: 6 	RND:	           waves/squeegee/squid~16.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:14:12 2020	 x1	1000	0.390	NDG: 2 	RND:	           waves/squeegee/squid~18.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:14:12 2020	 x1	1000	0.370	NDG: 6 	RND:	           waves/squeegee/squid~26.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:14:12 2020	 x1	1000	0.540	NDG: 4 	RND:	           waves/squeegee/squid~28.txt (+) ( 100 bp) REC:1000	M: 4	-
-v4.34	Aug 19 16:14:13 2020	 x1	1000	0.420	NDG: 6 	RND:	           waves/squeegee/squid~30.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:14:13 2020	 x1	1000	0.460	NDG: 7 	RND:	           waves/squeegee/squid~32.txt (+) ( 100 bp) REC:1000	M: 3	-
-v4.34	Aug 19 16:14:14 2020	 x1	1000	0.360	NDG: 8 	RND:	           waves/squeegee/squid~48.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:05 2020	 x1	1000	0.520	NDG: 4 	RND:	           waves/squeegee/squid~44.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:06 2020	 x1	1000	0.700	NDG: 5 	RND:	           waves/squeegee/squid~46.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.34	Aug 19 18:12:06 2020	 x1	1000	0.420	NDG: 5 	RND:	           waves/squeegee/squid~42.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.34	Aug 19 18:12:07 2020	 x1	1000	0.480	NDG: 7 	RND:	           waves/squeegee/squid~14.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:07 2020	 x1	1000	0.450	NDG: 3 	RND:	           waves/squeegee/squid~20.txt (+) ( 100 bp) REC:1000	M: 2	-
+v4.34	Aug 19 18:12:07 2020	 x1	1000	0.570	NDG:12 	RND:	           waves/squeegee/squid~02.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:07 2020	 x1	1000	0.390	NDG: 2 	RND:	           waves/squeegee/squid~06.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:07 2020	 x1	1000	0.560	NDG: 7 	RND:	           waves/squeegee/squid~12.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:08 2020	 x1	1000	0.410	NDG: 6 	RND:	           waves/squeegee/squid~16.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:08 2020	 x1	1000	0.390	NDG: 2 	RND:	           waves/squeegee/squid~18.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:08 2020	 x1	1000	0.370	NDG: 6 	RND:	           waves/squeegee/squid~26.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:08 2020	 x1	1000	0.540	NDG: 4 	RND:	           waves/squeegee/squid~28.txt (+) ( 100 bp) REC:1000	M: 4	-
+v4.34	Aug 19 18:12:09 2020	 x1	1000	0.420	NDG: 6 	RND:	           waves/squeegee/squid~30.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:09 2020	 x1	1000	0.460	NDG: 7 	RND:	           waves/squeegee/squid~32.txt (+) ( 100 bp) REC:1000	M: 3	-
+v4.34	Aug 19 18:12:09 2020	 x1	1000	0.360	NDG: 8 	RND:	           waves/squeegee/squid~48.txt (+) ( 100 bp) REC:1000	M: 3	-
 
 Tests canceled (if any, w/ preceding run for context):
 
@@ -420,18 +420,18 @@ Line counts:
     1401 src/microhom-cinc.h
      139 src/microhom-devl.h
      113 src/microhom-skor.h
-    2048 src/microhom-tela.h
+    2060 src/microhom-tela.h
     1719 src/microhomology.h
-    7424 total
+    7436 total
 
 Commit WCR average of 25 (PISO=6): 0.473  (24/25 solved)
 Commit WCR average of 25 (PISO=5): 0.4726 (24/25 solved)
 Commit WCR average of 25 (PISO=4): 0.4782 (19/25 solved)
 Commit WCR average of 25 (PISO=3): 0.4586 (10/25 solved)
 
-Wed Aug 19 16:14:25 CDT 2020
+Wed Aug 19 18:12:24 CDT 2020
 Tri-fin dawn patrol: Compiling maximal v4.34.
 
-Wed Aug 19 16:21:05 CDT 2020
+Wed Aug 19 18:15:12 CDT 2020
 Tri-fin dawn patrol: Compiling maximal v4.34.
 

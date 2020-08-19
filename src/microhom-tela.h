@@ -495,6 +495,18 @@ int next_k(int n, int k1, short unsigned int seqtype)
 		}
 		return(0);
 	}
+	else if (seqtype==3 && !opt_x.bit) {
+		for (k = k1-1; k>0; k--) {
+			m = n-k;
+			for (i=0; i<k; i++) {
+				if (tela[m+i].e != tela[n+i].e)
+					break;
+			}
+			if (i && i==k && k<k1)
+				return(k);
+		}
+		return(0);
+	}
 	else {
 		for (k = k1-1; k>0; k--) {
 			m = n-k;
