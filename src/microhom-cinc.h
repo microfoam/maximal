@@ -102,18 +102,20 @@ char letr;
 	else if (stringtype == 3 && opt_x.bit) {
 		i = 0;
 		while ((letr=s[i]) != '\0') {
-			if (letr=='L' || letr=='M' || letr=='I' || letr=='V') 	/* WORKHORSE HYDROPHOBICITY  */
+			if (letr=='L' || letr=='V') 					/* WORKHORSE HYDROPHOBICITY,  PT. 1 */
 				s[i] = 'O';
-			else if (letr=='W' || letr=='Y' || letr=='F') 			/* HEAVY HYDROPHOBIC MOTHERS */
-				s[i] = 'X';
-			else if (letr=='Q' || letr=='E' || letr=='D') 			/* POLAR - OR CARBOXYMIDE STRUCTURE-FRIENDLY */
-				s[i] = 'U';
-			else if (letr=='K' || letr=='R') 						/* POLAR +	*/
-				s[i] = 'Z';
-			else if (letr=='T' || letr=='S') 						/* -OH 		*/
+			else if (letr=='S' || letr=='T') 				/* -OH 		*/
 				s[i] = 'B';
-			else if (letr=='A' || letr=='G') 						/* SMALL 	*/
+			else if (letr=='E' || letr=='D' || letr=='Q') 	/* POLAR -, OR CARBOXYMIDE STRUCTURE-FRIENDLY (Q) */
+				s[i] = 'U';
+			else if (letr=='R' || letr=='K') 				/* POLAR +	*/
+				s[i] = 'Z';
+			else if (letr=='I' || letr=='M') 				/* WORKHORSE HYDROPHOBICITY, PT. 2  */
+				s[i] = 'O';
+			else if (letr=='G' || letr=='A') 				/* SMALL 	*/
 				s[i] = 'J';
+			else if (letr=='F' || letr=='Y' || letr=='W') 	/* HEAVY HYDROPHOBIC MOTHERS */
+				s[i] = 'X';
 			i++;
 		}
 		print_protein_waxes();
@@ -138,13 +140,13 @@ char letr;
 
 void print_protein_waxes(void)
 {
-		printf("\nProtein sequence waxed into equivalence classes:\n");
-		printf(" O = [LMIV]\t Workhorse hydrophobicity\n");
-		printf(" X = [WYF] \t Heavy hydrophobic mothers\n");
-		printf(" U = [QED] \t Polar, negative or structure-friendly carboxymide\n");
-		printf(" U = [KR]  \t Polar, positive\n");
+		printf("\nProtein sequence waxed into BLOSUM-90 equivalence classes:\n");
+		printf(" O = [LVIM]\t Workhorse hydrophobicity\n");
+		printf(" X = [FYW] \t Heavy hydrophobic mothers\n");
+		printf(" U = [EDQ] \t Polar, negative or structure-friendly carboxymide (Q)\n");
+		printf(" Z = [RK]  \t Polar, positive\n");
 		printf(" B = [ST]  \t Small -OH\n");
-		printf(" J = [AG]  \t Small\n");
+		printf(" J = [GA]  \t Small\n");
 }
 
 /** INVOKE PRIOR TO RE-USING PATHBOX **/

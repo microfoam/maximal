@@ -641,6 +641,26 @@ int main(int argc, char *argv[])
 			else
 				tela[i].e = tela[i].c;
 		}
+		else if (seqtype==3 && !opt_x.bit) {	/* PROTEIN */
+			char letr=tela[i].c;
+
+			if (letr=='L' || letr=='V') 					/* WORKHORSE HYDROPHOBICITY, PT. 1  */
+				tela[i].e = 'O';
+			else if (letr=='S' || letr=='T') 				/* -OH 		*/
+				tela[i].e = 'B';
+			else if (letr=='E' || letr=='D' || letr=='Q') 	/* POLAR -, OR CARBOXYMIDE STRUCTURE-FRIENDLY (Q) */
+				tela[i].e = 'U';
+			else if (letr=='R' || letr=='K') 				/* POLAR +	*/
+				tela[i].e = 'Z';
+			else if (letr=='I' || letr=='M') 				/* WORKHORSE HYDROPHOBICITY, PT. 2  */
+				tela[i].e = 'O';
+			else if (letr=='G' || letr=='A') 				/* SMALL 	*/
+				tela[i].e = 'J';
+			else if (letr=='F' || letr=='Y' || letr=='W') 	/* HEAVY HYDROPHOBIC MOTHERS */
+				tela[i].e = 'X';
+			else
+				tela[i].e = tela[i].c;
+		}
 		else
 			tela[i].e = tela[i].c;
 	}

@@ -1487,6 +1487,11 @@ int lenseq = Clean.pass_W;
 			else
 				printf("___");
 		}
+		if (Clean.pass_V==3) { 	/* IF PROTEIN */
+			printf("\n e:");
+			for (i=a; i<=b; i++)
+				printf("  %c", tela[i].e);
+		}
 	}
 	printf("\n c:");
 	for (i=a; i<=b; i++)
