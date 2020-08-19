@@ -1565,7 +1565,7 @@ void print1D(void)
 	mha_head(lenseq);
 
 	for (j = 0; j < blocks; j++) {
-		if (Clean.pass_V && opt_v.val) { /* IF DNA AND VERBOSITY */
+		if (Clean.pass_V==1 && opt_v.val) { /* IF DNA AND VERBOSITY */
 			line_end(SLIPS, j+1, 0);	
    			for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && tela[n].c!=Term->sym && tela[n].c!='\0'; n++) {
 				if ((ch=tela[n].t)=='R' || ch=='Y')
