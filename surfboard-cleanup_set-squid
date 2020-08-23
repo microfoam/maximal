@@ -21,21 +21,21 @@ fi
 
 	# cinch-k originating 2-D conflict
 	./maximal -KnxR -D 8 waves/squeegee/squid~46.txt	# P3/4/5/6
-	./maximal -KnxR -D 8 waves/squeegee/squid~42.txt	# P3/4/5/6 --> P3/P4-only w/ solved-58
-	./maximal -KnxR -D 8 waves/squeegee/squid~14.txt	# P3/4
 	./maximal -KnxR -D 8 waves/squeegee/squid~20.txt	# P3/4
-	./maximal -KnxR -D 8 waves/squeegee/squid~02.txt
-	./maximal -KnxR -D 8 waves/squeegee/squid~06.txt
-	./maximal -KnxR -D 8 waves/squeegee/squid~12.txt
-	./maximal -KnxR -D 8 waves/squeegee/squid~16.txt
-	./maximal -KnxR -D 8 waves/squeegee/squid~18.txt
-	./maximal -KnxR -D 8 waves/squeegee/squid~26.txt
-	./maximal -KnxR -D 8 waves/squeegee/squid~28.txt
-	./maximal -KnxR -D 8 waves/squeegee/squid~30.txt
-	./maximal -KnxR -D 8 waves/squeegee/squid~32.txt
-	./maximal -KnxR -D 8 waves/squeegee/squid~48.txt
 
 	# solved: push new solved runs onto top of stack starting w/ solved-55 coordinated with active squeegee solving
+	./maximal -KnxR waves/squeegee/squid~42.txt	# solved-60 see below; P3/4/5/6 --> P3/P4-only w/ solved-58
+	./maximal -KnxR waves/squeegee/squid~14.txt	# solved-60 see below; P3/4
+	./maximal -KnxR waves/squeegee/squid~02.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+	./maximal -KnxR waves/squeegee/squid~06.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+	./maximal -KnxR waves/squeegee/squid~12.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+	./maximal -KnxR waves/squeegee/squid~16.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+	./maximal -KnxR waves/squeegee/squid~18.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+	./maximal -KnxR waves/squeegee/squid~26.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+	./maximal -KnxR waves/squeegee/squid~28.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+	./maximal -KnxR waves/squeegee/squid~30.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+	./maximal -KnxR waves/squeegee/squid~32.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+	./maximal -KnxR waves/squeegee/squid~48.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
 	./maximal -KnxR waves/squeegee/squid~38.txt	# solved-59 another sub-in for isfractal(); 7397 lines <--prev. solved by max-04 max-05; P3-only
 	./maximal -KnxR waves/squeegee/squid~10.txt	# solved-59 another sub-in for isfractal(); 7397 lines
 	./maximal -KnxR waves/squeegee/squid~08.txt	# solved-58 new isfractal(); squid~08 P3-only chow w/ <1000 REC; 7387 lines
@@ -54,8 +54,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 25 (PISO=6): 0.473  (24/25 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (PISO=5): 0.4726 (24/25 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (PISO=4): 0.4782 (19/25 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (PISO=3): 0.4586 (10/25 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (PISO=6): 0.5154 (24/25 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (PISO=5): 0.509  (24/25 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (PISO=4): 0.5102 (23/25 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (PISO=3): 0.4762 (22/25 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

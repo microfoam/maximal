@@ -275,6 +275,35 @@ void 				print_section_spacer(void);
 #include "microhom-devl.h"	
 
 
+int count_unique_chars(char *string, int window)
+{
+	int i=0, j=0, l=0;
+	char letr;
+	short unsigned int seqtype = Clean.pass_V;
+	short unsigned int max = 24;
+
+	char unique[24] = {0};
+
+	if (seqtype==1 || seqtype==2)
+		max=4;
+	else if (seqtype==3)
+		max=20;
+
+	for (i=0; i<window; i++) {
+		if (j==max || (letr=string[i])==slip.sym || letr==Term->sym || letr=='\0')
+			return(j);
+		else {
+			for (l=0; l<j; l++)	{
+				if (letr==unique[l])
+					break;
+			}
+			if (l==j && l<32)
+				unique[j++] = letr;
+		}
+	}
+	return(j);	/* SHOULD NEVER GET TO HERE UNDER NORMAL CIRCUMSTANCES */
+}
+
 /*********************************************************************************************************/
 struct segment * makesnake(char *array, int height, int width, int w_plus_rattle, short unsigned int zcol)
 {

@@ -22,19 +22,20 @@ fi
 	./maximal -KRx -D 8 waves/squeegee/squeez-08.txt	# P3-only
 	./maximal -KRx -D 8 waves/squeegee/squeez-32.txt	# P3-only
 	./maximal -KRx -D 8 waves/squeegee/squeez-36.txt	# P3-only
-	./maximal -KRx waves/squeegee/squee006.txt			# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines
+	./maximal -KRx -D 8 waves/squeegee/squee006.txt			# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines
 														# re-upped w/ solved-58; P3-only
 
 	# conflict begins in cinch-k
-	./maximal -KRx -D 8 waves/squeegee/squeez-40.txt	# P3- & P4- only --> P3--P6 w/ solved-58
 	./maximal -KRx -D 8 waves/squeegee/squeez-24.txt	# P3- & P4- only
-	./maximal -KRx -D 8 waves/squeegee/squeez-16.txt	# P3-only
-	./maximal -KRx -D 8 waves/squeegee/squeez-30.txt	# P3-only
 	./maximal -KRx -D 8 waves/squeegee/squeez-44.txt	# P3-only
 	./maximal -KRx -D 8 waves/squeegee/squeez-46.txt	# P3-only
-	./maximal -KRx -D 8 waves/squeegee/squeez-48.txt	# P3-only
+
 
 	# solved: push new solved runs onto top of stack (reverse order of solving), starting w/ solved-41, after solved-54 coordinate w/ squid script
+	./maximal -KRx waves/squeegee/squeez-40.txt		# solved-60; P3- & P4- only --> P3--P6 w/ solved-58
+	./maximal -KRx waves/squeegee/squeez-16.txt		# solved-60; P3-only
+	./maximal -KRx waves/squeegee/squeez-30.txt		# solved-60; P3-only
+	./maximal -KRx waves/squeegee/squeez-48.txt		# solved-60; P3-only
 	./maximal -KRx waves/squeegee/squee029.txt		# solved-59 isfractal() call sub-in; 7397 lines <--already solved--> re-upped w/ solved-58; P34
 	./maximal -KRx waves/squeegee/squeez-20.txt		# solved-59 isfractal() call sub-in; 7397 lines <--P3- & P4- only
 	./maximal -KRx waves/squeegee/squeez-26.txt		# w/ solved-58; P3- & P4- only
@@ -90,8 +91,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 58 (PISO=6): 0.484138 (57/58 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=5): 0.478103 (57/58 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=4): 0.467931 (56/58 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=3): 0.451897 (45/58 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=6): 0.517931 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=5): 0.512069 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=4): 0.50569  (57/58 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=3): 0.481897 (48/58 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

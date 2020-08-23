@@ -462,6 +462,15 @@ int cinch_k(short unsigned int mode)
 					homopolyflag = 0;		/* RESET */
 				} 
 
+				if (nuctransit && keep_checking) {
+					if (k>2 && count_unique_chars(align2D[m]+n, 2*k)==2)
+						keep_checking = 0;
+					else if (k==1 && (col_isclear(align2D,n  ,m,1)>0 || col_isclear(align2D,n  ,m,-1)>=0) &&
+						    	     (col_isclear(align2D,n+1,m,1)>0 || col_isclear(align2D,n+1,m,-1)>=0)) {
+						keep_checking = 0;
+					}
+				}
+
 				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym)
 					keep_checking = check_imperf = 0;
 				else if (keep_checking && nuctransit && k>1 && isalpha( letr=unshifted[n+k*(1+tela[tela_n].or)] )
