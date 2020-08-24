@@ -240,7 +240,7 @@ int cinch_k(short unsigned int mode)
 		return(Cinch_K.pass_V);				/* RETURNS 0; Cinch_K.pass_V holds cumulative cinch-k runs. */
 	}
 
-	int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0; 
+	int cik_row=0, i=0, k=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0;
 	int first_mwrap_start=0, last_mwrap=0;
 	unsigned short int first_mwrap=0, keep_checking=1;
 	unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
@@ -389,9 +389,10 @@ int cinch_k(short unsigned int mode)
 
 				if (nuctransit && keep_checking) {
 					if (k<=PISO) {			/* SKIP IF CANNOT BE CINCHED B/C OF SUB-THRESHOLD FRACTALS AT ANY PARALOGOUS POSITION */
-						for (l=0; l<k; l++) {
-							if (tela[tela_m+l].t!=tela[tela_m+l].c || tela[tela_n+l].t!=tela[tela_n+l].c) {
-								keep_checking = check_imperf = 0;
+						int la;
+						for (la=0; la<k; la++) {
+							if (tela[tela_m+la].t!=tela[tela_m+la].c || tela[tela_n+la].t!=tela[tela_n+la].c) {
+								keep_checking = 0;
 								break;
 							}
 						}
@@ -399,12 +400,13 @@ int cinch_k(short unsigned int mode)
 
 					if (k==1 && (((letr=unshifted[n  ])=='R' || letr=='Y') || 
 								 ((letr=unshifted[n+1])=='R' || letr=='Y'))) {
-							keep_checking = check_imperf = 0;
+							keep_checking = 0;
 					}
 				}
 
 				/* CHECK FOR TR OF SIZE k-MER */
 				if (keep_checking) {
+					int lb;
 					if (k>1)
 						homopolyflag = 1;	/* SET HOMOPOLYFLAG STATUS TO UNKNOWN/NEED TO CHECK */
 					else if (nuctransit) {
@@ -413,48 +415,48 @@ int cinch_k(short unsigned int mode)
 						}
 					}
 
-					for (l = 0; l < k; l++) {
+					for (lb = 0; lb < k; lb++) {
 						/* BREAK EARLY IF WOULD-BE TRANSVERSION */
-						if ( ((letr =align2D[m][n+l  ])=='A' || letr =='G') &&
-							 ((letr2=align2D[m][n+l+k])=='C' || letr2=='T') ) {
+						if ( ((letr =align2D[m][n+lb  ])=='A' || letr =='G') &&
+							 ((letr2=align2D[m][n+lb+k])=='C' || letr2=='T') ) {
 							keep_checking = 0;
 							break;
 						}
-						else if ( ((letr =align2D[m][n+l  ])=='C' || letr =='T') &&
-							      ((letr2=align2D[m][n+l+k])=='A' || letr2=='G') ) {
+						else if ( ((letr =align2D[m][n+lb  ])=='C' || letr =='T') &&
+							      ((letr2=align2D[m][n+lb+k])=='A' || letr2=='G') ) {
 							keep_checking = 0;
 							break;
 						}
 						else {
 							/* CHECK TO SEE IF THERE ARE n's */
-							if (nuctype && (align2D[m][n+l]==ambig.sym || align2D[m][n+l+k]==ambig.sym)) {
+							if (nuctype && (align2D[m][n+lb]==ambig.sym || align2D[m][n+lb+k]==ambig.sym)) {
 								keep_checking = 0;
 								break;
 							}
 	
 							/* CHECK TO SEE IF HOMOPOLYMER RUN CAN BE EXCLUDED */
-							if (homopolyflag && l > 0) {	/* IF l > 0, THEN homopolyflag IS 1 */
-								if ((align2D[m][n + l] != align2D[m][n+k+l  ]) ||
-								    (align2D[m][n + l] != align2D[m][n + l-1]) ||
-								    (align2D[m][n+k+l] != align2D[m][n+k+l-1]) ) {
+							if (homopolyflag && lb > 0) {	/* IF lb > 0, THEN homopolyflag IS 1 */
+								if ((align2D[m][n + lb] != align2D[m][n+k+lb  ]) ||
+								    (align2D[m][n + lb] != align2D[m][n + lb-1]) ||
+								    (align2D[m][n+k+lb] != align2D[m][n+k+lb-1]) ) {
 									homopolyflag = 0;
 								}
 							}
 							if (nuctransit && keep_checking) {
-								if ((letr=tela[tela_m+l].t)=='R' || letr=='Y')
+								if ((letr=tela[tela_m+lb].t)=='R' || letr=='Y')
 									keep_checking = 0;
-								else if (!y && ((letr3=consensus[n-x+k+l])=='R' || letr3=='Y'))
+								else if (!y && ((letr3=consensus[n-x+k+lb])=='R' || letr3=='Y'))
 									keep_checking = 0;
 							}
 
-							if (keep_checking && align2D[m][n+l] != align2D[m][n+k+l]) {
+							if (keep_checking && align2D[m][n+lb] != align2D[m][n+k+lb]) {
 								keep_checking = 0;
 								if (nuctransit && k >= PISO) {
 									check_imperf = 1;
 								}
 							}
 						}
-					} /* END OF FOR l SCAN LOOPS */
+					} /* END OF FOR lb SCAN LOOPS */
 
 					if (homopolyflag) 		/* IF HOMOPOLYFLAG=1 WAS NOT SET TO ZERO */
 						keep_checking = check_imperf = 0;
@@ -473,22 +475,14 @@ int cinch_k(short unsigned int mode)
 
 				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym)
 					keep_checking = check_imperf = 0;
-				else if (keep_checking && nuctransit && k>1 && isalpha( letr=unshifted[n+k*(1+tela[tela_n].or)] )
-							&& tela[tela_n].statf!=st_fract.sym && tela[tela_m].stat!=st_parent.sym ) {
-					for (l=1; l<=tela_m; l++) {
-						if (tela[l].x==n+k && tela[l].c!=letr) {
-							keep_checking = check_imperf = 0;
-							break;
-						}
-					}
-				}
 
 				if (keep_checking && k>2 && tela[tela_m].statl==st_lowcm.sym && tela[tela_m+1].statl==st_lowcm.sym) {
-					for (l=0; l<2*k; l++) {
-						if (tela[tela_m+l].statf==st_fract.sym) 
+					int lc;
+					for (lc=0; lc<2*k; lc++) {
+						if (tela[tela_m+lc].statf==st_fract.sym)
 							break;
 					}
-					if (l==2*k)
+					if (lc==2*k)
 						keep_checking = 0;
 				}
 
@@ -508,13 +502,14 @@ int cinch_k(short unsigned int mode)
 				}
 
 				/* CHECK FOR TRANSITIONS IF DNA AND NEED REMAINS */
-				if (check_imperf) { 
+				if (OFF && check_imperf) {
+					int ld;
 					/* LET MISMATCHES PASS THROUGH WITHOUT BREAKING IF ANNOTATED AS TRANSITIONS */
 					sum4score = 0;
-					for (l = 0; l < k; l++) {
+					for (ld = 0; ld < k; ld++) {
 						/* BREAK EARLY IF WOULD-BE TRANSVERSION */
-						letr =align2D[m][n+l  ];
-						letr2=align2D[m][n+l+k];
+						letr =align2D[m][n+ld  ];
+						letr2=align2D[m][n+ld+k];
 						if (islower(letr)) {
 							letr = toupper(letr);
 						}
@@ -528,35 +523,35 @@ int cinch_k(short unsigned int mode)
 							break;
 						}
 
-						if (align2D[m][n+l] != align2D[m][n+k+l]) { 
-							if ( (letr =unshifted[n  +l]) != 'R' && letr  != 'Y' &&
-								 (letr2=unshifted[n+k+l]) != 'R' && letr2 != 'Y' ) {
+						if (align2D[m][n+ld] != align2D[m][n+k+ld]) {
+							if ( (letr =unshifted[n  +ld]) != 'R' && letr  != 'Y' &&
+								 (letr2=unshifted[n+k+ld]) != 'R' && letr2 != 'Y' ) {
 								break;
 							}
 
 							/* MAKE SURE A MISMATCH IS NOT BEING GIVEN A PASS WHILE NOT CONFORMING TO TRANSITION TYPE */
-							if ((letr=unshifted[n+l])=='R' && ((letr2=align2D[m][n+l+k])=='C' || letr2=='T')) {
+							if ((letr=unshifted[n+ld])=='R' && ((letr2=align2D[m][n+ld+k])=='C' || letr2=='T')) {
 								break;
 							}
-							else if (letr == 'Y' && ((letr2=align2D[m][n+l+k])=='A' || letr2=='G')) {
+							else if (letr == 'Y' && ((letr2=align2D[m][n+ld+k])=='A' || letr2=='G')) {
 								break;
 							}
 
-							if ((letr=unshifted[n+l+k])=='R' && ((letr2=align2D[m][n+l])=='C' || letr2=='T')) {
+							if ((letr=unshifted[n+ld+k])=='R' && ((letr2=align2D[m][n+ld])=='C' || letr2=='T')) {
 								break;
 							}
-							else if (letr == 'Y' && ((letr2=align2D[m][n+l])=='A' || letr2=='G')) {
+							else if (letr == 'Y' && ((letr2=align2D[m][n+ld])=='A' || letr2=='G')) {
 								break;
 							}
 
 							sum4score += MATCH;		/* JUSTIFICATION: MATCHES TRANSITION CALL */
 						}
-						/* IF LETTER AT n+l EQUAL TO LETTER AT n+l+k except 'n' */
-						else if (align2D[m][n+l]!=ambig.sym && align2D[m][n+l+k]!=ambig.sym)
+						/* IF LETTER AT n+ld EQUAL TO LETTER AT n+ld+k except 'n' */
+						else if (align2D[m][n+ld]!=ambig.sym && align2D[m][n+ld+k]!=ambig.sym)
 							sum4score += MATCH;
-					} /* END OF FOR l SCAN LOOPS */
+					} /* END OF FOR ld SCAN LOOPS */
 
-					if (l == k && 100*sum4score/(k*MATCH) > score_DTHR(k)) {
+					if (ld == k && 100*sum4score/(k*MATCH) > score_DTHR(k)) {
 						imperfect_TR = 1;
 					}
 					check_imperf = 0;			/* RESET check_imperf HERE */
@@ -569,7 +564,7 @@ int cinch_k(short unsigned int mode)
  
 				if ((keep_checking || imperfect_TR) && col_isclear(align2D,n,m,-1)<0 && col_isclear(align2D,n,m,1)<0) {
 					for (i=1; i<k; i++) {
-						if (col_isclear(align2D,n+l,m,1)>=0) {
+						if (col_isclear(align2D,n+i,m,1)>=0) {
 							keep_checking = imperfect_TR = 0;
 							break;
 						}
@@ -577,13 +572,13 @@ int cinch_k(short unsigned int mode)
 				}
 
 				/* BREAK CHECKING IF IT WILL PULL IN MISMATCHES IN REPEAT OR TO RIGHT OF REPEAT */
-				if (nuctransit && (imperfect_TR || keep_checking) && n > scrimmage_line) { 
-					for (l = 0; l < 2*k; l++) {
-						letr2= align2D[m        ][n  +k+l];
-						letr = consensus[n-x+k+l];
+				if (nuctransit && (imperfect_TR || keep_checking) && n > scrimmage_line) {
+					int le;
+					for (le = 0; le < 2*k; le++) {
+						letr2= align2D[m][n +k+le];
+						letr = consensus[n-x+k+le];
 						if (imperfect_TR) {
-							if (isalpha(align2D[m][n+l]) && (i=col_isclear(align2D,n+l,m,-1)) > -1 && 
-								align2D[i][n+l] != letr2 && letr != 'R' && letr != 'Y') {
+							if (isalpha(align2D[m][n+le]) && (i=col_isclear(align2D,n+le,m,-1)) > -1 && align2D[i][n+le] != letr2 && letr != 'R' && letr != 'Y') {
 								keep_checking = imperfect_TR = 0;
 								break;
 							}
@@ -640,10 +635,10 @@ int cinch_k(short unsigned int mode)
 				}
 
 				if (imperfect_TR && n > scrimmage_line && isupper(align2D[m][n]) && align2D[m+1][n] == blnk) { 
-					for (l = 0; l < k; l++) {
+					int lf;
+					for (lf = 0; lf < k; lf++) {
 						/* CHECK MISMATCHES FROM PUSHING BOTTOM ROW TO LEFT OF REPEATS AFTER SLIP */
-						if ((i=col_isclear(align2D,n+l,m,1)) > -1 &&
-							(letr=align2D[i][n+l]) != consensus[n-x-k+l] && letr != tolower(consensus[n-x-k+l])) {
+						if ((i=col_isclear(align2D,n+lf,m,1))>-1 && (letr=align2D[i][n+lf])!=consensus[n-x-k+lf] && letr!=tolower(consensus[n-x-k+lf])) {
 							imperfect_TR = 0;
 							break;
 						}
@@ -715,16 +710,17 @@ int cinch_k(short unsigned int mode)
 
 				/**************************************************************************************************/
 				if (keep_checking || imperfect_TR) {
+					int lg;
 					if (k>0 && dev_print(CINCH,__LINE__)) {
 						printf("cinch-k taking k-mer=%2d at tela_m=%3d; m=%2d, n=%2d, x=%d, y=%d.", k, tela_m, m,n,x,y);
 					}
 
 					push_gPnt_kmer(tela_n,k,1);
 
-					for (l = 0; l < k; l++) {
-						pathbox[m+cik_row  ][n-x+l] = align2D[m][n+l  ];	
-						pathbox[m+cik_row+1][n-x+l] = align2D[m][n+l+k];
-						x_history[n+l] = x;					/* x_history WRITE-IN FOR NEW TR COLS */
+					for (lg = 0; lg < k; lg++) {
+						pathbox[m+cik_row  ][n-x+lg] = align2D[m][n+lg  ];
+						pathbox[m+cik_row+1][n-x+lg] = align2D[m][n+lg+k];
+						x_history[n+lg] = x;					/* x_history WRITE-IN FOR NEW TR COLS */
 					}
 
 					/* UPDATE TELA FOR CINCH-K CINCH; SHOULD BE OWN FUNCTION? */

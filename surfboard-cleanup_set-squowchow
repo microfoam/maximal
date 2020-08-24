@@ -1,0 +1,41 @@
+#!/bin/bash
+echo >> Corduroy.log
+echo '                                               < squ* chowder consolidation: PISO 3 >' >> Corduroy.log
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	./surfboard-Pop_Up
+	grep 'define PISO' src/microhom-skor.h | tee -a Corduroy.log
+	;;
+esac
+done
+
+if [ -f Surf_wavereport.mha ]; then
+	    rm Surf_wavereport.mha
+fi
+
+
+	# cinch-t originating 2-D conflict
+	./maximal -KRx -D 8 waves/squeegee/squee112.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating-->re-upped w/ solved-58; P3-only
+	./maximal -KRx -D 8 waves/squeegee/squee028.txt		# already solved --> re-upped w/ solved-58; P3
+	./maximal -KRx -D 8 waves/squeegee/squeez-08.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-32.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squeez-36.txt	# P3-only
+	./maximal -KRx -D 8 waves/squeegee/squee006.txt		# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines # re-upped w/ solved-58; P3-only
+	./maximal -KRxn -D 8 waves/squeegee/squid~44.txt	# P3-only
+
+	# cinch-k originating 2-D conflict
+
+	# solved: push new solved runs onto top of stack starting w/ solved-61 
+
+echo
+echo
+echo
+echo "$0"
+echo
+echo
+./surfboard-checkmha
+echo 'Commit WCR average of 7 (PISO=3): 0.517143 (0/7 solved)' | tee -a Corduroy.log
+echo | tee -a Corduroy.log
