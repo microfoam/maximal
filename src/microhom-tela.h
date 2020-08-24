@@ -1366,12 +1366,12 @@ void mark_tela(void)
 			k = tela[n].ok;
 			m = n - k;
 
-			if (tela[n].statf!=st_fract.sym && tela[n-1].c==tela[n].c && tela[n].or==1) {
+			if (tela[n].statf!=st_fract.sym && tela[n-1].c==tela[n].c && tela[n].or==1) { /* v4.34 lcl_09 TURNED OFF -> INCREASED WCR AVGS; NO EXTRA CHOWDER */
 				for (i=m; i<n; i++) {
 					if (tela[i].statf==st_fract.sym && i+tela[i].ok==n)
 						tela[n].stat = st_Fract.sym;	/* TO SKIP CINCH-T */
 						tela[n].echoes = cyc_skip.sym;	/* TO SKIP CINCH-K AT k>1 */
-						push_mem(n, 6);
+						push_mem(n, 7);
 				}
 			}
 
