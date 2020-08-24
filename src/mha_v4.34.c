@@ -1127,8 +1127,11 @@ int main(int argc, char *argv[])
 	
 										if (l == 0) {
 											f = 1;	/* ROW NUMBER IN FRAMES ARRAY; OTHERWISE KEEP INCREMENTING */
-											while (tela[m+l].mem[f] && f < MEMROWS)		/* FIND FIRST AVAILABLE ROW */
+											if (!(tela[m+l].mem[f]) && tela[m+l].mem[f+1])		/* SOMETIMES FIRST AVAIL. ROW IS OPEN BECAUSE PREVIOUS TR ITSELF HAD AN OVERLAPPING PREV. TR */
 												f++;
+											while (tela[m+l].mem[f] && f < MEMROWS)	{	/* FIND FIRST AVAILABLE ROW */
+												f++;
+											}
 											if (f==1) {
 												tela[n].cyc_o = cyc_take.sym;		/* NO CONFLICT SO WILL BE TAKING THIS FRAME */
 												if (f > maxmemrows)	{		/* DEV-USE: MONITOR HOW MUCH OF MEMROWS IS BEING USED */
