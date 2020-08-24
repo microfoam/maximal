@@ -30,7 +30,6 @@ fi
 	./maximal -KRx -D 8 waves/squeegee/squeez-44.txt	# P3-only
 	./maximal -KRx -D 8 waves/squeegee/squeez-46.txt	# P3-only
 
-
 	# solved: push new solved runs onto top of stack (reverse order of solving), starting w/ solved-41, after solved-54 coordinate w/ squid script
 	./maximal -KRx waves/squeegee/squeez-40.txt		# solved-60; P3- & P4- only --> P3--P6 w/ solved-58
 	./maximal -KRx waves/squeegee/squeez-16.txt		# solved-60; P3-only
