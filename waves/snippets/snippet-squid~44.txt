@@ -1,0 +1,2 @@
+>snippet-squid~44.txt
+GTGACCTCCTATATAGATAGG
