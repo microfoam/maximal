@@ -300,7 +300,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 	push_gPnt_kmer(cpos+delta, k, tela[cpos+delta].or);
 
 	if (k && reps) {
-		int cycle_end = npos;		/* TEMPORARY SAFE-INITIALIZATION */
+		int cycle_end = npos;		/* TMP SAFE-INITIALIZATION */
 		for (r=0; r<reps; r++) {
 			for (j=0; j<delta; j++) {
 				c = tela[(i=cpos+r*k+j)].c;
@@ -1247,7 +1247,7 @@ void mark_tela(void)
 							prev_k = -1;	/* USING AS FLAG TO BREAK OUT OF BOTH WHILE LOOP AND FOR LOOP THROUGH SHADOW */
 							if (tela[n].k2) {
 								clearall_tela(n, 1, -1, ONE);	/* O-F-F, ONE, OR TWO */
-								push_mem(n, 15);				/* TEMP NUMERIC ASSIGNMENT */
+								push_mem(n, 15);				/* TMP NUMERIC ASSIGNMENT */
 							}
 							break; 
 						}
@@ -1258,13 +1258,13 @@ void mark_tela(void)
 						prev_k = tela[i].ok;			/* IDEA IS THAT PREV_K GETS ASSIGNED ONLY ONCE */
 						if (tela[i].all_R==n) {
 							clearall_tela(i, 1, -1, ONE);	/* O-F-F, ONE, OR TWO */
-							push_mem(i, 15);				/* TEMP NUMERIC ASSIGNMENT */
+							push_mem(i, 15);				/* TMP NUMERIC ASSIGNMENT */
 						}
 					}
 				}
 				else if (prev_k && tela[i].ok==prev_k && i-tela[i].ok<m && tela[i].statf!=st_fract.sym && tela[i].all_R==n) {
 					clearall_tela(i, 1, -1, ONE);	/* O-F-F, ONE, OR TWO */
-					push_mem(i, 16);				/* TEMP NUMERIC ASSIGNMENT */
+					push_mem(i, 16);				/* TMP NUMERIC ASSIGNMENT */
 				}
 				else if (prev_k && tela[i].ok != prev_k)
 					break;

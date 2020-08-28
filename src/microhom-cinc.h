@@ -900,7 +900,7 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 						}
 					} /* END OF ELSE (IF NOT edge0) */
 
-					Nudge.pass_V = 3;	/* TEMPORARY: WILL CHAGE EVENTUALLY; IT'S LIKE THIS FOR DEPRECATED REASONS */
+					Nudge.pass_V = 3;	/* WILL CHAGE EVENTUALLY; IT'S LIKE THIS FOR DEPRECATED REASONS */
 
 					/* NUDGE-CYCLELIZE: */
 					if (connudge(pathbox, 0, cyc_width) == 0) {
@@ -1236,7 +1236,7 @@ int lenseq = Clean.pass_W;
 		}
 		else if (tot_repeats > 1 && opt_K.bit && !opt_v.bit) {
 			cidwidth = Current.pass_W;
-			opt_K.bit = 0;					/* TEMPORARY ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
+			opt_K.bit = 0;					/* TMP ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
 			consensus_2D(0, Current.pass_W);
 			opt_K.bit = 1;					/* REASSIGN SETTING */
 		}
@@ -1246,7 +1246,7 @@ int lenseq = Clean.pass_W;
 		}
 		else { 
 			cidwidth = Current.pass_W;
-			opt_K.bit = 0;					/* TEMPORARY ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
+			opt_K.bit = 0;					/* TMP ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
 			consensus_2D(0, Current.pass_W);
 			opt_K.bit = 1;					/* REASSIGN SETTING */
 		}
