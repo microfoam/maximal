@@ -1405,6 +1405,7 @@ int main(int argc, char *argv[])
 						}
 
 						push_gPnt_kmer(n,k,r);
+						tela[n].cyc_o = cyc_take.sym;
 
 						for (i = 0; i < r; i++) {
 							if ((ch=align2D[row][a2D_n]) != '\0') {

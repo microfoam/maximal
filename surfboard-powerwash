@@ -41,12 +41,12 @@ else
 	read -s -n1 answer
 	./surfboard-cleanup_set-churlychurly 
 
-	echo "$0: Hit <enter> to start cleanup_set-squeegee."
-	read -s -n1 answer
-	./surfboard-cleanup_set-squeegee
-
 	echo "$0: Hit <enter> to start cleanup_set-squid."
 	read -s -n1 answer
 	./surfboard-cleanup_set-squid
+
+	echo "$0: Hit <enter> to start cleanup_set-squeegee."
+	read -s -n1 answer
+	./surfboard-cleanup_set-squeegee
 fi
 
