@@ -847,5 +847,5 @@ echo
 echo 'Commit WCR avgs (PISO=6): 0.524576 (chowder-free)' | tee -a Corduroy.log
 echo 'Commit WCR avgs (PISO=5): 0.521969 (chowder-free)' | tee -a Corduroy.log
 echo 'Commit WCR avgs (PISO=4): 0.519412 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR avgs (PISO=3): 0.513799 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR avgs (PISO=3): 0.513836 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

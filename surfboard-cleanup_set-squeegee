@@ -17,13 +17,14 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# conflict begins in cinch-t
-	./maximal -KRx -D 8 waves/squeegee/squee112.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating-->re-upped w/ solved-58
 	./maximal -KRx -D 8 waves/squeegee/squee006.txt		# solved-45 add'l block for sub-threshold fractals in mark_tela(); 7300 lines
 														# re-upped w/ solved-58; P3-only
 
 	# conflict begins in cinch-k
 
 	# solved: push new solved runs onto top of stack (reverse order of solving), starting w/ solved-41, after solved-54 coordinate w/ squid script
+	./maximal -KRx waves/squeegee/squee112.txt		# solved-62 skip if has fractal in shadow of size 1/2 of k-mer or bigger; 
+													# previously solved-41 rewrite of check sub-threshold fractals and k mod 3 gating-->re-upped w/ solved-58
 	./maximal -KRx waves/squeegee/squee028.txt		# already solved --> re-upped w/ solved-58; P3
 	./maximal -KRx waves/squeegee/squeez-08.txt		# solved-62 delete cyc_o condition w/in cyclelize_tela; P3-only
 	./maximal -KRx waves/squeegee/squeez-32.txt		# solved-62 delete cyc_o condition w/in cyclelize_tela; P3-only
@@ -93,5 +94,5 @@ echo
 echo 'Commit WCR average of 58 (PISO=6): 0.517931 (chowder-free)' | tee -a Corduroy.log
 echo 'Commit WCR average of 58 (PISO=5): 0.511724 (chowder-free)' | tee -a Corduroy.log
 echo 'Commit WCR average of 58 (PISO=4): 0.505517 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=3): 0.48     (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (PISO=3): 0.479483 (57/58 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

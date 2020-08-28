@@ -430,13 +430,10 @@ void push_tela_or(int n)
 /* Return k-mer repeat size smaller than k if it exists, otherwise return 0 */
 int next_k(int n, int k1, short unsigned int seqtype) 
 {
-	int lenseq = Clean.pass_W;
 	int i=0, m=0, k=0, transits=0;
 	int allowed_transits(int k);
 
-	if (n+k1 > lenseq+1)
-		return(0);
-	else if (seqtype==1 && k1-1>PISO) {
+	if (seqtype==1 && k1-1>PISO) {
 		int maxtransits;
 		short int purA, purG, pyrC, pyrT;
 
@@ -447,9 +444,6 @@ int next_k(int n, int k1, short unsigned int seqtype)
 			purA = purG = pyrC = pyrT = 0;
 
 			for (i=0; i<k; i++) {
-				if (seqtype==1 && tela[n+i].c == ambig.sym)
-					break;
-
 				if (tela[m+i].c != tela[n+i].c) {
 					if (opt_x.bit && k>PISO && tela[m+i].e == tela[n+i].e) {
 						if (++transits > maxtransits) 
@@ -471,6 +465,8 @@ int next_k(int n, int k1, short unsigned int seqtype)
 					purA++;
 				else if (tela[m+i].c=='T')
 					pyrT++;
+				else if (tela[m+i].c == ambig.sym)
+					break;
 
 				if      (tela[n+i].c=='G')
 					purG++;
@@ -480,6 +476,8 @@ int next_k(int n, int k1, short unsigned int seqtype)
 					purA++;
 				else if (tela[n+i].c=='T')
 					pyrT++;
+				else if (tela[n+i].c == ambig.sym)
+					break;
 			}
 			if (i==k) {
 				if (transits && (((purA||purG) && !pyrC && !pyrT) ||
@@ -1164,6 +1162,11 @@ void mark_tela(void)
 			if (!tela[n-1].ok && tela[n].stat==st_cycle.sym) {
 				for (i=n-1; i>n-k; i--) {
 					if (tela[i].statf==st_fract.sym) {
+						if (tela[i].ok*2>=k) {
+							clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+							push_mem(n, 8);
+							break;
+						}
 						for (j=i-1; j>0; j--) {
 							if (tela[j].stat==st_parent.sym && tela[j].ok > k) {
 								clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
