@@ -108,8 +108,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Current commit WCR average of 82, cinch-k k=1 only (b=6): 0.483256 (chowdah-free)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 82, cinch-k k=1 only (b=5): 0.479598 (chowdah-free)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 82, cinch-k k=1 only (b=4): 0.475207 (chowdah-free)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 82, cinch-k k=1 only (b=3): 0.461061 (chowdah-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, cinch-k k=1 only (b=6): 0.482890 (chowdah-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, cinch-k k=1 only (b=5): 0.479232 (chowdah-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, cinch-k k=1 only (b=4): 0.474841 (chowdah-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, cinch-k k=1 only (b=3): 0.460695 (chowdah-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

@@ -891,31 +891,8 @@ void mark_tela(void)
 					/* v4.30: MARK FRACTAL TR'S FOR CINCH-T TO SKIP, AND LEAVE FOR CINCH-K */
 					if (n>=2*min_k) {
 						for (i=m+1; i<n; i++) {	
-							if (tela[i].ok) {
-								fract_k = tela[i].ok;			/* POSSIBLE FRACTAL TO BE CHECKED */
-								if (fract_k > (int) k/2) { 	
-									short unsigned int mono_sep = 0;
-									if (i+fract_k < n) {
-										char monoch = tela[i+fract_k-1].c;
-										for (j=i+fract_k; j<n; j++) {
-											if (tela[j].c != monoch)
-												break;
-										}
-										if (!mono_sep) {	/* CHECK AGAIN FOR MONO SEPARATOR BASED ON FIRST CHAR OF PRESENT K-MER */
-											monoch = tela[n].c;
-											for (j=i+fract_k; j<n; j++) {
-												if (tela[j].c != monoch)
-													break;
-											}
-										}
-									}
-									if (!mono_sep) {
-										tela[i].statl = st_overl.sym;
-									}
-								}
-								else if (tela[n].all_S > tela[i].all_S) {
-									if (i + span_ork(i) <= n && tela[i].ok != k)  {
-										if (i-fract_k>=m+fract_k && tela[i].all_S==tela[i+k].all_S) {
+							if ((fract_k=tela[i].ok) && tela[n].all_S > tela[i].all_S && i+span_ork(i)<=n && tela[i].ok!=k)  {
+										if (i>=n+fract_k && tela[i].all_S==tela[i+k].all_S) {
 											tela[ n ].stat = st_parent.sym;
 											if (dev_print(TELA,__LINE__))
 												printf("Calling parent at %d.", n);
@@ -927,8 +904,6 @@ void mark_tela(void)
 											tela[i].stat = st_Fract.sym;
 											push_mem(i, 6);			/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 										}
-									}
-								}
 							}
 						} /* END OF FOR LOOP THROUGH SHADOW STARTING AT m+1 */
 					}
@@ -1007,7 +982,7 @@ void mark_tela(void)
 					break;
 				}
 			}
-			if (symb2) {
+			if (i==n+k) {
 				int max_S = tela[n].all_S;
 				for (i=m; i<n+k; i++) {
 					tela[i].statl = st_lowcm.sym;		/* MARK AS LOW-COMPLEXITY */

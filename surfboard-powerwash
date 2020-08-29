@@ -48,5 +48,9 @@ else
 	echo "$0: Hit <enter> to start cleanup_set-squeegee."
 	read -s -n1 answer
 	./surfboard-cleanup_set-squeegee
+
+	echo "$0: Hit <enter> to start cleanup_set-squirt."
+	read -s -n1 answer
+	./surfboard-cleanup_set-squirt
 fi
 
