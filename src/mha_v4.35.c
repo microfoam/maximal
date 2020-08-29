@@ -483,10 +483,11 @@ int main(int argc, char *argv[])
 			if (Options[i]->bit)
 				printf("%c", Options[i]->sym);
 		}
+			printf(" -b %d", opt_b.val);
 		if (opt_m.bit) 
-			printf(" -m%d", opt_m.val);
+			printf(" -m %d", opt_m.val);
 		if (opt_u.bit) 
-			printf(" -u%d", opt_u.val);
+			printf(" -u %d", opt_u.val);
 		if (opt_B.val > 1) 
 			printf(" -B %d", opt_B.val);
 		if (opt_M.bit) 
@@ -499,7 +500,8 @@ int main(int argc, char *argv[])
 		}
 	}
 	else 
-		printf(" < no options specified >");
+		printf("-b %d (default)", opt_b.val);
+
 	printf("\n Version %s: ", version);
 	printf("%s", time0);
 
