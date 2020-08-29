@@ -269,7 +269,6 @@ int main(int argc, char *argv[])
 					opt_g.val = 1;	
 				else
 					opt_g.val = numarg;
-				opt_m.val -= opt_g.val;
 				break;
 		case 'h':						/* OPTION TO SHOW HELP */
 				opt_h.bit = 1;
@@ -442,6 +441,7 @@ int main(int argc, char *argv[])
 				break;
 		}
 	}
+				opt_m.val -= opt_g.val;
 
 	/* THE ONLY GOTO LOOP IN maximal CODE IS HERE TO FIND COMMAND ARGUMENTS AFTER FILE NAME */
 	for(; optind < argc; optind++){ 
@@ -478,6 +478,8 @@ int main(int argc, char *argv[])
 			if (Options[i]->bit)
 				printf("%c", Options[i]->sym);
 		}
+		if (opt_m.bit) 
+			printf(" -m%d", opt_m.val);
 		if (opt_u.bit) 
 			printf(" -u%d", opt_u.val);
 		if (opt_B.val > 1) 

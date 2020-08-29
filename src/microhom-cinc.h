@@ -1121,12 +1121,8 @@ int lenseq = Clean.pass_W;
 
 				if (cinch_d_opt && !opt_d.bit) {	/* CINCH-D ENGINE IF NOT opt_d (SKIP-CINCH-D CINCHING) */
 					if (first_write) {
-						if (imperfect_TR && score_transits(k,num_transits) <= score_DTHR(k)) {
-							break;
-						}
-						else {
-							++Cinch_D.pass_R;
-						}
+						++Cinch_D.pass_R;
+
 						m = 0;
 						while (!(isalpha(align2D[m][n+k]))) {
 							m++;
