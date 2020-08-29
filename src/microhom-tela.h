@@ -948,6 +948,20 @@ void mark_tela(void)
 
 	for (n=2; n<lenseq; n++) {
 		if (tela[n].ok) {
+			/* CANCEL MARKS FOR k-MERS W/ TRANSITIONS WHEN EMBEDDED IN A CYCLING ISLAND WITH AT LEAST ONE COLUMN W/ PERFECT REPEATS */
+			if (tela[n].k1 && tela[n].k1==tela[n].ok && (tela[n].k1 == -tela[n-1].impk || tela[n].k1 == -tela[n+1].impk)) {
+				int lkmer = tela[n].ok;
+				int lreps = tela[n].or;
+				for (i=1; ;i++) {
+					if (tela[n-i].impk == -lkmer && tela[n-i].or==lreps && tela[n-i].k1<lkmer) {
+						tela[n-i].cyc_o = cyc_skip.sym;
+						push_mem(n-i, 8);
+					}
+					else
+						break;
+				}
+			}
+
 			/* CANCEL MARKS AT EDGES OF CYCLING ISLANDS THAT HAVE MORE TRANSITIONS THAN ADJACENT COLUMN */
 			if ((tela[n-1].ok || tela[n+1].ok) && (!tela[n-1].ok || !tela[n+1].ok) && 
 				tela[n].ok   == tela[n-1].ok    + tela[n+1].ok &&
