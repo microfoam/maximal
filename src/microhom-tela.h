@@ -433,7 +433,7 @@ int next_k(int n, int k1, short unsigned int seqtype)
 	int i=0, m=0, k=0, transits=0;
 	int allowed_transits(int k);
 
-	if (seqtype==1 && k1-1>PISO) {
+	if (seqtype==1 && k1-1>opt_b.val) {
 		int maxtransits;
 		short int purA, purG, pyrC, pyrT;
 
@@ -445,11 +445,11 @@ int next_k(int n, int k1, short unsigned int seqtype)
 
 			for (i=0; i<k; i++) {
 				if (tela[m+i].c != tela[n+i].c) {
-					if (opt_x.bit && k>PISO && tela[m+i].e == tela[n+i].e) {
+					if (opt_x.bit && k>opt_b.val && tela[m+i].e == tela[n+i].e) {
 						if (++transits > maxtransits) 
 							break;
 					}
-					else if (k>PISO && tela[m+i].e == tela[n+i].e) {
+					else if (k>opt_b.val && tela[m+i].e == tela[n+i].e) {
 						if (++transits >= maxtransits) 
 							break;
 					}
@@ -695,7 +695,7 @@ void mark_tela(void)
 
 				/* IF SUMMING PATHBOX DIAGONAL 3/4: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
 				if (nuctransit && Dtr && Dtr!=Did) { 
-					if (k>PISO && 100*Dtr/Did > threshold)
+					if (k>opt_b.val && 100*Dtr/Did > threshold)
 						imperfect_TR = 1;
 					else 
 						Dtr = 0;
@@ -775,8 +775,8 @@ void mark_tela(void)
 							clearall_tela(n,1,-1,TWO);
 							Dtr=0;
 						}
-						else if ( ((fract_k=tela[i  ].k1) && fract_k<=PISO && !tela[i+k].k1 && i  -fract_k>=m && i+  tela[i  ].k1<=n) ||
-								  ((fract_k=tela[i+k].k1) && fract_k<=PISO && !tela[i  ].k1 && i+k-fract_k>=n && i+k+tela[i+k].k1<=n+fract_k) ) {
+						else if ( ((fract_k=tela[i  ].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i  -fract_k>=m && i+  tela[i  ].k1<=n) ||
+								  ((fract_k=tela[i+k].k1) && fract_k<=opt_b.val && !tela[i  ].k1 && i+k-fract_k>=n && i+k+tela[i+k].k1<=n+fract_k) ) {
 							push_mem(n,0);
 							push_mem(i  ,4);
 							push_mem(n  ,4);
@@ -877,7 +877,7 @@ void mark_tela(void)
 										i--;
 									}
 								}
-								else {			/* DISPENSABLE W/ LITTLE OR NO WCR WIGGLE AT MOST PISO's AND NO CHOWDER. v4.33, 7/11/2020 */
+								else {			/* DISPENSABLE W/ LITTLE OR NO WCR WIGGLE AT MOST opt_b.val AND NO CHOWDER. v4.33, 7/11/2020 */
 									tela[n].stat = st_Fract.sym;
 									push_mem(i, 4);
 								}

@@ -238,7 +238,7 @@ int main(int argc, char *argv[])
 
 	/**************************************/
 	/* SET OPTIONS FROM ARGUMENTS  ********/
-	const char* optstring = "a::cdfg::hklm::noprstu::v::xzB::CD::FHKLM::O::PRS::TX::Y:";
+	const char* optstring = "a::b::cdfg::hklm::noprstu::v::xzB::CD::FHKLM::O::PRS::TX::Y:";
 	opterr=0;
 	int opt_count=0;	/* INDEX TO COUNT NUMBER OF OPTIONS */
 
@@ -250,6 +250,11 @@ int main(int argc, char *argv[])
 				opt_a.bit = 1;
 				numarg = atoi(optarg);
 				opt_a.val = numarg;		/* DEFAULT opt_a.val = 2 */
+				break;
+		case 'b':						/* OPTION TO CHANGE DEFAULT THRESHOLD FLOOR (k-SIZE) ABOVE WHICH BEGINS TRANSITION MATCHING */
+				opt_b.bit = 1;
+				numarg = atoi(optarg);
+				opt_b.val = numarg;		/* DEFAULT opt_b.val = 6 */
 				break;
 		case 'c':						/* SHOW BASE 62 CODE */
 				opt_c.bit = 1;
@@ -323,7 +328,7 @@ int main(int argc, char *argv[])
 				else
 					opt_v.val = numarg;
 				break;
-		case 'x':						/* OPTION TO SQUEEZE DTHR VALUES BY 1 FOR k > PISO */
+		case 'x':						/* OPTION TO SQUEEZE DTHR VALUES BY 1 FOR k > opt_b.val */
 				opt_x.bit = 1;
 				opt_x.val = 1;	
 				break;
@@ -502,7 +507,7 @@ int main(int argc, char *argv[])
 		printf("\nParameters");
 		printf("\n Match: %d\n Transition: %d\n Mismatch: %d\n Bandwidth: %d\n Default block width: %d",  
 				 match, transition, mismatch, WIDTH, par_wrap.set);
-		printf("\n Transitions threshold: k > %d", PISO);
+		printf("\n Transitions threshold: k > %d", opt_b.val);
 		printf("\n Fisher-Yates length: %d \t(Change with '-Y #' argument on command line.)", FY_size);
 		if (opt_u.val == 1) {
 			printf("\n * Print width increased by 10 columns.\n");
@@ -889,7 +894,7 @@ int main(int argc, char *argv[])
 	
 					/* IF SUMMING PATHBOX DIAGONAL 3/: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
 					if (nuctransit && Dtr && Dtr!=Did) { 
-						if (k>PISO && 100*Dtr/Did > DTHR)	{	
+						if (k>opt_b.val && 100*Dtr/Did > DTHR)	{	
 							imperfect_TR = 1;		/* CALLING TR W/ TRANSITIONS FOR n BLOCK VS m BLOCK */
 							tela[n].Dtr = Dtr;
 						}
@@ -1076,7 +1081,7 @@ int main(int argc, char *argv[])
 								if (nuctransit) { 
 									for (i=m; i<n; i++) 
 										Atr = Atr + pathbox[i][(i+(r+1)*k)];
-									if (k>PISO && Atr!=Did && (100*Atr)/Did > DTHR) 
+									if (k>opt_b.val && Atr!=Did && (100*Atr)/Did > DTHR) 
 										imperfect_TR = 1;
 								} 
 							}

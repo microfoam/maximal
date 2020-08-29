@@ -1,13 +1,13 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < squid: PISO 3 -x trial 4 chowder >' >> Corduroy.log
+echo '                                               < squid: b 3 -x trial 4 chowder >' >> Corduroy.log
 
 while getopts c option
 do
 case "${option}"
 in
 c) 	./surfboard-Pop_Up
-	grep 'define PISO' src/microhom-skor.h | tee -a Corduroy.log
+	grep 'define b' src/microhom-skor.h | tee -a Corduroy.log
 	;;
 esac
 done
@@ -54,8 +54,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 25 (PISO=6): 0.517  (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (PISO=5): 0.5098 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (PISO=4): 0.5102 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (PISO=3): 0.4782 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (b=6): 0.517  (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (b=5): 0.5098 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (b=4): 0.5102 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (b=3): 0.4782 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

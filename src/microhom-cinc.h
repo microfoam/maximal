@@ -388,7 +388,7 @@ int cinch_k(short unsigned int mode)
 				}
 
 				if (nuctransit && keep_checking) {
-					if (k<=PISO) {			/* SKIP IF CANNOT BE CINCHED B/C OF SUB-THRESHOLD FRACTALS AT ANY PARALOGOUS POSITION */
+					if (k<=opt_b.val) {			/* SKIP IF CANNOT BE CINCHED B/C OF SUB-THRESHOLD FRACTALS AT ANY PARALOGOUS POSITION */
 						int la;
 						for (la=0; la<k; la++) {
 							if (tela[tela_m+la].t!=tela[tela_m+la].c || tela[tela_n+la].t!=tela[tela_n+la].c) {
@@ -451,7 +451,7 @@ int cinch_k(short unsigned int mode)
 
 							if (keep_checking && align2D[m][n+lb] != align2D[m][n+k+lb]) {
 								keep_checking = 0;
-								if (nuctransit && k >= PISO) {
+								if (nuctransit && k >= opt_b.val) {
 									check_imperf = 1;
 								}
 							}
@@ -981,7 +981,7 @@ int lenseq = Clean.pass_W;
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
 	for (k = Current.pass_W/2; k > 0; k--) {
 		if (nuctransit) {
-			if (k > PISO) {
+			if (k > opt_b.val) {
 				if (opt_m.bit || opt_g.bit) {					/* opt_m OR opt_g ELECTED MAGIC MELTAGE OR GELLING */
 					translimit = opt_m.val + TEMP;
 				}
@@ -1062,8 +1062,8 @@ int lenseq = Clean.pass_W;
 				if (nuctransit) {
 					if (opt_m.bit && num_transits > translimit) { 	/* opt_m (OR opt_g) ELECTED MAGIC MELTAGE OR GEL */
 						if (dev_print(CINCH,__LINE__)) {
-							printf("At n=%4d: Skipping k=%d, num_transits=%d, and translimit=%d as set by opt_m/g and PISO=%d.", 
-										n+1, k, num_transits, translimit, PISO);
+							printf("At n=%4d: Skipping k=%d, num_transits=%d, and translimit=%d as set by opt_m/g and opt_b.val=%d.", 
+										n+1, k, num_transits, translimit, opt_b.val);
 						}
 					}
 					else if (num_transits <= translimit) {

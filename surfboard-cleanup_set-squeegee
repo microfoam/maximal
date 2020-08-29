@@ -1,13 +1,13 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < squeegee: PISO 3 -x chowder >' >> Corduroy.log
+echo '                                               < squeegee: b 3 -x chowder >' >> Corduroy.log
 
 while getopts c option
 do
 case "${option}"
 in
 c) 	./surfboard-Pop_Up
-	grep 'define PISO' src/microhom-skor.h | tee -a Corduroy.log
+	grep 'define b' src/microhom-skor.h | tee -a Corduroy.log
 	;;
 esac
 done
@@ -77,9 +77,9 @@ fi
 	./maximal -KRx waves/squeegee/squee007.txt		# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
 	./maximal -KRx waves/squeegee/squee001.txt		# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
 	./maximal -KRx waves/squeegee/squee003.txt		# solved-47 deleted wonky check transit block in cinch-k; solved 4/14 squee; 7300 lines
-	./maximal -KRx waves/squeegee/squee004.txt		# solved-46 multi-PISO chowder, cinch-k tela logic conversion of nuctransit check; 7300 lines
+	./maximal -KRx waves/squeegee/squee004.txt		# solved-46 multi-b chowder, cinch-k tela logic conversion of nuctransit check; 7300 lines
 	#./maximal -KRx waves/squeegee/squee010.txt		# solved-44 allowing fractal call based on k1 in addition to ok; 7286 lines
-													# reappeared w/ another issue for PISO 4/5 with solved-46
+													# reappeared w/ another issue for b 4/5 with solved-46
 	./maximal -KRx waves/squeegee/squee224.txt		# solved-43 needed extra condition for calling parents and fractals pushmem 4; 7286 lines
 	./maximal -KRx waves/squeegee/squee216.txt		# solved-42 squash imperfect k-mer that is a multiple of underlying imperfect TR
 	./maximal -KRx waves/squeegee/squee008.txt		# solved-41 rewrite of check sub-threshold fractals and k mod 3 gating
@@ -92,8 +92,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 58 (PISO=6): 0.517759 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=5): 0.511552 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=4): 0.505517 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 58 (PISO=3): 0.480172 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (b=6): 0.517759 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (b=5): 0.511552 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (b=4): 0.505517 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 58 (b=3): 0.480172 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

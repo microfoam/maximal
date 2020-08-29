@@ -9,7 +9,6 @@
 #define MATCH       8		/* MATCH SCORE */
 #define MISMATCH   -1		/* MISMATCH SCORE */
 #define TRANSITION  4		/* TRANSITION = HALF MATCH SCORE */
-#define PISO        6		/* FLOOR FOR TRANSITION MATCHING ABOVE THIS k-MER SIZE */
 
 int 	allowed_transits(int k);
 int 	score_DTHR(int kmer);
@@ -26,7 +25,7 @@ int allowed_transits(int k)
 
 	if (ON) {
 		numtransit = (int) round(0.32*log2( (float) k ));		/* EQUIVALENT TO 0.64 * LOG_BASE_4 (k) */
-		/* FUNCTION ONE: LOGARITHMIC: SLOW, ORGANIC INCREASE IN ALLOWED TRANSITIONS; ALSO MANIFESTS PISO (FLOOR) NATURALLY */
+		/* FUNCTION ONE: LOGARITHMIC: SLOW, ORGANIC INCREASE IN ALLOWED TRANSITIONS; MANIFESTS TRANSITIONS-FLOOR NATURALLY */
 	} 
 	else {
 		float fractransit = 0.08;	/* SETS NUMBER OF ADDITIONAL ALLOWED TRANSITIONS FOR GIVEN k-MER */
@@ -46,10 +45,10 @@ int score_DTHR(int kmer)
 	int squeeze = opt_x.val;
 
 	if (!thr_table[0]) {
-		for (k=0; k<=PISO; k++)
+		for (k=0; k<=opt_b.val; k++)
 			thr_table[k] = 100;
 	
-	    for (k = PISO+1; k <= WIDTH; k++) {
+	    for (k = opt_b.val+1; k <= WIDTH; k++) {
 			numtransit = allowed_transits(k);
 	        thr_table[k] = 100*((k-numtransit)*MATCH + numtransit*TRANSITION)/(k*MATCH) - squeeze;
 	    }
@@ -83,7 +82,7 @@ void show_DTHR_table(void)
 
 	printf("\n k-mer\t Max. trans.\t Threshold\t Score with maximum transitions"); 
 	for (k = 1; k <= WIDTH; k++) {
-		if (seqtype==1 && k>PISO) {
+		if (seqtype==1 && k>opt_b.val) {
 			maxtransits = allowed_transits(k);
 			table_score = score_DTHR(k);
 			max_score = (int) 100*((k-maxtransits)*match + maxtransits*transition)/(k*match);
