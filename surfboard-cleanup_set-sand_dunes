@@ -40,7 +40,7 @@ fi
 ./maximal -KRn  waves/chowder/abba_zabba_2.txt 
 ./maximal -KRn  waves/chowder/abba_zabba_3.txt 
 ./maximal -KRn  waves/chowder/abba_zabba_4.txt 
-./maximal -KRnx -D 4 waves/snippets/snippet-squirt_03-b6.alt1
+./maximal -KRnx waves/snippets/snippet-squirt_03-b6.alt1
 
 echo
 echo
