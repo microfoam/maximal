@@ -40,6 +40,7 @@ fi
 ./maximal -KRn  waves/chowder/abba_zabba_2.txt 
 ./maximal -KRn  waves/chowder/abba_zabba_3.txt 
 ./maximal -KRn  waves/chowder/abba_zabba_4.txt 
+./maximal -KRnx -D 4 waves/snippets/snippet-squirt_03-b6.alt1
 
 echo
 echo
@@ -48,7 +49,7 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Current commit WCR average of 22 (b=6  ): 0.379818 (chowder-free)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 22 (b=5|4): 0.383273 (chowder-free)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 22 (b=3  ): 0.380591 (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 23 (b=6  ): 0.388783 (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 23 (b=5|4): 0.392087 (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 23 (b=3  ): 0.389522 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

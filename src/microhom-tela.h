@@ -711,7 +711,11 @@ void mark_tela(void)
 							break;
 						}
 					}
-					if (k2_check && k>prev_k && k % prev_k) {	/* CAN BE TURNED O F F, BUT WIDER WCR's INCLUDING ABBA-ZABBA SERIES. v4.33, 7/12/2020 */
+					if (!imperfect_TR && k>prev_k && k%prev_k && !tela[n-1].k1) {
+						clearall_tela(n-1,1,-1,TWO);
+						push_mem(n-1,4);
+					}
+					else if (k2_check && k>prev_k && k%prev_k) {
 						push_mem(n,  0);						/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 						push_mem(n-1,1);
 						push_mem(n  ,1);
@@ -1295,11 +1299,10 @@ void mark_tela(void)
 			}
 			if (!checkconflict) {						/* MEANING CHECKCONFLICT FLAG WAS NEVER TURNED O-F-F, I.E., THERE IS CONFLICT */
 				/* CONFLICT SCENARIO TWO */
-				if (span>1 && tela[n].all_L && !(tela[n].all_R) && tela[n+1].ok < tela[n].ok &&
+				if (span>1 && tela[n].stat!=st_parent.sym && tela[n].all_L && !(tela[n].all_R) && tela[n+1].ok < tela[n].ok &&
 							!(tela[n+1].all_L) && !(tela[n+1].all_R) && tela[n].ok % tela[n+1].ok==0) {
 					clearall_tela(n, 1, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
-					if (tela[n].all_S != tela[n+1].all_S)
-						push_mem(n, 9);
+					push_mem(n, 7);
 					/* POSSIBLE THIS CASE COULD BE GENERALIZED...FOR A RAINY DAY */
 					if (dev_print(TELA,__LINE__)) {
 						printf("mark_tela at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
