@@ -775,12 +775,13 @@ void mark_tela(void)
 							clearall_tela(n,1,-1,TWO);
 							Dtr=0;
 						}
-						else if ( ((fract_k=tela[i  ].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i  -fract_k>=m && i+  tela[i  ].k1<=n) ||
-								  ((fract_k=tela[i+k].k1) && fract_k<=opt_b.val && !tela[i  ].k1 && i+k-fract_k>=n && i+k+tela[i+k].k1<=n+fract_k) ) {
+						else if ((((fract_k=tela[i  ].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i  -fract_k>=m && i+  tela[i  ].k1<=n) ||
+								  ((fract_k=tela[i+k].k1) && fract_k<=opt_b.val && !tela[i  ].k1 && i+k-fract_k>=n && i+k+tela[i+k].k1<=n+fract_k)) 
+								 && tela[n].stat!=st_parent.sym) {
 							push_mem(n,0);
-							push_mem(i  ,4);
-							push_mem(n  ,4);
-							push_mem(i+k,4);
+							push_mem(i  ,9);
+							push_mem(n  ,5);
+							push_mem(i+k,9);
 							tela[i  ].stat = st_Fract.sym;
 							tela[n  ].stat = st_parent.sym;
 							tela[i+k].stat = st_Fract.sym;
@@ -958,6 +959,14 @@ void mark_tela(void)
 						push_mem(n-i, 8);
 					}
 					else
+						break;
+				}
+				for (i=1; ;i++) {
+					if (tela[n+i].impk == -lkmer && tela[n+i].or==lreps && tela[n+i].ok==lkmer) {
+						clearall_tela(n+i, 1, -1, TWO);
+						push_mem(n+i, 8);
+					}
+					else if (tela[n+i].impk != -lkmer)
 						break;
 				}
 			}
