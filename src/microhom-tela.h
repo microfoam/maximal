@@ -837,61 +837,76 @@ void mark_tela(void)
 							tela[n].all_S += Atr;
 						}
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
-							tela[n].or = reps;
-							push_mem(n,0);          /* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 
-							if (n+k*reps > projection) {
-								/* BEFORE ADVANCING PROJECTION, CHECK TO SEE IF THIS TR CALL IS COVERING A FRACTAL REPEAT OF SMALLER K.  */	
-								/* RECALL THAT A FRACTAL TR (k>1) CAN ONLY EXIST STARTING AT THE THIRD COLUMN OF EACH UNIT OF PARENT TR. */
-								/* RECALL THAT A CYCLING TR IS CALLED AND MARKED ONLY WHEN THE SECOND CYCLING POSITION IS CALLED.        */
-								if (k==tela[n-1].ok && tela[n-1].stat==st_cycle.sym && tela[n-proj_k].ok && tela[n-proj_k].ok<proj_k) {
-									for (i=n; i<n+span_ork(n); i++) {
-										if (tela[n].c != tela[n-proj_k].c)
-											break;
-									}
-									if (i==n+span_ork(n))
-										skip_break = 1;
+							if (imperfect_TR) {
+								i = 1;
+								while (n-i>0 && (tela[n-i].impk == -k || (tela[n-i].k1 && tela[n-i].k1<k && !(k%tela[n-i].k1)))) {
+									i++;
 								}
-								if (!skip_break) {
-									projector = n;
-									projection = n + k*reps;
-									proj_k = tela[projector].ok;
-									if (dev_print(TELA,__LINE__)) {
-										printf("Advancing projection at n=%d to %d.", n,projection);
-									}
-	
-									if (k == tela[n-1].ok && tela[n].stat!=st_parent.sym) {
-										tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
-										tela[n  ].stat = st_cycle.sym;
-									}
+								--i;
+								if (tela[n-i].all_S>tela[n].all_S) {
+									clearall_tela(n,1,-1,TWO);
+									push_mem(n,4);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 								}
 							}
-							else {
-								if (tela[n-1].ok && (k == tela[n-1].ok || tela[n-1].ok % k == 0)) {
-									if (tela[n-1].stat!=st_parent.sym)
-										tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
-									if (tela[n  ].stat!=st_parent.sym)
-										tela[n  ].stat = st_cycle.sym;
-								}
-								else if ((tela[n-proj_k].ok==k || tela[n-proj_k].k1==k) && n-k>=projector) {
-									if (dev_print(TELA,__LINE__))
-										printf("Calling parent at %d.", projector);
-									tela[n       ].statf = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
-									tela[n-proj_k].statf = st_fract.sym;		/* MATCHING PAIR */
-									tela[projector].stat = st_parent.sym;
-									push_mem(n, 4);
-									push_mem(projector, 4);
-									push_mem(n-proj_k, 4);
-									i = n-proj_k-1;
-									while (tela[i].ok == k && tela[i].stat == st_cycle.sym && i>=projector-proj_k && tela[i].or<2) {
-										clearall_tela(i,1,-1,TWO);
-										push_mem(i, 4);
-										i--;
+
+							if (tela[n].all_S) {
+								tela[n].or = reps;
+								push_mem(n,0);          /* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+	
+								if (n+k*reps > projection) {
+									/* BEFORE ADVANCING PROJECTION, CHECK TO SEE IF THIS TR CALL IS COVERING A FRACTAL REPEAT OF SMALLER K.  */	
+									/* RECALL THAT A FRACTAL TR (k>1) CAN ONLY EXIST STARTING AT THE THIRD COLUMN OF EACH UNIT OF PARENT TR. */
+									/* RECALL THAT A CYCLING TR IS CALLED AND MARKED ONLY WHEN THE SECOND CYCLING POSITION IS CALLED.        */
+									if (k==tela[n-1].ok && tela[n-1].stat==st_cycle.sym && tela[n-proj_k].ok && tela[n-proj_k].ok<proj_k) {
+										for (i=n; i<n+span_ork(n); i++) {
+											if (tela[n].c != tela[n-proj_k].c)
+												break;
+										}
+										if (i==n+span_ork(n))
+											skip_break = 1;
+									}
+									if (!skip_break) {
+										projector = n;
+										projection = n + k*reps;
+										proj_k = tela[projector].ok;
+										if (dev_print(TELA,__LINE__)) {
+											printf("Advancing projection at n=%d to %d.", n,projection);
+										}
+		
+										if (k == tela[n-1].ok && tela[n].stat!=st_parent.sym) {
+											tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
+											tela[n  ].stat = st_cycle.sym;
+										}
 									}
 								}
-								else {			/* DISPENSABLE W/ LITTLE OR NO WCR WIGGLE AT MOST opt_b.val AND NO CHOWDER. v4.33, 7/11/2020 */
-									tela[n].stat = st_Fract.sym;
-									push_mem(i, 4);
+								else {
+									if (tela[n-1].ok && (k == tela[n-1].ok || tela[n-1].ok % k == 0)) {
+										if (tela[n-1].stat!=st_parent.sym)
+											tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
+										if (tela[n  ].stat!=st_parent.sym)
+											tela[n  ].stat = st_cycle.sym;
+									}
+									else if ((tela[n-proj_k].ok==k || tela[n-proj_k].k1==k) && n-k>=projector) {
+										if (dev_print(TELA,__LINE__))
+											printf("Calling parent at %d.", projector);
+										tela[n       ].statf = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
+										tela[n-proj_k].statf = st_fract.sym;		/* MATCHING PAIR */
+										tela[projector].stat = st_parent.sym;
+										push_mem(n, 4);
+										push_mem(projector, 4);
+										push_mem(n-proj_k, 4);
+										i = n-proj_k-1;
+										while (tela[i].ok == k && tela[i].stat == st_cycle.sym && i>=projector-proj_k && tela[i].or<2) {
+											clearall_tela(i,1,-1,TWO);
+											push_mem(i, 4);
+											i--;
+										}
+									}
+									else {			/* DISPENSABLE W/ LITTLE OR NO WCR WIGGLE AT MOST opt_b.val AND NO CHOWDER. v4.33, 7/11/2020 */
+										tela[n].stat = st_Fract.sym;
+										push_mem(i, 4);
+									}
 								}
 							}
 							TRcheck = 0;
