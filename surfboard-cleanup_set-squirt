@@ -19,8 +19,8 @@ fi
 	# cinch-t originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squirt_06-b6.txt		# 
-	./maximal -KnxR -D 8 waves/squeegee/squirt_07-b6.txt		# 
+	./maximal -KnxR -D 8 waves/squeegee/squirt_06-b6.txt		# ; b3--6
+	./maximal -KnxR -D 8 waves/squeegee/squirt_07-b6.txt		# ; b3--6
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
 	./maximal -KnxR waves/squeegee/squirt_05-b6.txt		# solved-68 mark_tela edits continued again; b4--6
@@ -36,8 +36,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 5 (b=6): 0.496 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 5 (b=6): 0.502 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 5 (b=4): 0.494 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 5 (b=3): 0.464 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7 (b=6): 0.514286 (5 / 7 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7 (b=6): 0.518571 (5 / 7 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7 (b=4): 0.512857 (5 / 7 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7 (b=3): 0.481429 (5 / 7 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

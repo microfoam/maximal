@@ -31,7 +31,7 @@ fi
 ./maximal -KR   waves/tubespit/seq-100-v343_10.txt 
 ./maximal -KRn  waves/chowder/seq6-koslip-snippet.txt 
 ./maximal -KR   waves/chowder/seq26-snippet.txt 
-./maximal -KR   waves/snippets/snippet-gal11-knot1.txt  
+./maximal -KR   waves/snippets/snippet-gal11-knot1.txt
 ./maximal -KR   waves/chowder/seq26-variations1.txt 
 ./maximal -KR   waves/chowder/seq26-variations2.txt 
 ./maximal -KRn  waves/chowder/snippet-jetsam-01.txt 

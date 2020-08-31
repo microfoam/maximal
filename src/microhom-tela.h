@@ -638,11 +638,11 @@ void mark_tela(void)
 	for (n = 1; n<=lenseq; n++) {
 		for (m = 0; m < n; m++) {
 
-			/* FOR ROW m LOOP 1/5: SLIDE DOWN TO ROW WITHIN POPULATED HEMIDIAGONAL */
+			/* SLIDE DOWN TO ROW WITHIN POPULATED HEMIDIAGONAL */
 			if (n-m > WIDTH+1) 
 				m = n-WIDTH;
 			
-			/* FOR ROW m LOOP 2/5: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
+			/* SET K-MER SIZE AND DTHR SCORE THRESHOLD */
 			k = n-m;
 
 			if (tela[n-1].ok && tela[n-1].k1 && tela[n-1].k1 == tela[n].k1 && k>tela[n].k1 && !(k%tela[n-1].ok)) {
@@ -650,18 +650,18 @@ void mark_tela(void)
 				m = n - k;
 			}
 
-			/* FOR ROW m LOOP 3/5: SKIP k = O N E */
+			/* SKIP k = O N E */
 			if (k == 1 || k == tela[n].k0)
 				break;	/* GO TO NEXT n */
 			else if (nuctransit) 
 				threshold = score_DTHR(k);
 
-			/* FOR ROW m LOOP 4/5: SET HOMOPOLYMER RUN STATUS UNKNOWN; USED TO RULE OUT k>1 MONONUCLEOTIDE "REPEATS" */
+			/* SET HOMOPOLYMER RUN STATUS UNKNOWN; USED TO RULE OUT k>1 MONONUCLEOTIDE "REPEATS" */
 			homopoly_flag = 2;
 			if (tela[n].c != tela[n-1].c)
 				homopoly_flag = 0;
 
-			/* FOR ROW m LOOP 5/5: START COUNTING SCORE (EQUIV. TO: IF PATHBOX POSITION HAS VALUE > MISMATCH) */
+			/* START COUNTING SCORE (EQUIV. TO: IF PATHBOX POSITION HAS VALUE > MISMATCH) */
 			if (n+k <= lenseq) {
 				Dtr = imperfect_TR = 0;		/* INITIALIZATION */
 
@@ -773,7 +773,7 @@ void mark_tela(void)
 				}
 
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPELGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
-				if (Dtr && imperfect_TR && (k<9 || k%3)) {
+				if (Dtr && imperfect_TR) {
 					for (i=m+min_k; i<n; i++) {
 						if ((fract_k=isfractal(i,n,k))) {
 							push_mem(n,0);
