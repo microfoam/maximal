@@ -436,14 +436,12 @@ int next_k(int n, int k1, short unsigned int seqtype)
 	if (seqtype==1) {
 		int maxtransits;
 		short int purA, purG, pyrC, pyrT;
-		int monochar;
 
 		for (k = k1-1; k>1; k--) {
 			m = n-k;
 			maxtransits = allowed_transits(k);
 			transits=0;
 			purA = purG = pyrC = pyrT = 0;
-			monochar = tela[m].c;
 
 			for (i=0; i<k; i++) {
 				if (tela[m+i].c != tela[n+i].c) {
@@ -480,16 +478,7 @@ int next_k(int n, int k1, short unsigned int seqtype)
 					pyrT++;
 				else if (tela[n+i].c == ambig.sym)
 					break;
-
-				if (monochar) {
-					if (tela[n+i].c != monochar)
-						monochar = '\0';
-					else if (tela[m+i].c != monochar)
-						monochar = '\0';
-				}
 			}
-			if (OFF && monochar)
-				return(0);
 			if (i==k) {
 				if (transits && (((purA||purG) && !pyrC && !pyrT) ||
 					 			 ((pyrC||pyrT) && !purA && !purG)) ) {
@@ -703,6 +692,8 @@ void mark_tela(void)
 				if (homopoly_flag && j == k) {
 					homopoly_flag = 1;				/* BIT IS THERE IF NEEDED BEYOND BREAK. 		*/
 					Dtr = 0;
+					if (tela[n].k1==k)
+						tela[n].k1 = '\0';
 					break;							/* GO TO NEXT n b/c will be true for all remaining rows */
 				}
 
