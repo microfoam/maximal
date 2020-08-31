@@ -19,10 +19,10 @@ fi
 	# cinch-t originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squirt_06-b6.txt		# ; b3--6
 	./maximal -KnxR -D 8 waves/squeegee/squirt_07-b6.txt		# ; b3--6
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_06-b6.txt		# solved-69 sub-threshold fractals condition to skip if next parent column is perfect k; b3--6
 	./maximal -KnxR waves/squeegee/squirt_05-b6.txt		# solved-68 mark_tela edits continued again; b4--6
 	./maximal -KnxR waves/squeegee/squirt_04-b6.txt		# solved-67 mark_tela edits continued; b3--6
 	./maximal -KnxR waves/squeegee/squirt_03-b6.txt		# solved-66 mark_tela edits; b4-6
@@ -36,8 +36,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 7 (b=6): 0.514286 (5 / 7 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 7 (b=6): 0.518571 (5 / 7 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 7 (b=4): 0.512857 (5 / 7 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 7 (b=3): 0.481429 (5 / 7 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7 (b=6): 0.511429 (6 / 7 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7 (b=6): 0.515714 (6 / 7 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7 (b=4): 0.51     (6 / 7 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 7 (b=3): 0.478571 (6 / 7 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

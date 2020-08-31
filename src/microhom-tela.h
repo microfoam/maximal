@@ -786,20 +786,20 @@ void mark_tela(void)
 							Dtr=0;
 						}
 						else if (tela[i].statf!=st_fract.sym && (fract_k=tela[i].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i-fract_k>=m && i+tela[i].k1<=n 
-									&& tela[n].stat!=st_parent.sym) {
+									&& tela[n].stat!=st_parent.sym && tela[n+1].k1!=k) {
 							push_mem(n,0);
 							push_mem(n,1);
 							tela[n].stat = st_parent.sym;
-							push_mem(i,2);
+							push_mem(i,1);
 							tela[i].stat   = st_Fract.sym;
 							tela[i].echoes = cyc_skip.sym;
 						}
 						else if ((fract_k=tela[i+k].k1) && fract_k<=opt_b.val && !tela[i].k1 && i+k-fract_k>=n && i+k+tela[i+k].k1<=n+fract_k 
-								&& tela[n].stat!=st_parent.sym) {
+								&& tela[n].stat!=st_parent.sym && tela[n+1].k1!=k) {
 							push_mem(n,0);
-							push_mem(n,1);
+							push_mem(n,2);
 							tela[n].stat = st_parent.sym;
-							push_mem(i+k,3);
+							push_mem(i+k,2);
 							tela[i+k].stat   = st_Fract.sym;
 							tela[i+k].echoes = cyc_skip.sym;
 						}
