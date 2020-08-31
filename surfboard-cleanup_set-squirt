@@ -21,9 +21,9 @@ fi
 	./maximal -KnxR -D 8 waves/squeegee/squirt_05-b6.txt		# b4--6
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squirt_04-b6.txt		# b3--6
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR -D 8 waves/squeegee/squirt_04-b6.txt		# solved-67 mark_tela edits cont.; b3--6
 	./maximal -KnxR -D 8 waves/squeegee/squirt_03-b6.txt		# solved-66 mark_tela edits; b4-6
 	./maximal -KnxR -D 8 waves/squeegee/squirt_02-b6.txt		# solved-65 delete all_S condition in split fractals module of mark_tela(); b3-6
 	./maximal -KnxR -D 8 waves/squeegee/squirt_01-b6.txt		# solved-64 new module in mark_tela concerning cycling islands w/ perfect and imperfect columns b3-6
@@ -35,8 +35,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 5 (b=6): 0.498 (3/5 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 5 (b=6): 0.504 (3/5 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 5 (b=4): 0.496 (3/5 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 5 (b=3): 0.464 (4/5 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 5 (b=6): 0.498 (4 / 5 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 5 (b=6): 0.504 (4 / 5 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 5 (b=4): 0.496 (4 / 5 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 5 (b=3): 0.464 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

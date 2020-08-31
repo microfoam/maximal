@@ -716,8 +716,8 @@ void mark_tela(void)
 						push_mem(n-1,4);
 					}
 					else if (k2_check && k>prev_k && k%prev_k) {
-						push_mem(n,  0);						/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 						push_mem(n-1,1);
+						push_mem(n  ,0);						/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 						push_mem(n  ,1);
 						tela[n-1].stat = st_Fract.sym;			/* st_Fract = orphan fractal */
 						tela[n  ].stat = st_Fract.sym;
@@ -749,22 +749,24 @@ void mark_tela(void)
 				/* CHECK TO SEE IF THERE ARE CYCLING ISLANDS THAT ARE PARTIALLY FRACTAL TO A PARENT & CANCEL NON-FRACTAL PART IF SIMPLE. squid~34 */
 				if (Dtr) {
 					for (i=n+k-1; i>=n+min_k; i--) {
-						if (tela[i].k1 && tela[i].stat!=st_cycle.sym && (fract_k=tela[i].k1)<k && i-fract_k>=n && 
-																fract_k==tela[i-k].ok && fract_k==tela[i-k-1].ok) {
+						if (tela[i].k1 && (fract_k=tela[i].k1)<k && i-fract_k>=n && tela[i-k].ok==fract_k) {
 							tela[i-k].statf = tela[i].statf = st_fract.sym;
-							push_mem(i-k,6);
-							push_mem(i  ,6);
 							tela[n].stat = st_parent.sym;
+							push_mem(i-k,6);
+							push_mem(n  ,6);
+							push_mem(i  ,6);
 
-							j = 1;
-							while (tela[i-k - j].ok == fract_k) {
-								push_mem(i-k - j,6);
-								clearall_tela(i-k - j++,1,-1,TWO);
-							}
-							j = 1;
-							while (tela[n+j].k1==k && i-fract_k<n+j) {
-								push_mem(n + j,6);
-								tela[n + j++].k1 = '\0';
+							if (tela[i-k-1].ok==fract_k) {
+								j = 1;
+								while (tela[i-k - j].ok == fract_k) {
+									push_mem(i-k - j,6);
+									clearall_tela(i-k - j++,1,-1,TWO);
+								}
+								j = 1;
+								while (tela[n+j].k1==k && i-fract_k<n+j) {
+									push_mem(n + j,6);
+									tela[n + j++].k1 = '\0';
+								}
 							}
 						}
 					}
@@ -779,19 +781,21 @@ void mark_tela(void)
 							clearall_tela(n,1,-1,TWO);
 							Dtr=0;
 						}
-						else if ((fract_k=tela[i].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i-fract_k>=m && i+tela[i].k1<=n && tela[n].stat!=st_parent.sym) {
+						else if (tela[i].statf!=st_fract.sym && (fract_k=tela[i].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i-fract_k>=m && i+tela[i].k1<=n 
+									&& tela[n].stat!=st_parent.sym) {
 							push_mem(n,0);
-							push_mem(n,5);
+							push_mem(n,1);
 							tela[n].stat = st_parent.sym;
-							push_mem(i,1);
+							push_mem(i,2);
 							tela[i].stat   = st_Fract.sym;
 							tela[i].echoes = cyc_skip.sym;
 						}
-						else if ((fract_k=tela[i+k].k1) && fract_k<=opt_b.val && !tela[i].k1 && i+k-fract_k>=n && i+k+tela[i+k].k1<=n+fract_k && tela[n].stat!=st_parent.sym) {
+						else if ((fract_k=tela[i+k].k1) && fract_k<=opt_b.val && !tela[i].k1 && i+k-fract_k>=n && i+k+tela[i+k].k1<=n+fract_k 
+								&& tela[n].stat!=st_parent.sym) {
 							push_mem(n,0);
-							push_mem(n,5);
+							push_mem(n,1);
 							tela[n].stat = st_parent.sym;
-							push_mem(i+k,1);
+							push_mem(i+k,3);
 							tela[i+k].stat   = st_Fract.sym;
 							tela[i+k].echoes = cyc_skip.sym;
 						}
@@ -870,11 +874,11 @@ void mark_tela(void)
 										tela[n  ].stat = st_cycle.sym;
 								}
 								else if ((tela[n-proj_k].ok==k || tela[n-proj_k].k1==k) && n-k>=projector) {
-									tela[projector].stat = st_parent.sym;
 									if (dev_print(TELA,__LINE__))
 										printf("Calling parent at %d.", projector);
 									tela[n       ].statf = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
 									tela[n-proj_k].statf = st_fract.sym;		/* MATCHING PAIR */
+									tela[projector].stat = st_parent.sym;
 									push_mem(n, 4);
 									push_mem(projector, 4);
 									push_mem(n-proj_k, 4);
@@ -1109,8 +1113,9 @@ void mark_tela(void)
 						int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
 						tela[n].stat = st_parent.sym;
 						tela[i].statf = tela[i+k].statf = st_fract.sym;
-						push_mem(i  , 4);
-						push_mem(i+k, 4);
+						push_mem(n  , 5);
+						push_mem(i  , 5);
+						push_mem(i+k, 5);
 
 						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;					/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
