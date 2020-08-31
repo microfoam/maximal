@@ -433,15 +433,17 @@ int next_k(int n, int k1, short unsigned int seqtype)
 	int i=0, m=0, k=0, transits=0;
 	int allowed_transits(int k);
 
-	if (seqtype==1 && k1-1>opt_b.val) {
+	if (seqtype==1) {
 		int maxtransits;
 		short int purA, purG, pyrC, pyrT;
+		int monochar;
 
 		for (k = k1-1; k>1; k--) {
 			m = n-k;
 			maxtransits = allowed_transits(k);
 			transits=0;
 			purA = purG = pyrC = pyrT = 0;
+			monochar = tela[m].c;
 
 			for (i=0; i<k; i++) {
 				if (tela[m+i].c != tela[n+i].c) {
@@ -478,7 +480,16 @@ int next_k(int n, int k1, short unsigned int seqtype)
 					pyrT++;
 				else if (tela[n+i].c == ambig.sym)
 					break;
+
+				if (monochar) {
+					if (tela[n+i].c != monochar)
+						monochar = '\0';
+					else if (tela[m+i].c != monochar)
+						monochar = '\0';
+				}
 			}
+			if (OFF && monochar)
+				return(0);
 			if (i==k) {
 				if (transits && (((purA||purG) && !pyrC && !pyrT) ||
 					 			 ((pyrC||pyrT) && !purA && !purG)) ) {
@@ -593,6 +604,8 @@ void mark_tela(void)
 				k = abs(k_tmp);
 				k1 = next_k(n,k,nuctype);
 			}
+			else if (!k_tmp)
+				break;
 
 			if  (k_tmp>=min_k || k1>=min_k) {
 				if ( (k_tmp && !checkfractals_in_imperfect(k_tmp,n)) ||
@@ -749,7 +762,7 @@ void mark_tela(void)
 				/* CHECK TO SEE IF THERE ARE CYCLING ISLANDS THAT ARE PARTIALLY FRACTAL TO A PARENT & CANCEL NON-FRACTAL PART IF SIMPLE. squid~34 */
 				if (Dtr) {
 					for (i=n+k-1; i>=n+min_k; i--) {
-						if (tela[i].k1 && (fract_k=tela[i].k1)<k && i-fract_k>=n && tela[i-k].ok==fract_k) {
+						if (tela[i].k1 && (fract_k=tela[i].k1)<k && i-fract_k>=n && tela[i-k].ok==fract_k && i-k+tela[i-k].k1<=n) {
 							tela[i-k].statf = tela[i].statf = st_fract.sym;
 							tela[n].stat = st_parent.sym;
 							push_mem(i-k,6);
