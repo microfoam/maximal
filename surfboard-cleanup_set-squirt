@@ -16,10 +16,11 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
-
 	# cinch-t originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
+	./maximal -KnxR -D 8 waves/squeegee/squirt_06-b6.txt		# 
+	./maximal -KnxR -D 8 waves/squeegee/squirt_07-b6.txt		# 
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
 	./maximal -KnxR waves/squeegee/squirt_05-b6.txt		# solved-68 mark_tela edits continued again; b4--6
