@@ -7,7 +7,6 @@ do
 case "${option}"
 in
 c) 	./surfboard-Pop_Up
-	grep 'define b' src/microhom-skor.h | tee -a Corduroy.log
 	;;
 esac
 done
@@ -17,8 +16,10 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
+	./maximal -KnxR -D 8 waves/squeegee/squirt_08-b6.txt		# 
 
 	# cinch-k originating 2-D conflict
+	./maximal -KnxR -D 8 waves/squeegee/squirt_09-b6.txt		# 
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
 	./maximal -KnxR waves/squeegee/squirt_07-b6.txt		# solved-70 muting deprecated code in mark_tela(); b3--6
