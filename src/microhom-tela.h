@@ -1372,17 +1372,6 @@ void mark_tela(void)
 					while (max_count > 1)
 						max_count = settle_tiescores(n, span, max_score, j++);
 				}
-				else {
-					for (i=n; i<=n+span; i++) {
-						if (tela[i].all_S && tela[i].all_S != max_score) {
-							push_mem(i, 12);
-							clearall_tela(i, 1, -1, ONE);			/* O-F-F, ONE, OR TWO */
-							if (dev_print(TELA,__LINE__)) {
-								printf("         mark_tela engaging clearall_tela(ONE) at i=%d.", i);
-							}
-						}
-					}
-				}
 			}
 			n = n + span - 1;
 		}
