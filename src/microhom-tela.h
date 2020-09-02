@@ -1168,24 +1168,22 @@ void mark_tela(void)
 	}
 
 	for (n=1; n<lenseq; n++) {
-		if (tela[n].ok && !tela[n-1].ok) {
-			k = tela[n].ok;
-			m = n-k;
-			int prev_k;
-			for (i=m+1; i<n-1; i++) {
-				if (tela[i].ok && tela[i].statf!=st_fract.sym && (prev_k=tela[i].ok)<k && i-prev_k<m && 
-						!tela[i].all_L && tela[i].all_S<tela[n].all_S && i+span_ork(i)<n) {
-					clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-					push_mem(i, 8);
-					tela[i].echoes = cyc_skip.sym;		/* MARK THIS SO CAN CHECK IN ANY CINCH MODULE TO SKIP */
-				}
-			}
-		}
-	}
-
-	for (n=1; n<lenseq; n++) {
 		if (tela[n].ok) {
 			k = tela[n].ok;
+
+			/*	THIS BLOCK IS POORLY-COMMENTED (NO COMMENTS) AND SEEMS TO FIX ONLY churly-14. WHAT'S UP W/ THAT? 9/1/2020 v4.25 */
+			if (!tela[n-1].ok) {
+				m = n-k;
+				int prev_k;
+				for (i=m+1; i<n-1; i++) {
+					if (tela[i].ok && tela[i].statf!=st_fract.sym && (prev_k=tela[i].ok)<k && i-prev_k<m && 
+							!tela[i].all_L && tela[i].all_S<tela[n].all_S && i+span_ork(i)<n) {
+						clearall_tela(i, 1, -1, TWO);
+						push_mem(i, 9);
+						tela[i].echoes = cyc_skip.sym;
+					}
+				}
+			}
 
 			/* CANCEL MARK IF OVERLAPS PARENT W/ FRACTALS AND PARENT K > k */
 			if (!tela[n-1].ok && tela[n].stat==st_cycle.sym) {
