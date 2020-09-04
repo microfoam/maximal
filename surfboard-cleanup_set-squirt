@@ -18,9 +18,9 @@ fi
 	# cinch-t originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squirt_09-b6.txt		# ; b3--6
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_09-b6.txt		# solved-72 mark_tela() edits; b3--6
 	./maximal -KnxR waves/squeegee/squirt_08-b6.txt		# solved-71 hack mark_tela() edit w/ MAGIC # k-mer size condition; b3--6
 	./maximal -KnxR waves/squeegee/squirt_07-b6.txt		# solved-70 muting deprecated code in mark_tela(); b3--6
 	./maximal -KnxR waves/squeegee/squirt_06-b6.txt		# solved-69 sub-threshold fractals condition to skip if next parent column is perfect k; b3--6
@@ -37,8 +37,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 9 (b=6): 0.518889 (8 / 9 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 9 (b=6): 0.523333 (8 / 9 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 9 (b=4): 0.513333 (8 / 9 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 9 (b=3): 0.488889 (8 / 9 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 9 (b=6): 0.513333 (9 / 9 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 9 (b=6): 0.521111 (9 / 9 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 9 (b=4): 0.511111 (9 / 9 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 9 (b=3): 0.486667 (9 / 9 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

@@ -520,6 +520,7 @@ int next_k(int n, int k1, short unsigned int seqtype)
 
 
 /**************** FUNCTION TO CHECK IF POSITION i IS FRACTAL TO PARENT AT n ************************************/
+/**************** RETURN(0) IF NOT; RETURN(candk) IF YES.                   ************************************/
 int isfractal(int i, int n, int k) {
 
 		int candk=tela[i].ok;					/* candidate k: k-mer size of candidate fractal */
@@ -540,7 +541,7 @@ int isfractal(int i, int n, int k) {
 			return(0);
 		else if (i+span_ork(i)>n)
 			return(0);
-		else if (candk == tela[i+k].k1)			/* Note: tela[i+k].ok might not be filled yet. */
+		else if (candk==tela[i+k].k1 || candk==tela[i+k].k2)	/* Note: tela[i+k].ok might not be filled yet. */
 			return(candk);
 		else if (candk == -tela[i+k].impk) {
 			if (mfract>0)
@@ -556,8 +557,6 @@ int isfractal(int i, int n, int k) {
 				return(candk);
 			}
 		}
-		else if (candk==tela[i+k].k2)
-			return(candk);
 		else
 			return(0);
 }
@@ -625,10 +624,6 @@ void mark_tela(void)
 							tela[n].k2 = k2 = k_tmp;
 							break;						/* BREAK BECAUSE CURRENTLY ONLY STORING TOP TWO k-MERS AT n */
 						}
-					}
-					else if (tela[n-1].k2) {
-						tela[n].k1 = tela[n].impk = '\0';
-						break;
 					}
 					else
 						break;
@@ -781,9 +776,12 @@ void mark_tela(void)
 					for (i=m+min_k; i<n; i++) {
 						if ((fract_k=isfractal(i,n,k))) {
 							push_mem(n,0);
-							push_mem(n,3);
-							clearall_tela(n,1,-1,TWO);
-							Dtr=0;
+							push_mem(n,1);
+							tela[n].stat = st_parent.sym;
+							push_mem(i  ,1);
+							push_mem(i+k,1);
+							tela[i  ].stat = st_fract.sym;
+							tela[i+k].stat = st_fract.sym;
 						}
 						else if (tela[i].statf!=st_fract.sym && (fract_k=tela[i].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i-fract_k>=m && i+tela[i].k1<=n 
 									&& tela[n].stat!=st_parent.sym && tela[n+1].k1!=k) {
@@ -1063,8 +1061,12 @@ void mark_tela(void)
 						break;
 				}
 				for (int l=i+1; l<j; l++) {
-					if (tela[l].all_S == max_S)
-						tela[l].statl = '\0';
+					if (tela[l].all_S == max_S) {
+						if (tela[l].stat != st_parent.sym)
+							tela[l].statl = '\0';
+						else
+							tela[l].cyc_o = cyc_skip.sym;
+					}
 				}			
 			}
 		}
