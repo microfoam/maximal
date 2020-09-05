@@ -16,10 +16,10 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squirt_11-b6.txt		# 
+	./maximal -KnxR -D 8 waves/squeegee/squirt_11-b6.txt		# chowder with both v4.34-lcl-09 and v4.35
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squirt_10-b6.txt		# 
+	./maximal -KnxR -D 8 waves/squeegee/squirt_10-b6.txt		# non-chowder with v4.34-lcl-09
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
 	./maximal -KnxR waves/squeegee/squirt_09-b6.txt		# solved-72 mark_tela() edits; b3--6
