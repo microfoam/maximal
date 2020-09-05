@@ -1210,8 +1210,8 @@ void mark_tela(void)
 					if (tela[i].statf==st_fract.sym) {
 						for (j=i+1; j<lenseq; j++) {
 							if (tela[j].stat==st_parent.sym && tela[j].ok > k) {
-								clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-								push_mem(n, 8);
+								clearall_tela(j, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+								push_mem(j, 9);
 								break;
 							}
 						}

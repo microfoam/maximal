@@ -16,10 +16,10 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squirt_11-b6.txt		# chowder with both v4.34-lcl-09 and v4.35
+	./maximal -KnxR -D 8 waves/squeegee/squirt_11-b6.txt		# b6-only chowder with both v4.34-lcl-09 and v4.35
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squirt_10-b6.txt		# non-chowder with v4.34-lcl-09
+	./maximal -KnxR -D 8 waves/squeegee/squirt_10-b6.txt		# solved-73a: solved at b=6, but new chowder at b=3-only; b6 non-chowder with v4.34-lcl-09
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
 	./maximal -KnxR waves/squeegee/squirt_09-b6.txt		# solved-72 mark_tela() edits; b3--6
@@ -39,8 +39,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 9 (b=6): 0.513333 (9 / 9 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 9 (b=6): 0.521111 (9 / 9 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 9 (b=4): 0.511111 (9 / 9 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 9 (b=3): 0.486667 (9 / 9 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=6): 0.513636 (10/11 solved; squirt-11 unsolved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=6): 0.519091 (11/11 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=4): 0.506364 (11/11 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=3): 0.489091 (10/11 solved; squirt-10 unsolved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

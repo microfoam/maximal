@@ -18,29 +18,29 @@ fi
 
 
 # DIAGNOSTIC TESTS START ON LINE 21: Ideally, these should be whittled knots for visual inspection w/ WCRs reflective of knot folding only
-./maximal -KRn  -D 8 waves/tubespit/seq-017-variant.txt
-./maximal -KRn  -D 8 waves/tubespit/seq-017-cycle5.txt
-./maximal -KRnC -D 8 waves/tubespit/seq-017-cycle5.txt
-./maximal -KRn  -D 8 waves/tubespit/seq-154-v427_cycABs.txt
-./maximal -KR   -D 8 waves/tubespit/seq-000-orig_b.txt 
-./maximal -KRn  -D 8 waves/tubespit/seq-000-orig_c.txt 
-./maximal -KR   -D 8 waves/tubespit/seq-000-orig_d.txt 
-./maximal -KR   -D 8 waves/tubespit/seq-000-orig_e.txt 
-./maximal -KR   -D 8 waves/tubespit/seq-000-orig_f.txt 
-./maximal -KRx  -D 8 waves/tubespit/seq-033-imprf1.txt 
-./maximal -KR   -D 8 waves/tubespit/seq-100-v343_10.txt 
-./maximal -KRn  -D 8 waves/chowder/seq6-koslip-snippet.txt 
-./maximal -KR   -D 8 waves/chowder/seq26-snippet.txt 
-./maximal -KR   -D 8 waves/snippets/snippet-gal11-knot1.txt
-./maximal -KR   -D 8 waves/chowder/seq26-variations1.txt 
-./maximal -KR   -D 8 waves/chowder/seq26-variations2.txt 
-./maximal -KRn  -D 8 waves/chowder/snippet-jetsam-01.txt 
-./maximal -KRn  -D 8 waves/chowder/snippet-jetsam-03.txt 
-./maximal -KRn  -D 8 waves/chowder/abba_zabba_1.txt 
-./maximal -KRn  -D 8 waves/chowder/abba_zabba_2.txt 
-./maximal -KRn  -D 8 waves/chowder/abba_zabba_3.txt 
-./maximal -KRn  -D 8 waves/chowder/abba_zabba_4.txt 
-./maximal -KRnx -D 8 waves/snippets/snippet-squirt_03-b6.alt1
+./maximal -KRn  waves/tubespit/seq-017-variant.txt
+./maximal -KRn  waves/tubespit/seq-017-cycle5.txt
+./maximal -KRnC waves/tubespit/seq-017-cycle5.txt
+./maximal -KRn  waves/tubespit/seq-154-v427_cycABs.txt
+./maximal -KR   waves/tubespit/seq-000-orig_b.txt 
+./maximal -KRn  waves/tubespit/seq-000-orig_c.txt 
+./maximal -KR   waves/tubespit/seq-000-orig_d.txt 
+./maximal -KR   waves/tubespit/seq-000-orig_e.txt 
+./maximal -KR   waves/tubespit/seq-000-orig_f.txt 
+./maximal -KRx  waves/tubespit/seq-033-imprf1.txt 
+./maximal -KR   waves/tubespit/seq-100-v343_10.txt 
+./maximal -KRn  waves/chowder/seq6-koslip-snippet.txt 
+./maximal -KR   waves/chowder/seq26-snippet.txt 
+./maximal -KR   waves/snippets/snippet-gal11-knot1.txt
+./maximal -KR   waves/chowder/seq26-variations1.txt 
+./maximal -KR   waves/chowder/seq26-variations2.txt 
+./maximal -KRn  waves/chowder/snippet-jetsam-01.txt 
+./maximal -KRn  waves/chowder/snippet-jetsam-03.txt 
+./maximal -KRn  waves/chowder/abba_zabba_1.txt 
+./maximal -KRn  waves/chowder/abba_zabba_2.txt 
+./maximal -KRn  waves/chowder/abba_zabba_3.txt 
+./maximal -KRn  waves/chowder/abba_zabba_4.txt 
+./maximal -KRnx waves/snippets/snippet-squirt_03-b6.alt1
 
 echo
 echo
