@@ -1209,7 +1209,7 @@ void mark_tela(void)
 				for (i=n+1; i<n+k; i++) {
 					if (tela[i].statf==st_fract.sym) {
 						for (j=i+1; j<lenseq; j++) {
-							if (tela[j].stat==st_parent.sym && tela[j].ok > k) {
+							if (tela[j].stat==st_parent.sym && tela[j].ok > tela[i].ok) {
 								clearall_tela(j, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 								push_mem(j, 9);
 								break;
