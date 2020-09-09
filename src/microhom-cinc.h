@@ -571,26 +571,24 @@ int cinch_k(short unsigned int mode)
 					}
 				}
 
-				/* BREAK CHECKING IF IT WILL PULL IN MISMATCHES IN REPEAT OR TO RIGHT OF REPEAT */
-				if (nuctransit && (imperfect_TR || keep_checking) && n > scrimmage_line) {
-					int le;
-					for (le = 0; le < 2*k; le++) {
-						letr2= align2D[m][n +k+le];
-						letr = consensus[n-x+k+le];
-						if (imperfect_TR) {
-							if (isalpha(align2D[m][n+le]) && (i=col_isclear(align2D,n+le,m,-1)) > -1 && align2D[i][n+le] != letr2 && letr != 'R' && letr != 'Y') {
-								keep_checking = imperfect_TR = 0;
-								break;
-							}
-							if (letr == 'R' && (letr2 == 'C' || letr2 == 'T')) {
-								imperfect_TR = 0;
-								break;
-							}
-							else if (letr == 'Y' && (letr2 == 'A' || letr2 == 'G')) {
-								imperfect_TR = 0;
-								break;
+				/* BREAK CHECKING IF IT WILL PULL IN TRANSITIONS INTO OVERLAPPING ROWS ABOVE (LOWER m) */
+				if (nuctransit && keep_checking && n>scrimmage_line) {
+					for (int le=0; le<k; le++) {
+						if (col_isclear(align2D,n+k+le,m,-1)>=0) {
+							if (((letr=unshifted[n+2*k+le]) == 'R' || letr=='Y') && tela[tela_n+k+le].c==tela[tela_n+k+le].t) {
+								for(i=0; i<k; i++) {
+									if (tela[tela_n+i].c!=tela[tela_n+k+i].c) {
+										break;
+									}
+								}
+								if  (i<k) {
+									keep_checking = imperfect_TR = 0;
+									break;
+								}
 							}
 						}
+						else
+							break;
 					}
 				}
 				
