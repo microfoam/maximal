@@ -632,18 +632,8 @@ int cinch_k(short unsigned int mode)
 					}
 				}
 
-				if (imperfect_TR && n > scrimmage_line && isupper(align2D[m][n]) && align2D[m+1][n] == blnk) { 
-					int lf;
-					for (lf = 0; lf < k; lf++) {
-						/* CHECK MISMATCHES FROM PUSHING BOTTOM ROW TO LEFT OF REPEATS AFTER SLIP */
-						if ((i=col_isclear(align2D,n+lf,m,1))>-1 && (letr=align2D[i][n+lf])!=consensus[n-x-k+lf] && letr!=tolower(consensus[n-x-k+lf])) {
-							imperfect_TR = 0;
-							break;
-						}
-					}
-				}
-
 				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
+				/* 9/9/2020 mucho chowder in cleanup_set-all when this block is OFF; did not test rest */
 				if ((keep_checking || imperfect_TR) && k>1 && isalpha(letr=align2D[m-1][n+k])) {
 					
 					int toprow = m-1;
@@ -673,6 +663,7 @@ int cinch_k(short unsigned int mode)
 				}
 
 				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
+				/* 9/9/2020 v4.35, some chowder in more than one benchmark test script when this block is OFF */
 				if ((keep_checking || imperfect_TR) && k>1 && isalpha(letr=align2D[m+1][n+k-1]) && !isalpha(align2D[m+1][n])) {
 					keep_checking = imperfect_TR = 0;
 				}
