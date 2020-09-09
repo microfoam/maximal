@@ -110,8 +110,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Current commit WCR average of 82 (b=6): 0.475244 -> 0.474756 (chowder-free)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 82 (b=5): 0.471585 -> 0.471098 (chowder-free)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 82 (b=4): 0.468171 -> 0.467683 (chowder-free)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 82 (b=3): 0.454024 -> 0.453537 (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82 (b=6): 0.474756 (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82 (b=5): 0.471098 (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82 (b=4): 0.467683 (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82 (b=3): 0.453537 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

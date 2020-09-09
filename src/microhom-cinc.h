@@ -685,15 +685,11 @@ int cinch_k(short unsigned int mode)
 					}
 				}
 
-				/* This if-block made 5/7 chunks of remaining chowder disappear. Should be tried further up for time considerations. */
-				if (nuctransit && keep_checking && col_isclear(align2D,n,m,-1)>0 && col_isclear(align2D,n,m,1)<0 && col_isclear(align2D,n+k-1,m,1)>0) 
-					keep_checking = imperfect_TR = 0;
-
 				/* Handles block of cinching fractal TRs in the first row if they overlay cryptic overlapping TRs in lower rows; churly11 is index case */
+				/* 9/9/2020 v4.35, churly11-13 are only strings for which this block matters */
 				if (keep_checking||imperfect_TR) {
 					i = m+1;
 					int j = n+k-1;
-
 					while (align2D[i][n]!=blnk || !isalpha(align2D[i][j]) || col_isclear(align2D,j,i,1)) {
 						if (col_isclear(align2D,j,i+1,1)<0) {
 							i++;
@@ -703,7 +699,7 @@ int cinch_k(short unsigned int mode)
 							i++;
 					}
 					if (align2D[i][0] && align2D[i][n]==blnk && isalpha(align2D[i][j]))
-							keep_checking = imperfect_TR = 0;
+						keep_checking = imperfect_TR = 0;
 				}
 
 				/**************************************************************************************************/
