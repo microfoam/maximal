@@ -386,6 +386,7 @@ int cinch_k(short unsigned int mode)
 					break;		/* BREAK OUT OF FOR n LOOP */
 				}
 
+				/* 9/9/2020 v4.35 some chowder chops when OFF at b=3 */
 				if (nuctransit && keep_checking) {
 					if (k<=opt_b.val) {			/* SKIP IF CANNOT BE CINCHED B/C OF SUB-THRESHOLD FRACTALS AT ANY PARALOGOUS POSITION */
 						int la;
@@ -463,6 +464,7 @@ int cinch_k(short unsigned int mode)
 					homopolyflag = 0;		/* RESET */
 				} 
 
+				/* 9/9/2020 v4.35 mucho chowder but dramatic drop in WCR avg's */
 				if (nuctransit && keep_checking) {
 					if (k>2 && count_unique_chars(align2D[m]+n, 2*k)==2)
 						keep_checking = 0;
@@ -472,6 +474,7 @@ int cinch_k(short unsigned int mode)
 					}
 				}
 
+				/* 9/9/2020 v4.35 expansion of WCR avg's for b=3 benchmarks w/o chowder when OFF */
 				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym)
 					keep_checking = check_imperf = 0;
 
