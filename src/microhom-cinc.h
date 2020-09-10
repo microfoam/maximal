@@ -475,16 +475,6 @@ int cinch_k(short unsigned int mode)
 				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym)
 					keep_checking = check_imperf = 0;
 
-				if (keep_checking && k>2 && tela[tela_m].statl==st_lowcm.sym && tela[tela_m+1].statl==st_lowcm.sym) {
-					int lc;
-					for (lc=0; lc<2*k; lc++) {
-						if (tela[tela_m+lc].statf==st_fract.sym)
-							break;
-					}
-					if (lc==2*k)
-						keep_checking = 0;
-				}
-
 				/* THIS BLOCK SPOTS NON-FRACTAL TRs AT NEXUS OF TWO OVERLAPPING AND/OR ABUTTING TRs AND SKIPS THEM */
 				/* 9/9/2020 one extra chowder bit at b=3 and some other wiggle when put in OFF */
 				if ((keep_checking || check_imperf) && col_isclear(align2D,n      ,m, 1)<0 
