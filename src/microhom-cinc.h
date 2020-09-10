@@ -571,27 +571,7 @@ int cinch_k(short unsigned int mode)
 					}
 				}
 
-				/* BREAK CHECKING IF IT WILL PULL IN TRANSITIONS INTO OVERLAPPING ROWS ABOVE (LOWER m) */
-				if (nuctransit && keep_checking && n>scrimmage_line) {
-					for (int le=0; le<k; le++) {
-						if (col_isclear(align2D,n+k+le,m,-1)>=0) {
-							if (((letr=unshifted[n+2*k+le]) == 'R' || letr=='Y') && tela[tela_n+k+le].c==tela[tela_n+k+le].t) {
-								for(i=0; i<k; i++) {
-									if (tela[tela_n+i].c!=tela[tela_n+k+i].c) {
-										break;
-									}
-								}
-								if  (i<k) {
-									keep_checking = imperfect_TR = 0;
-									break;
-								}
-							}
-						}
-						else
-							break;
-					}
-				}
-				
+				/* 9/9/2020 mucho chowder in cleanup_set-all when this block is OFF; did not test rest */
 				if (keep_checking && k>1 && n>scrimmage_line) {
 					int q=0;
 
