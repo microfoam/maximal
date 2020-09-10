@@ -562,15 +562,6 @@ int cinch_k(short unsigned int mode)
 					keep_checking = imperfect_TR = 0;
 				}
  
-				if ((keep_checking || imperfect_TR) && col_isclear(align2D,n,m,-1)<0 && col_isclear(align2D,n,m,1)<0) {
-					for (i=1; i<k; i++) {
-						if (col_isclear(align2D,n+i,m,1)>=0) {
-							keep_checking = imperfect_TR = 0;
-							break;
-						}
-					}
-				}
-
 				/* 9/9/2020 mucho chowder in cleanup_set-all when this block is OFF; did not test rest */
 				if (keep_checking && k>1 && n>scrimmage_line) {
 					int q=0;
