@@ -557,11 +557,6 @@ int cinch_k(short unsigned int mode)
 					check_imperf = 0;			/* RESET check_imperf HERE */
 				} /* END OF IF check_imperf */
 
-				if (k>1 && tela[tela_n].statf==st_fract.sym && align2D[m][n-1]!=blnk && 
-					tela[tela_m].stat!=st_parent.sym && tela[tela_n].echoes==cyc_skip.sym) {
-					keep_checking = imperfect_TR = 0;
-				}
- 
 				/* 9/9/2020 mucho chowder in cleanup_set-all when this block is OFF; did not test rest */
 				if (keep_checking && k>1 && n>scrimmage_line) {
 					int q=0;
