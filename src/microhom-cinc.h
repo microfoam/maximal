@@ -246,7 +246,6 @@ int cinch_k(short unsigned int mode)
 	unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 	unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 	unsigned short int homopolyflag=0, imperfect_TR=0;
-	int sum4score;		/* SCORE VAR FOR IMPERFECT TR'S */
 	char letr, letr2, letr3;
 	char blnk = Fill->sym;				/* opt_B fill character */
 	int max_k = WIDTH/2;
@@ -487,6 +486,7 @@ int cinch_k(short unsigned int mode)
 				}
 
 				/* THIS BLOCK SPOTS NON-FRACTAL TRs AT NEXUS OF TWO OVERLAPPING AND/OR ABUTTING TRs AND SKIPS THEM */
+				/* 9/9/2020 one extra chowder bit at b=3 and some other wiggle when put in OFF */
 				if ((keep_checking || check_imperf) && col_isclear(align2D,n      ,m, 1)<0 
 													&& col_isclear(align2D,n+2*k-1,m,-1)<0) {
 					int case_X = 1;
@@ -500,62 +500,6 @@ int cinch_k(short unsigned int mode)
 					if (case_X)
 						keep_checking = check_imperf = 0;
 				}
-
-				/* CHECK FOR TRANSITIONS IF DNA AND NEED REMAINS */
-				if (OFF && check_imperf) {
-					int ld;
-					/* LET MISMATCHES PASS THROUGH WITHOUT BREAKING IF ANNOTATED AS TRANSITIONS */
-					sum4score = 0;
-					for (ld = 0; ld < k; ld++) {
-						/* BREAK EARLY IF WOULD-BE TRANSVERSION */
-						letr =align2D[m][n+ld  ];
-						letr2=align2D[m][n+ld+k];
-						if (islower(letr)) {
-							letr = toupper(letr);
-						}
-						if (islower(letr2)) {
-							letr2= toupper(letr2);
-						}
-						if ( (letr=='A' || letr=='G') && (letr2=='C' || letr2=='T') ) {
-							break;
-						}
-						else if ( (letr=='C' || letr=='T') && (letr2=='A' || letr2=='G') ) {
-							break;
-						}
-
-						if (align2D[m][n+ld] != align2D[m][n+k+ld]) {
-							if ( (letr =unshifted[n  +ld]) != 'R' && letr  != 'Y' &&
-								 (letr2=unshifted[n+k+ld]) != 'R' && letr2 != 'Y' ) {
-								break;
-							}
-
-							/* MAKE SURE A MISMATCH IS NOT BEING GIVEN A PASS WHILE NOT CONFORMING TO TRANSITION TYPE */
-							if ((letr=unshifted[n+ld])=='R' && ((letr2=align2D[m][n+ld+k])=='C' || letr2=='T')) {
-								break;
-							}
-							else if (letr == 'Y' && ((letr2=align2D[m][n+ld+k])=='A' || letr2=='G')) {
-								break;
-							}
-
-							if ((letr=unshifted[n+ld+k])=='R' && ((letr2=align2D[m][n+ld])=='C' || letr2=='T')) {
-								break;
-							}
-							else if (letr == 'Y' && ((letr2=align2D[m][n+ld])=='A' || letr2=='G')) {
-								break;
-							}
-
-							sum4score += MATCH;		/* JUSTIFICATION: MATCHES TRANSITION CALL */
-						}
-						/* IF LETTER AT n+ld EQUAL TO LETTER AT n+ld+k except 'n' */
-						else if (align2D[m][n+ld]!=ambig.sym && align2D[m][n+ld+k]!=ambig.sym)
-							sum4score += MATCH;
-					} /* END OF FOR ld SCAN LOOPS */
-
-					if (ld == k && 100*sum4score/(k*MATCH) > score_DTHR(k)) {
-						imperfect_TR = 1;
-					}
-					check_imperf = 0;			/* RESET check_imperf HERE */
-				} /* END OF IF check_imperf */
 
 				/* 9/9/2020 mucho chowder in cleanup_set-all when this block is OFF; did not test rest */
 				if (keep_checking && k>1 && n>scrimmage_line) {
