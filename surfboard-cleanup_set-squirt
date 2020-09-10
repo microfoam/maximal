@@ -19,9 +19,10 @@ fi
 	./maximal -KnxR -D 8 waves/squeegee/squirt_11-b6.txt		# b6-only chowder with both v4.34-lcl-09 and v4.35
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squirt_10-b6.txt		# solved-73a: solved at b=6, but new chowder at b=3-only; b6 non-chowder with v4.34-lcl-09
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_10-b6.txt		# solved-73b: edits in cinch_k() after removing deprecated (redundant) blocks
+														# solved-73a: solved at b=6, but new chowder at b=3-only; b6 non-chowder with v4.34-lcl-09
 	./maximal -KnxR waves/squeegee/squirt_09-b6.txt		# solved-72 mark_tela() edits; b3--6
 	./maximal -KnxR waves/squeegee/squirt_08-b6.txt		# solved-71 hack mark_tela() edit w/ MAGIC # k-mer size condition; b3--6
 	./maximal -KnxR waves/squeegee/squirt_07-b6.txt		# solved-70 muting deprecated code in mark_tela(); b3--6
@@ -42,5 +43,5 @@ echo
 echo 'Commit WCR average of 11 (b=6): 0.513636 (10/11 solved; squirt-11 unsolved)' | tee -a Corduroy.log
 echo 'Commit WCR average of 11 (b=6): 0.519091 (11/11 solved)' | tee -a Corduroy.log
 echo 'Commit WCR average of 11 (b=4): 0.506364 (11/11 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 11 (b=3): 0.489091 (10/11 solved; squirt-10 unsolved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=3): 0.485455 (11/11 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

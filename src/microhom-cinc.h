@@ -494,7 +494,7 @@ int cinch_k(short unsigned int mode)
 						keep_checking = check_imperf = 0;
 				}
 
-				/* 9/9/2020 mucho chowder in cleanup_set-all when this block is OFF; did not test rest */
+				/* 9/9/2020 v4.35 mucho chowder in cleanup_set-all when this block is OFF; did not test rest */
 				if (keep_checking && k>1 && n>scrimmage_line) {
 					int q=0;
 
@@ -524,12 +524,15 @@ int cinch_k(short unsigned int mode)
 			    	}
 
 					/* CHECK FOR SLIPS OVER-HEAD (LOWER ROWS) OF SECOND UNIT */
-					for (i=m-1; i>=0; i--) {
-						for (int j=n+k+1; j<n+2*k; j++) {
-							if (align2D[i][j] == slip.sym && tela[tela_m-1].c != tela[tela_n+k].c) {
-								i = -1;
-								keep_checking = imperfect_TR = 0;
-								break;
+					/* 9/10/2020 v4.35 five chowder strings from -all script when this block is OFF */
+					if (keep_checking && k>2) {
+						for (i=m-1; i>=0; i--) {
+							for (int j=n+k+1; j<n+2*k; j++) {
+								if (align2D[i][j] == slip.sym && tela[tela_m-1].c != tela[tela_n+k].c) {
+									i = -1;
+									keep_checking = imperfect_TR = 0;
+									break;
+								}
 							}
 						}
 					}
@@ -558,6 +561,10 @@ int cinch_k(short unsigned int mode)
 						int checkcol = n+2*k;
 						for (i=m; i<=lenseq; i++) {
 							if (isalpha(letr2=align2D[i][checkcol]) && letr2 != letr) {
+								keep_checking = imperfect_TR = 0;
+								break;
+							}
+							else if (align2D[i][0]=='\0') {
 								keep_checking = imperfect_TR = 0;
 								break;
 							}
