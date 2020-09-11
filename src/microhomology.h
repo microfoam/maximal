@@ -1702,13 +1702,14 @@ short unsigned int checkfractals_in_imperfect(int kmer, int n)
 {
 	int lenseq = Clean.pass_W;
 	int allowed_transits(int k);
+	int theta = opt_b.val;			/* threshold for needing to check */
 
-	if (kmer<6 || n<5 || n>lenseq-5) 	/* SIX NOT A M-A-G-I-C NUMBER; IS MATH B/C 2*3 = 6 */
+	if (kmer<theta || n<theta-1 || n>lenseq-theta-1)
 		return(0);
 	else {
 		int i, k;
 		int transits, max_transits;
-		for (k = kmer-3; k>2; k--) {
+		for (k = kmer/2; k>theta; k--) {
 			max_transits = allowed_transits(k);
 			if (kmer%k==0) {
 				int m = n-kmer;
@@ -1725,7 +1726,7 @@ short unsigned int checkfractals_in_imperfect(int kmer, int n)
 						break;
 				}
 				if (i==k && transits && transits<=max_transits) {
-/*					printf("\n checkfractals_in_imperfect: kmer=%d, n=%d, returning 1 (TRUE).", kmer,n);
+/*					printf("\n checkfractals_in_imperfect: kmer=%d, n=%d, transits=%d, returning 1 (TRUE).", kmer,n,transits);
 */					return(1);			/* FLAG THAT IT IS THE CASE THAT THE PARENT IMPERFECT TR IS BASED ON SUB-FRACTAL TRs */
 				}
 			}

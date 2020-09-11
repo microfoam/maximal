@@ -587,7 +587,8 @@ void mark_tela(void)
 	for (n=1; n<lenseq; n++) {
 		k2 = k1 = k_tmp=0;
 		for (k=WIDTH; k>=min_k; k--) {
-			if ((k_tmp=next_k(n,k,nuctype))<0) {
+			k= k_tmp=next_k(n,k,nuctype);
+			if (k_tmp<0) {
 				tela[n].impk = k_tmp;
 				k = abs(k_tmp);
 				k1 = next_k(n,k,nuctype);
