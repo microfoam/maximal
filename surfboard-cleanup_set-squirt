@@ -19,11 +19,11 @@ fi
 	./maximal -KnxR -D 8 waves/squeegee/squirt_13-b6.txt
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxR -D 8 waves/squeegee/squirt_12a-b6.txt
-	./maximal -KnxR -D 8 waves/squeegee/squirt_12b-b6.txt
-	./maximal -KnxR -D 8 waves/squeegee/squirt_12c-b6.txt
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_12a-b6.txt	# solved-75 new fractstat check in cinch_k
+	./maximal -KnxR waves/squeegee/squirt_12b-b6.txt	# solved-75 new fractstat check in cinch_k
+	./maximal -KnxR waves/squeegee/squirt_12c-b6.txt	# solved-75 new fractstat check in cinch_k
 	./maximal -KnxR waves/squeegee/squirt_11-b6.txt		# solved-74 single-line edit to mha.c; b6-only chowder with both v4.34-lcl-09 and v4.35
 	./maximal -KnxR waves/squeegee/squirt_10-b6.txt		# solved-73b: edits in cinch_k() after removing deprecated (redundant) blocks
 														# solved-73a: solved at b=6, but new chowder at b=3-only; b6 non-chowder with v4.34-lcl-09
@@ -44,8 +44,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 11 (b=6): 0.510909 (11/11 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 11 (b=6): 0.519091 (11/11 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 11 (b=4): 0.506364 (11/11 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 11 (b=3): 0.487273 (11/11 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=6): 0.5      (14/15 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=6): 0.509333 (15/15 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=4): 0.5      (15/15 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=3): 0.478    (15/15 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

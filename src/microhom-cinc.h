@@ -245,7 +245,7 @@ int cinch_k(short unsigned int mode)
 	unsigned short int first_mwrap=0, keep_checking=1;
 	unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 	unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
-	unsigned short int homopolyflag=0, imperfect_TR=0;
+	unsigned short int homopolyflag=0, imperfect_TR=0, fractstat=0;
 	char letr, letr2, letr3;
 	char blnk = Fill->sym;				/* opt_B fill character */
 	int max_k = WIDTH/2;
@@ -464,6 +464,10 @@ int cinch_k(short unsigned int mode)
 					homopolyflag = 0;		/* RESET */
 				} 
 
+				fractstat=0;
+				if (keep_checking && tela[tela_n].statf==st_fract.sym && tela[tela_n].ok==k)
+					fractstat = 1;
+
 				/* 9/9/2020 v4.35 mucho chowder but dramatic drop in WCR avg's */
 				if (nuctransit && keep_checking) {
 					if (k>2 && count_unique_chars(align2D[m]+n, 2*k)==2)
@@ -498,7 +502,7 @@ int cinch_k(short unsigned int mode)
 				if (keep_checking && k>1 && n>scrimmage_line) {
 					int q=0;
 
-					if (nuctransit && col_isclear(pathbox,n-x+k,m+cik_row,-1)>-1 && col_isclear(align2D,n+k,m,1)<0) {
+					if (!fractstat && nuctransit && col_isclear(pathbox,n-x+k,m+cik_row,-1)>-1 && col_isclear(align2D,n+k,m,1)<0) {
 						/* CHECK IF WILL PULL IN ADJACENT MISMATCHES AFTER RUN OF REPEATS */
 					    r = 1; 
 						i = k;  /* VAR i SET TO k ONLY TO ENTER WHILE LOOP */
