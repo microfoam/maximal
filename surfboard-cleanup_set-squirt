@@ -16,6 +16,7 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
+	./maximal -KnxR -D8 waves/squeegee/squirt_14-b6.txt		# ; -b4--6 -x chowder
 
 	# cinch-k originating 2-D conflict
 
