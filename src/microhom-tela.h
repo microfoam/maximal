@@ -435,13 +435,13 @@ int next_k(int n, int k1, short unsigned int seqtype)
 
 	if (seqtype==1) {
 		int maxtransits;
-		short int purA, purG, pyrC, pyrT;
+		short int pur, pyr;
 
 		for (k = k1-1; k>1; k--) {
 			m = n-k;
 			maxtransits = allowed_transits(k);
 			transits=0;
-			purA = purG = pyrC = pyrT = 0;
+			pur = pyr = 0;
 
 			for (i=0; i<k; i++) {
 				if (tela[m+i].c != tela[n+i].c) {
@@ -457,32 +457,31 @@ int next_k(int n, int k1, short unsigned int seqtype)
 						break;
 				}
 
-				if      (tela[m+i].c=='G')
-					purG++;
-				else if (tela[m+i].c=='C')
-					pyrC++;
-				else if (tela[m+i].c=='A')
-					purA++;
-				else if (tela[m+i].c=='T')
-					pyrT++;
-				else if (tela[m+i].c == ambig.sym)
+				if (tela[m+i].c == ambig.sym || tela[n+i].c == ambig.sym)
 					break;
 
+				if      (tela[m+i].c=='G')
+					pur++;
+				else if (tela[m+i].c=='C')
+					pyr++;
+				else if (tela[m+i].c=='A')
+					pur++;
+				else if (tela[m+i].c=='T')
+					pyr++;
+
 				if      (tela[n+i].c=='G')
-					purG++;
+					pur++;
 				else if (tela[n+i].c=='C')
-					pyrC++;
+					pyr++;
 				else if (tela[n+i].c=='A')
-					purA++;
+					pur++;
 				else if (tela[n+i].c=='T')
-					pyrT++;
-				else if (tela[n+i].c == ambig.sym)
-					break;
+					pyr++;
 			}
 			if (i==k) {
-				if (transits && (((purA||purG) && !pyrC && !pyrT) ||
-					 			 ((pyrC||pyrT) && !purA && !purG)) ) {
-					tela[n].k0 = k;			/* SAVE k-MER FOR CINCH-K */
+				if (transits && ((pur && !pyr) || (pyr && !pur))) {
+					tela[n].k0 = k;		/* SAVE k-MER FOR CINCH-K */
+					return(0);
 				}
 				else if (transits)
 					return(-k);			/* RETURN NEGATIVE VALUE TO INDICATE IMPERFECT TR */
