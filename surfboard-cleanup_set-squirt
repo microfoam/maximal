@@ -16,11 +16,11 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-	./maximal -KnxR -D8 waves/squeegee/squirt_14-b6.txt		# ; -b4--6 -x chowder
 
 	# cinch-k originating 2-D conflict
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_14-b6.txt		# solved-77 Replace OFF w/ fract check for block 12 in mark_tela(); -b4--6 -x chowder
 	./maximal -KnxR waves/squeegee/squirt_13-b6.txt		# solved-76 edits in mark_tela() next_k() call and in checkfractals_in_imperfect
 	./maximal -KnxR waves/squeegee/squirt_12a-b6.txt	# solved-75 new fractstat check in cinch_k
 	./maximal -KnxR waves/squeegee/squirt_12b-b6.txt	# solved-75 new fractstat check in cinch_k
@@ -45,8 +45,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 15 (b=6): 0.497333 (15/15 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 15 (b=6): 0.509333 (15/15 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 15 (b=4): 0.5      (15/15 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 15 (b=3): 0.478    (15/15 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 16 (b=6): 0.498125 (16/16 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 16 (b=6): 0.509375 (16/16 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 16 (b=4): 0.500625 (16/16 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 16 (b=3): 0.475625 (16/16 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

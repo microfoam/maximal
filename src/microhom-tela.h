@@ -1398,7 +1398,7 @@ void mark_tela(void)
 			for (i=0; i<tela[n].or; i++) {
 				for (j=min_k; j<tela[n].ok-1; j++) {
 					if (tela[(p=m+i*k+j)].ok != tela[(q=n+i*k+j)].ok && !tela[p].k2) { 
-						if (OFF && tela[p].ok) {										/* DEPRECATED CODE: DELETE-ME STEP-WISE W/ EXPANSION */
+						if (tela[p].ok && tela[p].statf!=st_fract.sym) {
 							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
 							if (tela[p].statf==st_fract.sym && tela[n].stat != st_cycle.sym) {
 								clearall_tela(n,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
