@@ -1074,7 +1074,7 @@ void mark_tela(void)
 
 	/* FRACTAL SPLITTING */
 	for (n=lenseq; n>1; n--) {
-		if (tela[n].ok && (tela[n-1].k1!=tela[n].k1 || !tela[n-1].ok)) {
+		if (tela[n].ok && !tela[n-1].ok) {
 			k = tela[n].ok;
 			m = n - k;
 			int case_X=0;		/* TO DISTINGUISH ENTRIES INTO IF BLOCK THAT HANDLES LEGACY FRACTAL SPLITTING */
