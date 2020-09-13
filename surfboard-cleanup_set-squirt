@@ -16,21 +16,21 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-	./maximal -KnxR -D8 -b3 waves/squeegee/squirt_21-b3.txt		# ; b3--b5
-	./maximal -KnxR -D8 -b3 waves/squeegee/squirt_16-b3.txt		# ; b3-only REC<1000
-	./maximal -KnxR -D8 -b3 waves/squeegee/squirt_18-b3.txt		# ; b3-only
+	./maximal -KnxR -D8 waves/squeegee/squirt_16-b3.txt		# ; b3-only REC<1000
+	./maximal -KnxR -D8 waves/squeegee/squirt_18-b3.txt		# ; b3-only
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxR -D8 -b3 waves/squeegee/squirt_17-b3.txt		# ; b3--b6
-	./maximal -KnxR -D8 -b3 waves/squeegee/squirt_22-b3.txt		# ; b3--b6
-	./maximal -KnxR -D8 -b3 waves/squeegee/squirt_23-b3.txt		# ; b3--b5
-	./maximal -KnxR -D8 -b3 waves/squeegee/squirt_20-b3.txt		# ; b3- & b4- only
-	./maximal -KnxR -D8 -b3 waves/squeegee/squirt_25-b3.txt		# ; b3- & b4- only
-	./maximal -KnxR -D8 -b3 waves/squeegee/squirt_19-b3.txt		# ; b3-only
-	./maximal -KnxR -D8 -b3 waves/squeegee/squirt_24-b3.txt		# ; b3-only
-	./maximal -KnxR -D8 -b3 waves/squeegee/squirt_26-b3.txt		# ; b3-only
+	./maximal -KnxR -D8 waves/squeegee/squirt_17-b3.txt		# ; b3--b6
+	./maximal -KnxR -D8 waves/squeegee/squirt_22-b3.txt		# ; b3--b6
+	./maximal -KnxR -D8 waves/squeegee/squirt_23-b3.txt		# ; b3--b5
+	./maximal -KnxR -D8 waves/squeegee/squirt_20-b3.txt		# ; b3- & b4- only
+	./maximal -KnxR -D8 waves/squeegee/squirt_25-b3.txt		# ; b3- & b4- only
+	./maximal -KnxR -D8 waves/squeegee/squirt_19-b3.txt		# ; b3-only
+	./maximal -KnxR -D8 waves/squeegee/squirt_24-b3.txt		# ; b3-only
+	./maximal -KnxR -D8 waves/squeegee/squirt_26-b3.txt		# ; b3-only
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_21-b3.txt		# solved-79 Fractal splitting edit in mark_tela w/ imperfect parent; b3--b5
 	./maximal -KnxR waves/squeegee/squirt_15-b6.txt		# solved-78 Adjustment to next_k() missing break or return w/ transit counting; -b4--6 -x chowder
 	./maximal -KnxR waves/squeegee/squirt_14-b6.txt		# solved-77 Replace OFF w/ fract check for block 12 in mark_tela(); -b4--6 -x chowder
 	./maximal -KnxR waves/squeegee/squirt_13-b6.txt		# solved-76 edits in mark_tela() next_k() call and in checkfractals_in_imperfect
@@ -57,8 +57,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 28 (b=6): 0.5025   (26/28 solved), 0.505 (w/ recent 11 -b3, 17/28 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 28 (b=5): 0.509643 (24/28 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 28 (b=4): 0.506786 (22/28 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 28 (b=3): 0.491786 (17/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=6): 0.5025   (26/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=5): 0.508571 (25/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=4): 0.505714 (23/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=3): 0.490714 (18/28 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
