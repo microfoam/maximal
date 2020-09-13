@@ -15,9 +15,21 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
+
 	# cinch-t originating 2-D conflict
+	./maximal -KnxR -D8 waves/squeegee/squirt_16-b3.txt	# ; REC<1000
+	./maximal -KnxR -D8 waves/squeegee/squirt_18-b3.txt
+	./maximal -KnxR -D8 waves/squeegee/squirt_21-b3.txt
 
 	# cinch-k originating 2-D conflict
+	./maximal -KnxR -D8 waves/squeegee/squirt_17-b3.txt
+	./maximal -KnxR -D8 waves/squeegee/squirt_19-b3.txt
+	./maximal -KnxR -D8 waves/squeegee/squirt_20-b3.txt
+	./maximal -KnxR -D8 waves/squeegee/squirt_22-b3.txt
+	./maximal -KnxR -D8 waves/squeegee/squirt_23-b3.txt
+	./maximal -KnxR -D8 waves/squeegee/squirt_24-b3.txt
+	./maximal -KnxR -D8 waves/squeegee/squirt_25-b3.txt
+	./maximal -KnxR -D8 waves/squeegee/squirt_26-b3.txt
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
 	./maximal -KnxR waves/squeegee/squirt_15-b6.txt		# solved-78 Adjustment to next_k() missing break or return w/ transit counting; -b4--6 -x chowder
