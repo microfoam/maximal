@@ -16,7 +16,6 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-	./maximal -KnxR -D8 waves/squeegee/squirt_16-b3.txt		# ; b3-only REC<1000
 	./maximal -KnxR -D8 waves/squeegee/squirt_18-b3.txt		# ; b3-only
 
 	# cinch-k originating 2-D conflict
@@ -27,9 +26,10 @@ fi
 	./maximal -KnxR -D8 waves/squeegee/squirt_25-b3.txt		# ; b3- & b4- only
 	./maximal -KnxR -D8 waves/squeegee/squirt_19-b3.txt		# ; b3-only
 	./maximal -KnxR -D8 waves/squeegee/squirt_24-b3.txt		# ; b3-only
-	./maximal -KnxR -D8 waves/squeegee/squirt_26-b3.txt		# ; b3-only
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_16-b3.txt		# solved-80 imperfect_TR canceling in mark_tela() given perfect k-mer at k1; b3-only REC<1000
+	./maximal -KnxR waves/squeegee/squirt_26-b3.txt		# solved-80 imperfect_TR canceling in mark_tela() given perfect k-mer at k1; b3-only
 	./maximal -KnxR waves/squeegee/squirt_21-b3.txt		# solved-79 Fractal splitting edit in mark_tela w/ imperfect parent; b3--b5
 	./maximal -KnxR waves/squeegee/squirt_15-b6.txt		# solved-78 Adjustment to next_k() missing break or return w/ transit counting; -b4--6 -x chowder
 	./maximal -KnxR waves/squeegee/squirt_14-b6.txt		# solved-77 Replace OFF w/ fract check for block 12 in mark_tela(); -b4--6 -x chowder
@@ -57,8 +57,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 28 (b=6): 0.5025   (26/28 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 28 (b=5): 0.508571 (25/28 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 28 (b=4): 0.505714 (23/28 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 28 (b=3): 0.490714 (18/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=6): 0.503214 (26/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=5): 0.507143 (25/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=4): 0.506071 (23/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=3): 0.4875   (20/28 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
