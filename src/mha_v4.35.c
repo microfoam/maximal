@@ -1137,7 +1137,9 @@ int main(int argc, char *argv[])
 										if (l == 0) {
 											f = 1;	/* ROW NUMBER IN FRAMES ARRAY; OTHERWISE KEEP INCREMENTING */
 											if (!(tela[m+l].mem[f]) && tela[m+l].mem[f+1])		/* SOMETIMES FIRST AVAIL. ROW IS OPEN BECAUSE PREVIOUS TR ITSELF HAD AN OVERLAPPING PREV. TR */
-												f++;
+												f+=1;
+											else if (!(tela[m+l].mem[f]) && tela[m+l].mem[f+2])	/* SOMETIMES SECOND AVAIL. ROW ... */
+												f+=2;
 											while (tela[m+l].mem[f] && f < MEMROWS)	{	/* FIND FIRST AVAILABLE ROW */
 												f++;
 											}

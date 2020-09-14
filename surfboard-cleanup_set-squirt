@@ -28,6 +28,7 @@ fi
 	./maximal -KnxR -D8 waves/squeegee/squirt_24-b3.txt		# ; b3-only
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_27-b6.txt		# solved-81 Fractal splitting -> edit in TR numbering in cinch_t(); b3--b6, not chowder in previous versions
 	./maximal -KnxR waves/squeegee/squirt_16-b3.txt		# solved-80 imperfect_TR canceling in mark_tela() given perfect k-mer at k1; b3-only REC<1000
 	./maximal -KnxR waves/squeegee/squirt_26-b3.txt		# solved-80 imperfect_TR canceling in mark_tela() given perfect k-mer at k1; b3-only
 	./maximal -KnxR waves/squeegee/squirt_21-b3.txt		# solved-79 Fractal splitting edit in mark_tela w/ imperfect parent; b3--b5
@@ -57,8 +58,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 28 (b=6): 0.503214 (26/28 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 28 (b=5): 0.507143 (25/28 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 28 (b=4): 0.506071 (23/28 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 28 (b=3): 0.4875   (20/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 29 (b=6): 0.49931  (27/29 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 29 (b=5): 0.503103 (26/29 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 29 (b=4): 0.500345 (24/29 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 29 (b=3): 0.482759 (21/29 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
