@@ -16,7 +16,6 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-	./maximal -KnxR -D8 waves/squeegee/squirt_18-b3.txt		# ; b3-only
 
 	# cinch-k originating 2-D conflict
 	./maximal -KnxR -D8 waves/squeegee/squirt_17-b3.txt		# ; b3--b6
@@ -28,6 +27,8 @@ fi
 	./maximal -KnxR -D8 waves/squeegee/squirt_24-b3.txt		# ; b3-only
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_18-b3.txt		# solved-83 Fractal splitting entry edit so not dependent on Fractal cycling island extending to m; b3-only
+														# partial solution; will wait until this comes up again before generalizing to all columns prior to m.
 	./maximal -KnxR waves/squeegee/squirt_28-b6.txt		# solved-82 Edit to mark_tela() mod-test case; b3--b6, chowder in previous versions 
 	./maximal -KnxR waves/squeegee/squirt_27-b6.txt		# solved-81 Fractal splitting -> edit in TR numbering in cinch_t(); b3--b6, not chowder in previous versions
 	./maximal -KnxR waves/squeegee/squirt_16-b3.txt		# solved-80 imperfect_TR canceling in mark_tela() given perfect k-mer at k1; b3-only REC<1000
@@ -62,5 +63,5 @@ echo
 echo 'Commit WCR average of 30 (b=6): 0.498667 (28/30 solved)' | tee -a Corduroy.log
 echo 'Commit WCR average of 30 (b=5): 0.502333 (27/30 solved)' | tee -a Corduroy.log
 echo 'Commit WCR average of 30 (b=4): 0.5      (25/30 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 30 (b=3): 0.481667 (22/30 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 30 (b=3): 0.481667 (23/30 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

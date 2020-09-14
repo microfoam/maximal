@@ -89,7 +89,7 @@ struct {
 }	*Options[53] = {},
                            /*.........|.........|.........|.........|.........|.........|...X*/	
 	opt_a = {0, 2, 'a', 	"Cinch-k mode 2: all k (default); 1: k=1 only; 0: skip all k.*3 "},
-	opt_b = {0, 5, 'b', 	"Change default k-floor; starts transition matching above this.*"},
+	opt_b = {0, 6, 'b', 	"Change default k-floor; starts transition matching above this.*"},
 	opt_c = {0, 0, 'c', 	"Show base 62 single character code used for k-size and number. "},
 	opt_d = {0, 0, 'd',		"Skip cinch-d module. Also automatically skips relax-2D module. "},
 	opt_e = {0, 0, 'e', {0}},

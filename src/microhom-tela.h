@@ -1089,10 +1089,10 @@ void mark_tela(void)
 			m = n - k;
 			short unsigned int case_X=0;		/* TO DISTINGUISH ENTRIES INTO IF BLOCK THAT HANDLES LEGACY FRACTAL SPLITTING */
 			int splitcol = m;
-			if (tela[m].or && tela[m].ok < k) {
+			if ((tela[m].or && tela[m].ok<k) || (tela[m-1].or && tela[m-1].ok<k)) {
 				if (tela[m].or>1 && tela[m].all_S<=tela[n].all_S && m>1 && tela[m-1].ok != tela[m].ok)
 					case_X = 1;
-				else if (k>4 && tela[m-1].ok == tela[m].ok) {
+				else if (k>4 && (tela[m-1].ok==tela[m].ok || (!tela[m].ok && tela[(splitcol=m-1)].ok))) {
 					while (splitcol && tela[splitcol].ok && tela[splitcol-1].ok <= tela[splitcol].ok) {
 						while (splitcol + span_ork(splitcol) - m > tela[splitcol].ok && tela[splitcol].or>1)
 							tela[splitcol].or--;
