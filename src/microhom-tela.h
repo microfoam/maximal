@@ -726,13 +726,13 @@ void mark_tela(void)
 					}
 					else if (k2_check && k>prev_k && k%prev_k) {
 						push_mem(n-1,1);
-						push_mem(n  ,0);						/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-						push_mem(n  ,1);
-						tela[n-1].stat = st_Fract.sym;			/* st_Fract = orphan fractal */
-						tela[n  ].stat = st_Fract.sym;
-						tela[n  ].cyc_k = k;					/* IN CASE all_k GETS OVER-WRITTEN CAN LOOK HERE FOR CANCELED ONE */
-						n += k-1;
-						Dtr = 0; 
+						tela[n-1].stat = st_Fract.sym;		/* st_Fract = orPHan Fractal */
+						push_mem(n,0);						/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+						push_mem(n,1);
+						if (k<=2*prev_k+1) {	/* EMPIRICALLY DETERMINED THAT IF THEY ARE CLOSE IN SIZE BETTER TO SKIP LARGER k-MER. SEE ABBA-ZABBA */
+							n += k-1;
+							Dtr = 0;
+						}
 					}
 					else if (prev_k>k && prev_k % k && tela[n-prev_k].ok != k) {
 						if (tela[n-prev_k].k2==k) {
