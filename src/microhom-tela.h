@@ -695,8 +695,17 @@ void mark_tela(void)
 				/* IF SUMMING PATHBOX DIAGONAL 3/4: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
 				if (nuctransit && Dtr && Dtr!=Did) { 
 					if ((!tela[n].k1 || tela[n+1].impk==-k) && k>opt_b.val && 100*Dtr/Did > threshold) {
-						if (tela[n+1].impk==-k)
+						if (tela[n+1].impk==-k) {
 							imperfect_TR = 1;
+							i = 0;
+							while (tela[n+i].impk==-k) {	/* CHECK IMPERFECT ISLAND FOR PERFECT PEAK */
+								if (tela[n+1 + i++].k1==k) {
+									imperfect_TR = 0;
+									Dtr = 0;
+									break;
+								}
+							}
+						}
 						else {
 							for (i=1; i<k; i++) {
 								if (tela[m+i].k1 && m+i-tela[m+i].k1<m)		/* GIVEN PERFECT NON-FRACTAL k-MER IN m-SHADOW, SKIP IMPERFECT */

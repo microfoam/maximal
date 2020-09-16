@@ -20,13 +20,13 @@ fi
 	# cinch-k originating 2-D conflict
 	./maximal -KnxR -D8 waves/squeegee/squirt_17-b3.txt		# ; b3--b6
 	./maximal -KnxR -D8 waves/squeegee/squirt_22-b3.txt		# ; b3--b6
-	./maximal -KnxR -D8 waves/squeegee/squirt_23-b3.txt		# ; b3--b5
 	./maximal -KnxR -D8 waves/squeegee/squirt_20-b3.txt		# ; b3- & b4- only
 	./maximal -KnxR -D8 waves/squeegee/squirt_25-b3.txt		# ; b3- & b4- only
 	./maximal -KnxR -D8 waves/squeegee/squirt_19-b3.txt		# ; b3-only
 	./maximal -KnxR -D8 waves/squeegee/squirt_24-b3.txt		# ; b3-only
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_23-b3.txt		# solved-84 Expanded mark_tela block to cancel imperfect_TR given perfect island peak; b3--b5
 	./maximal -KnxR waves/squeegee/squirt_18-b3.txt		# solved-83 Fractal splitting entry edit so not dependent on Fractal cycling island extending to m; b3-only
 														# partial solution; will wait until this comes up again before generalizing to all columns prior to m.
 	./maximal -KnxR waves/squeegee/squirt_28-b6.txt		# solved-82 Edit to mark_tela() mod-test case; b3--b6, chowder in previous versions 
@@ -60,8 +60,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 30 (b=6): 0.498667 (28/30 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 30 (b=5): 0.502333 (27/30 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 30 (b=4): 0.5      (25/30 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 30 (b=3): 0.481667 (23/30 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 30 (b=6): 0.497333 (28/30 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 30 (b=5): 0.501    (28/30 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 30 (b=4): 0.498667 (26/30 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 30 (b=3): 0.480667 (24/30 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
