@@ -702,6 +702,8 @@ void mark_tela(void)
 								if (tela[n+1 + i++].k1==k) {
 									imperfect_TR = 0;
 									Dtr = 0;
+									while (tela[n+i-1].impk==-k)
+										tela[n-1 + i--].impk = '\0';
 									break;
 								}
 							}
