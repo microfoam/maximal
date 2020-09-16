@@ -790,8 +790,8 @@ void mark_tela(void)
 							tela[n].stat = st_parent.sym;
 							push_mem(i  ,1);
 							push_mem(i+k,1);
-							tela[i  ].stat = st_fract.sym;
-							tela[i+k].stat = st_fract.sym;
+							tela[i  ].statf = st_fract.sym;
+							tela[i+k].statf = st_fract.sym;
 						}
 						else if (tela[i].statf!=st_fract.sym && (fract_k=tela[i].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i-fract_k>=m && i+tela[i].k1<=n 
 									&& tela[n].stat!=st_parent.sym && tela[n+1].k1!=k) {
