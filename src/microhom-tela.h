@@ -700,10 +700,15 @@ void mark_tela(void)
 							i = 0;
 							while (tela[n+i].impk==-k) {	/* CHECK IMPERFECT ISLAND FOR PERFECT PEAK */
 								if (tela[n+1 + i++].k1==k) {
+									int perfect_col = n+i;
 									imperfect_TR = 0;
 									Dtr = 0;
 									while (tela[n+i-1].impk==-k)
 										tela[n-1 + i--].impk = '\0';
+									while (tela[++perfect_col].k1==k || tela[perfect_col].impk==-k) {
+										if (tela[perfect_col].impk==-k)
+											tela[perfect_col].impk = '\0';
+									}
 									break;
 								}
 							}
@@ -1438,6 +1443,18 @@ void mark_tela(void)
 			}
 		}
 	}
+
+	for (n=2; n<lenseq; n++) {
+		if ((k=tela[n].ok) && tela[n].stat!=st_cycle.sym) {
+			for (i=n+1; i<n+k; i++) {
+				if (tela[i].k1 && tela[i].k1<k && tela[i].k1*2<k && i+tela[i].k1>n+k && !tela[i+1].k1 && tela[i].k1<k && tela[i].statf=='\0') {
+					push_mem(i,9);
+					tela[i].echoes = cyc_skip.sym;
+				}
+			}
+		}
+	}
+
 
 	/* FIND AND RECORD MAX_K SIZE */
 	int max_k = 0;
