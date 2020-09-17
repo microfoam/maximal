@@ -789,12 +789,12 @@ void mark_tela(void)
 							if (tela[i-k-1].ok==fract_k) {
 								j = 1;
 								while (tela[i-k - j].ok == fract_k) {
-									push_mem(i-k - j,6);
+									push_mem(i-k - j,7);
 									clearall_tela(i-k - j++,1,-1,TWO);
 								}
 								j = 1;
 								while (tela[n+j].k1==k && i-fract_k<n+j) {
-									push_mem(n + j,6);
+									push_mem(n + j,7);
 									tela[n + j++].k1 = '\0';
 								}
 							}
@@ -810,18 +810,18 @@ void mark_tela(void)
 						else if (tela[i].statf!=st_fract.sym && (fract_k=tela[i].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i-fract_k>=m && i+tela[i].k1<=n 
 									&& tela[n].stat!=st_parent.sym && tela[n+1].k1!=k) {
 							push_mem(n,0);
-							push_mem(n,1);
+							push_mem(n,7);
 							tela[n].stat = st_parent.sym;
-							push_mem(i,1);
+							push_mem(i,8);
 							tela[i].stat   = st_Fract.sym;
 							tela[i].echoes = cyc_skip.sym;
 						}
 						else if ((fract_k=tela[i+k].k1) && fract_k<=opt_b.val && !tela[i].k1 && i+k-fract_k>=n && i+k+tela[i+k].k1<=n+fract_k 
 								&& tela[n].stat!=st_parent.sym && tela[n+1].k1!=k) {
 							push_mem(n,0);
-							push_mem(n,2);
+							push_mem(n,7);
 							tela[n].stat = st_parent.sym;
-							push_mem(i+k,2);
+							push_mem(i+k,8);
 							tela[i+k].stat   = st_Fract.sym;
 							tela[i+k].echoes = cyc_skip.sym;
 						}
@@ -942,7 +942,7 @@ void mark_tela(void)
 											makefract(n,k,i);
 										else {						/* NOT DISPENSABLE W/O SOME CHOWDER v4.33 7/11/2020 */
 											tela[i].stat = st_Fract.sym;
-											push_mem(i, 6);			/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
+											push_mem(i, 4);			/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
 										}
 							}
 						} /* END OF FOR LOOP THROUGH SHADOW STARTING AT m+1 */
@@ -995,7 +995,7 @@ void mark_tela(void)
 				for (i=1; ;i++) {
 					if (tela[n-i].impk == -lkmer && tela[n-i].or==lreps && tela[n-i].k1<lkmer) {
 						tela[n-i].cyc_o = cyc_skip.sym;
-						push_mem(n-i, 8);
+						push_mem(n-i, 9);
 					}
 					else
 						break;
@@ -1003,7 +1003,7 @@ void mark_tela(void)
 				for (i=1; ;i++) {
 					if (tela[n+i].impk == -lkmer && tela[n+i].or==lreps && tela[n+i].ok==lkmer) {
 						clearall_tela(n+i, 1, -1, TWO);
-						push_mem(n+i, 8);
+						push_mem(n+i, 9);
 					}
 					else if (tela[n+i].impk != -lkmer)
 						break;
@@ -1016,13 +1016,13 @@ void mark_tela(void)
 				tela[n].or   == tela[n-1].or    + tela[n+1].or &&
 				tela[n].all_S < tela[n-1].all_S + tela[n+1].all_S) {
 					clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-					push_mem(n, 8);
+					push_mem(n, 9);
 			}
 			/* CANCEL MARKS AT UPSTREAM EDGE OF CYCLING ISLAND IF THEY HAVE A TRANSITION OVERLAPPING AN UPSTREAM TR AND CAN CYCLE */
 			else if (!tela[n-1].ok && tela[n].stat==st_cycle.sym && tela[(m=n-tela[n].ok)].ok && tela[m].ok<tela[n].ok && 
 						tela[m].stat!=st_cycle.sym && tela[m].all_S==MATCH*span_ork(m) && tela[m].c != tela[n].c) {
 				clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-				push_mem(n, 8);
+				push_mem(n, 9);
 			}
 		}
 	}
@@ -1169,7 +1169,7 @@ void mark_tela(void)
 			}
 			if (tela[m].or && tela[m].all_S < tela[n].all_S && m+tela[m].or*(tela[m].ok)>n) {
 				clearall_tela(m, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-				push_mem(m, 8);
+				push_mem(m, 9);
 			}
 		}
 	}
@@ -1198,13 +1198,13 @@ void mark_tela(void)
 					if (tela[i].statf==st_fract.sym) {
 						if (tela[i].ok*2>=k) {
 							clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_mem(n, 8);
+							push_mem(n, 9);
 							break;
 						}
 						for (j=i-1; j>0; j--) {
 							if (tela[j].stat==st_parent.sym && tela[j].ok > k) {
 								clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-								push_mem(n, 8);
+								push_mem(n, 9);
 								break;
 							}
 						}
@@ -1334,7 +1334,7 @@ void mark_tela(void)
 				if (span>1 && tela[n].stat!=st_parent.sym && tela[n].all_L && !(tela[n].all_R) && tela[n+1].ok < tela[n].ok &&
 							!(tela[n+1].all_L) && !(tela[n+1].all_R) && tela[n].ok % tela[n+1].ok==0) {
 					clearall_tela(n, 1, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
-					push_mem(n, 7);
+					push_mem(n, 10);
 					/* POSSIBLE THIS CASE COULD BE GENERALIZED...FOR A RAINY DAY */
 					if (dev_print(TELA,__LINE__)) {
 						printf("mark_tela at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
@@ -1395,7 +1395,7 @@ void mark_tela(void)
 					if (tela[i].statf==st_fract.sym && i+tela[i].ok==n)
 						tela[n].stat = st_Fract.sym;	/* TO SKIP CINCH-T */
 						tela[n].echoes = cyc_skip.sym;	/* TO SKIP CINCH-K AT k>1 */
-						push_mem(n, 7);
+						push_mem(n, 12);
 				}
 			}
 
