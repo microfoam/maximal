@@ -19,12 +19,14 @@ fi
 
 	# cinch-k originating 2-D conflict
 	./maximal -KnxR -D8 waves/squeegee/squirt_22-b3.txt		# ; b3--b6
-	./maximal -KnxR -D8 waves/squeegee/squirt_20-b3.txt		# ; b3- & b4- only
-	./maximal -KnxR -D8 waves/squeegee/squirt_25-b3.txt		# ; b3- & b4- only
-	./maximal -KnxR -D8 waves/squeegee/squirt_19-b3.txt		# ; b3-only
-	./maximal -KnxR -D8 waves/squeegee/squirt_24-b3.txt		# ; b3-only
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_29-b6.txt		# solved-86 mark_tela(); -x b3--b6, chowder in prev versions
+	./maximal -KnxR waves/squeegee/squirt_30-b6.txt		# solved-86 mark_tela(); -x b3--b6, chowder in prev versions; homologically related to _29
+	./maximal -KnxR waves/squeegee/squirt_20-b3.txt		# solved-86 mark_tela(); b3- & b4- only
+	./maximal -KnxR waves/squeegee/squirt_25-b3.txt		# solved-86 mark_tela(); b3- & b4- only
+	./maximal -KnxR waves/squeegee/squirt_19-b3.txt		# solved-86 mark_tela(); b3-only
+	./maximal -KnxR waves/squeegee/squirt_24-b3.txt		# solved-86 mark_tela(); b3-only
 	./maximal -KnxR waves/squeegee/squirt_17-b3.txt		# solved-85 New mark_tela block in last position; b3--b6
 	./maximal -KnxR waves/squeegee/squirt_23-b3.txt		# solved-84 Expanded mark_tela block to cancel imperfect_TR given perfect island peak; b3--b5
 	./maximal -KnxR waves/squeegee/squirt_18-b3.txt		# solved-83 Fractal splitting entry edit so not dependent on Fractal cycling island extending to m; b3-only
@@ -60,8 +62,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 30 (b=6): 0.496333 (29/30 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 30 (b=5): 0.498667 (29/30 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 30 (b=4): 0.496333 (27/30 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 30 (b=3): 0.479667 (25/30 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 32 (b=6): 0.495313 (31/32 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 32 (b=5): 0.49375  (31/32 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 32 (b=4): 0.489375 (31/32 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 32 (b=3): 0.477812 (31/32 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

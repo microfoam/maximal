@@ -560,6 +560,16 @@ int isfractal(int i, int n, int k) {
 			return(0);
 }
 
+/****** MARK FRACTALS AND PARENT AT POSITIONS mf (m-unit fractal), mf+k, AND p, RESPECTIVELY */
+void makefract(int p, int k, int mf)
+{
+	push_mem(p,0); push_mem(mf,0); push_mem(mf+k,0);
+	push_mem(p,5); push_mem(mf,6); push_mem(mf+k,6);
+	tela[p].stat = st_parent.sym;
+	tela[mf].statf  = tela[mf+k].statf  = st_fract.sym;
+	tela[mf].echoes = tela[mf+k].echoes = '\0';
+}
+
 
 /**************** FUNCTION TO MARK ALL POSSIBLE k-MERs BEFORE LEGACY CINCH-T PASS ******************************/
 void mark_tela(void) 
@@ -775,12 +785,7 @@ void mark_tela(void)
 				if (Dtr) {
 					for (i=n+k-1; i>=n+min_k; i--) {
 						if (tela[i].k1 && (fract_k=tela[i].k1)<k && i-fract_k>=n && tela[i-k].ok==fract_k && i-k+tela[i-k].k1<=n) {
-							tela[i-k].statf = tela[i].statf = st_fract.sym;
-							tela[n].stat = st_parent.sym;
-							push_mem(i-k,6);
-							push_mem(n  ,6);
-							push_mem(i  ,6);
-
+							makefract(n,k,i-k);
 							if (tela[i-k-1].ok==fract_k) {
 								j = 1;
 								while (tela[i-k - j].ok == fract_k) {
@@ -800,15 +805,8 @@ void mark_tela(void)
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPELGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
 				if (Dtr && imperfect_TR) {
 					for (i=m+min_k; i<n; i++) {
-						if ((fract_k=isfractal(i,n,k))) {
-							push_mem(n,0);
-							push_mem(n,1);
-							tela[n].stat = st_parent.sym;
-							push_mem(i  ,1);
-							push_mem(i+k,1);
-							tela[i  ].statf = st_fract.sym;
-							tela[i+k].statf = st_fract.sym;
-						}
+						if ((fract_k=isfractal(i,n,k)))
+							makefract(n,k,i);
 						else if (tela[i].statf!=st_fract.sym && (fract_k=tela[i].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i-fract_k>=m && i+tela[i].k1<=n 
 									&& tela[n].stat!=st_parent.sym && tela[n+1].k1!=k) {
 							push_mem(n,0);
@@ -916,14 +914,7 @@ void mark_tela(void)
 											tela[n  ].stat = st_cycle.sym;
 									}
 									else if ((tela[n-proj_k].ok==k || tela[n-proj_k].k1==k) && n-k>=projector) {
-										if (dev_print(TELA,__LINE__))
-											printf("Calling parent at %d.", projector);
-										tela[n       ].statf = st_fract.sym;		/* FRACTAL REPEATS = EMBEDDED IN ANOTHER REPEAT */
-										tela[n-proj_k].statf = st_fract.sym;		/* MATCHING PAIR */
-										tela[projector].stat = st_parent.sym;
-										push_mem(n, 4);
-										push_mem(projector, 4);
-										push_mem(n-proj_k, 4);
+										makefract(projector,proj_k,n-proj_k);
 										i = n-proj_k-1;
 										while (tela[i].ok == k && tela[i].stat == st_cycle.sym && i>=projector-proj_k && tela[i].or<2) {
 											clearall_tela(i,1,-1,TWO);
@@ -947,14 +938,8 @@ void mark_tela(void)
 					if (n>=2*min_k) {
 						for (i=m+1; i<n; i++) {	
 							if ((fract_k=tela[i].ok) && tela[n].all_S > tela[i].all_S && i+span_ork(i)<=n && tela[i].ok!=k)  {
-										if (i>=n+fract_k && tela[i].all_S==tela[i+k].all_S) {
-											tela[ n ].stat = st_parent.sym;
-											if (dev_print(TELA,__LINE__))
-												printf("Calling parent at %d.", n);
-											tela[i  ].statf = st_fract.sym;
-											tela[i+k].statf = st_fract.sym;
-											push_mem(i, 5);			/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
-										}
+										if (i>=n+fract_k && tela[i].all_S==tela[i+k].all_S)
+											makefract(n,k,i);
 										else {						/* NOT DISPENSABLE W/O SOME CHOWDER v4.33 7/11/2020 */
 											tela[i].stat = st_Fract.sym;
 											push_mem(i, 6);			/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
@@ -1157,12 +1142,7 @@ void mark_tela(void)
 				if (tela[i].ok) {
 					if (isfractal(i,n,k)) {
 						int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
-						tela[n].stat = st_parent.sym;
-						tela[i].statf = tela[i+k].statf = st_fract.sym;
-						push_mem(n  , 5);
-						push_mem(i  , 5);
-						push_mem(i+k, 5);
-
+						makefract(n,k,i);
 						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;					/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 						recslips += span_ork(i);
