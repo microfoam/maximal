@@ -20,6 +20,7 @@ fi
 	# cinch-k originating 2-D conflict
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_31-b3.txt		# solved-88 Edit in next_k() call in mark_tela, imperfect mod k case; b3-only 
 	./maximal -KnxR waves/squeegee/squirt_22-b3.txt		# solved-87 Fractals w/ fractals case, edits in mark_tela & cinch_k; b3--b6, chowder in prev versions
 	./maximal -KnxR waves/squeegee/squirt_29-b6.txt		# solved-86 mark_tela(); -x b3--b6, chowder in prev versions
 	./maximal -KnxR waves/squeegee/squirt_30-b6.txt		# solved-86 mark_tela(); -x b3--b6, chowder in prev versions; homologically related to _29
@@ -62,8 +63,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 32 (b=6): 0.495313 (32/32 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 32 (b=5): 0.49375  (32/32 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 32 (b=4): 0.489375 (32/32 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 32 (b=3): 0.477812 (32/32 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 33 (b=6): 0.491818 (33/33 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 33 (b=5): 0.490303 (33/33 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 33 (b=4): 0.48697  (33/33 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 33 (b=3): 0.474545 (33/33 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
