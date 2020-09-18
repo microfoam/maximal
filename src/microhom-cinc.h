@@ -403,7 +403,6 @@ int cinch_k(short unsigned int mode)
 
 				/* CHECK FOR TR OF SIZE k-MER */
 				if (keep_checking) {
-					int lb;
 					if (k>1)
 						homopolyflag = 1;	/* SET HOMOPOLYFLAG STATUS TO UNKNOWN/NEED TO CHECK */
 					else if (nuctransit) {
@@ -412,48 +411,48 @@ int cinch_k(short unsigned int mode)
 						}
 					}
 
-					for (lb = 0; lb < k; lb++) {
+					for (i = 0; i < k; i++) {
 						/* BREAK EARLY IF WOULD-BE TRANSVERSION */
-						if ( ((letr =align2D[m][n+lb  ])=='A' || letr =='G') &&
-							 ((letr2=align2D[m][n+lb+k])=='C' || letr2=='T') ) {
+						if ( ((letr =align2D[m][n+i  ])=='A' || letr =='G') &&
+							 ((letr2=align2D[m][n+i+k])=='C' || letr2=='T') ) {
 							keep_checking = 0;
 							break;
 						}
-						else if ( ((letr =align2D[m][n+lb  ])=='C' || letr =='T') &&
-							      ((letr2=align2D[m][n+lb+k])=='A' || letr2=='G') ) {
+						else if ( ((letr =align2D[m][n+i  ])=='C' || letr =='T') &&
+							      ((letr2=align2D[m][n+i+k])=='A' || letr2=='G') ) {
 							keep_checking = 0;
 							break;
 						}
 						else {
 							/* CHECK TO SEE IF THERE ARE n's */
-							if (nuctype && (align2D[m][n+lb]==ambig.sym || align2D[m][n+lb+k]==ambig.sym)) {
+							if (nuctype && (align2D[m][n+i]==ambig.sym || align2D[m][n+i+k]==ambig.sym)) {
 								keep_checking = 0;
 								break;
 							}
 	
 							/* CHECK TO SEE IF HOMOPOLYMER RUN CAN BE EXCLUDED */
-							if (homopolyflag && lb > 0) {	/* IF lb > 0, THEN homopolyflag IS 1 */
-								if ((align2D[m][n + lb] != align2D[m][n+k+lb  ]) ||
-								    (align2D[m][n + lb] != align2D[m][n + lb-1]) ||
-								    (align2D[m][n+k+lb] != align2D[m][n+k+lb-1]) ) {
+							if (homopolyflag && i > 0) {	/* IF i > 0, THEN homopolyflag IS 1 */
+								if ((align2D[m][n + i] != align2D[m][n+k+i  ]) ||
+								    (align2D[m][n + i] != align2D[m][n + i-1]) ||
+								    (align2D[m][n+k+i] != align2D[m][n+k+i-1]) ) {
 									homopolyflag = 0;
 								}
 							}
 							if (nuctransit && keep_checking) {
-								if ((letr=tela[tela_m+lb].t)=='R' || letr=='Y')
+								if ((letr=tela[tela_m+i].t)=='R' || letr=='Y')
 									keep_checking = 0;
-								else if (!y && ((letr3=consensus[n-x+k+lb])=='R' || letr3=='Y'))
+								else if (!y && ((letr3=consensus[n-x+k+i])=='R' || letr3=='Y'))
 									keep_checking = 0;
 							}
 
-							if (keep_checking && align2D[m][n+lb] != align2D[m][n+k+lb]) {
+							if (keep_checking && align2D[m][n+i] != align2D[m][n+k+i]) {
 								keep_checking = 0;
 								if (nuctransit && k >= opt_b.val) {
 									check_imperf = 1;
 								}
 							}
 						}
-					} /* END OF FOR lb SCAN LOOPS */
+					}
 
 					if (homopolyflag) 		/* IF HOMOPOLYFLAG=1 WAS NOT SET TO ZERO */
 						keep_checking = check_imperf = 0;
@@ -599,17 +598,16 @@ int cinch_k(short unsigned int mode)
 
 				/**************************************************************************************************/
 				if (keep_checking || imperfect_TR) {
-					int lg;
 					if (k>0 && dev_print(CINCH,__LINE__)) {
 						printf("cinch-k taking k-mer=%2d at tela_m=%3d; m=%2d, n=%2d, x=%d, y=%d.", k, tela_m, m,n,x,y);
 					}
 
 					push_gPnt_kmer(tela_n,k,1);
 
-					for (lg = 0; lg < k; lg++) {
-						pathbox[m+cik_row  ][n-x+lg] = align2D[m][n+lg  ];
-						pathbox[m+cik_row+1][n-x+lg] = align2D[m][n+lg+k];
-						x_history[n+lg] = x;					/* x_history WRITE-IN FOR NEW TR COLS */
+					for (i=0; i<k; i++) {
+						pathbox[m+cik_row  ][n-x+i] = align2D[m][n+i  ];
+						pathbox[m+cik_row+1][n-x+i] = align2D[m][n+i+k];
+						x_history[n+i] = x;					/* x_history WRITE-IN FOR NEW TR COLS */
 					}
 
 					/* UPDATE TELA FOR CINCH-K CINCH; SHOULD BE OWN FUNCTION? */
