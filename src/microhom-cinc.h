@@ -240,7 +240,7 @@ int cinch_k(short unsigned int mode)
 		return(Cinch_K.pass_V);				/* RETURNS 0; Cinch_K.pass_V holds cumulative cinch-k runs. */
 	}
 
-	int cik_row=0, i=0, k=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0;
+	int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0;
 	int first_mwrap_start=0, last_mwrap=0;
 	unsigned short int first_mwrap=0, keep_checking=1;
 	unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
@@ -386,20 +386,17 @@ int cinch_k(short unsigned int mode)
 					break;		/* BREAK OUT OF FOR n LOOP */
 				}
 
-				/* 9/9/2020 v4.35 some chowder chops when OFF at b=3 */
-				if (nuctransit && keep_checking) {
-					if (k<=opt_b.val) {			/* SKIP IF CANNOT BE CINCHED B/C OF SUB-THRESHOLD FRACTALS AT ANY PARALOGOUS POSITION */
-						int la;
-						for (la=0; la<k; la++) {
-							if (tela[tela_m+la].t!=tela[tela_m+la].c || tela[tela_n+la].t!=tela[tela_n+la].c) {
-								keep_checking = 0;
-								break;
-							}
+				if (nuctransit && keep_checking && k<=opt_b.val) {
+					/* SKIP IF CANNOT BE CINCHED B/C OF SUB-THRESHOLD FRACTALS AT ANY PARALOGOUS POSITION */
+					for (i=0; i<k; i++) {
+						if (tela[tela_m+i].t!=tela[tela_m+i].c || tela[tela_n+i].t!=tela[tela_n+i].c) {
+							keep_checking = 0;
+							break;
 						}
 					}
 
-					if (k==1 && (((letr=unshifted[n  ])=='R' || letr=='Y') || 
-								 ((letr=unshifted[n+1])=='R' || letr=='Y'))) {
+					for (l=n; l<n+2*k; l++) {
+						if ((letr=unshifted[l])=='R' || letr=='Y')
 							keep_checking = 0;
 					}
 				}
