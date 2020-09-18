@@ -567,7 +567,6 @@ void makefract(int p, int k, int mf)
 	push_mem(p,5); push_mem(mf,6); push_mem(mf+k,6);
 	tela[p].stat = st_parent.sym;
 	tela[mf].statf  = tela[mf+k].statf  = st_fract.sym;
-	tela[mf].echoes = tela[mf+k].echoes = '\0';
 }
 
 
@@ -805,7 +804,7 @@ void mark_tela(void)
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPELGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
 				if (Dtr && imperfect_TR) {
 					for (i=m+min_k; i<n; i++) {
-						if ((fract_k=isfractal(i,n,k)))
+						if (isfractal(i,n,k))
 							makefract(n,k,i);
 						else if (tela[i].statf!=st_fract.sym && (fract_k=tela[i].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i-fract_k>=m && i+tela[i].k1<=n 
 									&& tela[n].stat!=st_parent.sym && tela[n+1].k1!=k) {
@@ -1425,7 +1424,13 @@ void mark_tela(void)
 	}
 
 	for (n=2; n<lenseq; n++) {
-		if ((k=tela[n].ok) && tela[n].stat!=st_cycle.sym) {
+		if ((k=tela[n].k1) && tela[n].stat==st_parent.sym && tela[n].statf==st_fract.sym) {
+			tela[n].stat = st_Fract.sym;
+			i = 1;
+			while (tela[n+i].ok==k)
+				tela[n + i++].stat = st_Fract.sym;
+		}
+		else if ((k=tela[n].ok) && tela[n].stat!=st_cycle.sym) {
 			for (i=n+1; i<n+k; i++) {
 				if (tela[i].k1 && tela[i].k1<k && tela[i].k1*2<k && i+tela[i].k1>n+k && !tela[i+1].k1 && tela[i].k1<k && tela[i].statf=='\0') {
 					push_mem(i,9);
@@ -1434,7 +1439,6 @@ void mark_tela(void)
 			}
 		}
 	}
-
 
 	/* FIND AND RECORD MAX_K SIZE */
 	int max_k = 0;
