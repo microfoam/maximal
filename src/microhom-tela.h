@@ -12,6 +12,7 @@ void 				assign_transit(int n, int kr_src);
 short int 			check_solo(int pos);
 int  				check_tela(int eM, int eN, short unsigned int mode_dim);
 void 				clearall_tela(int n, int span, int keep_score, int mode);
+void				clearmem(void);
 int  				cyclelize_tela(int cpos, int delta, int npos);
 void				push_tela_or(int n);
 void 				flatline_after_TR(int pos);
@@ -25,6 +26,15 @@ int  				push_tela(int n2, int n1, short unsigned int axioms);
 int 				score_kmer(int n, int k, short unsigned int mode);
 int  				settle_tiescores(int n, int span, int max_score, int iteration);
 int					update_tela(void);
+
+
+/******************************************/
+void clearmem(void) {
+	for (int i=0; i<MEMROWS; i++) {
+		for (int j=0; j<=Clean.pass_W; j++)
+			tela[j].mem[i] = '\0';
+	}
+}
 
 
 /******************************* MODE ZERO (+x) OR ONE (+y) *****************************************/

@@ -795,13 +795,8 @@ int main(int argc, char *argv[])
 		/*        	          [cinch_t BEGINS]                   */
 		a2D_n = row = 0;					
 		align2D[row][a2D_n++] = tela[0].c;	/* FOR n=0, ENTER VALUE AT IDENTITY DIAGONAL, INCREMENT INDEX */
-	
-		/* CLEAR TELA MEM SPACE AFTER FIRST USE IN MARK_TELA; SCRIPT all MAX maxmemrows HAS BEEN 5 (4+1)  */
-		for (i=0; i<MEMROWS; i++) {		
-			for (j=0; j<=lenseq; j++) {
-				tela[j].mem[i] = '\0';
-			}
-		}
+
+		clearmem();
 
 		for (n = 1; n<=lenseq; ) {
 			/* FOR COLUMN n LOOP 1/3 */
@@ -1133,14 +1128,19 @@ int main(int argc, char *argv[])
 									/* NUMBER POSITIONS OF COLUMNS IN FRAME */
 									for (l = 0; l < tela[n].cyc_l; l++) {
 										tela[n+l].cyc_k = k;
-	
-										if (l == 0) {
-											f = 1;	/* ROW NUMBER IN FRAMES ARRAY; OTHERWISE KEEP INCREMENTING */
-											if (!(tela[m+l].mem[f]) && tela[m+l].mem[f+1])		/* SOMETIMES FIRST AVAIL. ROW IS OPEN BECAUSE PREVIOUS TR ITSELF HAD AN OVERLAPPING PREV. TR */
-												f+=1;
-											else if (!(tela[m+l].mem[f]) && tela[m+l].mem[f+2])	/* SOMETIMES SECOND AVAIL. ROW ... */
-												f+=2;
-											while (tela[m+l].mem[f] && f < MEMROWS)	{	/* FIND FIRST AVAILABLE ROW */
+
+										if (!l) {
+											f = 1;
+											if (!tela[m].mem[1]) {		/* BEFORE USING AN EMPTY FIRST ROW CHECK TO SEE IF THE REST OF THE ROWS ARE CLEAR AS WELL */
+												for (i=1; i<MEMROWS; i++) {
+													if (tela[m].mem[i]) {
+														f = i;
+														break;
+													}
+												}
+											}
+
+											while (tela[m].mem[f] && f<MEMROWS)	{	/* FIND FIRST AVAILABLE ROW */
 												f++;
 											}
 											if (f==1) {
