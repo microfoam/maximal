@@ -76,7 +76,6 @@ int main(int argc, char *argv[])
 	float ratio2 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post relax-2D 				*/
 
 	int scooch = 0;
-	int maxmemrows = 0;			/* cinch_t() max memrows */
 	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
 
 	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
@@ -1145,16 +1144,10 @@ int main(int argc, char *argv[])
 											}
 											if (f==1) {
 												tela[n].cyc_o = cyc_take.sym;		/* NO CONFLICT SO WILL BE TAKING THIS FRAME */
-												if (f > maxmemrows)	{		/* DEV-USE: MONITOR HOW MUCH OF MEMROWS IS BEING USED */
-													maxmemrows = f;
-													tela[0].mem[f] = 1;		/* BIT SLOT TO RECORD ROW HAS VALUES */
-												}
+												tela[0].mem[f] = 1;		/* BIT SLOT TO RECORD ROW HAS VALUES */
 											}
 											else {
-												if (f > maxmemrows)	{		/* DEV-USE: MONITOR HOW MUCH OF MEMROWS IS BEING USED */
-													maxmemrows = f;
-													tela[0].mem[f] = 1;		/* BIT SLOT TO RECORD ROW HAS VALUES */
-												}
+												tela[0].mem[f] = 1;		/* BIT SLOT TO RECORD ROW HAS VALUES */
 												conflict_flag = 1;
 												tela[n].cyc_o = cyc_skip.sym;
 												sumspan = tela[n].cyc_l;
