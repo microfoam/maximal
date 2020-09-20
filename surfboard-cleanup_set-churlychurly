@@ -15,9 +15,7 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
-	# conflict begins in cinch-t
 
-	# conflict begins in cinch-k
 
 	# solved
 	./maximal -KR waves/chowder/churly-01.txt	# solved-21 delete clear_mem module in mark_tela 
@@ -29,8 +27,7 @@ fi
 	./maximal -KR waves/chowder/churly-05.txt	# solved-22 adjustment to cyclelize_tela()
 	./maximal -KR waves/chowder/churly-09.txt	# solved-22 adjustment to cyclelize_tela()
 	./maximal -KR waves/chowder/churly-08.txt	# solved-23 new cinch-k low-complexity block
-	./maximal -KR waves/chowder/churly-10.txt	# solved-24 adjustment to new low-complexity block in cinch-k
-												# solved-25--26 -> b4 script (deprecated script)
+	./maximal -KR waves/chowder/churly-10.txt	# solved-24 adjustment to new low-complexity block in cinch-k; # solved-25--26 -> b4 script (deprecated script)
 	./maximal -KR waves/chowder/churly-11.txt	# solved-27 new cinch-k cluster-f*ck block
 	./maximal -KR waves/chowder/churly-12.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
 	./maximal -KR waves/chowder/churly-13.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
@@ -67,8 +64,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 38 (b=6): 0.506053 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 38 (b=5): 0.499737 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 38 (b=4): 0.488158 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 38 (b=3): 0.465526 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 38 (b=6): 0.499211 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 38 (b=5): 0.493684 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 38 (b=4): 0.482105 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 38 (b=3): 0.460526 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

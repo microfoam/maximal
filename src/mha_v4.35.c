@@ -890,7 +890,7 @@ int main(int argc, char *argv[])
 	
 					/* IF SUMMING PATHBOX DIAGONAL 3/: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
 					if (nuctransit && Dtr && Dtr!=Did) { 
-						if (k>opt_b.val && 100*Dtr/Did > DTHR)	{	
+						if (k>opt_b.val && 100*Dtr/Did > DTHR && -k==tela[n].impk) {
 							imperfect_TR = 1;		/* CALLING TR W/ TRANSITIONS FOR n BLOCK VS m BLOCK */
 							tela[n].Dtr = Dtr;
 						}
@@ -926,7 +926,7 @@ int main(int argc, char *argv[])
 											assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 											tela[n].cyc_o = cyc_skip.sym;
 											if (dev_print(MAIN,__LINE__)) {
-												printf("Skipping cinch here to use later cycling frame at %d with print_tela:.", l+1);
+												printf("Skipping cinch here to use later cycling frame at %d. print_tela:", l+1);
 												print_tela(prtela_A, prtela_B);
 											}
 											break;

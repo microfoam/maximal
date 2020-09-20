@@ -20,6 +20,7 @@ fi
 	# cinch-k originating 2-D conflict
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnxR waves/squeegee/squirt_34-b4.txt		# solved-91 Cancel imperfect islands if overlap w/ perfect column k-mer > k/2; -x chow at b3--b6
 	./maximal -KnxR waves/squeegee/squirt_33-b4.txt		# solved-90 Generalizing framerow checking for cycle numbering in cinch_t; -x chow at b3- & b4- only
 	./maximal -KnxR waves/squeegee/squirt_32-b4.txt		# solved-89 Generalizing k==1 block in cinch_k to k<=opt_b.val; b3--b5
 	./maximal -KnxR waves/squeegee/squirt_31-b3.txt		# solved-88 Edit in next_k() call in mark_tela, imperfect mod k case; b3-only 
@@ -65,8 +66,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 35 (b=6): 0.496286 (35/35 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 35 (b=5): 0.494286 (35/35 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 35 (b=4): 0.490571 (35/35 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 35 (b=3): 0.477714 (35/35 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 36 (b=6): 0.499444 (36/36 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 36 (b=5): 0.5      (36/36 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 36 (b=4): 0.498333 (36/36 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 36 (b=3): 0.479444 (36/36 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

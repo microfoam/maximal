@@ -609,7 +609,7 @@ void mark_tela(void)
 			if (k_tmp<0) {
 				k = abs(k_tmp);
 				k1 = next_k(n,k,nuctype);
-				if (!k1 || (k1 && k!=2*k1))	/* SLIGHT BENCHMARK WIGGLE W/ FULL MOD TEST k%k1 INSTEAD OF k!=2*k1 */
+				if (!k1 || (k1 && k!=2*k1))		/* SLIGHT BENCHMARK WIGGLE W/ FULL MOD TEST k%k1 INSTEAD OF k!=2*k1 */
 					tela[n].impk = k_tmp;
 			}
 			else if (!k_tmp)
@@ -652,9 +652,25 @@ void mark_tela(void)
 		}
 	}
 
+	/* CANCEL IMPERFECT CYCLING ISLANDS THAT CONTAIN AT LEAST ONE PERFECT COLUMN OF SIZE > k/2 */
+	if (nuctransit) {
+		for (n = 1; n<lenseq; n++) {
+			if (tela[n].impk && tela[n].k1*2 > -tela[n].impk) {
+				k = tela[n].impk;
+
+				i = 0;	/* CANCEL DOWNSTREAM PART OF ISLAND */
+				while (tela[n-i].impk == k)
+					tela[n - i++].impk = '\0';
+
+				i = 1;	/* CANCEL UPSTREAM PART OF ISLAND */
+				while (tela[n+i].impk == k && i<lenseq)
+					tela[n + i++].impk = '\0';
+			}
+		}
+	}
+
 	for (n = 1; n<=lenseq; n++) {
 		for (m = 0; m < n; m++) {
-
 			/* SLIDE DOWN TO ROW WITHIN POPULATED HEMIDIAGONAL */
 			if (n-m > WIDTH+1) 
 				m = n-WIDTH;
@@ -713,7 +729,7 @@ void mark_tela(void)
 				}
 
 				/* IF SUMMING PATHBOX DIAGONAL 3/4: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
-				if (nuctransit && Dtr && Dtr!=Did) { 
+				if (nuctransit && Dtr && Dtr!=Did && tela[n].impk==-k) {
 					if ((!tela[n].k1 || tela[n+1].impk==-k) && k>opt_b.val && 100*Dtr/Did > threshold) {
 						if (tela[n+1].impk==-k) {
 							imperfect_TR = 1;

@@ -461,7 +461,7 @@ int cinch_k(short unsigned int mode)
 				} 
 
 				fractstat=0;
-				if (keep_checking && tela[tela_n].statf==st_fract.sym && tela[tela_n].ok==k)
+				if (keep_checking && tela[tela_n].statf==st_fract.sym && (tela[tela_n].k1==k || tela[tela_n].ok==k))
 					fractstat = 1;
 
 				/* 9/9/2020 v4.35 mucho chowder but dramatic drop in WCR avg's */
