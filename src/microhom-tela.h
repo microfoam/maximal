@@ -652,19 +652,25 @@ void mark_tela(void)
 		}
 	}
 
-	/* CANCEL IMPERFECT CYCLING ISLANDS THAT CONTAIN AT LEAST ONE PERFECT COLUMN OF SIZE > k/2 */
 	if (nuctransit) {
 		for (n = 1; n<lenseq; n++) {
-			if (tela[n].impk && tela[n].k1*2 > -tela[n].impk) {
-				k = tela[n].impk;
+			if (tela[n].impk) {
 
-				i = 0;	/* CANCEL DOWNSTREAM PART OF ISLAND */
-				while (tela[n-i].impk == k)
-					tela[n - i++].impk = '\0';
-
-				i = 1;	/* CANCEL UPSTREAM PART OF ISLAND */
-				while (tela[n+i].impk == k && i<lenseq)
-					tela[n + i++].impk = '\0';
+				/* CANCEL IMPERFECT CYCLING ISLANDS CONTAINING A PERFECT COLUMN OF SIZE > k/2 */
+				if (tela[n].k1*2 > -tela[n].impk) {
+					k = tela[n].impk;
+					
+					i = 0;	/* CANCEL DOWNSTREAM PART OF ISLAND */
+					while (tela[n-i].impk == k)
+						tela[n - i++].impk = '\0';
+					
+					i = 1;	/* CANCEL UPSTREAM PART OF ISLAND */
+					while (tela[n+i].impk == k && i<lenseq)
+						tela[n + i++].impk = '\0';
+				}
+				/* CANCEL IMPERFECT IF ADJACENT COLUMN IS PERFECT */
+				else if (tela[n-1].k1 || tela[n+1].k1)
+					tela[n].impk = '\0';
 			}
 		}
 	}
