@@ -20,6 +20,8 @@ fi
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
+	./maximal -KnR -D8 waves/squeegee/squirt_38-b3.txt		# ; b3--b6
+	./maximal -KnR -D8 waves/squeegee/squirt_39-b3.txt		# ; b3--b6
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
 	./maximal -KnxR waves/squeegee/squirt_37-b3.txt		# solved-93 Needed consensus row updating after cinch_l; -x b3-only
