@@ -17,6 +17,9 @@ fi
 
 	# cinch-t originating 2-D conflict
 
+	# cinch-l originating 2-D conflict
+	./maximal -KnxR -D8 waves/squeegee/squirt_37-b3.txt		# ; -x b3-only
+
 	# cinch-k originating 2-D conflict
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
