@@ -214,6 +214,9 @@ char blnk = Fill->sym;		/* opt_B blank character		*/
 						break;			/* BREAK OUT OF FOR j LOOP */
 				}
 
+				for (i = n-opt_M.val; i <= Current.pass_W; i++)
+					consensus[i] = consensus[i+opt_M.val];
+
 				n = n + opt_M.val*(run/opt_M.val) - 2*opt_M.val - 1;		/* ADVANCE n TO JUST PAST LAST 10-MER BLOCK */
 				x = x + opt_M.val*(run/opt_M.val) - opt_M.val;				/* INCREMENT x TO REFLECT TUCK */
 				
