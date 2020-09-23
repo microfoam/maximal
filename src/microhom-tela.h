@@ -736,34 +736,40 @@ void mark_tela(void)
 				}
 
 				/* IF SUMMING PATHBOX DIAGONAL 3/4: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
-				if (nuctransit && Dtr && Dtr!=Did && tela[n].impk==-k) {
-					if ((!tela[n].k1 || tela[n+1].impk==-k) && k>opt_b.val && 100*Dtr/Did > threshold) {
-						if (tela[n+1].impk==-k) {
-							imperfect_TR = 1;
-							i = 0;
-							while (tela[n+i].impk==-k) {	/* CHECK IMPERFECT ISLAND FOR PERFECT PEAK */
-								if (tela[n+1 + i++].k1==k) {
-									int perfect_col = n+i;
-									imperfect_TR = 0;
-									Dtr = 0;
-									while (tela[n+i-1].impk==-k)
-										tela[n-1 + i--].impk = '\0';
-									while (tela[++perfect_col].k1==k || tela[perfect_col].impk==-k) {
-										if (tela[perfect_col].impk==-k)
-											tela[perfect_col].impk = '\0';
+				if (nuctransit && Dtr && Dtr!=Did) {
+					if (k>opt_b.val && 100*Dtr/Did > threshold && tela[n].impk==-k) {
+						if (!tela[n].k1 || tela[n+1].impk==-k) {
+							if (tela[n+1].impk==-k) {
+								imperfect_TR = 1;
+								i = 0;
+								while (tela[n+i].impk==-k) {	/* CHECK IMPERFECT ISLAND FOR PERFECT PEAK */
+									if (tela[n+1 + i++].k1==k) {
+										int perfect_col = n+i;
+										imperfect_TR = 0;
+										Dtr = 0;
+										while (tela[n+i-1].impk==-k)
+											tela[n-1 + i--].impk = '\0';
+										while (tela[++perfect_col].k1==k || tela[perfect_col].impk==-k) {
+											if (tela[perfect_col].impk==-k)
+												tela[perfect_col].impk = '\0';
+										}
+										break;
 									}
-									break;
 								}
 							}
-						}
-						else {
-							for (i=1; i<k; i++) {
-								if (tela[m+i].k1 && m+i-tela[m+i].k1<m)		/* GIVEN PERFECT NON-FRACTAL k-MER IN m-SHADOW, SKIP IMPERFECT */
-									break;
+							else {
+								for (i=1; i<k; i++) {
+									if (tela[m+i].k1 && m+i-tela[m+i].k1<m)		/* GIVEN PERFECT NON-FRACTAL k-MER IN m-SHADOW, SKIP IMPERFECT */
+										break;
+								}
+								if (i==k)
+									imperfect_TR = 1;
+								else
+									Dtr = 0;
 							}
-							if (i==k)
-								imperfect_TR = 1;
 						}
+						else
+							Dtr = 0;
 					}
 					else 
 						Dtr = 0;
