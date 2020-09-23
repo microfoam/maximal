@@ -737,7 +737,7 @@ void mark_tela(void)
 
 				/* IF SUMMING PATHBOX DIAGONAL 3/4: IF CONSIDERING NUCL. TRANSITIONS AS PARTIAL MATCHES */
 				if (nuctransit && Dtr && Dtr!=Did) {
-					if (k>opt_b.val && 100*Dtr/Did > threshold && tela[n].impk==-k) {
+					if (k>opt_b.val && 100*Dtr/Did > threshold && tela[n].impk==-k && !tela[n].k1) {
 						if (tela[n+1].impk==-k) {
 							imperfect_TR = 1;
 							i = 0;
@@ -746,9 +746,9 @@ void mark_tela(void)
 									int perfect_col = n+i;
 									imperfect_TR = 0;
 									Dtr = 0;
-									while (tela[n+i-1].impk==-k)
+									while (tela[n+i-1].impk==-k && n+i>0)
 										tela[n-1 + i--].impk = '\0';
-									while (tela[++perfect_col].k1==k || tela[perfect_col].impk==-k) {
+									while ((tela[++perfect_col].k1==k || tela[perfect_col].impk==-k) && perfect_col<lenseq) {
 										if (tela[perfect_col].impk==-k)
 											tela[perfect_col].impk = '\0';
 									}
@@ -756,7 +756,7 @@ void mark_tela(void)
 								}
 							}
 						}
-						else if (!tela[n].k1) {
+						else {
 							for (i=m+1; i<n; i++) {
 								if (tela[i].k1 && i-tela[i].k1<m)		/* GIVEN PERFECT NON-FRACTAL k-MER IN m-SHADOW, SKIP IMPERFECT */
 									break;
@@ -766,8 +766,6 @@ void mark_tela(void)
 							else
 								Dtr = 0;
 						}
-						else
-							Dtr = 0;
 					}
 					else 
 						Dtr = 0;
