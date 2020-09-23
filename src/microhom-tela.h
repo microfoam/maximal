@@ -265,6 +265,7 @@ void clearall_tela(int n, int span, int keep_score, int mode)
 		if (tela[i].all_Z != keep_score) {
 			tela[i].all_S = 0;										/* MODES > 0 */					
 			if (mode>1) {
+				tela[i].k0 = tela[i].k1;							/* MODES > 1 */
 				tela[i].ok = tela[i].or = tela[i].all_Z = 0;		/* MODES > 1 */  
 				tela[i].all_L = tela[i].all_R = 0;					/* MODES > 1 */ 
 
@@ -560,7 +561,7 @@ int isfractal(int i, int n, int k) {
 				for (int j=i-candk; j<i+candk; j++) {
 					if (tela[j].c!=tela[j+k].c && tela[j].e==tela[j+k].e)
 						++transits;
-					if (transits>2)				/* APPROX. MOSTLY CORRECT */
+					if (transits>2)				/* APPROX. MOSTLY CORRECT. TAGGED: <MAGIC> */
 						return(0);
 				}
 				return(candk);
@@ -726,7 +727,7 @@ void mark_tela(void)
 				}
 
 				/* IF SUMMING PATHBOX DIAGONAL 2/4: SET HOMOPOLYMERIC RUN BIT TO TRUE IF DETECTED 	*/
-				if (homopoly_flag && j == k) {
+				if (j==k && homopoly_flag) {
 					homopoly_flag = 1;				/* BIT IS THERE IF NEEDED BEYOND BREAK. 		*/
 					Dtr = 0;
 					if (tela[n].k1==k)
@@ -914,7 +915,7 @@ void mark_tela(void)
 	
 								if (n+k*reps > projection) {
 									/* BEFORE ADVANCING PROJECTION, CHECK TO SEE IF THIS TR CALL IS COVERING A FRACTAL REPEAT OF SMALLER K.  */	
-									/* RECALL THAT A FRACTAL TR (k>1) CAN ONLY EXIST STARTING AT THE THIRD COLUMN OF EACH UNIT OF PARENT TR. */
+									/* RECALL THAT A FRACTAL TR (k>1) CAN ONLY EXIST STARTING AT min_k+1 COLUMN OF EACH UNIT OF PARENT TR. */
 									/* RECALL THAT A CYCLING TR IS CALLED AND MARKED ONLY WHEN THE SECOND CYCLING POSITION IS CALLED.        */
 									if (k==tela[n-1].ok && tela[n-1].stat==st_cycle.sym && tela[n-proj_k].ok && tela[n-proj_k].ok<proj_k) {
 										for (i=n; i<n+span_ork(n); i++) {
@@ -1167,12 +1168,12 @@ void mark_tela(void)
 			m = n - k;
 			j = n - 1;
 
-			while (tela[j].ok) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
+			while (tela[j].ok==k) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
 				j--;
 			}
-			for (i=j-1; i>0; i--) {
+			for (i=j; i>=min_k; i--) {
 				if (tela[i].ok) {
-					if (isfractal(i,n,k)) {
+					if (i>m && isfractal(i,n,k)) {
 						int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
 						makefract(n,k,i);
 						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
@@ -1422,7 +1423,7 @@ void mark_tela(void)
 			k = tela[n].ok;
 			m = n - k;
 
-			if (tela[n].statf!=st_fract.sym && tela[n-1].c==tela[n].c && tela[n].or==1) { /* v4.34 lcl_09 TURNED OFF -> INCREASED WCR AVGS; NO EXTRA CHOWDER */
+			if (tela[n].statf!=st_fract.sym && tela[n-1].c==tela[n].c && tela[n].or==1) { /* v4.34 lcl_09 TURNED O-F-F -> INCREASED WCR AVGS; NO EXTRA CHOWDER */
 				for (i=m; i<n; i++) {
 					if (tela[i].statf==st_fract.sym && i+tela[i].ok==n)
 						tela[n].stat = st_Fract.sym;	/* TO SKIP CINCH-T */
@@ -1462,14 +1463,6 @@ void mark_tela(void)
 			i = 1;
 			while (tela[n+i].ok==k)
 				tela[n + i++].stat = st_Fract.sym;
-		}
-		else if ((k=tela[n].ok) && tela[n].stat!=st_cycle.sym) {
-			for (i=n+1; i<n+k; i++) {
-				if (tela[i].k1 && tela[i].k1<k && tela[i].k1*2<k && i+tela[i].k1>n+k && !tela[i+1].k1 && tela[i].k1<k && tela[i].statf=='\0') {
-					push_mem(i,9);
-					tela[i].echoes = cyc_skip.sym;
-				}
-			}
 		}
 	}
 

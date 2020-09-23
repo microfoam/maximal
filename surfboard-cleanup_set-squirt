@@ -20,10 +20,10 @@ fi
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnR -D8 waves/squeegee/squirt_38-b3.txt		# ; b3--b6
 	./maximal -KnR -D8 waves/squeegee/squirt_39-b3.txt		# ; b3--b6
 
 	# solved: push new solved runs onto top of stack starting w/ solved-64 
+	./maximal -KnRx waves/squeegee/squirt_38-b3.txt		# solved-94 Deletion of block in mark_tela(); b3--b6
 	./maximal -KnxR waves/squeegee/squirt_37-b3.txt		# solved-93 Needed consensus row updating after cinch_l; -x b3-only
 	./maximal -KnxR waves/squeegee/squirt_35-b4.txt		# solved-92 Cancel imperfect if adjacent column perfect; -x b4- & b5- only
 	./maximal -KnxR waves/squeegee/squirt_36-b4.txt		# solved-92 Cancel imperfect if adjacent column perfect; -x b3--b5
@@ -73,8 +73,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 39 (b=6): 0.498462 (39/39 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 39 (b=5): 0.497179 (39/39 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 39 (b=4): 0.494103 (39/39 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 39 (b=3): 0.478974 (39/39 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 41 (b=6): 0.495366 (40/41 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 41 (b=5): 0.494146 (40/41 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 41 (b=4): 0.49122  (40/41 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 41 (b=3): 0.475122 (40/41 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
