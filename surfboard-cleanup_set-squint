@@ -1,0 +1,43 @@
+#!/bin/bash
+echo >> Corduroy.log
+echo '                                               < squint -- chowder >' >> Corduroy.log
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	./surfboard-Pop_Up
+	;;
+esac
+done
+
+if [ -f Surf_wavereport.mha ]; then
+	    rm Surf_wavereport.mha
+fi
+
+	# cinch-t originating 2-D conflict
+	./maximal -KnxR waves/squeegee/squint_01-xb3.txt -D8	# ;
+	./maximal -KnxR waves/squeegee/squint_06-xb3.txt -D8	# ;
+
+	# cinch-l originating 2-D conflict
+
+	# cinch-k originating 2-D conflict
+	./maximal -KnxR waves/squeegee/squint_02-xb3.txt -D8	# ;
+	./maximal -KnxR waves/squeegee/squint_03-xb3.txt -D8	# ;
+	./maximal -KnxR waves/squeegee/squint_04-xb3.txt -D8	# ;
+	./maximal -KnxR waves/squeegee/squint_05-xb3.txt -D8	# ;
+
+	# solved: push new solved runs onto top of stack starting w/ solved-97 
+
+echo
+echo
+echo
+echo "$0"
+echo
+echo
+./surfboard-checkmha
+echo 'Commit WCR average of 6 (b=6): 0.xxxxxx (x/6 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 6 (b=5): 0.xxxxxx (x/6 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 6 (b=4): 0.xxxxxx (x/6 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 6 (b=3): 0.48     (0/6 solved)' | tee -a Corduroy.log
+echo | tee -a Corduroy.log
