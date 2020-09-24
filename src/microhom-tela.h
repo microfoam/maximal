@@ -899,19 +899,6 @@ void mark_tela(void)
 							tela[n].all_S += Atr;
 						}
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
-
-							if (imperfect_TR) {
-								i = 1;
-								while (n-i>0 && (tela[n-i].impk == -k || (tela[n-i].k1 && tela[n-i].k1<k && !(k%tela[n-i].k1)))) {
-									i++;
-								}
-								--i;
-								if (tela[n-i].all_S>tela[n].all_S) {
-									clearall_tela(n,1,-1,TWO);
-									push_mem(n,4);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
-								}
-							}
-
 							if (tela[n].all_S) {
 								tela[n].or = reps;
 								push_mem(n,0);          /* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
@@ -1308,7 +1295,7 @@ void mark_tela(void)
 			prev_k=0;	/* INITIALIZE TO ZERO STATE TO USE AS TEST FOR SETTING ONLY ONCE */
 
 			for (i=m+1; i<n; i++) {
-				if (!prev_k && tela[i].ok && tela[i].ok<k && k%tela[i].ok && i-tela[i].ok<m && tela[i].statf!=st_fract.sym && tela[i].all_R==n) {
+				if (!prev_k && tela[i].ok && tela[i].ok<k && i-tela[i].ok<m && tela[i].statf!=st_fract.sym) {
 					while (tela[i-1].ok==tela[i].ok) {
 						i--;
 						if (tela[i].all_S>tela[n].all_S) {
@@ -1336,6 +1323,17 @@ void mark_tela(void)
 				}
 				else if (prev_k && tela[i].ok != prev_k)
 					break;
+				else if (tela[i].impk && -tela[i].impk<k && i+tela[i].impk<m) {
+					int impspan = 1;
+					while (tela[i-impspan].impk==tela[i].impk)
+						impspan++;
+					if (tela[i-impspan].all_S<tela[n].all_S) {
+						for (j=i-impspan+1; j<m; j++) {
+							clearall_tela(j, 1, -1, TWO);	/* O-F-F, ONE, OR TWO */
+							push_mem(j, 16);				/* TMP NUMERIC ASSIGNMENT */
+						}
+					}
+				}
 			}
 		}
 	}
