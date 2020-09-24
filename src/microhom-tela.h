@@ -756,9 +756,10 @@ void mark_tela(void)
 								}
 							}
 						}
-						else {
+
+						if (Dtr) {
 							for (i=m+1; i<n; i++) {
-								if (tela[i].k1 && i-tela[i].k1<m)		/* GIVEN PERFECT NON-FRACTAL k-MER IN m-SHADOW, SKIP IMPERFECT */
+								if (tela[i].k1 && i-tela[i].k1<m)	/* GIVEN PERFECT NON-FRACTAL k-MER IN m-UNIT, SKIP IMPERFECT */
 									break;
 							}
 							if (i==n)

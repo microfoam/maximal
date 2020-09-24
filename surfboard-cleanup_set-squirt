@@ -73,8 +73,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 41 (b=6): 0.493415 (41/41 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 41 (b=5): 0.490976 (41/41 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 41 (b=4): 0.486341 (41/41 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 41 (b=3): 0.464878 (41/41 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 41 (b=6): 0.494146 (41/41 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 41 (b=5): 0.491951 (41/41 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 41 (b=4): 0.487317 (41/41 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 41 (b=3): 0.468049 (41/41 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
