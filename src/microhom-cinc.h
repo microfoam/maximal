@@ -1241,8 +1241,9 @@ unsigned short int nuctransit=0;
 			pathbox[m - rlx_col][n + rlx_col + 2] = '\0';
 
 			if (align2D[m][n+1] == Term->sym) {
+				for (i=0; i<Current.pass_W; i++)
+				    pathbox[m-rlx_col+1][i] = '\0';
 				Current.pass_W = n + rlx_col + 1;
-			    align2D[m][n+2] = '\0';
 			}
 
 		}
