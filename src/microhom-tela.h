@@ -490,7 +490,7 @@ int next_k(int n, int k1, short unsigned int seqtype)
 					pyr++;
 			}
 			if (i==k) {
-				if (transits && ((pur && !pyr) || (pyr && !pur))) {
+				if (transits && ((pur && !pyr) || (pyr && !pur)) && !next_k(n,k,seqtype)) {
 					tela[n].k0 = k;		/* SAVE k-MER FOR CINCH-K */
 					return(0);
 				}
@@ -609,14 +609,22 @@ void mark_tela(void)
 			k = k_tmp = next_k(n,k,nuctype);
 			if (k_tmp<0) {
 				k = abs(k_tmp);
-				k1 = next_k(n,k,nuctype);
-				if (!k1 || (k1 && k!=2*k1))		/* SLIGHT BENCHMARK WIGGLE W/ FULL MOD TEST k%k1 INSTEAD OF k!=2*k1 */
+				k1 = next_k(n,k_tmp,nuctype);
+				if (!k1 || k!=2*k1)		/* SLIGHT BENCHMARK WIGGLE W/ FULL MOD TEST k%k1 INSTEAD OF k!=2*k1 */
 					tela[n].impk = k_tmp;
+				else if (k1>0)
+					k = tela[n].k1 = k1;
 			}
 			else if (!k_tmp)
 				break;
 
 			if  (k_tmp>=min_k || k1>=min_k) {
+
+				/* CHECK FOR HIGHER ORDER ARTIFACTS. EG., FOR [(GA)2]2 SKIP k=4 AND GO TO k=2 */
+				int unit_k;
+				if ((unit_k=next_k(n,k_tmp,nuctype)) && k_tmp==2*unit_k && tela[n-unit_k].k1==unit_k)
+					k = k1 = k_tmp = unit_k;
+
 				if ( (k_tmp && !checkfractals_in_imperfect(k_tmp,n)) ||
 					 (k1    && !checkfractals_in_imperfect(k1   ,n)) ) {
 					if (k1>=min_k)
