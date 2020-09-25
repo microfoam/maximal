@@ -16,6 +16,11 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
+	./maximal -KnxR -D8 waves/squeegee/squint_08-xb3.txt	# ; b3--b6 chowder
+	./maximal -KnxR -D8 waves/squeegee/squint_09-xb3.txt	# ; b3--b6 chowder
+	./maximal -KnxR -D8 waves/squeegee/squint_07-xb3.txt	# ; b3- and b4- chowder
+	./maximal -KnxR -D8 waves/squeegee/squint_10-xb3.txt	# ; b3-only chowder
+	./maximal -KnxR -D8 waves/squeegee/squint_11-xb3.txt	# ; b3-only chowder
 
 	# cinch-l originating 2-D conflict
 
@@ -36,8 +41,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 6 (b=6): 0.476667 (6/6 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 6 (b=5): 0.475    (6/6 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 6 (b=4): 0.47     (6/6 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 6 (b=3): 0.453333 (6/6 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=6): 0.459091 ( 9/11 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=5): 0.458182 ( 9/11 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=4): 0.456364 ( 8/11 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=3): 0.447273 ( 6/11 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
