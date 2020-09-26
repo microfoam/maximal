@@ -912,8 +912,14 @@ void mark_tela(void)
 								push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 
 								/* BLOCK TO NUMBER INDEPENDENT ISLANDS. ISLAND = SPAN OF OVERLAPPING TRs */
-								if (!tela[m].isl)
-									++tela[0].isl;
+								if (!tela[m].isl) {
+									for (i=m+1; i<n; i++) {
+										if (tela[i].isl)
+											break;
+									}
+									if (i==n)
+										++tela[0].isl;
+								}
 								else
 									tela[0].isl = tela[m].isl;
 								for (i=m; i<n+span_ork(n); i++)
