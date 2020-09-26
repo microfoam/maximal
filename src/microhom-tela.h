@@ -112,8 +112,8 @@ short unsigned int assign_tela(int pos, int eM, int eN, int mode)
 /* MUST SAVE k AND r AT SOURCE BEFORE CALLING THIS FUNCTION AT n.   */
 void assign_transit(int n, int kr_src)
 {
-	if (!kr_src) {					/* kr_src = ZERO MODE */
-		return;						/* THIS IS A DEVELOPMENT FEATURE: EASY TO TURN O-F-F */
+	if (!kr_src) {				/* kr_src = ZERO MODE; DEV. FEATURE */
+		return;
 	}
 
 	int i=0, j=0;
@@ -207,9 +207,8 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 				;
 			}
 			else {
-				tela[i].DEV = '>';					/* MARK EDGE OF DISCONTINUITY */
 				if (dev_count < dev_limit && dev_print(TELA,__LINE__)) {
-					printf("check_tela() marking edge of discontinuity at i=%d.", i);
+					printf("check_tela() edge of discontinuity at i=%d.", i);
 					dev_count++;
 				}
 				break;
@@ -228,7 +227,6 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 			for (j=i+1; j<eN; j++) {
 				if (tela[j].x == tela[i].x && 
 					tela[j].e != tela[i].e) {
-					tela[j].DEV = tela[i].DEV = '*';		/* MARK PAIR OF NON-EQUIVALENT SITES SHARING SAME COLUMN */
 					badflag++;
 					break;		/* TO BREAK FOR j LOOP */
 				}	
@@ -909,7 +907,19 @@ void mark_tela(void)
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
 							if (tela[n].all_S) {
 								tela[n].or = reps;
-								push_mem(n,0);          /* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+								push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
+
+								if (opt_v.bit) {		/* BLOCK TO NUMBER INDEPENDENT ISLANDS. ISLAND = SPAN OF OVERLAPPING TRs */
+									if (!tela[0].isl)	/* FOR NOW THIS IS DEV-USE, HENCE opt_v.bit ENTRY */
+										tela[0].isl = 1;
+									else if (!tela[m].isl)
+										tela[0].isl = ++tela[0].isl;
+									else
+										tela[0].isl = tela[m].isl;
+
+									for (i=m; i<n+span_ork(n); i++)
+										tela[i].isl = tela[0].isl;
+								}
 	
 								if (n+k*reps > projection) {
 									/* BEFORE ADVANCING PROJECTION, CHECK TO SEE IF THIS TR CALL IS COVERING A FRACTAL REPEAT OF SMALLER K.  */	
@@ -1559,20 +1569,23 @@ int lenseq = Clean.pass_W;
 			b = width;
 	}
 
+	if (b > lenseq)
+		b = lenseq+1;
+
 	/************* BEGIN PRINTING LINES *******************/
 	if (Clean.pass_Q==1000) {	/* post-mark_tela() */
 		printf("\nxy:");
-		for (i=a; i<=b; i++)
+		for (i=a; i<b; i++)
 			printf("%3d", tela[i].gPnt.rel_xy);
 		printf("\ntP:");
-		for (i=a; i<=b; i++)
+		for (i=a; i<b; i++)
 			printf("%3d", tela[i].gPnt.topPar);
 		printf("\npP:");
-		for (i=a; i<=b; i++)
+		for (i=a; i<b; i++)
 			printf("%3d", tela[i].gPnt.prevPar);
 	
 		printf("\n t:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].c != tela[i].t)
 				printf("__%c", tela[i].t);
 			else
@@ -1580,136 +1593,136 @@ int lenseq = Clean.pass_W;
 		}
 		if (Clean.pass_V==3) { 	/* IF PROTEIN */
 			printf("\n e:");
-			for (i=a; i<=b; i++)
+			for (i=a; i<b; i++)
 				printf("  %c", tela[i].e);
 		}
 	}
 	printf("\n c:");
-	for (i=a; i<=b; i++)
+	for (i=a; i<b; i++)
 		printf("%3c", tela[i].c);
 
 	printf("\n n:");
-	for (i=a; i<=b; i++)
+	for (i=a; i<b; i++)
 		printf("%3d", i);
 
 	if (Clean.pass_Q==1000) {
 		printf("\nLf:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].cyc_Lf)
 				printf("%3d", tela[i].cyc_Lf);
 			else
-				printf("  <");
+				printf("  .");
 		}
 	
 		printf("\nRt:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].cyc_Rt)
 				printf("%3d", tela[i].cyc_Rt);
 			else
-				printf("  >");
+				printf("  .");
 		}
 		printf("\n X:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].X != i)
 				printf("%3d", tela[i].X);
 			else
 				printf("  .");
 		}
 		printf("\n y:");
-		for (i=a; i<=b; i++)
+		for (i=a; i<b; i++)
 			printf("%3d", tela[i].y);
 	
 		printf("\n x:");
-		for (i=a; i<=b; i++)
+		for (i=a; i<b; i++)
 			printf("%3d", tela[i].x);
 	}
 
 	printf("\nst:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].stat)
 			printf("%3c", tela[i].stat);
 		else
 			printf("  .");
 	}
 	printf("\nfr:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].statf)
 			printf("%3c", tela[i].statf);
 		else
 			printf("  .");
 	}
 	printf("\nlc:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].statl)
 			printf("%3c", tela[i].statl);
 		else
 			printf("  .");
 	}
 	printf("\nk0:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].k0)
 			printf("%3d", tela[i].k0);
 		else
 			printf("  .");
 	}
 	printf("\nk1:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].k1)
 			printf("%3d", tela[i].k1);
 		else
 			printf("  .");
 	}
 	printf("\nk2:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].k2)
 			printf("%3d", tela[i].k2);
 		else
 			printf("  .");
 	}
 	printf("\nik:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].impk<0)
 			printf("%3d", tela[i].impk);
 		else
 			printf("  .");
 	}
 	printf("\nok:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].ok)
 			printf("%3d", tela[i].ok);
 		else
 			printf("  .");
 	}
 	printf("\nor:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].ok)					/* THIS IS MEANT TO BE ALL_K */
 			printf("%3d", tela[i].or);
 		else
 			printf("  .");
 	}
 	printf("\naS:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].all_S)
 			printf("%3d", tela[i].all_S);
 		else
 			printf(" __");
 	}
 	printf("\naZ:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].all_Z)
 			printf("%3d", tela[i].all_Z);
 		else
 			printf(" __");
 	}
 	printf("\naR:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].all_R)
 			printf("%3d", tela[i].all_R);
 		else
 			printf("  .");
 	}
 	printf("\naL:");
-	for (i=a; i<=b; i++) {
+	for (i=a; i<b; i++) {
 		if (tela[i].all_L)
 			printf("%3d", tela[i].all_L);
 		else
@@ -1718,14 +1731,14 @@ int lenseq = Clean.pass_W;
 
 	if (Clean.pass_Q==1000) {
 		printf("\n k:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].k)
 				printf("%3d", tela[i].k);
 			else
 				printf("  .");
 		}
 		printf("\n r:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].r)
 				printf("%3d", tela[i].r);
 			else
@@ -1733,7 +1746,7 @@ int lenseq = Clean.pass_W;
 		}
 	
 		printf("\nDt:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].Dtr)
 				printf("%3d", tela[i].Dtr);
 			else
@@ -1741,7 +1754,7 @@ int lenseq = Clean.pass_W;
 		}
 	
 		printf("\n o:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].o)
 				printf("%3d", tela[i].o);
 			else
@@ -1749,23 +1762,27 @@ int lenseq = Clean.pass_W;
 		}
 	}
 	printf("\n E:");
-	for (i=a; i<=b; i++)
+	for (i=a; i<b; i++)
 		printf("%3c", tela[i].echoes);
 
-	printf("\nDEV");
-		for (i=a; i<=b; i++)
-			if (tela[i].DEV)
-				printf("_ %c", tela[i].DEV);
+	printf("\nisl");
+		for (i=a; i<b; i++)
+			if (tela[i].isl) {
+				if (tela[i].isl<10)
+					printf("  %d", tela[i].isl);
+				else
+					printf("  %c", mha_base62(tela[i].isl));
+			}
 			else
-				printf(" __");
+				printf(" ~~");
 	
 	if (Clean.pass_Q==1000) {
 		printf("\ncO:");
-		for (i=a; i<=b; i++)
+		for (i=a; i<b; i++)
 			printf("%3c", tela[i].cyc_o);
 	
 		printf("\ncL:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].cyc_l) 
 				printf("%3d", tela[i].cyc_l);
 			else
@@ -1773,14 +1790,14 @@ int lenseq = Clean.pass_W;
 		}
 	
 		printf("\ncK:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].cyc_k)
 				printf("%3d", tela[i].cyc_k);
 			else
 				printf("  .");
 		}
 		printf("\ncR:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].cyc_r)
 				printf("%3d", tela[i].cyc_r);
 			else
@@ -1788,7 +1805,7 @@ int lenseq = Clean.pass_W;
 		}
 
 		printf("\ncP:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].cyc_P)
 				printf("%3d", tela[i].cyc_P);
 			else
@@ -1796,7 +1813,7 @@ int lenseq = Clean.pass_W;
 		}
 	
 		printf("\ncS:");
-		for (i=a; i<=b; i++) {
+		for (i=a; i<b; i++) {
 			if (tela[i].cyc_S)
 				printf("%3d", tela[i].cyc_S);
 			else
@@ -1804,14 +1821,14 @@ int lenseq = Clean.pass_W;
 		}
 	}
 	printf("\n   ");
-	for (i=a; i<=b; i++)
+	for (i=a; i<b; i++)
 		printf(" --");
 
 	/* PRINT TOP MEM ROWS: mark_tela mem OR frame rows in cinch-t */
 	for (f=0; f<MEMROWS; f++) {
 		if (tela[0].mem[f]) {
 			printf("\nm%c:", mha_base62(f));
-			for (i=a; i<=b; i++) {
+			for (i=a; i<b; i++) {
 				if (tela[i].mem[f])
 					printf("%3d", tela[i].mem[f]);
 				else

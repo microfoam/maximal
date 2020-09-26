@@ -63,7 +63,7 @@ struct coord {
 	int k2;			/* ALL SERIES: PRE-CINCH-T: k-MER; smaller k at pos. n        	*/
 	int impk;		/* ALL SERIES: PRE-CINCH-T: imperfect k-mer not called for k1	*/
 	int all_S;		/* ALL SERIES: PRE-CINCH-T: SUM OF SCORES OVER ALL UNITS      	*/
-	char  DEV;		/* DEV-use; MARKS FOR INTERPRETATION NOT FOR CHANGING BEHAVIOR	*/
+	int isl;		/* MARKS ARCHIPELAGO OF INDEPENDENT ISLANDS               		*/
 	int all_Z;		/* ALL SERIES: PRE-CINCH-T: ALL_S + TIE-BREAKERS			  	*/
 	int all_R;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON RHS 	*/
 	int all_L;		/* ALL SERIES: PRE-CINCH-T: POSITION OF CONFLICTING TR ON LHS 	*/
@@ -91,7 +91,7 @@ struct {
 	opt_a = {0, 2, 'a', 	"Cinch-k mode 2: all k (default); 1: k=1 only; 0: skip all k.*3 "},
 	opt_b = {0, 6, 'b', 	"Change default k-floor; starts transition matching above this.*"},
 	opt_c = {0, 0, 'c', 	"Show base 62 single character code used for k-size and number. "},
-	opt_d = {0, 0, 'd',		"Skip cinch-d module. Also automatically skips relax-2D module. "},
+	opt_d = {0, 0, 'd', 	"Skip cinch-d module. Also automatically skips relax-2D module. "},
 	opt_e = {0, 0, 'e', {0}},
 	opt_f = {0, 0, 'f', 	"Show foam-free segments (requires allowing default relax-2D.   "},
 	opt_g = {0, 0, 'g', 	"Gel-up (counteract base level melt setting in cinch-d).*       "},
