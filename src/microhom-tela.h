@@ -682,6 +682,8 @@ void mark_tela(void)
 		}
 	}
 
+	tela[0].isl = 0;	/* WILL STORE NUMBER OF INDEPENDENT ISLANDS OF OVERLAPPING TR's HERE. */
+
 	for (n = 1; n<=lenseq; n++) {
 		for (m = 0; m < n; m++) {
 			/* SLIDE DOWN TO ROW WITHIN POPULATED HEMIDIAGONAL */
@@ -909,17 +911,13 @@ void mark_tela(void)
 								tela[n].or = reps;
 								push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 
-								if (opt_v.bit) {		/* BLOCK TO NUMBER INDEPENDENT ISLANDS. ISLAND = SPAN OF OVERLAPPING TRs */
-									if (!tela[0].isl)	/* FOR NOW THIS IS DEV-USE, HENCE opt_v.bit ENTRY */
-										tela[0].isl = 1;
-									else if (!tela[m].isl)
-										tela[0].isl = ++tela[0].isl;
-									else
-										tela[0].isl = tela[m].isl;
-
-									for (i=m; i<n+span_ork(n); i++)
-										tela[i].isl = tela[0].isl;
-								}
+								/* BLOCK TO NUMBER INDEPENDENT ISLANDS. ISLAND = SPAN OF OVERLAPPING TRs */
+								if (!tela[m].isl)
+									++tela[0].isl;
+								else
+									tela[0].isl = tela[m].isl;
+								for (i=m; i<n+span_ork(n); i++)
+									tela[i].isl = tela[0].isl;
 	
 								if (n+k*reps > projection) {
 									/* BEFORE ADVANCING PROJECTION, CHECK TO SEE IF THIS TR CALL IS COVERING A FRACTAL REPEAT OF SMALLER K.  */	
@@ -1188,6 +1186,8 @@ void mark_tela(void)
 				j--;
 			}
 			for (i=j; i>=min_k; i--) {
+				if (tela[i].isl != tela[n].isl)
+					break;
 				if (tela[i].ok) {
 					if (i>m && isfractal(i,n,k)) {
 						int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
