@@ -20,6 +20,9 @@ fi
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
+	./maximal -KnxR -D8 waves/squeegee/squirt_41-b3.txt		# ; -b3--6 vnd_ragdoll chowder
+	./maximal -KnxR -D8 waves/squeegee/squirt_42-b3.txt		# ; -x, -b3--6 vnd_ragdoll chowder
+	./maximal -KnxR -D8 waves/squeegee/squint_12-xb3.txt	# ; -b3--6 washing_machine chowder
 
 	# solved: push new solved runs onto top of stack starting w/ solved-97 
 	./maximal -KnxR waves/squeegee/squint_10-xb3.txt	# solved-101 another conflict calling case in mark_tela(); b3-only chowder
