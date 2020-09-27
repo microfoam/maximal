@@ -1212,9 +1212,9 @@ void mark_tela(void)
 						}
 					}
 					else if (i + tela[i].ok*(tela[i].or-1) > m || (tela[n].statf!=st_fract.sym && i+tela[i].ok>n)) {
-						/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
 						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;					/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
+						/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
 						if (tela[i].stat==st_cycle.sym && tela[n].stat!=st_cycle.sym && i && !tela[i-1].all_R && tela[i].ok>k && tela[i].ok%k) {
 							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							push_mem(i, 9);
@@ -1222,6 +1222,10 @@ void mark_tela(void)
 						else if (!tela[i].k1 && tela[i].all_S<tela[n].all_S) {
 							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							push_mem(i, 9);
+						}
+						else if (nuctransit && tela[i].all_S>tela[n].all_S) {
+							clearall_tela(n, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+							push_mem(n, 9);
 						}
 					}
 				}

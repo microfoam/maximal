@@ -32,7 +32,7 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Current commit WCR average of 6 (b=6|5|4): 0.402167 (chowder-free)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 6 (b=3    ): 0.392333 (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 6 (b=6|5|4): 0.3935   (chowder-free)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 6 (b=3    ): 0.383667 (chowder-free)' | tee -a Corduroy.log
 
 echo | tee -a Corduroy.log
