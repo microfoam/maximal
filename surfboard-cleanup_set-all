@@ -844,8 +844,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR avgs (b=6): 0.520272 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR avgs (b=5): 0.517104 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR avgs (b=4): 0.509623 (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR avgs (b=3): 0.494506 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR avgs (b=6): 0.520321 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR avgs (b=5): 0.517097 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR avgs (b=4): 0.509482 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR avgs (b=3): 0.494235 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

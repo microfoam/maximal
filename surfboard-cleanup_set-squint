@@ -16,15 +16,15 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-	./maximal -KnxR -D8 waves/squeegee/squint_07-xb3.txt	# ; b3- and b4- chowder
 	./maximal -KnxR -D8 waves/squeegee/squint_10-xb3.txt	# ; b3-only chowder
-	./maximal -KnxR -D8 waves/squeegee/squint_11-xb3.txt	# ; b3-only chowder
 
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
 
 	# solved: push new solved runs onto top of stack starting w/ solved-97 
+	./maximal -KnxR waves/squeegee/squint_07-xb3.txt	# solved-100 conflict calling in mark_tela(); b3- and b4- chowder
+	./maximal -KnxR waves/squeegee/squint_11-xb3.txt	# solved-100 conflict calling in mark_tela(); b3-only chowder
 	./maximal -KnxR waves/squeegee/squint_08-xb3.txt	# solved-99 Simple edit on entry into fractal splitting block; b3--b6 chowder
 	./maximal -KnxR waves/squeegee/squint_09-xb3.txt	# solved-99 Simple edit on entry into fractal splitting block; b3--b6 chowder
 	./maximal -KnxR waves/squeegee/squint_02-xb3.txt	# solved-98 next_k() related; previously not chowder
@@ -43,6 +43,6 @@ echo
 ./surfboard-checkmha
 echo 'Commit WCR average of 11 (b=6): 0.462727 (11/11 solved)' | tee -a Corduroy.log
 echo 'Commit WCR average of 11 (b=5): 0.461818 (11/11 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 11 (b=4): 0.46     (10/11 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 11 (b=3): 0.450909 ( 8/11 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=4): 0.456364 (11/11 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 11 (b=3): 0.455455 (10/11 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

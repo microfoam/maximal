@@ -1219,6 +1219,10 @@ void mark_tela(void)
 							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							push_mem(i, 9);
 						}
+						else if (!tela[i].k1 && tela[i].all_S<tela[n].all_S) {
+							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+							push_mem(i, 9);
+						}
 					}
 				}
 			}
