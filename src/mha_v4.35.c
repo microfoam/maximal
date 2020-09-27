@@ -1411,6 +1411,19 @@ int main(int argc, char *argv[])
 						push_gPnt_kmer(n,k,r);
 						tela[n].cyc_o = cyc_take.sym;
 
+						/* MUTE FUTURE CINCHING IN CINCH_K IF IT WOULD CAUSE CONFLICT IN LAST UNIT OF TR JUST TAKEN */
+						for (i=n+k*(r-1); i<n+k*r; i++) {
+							if (tela[i].k1 && i-tela[i].k1>=n+k*(r-1) && i+tela[i].k1>n+k*r) {
+								int Fract_k = tela[i].k1;
+								for (j=0; j<n+k*r-i; j++) {
+									if (tela[i+j].c!=tela[i+j+Fract_k].c) {
+										tela[i].echoes = cyc_skip.sym;
+										break;
+									}
+								}
+							}
+						}
+
 						for (i = 0; i < r; i++) {
 							if ((ch=align2D[row][a2D_n]) != '\0') {
 								scooch = overslip;

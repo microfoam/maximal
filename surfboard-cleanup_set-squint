@@ -20,11 +20,11 @@ fi
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxR -D8 waves/squeegee/squirt_41-b3.txt		# ; -b3--6 vnd_ragdoll chowder
-	./maximal -KnxR -D8 waves/squeegee/squirt_42-b3.txt		# ; -x, -b3--6 vnd_ragdoll chowder
-	./maximal -KnxR -D8 waves/squeegee/squint_12-xb3.txt	# ; -b3--6 washing_machine chowder
 
 	# solved: push new solved runs onto top of stack starting w/ solved-97 
+	./maximal -KnxR waves/squeegee/squirt_41-b3.txt 	# solved-102 New cinch_t block of some future cinch_k in last unit; -b3--6 vnd_ragdoll chowder
+	./maximal -KnxR waves/squeegee/squirt_42-b3.txt 	# solved-102 New cinch_t block of some future cinch_k in last unit; -x, -b3--6 vnd_ragdoll chowder
+	./maximal -KnxR waves/squeegee/squint_12-xb3.txt	# solved-102 New cinch_t block of some future cinch_k in last unit; -b3--6 washing_machine chowder
 	./maximal -KnxR waves/squeegee/squint_10-xb3.txt	# solved-101 another conflict calling case in mark_tela(); b3-only chowder
 	./maximal -KnxR waves/squeegee/squint_07-xb3.txt	# solved-100 conflict calling in mark_tela(); b3- and b4- chowder
 	./maximal -KnxR waves/squeegee/squint_11-xb3.txt	# solved-100 conflict calling in mark_tela(); b3-only chowder
@@ -44,8 +44,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 11 (b=6): 0.462727 (11/11 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 11 (b=5): 0.461818 (11/11 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 11 (b=4): 0.456364 (11/11 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 11 (b=3): 0.455455 (11/11 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (b=6): 0.476429 (14/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (b=5): 0.475714 (14/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (b=4): 0.467857 (14/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 14 (b=3): 0.467857 (14/14 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
