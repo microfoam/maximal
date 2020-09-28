@@ -526,20 +526,6 @@ int cinch_k(short unsigned int mode)
 						        keep_checking = imperfect_TR = 0; 
 						}
 			    	}
-
-					/* CHECK FOR SLIPS OVER-HEAD (LOWER ROWS) OF SECOND UNIT */
-					/* 9/10/2020 v4.35 five chowder strings from -all script when this block is OFF */
-					if (keep_checking && k>2) {
-						for (i=m-1; i>=0; i--) {
-							for (int j=n+k+1; j<n+2*k; j++) {
-								if (align2D[i][j] == slip.sym && tela[tela_m-1].c != tela[tela_n+k].c) {
-									i = -1;
-									keep_checking = imperfect_TR = 0;
-									break;
-								}
-							}
-						}
-					}
 				}
 
 				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
@@ -577,13 +563,13 @@ int cinch_k(short unsigned int mode)
 				}
 
 				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
-				/* 9/9/2020 v4.35, some chowder in more than one benchmark test script when this block is OFF */
+				/* 9/9/2020 v4.35, chowder in more than one benchmark test script when this block is OFF */
 				if ((keep_checking || imperfect_TR) && k>1 && isalpha(letr=align2D[m+1][n+k-1]) && !isalpha(align2D[m+1][n])) {
 					keep_checking = imperfect_TR = 0;
 				}
 
 				/* Handles block of cinching fractal TRs in the first row if they overlay cryptic overlapping TRs in lower rows; churly11 is index case */
-				/* 9/9/2020 v4.35, churly11-13 are only strings for which this block matters */
+				/* 9/9/2020 v4.35, churly11-13 are only strings for which this block matters; 9/28/2020 churly16 too  */
 				if (keep_checking||imperfect_TR) {
 					i = m+1;
 					int j = n+k-1;
