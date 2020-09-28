@@ -22,6 +22,7 @@ fi
 	# cinch-k originating 2-D conflict
 
 	# solved: push new solved runs onto top of stack starting w/ solved-97 
+	./maximal -KnxR waves/squeegee/squint_13-xb3.txt	# solved-103 Edits in fractal splitting w/ reorganization; -x b3-only chowder (mined at 1/240k b=3)
 	./maximal -KnxR waves/squeegee/squirt_41-b3.txt 	# solved-102 New cinch_t block of some future cinch_k in last unit; -b3--6 vnd_ragdoll chowder
 	./maximal -KnxR waves/squeegee/squirt_42-b3.txt 	# solved-102 New cinch_t block of some future cinch_k in last unit; -x, -b3--6 vnd_ragdoll chowder
 	./maximal -KnxR waves/squeegee/squint_12-xb3.txt	# solved-102 New cinch_t block of some future cinch_k in last unit; -b3--6 washing_machine chowder
@@ -44,8 +45,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 14 (b=6): 0.476429 (14/14 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (b=5): 0.475714 (14/14 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (b=4): 0.467857 (14/14 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 14 (b=3): 0.467857 (14/14 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 15 (b=6): 0.473333 (15/15 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 15 (b=5): 0.472667 (15/15 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 15 (b=4): 0.465333 (15/15 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 15 (b=3): 0.462667 (15/15 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

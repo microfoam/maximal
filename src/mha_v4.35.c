@@ -1010,8 +1010,8 @@ int main(int argc, char *argv[])
 									if (p > reps*k) {
 										badslip_type = 1;					/* FROM SEQUENCE IN TYPES: (1) -3-5-10-30-50-100-300-500 */
 										Current.pass_R += badslip_type;
-										sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 										if (dev_print(MAIN,__LINE__)) {
+											sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 										  	printf("badslip type %d at n=%d for k=%d with TR at l=%d.", badslip_type, n, k, l);
 										}
 										assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
@@ -1287,8 +1287,8 @@ int main(int argc, char *argv[])
 												if (cyclelize_tela(i, j-i, n)) {
 													badslip_type = 30;					/* FROM SEQUENCE IN TYPES: 1-3-5-10- (30) -50-100-300-500 */
 													Current.pass_R += badslip_type;
-													sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 													if (dev_print(MAIN,__LINE__)) {
+														sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 														printf("badslip type %d at n=%d for k=%d with TR at l=%d, delta=%d.", badslip_type, n, k, l, j-i);
 													}
 													a2D_n = tela[n].x + k; 
@@ -1331,8 +1331,8 @@ int main(int argc, char *argv[])
 											if (cyclelize_tela(series, cycto-series, n)) {	/* REMINDER: cyclelize_tela(int cpos, int delta, int npos) */
 												badslip_type = 50;					/* FROM SEQUENCE IN TYPES: 1-3-5-10-30- (50) -100-300-500 */
 												Current.pass_R += badslip_type;
-												sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 												if (dev_print(MAIN,__LINE__)) {
+													sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 													printf("badslip type %d at n=%d (k=%d) w/ TR at cycto=%d, series=%d.", badslip_type, n, k, cycto, series);
 												}
 												tela[series].cyc_o = cyc_skip.sym;
