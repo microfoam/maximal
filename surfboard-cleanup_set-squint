@@ -16,6 +16,8 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
+	./maximal -KnxR -D8 waves/squeegee/squint_15-xb3.txt	# ; washmach chowder (1a 20% GC source) -b--6
+	./maximal -KnxR -D8 waves/squeegee/squint_16-xb3.txt	# ; washmach chowder (2a 50% GC source) -b--6; split second pair to squint_15
 
 	# cinch-l originating 2-D conflict
 
