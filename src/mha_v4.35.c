@@ -1196,7 +1196,7 @@ int main(int argc, char *argv[])
 									} 
 	
 									/* SUM UP COMPATIBLE TR PRODUCTS IN WINDOW OF LENGTH SUMSPAN BEGINNING AT POSITION series OF TR B */
-									if (sumspan > 0 && tela[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
+									if (tela[n].all_L && sumspan > 0 && tela[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
 										for (j = 0; j < sumspan; j++) {
 											l=series+j-k;
 											for (f = tela[series+j].mem[0] - 1 - j; f > 0; f--) {
@@ -1328,7 +1328,7 @@ int main(int argc, char *argv[])
 										}
 										if (cycto != series) {
 											tela[n].k = k;			/* TO PASS K SIZE TO CYCLELIZE TELA */
-											if (cyclelize_tela(series, cycto-series, n)) {	/* REMINDER: cyclelize_tela(int cpos, int delta, int npos) */
+											if (tela[n].all_L && cyclelize_tela(series, cycto-series, n)) {	/* REMINDER: cyclelize_tela(int cpos, int delta, int npos) */
 												badslip_type = 50;					/* FROM SEQUENCE IN TYPES: 1-3-5-10-30- (50) -100-300-500 */
 												Current.pass_R += badslip_type;
 												if (dev_print(MAIN,__LINE__)) {
