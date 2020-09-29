@@ -469,23 +469,20 @@ int cinch_k(short unsigned int mode)
 
 				/* 9/9/2020 v4.35 mucho chowder but dramatic drop in WCR avg's */
 				if (nuctransit && keep_checking) {
-					if (k>2 && count_unique_chars(align2D[m]+n, 2*k)==2)
+					if (k==1 && (col_isclear(align2D,n  ,m,1)>0 || col_isclear(align2D,n  ,m,-1)>=0) &&
+						        (col_isclear(align2D,n+1,m,1)>0 || col_isclear(align2D,n+1,m,-1)>=0)) {
 						keep_checking = 0;
-					else if (k==1 && (col_isclear(align2D,n  ,m,1)>0 || col_isclear(align2D,n  ,m,-1)>=0) &&
-						    	     (col_isclear(align2D,n+1,m,1)>0 || col_isclear(align2D,n+1,m,-1)>=0)) {
+					}
+					else if (k>2 && count_unique_chars(align2D[m]+n, 2*k)==2) {
 						keep_checking = 0;
 					}
 				}
-
-				/* 9/09/2020 v4.35 expansion of WCR avg's for b=3 benchmarks w/o chowder when OFF */
-				/* 9/17/2020 v4.35 same about expansion but not squirt_17 is dependent on this, plus this is main mechanism to squash things in cinch_k */
-				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym && tela[tela_n].statf!=st_fract.sym)
-					keep_checking = check_imperf = 0;
 
 				/* THIS BLOCK SPOTS NON-FRACTAL TRs AT NEXUS OF TWO OVERLAPPING AND/OR ABUTTING TRs AND SKIPS THEM */
 				/* 9/9/2020 one extra chowder bit at b=3 and some other wiggle when put in OFF */
 				if ((keep_checking || check_imperf) && col_isclear(align2D,n      ,m, 1)<0 
 													&& col_isclear(align2D,n+2*k-1,m,-1)<0) {
+
 					int case_X = 1;
 					if (align2D[m][n]!=align2D[m-1][n]) 
 						case_X=0;
@@ -494,38 +491,21 @@ int cinch_k(short unsigned int mode)
 						if (align2D[m][i]!=align2D[m+1][i]) 
 							case_X=0;
 					}
-					if (case_X)
+					if (case_X) {
 						keep_checking = check_imperf = 0;
+					}
 				}
 
-				/* 9/9/2020 v4.35 mucho chowder in cleanup_set-all when this block is OFF; did not test rest */
-				if (keep_checking && k>1 && n>scrimmage_line) {
-					int q=0;
+				/* 9/09/2020 v4.35 expansion of WCR avg's for b=3 benchmarks w/o chowder when OFF */
+				/* 9/17/2020 v4.35 same about expansion but not squirt_17 is dependent on this, plus this is main mechanism to squash things in cinch_k */
+				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym && tela[tela_n].statf!=st_fract.sym) {
+					keep_checking = check_imperf = 0;
+				}
 
-					if (!fractstat && nuctransit && col_isclear(pathbox,n-x+k,m+cik_row,-1)>-1 && col_isclear(align2D,n+k,m,1)<0) {
-						/* CHECK IF WILL PULL IN ADJACENT MISMATCHES AFTER RUN OF REPEATS */
-					    r = 1; 
-						i = k;  /* VAR i SET TO k ONLY TO ENTER WHILE LOOP */
-						while (i==k) {
-							for (i = 0; i < k; i++) {
-								if ((q=n+r*k+i)>=Current.pass_W)
-									break;
-								else if (col_isclear(align2D,q,m,-1)<0)
-									break;
-								else if (align2D[m][n+i]!=align2D[m][q])
-									break;
-					        }
-					        if (i == k)
-								r++;        /* INCREMENT NUMBER OF REPEATS */
-							else
-								break;
-					    }
-
-						if (q-x<=Current.pass_W && col_isclear(align2D,n+r*k,m,-1)<0) {
-							if ((letr3=unshifted[q])!='R' && letr3!='Y')
-						        keep_checking = imperfect_TR = 0; 
-						}
-			    	}
+				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
+				/* 9/9/2020 v4.35, chowder in more than one benchmark test script when this block is OFF */
+				if ((keep_checking || imperfect_TR) && k>1 && isalpha(letr=align2D[m+1][n+k-1]) && !isalpha(align2D[m+1][n])) {
+					keep_checking = imperfect_TR = 0;
 				}
 
 				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
@@ -562,12 +542,6 @@ int cinch_k(short unsigned int mode)
 					}
 				}
 
-				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
-				/* 9/9/2020 v4.35, chowder in more than one benchmark test script when this block is OFF */
-				if ((keep_checking || imperfect_TR) && k>1 && isalpha(letr=align2D[m+1][n+k-1]) && !isalpha(align2D[m+1][n])) {
-					keep_checking = imperfect_TR = 0;
-				}
-
 				/* Handles block of cinching fractal TRs in the first row if they overlay cryptic overlapping TRs in lower rows; churly11 is index case */
 				/* 9/9/2020 v4.35, churly11-13 are only strings for which this block matters; 9/28/2020 churly16 too  */
 				if (keep_checking||imperfect_TR) {
@@ -581,8 +555,9 @@ int cinch_k(short unsigned int mode)
 						else
 							i++;
 					}
-					if (align2D[i][0] && align2D[i][n]==blnk && isalpha(align2D[i][j]))
+					if (align2D[i][0] && align2D[i][n]==blnk && isalpha(align2D[i][j])) {
 						keep_checking = imperfect_TR = 0;
+					}
 				}
 
 				/**************************************************************************************************/
