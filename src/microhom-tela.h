@@ -1186,8 +1186,8 @@ void mark_tela(void)
 			while (tela[j].ok==k) {		/* SKIP CYCLE COLUMNS OF SAME K-MER */
 				j--;
 			}
-			for (i=j; i>=min_k; i--) {
-				if (tela[i].isl != tela[n].isl)
+			for (i=j; i>0; i--) {
+				if (!tela[i].isl || tela[i].isl!=tela[n].isl)
 					break;
 				if (tela[i].ok) {
 					if (i>m && isfractal(i,n,k)) {
@@ -1214,7 +1214,7 @@ void mark_tela(void)
 							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							push_mem(i, 9);
 						}
-						else if (!tela[i].k1 && tela[i].all_S<tela[n].all_S) {
+						else if ((!tela[i].k1 || tela[i].k2) && tela[i].all_S<tela[n].all_S) {
 							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							push_mem(i, 9);
 						}

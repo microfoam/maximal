@@ -16,14 +16,14 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-	./maximal -KnxR -D8 waves/squeegee/squint_15-xb3.txt	# ; washmach chowder (1a 20% GC source) -b--6
-	./maximal -KnxR -D8 waves/squeegee/squint_16-xb3.txt	# ; washmach chowder (2a 50% GC source) -b--6; split second pair to squint_15
 
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
 
 	# solved: push new solved runs onto top of stack starting w/ solved-97 
+	./maximal -KnxR waves/squeegee/squint_15-xb3.txt	# solved-105 Conflict calling in mark_tela(); washmach chowder (1a 20% GC source) -b--6
+	./maximal -KnxR waves/squeegee/squint_16-xb3.txt	# solved-105 Conflict calling in mark_tela(); washmach chowder (2a 50% GC source) -b--6; split-sec to squint_15
 	./maximal -KnxR waves/squeegee/squint_14-xb3.txt 	# solved-104 Conditioning entry into cyclelize from cinch_t; -x b3- & b4- only washing_machine chowder
 	./maximal -KnxR waves/squeegee/squint_13-xb3.txt	# solved-103 Edits in fractal splitting w/ reorganization; -x b3-only chowder (mined at 1/240k b=3)
 	./maximal -KnxR waves/squeegee/squirt_41-b3.txt 	# solved-102 New cinch_t block of some future cinch_k in last unit; -b3--6 vnd_ragdoll chowder
@@ -48,8 +48,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 16 (b=6): 0.4725   (16/16 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 16 (b=5): 0.471875 (16/16 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 16 (b=4): 0.45625  (16/16 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 16 (b=3): 0.45375  (16/16 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 18 (b=6): 0.457778 (18/18 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 18 (b=5): 0.455    (18/18 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 18 (b=4): 0.442778 (18/18 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 18 (b=3): 0.438889 (18/18 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
