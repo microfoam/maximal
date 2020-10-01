@@ -1236,7 +1236,8 @@ void mark_tela(void)
 		if (tela[n].ok) {
 			k = tela[n].ok;
 
-			/*	THIS BLOCK IS POORLY-COMMENTED (NO COMMENTS) AND SEEMS TO FIX ONLY churly-14. WHAT'S UP W/ THAT? 9/1/2020 v4.25 */
+			/* 9/30/2020 v4.35 WHEN DELETED CAUSES ONLY MINOR WCR EXPANSIONS IN SOME TESTS */
+			/* 9/ 1/2020 v4.25 FIXES ONLY churly-14. */
 			if (!tela[n-1].ok) {
 				m = n-k;
 				int prev_k;
