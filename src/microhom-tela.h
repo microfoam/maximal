@@ -902,9 +902,31 @@ void mark_tela(void)
 						else
 							Atr = score_kmer(n+k*reps,k,ONE);
 
-						if (Atr==Did || Aimperfect_TR) {
+						if (Atr==Did) {
 							reps++;
 							tela[n].all_S += Atr;
+						}
+						else if (Aimperfect_TR) {
+							int test_k = 1;
+							if (reps<2) {
+								for (i=n+reps*k; i<n+reps*k+WIDTH && i<lenseq; i++) {
+									if (tela[i].k1 || tela[i].impk) {
+										test_k = tela[i].k1;
+										if (!test_k)
+											test_k = - tela[i].impk;
+										if (test_k>k && i-test_k < n+reps*k) {
+											test_k = -1;
+											break;
+										}
+									}
+								}
+							}
+							if (test_k>0 && test_k!=k) {
+								reps++;
+								tela[n].all_S += Atr;
+							}
+							else
+								Aimperfect_TR = TRcheck = 0;
 						}
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
 							if (tela[n].all_S) {

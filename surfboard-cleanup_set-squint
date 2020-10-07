@@ -16,13 +16,13 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-	./maximal -KnxR -D8 waves/squeegee/squint_17-xb3.txt	# ; -xb3-only washmach chowder
 
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
 
 	# solved: push new solved runs onto top of stack starting w/ solved-97 
+	./maximal -KnxR waves/squeegee/squint_17-xb3.txt	# solved-106 imperfect final unit overlapping dwnstr bigger k-mer; -xb3-only washmach chowder
 	./maximal -KnxR waves/squeegee/squint_15-xb3.txt	# solved-105 Conflict calling in mark_tela(); washmach chowder (1a 20% GC source) -b--6
 	./maximal -KnxR waves/squeegee/squint_16-xb3.txt	# solved-105 Conflict calling in mark_tela(); washmach chowder (2a 50% GC source) -b--6; split-sec to squint_15
 	./maximal -KnxR waves/squeegee/squint_14-xb3.txt 	# solved-104 Conditioning entry into cyclelize from cinch_t; -x b3- & b4- only washing_machine chowder
@@ -49,8 +49,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 18 (b=6): 0.457778 (18/18 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 18 (b=5): 0.455    (18/18 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 18 (b=4): 0.442778 (18/18 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 18 (b=3): 0.438889 (18/18 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 19 (b=6): 0.453158 (19/19 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 19 (b=5): 0.450526 (19/19 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 19 (b=4): 0.436316 (19/19 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 19 (b=3): 0.429474 (19/19 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
