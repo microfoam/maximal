@@ -16,7 +16,7 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-
+	./maximal -KnxR waves/squeegee/squint_18-xb3 -D8	# ; washmach chowder (2a 50% GC source), -xb3-only
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
