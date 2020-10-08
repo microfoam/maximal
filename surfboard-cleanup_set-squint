@@ -16,6 +16,7 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
+	./maximal -KnxR waves/squeegee/squint_19-xb3.txt -D8	# ; b3-only chowder (+/- x)
 
 	# cinch-l originating 2-D conflict
 
