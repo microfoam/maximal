@@ -893,9 +893,8 @@ void mark_tela(void)
 
 						if (nuctransit) {
 							Atr = score_kmer(n+k*reps,k,TWO);
-							if (Atr!=Did && (100*Atr)/Did > threshold) {
+							if (Atr!=Did && (100*Atr)/Did>threshold)
 								Aimperfect_TR = 1;
-							}
 							else
 								Aimperfect_TR = 0;
 						}
@@ -911,9 +910,11 @@ void mark_tela(void)
 							if (reps<2) {
 								for (i=n+reps*k; i<n+reps*k+WIDTH && i<lenseq; i++) {
 									if (tela[i].k1 || tela[i].impk) {
-										test_k = tela[i].k1;
-										if (!test_k)
+										if (!tela[i].k1)
 											test_k = - tela[i].impk;
+										else
+											test_k = tela[i].k1;
+
 										if (test_k>k && i-test_k < n+reps*k) {
 											test_k = -1;
 											break;
@@ -921,7 +922,7 @@ void mark_tela(void)
 									}
 								}
 							}
-							if (test_k>0 && test_k!=k) {
+							if (test_k>0) {
 								reps++;
 								tela[n].all_S += Atr;
 							}
