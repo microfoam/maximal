@@ -123,8 +123,8 @@ void devprint_pathbox(int num)
 /***************************************/
 void signal_callback_handler(int signum) 
 {
-	printf("  )--- I caught signal %d before exiting (2=SIGINT, 8=SIGFPE, 10=SIGBUS, 11=SIGSEGV).\n\n",signum);
-	fp_out = fopen("Surf_wavereport.mha", "a");		/* FOPEN RIGHT BEFORE WRITING TO MINIMIZE CHANCE OF CLOSING WITH OPEN FILES */
+	printf("  )--- Signal %d caught (2=SIGINT, 8=SIGFPE, 10=SIGBUS, 11=SIGSEGV).\n\n",signum);
+	fp_out = fopen("Surf_wavereport.mha", "a");
 	fprintf(fp_out, "---->\tCanceled run for %s with signal=%d (2=SIGINT, 8=SIGFPE, 10=SIGBUS, 11=SIGSEGV). dev_notes: %s.\n", file_name, signum, dev_notes);
 	fclose(fp_out);
 	exit(signum);
