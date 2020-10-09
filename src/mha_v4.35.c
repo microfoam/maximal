@@ -841,6 +841,11 @@ int main(int argc, char *argv[])
 	
 				/* FOR ROW m LOOP 3/6: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
 				k = n-m;
+				if (tela[n].k1) {
+					k = tela[n].k1;
+					m = n-k;
+				}
+
 				if (nuctransit) {
 					DTHR = score_DTHR(k);
 					imperfect_TR = 0;

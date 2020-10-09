@@ -453,6 +453,8 @@ int next_k(int n, int k1, short unsigned int seqtype)
 			pur = pyr = 0;
 
 			for (i=0; i<k; i++) {
+				if (tela[m+i].c=='n'||tela[n+i].c=='n')
+					break;
 				if (tela[m+i].c != tela[n+i].c) {
 					if (opt_x.bit && k>opt_b.val && tela[m+i].e == tela[n+i].e) {
 						if (++transits > maxtransits) 
@@ -516,6 +518,8 @@ int next_k(int n, int k1, short unsigned int seqtype)
 		for (k = k1-1; k>0; k--) {
 			m = n-k;
 			for (i=0; i<k; i++) {
+				if (seqtype==2 && (tela[m+i].c=='n'||tela[n+i].c=='n'))
+					return(0);
 				if (tela[m+i].c != tela[n+i].c) 
 					break;
 			}
