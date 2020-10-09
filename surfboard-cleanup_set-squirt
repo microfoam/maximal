@@ -77,5 +77,5 @@ echo
 echo 'Commit WCR average of 42 (b=6): 0.495238 (chowder-free)' | tee -a Corduroy.log
 echo 'Commit WCR average of 42 (b=5): 0.490714 (chowder-free)' | tee -a Corduroy.log
 echo 'Commit WCR average of 42 (b=4): 0.48619  (chowder-free)' | tee -a Corduroy.log
-echo 'Commit WCR average of 42 (b=3): 0.470952 (chowder-free)' | tee -a Corduroy.log
+echo 'Commit WCR average of 42 (b=3): 0.469286 (chowder-free)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

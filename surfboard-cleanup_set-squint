@@ -16,13 +16,16 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
+	./maximal -KnxR -D8 waves/squeegee/squint_19-xb3.txt 	# ; unsolved after solved-109
+															# solved-108 Coordinated changes in next_k() and cinch_t (main); b3-only chowder (+/- x)
 
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
 
 	# solved: push new solved runs onto top of stack starting w/ solved-97 
-	./maximal -KnxR waves/squeegee/squint_19-xb3.txt 	# solved-108 Coordinated changes in next_k() and cinch_t (main); b3-only chowder (+/- x)
+	./maximal -KnxR waves/squeegee/squint_20-xb3.txt 	# solved-109 Redaction/edits of solved-108; cinch-t tela discontinuities, washmach chowder (1a 20% GC source) 
+	./maximal -KnxR waves/squeegee/squint_21-xb3.txt 	# solved-109 Redaction/edits of solved-108; cinch-t tela discontinuities, xb3-only washmach chowder (5a 92% Y source)
 	./maximal -KnxR waves/squeegee/squint_18-xb3.txt 	# solved-107 edit to solved-106 additions; washmach chowder (2a 50% GC source), -xb3-only
 	./maximal -KnxR waves/squeegee/squint_17-xb3.txt	# solved-106 imperfect final unit overlapping dwnstr bigger k-mer; -xb3-only washmach chowder
 	./maximal -KnxR waves/squeegee/squint_15-xb3.txt	# solved-105 Conflict calling in mark_tela(); washmach chowder (1a 20% GC source) -b--6
@@ -51,8 +54,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 21 (b=6): 0.449048 (21/21 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 21 (b=5): 0.446667 (21/21 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 21 (b=4): 0.431429 (21/21 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 21 (b=3): 0.421429 (21/21 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 23 (b=6): 0.45     (23/23 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 23 (b=5): 0.447826 (23/23 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 23 (b=4): 0.431739 (23/23 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 23 (b=3): 0.42587  (22/23 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

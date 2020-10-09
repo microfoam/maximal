@@ -841,7 +841,10 @@ int main(int argc, char *argv[])
 	
 				/* FOR ROW m LOOP 3/6: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
 				k = n-m;
-				if (tela[n].k1) {
+				if (!tela[n].k1) {
+					tela[n].k1 = k;
+				}
+				else if (OFF && k>3 && tela[n].k1) {
 					k = tela[n].k1;
 					m = n-k;
 				}
@@ -1053,6 +1056,7 @@ int main(int argc, char *argv[])
 						if (o) {
 							Dtr = imperfect_TR = 0;
 							pull_tela(n);
+							sprintf(dev_notes, "viol-%d at n=%d", o,n);
 							if (dev_print(MAIN,__LINE__)) {
 								printf("push_tela violations=%d (+1 CONT, +2 EQUIV). Skipping k=%d-mer at n=%d, imperfect_TR=%d.",o,k,n,imperfect_TR);
 								print_tela(prtela_A, prtela_B);
@@ -1257,16 +1261,16 @@ int main(int argc, char *argv[])
 										if (dev_print(MAIN,__LINE__)) 
 											printf("max_count=%d, sumspan=%d, c=%d", max_count, sumspan, c);
 										
-										if (l != series && tela[(tela[l].cyc_Lf)].cyc_o == cyc_take.sym) {
+										if (l!=series && tela[(tela[l].cyc_Lf)].cyc_o==cyc_take.sym) {
 											badslip_type = 10;							/* FROM SEQUENCE IN TYPES: 1-3-5- (10) -30-50-100-300-500 */
+											Current.pass_R += badslip_type;
+											sprintf(dev_notes, "bslip sum %d", Current.pass_R);
 											if (dev_print(MAIN,__LINE__)) {
 												printf("badslip type %d at n=%d for k=%d with TR at l=%d.\n Before--->", badslip_type, n, k, l);
 												print_tela(prtela_A, prtela_B);
 											}
 											assign_tela(n, row, a2D_n, ONE);	/* MODES O-F-F, ONE--FIVE: ONE=FLATLINE AT N, TWO=ASSIGN  */
-											pull_tela((tela[n].X));
-											pull_tela(n);
-											assign_transit(l,TWO); 	/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
+											assign_transit(l,TWO); 				/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
 	
 											for (int t=n; t<l; t++) {
 												assign_tela(n++, row, a2D_n++, TWO);	/* MODES O-F-F, ONE--FIVE: ONE=FLATLINE AT N, TWO=ASSIGN  */
