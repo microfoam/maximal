@@ -16,10 +16,12 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
+	./maximal -KnxRD1 waves/squeegee/squint_22-xb3.txt	# washmach crash string 
 
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
+	./maximal -KnxRD8 waves/squeegee/squint_23-xb3.txt	# washmach chowder b3--b6 
 
 	# solved: push new solved runs onto top of stack starting w/ solved-97 
 	./maximal -KnxR waves/squeegee/squint_19-xb3.txt 	# solved-110 Edits in cinch_t; unsolved after solved-109, xb3-chowder only (after solved-108)
