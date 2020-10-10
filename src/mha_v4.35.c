@@ -964,6 +964,10 @@ int main(int argc, char *argv[])
 						Dtr = imperfect_TR = 0;
 					else if (Dtr) {
 						int nk=next_k(n,k,1);
+						while (nk && (nk=next_k(n,abs(nk),1))) {
+							if (nk>0)
+								break;
+						}
 						if (nk && tela[n+nk].k1==nk)
 							Dtr = 0;
 					}
