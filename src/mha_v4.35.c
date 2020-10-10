@@ -841,13 +841,8 @@ int main(int argc, char *argv[])
 	
 				/* FOR ROW m LOOP 3/6: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
 				k = n-m;
-				if (!tela[n].k1) {
+				if (!tela[n].k1)
 					tela[n].k1 = k;
-				}
-				else if (OFF && k>3 && tela[n].k1) {
-					k = tela[n].k1;
-					m = n-k;
-				}
 
 				if (nuctransit) {
 					DTHR = score_DTHR(k);
@@ -965,8 +960,12 @@ int main(int argc, char *argv[])
 					}
 	
 					/* SOMETIMES MARK_TELA() CANCELED A HIGHER IMPERFECT K-MER AT THIS COLUMN: NEED TO CHECK AND DEAL ACCORDINGLY */
-					if (Dtr && k != tela[n].ok && imperfect_TR) {
+					if (imperfect_TR && Dtr && k!=tela[n].ok)
 						Dtr = imperfect_TR = 0;
+					else if (Dtr) {
+						int nk=next_k(n,k,1);
+						if (nk && tela[n+nk].k1==nk)
+							Dtr = 0;
 					}
 
 					/* IF SUMMING PATHBOX DIAGONAL 6/: START COUNTING REPEATS */
