@@ -20,9 +20,9 @@ fi
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxRD8 waves/squeegee/squint_23-xb3.txt	# washmach chowder b3--b6 
 
 	# solved: push new solved runs onto top of stack starting w/ solved-97 
+	./maximal -KnxR waves/squeegee/squint_23-xb3.txt	# solved-112 Adjustment to clearall module in mark_tela; washmach chowder b3--b6 
 	./maximal -KnxR waves/squeegee/squint_22-xb3.txt	# solved-111 Bug fix in mark_tela(); -x washmach crash string 
 	./maximal -KnxR waves/squeegee/squint_19-xb3.txt 	# solved-110 Edits in cinch_t; unsolved after solved-109, xb3-chowder only (after solved-108)
 														# solved-108 Coordinated changes in next_k() and cinch_t (main); b3-only chowder (+/- x)
@@ -56,8 +56,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 25 (b=6): 0.454  (24/25 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (b=5): 0.452  (24/25 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (b=4): 0.4356 (24/25 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (b=3): 0.4266 (24/25 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (b=6): 0.4516 (25/25 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (b=5): 0.4496 (25/25 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (b=4): 0.4332 (25/25 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (b=3): 0.4242 (25/25 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

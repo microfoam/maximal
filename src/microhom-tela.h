@@ -878,9 +878,6 @@ void mark_tela(void)
 
 				/* IF SUMMING PATHBOX DIAGONAL 4/4: START COUNTING REPEATS */
 				if (Dtr && (Dtr==Did || imperfect_TR)) {
-					if (dev_print(TELA,__LINE__)) {
-						printf("Counting repeats at n=%d for k-mer=%d.", n,k);
-					}
 					/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
 					TRcheck = 1;
 					tela[n].ok = k;
@@ -967,11 +964,7 @@ void mark_tela(void)
 									if (!skip_break) {
 										projector = n;
 										projection = n + k*reps;
-										proj_k = tela[projector].ok;
-										if (dev_print(TELA,__LINE__)) {
-											printf("Advancing projection at n=%d to %d.", n,projection);
-										}
-		
+										proj_k = k;
 										if (k == tela[n-1].ok && tela[n].stat!=st_parent.sym) {
 											tela[n-1].stat = st_cycle.sym; 		/* c FOR TRIVIAL-CASE OF CYCLING FRAME TYPE REPEAT */
 											tela[n  ].stat = st_cycle.sym;
@@ -1004,7 +997,7 @@ void mark_tela(void)
 						}
 					}
 					if (dev_print(TELA,__LINE__)) {
-						printf("Repeats=%d (n=%d for k-mer=%d)", reps,n,k);
+						printf("At n = %2d for k = %2d, reps = %d (all_S=%d).", n,k,reps,tela[n].all_S);
 					}
 					/* v4.30: MARK FRACTAL TR'S FOR CINCH-T TO SKIP, AND LEAVE FOR CINCH-K */
 					if (n>=2*min_k) {
@@ -1237,7 +1230,7 @@ void mark_tela(void)
 						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;					/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 						/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
-						if (tela[i].stat==st_cycle.sym && tela[n].stat!=st_cycle.sym && i && !tela[i-1].all_R && tela[i].ok>k && tela[i].ok%k) {
+						if (tela[i].stat==st_cycle.sym && tela[n].stat!=st_parent.sym && tela[n].stat!=st_cycle.sym && !tela[i-1].all_R && tela[i].ok>k && tela[i].ok%k) {
 							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							push_mem(i, 9);
 						}
