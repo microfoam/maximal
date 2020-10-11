@@ -491,7 +491,7 @@ int next_k(int n, int k1, short unsigned int seqtype)
 			}
 			if (i==k) {
 				if (transits && ((pur && !pyr) || (pyr && !pur)) && !next_k(n,k,seqtype)) {
-					tela[n].k0 = k;		/* SAVE k-MER FOR CINCH-K */
+					tela[n].k0 = k;		/* SAVE k-MER FOR CINCH-K; STORING FOR DE-BUGGING ONLY, NOT NEEDED */
 					return(0);
 				}
 				else if (transits)
@@ -703,7 +703,7 @@ void mark_tela(void)
 			}
 
 			/* SKIP k = O N E */
-			if (k == 1 || k == tela[n].k0)
+			if (k==1 || k==tela[n].k0)
 				break;	/* GO TO NEXT n */
 			else if (nuctransit) 
 				threshold = score_DTHR(k);
@@ -1225,10 +1225,10 @@ void mark_tela(void)
 						recslips += span_ork(i);
 
 						if (tela[n].or>1) {					/* PROPAGATE FRACTAL STATUS TO REST OF REPEATS */
-							for (i=1; i<tela[n].or; i++) {
-								for (j=0; j<tela[n].ok; j++) {
-									if (tela[n+j].statf==st_fract.sym)
-										tela[n+j+k*i].statf = st_fract.sym;
+							for (reps=1; reps<tela[n].or; reps++) {
+								for (l=0; l<tela[n].ok; l++) {
+									if (tela[n+l].statf==st_fract.sym)
+										tela[n+l+k*reps].statf = st_fract.sym;
 								}
 							}
 						}
