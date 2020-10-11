@@ -101,7 +101,6 @@ short unsigned int assign_tela(int pos, int eM, int eN, int mode)
 		align2D[eM][eN] = tela[pos].c;
 		tela[pos].y = eM;
 		tela[pos].x = eN;
-	
 		return(1);
 	}
 }
@@ -1533,7 +1532,7 @@ void mark_tela(void)
 	Cinch_T.pass_V = max_k;  
 
 	if (opt_D.val==1 || dev_print(TELA,__LINE__)) {
-		printf("\n\nPre-marking of tela completed as shown below. (To shift output window, change OFFSET definition in 'src/microhom-devl.h'.)\n");
+		printf("\n\nPre-marking of tela completed as shown below. (To shift output window, change O-F-F-SET definition in 'src/microhom-devl.h'.)\n");
 		print_tela(prtela_A, prtela_B);
 	}
 }
