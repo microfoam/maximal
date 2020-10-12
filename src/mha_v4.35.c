@@ -1436,10 +1436,9 @@ int main(int argc, char *argv[])
 							}
 						}
 
-						for (i = 0; i < r; i++) {
-							if ((ch=align2D[row][a2D_n]) != '\0') {
+						for (i=0; i<r; i++) {
+							if (align2D[row][a2D_n] != '\0')
 								scooch = overslip;
-							}
 	
 							align2D[row  ][a2D_n+scooch  ] = slip.sym; 
 							align2D[row  ][a2D_n+scooch+1] = '\0'; 	
