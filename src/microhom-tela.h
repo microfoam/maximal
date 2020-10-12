@@ -205,19 +205,13 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 					 tela[i+1].x <=  tela[i].x) {
 				;
 			}
-			else {
-				if (dev_count < dev_limit && dev_print(TELA,__LINE__)) {
-					printf("check_tela() edge of discontinuity at i=%d.", i);
-					dev_count++;
-				}
+			else
 				break;
-			}
 		}
 		if (i==eN)
 			axioms = 1;
-		else if (dev_count < dev_limit && dev_print(TELA,__LINE__)) {
-			printf("check_tela(mode_dim=%d): Problem of continuity at 1-D positions %d --> %d (columns %d and %d)", 
-								mode_dim, i, i+1, tela[i].x, tela[i+1].x);
+		else if (dev_count<dev_limit && dev_print(TELA,__LINE__)) {
+			printf("check_tela(mode_dim=%d): Problem of continuity at 1D positions %d-->%d (columns %d and %d)",mode_dim,i,i+1,tela[i].x,tela[i+1].x);
 			dev_count++;
 		}
 
