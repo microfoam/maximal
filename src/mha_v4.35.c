@@ -838,6 +838,8 @@ int main(int argc, char *argv[])
 					if (k<0 && (k2=next_k(n,k1,1))<0 && !(k1%abs(k2)))
 						m = n + k2;		/* k2 IS NEGATIVE */
 				}
+				else if (m<n-tela[n].k1)	/* TAGGED: <NEW> 10/13/2020 */
+					m = n-tela[n].k1;
 	
 				/* FOR ROW m LOOP 3/6: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
 				k = n-m;
@@ -1272,12 +1274,11 @@ int main(int argc, char *argv[])
 												printf("badslip type %d at n=%d for k=%d with TR at l=%d.\n Before--->", badslip_type, n, k, l);
 												print_tela(prtela_A, prtela_B);
 											}
-											assign_tela(n, row, a2D_n, ONE);	/* MODES O-F-F, ONE--FIVE: ONE=FLATLINE AT N, TWO=ASSIGN  */
+											assign_tela(n, row, a2D_n, ONE);
 											assign_transit(l,TWO); 				/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
 	
-											for (int t=n; t<l; t++) {
-												assign_tela(n++, row, a2D_n++, TWO);	/* MODES O-F-F, ONE--FIVE: ONE=FLATLINE AT N, TWO=ASSIGN  */
-											}
+											for (int t=n; t<l; t++)
+												assign_tela(n++, row, a2D_n++, TWO);
 	
 											reps = tela[l].r = tela[l].cyc_r;
 											tela[l].k = k;
