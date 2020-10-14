@@ -1921,15 +1921,16 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 			coord_B_x = tela[n1+i + 1].x;
 			coord_B_y = tela[n1+i + 1].y;
 
-			if      (coord_B_y == coord_A_y && coord_B_x == coord_A_x + 1) 
+			if      (coord_B_y==coord_A_y   && coord_B_x==coord_A_x + 1)
 				;
-			else if (coord_B_y == coord_A_y + 1 && coord_B_x <= coord_A_x) 
+			else if (coord_B_y==coord_A_y+1 && coord_B_x<=coord_A_x)
 				;	
 			else {
 				violation = 1;
+				sprintf(dev_notes, "viol1 tela-1930");
 				if (dev_print(TELA,__LINE__)) {
-					printf("push_tela() viol-1 for n2=%d k=%d (i=%d): A_x=%d, A_y=%d, B_x=%d, B_y=%d.", 
-												n2, k, i, coord_A_x, coord_A_y, coord_B_x, coord_B_y); 
+					printf("push_tela() viol-1 for n2=%d, n1=%d, k=%d (i=%d): A_x=%d, A_y=%d, B_x=%d, B_y=%d. axioms=%d",
+												n2, n1, k, i, coord_A_x, coord_A_y, coord_B_x, coord_B_y, axioms);
 				}
 				break;
 			}
@@ -1963,7 +1964,7 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 					tela[n2+i].t = tela[n2+i].e;
 			}
 			else if (tela[n1+i].c == tela[n2+i].c &&	/* PROPAGATE TRANSIT COLUMNS THROUGH THE UNITS */
-				tela[n1+i].t != tela[n2+i].t) {
+					 tela[n1+i].t != tela[n2+i].t) {
 					tela[n1+i].t = tela[n1+i].e;
 					tela[n2+i].t = tela[n2+i].e;
 			}

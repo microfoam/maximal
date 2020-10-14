@@ -1043,21 +1043,19 @@ int main(int argc, char *argv[])
 					j = n + tela[n].ok * tela[n].or;
 					if (tela[n].all_L && check_tela(tela[n].all_L, j, ONE)!=3) {
 						Dtr = imperfect_TR = 0;
-							if (dev_print(MAIN,__LINE__)) 
-								printf("check_tela() induced cinch cancel.");
+						if (dev_print(MAIN,__LINE__))
+							printf("check_tela() induced cinch cancel.");
 					}
-					else if (check_tela(m, j, ONE)!=3) {
+					else if (check_tela(m, j, ONE)!=3)
 						Dtr = imperfect_TR = 0;
-					}
 	
 					/* IF SUMMING PATHBOX DIAGONAL 7/: COMMITTING TO CINCH AFTER AXIOMATIC TEST BY PUSH_TELA  ************************/
 					if (Dtr) {
-						if (imperfect_TR) {
+						if (imperfect_TR)
 							 o = push_tela(n,m, ONE);			/* WITH MODE ONE WILL ASSIGN TRANSITIONS WITHIN PUSH_TELA */
-						}
-						else {
+						else
 							 o = push_tela(n,m, THREE);
-						}
+
 						if (o) {
 							Dtr = imperfect_TR = 0;
 							pull_tela(n);
@@ -1103,9 +1101,8 @@ int main(int argc, char *argv[])
 								push_tela(n+p, m+p, THREE);
 
 								if (imperfect_TR) {
-									for (i=0; i<k; i++) {
+									for (i=0; i<k; i++)
 										pathbox[n+p+i][m+i] = 82; 	/* "R" LOWER-LEFT */
-									}
 								}
 	
 								r++;
@@ -1269,8 +1266,8 @@ int main(int argc, char *argv[])
 										if (l!=series && tela[(tela[l].cyc_Lf)].cyc_o==cyc_take.sym) {
 											badslip_type = 10;							/* FROM SEQUENCE IN TYPES: 1-3-5- (10) -30-50-100-300-500 */
 											Current.pass_R += badslip_type;
-											sprintf(dev_notes, "bslip sum %d", Current.pass_R);
-											if (dev_print(MAIN,__LINE__)) {
+/*											sprintf(dev_notes, "bslip sum %d", Current.pass_R);
+*/											if (dev_print(MAIN,__LINE__)) {
 												printf("badslip type %d at n=%d for k=%d with TR at l=%d.\n Before--->", badslip_type, n, k, l);
 												print_tela(prtela_A, prtela_B);
 											}
