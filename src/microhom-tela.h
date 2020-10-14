@@ -1893,8 +1893,6 @@ void pull_tela(int n)
 	}
 
 	tela[n].r = 0;
-/*	tela[n].echoes = tela[n].cyc_o = cyc_skip.sym;
-*/
 }
 
 
@@ -1921,9 +1919,9 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 			coord_B_x = tela[n1+i + 1].x;
 			coord_B_y = tela[n1+i + 1].y;
 
-			if      (coord_B_y==coord_A_y   && coord_B_x==coord_A_x + 1)
+			if      (coord_B_y==coord_A_y     && coord_B_x==coord_A_x + 1)
 				;
-			else if (coord_B_y==coord_A_y+1 && coord_B_x<=coord_A_x)
+			else if (coord_B_y==coord_A_y + 1 && coord_B_x<=coord_A_x    )
 				;	
 			else {
 				violation = 1;
@@ -1969,19 +1967,15 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 					tela[n2+i].t = tela[n2+i].e;
 			}
 		}
+		/* UPDATE TELA STRUCTURE IF AND ONLY IF THERE ARE NO VIOLATIONS */
+			tela[n2].x = tela[n2-1].x-k+1;
+			tela[n2].y = tela[n2-1].y +1;
+		for (i=n2+1; i<=lenseq; i++) {
+			tela[i].x -= k;
+			tela[i].y = tela[n2].y;
+		}
 	}
 
-	/* UPDATE TELA STRUCTURE IF AND ONLY IF THERE ARE NO VIOLATIONS */
-	if (!violation) {
-		for (i=0; i<k; i++) { 
-			tela[n2 + i].x = tela[n1+i].x;
-			tela[n2 + i].y++;
-		}
-		for (i=n2+k; i<=lenseq; i++) {
-			tela[i].x -= k;
-			tela[i].y++;
-		}
-	}
 	return(violation);	/* RETURNS 1 IF CONTINUITY FAILS, 3 IF EQUIVALENCE FAILS, 4 IF BOTH FAIL */
 }
 

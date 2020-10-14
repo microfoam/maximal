@@ -60,5 +60,5 @@ echo
 echo 'Commit WCR average of 26 (b=6): 0.444808 (26/26 solved)' | tee -a Corduroy.log
 echo 'Commit WCR average of 26 (b=5): 0.442885 (26/26 solved)' | tee -a Corduroy.log
 echo 'Commit WCR average of 26 (b=4): 0.426615 (26/26 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (b=3): 0.418923 (25/26 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 25 (b=3): 0.418923 (25/26 solved) -> 0.420846 (25/26 solved but viol-free for squint_20/21)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

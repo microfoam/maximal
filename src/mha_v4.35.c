@@ -1052,7 +1052,7 @@ int main(int argc, char *argv[])
 					/* IF SUMMING PATHBOX DIAGONAL 7/: COMMITTING TO CINCH AFTER AXIOMATIC TEST BY PUSH_TELA  ************************/
 					if (Dtr) {
 						if (imperfect_TR)
-							 o = push_tela(n,m, ONE);			/* WITH MODE ONE WILL ASSIGN TRANSITIONS WITHIN PUSH_TELA */
+							 o = push_tela(n,m, ONE);	/* WITH MODE ONE WILL ASSIGN TRANSITIONS WITHIN PUSH_TELA */
 						else
 							 o = push_tela(n,m, THREE);
 
@@ -1266,16 +1266,24 @@ int main(int argc, char *argv[])
 										if (l!=series && tela[(tela[l].cyc_Lf)].cyc_o==cyc_take.sym) {
 											badslip_type = 10;							/* FROM SEQUENCE IN TYPES: 1-3-5- (10) -30-50-100-300-500 */
 											Current.pass_R += badslip_type;
-/*											sprintf(dev_notes, "bslip sum %d", Current.pass_R);
-*/											if (dev_print(MAIN,__LINE__)) {
+											sprintf(dev_notes, "bslip sum %d", Current.pass_R);
+											if (dev_print(MAIN,__LINE__)) {
 												printf("badslip type %d at n=%d for k=%d with TR at l=%d.\n Before--->", badslip_type, n, k, l);
 												print_tela(prtela_A, prtela_B);
 											}
+											pull_tela(n);
+											tela[n].y = tela[n-1].y;
+											tela[n].x = tela[n-1].x + 1;
 											assign_tela(n, row, a2D_n, ONE);
-											assign_transit(l,TWO); 				/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
-	
 											for (int t=n; t<l; t++)
 												assign_tela(n++, row, a2D_n++, TWO);
+
+											assign_transit(l,TWO); 			/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
+
+											if (dev_print(MAIN,__LINE__)) {
+												printf("\n After--->");
+												print_tela(prtela_A, prtela_B);
+											}
 	
 											reps = tela[l].r = tela[l].cyc_r;
 											tela[l].k = k;
