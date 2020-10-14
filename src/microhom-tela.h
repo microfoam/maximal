@@ -1088,7 +1088,7 @@ void mark_tela(void)
 	/* MARK LOW-COMPLEXITY REGIONS WITH TWO OR MORE k-mers MARKED AT COLUMN. */
 	/* HERE, LOW-COMPLEXITY MEANS REPEATS ARE BASED ON TWO SYMBOLS OR LESS.  */
 	for (n=2; n<lenseq; n++) {
-		if (tela[n].k1 && tela[n].k2) {
+		if (tela[n].k1 && (tela[n].k2||(tela[n+1].k0 && tela[n+1].k0!=tela[n].k1))) {
 			int symb1=0, symb2=0;		/* WILL USE INTS AND RELY ON CHAR VALUES */
 			k = tela[n].k1;
 			m = n-k;
