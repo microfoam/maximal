@@ -843,8 +843,6 @@ int main(int argc, char *argv[])
 	
 				/* FOR ROW m LOOP 3/6: SET K-MER SIZE AND DTHR SCORE THRESHOLD */
 				k = n-m;
-				if (!tela[n].k1)
-					tela[n].k1 = k;
 
 				if (nuctransit) {
 					DTHR = score_DTHR(k);
@@ -856,7 +854,7 @@ int main(int argc, char *argv[])
 					assign_tela(n++, row, a2D_n++, ONE);		/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 					break;	/* GO TO NEXT n */
 				}
-				else if (k==tela[n].k1 && tela[n].echoes==cyc_skip.sym) {
+				else if (tela[n].echoes==cyc_skip.sym) {
 					assign_tela(n++, row, a2D_n++, ONE);		/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 					break;	/* GO TO NEXT n */
 				}
