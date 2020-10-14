@@ -1925,7 +1925,7 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 				;	
 			else {
 				violation = 1;
-				sprintf(dev_notes, "viol1 tela-1930");
+				sprintf(dev_notes, "viol1 tela-%d", __LINE__);
 				if (dev_print(TELA,__LINE__)) {
 					printf("push_tela() viol-1 for n2=%d, n1=%d, k=%d (i=%d): A_x=%d, A_y=%d, B_x=%d, B_y=%d. axioms=%d",
 												n2, n1, k, i, coord_A_x, coord_A_y, coord_B_x, coord_B_y, axioms);
@@ -1946,6 +1946,7 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 			}
 			else {
 				violation += 2;
+				sprintf(dev_notes, "viol2 tela-%d", __LINE__);
 				if (dev_print(TELA,__LINE__)) {
 					printf("push_tela() viol-2 at %d and %d for k=%d.", n1+i, n2+i, k);
 				}
