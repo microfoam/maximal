@@ -40,13 +40,6 @@ void clearmem(void) {
 /******************************* MODE ZERO (+x) OR ONE (+y) *****************************************/
 int push_gPnt(short unsigned int ymode, int pos, int prev_par)
 {
-	/* TRAINING WHEELS: DELETE ME EVENTUALLY (INVOCATION CHECKS) */
-	if (ymode<0 || ymode>1 || prev_par>pos || pos>MAXROW || prev_par>MAXROW || (ymode==1 && prev_par >= pos)) {
-		printf("\n\n * Incorrect invocation of push_gPnt(%d,%d,%d) in code.\n\n", ymode, pos, prev_par);
-		return(-1);
-	}
-
-
 	if (!ymode && pos == prev_par) {	
 		/* No paralogy, increment in the x-direction */
 		tela[pos].gPnt.rel_xy = 0;
@@ -67,6 +60,7 @@ int push_gPnt(short unsigned int ymode, int pos, int prev_par)
 
 	return((tela[pos].gPnt.topPar));
 }
+
 
 /***********************************************/
 int push_gPnt_kmer(int pos, int kmer, int reps)
@@ -89,6 +83,7 @@ int push_gPnt_kmer(int pos, int kmer, int reps)
 	else
 		return(top_left);
 }
+
 
 /****************************************************************/
 short unsigned int assign_tela(int pos, int eM, int eN, int mode)
