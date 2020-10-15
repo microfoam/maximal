@@ -912,13 +912,13 @@ int next_foamfree(char check_array[][MAXROW], int row, int at_n)
 int col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short int updown) 
 {
 	/* INVOKE updown AS -1 OR 1 TO CHECK BELOW OR ABOVE row, RESPECTIVELY */
-    for (int m = row + updown; m >= 0; m += updown) {
-       	if (isalpha(check_array[m][at_n]))
-    		return(m);
-		if (check_array[m][0] == '\0') 
+	for (int m = row + updown; m >= 0; m += updown) {
+		if (isalpha(check_array[m][at_n]))
+			return(m);
+		else if (check_array[m][0]=='\0')
 			break;
 	}
-    return(-1);		/* RETURN NEGATIVE VALUE TO INDICATE COLUMN IS CLEAR IN DESIGNATED DIRECTION */
+	return(-1);		/* RETURN NEGATIVE VALUE TO INDICATE COLUMN IS CLEAR IN DESIGNATED DIRECTION */
 }
 /*****************************************************************************************/
 
