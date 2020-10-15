@@ -66,7 +66,7 @@ int push_gPnt(short unsigned int ymode, int pos, int prev_par)
 int push_gPnt_kmer(int pos, int kmer, int reps)
 {
 	int top_left = push_gPnt(YDIR, pos, pos-kmer);
-	int top_right;
+	int top_right = 0;
 
 	for (int r=0; r<reps; r++) {
 		if ( (top_right=push_gPnt(YDIR, pos+r*kmer, pos-kmer)) < 0 )
@@ -275,7 +275,7 @@ int cyclelize_tela(int cpos, int delta, int npos)
 
 	if      ( cpos>lenseq ||  cpos<0 || tela[cpos].cyc_l < 2)
 		return(0);
-	else if (delta>lenseq || delta<0 || delta > tela[cpos].cyc_l)
+	else if (delta>lenseq || delta<1 || delta > tela[cpos].cyc_l)
 		return(0);
 
 	int    k = tela[cpos].k;
