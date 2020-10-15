@@ -1223,11 +1223,7 @@ void mark_tela(void)
 						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;					/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 						/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
-						if (tela[i].stat==st_cycle.sym && tela[n].stat!=st_parent.sym && tela[n].stat!=st_cycle.sym && !tela[i-1].all_R && tela[i].ok>k && tela[i].ok%k) {
-							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_mem(i, 9);
-						}
-						else if ((!tela[i].k1 || tela[i].k2) && tela[i].all_S<tela[n].all_S) {
+						if ((!tela[i].k1 || tela[i].k2) && tela[i].all_S<tela[n].all_S) {
 							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							push_mem(i, 11);
 						}
@@ -1276,20 +1272,6 @@ void mark_tela(void)
 								break;
 							}
 						}
-					}
-				}
-			}
-			else if (!tela[n+1].ok) {
-				for (i=n+1; i<n+k; i++) {
-					if (tela[i].statf==st_fract.sym) {
-						for (j=i+1; j<lenseq; j++) {
-							if (tela[j].stat==st_parent.sym && tela[j].ok > tela[i].ok) {
-								clearall_tela(j, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-								push_mem(j, 9);
-								break;
-							}
-						}
-						break;
 					}
 				}
 			}
