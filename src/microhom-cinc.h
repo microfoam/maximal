@@ -243,12 +243,12 @@ int cinch_k(short unsigned int mode)
 		return(Cinch_K.pass_V);				/* RETURNS 0; Cinch_K.pass_V holds cumulative cinch-k runs. */
 	}
 
-	int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0, r=0;
+	int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0;
 	int first_mwrap_start=0, last_mwrap=0;
 	unsigned short int first_mwrap=0, keep_checking=1;
 	unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 	unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
-	unsigned short int homopolyflag=0, imperfect_TR=0, fractstat=0;
+	unsigned short int homopolyflag=0, imperfect_TR=0;
 	char letr, letr2, letr3;
 	char blnk = Fill->sym;				/* opt_B fill character */
 	int max_k = WIDTH/2;
@@ -300,7 +300,6 @@ int cinch_k(short unsigned int mode)
 			for (n = 0; align2D[m][n] != '\0'; n++) { 
 				keep_checking = 1;			/* THIS FLAG HANDLES THE CONTINUED NEED TO CHECK FOR INTRA-TR REPEATS   */
 				imperfect_TR = 0;			/* THIS FLAG IS TURNED ON (SET TO ONE) WHEN TR W/ TRANSITION MISMATCHES IS FOUND */
-				r = 0;
 				tela_n = tela_m + k;	/* SHORTER AND AVOIDS HAVING TO DO THIS SUM MANY TIMES */
 
 				if (!n && isalpha(align2D[m][0])) {
@@ -462,10 +461,6 @@ int cinch_k(short unsigned int mode)
 
 					homopolyflag = 0;		/* RESET */
 				} 
-
-				fractstat=0;
-				if (keep_checking && tela[tela_n].statf==st_fract.sym && (tela[tela_n].k1==k || tela[tela_n].ok==k))
-					fractstat = 1;
 
 				/* 9/9/2020 v4.35 mucho chowder but dramatic drop in WCR avg's */
 				if (nuctransit && keep_checking) {
