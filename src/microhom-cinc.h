@@ -666,13 +666,9 @@ int cyc_col=0, cyc_row=0, i, j, m=0, n=0;
 int lenseq = Clean.pass_W;
 int cyc_width = Current.pass_W;						/* THIS IS opt_W SLOT TO STORE CURRENT 2-D WIDTH */
 short unsigned int edge0=0;
-unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
-unsigned short int nuctransit=0, dud_nudge=0;		/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
+unsigned short int dud_nudge=0;
 char blnk = Fill->sym, letr;
 unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
-
-	if (nuctype == 1)	/* IF DNA */
-		nuctransit = 1;
 
 	clear_pathbox();
 	mha_writeback(align2D, pathbox);
