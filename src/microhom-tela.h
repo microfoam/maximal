@@ -1875,10 +1875,6 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 	int lenseq=Clean.pass_W;
 	int violation=0;
 
-	/* CHECK VALIDITY OF THE INPUT */
-	if (k<=0 || lenseq==0 || axioms<0 || axioms>3)
-		return(10);
-
 	if (axioms==1 || axioms==3) {
 		/* CHECK PRINCIPLE OF CONTINUITY */
 		for (i=0; i<k; i++) {
