@@ -668,8 +668,7 @@ int cyc_width = Current.pass_W;						/* THIS IS opt_W SLOT TO STORE CURRENT 2-D 
 short unsigned int edge0=0;
 unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 unsigned short int nuctransit=0, dud_nudge=0;		/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
-char blnk = Fill->sym;
-char letr, conletr, topletr;
+char blnk = Fill->sym, letr;
 unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 
 	if (nuctype == 1)	/* IF DNA */
@@ -685,23 +684,17 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 		edge0 = 1;
 
 	for (n = 0; n <= cyc_width; n++) {
-
-		conletr = align2D[MAXROW][n];
 		for (m = 1; align2D[m][0] != '\0' && m <= lenseq; m++) {
 			if (isalpha(letr=align2D[m][n])) {
-				if (nuctransit && (col_isclear(align2D,n,m,-1) == -1)) {
-					topletr = align2D[m][n];
-				}
-				else if (letr != pathbox[MAXROW][n] || edge0) {
+				if (letr != pathbox[MAXROW][n] || edge0) {
 					if (edge0) {
-						while (isalpha(align2D[m][0]) == 0 && m <= lenseq) {
+						while (isalpha(align2D[m][0])==0 && m<=lenseq)
 							m++;
-						}
+						while (align2D[0][n] == blnk)
+							n++;
+
 						cyc_row = m;	/* THIS IS ROW COORDINATE OF NON-CONSENSUS */
 						cyc_col = 0;	/* THIS IS COLUMN COORDINATE OF NON-CONSENSUS */
-						while (align2D[0][n] == blnk) {	/* SCOOCH RIGHT */
-								n++;
-						}
 						m = 0;			/* NEED TO RESET THIS TO FIRST ROW */
 					}
 					else {
