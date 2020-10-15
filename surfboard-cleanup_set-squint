@@ -20,6 +20,7 @@ fi
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
+	./maximal -KnxRD8 waves/squeegee/squint_27-xb3.txt	# ; b3-b6 washmach chowder (+/- x)
 
 	# solved: push new solved runs onto top of stack starting w/ solved-97 
 	./maximal -KnxR waves/squeegee/squint_26-xb3.txt	# solved-115 Removal of two clearall modules in mark_tela; -x b3/4 washmach chowder
