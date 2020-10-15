@@ -1108,7 +1108,7 @@ int main(int argc, char *argv[])
 							}
 							else {
 								Atr = Did = Dtr = TRcheck = sumspan = conflict_flag = 0;
-								int series;				/* POSITION OF SERIES OF PRODUCTS & SUMS OF PRODUCTS */
+								int series = n;				/* POSITION OF SERIES OF PRODUCTS & SUMS OF PRODUCTS */
 
 								if (imperfect_TR)
 									assign_transit(n,THREE); 	/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
