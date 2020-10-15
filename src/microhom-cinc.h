@@ -692,10 +692,6 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 				if (nuctransit && (col_isclear(align2D,n,m,-1) == -1)) {
 					topletr = align2D[m][n];
 				}
-				else if (nuctransit && ( (conletr=='R' && (letr=='A'||letr=='G') && (topletr=='A'||topletr=='G')) ||
-								         (conletr=='Y' && (letr=='C'||letr=='T') && (topletr=='C'||topletr=='T'))  )) {
-					;	/* NOTHING: GO TO NEXT m */
-				}
 				else if (letr != pathbox[MAXROW][n] || edge0) {
 					if (edge0) {
 						while (isalpha(align2D[m][0]) == 0 && m <= lenseq) {
@@ -851,18 +847,16 @@ int lenseq = Clean.pass_W;
 			}
 
 			for (l=0; l < k; l++) {
-				if (isalpha(letr=consensus[n  +l]) && 
-					isalpha(ltr2=consensus[n+k+l])) {
-					if (l+1<k && letr!=consensus[n+l+1]) {
+				letr=consensus[n  +l];
+				ltr2=consensus[n+k+l];
+				if (isalpha(letr=consensus[n+l]) && isalpha(ltr2=consensus[n+k+l])) {
+					if (l+1<k && letr!=consensus[n+l+1])
 						mono_flag = 0;		/* CAN NO LONGER BE A HOMOPOLYMER RUN OF FOR THIS k-MER */
-					}
 
-					if (letr == ambig.sym || ltr2 == ambig.sym) {
+					if (letr==ambig.sym || ltr2==ambig.sym)
 						break;
-					}
-					else if (num_transits > translimit) {
+					else if (num_transits > translimit)
 						break;
-					}
 					else if (nuctransit && k>2 && letr!=ltr2) {
 						if (     (letr == 'A' || letr == 'G') && (ltr2 == 'C' || ltr2 == 'T'))
 							break;
