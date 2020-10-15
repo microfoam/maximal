@@ -503,8 +503,7 @@ int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
 		}
 
 		for (m = 0; align2D[m][0] != '\0'; m++) {
-			if (isalpha(align2D[m][n])) {
-				letr=align2D[m][n];
+			if (isalpha(letr=align2D[m][n])) {
 				ltr2=toupper(letr);
 				if (nuctransit && ((conletr=='R' && (ltr2=='G' || ltr2=='A')) || (conletr=='Y' && (ltr2=='C' || ltr2=='T'))) ) {
 					if (conletr=='R') {
@@ -1263,7 +1262,7 @@ int   lenseq = Clean.pass_W;
 int head_start;							/* USE TO PASS RULER O-F-F-SET TO line_end() */
 int scrimmageline;						/* USE TO INCREMENT AND TEST IF FILLER IS NEEDED, CAN BE OPTION TO DO SO */
 char tick = fill10.sym;
-short unsigned int lcl_opt_F;
+short unsigned int lcl_opt_F = 0;
 
 	if (opt_B.val > 1)
 		tick = blnk;
