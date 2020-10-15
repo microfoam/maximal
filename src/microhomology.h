@@ -1252,7 +1252,7 @@ short unsigned int print_2Dseq(void)
 {
 unsigned int foam_2D(int n_start, int n_width);
 int all_clear;		/* COUNTER VARIABLE USED FOR CHECKING NEED TO PRINT BOTTOM ROWS */ 
-int blocks2D=0, b=0, c=0, carry_over=0, d=0, fudge=0, g, h, i, j, j_start, j_end, m, m_start=0, n;
+int blocks2D=0, b=0, c=0, carry_over=0, d=0, fudge=0, g, h, i, j, j_start=0, j_end, m, m_start=0, n;
 int mmsites=0, max_n=0;
 int linewrap = par_wrap.set;
 char letr, next;
