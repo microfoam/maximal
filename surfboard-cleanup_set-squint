@@ -16,14 +16,14 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 	# cinch-t originating 2-D conflict
-	./maximal -KnxRD8 waves/squeegee/squint_25-xb3.txt	# ; washmach chowder
 
 	# cinch-l originating 2-D conflict
 
 	# cinch-k originating 2-D conflict
-	./maximal -KnxRD8 waves/squeegee/squint_26-xb3.txt	# ; washmach chowder
+	./maximal -KnxRD8 waves/squeegee/squint_26-xb3.txt	# ; -x b3/4 washmach chowder
 
 	# solved: push new solved runs onto top of stack starting w/ solved-97 
+	./maximal -KnxR waves/squeegee/squint_25-xb3.txt	# solved-114 Removal of a clearall conflict module in mark_tela; xb3-only washmach chowder
 	./maximal -KnxR waves/squeegee/squint_24-xb3.txt	# solved-113 Additional low-complexity trigger in mark_tela(); xb3-only washmach chowder
 	./maximal -KnxR waves/squeegee/squint_23-xb3.txt	# solved-112 Adjustment to clearall module in mark_tela; washmach chowder b3--b6 
 	./maximal -KnxR waves/squeegee/squint_22-xb3.txt	# solved-111 Bug fix in mark_tela(); -x washmach crash string 
@@ -59,8 +59,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 26 (b=6): 0.444808 (26/26 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 26 (b=5): 0.442885 (26/26 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 26 (b=4): 0.426615 (26/26 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 25 (b=3): 0.421615 (26/26 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=6): 0.44     (28/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=5): 0.438214 (28/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=4): 0.425321 (27/28 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 28 (b=3): 0.418393 (27/28 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
