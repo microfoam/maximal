@@ -17,7 +17,7 @@ if [ -f $FILE ]; then
 	echo 'Number of tests completed:         ' | tr -d "\n"
 	grep -cE '^v' $FILE
 	echo 'Number of tests w/ PASS 1000:      ' | tr -d "\n"
-	grep -cE '\t1000' $FILE 
+	grep -cE $'\t1000' $FILE
 	echo 'Number of tests w/ REC. 1000:      ' | tr -d "\n"
 	grep -cE 'C.1000' $FILE 
 	echo 'Number of tests w/ nudging:        ' | tr -d "\n"
