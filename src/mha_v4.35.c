@@ -1432,7 +1432,7 @@ int main(int argc, char *argv[])
 							if (tela[i].k1 && i-tela[i].k1>=n+k*(r-1) && i+tela[i].k1>n+k*r) {
 								int Fract_k = tela[i].k1;
 								for (j=0; j<n+k*r-i; j++) {
-									if (tela[i+j].c!=tela[i+j+Fract_k].c) {
+									if (!tela[i].k2 && tela[i+j].c!=tela[i+j+Fract_k].c) {
 										tela[i].echoes = cyc_skip.sym;
 										break;
 									}
