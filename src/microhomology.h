@@ -313,7 +313,7 @@ struct segment * makesnake(char *array, int height, int width, int w_plus_rattle
 	int i, j;
 	int maxtop=0;
 	int maxbot=0;
-	char letr;
+	char letr='\0';
 
 	/* POPULATE FIRST COLUMN OF SNAKE STRUCT */
 	if (zcol) {
