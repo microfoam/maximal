@@ -810,7 +810,7 @@ int lenseq = Clean.pass_W;
 	}
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
-	for (k = Current.pass_W/2; k > 0; k--) {
+	for (k=Current.pass_W/2; k>0; k--) {
 		if (nuctransit) {
 			if (k > opt_b.val) {
 				if (opt_m.bit || opt_g.bit) {					/* opt_m OR opt_g ELECTED MAGIC MELTAGE OR GELLING */
@@ -931,6 +931,7 @@ int lenseq = Clean.pass_W;
 						}
 					}
 				}
+printf("\n\n 0b. cinch_d. Am here. k=%2d. n=%2d. first_write=%d.", k, n, first_write);
 			}
 	
 			while (TR_check) {
@@ -949,9 +950,9 @@ int lenseq = Clean.pass_W;
 				} /* END OF FOR l LOOP */
 
 				if (cinch_d_opt && !opt_d.bit) {	/* CINCH-D ENGINE IF NOT opt_d (SKIP-CINCH-D CINCHING) */
-printf("\n 1. cinch_d. Am here. Linux. n=%2d\n", n);
+printf("\n 1x. cinch_d. Am here. k=%2d. n=%2d. first_write=%d.", k, n, first_write);
 					if (first_write) {
-printf("\n 2. cinch_d. Am here. Linux. n=%2d\n", n);
+printf("\n 2x. cinch_d. Am here. k=%2d. n=%2d. first_write=%d.", k, n, first_write);
 						++Cinch_D.pass_R;
 
 						m = 0;
@@ -1034,6 +1035,8 @@ printf("\n 2. cinch_d. Am here. Linux. n=%2d\n", n);
 						}
 
 					} /* END OF IF first_write EQUALS ONE */
+					else
+						printf("\n 3x. cinch_d. Am here. k=%2d. n=%2d. first_write=%d.", k, n, first_write);
 				} /*********************************************************************************************/
 				else if (dev_print(CINCH,__LINE__)) {		/* ELSE IF PRE-CINCH-D AND DEV_PRINT OPTION */
 					if (imperfect_TR) 
