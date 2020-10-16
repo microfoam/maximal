@@ -203,7 +203,7 @@ struct {
 struct cinch {
 	int pass_Q;					/* Pass quality score                                               */
 	int pass_R;					/* Pass runs count; for Current this will hold cumulative bad slips */
-	int pass_V;					/* Pass runs value; pass-specific                                   */
+	int pass_V;					/* Pass runs value; pass counter                                    */
 	int pass_W;					/* Pass 2-D width                                                   */
 	int pass_H;					/* Pass 2-D height                                                  */
 } *Cinches[10],
