@@ -1576,14 +1576,11 @@ int main(int argc, char *argv[])
 
 	/********* 6. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
 	++Current.pass_V;
-
 	if (dev_print(MAIN,__LINE__)) {
-		if (nuctransit) {
+		if (nuctransit)
 			printf("Pre-cinch_d report (p = perfect, i = imperfect tandem repeat):\n");
-		}
-		else {
+		else
 			printf("Pre-cinch_d report:\n");
-		}
 	}
 	intraTR_reps = cinch_d(0);
 
@@ -1595,7 +1592,6 @@ int main(int argc, char *argv[])
 				break;
 			else
 				d_width = Current.pass_W;
-
 		}
 		Cinch_D.pass_V = Cinch_D.pass_R;
 	}
@@ -2012,7 +2008,7 @@ int main(int argc, char *argv[])
 		fp_out = fopen("Surf_wavereport.mha", "a");
 		fprintf(fp_out, "v%s\t%.20s\tb%d x%d\tP:%4d\tR:%4d\t%.3f\tNDG:%2d \tRND:%.*s\t%s (%d %s, %c)\t%s\n", 
 				version, time0+4, opt_b.val, opt_x.val, Current.pass_Q, Recover.pass_Q, ratio1, Nudge.pass_R, opt_X.val, "XX", 
-				file_name, Strand->sym, letr_unit, Strand->sym, dev_notes);
+				file_name, Clean.pass_W, letr_unit, Strand->sym, dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
