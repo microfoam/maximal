@@ -6,7 +6,7 @@ fi
 
 answer="n"
 
-./surfboard-Pop_up
+./surfboard-Pop_Up
 sed -n '92s/\(opt_b = \){0, \(.\).*/Transition matching threshold k-size: \1\2/p' src/microhomology.h 
 echo
 echo | tee -a Corduroy.log
