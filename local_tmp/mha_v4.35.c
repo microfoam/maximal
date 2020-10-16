@@ -1576,25 +1576,20 @@ int main(int argc, char *argv[])
 
 	/********* 6. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
 	++Current.pass_V;
-printf("\n 3a. Am here. Current.pass_V=%d.", Current.pass_V);
 	if (dev_print(MAIN,__LINE__)) {
-printf("\n 3b. Am here. Current.pass_V=%d.", Current.pass_V);
 		if (nuctransit) {
-printf("\n 3c. Am here. Current.pass_V=%d.", Current.pass_V);
 			printf("Pre-cinch_d report (p = perfect, i = imperfect tandem repeat):\n");
 		}
 		else {
-printf("\n 3d. Am here. Current.pass_V=%d.", Current.pass_V);
 			printf("Pre-cinch_d report:\n");
 		}
 	}
 	intraTR_reps = cinch_d(0);
 
 	if (intraTR_reps) {
-printf("\n 3e. Am here. Current.pass_V=%d.", Current.pass_V);
 		int d_width = Current.pass_W;
 		while (intraTR_reps > 0) {
-printf("\n 3f. Am here. Current.pass_V=%d.", Current.pass_V);
+printf("\n 3x. Am here. Current.pass_V=%d, intraTR_reps=%d.", Current.pass_V, intraTR_reps);
 			intraTR_reps = cinch_d(1);
 			if (Current.pass_W==d_width)
 				break;
