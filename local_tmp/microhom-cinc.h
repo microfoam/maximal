@@ -949,8 +949,9 @@ int lenseq = Clean.pass_W;
 				} /* END OF FOR l LOOP */
 
 				if (cinch_d_opt && !opt_d.bit) {	/* CINCH-D ENGINE IF NOT opt_d (SKIP-CINCH-D CINCHING) */
-printf("\n cinch_d. Am here. Linux");
+printf("\n 1. cinch_d. Am here. Linux");
 					if (first_write) {
+printf("\n 2. cinch_d. Am here. Linux");
 						++Cinch_D.pass_R;
 
 						m = 0;
