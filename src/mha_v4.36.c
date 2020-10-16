@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	int match      = MATCH;
 	int transition = TRANSITION;			
 	int mismatch   = MISMATCH;
-	char version[] = "4.35";				/* current development version number */
+	char version[] = "4.36";				/* current development version number */
 
 	int c=0, f=0, i=0; 
 	short unsigned int pairwise = 0;	

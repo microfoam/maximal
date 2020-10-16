@@ -5,10 +5,10 @@ MHA methodology is philosophically-distinct from gapped alignment in embracing l
 As a prototype implementation of MHA, the current versions of maximal feature a rich set of run options in order to encourage a free, open-minded, heuristics-friendly development cycle.
 Program options can be seen by running ./maximal without any options specified.
 
-Version v4.32 is the most recent stable (development) version.
-Version v3.64 is the version associated with the most recent preprint (see 'Pointbreak/' sub-directory).
-There have been two distinct preprints in each of the last two springs (2018 cinch pathfinding, and 2019 axiomatic struct conversion I),
-and a new one is in preparation for Spring 2020 (axiomatic struct conversion II).
+Version v4.36 is the current version and the first to be tested without any known issues on both Mac OSX and Linux platforms. 
+To compile for either platform, run the ./surfboard-Pop_Up script, which will produce an executable named 'maximal'.
+For development and testing purposes, two executable binaries are included ('maximal-OSX-binary' and 'maximal-LINUX-binary').
+To use these pre-compiled versions with any of the 'surfboard_lowercase_namespace' script, the appropriate binary can be copied or renamed to 'maximal'.
 
 Version numbers represent program development versions that increase in steps of 0.01.
 Version 4.00 is simply the 400th version in the development repository.
@@ -16,11 +16,9 @@ We are 'pre-release' of the first official release, a little bit of the 'journey
 Nonetheless, at this moment and this perspective, we can say that the construction work has moved up from the south-east and south-west and joined here,
 carried out by two great armies of workers, and some angels. 
 
-The file "maximal" currently corresponds to a MAC OS-compatible executible.
-Older code versions are saved in the "Pointbreak/" directory.
 Some of the file descriptions below may be a bit outdated but still convey the spirit of this project.
 
-Most of the scripts in this directory are for program development and testing purposes.
+Note: Most of the scripts in this directory are for program development and testing purposes.
 
 _______________________________________________
 FILES: surfboard-*
@@ -35,7 +33,7 @@ The surfboard-Pop_Up file is a compile script.
 The surfboard-cleanup_set-* files are for running benchmark tests. 
 Some of these are set with options to run each test automatically, 
 while others are set to run in a "visually-inspect" mode where the user is prompted to hit enter before each run.
-The surfboard-lazycouch runs all of the benchmark tests.
+The surfboard-powerwash runs all of the benchmark tests.
 
 The surfboard-getworked_rgdoll is the metaphorical washing machine, the turbulent surf in which a downed surfer gets rolled like a ragdoll.
 This script has been used to run the program on thousands of randomly shuffled biological sequences. 
@@ -85,4 +83,4 @@ If this file is present it has record of existing "tricksy" strings with problem
 Typically, this file is committed after a -XX Fischer-Yates run and is named with additional version and run information.
 _______________________________________________
 
-*Last updated*: 6/21/2020
+*Last updated*: 10/16/2020
