@@ -125,7 +125,7 @@ void signal_callback_handler(int signum)
 {
 	printf("  )--- Signal %d caught (2=SIGINT, 8=SIGFPE, 10=SIGBUS, 11=SIGSEGV).\n\n",signum);
 	fp_out = fopen("Surf_wavereport.mha", "a");
-	fprintf(fp_out, "---->\tCanceled run for %s with signal=%d (2=SIGINT, 8=SIGFPE, 10=SIGBUS, 11=SIGSEGV). Current.pass_V=%d, dev_notes: %s.\n", file_name, signum, Current.pass_V, dev_notes);
+	fprintf(fp_out, "---->\tCanceled run for %s with signal=%d (2=SIGINT, 8=SIGFPE, 10=SIGBUS, 11=SIGSEGV). Current.pass_V=%d, %s.\n", file_name, signum, Current.pass_V, dev_notes);
 	fclose(fp_out);
 	exit(signum);
 }
