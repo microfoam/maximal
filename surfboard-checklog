@@ -17,20 +17,20 @@ if [ -f $FILE ]; then
 	echo 'Number of tests completed:         ' | tr -d "\n"
 	grep -cE '^v' $FILE
 	echo 'Number of tests w/ PASS 1000:      ' | tr -d "\n"
-	grep -cE $'\t1000' $FILE
+	grep -cE 'P:1000' $FILE
 	echo 'Number of tests w/ REC. 1000:      ' | tr -d "\n"
-	grep -cE 'C.1000' $FILE 
+	grep -cE 'R:1000' $FILE 
 	echo 'Number of tests w/ nudging:        ' | tr -d "\n"
 	grep -cE -v 'NDG: 0' $FILE
 	echo
-	awk -F'[\t]' '{sum+=$5} END {print "WCR average: " sum/NR}' $FILE 
+	awk -F'[\t]' '{sum+=$6} END {print "WCR average: " sum/NR}' $FILE 
 	echo
 	echo 'Tests canceled (if any, w/ preceding run for context):'
 	grep -B1 Canceled $FILE | sed '/^--$/d'
 	echo 'Tests with PASS < 1000 (if any):'
-	grep ^v $FILE | grep -vE '\t1000' 
+	grep ^v $FILE | grep -vE 'P:1000' 
 	echo 'Tests with REC. < 1000 (if any):'
-	grep ^v $FILE | grep -vE 'REC:1000' 
+	grep ^v $FILE | grep -vE 'R:1000' 
 	echo 'Tests with nudging (if any):'
 	grep ^v $FILE | grep -vE 'NDG: 0' 
 	echo
