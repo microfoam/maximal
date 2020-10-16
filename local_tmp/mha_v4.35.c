@@ -1595,7 +1595,7 @@ printf("\n 3x. Am here. Current.pass_V=%d, intraTR_reps=%d.", Current.pass_V, in
 				break;
 			else
 				d_width = Current.pass_W;
-
+printf("\n 3y. Am here. Current.pass_V=%d, intraTR_reps=%d.", Current.pass_V, intraTR_reps);
 		}
 		Cinch_D.pass_V = Cinch_D.pass_R;
 	}
