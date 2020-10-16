@@ -810,7 +810,7 @@ int lenseq = Clean.pass_W;
 	}
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
-	for (k = Current.pass_W/2; k > 0; k--) {
+	for (k=Current.pass_W/2; k>0; k--) {
 		if (nuctransit) {
 			if (k > opt_b.val) {
 				if (opt_m.bit || opt_g.bit) {					/* opt_m OR opt_g ELECTED MAGIC MELTAGE OR GELLING */
@@ -915,19 +915,19 @@ int lenseq = Clean.pass_W;
 			/*  THESE HAVE LETTERS IN NEXT ROW UNDERNEATH FIRST UNIT.                */
 			if (TR_check) {
 				m = 0;
-				while (!isalpha(align2D[m][n+k])) {
+				while (m<height && !isalpha(align2D[m][n+k])) {
 					m++;
 				}
-				for (w=1; m+w < height && TR_check != 0; w++) {
-					for (x=0; x < n+k; x++) {
-						if (x==0 && align2D[m+w][0]=='\0') {
-							w = height; 	/* TO BREAK FOR w LOOP */
+				for (w=1; m+w<height && TR_check; w++) {
+					for (x=0; x<n+k; x++) {
+						if (!x && align2D[m+w][0]=='\0') {
+							w = height;		/* TO BREAK FOR w LOOP */
 							break;			/* TO BREAK FOR x LOOP */
 						}
 						else if (isalpha(align2D[m+w][x])) {
 							--tot_repeats;	/* DECREMENT COUNTER  */
 							TR_check = 0;	/* RESET BACK TO ZERO AND BREAK OUT OF FOR w LOOP */
-							break; 			/* BREAK OUT OF FOR x LOOP     */
+							break;			/* BREAK OUT OF FOR x LOOP     */
 						}
 					}
 				}
