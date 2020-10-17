@@ -42,21 +42,21 @@ fi
 for i in {1..10000}
 do
 	echo "                                                                                                                                                $i"
-	./maximal -Rn  -xX2 -S$i waves/seals/vnd_ex3_Dmela.txt
-	./maximal -Rn  -xX2 -S$i waves/seals/vnd_ex3_Derec.txt
-	./maximal -Rn  -xX2 -S$i waves/seals/vnd_ex3_Dbiar.txt
-	./maximal -Rn  -xX2 -S$i waves/seals/vnd_ex3_Danan.txt
-	./maximal -Rn  -xX2 -S$i waves/sharks/nab_DWME_Dmela.txt
-	./maximal -Rn  -xX2 -S$i waves/sharks/vnd_NEE_Dmela.txt
-	./maximal -Rn  -xX2 -S$i waves/sharks/vnd_NEE_Derec.txt
-	./maximal -Rn  -xX2 -S$i waves/sharks/vnd_NEE_Dbiar.txt
-	./maximal -RnC -xX2 -S$i waves/seals/vnd_ex3_Dsimu.txt
-	./maximal -RnC -xX2 -S$i waves/seals/vnd_ex3_Dyaku.txt
-	./maximal -RnC -xX2 -S$i waves/seals/vnd_ex3_Dsuzu.txt
-	./maximal -RnC -xX2 -S$i waves/seals/vnd_ex3_Dbipe.txt
-	./maximal -RnC -xX2 -S$i waves/sharks/vnd_NEE_Dsimu.txt
-	./maximal -RnC -xX2 -S$i waves/sharks/vnd_NEE_Dyaku.txt
-	./maximal -RnC -xX2 -S$i waves/sharks/vnd_NEE_Dsuzu.txt
+	./maximal -R  -xX2 -S$i waves/seals/vnd_ex3_Dmela.txt
+	./maximal -R  -xX2 -S$i waves/seals/vnd_ex3_Derec.txt
+	./maximal -R  -xX2 -S$i waves/seals/vnd_ex3_Dbiar.txt
+	./maximal -R  -xX2 -S$i waves/seals/vnd_ex3_Danan.txt
+	./maximal -R  -xX2 -S$i waves/sharks/nab_DWME_Dmela.txt
+	./maximal -R  -xX2 -S$i waves/sharks/vnd_NEE_Dmela.txt
+	./maximal -R  -xX2 -S$i waves/sharks/vnd_NEE_Derec.txt
+	./maximal -R  -xX2 -S$i waves/sharks/vnd_NEE_Dbiar.txt
+	./maximal -RC -xX2 -S$i waves/seals/vnd_ex3_Dsimu.txt
+	./maximal -RC -xX2 -S$i waves/seals/vnd_ex3_Dyaku.txt
+	./maximal -RC -xX2 -S$i waves/seals/vnd_ex3_Dsuzu.txt
+	./maximal -RC -xX2 -S$i waves/seals/vnd_ex3_Dbipe.txt
+	./maximal -RC -xX2 -S$i waves/sharks/vnd_NEE_Dsimu.txt
+	./maximal -RC -xX2 -S$i waves/sharks/vnd_NEE_Dyaku.txt
+	./maximal -RC -xX2 -S$i waves/sharks/vnd_NEE_Dsuzu.txt
 done
 
 echo
