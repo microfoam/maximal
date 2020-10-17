@@ -1,12 +1,14 @@
 #!/bin/bash
 
+if [ ! -f maximal ]; then
+	./surfboard-Pop_Up
+fi
 if [ -f Corduroy.log ]; then
         mv Corduroy.log local_tmp/
 fi
 
 answer="n"
 
-./surfboard-Pop_Up
 sed -n '92s/\(opt_b = \){0, \(.\).*/Transition matching threshold k-size: \1\2/p' src/microhomology.h 
 echo
 echo | tee -a Corduroy.log
