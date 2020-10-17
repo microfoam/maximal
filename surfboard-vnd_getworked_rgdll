@@ -27,8 +27,6 @@ if [ -f waves/foam_and_chowder.mha ]; then
         rm waves/foam_and_chowder.mha
 fi
 
-./surfboard-Pop_up
-
 for i in {1..10000}
 do
 	echo "                                                                                                                                                $i"
