@@ -2,6 +2,9 @@
 
 echo '                                               < Fisher-Yates D. mel. vnd exon 3 >' >> Corduroy.log
 
+if [ ! -f maximal ]; then
+	./surfboard-Pop_Up
+fi
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi

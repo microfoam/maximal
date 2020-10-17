@@ -1,6 +1,9 @@
 #!/bin/bash
 # This is a script to demonstrate equivalence mappings under MHA.
 
+if [ ! -f maximal ]; then
+	./surfboard-Pop_Up
+fi
 if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
