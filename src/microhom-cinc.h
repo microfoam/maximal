@@ -810,7 +810,7 @@ int lenseq = Clean.pass_W;
 	}
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
-	for (k=Current.pass_W/2; k>0; k--) {
+	for (k=Current.pass_W/2; k>1; k--) {
 		if (nuctransit) {
 			if (k > opt_b.val) {
 				if (opt_m.bit || opt_g.bit) {					/* opt_m OR opt_g ELECTED MAGIC MELTAGE OR GELLING */
@@ -1026,7 +1026,7 @@ int lenseq = Clean.pass_W;
 							consensus[i] = '\0';
 						} 
 
-						if (letr == Term->sym && j-delta_ncol-1 <= cidwidth) {
+						if (letr == Term->sym) {
 							Current.pass_W = j-delta_ncol-1;
 							mha_writeback(pathbox, align2D);
 						}
