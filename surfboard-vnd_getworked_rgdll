@@ -19,6 +19,16 @@ echo '                                               < vnd_getworked_ragdoll >' 
 
 uname -rmps >> Corduroy.log
 
+while getopts c option
+do
+case "${option}"
+in
+c) 	./surfboard-Pop_Up
+	sleep 2 # TO GIVE CHANCE TO SEE IF ANY COMPILE WARNINGS
+	;;
+esac
+done
+
 if [ ! -f maximal ]; then
 	./surfboard-Pop_Up
 fi
