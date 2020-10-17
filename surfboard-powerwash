@@ -1,5 +1,15 @@
 #!/bin/bash
 
+while getopts c option
+do
+case "${option}"
+in
+c)  echo 'with fresh compile (-c)' >> Corduroy.log
+    ./surfboard-Pop_Up
+    ;;  
+esac
+done
+
 if [ ! -f maximal ]; then
 	./surfboard-Pop_Up
 fi
