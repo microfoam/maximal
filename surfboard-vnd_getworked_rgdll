@@ -17,6 +17,8 @@
 
 echo '                                               < vnd_getworked_ragdoll >' >> Corduroy.log
 
+uname -rmps >> Corduroy.log
+
 if [ ! -f maximal ]; then
 	./surfboard-Pop_Up
 fi
