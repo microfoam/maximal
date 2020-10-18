@@ -22,7 +22,7 @@ answer="n"
 sed -n '92s/\(opt_b = \){0, \(.\).*/Transition matching threshold k-size: \1\2/p' src/microhomology.h 
 echo
 echo | tee -a Corduroy.log
-echo "$0: Hit <enter> to start cleanup_set-all. Or hit 'q' to quit script entirely."
+echo "$0: Hit <enter> to start cleanup_set-all (1/8). Or hit 'q' to quit script entirely."
 read -s -n1 answer
 
 if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
@@ -30,39 +30,31 @@ if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
 else
 	./surfboard-cleanup_set-all 
 
-	echo "$0: Hit <enter> to start cleanup_set-eatchowder."
-	read -s -n1 answer
-	./surfboard-cleanup_set-eatchowder 
-
-	echo "$0: Hit <enter> to start cleanup_set-eatchowdah."
-	read -s -n1 answer
-	./surfboard-cleanup_set-eatchowdah
-
-	echo "$0: Hit <enter> to start cleanup_set-eatnuggets."
-	read -s -n1 answer
-	./surfboard-cleanup_set-eatnuggets
-
-	echo "$0: Hit <enter> to start cleanup_set-sand_dunes."
+	echo "$0: Hit <enter> to start cleanup_set-sand_dunes (2/8)."
 	read -s -n1 answer
 	./surfboard-cleanup_set-sand_dunes 
 
-	echo "$0: Hit <enter> to start cleanup_set-churlychurly."
+	echo "$0: Hit <enter> to start cleanup_set-eatchowdah (3/8)."
+	read -s -n1 answer
+	./surfboard-cleanup_set-eatchowdah
+
+	echo "$0: Hit <enter> to start cleanup_set-eatchowder (4/8)."
+	read -s -n1 answer
+	./surfboard-cleanup_set-eatchowder 
+
+	echo "$0: Hit <enter> to start cleanup_set-churlychurly (5/8)."
 	read -s -n1 answer
 	./surfboard-cleanup_set-churlychurly 
 
-	echo "$0: Hit <enter> to start cleanup_set-squid."
-	read -s -n1 answer
-	./surfboard-cleanup_set-squid
-
-	echo "$0: Hit <enter> to start cleanup_set-squeegee."
+	echo "$0: Hit <enter> to start cleanup_set-squeegee (6/8)."
 	read -s -n1 answer
 	./surfboard-cleanup_set-squeegee
 
-	echo "$0: Hit <enter> to start cleanup_set-squirt."
+	echo "$0: Hit <enter> to start cleanup_set-squid (7/8)."
 	read -s -n1 answer
-	./surfboard-cleanup_set-squirt
+	./surfboard-cleanup_set-squid
 
-	echo "$0: Hit <enter> to start cleanup_set-squint."
+	echo "$0: Hit <enter> to start cleanup_set-squint (8/8)."
 	read -s -n1 answer
 	./surfboard-cleanup_set-squint
 fi

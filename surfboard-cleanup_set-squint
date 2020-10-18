@@ -1,6 +1,6 @@
 #!/bin/bash
 echo >> Corduroy.log
-echo '                                               < squint -- chowder >' >> Corduroy.log
+echo '                                               < squint -- -xb3 chowder >' >> Corduroy.log
 
 while getopts c option
 do
