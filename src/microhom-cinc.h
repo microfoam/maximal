@@ -796,6 +796,8 @@ int delta_mrow=0, delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, w=
 int cidwidth = Current.pass_W; 
 int height = Current.pass_H;		/* height slot */
 int translimit = 0;
+int kstart = 12; 	/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2; */
+static int nstart=0;
 unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;		/* CHECK MONO IN ORDER TO KNOW TO SKIP IT */
 unsigned short int nuctransit=0;						/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 unsigned short int imperfect_TR=0;
@@ -805,37 +807,32 @@ int lenseq = Clean.pass_W;
 
 	clear_pathbox();
 	nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA, TWO IF RNA */
-	if (nuctype == 1) {			/* IF DNA */
+	if (nuctype == 1)			/* IF DNA */
 		nuctransit = 1;
-	}
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
-	for (k=Current.pass_W/2; k>1; k--) {
+	for (k=kstart; k>1; k--) {
 		if (nuctransit) {
 			if (k > opt_b.val) {
-				if (opt_m.bit || opt_g.bit) {					/* opt_m OR opt_g ELECTED MAGIC MELTAGE OR GELLING */
+				if (opt_m.bit || opt_g.bit)				/* opt_m OR opt_g ELECTED MAGIC MELTAGE OR GELLING */
 					translimit = opt_m.val + TEMP;
-				}
-				else {
+				else
 					translimit = allowed_transits(k);
-				}
 			}
-			else {
+			else
 				translimit = 0;
-			}
 		}
 
-		for (n=0; n <= cidwidth-2*k; n++) {	
+		for (n=nstart; n<=cidwidth-2*k; n++) {
 			mono_flag = 1;			/* MONOMER RUN FLAG IS SET TO 0, WHEN NO LONGER POSSIBLE (ANY n != n+1) */
 	
-			if (TR_check == 0) 		/* RE-SET COUNTER FOR NUM */
+			if (!TR_check) 			/* RE-SET COUNTER FOR NUM (number of repeats, Albert-style +1 though ) */
 				num = 0;
 
-			if (nuctransit)	{		/* RE-SET COUNTER FOR NUMBER OF TRANSITIONS */
+			if (nuctransit)			/* RE-SET COUNTER FOR NUMBER OF TRANSITIONS */
 				num_transits = imperfect_TR = 0;
-			}
 
-			for (l=0; l < k; l++) {
+			for (l=0; l<k; l++) {
 				letr=consensus[n  +l];
 				ltr2=consensus[n+k+l];
 				if (isalpha(letr=consensus[n+l]) && isalpha(ltr2=consensus[n+k+l])) {
@@ -879,7 +876,6 @@ int lenseq = Clean.pass_W;
 					for (j=n+l; (letr=consensus[j+1])!='\0'; j++) {
 						consensus[j] = letr;
 					}
-					--Current.pass_W;
 					break; 
 				}
 				else if (letr!=ltr2) {
@@ -936,8 +932,13 @@ int lenseq = Clean.pass_W;
 			while (TR_check) {
 				++uniq_TRs;
 
+/*				if (!nstart && !cinch_d_opt)
+					nstart = n;
+				else
+					nstart = 0;
+*/
 				/* THIS PART JUST COUNTS REPEATS ADDITIONAL REPEATS, VAR num STARTS AT 2 */
-				for (l=0; l < k; l++) {
+				for (l=0; l<k; l++) {
 					if (consensus[n+l] != consensus[n+num*k+l]) {
 						TR_check = 0;	/* WILL BREAK OUT OF WHILE TR_check LOOP 		*/
 						break; 			/* BREAK OUT OF FOR l LOOP */
@@ -958,7 +959,7 @@ int lenseq = Clean.pass_W;
 						}
 
 						/* SCAN TELA STRUCT FOR COORDINATES */
-						for (l=0; l< lenseq; l++) {
+						for (l=0; l<lenseq; l++) {
 							if (tela[l].y==m && tela[l].x==n) {
 								break;
 							}
@@ -972,7 +973,7 @@ int lenseq = Clean.pass_W;
 						}
 
 						if (imperfect_TR) {
-							for (l=0; l < k; l++) {
+							for (l=0; l<k; l++) {
 								letr=consensus[n+l];
 								if (letr != consensus[n+k+l]) {
 									if (letr == 'A' || letr == 'G') 
@@ -992,7 +993,7 @@ int lenseq = Clean.pass_W;
 						delta_mrow = 1;
 
 						/* DEAL WITH LOOSE SLIP CONNECTIONS PRODUCED BY NUDGELIZING */
-						for (j = 0; j < n+k; j++) {
+						for (j=0; j<n+k; j++) {
 							if (pathbox[m][j] != blnk) {
 								break;
 							}
@@ -1004,8 +1005,8 @@ int lenseq = Clean.pass_W;
 								delta_mrow = 0;
 						}
 
-						for (i = m; i < MAXROW; i++) {
-							for (j = n+k; j <= Current.pass_W+1; j++) {
+						for (i=m; i<MAXROW; i++) {
+							for (j=n+k; j<=Current.pass_W+1; j++) {
 								letr = pathbox[i+delta_mrow][j-delta_ncol] = align2D[i][j];
 								if (letr==slip.sym || letr==monoR.sym) 
 									pathbox[i+delta_mrow][j-delta_ncol+1] = '\0';
@@ -1020,7 +1021,7 @@ int lenseq = Clean.pass_W;
 
 						if (nuctransit) {
 							/* SCOOCH CONSENSUS ROW TO THE LEFT TO REFLECT CINCHED WIDTH */
-							for (i = n+k; consensus[i+k] != '\0'; i++) {
+							for (i=n+k; consensus[i+k]!='\0'; i++) {
 								consensus[i] = consensus[i+k];
 							}
 							consensus[i] = '\0';
