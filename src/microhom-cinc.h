@@ -793,13 +793,11 @@ unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width);
 unsigned int cinch_d(short unsigned int cinch_d_opt)
 {
 int delta_mrow=0, delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, w=0, x=0, tot_repeats=0, uniq_TRs=0, num_transits=0;
-int cidwidth = Current.pass_W; 
-int height = Current.pass_H;		/* height slot */
+int height = Current.pass_H;
 int translimit = 0;
-int kstart = 12; 	/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2; */
-static int nstart=0;
-unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;		/* CHECK MONO IN ORDER TO KNOW TO SKIP IT */
-unsigned short int nuctransit=0;						/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
+int kstart = 12;	/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2 */
+unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;
+unsigned short int nuctransit=0;
 unsigned short int imperfect_TR=0;
 char letr, ltr2;
 char blnk = Fill->sym;
@@ -823,7 +821,7 @@ int lenseq = Clean.pass_W;
 				translimit = 0;
 		}
 
-		for (n=nstart; n<=cidwidth-2*k; n++) {
+		for (n=0; n<=Current.pass_W-2*k; n++) {
 			mono_flag = 1;			/* MONOMER RUN FLAG IS SET TO 0, WHEN NO LONGER POSSIBLE (ANY n != n+1) */
 	
 			if (!TR_check) 			/* RE-SET COUNTER FOR NUM (number of repeats, Albert-style +1 though ) */
@@ -932,11 +930,6 @@ int lenseq = Clean.pass_W;
 			while (TR_check) {
 				++uniq_TRs;
 
-/*				if (!nstart && !cinch_d_opt)
-					nstart = n;
-				else
-					nstart = 0;
-*/
 				/* THIS PART JUST COUNTS REPEATS ADDITIONAL REPEATS, VAR num STARTS AT 2 */
 				for (l=0; l<k; l++) {
 					if (consensus[n+l] != consensus[n+num*k+l]) {
@@ -1061,17 +1054,14 @@ int lenseq = Clean.pass_W;
 			return(0);
 		}
 		else if (tot_repeats > 1 && opt_K.bit && !opt_v.bit) {
-			cidwidth = Current.pass_W;
 			opt_K.bit = 0;					/* TMP ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
 			consensus_2D(0, Current.pass_W);
 			opt_K.bit = 1;					/* REASSIGN SETTING */
 		}
 		else if (tot_repeats&& opt_v.bit) {
-			cidwidth = Current.pass_W;
 			print_2Dseq();
 		}
 		else { 
-			cidwidth = Current.pass_W;
 			opt_K.bit = 0;					/* TMP ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
 			consensus_2D(0, Current.pass_W);
 			opt_K.bit = 1;					/* REASSIGN SETTING */
