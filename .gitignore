@@ -1,5 +1,7 @@
 # maximal-specific ignores
-local-tmp/**
+Corduroy.log
+Surf_wavereport.log
+maximal
 
 # Prerequisites
 *.d
