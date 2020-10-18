@@ -42,10 +42,6 @@ else
 	read -s -n1 answer
 	./surfboard-cleanup_set-eatnuggets
 
-	echo "$0: Hit <enter> to start cleanup_set-fractal_splits."
-	read -s -n1 answer
-	./surfboard-cleanup_set-fractal_splits 
-
 	echo "$0: Hit <enter> to start cleanup_set-sand_dunes."
 	read -s -n1 answer
 	./surfboard-cleanup_set-sand_dunes 
