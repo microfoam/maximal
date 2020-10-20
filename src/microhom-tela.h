@@ -1454,7 +1454,7 @@ void mark_tela(void)
 			int p,q;
 			for (i=0; i<tela[n].or; i++) {
 				for (j=min_k; j<tela[n].ok-1; j++) {
-					if (tela[(p=m+i*k+j)].ok != tela[(q=n+i*k+j)].ok && !tela[p].k2) { 
+					if (tela[(p=m+i*k+j)].ok != tela[(q=n+i*k+j)].ok && tela[n].statl != st_lowcm.sym && !tela[p].k2) {
 						if (tela[p].ok && tela[p].statf!=st_fract.sym) {
 							clearall_tela(p,1,-1, TWO);
 							push_mem(p, 12);
