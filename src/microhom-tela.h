@@ -1456,19 +1456,12 @@ void mark_tela(void)
 				for (j=min_k; j<tela[n].ok-1; j++) {
 					if (tela[(p=m+i*k+j)].ok != tela[(q=n+i*k+j)].ok && !tela[p].k2) { 
 						if (tela[p].ok && tela[p].statf!=st_fract.sym) {
-							clearall_tela(p,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-							if (tela[p].statf==st_fract.sym && tela[n].stat != st_cycle.sym) {
-								clearall_tela(n,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
-								tela[n].echoes = cyc_skip.sym;	/* MARK THIS SO CAN CHECK IN ANY CINCH MODULE TO SKIP */
-								push_mem(n, 13);
-							}
+							clearall_tela(p,1,-1, TWO);
 							push_mem(p, 12);
 						}
-
 						if (tela[q].ok) {
-							clearall_tela(q,1,-1, TWO);		/* O-F-F, ONE, OR TWO */
+							clearall_tela(q,1,-1, TWO);
 							push_mem(q, 13);
-							push_mem(n, 14);
 						}
 					}
 				}
