@@ -820,18 +820,35 @@ void mark_tela(void)
 				/* CHECK TO SEE IF THERE ARE CYCLING ISLANDS THAT ARE PARTIALLY FRACTAL TO A PARENT & CANCEL NON-FRACTAL PART IF SIMPLE. squid~34 */
 				if (Dtr) {
 					for (i=n+k-1; i>=n+min_k; i--) {
-						if (tela[i].k1 && (fract_k=tela[i].k1)<k && i-fract_k>=n && tela[i-k].ok==fract_k && i-k+tela[i-k].k1<=n) {
-							makefract(n,k,i-k);
-							if (tela[i-k-1].ok==fract_k) {
-								j = 1;
-								while (tela[i-k - j].ok == fract_k) {
-									push_mem(i-k - j,7);
-									clearall_tela(i-k - j++,1,-1,TWO);
+						if (tela[i].k1) {
+							short unsigned int checkmultiple = 1;	/* COLLAPSE TO 0 IF CHECK MULTIPLES FAILS */
+
+							if ((fract_k=tela[i].k1) && tela[n].k2 && !(k%fract_k) && !(tela[n].k2%fract_k)) {
+								for (l=1; l<k/fract_k; l++) {
+									if (tela[n+fract_k*l].k1 && !(tela[n+fract_k*l].k1 % fract_k)) {
+									}
+									else if (tela[n+fract_k*l].k2 && !(tela[n+fract_k*l].k2 % fract_k)) {
+									}
+									else
+										break;
 								}
-								j = 1;
-								while (tela[n+j].k1==k && i-fract_k<n+j) {
-									push_mem(n + j,7);
-									tela[n + j++].k1 = '\0';
+								if (l == (int) k/fract_k)
+									checkmultiple = 0;		/* PARENT REPEAT AT n IS AN ARTIFACT OF MULTIPLE REPEATS OF fract_k */
+							}
+
+							if (checkmultiple && tela[i].k1<k && i-fract_k>=n && tela[i-k].ok==fract_k && i-k+tela[i-k].k1<=n) {
+								makefract(n,k,i-k);
+								if (tela[i-k-1].ok==fract_k) {
+									j = 1;
+									while (tela[i-k - j].ok == fract_k) {
+										push_mem(i-k - j,12);
+										clearall_tela(i-k - j++,1,-1,TWO);
+									}
+									j = 1;
+									while (tela[n+j].k1==k && i-fract_k<n+j) {
+										push_mem(n + j,13);
+										tela[n + j++].k1 = '\0';
+									}
 								}
 							}
 						}
@@ -1587,8 +1604,16 @@ int lenseq = Clean.pass_W;
 		printf("%3c", tela[i].c);
 
 	printf("\n n:");
-	for (i=a; i<b; i++)
-		printf("%3d", i);
+	for (i=a; i<b; i++) {
+		if (i>99) {
+			if (i%5)
+				printf("  .");
+			else
+				printf("%3d", i);
+		}
+		else
+			printf("%3d", i);
+	}
 
 	if (Clean.pass_Q==1000) {
 		printf("\nLf:");
