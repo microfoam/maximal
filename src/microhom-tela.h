@@ -570,6 +570,23 @@ void makefract(int p, int k, int mf)
 	tela[mf].statf  = tela[mf+k].statf  = st_fract.sym;
 }
 
+/******** BOTTOM-UP k LOOP ****************/
+int get_unitk(int n)
+{
+	int i,k;
+
+	for (k=1; k<WIDTH/2; k++) {
+		if (n-k<0 || n+k>Clean.pass_W)
+			return(0);
+		for (i=n; i<n+k; i++) {
+			if (tela[i].c != tela[i-k].c)
+				break;
+		}
+		if (i==n+k)
+			return(k);
+	}
+	return(0);
+}
 
 /**************** FUNCTION TO MARK ALL POSSIBLE k-MERs BEFORE LEGACY CINCH-T PASS ******************************/
 void mark_tela(void) 
@@ -612,8 +629,18 @@ void mark_tela(void)
 
 				/* CHECK FOR HIGHER ORDER ARTIFACTS. EG., FOR [(GA)2]2 SKIP k=4 AND GO TO k=2 */
 				int unit_k;
-				if ((unit_k=next_k(n,k_tmp,nuctype)) && k_tmp==2*unit_k && tela[n-unit_k].k1==unit_k)
-					k = k1 = k_tmp = unit_k;
+				if ((unit_k=get_unitk(n)) && unit_k<k_tmp && !(k_tmp%unit_k)) {
+					m = n-k_tmp;
+					int loops = k_tmp/unit_k;
+					for (l=1; l<loops; l++) {
+						if (tela[m+l*unit_k].k1 != unit_k)
+							break;
+					}
+					if (l==loops) {
+						tela[n].k1 = unit_k;
+						break;
+					}
+				}
 
 				if ( (k_tmp && !checkfractals_in_imperfect(k_tmp,n)) ||
 					 (k1    && !checkfractals_in_imperfect(k1   ,n)) ) {
@@ -821,22 +848,7 @@ void mark_tela(void)
 				if (Dtr) {
 					for (i=n+k-1; i>=n+min_k; i--) {
 						if (tela[i].k1) {
-							short unsigned int checkmultiple = 1;	/* COLLAPSE TO 0 IF CHECK MULTIPLES FAILS */
-
-							if ((fract_k=tela[i].k1) && tela[n].k2 && !(k%fract_k) && !(tela[n].k2%fract_k)) {
-								for (l=1; l<k/fract_k; l++) {
-									if (tela[n+fract_k*l].k1 && !(tela[n+fract_k*l].k1 % fract_k)) {
-									}
-									else if (tela[n+fract_k*l].k2 && !(tela[n+fract_k*l].k2 % fract_k)) {
-									}
-									else
-										break;
-								}
-								if (l == (int) k/fract_k)
-									checkmultiple = 0;		/* PARENT REPEAT AT n IS AN ARTIFACT OF MULTIPLE REPEATS OF fract_k */
-							}
-
-							if (checkmultiple && tela[i].k1<k && i-fract_k>=n && tela[i-k].ok==fract_k && i-k+tela[i-k].k1<=n) {
+							if ((fract_k=tela[i].k1)<k && i-fract_k>=n && tela[i-k].ok==fract_k && i-k+tela[i-k].k1<=n) {
 								makefract(n,k,i-k);
 								if (tela[i-k-1].ok==fract_k) {
 									j = 1;
@@ -1001,9 +1013,7 @@ void mark_tela(void)
 							TRcheck = 0;
 						}
 					}
-					if (dev_print(TELA,__LINE__)) {
-						printf("At n = %2d for k = %2d, reps = %d (all_S=%d).", n,k,reps,tela[n].all_S);
-					}
+
 					/* v4.30: MARK FRACTAL TR'S FOR CINCH-T TO SKIP, AND LEAVE FOR CINCH-K */
 					if (n>=2*min_k) {
 						for (i=m+1; i<n; i++) {	
@@ -1604,15 +1614,21 @@ int lenseq = Clean.pass_W;
 		printf("%3c", tela[i].c);
 
 	printf("\n n:");
-	for (i=a; i<b; i++) {
-		if (i>99) {
-			if (i%5)
-				printf("  .");
-			else
-				printf("%3d", i);
-		}
-		else
+	if (b<100) {
+		for (i=a; i<b; i++)
 			printf("%3d", i);
+	}
+	else {
+		for (i=a; i<b; i++) {
+			if (i<b-1) {
+				if (i%10)
+					printf("   ");
+				else
+					printf("  |");
+			}
+			else
+				printf("  %d", i);
+		}
 	}
 
 	if (Clean.pass_Q==1000) {
@@ -2020,10 +2036,6 @@ int settle_tiescores(int n, int span, int max_score, int iteration)
 
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
-	}
-
-	if (dev_print(TELA,__LINE__)) {
-		printf("settle_tiescores() engaged at n=%d, max_score=%d, iteration=%d.", n, max_score, iteration);
 	}
 
 	for (i=n; i<n+span; i++) {
