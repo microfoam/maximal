@@ -462,15 +462,26 @@ int cinch_k(short unsigned int mode)
 					homopolyflag = 0;		/* RESET */
 				} 
 
+				if (keep_checking && k>1 && col_isclear(align2D,n,m,1)<0) {
+					int mabove = col_isclear(pathbox,n-x+k,m+cik_row,-1);
+					int nbelow = n+2*k;
+					int mbelow = col_isclear(align2D,nbelow,m, 1);
+					if (mabove>=0 && mbelow>0 && pathbox[mabove][n-x+k]!=align2D[mbelow][nbelow]) {
+						if (nuctransit && (unshifted[nbelow]=='R' || unshifted[nbelow]=='Y'))
+							;
+						else
+							keep_checking = 0;
+					}
+				}
+
 				/* 9/9/2020 v4.35 mucho chowder but dramatic drop in WCR avg's */
 				if (nuctransit && keep_checking) {
 					if (k==1 && (col_isclear(align2D,n  ,m,1)>0 || col_isclear(align2D,n  ,m,-1)>=0) &&
 						        (col_isclear(align2D,n+1,m,1)>0 || col_isclear(align2D,n+1,m,-1)>=0)) {
 						keep_checking = 0;
 					}
-					else if (k>2 && count_unique_chars(align2D[m]+n, 2*k)==2) {
+					else if (k>3 && count_unique_chars(align2D[m]+n, k)<3)
 						keep_checking = 0;
-					}
 				}
 
 				/* THIS BLOCK SPOTS NON-FRACTAL TRs AT NEXUS OF TWO OVERLAPPING AND/OR ABUTTING TRs AND SKIPS THEM */
