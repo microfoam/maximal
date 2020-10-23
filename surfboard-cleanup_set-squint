@@ -19,6 +19,16 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 # solved: push new solved runs onto top of stack starting w/ solved-97 
+./maximal -KnxR waves/squeegee/squint_28-xb3_1a-20pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./maximal -KnxR waves/squeegee/squint_29-xb3_1a-20pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./maximal -KnxR waves/squeegee/squint_30-xb3_1b-80pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./maximal -KnxR waves/squeegee/squint_31-xb3_1b-80pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./maximal -KnxR waves/squeegee/squint_32-xb3_1b-80pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./maximal -KnxR waves/squeegee/squint_33-xb3_2a-50pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./maximal -KnxR waves/squeegee/squint_34-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./maximal -KnxR waves/squeegee/squint_35-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./maximal -KnxR waves/squeegee/squint_36-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./maximal -KnxR waves/squeegee/squint_37-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
 ./maximal -KnxR waves/squeegee/squint_27-xb3.txt	# solved-116 Plus cinch_t() condition on k2; b3-b6 washmach chowder (+/- x)
 ./maximal -KnxR waves/squeegee/squint_26-xb3.txt	# solved-115 Removal of two clearall modules in mark_tela; -x b3/4 washmach chowder
 ./maximal -KnxR waves/squeegee/squint_25-xb3.txt	# solved-114 Removal of a clearall conflict module in mark_tela; xb3-only washmach chowder
@@ -57,8 +67,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 29 (b=6): 0.439207 (29/29 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 29 (b=5): 0.437483 (29/29 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 29 (b=4): 0.423759 (29/29 solved)' | tee -a Corduroy.log
-echo 'Commit WCR average of 29 (b=3): 0.414138 (29/29 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 39 (b=6): 0.421026 (39/39 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 39 (b=5): 0.421923 (39/39 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 39 (b=4): 0.410436 (39/39 solved)' | tee -a Corduroy.log
+echo 'Commit WCR average of 39 (b=3): 0.405308 (39/39 solved)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

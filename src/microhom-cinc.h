@@ -462,13 +462,17 @@ int cinch_k(short unsigned int mode)
 					homopolyflag = 0;		/* RESET */
 				} 
 
-				if (keep_checking && k>1 && col_isclear(align2D,n,m,1)<0) {
+				/* 10/22/2020 v4.36 churly23/24 resurrected */
+				if (OFF && keep_checking && k>1 && col_isclear(align2D,n,m,1)<0) {
 					int mabove = col_isclear(pathbox,n-x+k,m+cik_row,-1);
 					int nbelow = n+2*k;
 					int mbelow = col_isclear(align2D,nbelow,m, 1);
-					if (mabove>=0 && mbelow>0 && pathbox[mabove][n-x+k]!=align2D[mbelow][nbelow]) {
-						if (nuctransit && (unshifted[nbelow]=='R' || unshifted[nbelow]=='Y'))
-							;
+					if (mabove>=0 && mbelow>0 && (letr2=pathbox[mabove][n-x+k])!=(letr3=align2D[mbelow][nbelow])) {
+						if (nuctransit && ((letr=unshifted[n])=='R' || letr=='Y' || (letr=unshifted[nbelow])=='R' || letr=='Y')) {
+							if ((letr=='R' && (letr2=='C'|| letr2=='T' || letr3=='C'|| letr3=='T')) ||
+								(letr=='Y' && (letr2=='A'|| letr2=='G' || letr3=='A'|| letr3=='G')))
+								keep_checking = 0;
+						}
 						else
 							keep_checking = 0;
 					}
@@ -480,7 +484,9 @@ int cinch_k(short unsigned int mode)
 						        (col_isclear(align2D,n+1,m,1)>0 || col_isclear(align2D,n+1,m,-1)>=0)) {
 						keep_checking = 0;
 					}
-					else if (k>3 && count_unique_chars(align2D[m]+n, k)<3)
+					else if (OFF && k==3 && count_unique_chars(align2D[m]+n,k)<2)
+						keep_checking = 0;
+					else if (k>2 && count_unique_chars(align2D[m]+n,k)<3) /* HARSH BUT SAFER ATM 10/22/2020 */
 						keep_checking = 0;
 				}
 
