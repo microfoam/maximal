@@ -616,7 +616,7 @@ void mark_tela(void)
 			k = k_tmp = next_k(n,k,nuctype);
 			if (k_tmp<0) {
 				k = abs(k_tmp);
-				k1 = next_k(n,k_tmp,nuctype);
+				k1 = next_k(n,k,nuctype);
 				if (!k1 || k!=2*k1)		/* SLIGHT BENCHMARK WIGGLE W/ FULL MOD TEST k%k1 INSTEAD OF k!=2*k1 */
 					tela[n].impk = k_tmp;
 				else if (k1>0)

@@ -8,8 +8,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.36	Dec  3 19:51:48 2020	b5 x0	P:1000	R:1000	0.514	NDG: 0 	RND:	waves/seals/vnd_ex3_Dmela.txt (956 bp, +)	 
-v4.36	Dec  3 19:52:21 2020	b5 x1	P:1000	R:1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (44 bp, -)	 
+v4.36	Dec  3 20:41:30 2020	b5 x0	P:1000	R:1000	0.514	NDG: 0 	RND:	waves/seals/vnd_ex3_Dmela.txt (956 bp, +)	 
+v4.36	Dec  3 20:42:04 2020	b5 x1	P:1000	R:1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (44 bp, -)	 
 
 Number of tests initiated:         816
 Number of tests completed:         816
@@ -33,10 +33,10 @@ Line counts:
     1747 src/microhomology.h
     7412 total
 
-Commit WCR avgs (b=6): 0.520336 <-> 0.520002 (chowder-free)
-Commit WCR avgs (b=5): 0.516554 <-> 0.516429 (chowder-free)
-Commit WCR avgs (b=4): 0.509134 <-> 0.509083 (chowder-free)
-Commit WCR avgs (b=3): 0.492551 <-> 0.492521 (chowder-free)
+Commit WCR avgs (b=6): 0.520002 (chowder-free)
+Commit WCR avgs (b=5): 0.516429 (chowder-free)
+Commit WCR avgs (b=4): 0.509083 (chowder-free)
+Commit WCR avgs (b=3): 0.492495 (chowder-free)
 
 
                                                < sand_dunes >
@@ -47,8 +47,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.36	Dec  3 19:52:45 2020	b5 x0	P:1000	R:1000	0.590	NDG: 0 	RND:	waves/tubespit/seq-017-variant.txt (39 bp, +)	 
-v4.36	Dec  3 19:52:46 2020	b5 x0	P:1000	R:1000	0.136	NDG: 0 	RND:	waves/chowder/abba_zabba_4.txt (22 ch, +)	 
+v4.36	Dec  3 20:42:23 2020	b5 x0	P:1000	R:1000	0.590	NDG: 0 	RND:	waves/tubespit/seq-017-variant.txt (39 bp, +)	 
+v4.36	Dec  3 20:42:24 2020	b5 x0	P:1000	R:1000	0.136	NDG: 0 	RND:	waves/chowder/abba_zabba_4.txt (22 ch, +)	 
 
 Number of tests initiated:         30
 Number of tests completed:         30
@@ -84,8 +84,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.36	Dec  3 19:52:50 2020	b5 x0	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
-v4.36	Dec  3 19:52:52 2020	b5 x0	P:1000	R:1000	0.590	NDG: 0 	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:26 2020	b5 x0	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:29 2020	b5 x0	P:1000	R:1000	0.590	NDG: 0 	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
 
 Number of tests initiated:         82
 Number of tests completed:         82
@@ -123,8 +123,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.36	Dec  3 19:53:00 2020	b5 x0	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
-v4.36	Dec  3 19:53:02 2020	b5 x0	P:1000	R:1000	0.570	NDG: 0 	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:33 2020	b5 x0	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:35 2020	b5 x0	P:1000	R:1000	0.570	NDG: 0 	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
 
 Number of tests initiated:         82
 Number of tests completed:         82
@@ -162,8 +162,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.36	Dec  3 19:53:06 2020	b5 x0	P:1000	R:1000	0.400	NDG: 0 	RND:	waves/chowder/nugget-42356.txt (100 bp, +)	 
-v4.36	Dec  3 19:53:07 2020	b5 x0	P:1000	R:1000	0.540	NDG: 0 	RND:	waves/chowder/churly-38.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:38 2020	b5 x0	P:1000	R:1000	0.400	NDG: 0 	RND:	waves/chowder/nugget-42356.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:39 2020	b5 x0	P:1000	R:1000	0.540	NDG: 0 	RND:	waves/chowder/churly-38.txt (100 bp, +)	 
 
 Number of tests initiated:         49
 Number of tests completed:         49
@@ -201,8 +201,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.36	Dec  3 19:53:09 2020	b5 x1	P:1000	R:1000	0.530	NDG: 0 	RND:	waves/squeegee/squee006.txt (100 bp, +)	 
-v4.36	Dec  3 19:53:11 2020	b5 x1	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/squeegee/squee282.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:42 2020	b5 x1	P:1000	R:1000	0.530	NDG: 0 	RND:	waves/squeegee/squee006.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:44 2020	b5 x1	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/squeegee/squee282.txt (100 bp, +)	 
 
 Number of tests initiated:         58
 Number of tests completed:         58
@@ -240,8 +240,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.36	Dec  3 19:53:13 2020	b5 x1	P:1000	R:1000	0.570	NDG: 0 	RND:	waves/squeegee/squirt_40-b3.txt (100 bp, +)	 
-v4.36	Dec  3 19:53:14 2020	b5 x1	P:1000	R:1000	0.580	NDG: 0 	RND:	waves/squeegee/squid~24.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:46 2020	b5 x1	P:1000	R:1000	0.570	NDG: 0 	RND:	waves/squeegee/squirt_40-b3.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:48 2020	b5 x1	P:1000	R:1000	0.580	NDG: 0 	RND:	waves/squeegee/squid~24.txt (100 bp, +)	 
 
 Number of tests initiated:         67
 Number of tests completed:         67
@@ -268,7 +268,7 @@ Line counts:
 Commit WCR average of 67 (b=6): 0.502761 (chowder-free)
 Commit WCR average of 67 (b=5): 0.498134 (chowder-free)
 Commit WCR average of 67 (b=4): 0.496045 (chowder-free)
-Commit WCR average of 67 (b=3): 0.471716 (chowder-free)
+Commit WCR average of 67 (b=3): 0.471567 (chowder-free)
 
 
                                                < squint -- -xb3 chowder >
@@ -279,8 +279,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.36	Dec  3 19:53:17 2020	b5 x1	P:1000	R:1000	0.490	NDG: 0 	RND:	waves/squeegee/squint_28-xb3_1a-20pcGC.txt (100 bp, +)	 
-v4.36	Dec  3 19:53:18 2020	b5 x1	P:1000	R:1000	0.450	NDG: 0 	RND:	waves/squeegee/squint_01-xb3.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:53 2020	b5 x1	P:1000	R:1000	0.490	NDG: 0 	RND:	waves/squeegee/squint_28-xb3_1a-20pcGC.txt (100 bp, +)	 
+v4.36	Dec  3 20:42:54 2020	b5 x1	P:1000	R:1000	0.450	NDG: 0 	RND:	waves/squeegee/squint_01-xb3.txt (100 bp, +)	 
 
 Number of tests initiated:         39
 Number of tests completed:         39
@@ -307,5 +307,5 @@ Line counts:
 Commit WCR average of 39 (b=6): 0.421026 (39/39 solved)
 Commit WCR average of 39 (b=5): 0.421923 (39/39 solved)
 Commit WCR average of 39 (b=4): 0.410436 (39/39 solved)
-Commit WCR average of 39 (b=3): 0.405308 (39/39 solved)
+Commit WCR average of 39 (b=3): 0.402308 (39/39 solved)
 
