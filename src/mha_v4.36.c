@@ -941,19 +941,6 @@ int main(int argc, char *argv[])
 						}
 					}
 	
-					/* SOMETIMES MARK_TELA() CANCELED A HIGHER IMPERFECT K-MER AT THIS COLUMN: NEED TO CHECK AND DEAL ACCORDINGLY */
-					if (imperfect_TR && Dtr && k!=tela[n].ok)
-						Dtr = imperfect_TR = 0;
-					else if (Dtr) {
-						int nk=next_k(n,k,1);
-						while (nk && (nk=next_k(n,abs(nk),1))) {
-							if (nk>0)
-								break;
-						}
-						if (nk && tela[n+nk].k1==nk)
-							Dtr = 0;
-					}
-
 					/* IF SUMMING PATHBOX DIAGONAL 6/: START COUNTING REPEATS */
 					if (Dtr && (Dtr==Did || imperfect_TR)) {
 						/* COUNT NUMBER OF REPEATS ALBERT-STYLE */
