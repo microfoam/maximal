@@ -941,24 +941,6 @@ int main(int argc, char *argv[])
 						}
 					}
 	
-					/* IF SUMMING PATHBOX DIAGONAL 5/: SKIP CINCH IF IMPERFECT WHILE CONTAINING PERFECT TR AT SAME SITE OF SMALLER K */
-					if (imperfect_TR && tela[n].or < 2) {
-						for (l=k/2; l>1; l--) {
-							for (i=0; i<l; i++) {
-								if (tela[n-l+i].c != tela[n+i].c)
-									break;	
-							}
-							if (i==l) {
-								if (dev_print(MAIN,__LINE__))
-									printf("Skipping imperfect TR (k=%d) in favor of smaller perfect k-mer (k=%d) at same site n=%d.", k,l,n);
-								Dtr = imperfect_TR = 0;
-								tela[n].X = '\0';
-								m = n-l - 1;			/* TAKE ADVANTAGE OF KNOWN PERFECT SMALLER k-MER & ADVANCE ROW; -1 B/C UPCOMING INCREMENT */
-								break;
-							}
-						}
-					}
-	
 					/* SOMETIMES MARK_TELA() CANCELED A HIGHER IMPERFECT K-MER AT THIS COLUMN: NEED TO CHECK AND DEAL ACCORDINGLY */
 					if (imperfect_TR && Dtr && k!=tela[n].ok)
 						Dtr = imperfect_TR = 0;
