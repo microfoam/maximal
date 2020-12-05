@@ -27,7 +27,6 @@
 
 void 				dev_linehead(int mode, int line_no);
 short unsigned int	dev_print(short unsigned int mode, int line_no);
-void 				devprint_pathbox(int num);
 void 				dev_prompt(short unsigned int mode, int line_no, char *filename);
 void 				signal_callback_handler(int signum);
 
@@ -89,34 +88,6 @@ void dev_linehead(int mode, int line_no)
 
 	printf("\nDEV-%s-%4d: ", section_label, line_no);
 
-}
-/***************************************/
-
-/***************************************/
-void devprint_pathbox(int num)
-{
-	char letr;
-	int i, j;
-
-	printf("\n DEV-%d pathbox:", num);
-	for (i=0; pathbox[i][0] != '\0'; i++) {
-		printf("\n ");
-		for (j=0; j<=Clean.pass_W; j++) {
-			letr = pathbox[i][j];
-			if (letr=='\0')
-				printf("*");
-			else	
-				printf("%c", pathbox[i][j]);
-		}
-	}
-		for (j=0; j<=Clean.pass_W; j++) {
-			letr = pathbox[i][j];
-			if (letr=='\0')
-				printf("*");
-			else	
-				printf("%c", pathbox[i][j]);
-		}
-	printf("\n");
 }
 /***************************************/
 
