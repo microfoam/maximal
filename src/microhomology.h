@@ -8,7 +8,7 @@
 #define TEMP		2		/* SETS MAGIC MELT TEMP; SETS LOWER BOUND FOR MELTAGE opt_m; UNELECTED, DEFAULT ACTS AS TEMP=1 */
 #define CYCMAX     60       /* SEMI-MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER EMBEDDED DECISIONS */
 #define MAXROW   2800       /* maximum input line size; TAGGED: <MAGIC> BASED ON WHAT MY 'PUTERS CAN DO AS CURRENTLY WRITTEN */
-#define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */ 
+#define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */
 #define MEMROWS    20       /* NUMBER OF mem[MEMROWS] ROWS IN STRUCT COORD ARRAY TELA */
 							/* USE 1: BIT (0/1) VALUES FOR MARK_TELA MARKS ASSOCIATED WITH A SINGLE LOOP OF CLEAR_ALL PRECEDENCE */
 							/* USE 2: NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
@@ -58,7 +58,7 @@ struct coord {
 						/* one row/frame; row 0 is row # locator; MEMROWS IS BASED ON MEM AL. */
 	int ok;			/* ALL SERIES: PRE-CINCH-T: OPERATIONAL k-MER SIZE (prev. all_k)*/
 	int or;			/* ALL SERIES: PRE-CINCH-T: REPEAT NUMBER (prev. all_r)       	*/
-	int k0;			/* ALL SERIES: PRE-CINCH-T: k-MER; largest k at pos. n, undone	*/	
+	int k0;			/* ALL SERIES: PRE-CINCH-T: k-MER; largest k at pos. n, undone	*/
 	int k1;			/* ALL SERIES: PRE-CINCH-T: k-MER; largest k at pos. n        	*/
 	int k2;			/* ALL SERIES: PRE-CINCH-T: k-MER; smaller k at pos. n        	*/
 	int impk;		/* ALL SERIES: PRE-CINCH-T: imperfect k-mer not called for k1	*/
@@ -81,13 +81,13 @@ struct coord {
 
 /* This unnamed struct type organizes run command options read in main() */
 struct {
-	int		bit;				/* ON/OFF bit switch    */
-	int 	val;				/* incrementable value  */
-	char	sym;				/* option letter symbol */
-	char	description[64];	/* usage description    */
+	int		bit;				/* O-N / O-F-F bit switch   */
+	int 	val;				/* incrementable value  	*/
+	char	sym;				/* option letter symbol 	*/
+	char	description[64];	/* usage description    	*/
 
 }	*Options[53] = {},
-                           /*.........|.........|.........|.........|.........|.........|...X*/	
+                           /*.........|.........|.........|.........|.........|.........|...X*/
 	opt_a = {0, 2, 'a', 	"Cinch-k mode 2: all k (default); 1: k=1 only; 0: skip all k.*3 "},
 	opt_b = {0, 6, 'b', 	"Change default k-floor; starts transition matching above this.*"},
 	opt_c = {0, 0, 'c', 	"Show base 62 single character code used for k-size and number. "},
@@ -140,18 +140,18 @@ struct {
 	opt_X = {0, 0, 'X', 	"Scramble sequence with basic or Fisher-Yates randomization.*2  "},
 	opt_Y = {0, 0, 'Y', 	"Set Fisher-Yates length (FY_size) specified by run argument.   "},
 	opt_Z = {0, 0, 'Z', {0}};
-                           /*.........|.........|.........|.........|.........|.........|...X*/	
+                           /*.........|.........|.........|.........|.........|.........|...X*/
 
 
 /* This unnamed struct type organizes deep program settings with pleiotropic effects. */
-struct {	
+struct {
 	int 	set;				/* program setting       */
 	char	units[8];			/* parameter units       */
 	char	description[64];	/* parameter description */
 	char	runopt[8];			/* related run option    */
 
 }	*Parms[2] = {},
-                   /*.......X  .........|.........|.........|.........|.........|.........|...X*/	
+                   /*.......X  .........|.........|.........|.........|.........|.........|...X*/
 	par_piso = {  5, "char",    "Sets the floor for transition scoring above this k-mer size.  ", "opt_x"},
 	par_wrap = {100, "columns", "Sets screen wrap length for 2-D alignment.                    ", "opt_u"};
 
@@ -228,7 +228,7 @@ struct segment {
 };
 
 char align2D[MAXROW+1][MAXROW] = {{0}};
-char pathbox[MAXROW+1][MAXROW] = {{0}};
+char * cinch2D = NULL;
 char consensus[MAXROW] = {0};
 char file_name[255] = "internal_default";
 char dev_notes[32] = " ";      		    /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
@@ -238,41 +238,44 @@ FILE *fp_out;                           /* FILE FOR OUTPUT.LOG */
 int nudgecolmem = -1;					/* LAST NUDGE COLUMN */
 
 void 				clear_2D_ar(char wipe_align2D[][MAXROW]);
+void 				clear_cinch2D(void);
 void 				clear_right(char swipe_align2D[][MAXROW]);
-int 				col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short int updown); 
+int 				col_isclear(  char  check_array[][MAXROW], unsigned int at_n, int row, short int updown);
+int 				col_isclear1D(char *check_array          , unsigned int at_n, int row, short int updown);
 unsigned int 		consensus_2D(int n_start, int n_width);
-int 				count_wrap_blocks(int lcl_width, int lcl_opt_w);	/* lcl_width IS WIDTH OF 2-D MHA ARRAY */ 
+int 				count_wrap_blocks(int lcl_width, int lcl_opt_w);	/* lcl_width IS WIDTH OF 2-D MHA ARRAY */
 int 				get_1Dz(int x, int y, int ignoreCheck);
 void 				line_end(int type, int c, int lcl_width);
 char 				mha_base62(int num);
 void 				mha_head(int lcl_width);
-void 				mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
-void 				mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW]);
-void 				mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW]);
-void 				mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW]);
+void 				mha_writeback(char lcl_align2D[][MAXROW], char align2D[][MAXROW]);
+void 				mha_writeback_1Dto2D(char *cinch2D, char align2D[][MAXROW]);
+void 				mha_writeback_2Dto1D(char lcl_align2D[][MAXROW], char *cinch2D);
+void 				mha_writeconsensus1D(char *align2D_one, char consensus1D[MAXROW]);
+int 				mn1D(int row, int col);
 void 				print1D(void);
 short unsigned int	print_2Dseq(void);
 void 				print_blockhead(int numbl, int totbl);
 void				print_protein_waxes(void);
-short int 			pushdown(char pusharray[][MAXROW], int push_m, int push_n); 
+short int 			pushdown(char pusharray[][MAXROW], int push_m, int push_n);
 int 				span_ork(int point);
 int 				span_rk(int point);
-void 				warnhead(char l); 
+void 				warnhead(char l);
 short unsigned int 	recoverlen(void);
 short unsigned int	cleanseq(char *s);
 void 				mha_randomize1(char *input_seq);
 void 				mha_randomize2(char *input_seq, int rsize);
 void 				print_base62_table(void);
 void 				shuffle(int *array, int n);
-void 				usage(char *usage_version);	/* FOR PRINTING UNIFORM USAGE INFORMATION */
-char 				*nmer_prefix(int i);		/* CONVERTS INTEGER TO N-MER PREFIX WRITTEN NAME */
+void 				usage(char *usage_version);	/* FOR PRINTING UNIFORM USAGE INFO */
+char 				*nmer_prefix(int i);		/* SWITCHES INTEGER TO N-MER PREFIX WRITTEN NAME */
 void 				free_2D(int **p2D, int lenseq);
 struct segment 		makesegment(int top, int bottom);
 struct segment * 	makesnake(char *array, int height, int width, int w_plus_rattle, short unsigned int zcol);
 short unsigned int 	checkfractals_in_imperfect(int kmer, int n);
 void 				print_section_spacer(void);
 
-#include "microhom-devl.h"	
+#include "microhom-devl.h"
 
 int count_unique_chars(char *string, int window)
 {
@@ -353,21 +356,21 @@ struct segment * makesnake(char *array, int height, int width, int w_plus_rattle
 		snake[j+zcol].belly = maxbot;
 		snake[j+zcol].topc = Term->sym;
 	}
-	
+
 	return(snake);
 }
 
 
 
 /*****************************************************************************************/
-static int random_i(int n) 
+static int random_i(int n)
 {
 int limit = RAND_MAX - RAND_MAX % n;
 int rnd;
 
 	do {
 		rnd = rand();
-    } 
+    }
     while (rnd >= limit);
 
     return rnd % n;
@@ -415,6 +418,15 @@ char *aptr = aptr_start;
 }
 /*****************************************************************************************/
 
+
+/** INVOKE PRIOR TO RE-USING CINAR2D - CINCH ARRAY 2D **/
+void clear_cinch2D(void)
+{
+	for (int i=0; i<(Cinch_T.pass_W+1)*Clean.pass_W; i++)
+		cinch2D[i] = '\0';
+}
+
+
 /*****************************************************************************************/
 void clear_right(char swipe_align2D[][MAXROW])
 {
@@ -447,34 +459,35 @@ char *aptr = aptr_start;
 }
 /*****************************************************************************************/
 
+
 /*****************************************************************************************/
 unsigned int consensus_2D(int n_start, int n_width)
 {
-int badsites=0, m=0, n=0, n_end, x=1;
-int con_width = Current.pass_W;
-short unsigned int nuctype = Clean.pass_V;			/* FOR SEQ TYPE, DNA=1, RNA=2, OTHER (NON-NA)=0 */
-short unsigned int nuctransit = 0;					/* BIT FLAG FOR HANDLING NUCLEAR TRANSITIONS */ 
-short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
-short unsigned int checktransit=0;					/* BIT FLAG FOR CHECKING GOOD TRANSITION MARK */
-char blnk = Fill->sym; 
-char letr, ltr2, conletr;
-char checktransletr=blnk;
-int conrows = 26; 						/* COL   n=0 FOR BIT FLAG */
-int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
-										/* ROW   m=1 FOR CONSENSUS */
-										/* ROWS 2-24 FOR VARIANTS STORAGE */
-										/* ROW  m=25 FOR CHECKTRANSITS UNICODE */
+	int badsites=0, m=0, n=0, n_end, x=1;
+	int con_width = Current.pass_W;
+	short unsigned int nuctype = Clean.pass_V;			/* FOR SEQ TYPE, DNA=1, RNA=2, OTHER (NOT NA)=0 */
+	short unsigned int nuctransit = 0;					/* BIT FLAG FOR HANDLING NUCLEAR TRANSITIONS */
+	short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
+	short unsigned int checktransit=0;					/* BIT FLAG FOR CHECKING GOOD TRANSITION MARK */
+	char blnk = Fill->sym;
+	char letr, ltr2, conletr;
+	char checktransletr=blnk;
+	int conrows = 26; 						/* COL   n=0 FOR BIT FLAG */
+	int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
+											/* ROW   m=1 FOR CONSENSUS */
+											/* ROWS 2-24 FOR VARIANTS STORAGE */
+											/* ROW  m=25 FOR CHECKTRANSITS UNICODE */
 	n_end = n_start + n_width;
 
 	if (nuctype == 1)	/* IF DNA */
 		nuctransit = 1;
 
 	/* FILL CONSENSUS ARRAY WITH FIRST LETTER IN EACH COL */
-	for (n = 0; n <= con_width; n++) {
-		for (m = 0; m < MAXROW; m++) {
-			if ( (isalpha(letr=align2D[m][n]))) {
+	for (n=0; n<=con_width; n++) {
+		for (m=0; m<Clean.pass_W; m++) {
+			if (isalpha(letr=align2D[m][n])) {
 				consensus_ar[0][n+1]++;
-				if ( letr <= 'Z' || (nuctype && letr==ambig.sym) )  
+				if (letr <= 'Z' || (nuctype && letr==ambig.sym))
 					consensus_ar[1][n+1] = letr;
 				else								/* ELSE MAKE UPPERCASE */
 					consensus_ar[1][n+1] = toupper(letr);
@@ -538,9 +551,9 @@ int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
 						consensus_ar[2][ 0 ] = 1;		/* TURN VARIANT ROW ON */
 						consensus_ar[2][n+1] = letr;
 					}
-					else {		/* ELSE CHECK IF THIS IS A NEW LETTER AT THIS COLUMN */	
+					else {		/* ELSE CHECK IF THIS IS A NEW LETTER AT THIS COLUMN */
 						for (x = 2; x < conrows-1; x++) {
-							if (letr == consensus_ar[x][n+1]) 
+							if (letr == consensus_ar[x][n+1])
 								break;
 							else if (consensus_ar[x][n+1] == '\0') {
 								consensus_ar[x][ 0 ] = 1;		/* TURN VARIANT ROW ON */
@@ -575,14 +588,14 @@ int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
 			++consensus_ar[0][n+1];
 	} /* END OF FOR n LOOP */
 
-	if (opt_K.bit) {							/* opt_K SHOW CONSENSUS ROW */	
+	if (opt_K.bit) {							/* opt_K SHOW CONSENSUS ROW */
 		/* PRINT CONSENSUS ROWS */
 		for (m = 1; consensus_ar[m][0] != '\0' && m<conrows-1; m++) {
 			line_end(BLOCKHEAD, 9, 9);
 			printf(" ");
 			for (n = n_start; n < n_end; n++) {
 				if (isalpha(letr=consensus_ar[m][n+1]))
-					printf("%c", letr); 
+					printf("%c", letr);
 				else
 					printf("%c",blnk);
 			}
@@ -593,7 +606,7 @@ int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
 			printf(" ");
 			for (n = n_start; n < n_end; n++) {
 				if (consensus_ar[25][n]) {
-					printf("%c", consensus_ar[25][n]); 
+					printf("%c", consensus_ar[25][n]);
 					consensus_ar[1][n] = blnk;
 				}
 				else
@@ -601,12 +614,12 @@ int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
 			}
 			printf(" <= check transition\n");
 		}
-		if (badsites > 0) {
-			line_end(BLOCKHEAD, 9, 9);	
+		if (badsites) {
+			line_end(BLOCKHEAD, 9, 9);
 			printf(" ");
 			for (n = n_start; n < n_end; n++) {
 				letr = mha_base62(consensus_ar[0][n+1]);
-				printf("%c", letr); 
+				printf("%c", letr);
 			}
 		    printf("\n");
 			warnhead('C');
@@ -615,217 +628,14 @@ int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
 			else if (badsites > 1)
 				printf("There are %d columns with mismatched letters.", badsites);
 		}
-	} 
+	}
 
 	/* STORE CONSENSUS ROW */
 	for (n = n_start; n <= n_end; n++) {
 		consensus[n] = consensus_ar[1][n+1];
 	}
 	consensus[con_width] = '\0';
-
-	if (badsites > 0) {
-		return(badsites);				/* BAD CONSENSUS, REPORT IT 	*/
-	}
-	else								/* GOOD CONSENSUS, EARLY PASSES */
-		return(0);
-}
-/*****************************************************************************************/
-
-/*****************************************************************************************/
-unsigned int connudge(char con_align2D[][MAXROW], int n_start, int n_width)
-{
-int badsites=0, m=0, n=0, n_end, x=1, nudge_row=0, nudge_col=0, nudge_span=0, frstletr;
-int    lenseq = Clean.pass_W;
-int    height = Current.pass_H;
-int con_width = Current.pass_W;
-short unsigned int nuctype = Clean.pass_V;			/* FOR SEQ TYPE, DNA=1, RNA=2, OTHER (NON-NA)=0 */
-short unsigned int nuctransit = 0;					/* BIT FLAG FOR HANDLING NUCLEAR TRANSITIONS */ 
-short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
-short unsigned int checktransit=0;
-char blnk = Fill->sym; 
-char letr=blnk, conletr=blnk, chkletr=blnk, badletr=blnk;
-int con_maxrows=26;
-int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
-                                       		/* ROW m=0 FOR COUNTER */
-											/* ROW m=1 FOR CONSENSUS */
-											/* ROWS m>1 FOR VARIANTS STORAGE */
-	n_end = n_start + n_width;
-
-	if (nuctype == 1)	/* IF DNA */
-		nuctransit = 1;
-
-	/* FILL CONSENSUS ARRAY WITH FIRST LETTER IN EACH COL */
-	for (n = 0; n <= con_width; n++) {
-		for (m = 0; m < lenseq; m++) {
-			if ( (isalpha(letr=con_align2D[m][n]))) {
-				consensus_ar[0][n+1]++;
-				consensus_ar[1][n+1] = letr;
-				break; /* OUT OF FOR m LOOP */
-			}
-		}
-	}
-	consensus_ar[0][0] = 1;			/* COUNTER ROW ON */
- 	consensus_ar[0][n] = '\0';
-	consensus_ar[1][0] = 1;			/* CONSENSUS ROW ON */
- 	consensus_ar[1][n] = '\0';
-
-	for (n = n_start; n <= n_end; n++) {
-		if (nuctransit) {
-			if ((conletr=con_align2D[MAXROW][n])=='R' || conletr=='Y') {
-				consensus_ar[1][n+1] = conletr;
-				chkletr = blnk;
-				plustransit = 1;
-			}
-			else {
-				plustransit = 0;
-				conletr = blnk;
-			}
-		}
-
-		for (m = 1; con_align2D[m][0] != '\0'; m++) {
-			if (isalpha(letr=con_align2D[m][n]) && isupper(letr)) {
-				if (plustransit && ((conletr=='R' && (letr=='G' || letr=='A')) || (conletr=='Y' && (letr=='C' || letr=='T'))) ) {
-					if (chkletr==blnk) {
-						chkletr = letr;
-						plustransit = 2;
-					}
-					else if (letr!=chkletr) {	
-						plustransit = 3;	/* THREE LETTERS SEEN: R-A-G OR Y-C-T */
-					}
-				}
-				else if (letr != consensus_ar[1][n+1]) {
-					if (consensus_ar[0][n+1] == 1) {	/* IF THIS IS THE FIRST CONFLICT NOTED AT THIS POSITION */
-						++badsites;						/* COUNT ADDITIONAL BAD SITE COLUMN */
-						badletr=letr;					/* THIS IS THE LETTER THAT GOES AGAINST THE TRANSITION LETTER */
-						++consensus_ar[0][n+1];			/* INCREMENT COUNTER FOR DIFFERENT LETTERS AT COLUMN */
-						consensus_ar[2][ 0 ] = 1;		/* TURN VARIANT ROW ON */
-						consensus_ar[2][n+1] = letr;
-						if (nudge_row==0) {
-							nudge_row=m;
-							nudge_col=n;
-							if (nudgecolmem<0)
-								nudgecolmem = n;
-							if (nuctransit && (conletr=='R' || conletr=='Y')) {
-								if      (conletr=='R') {
-									while (nudge_row <= height && con_align2D[nudge_row][nudge_col]!='A' && con_align2D[nudge_row][nudge_col]!='G')
-										++nudge_row;
-								}
-								else if (conletr=='Y') {
-									while (nudge_row <= height && con_align2D[nudge_row][nudge_col]!='C' && con_align2D[nudge_row][nudge_col]!='T')
-										++nudge_row;
-								}
-								
-								if (nudge_row > height)	/* REVERT IF MATCH NOT FOUND */
-									nudge_row=m;
-							}
-						}
-					}
-					else {		/* ELSE CHECK IF THIS IS A NEW LETTER AT THIS COLUMN */	
-						for (x = 2; x < con_maxrows; x++) {
-							if (letr == consensus_ar[x][n+1]) 
-								break;
-							else if (consensus_ar[x][n+1] == '\0') {
-								  consensus_ar[x][ 0 ] = 1;		/* TURN VARIANT ROW ON */
-								  consensus_ar[x][n+1] = letr;	/* ASSIGN LETTER */
-								++consensus_ar[0][n+1];			/* INCREMENT COUNTER FOR # UNIQUE LETTERS AT COLUMN */
-								break;
-							}
-						}
-					}
-				}
-				else if (x >= con_maxrows)
-					break;
-			}
-			else if (letr == Term->sym) {
-				consensus_ar[1][n+1] = letr;
-			}
-		} /* END OF FOR m=1... */
-		if (plustransit) {
-			if (plustransit>1) {
-				++consensus_ar[0][n+1];
-				if (plustransit==2)
-					consensus_ar[1][n+1] = chkletr;
-			}
-			else if (plustransit==1)
-					consensus_ar[1][n+1] = badletr;
-		}
-	} /* END OF FOR n... */
-
-	m=1;
-	n=0;
-	while ((consensus_ar[0][m]==1) || (consensus_ar[0][m]==2 && ((letr=consensus_ar[1][m])=='R' || letr=='Y')) ) {
-		m++;
-	}
-	if (consensus_ar[0][m]==0) {
-		return(0);
-	}
-	else {
-		while (consensus_ar[0][m+n]!=1 && m+n <= con_width+1) {
-			n++;
-		}
-		if (consensus_ar[0][m+n]==1) {
-			if (m == nudge_col+1) {
-				nudge_span = n;
-			}
-		}
-	}
-
-	/* CHECK FOR A NON-PRODUCTIVE NUDGE THAT WOULD CREATE AN EMPTY COLUMN */
-	for (n = 0; !isalpha(con_align2D[nudge_row][n]) && n <= con_width; n++) {
-		;
-	}
-	if (isalpha(con_align2D[nudge_row][n]))
-		frstletr = n;
-	else
-		frstletr = -1;
-
-	if (frstletr > -1) {
-		while (con_align2D[nudge_row-1][frstletr  ]==con_align2D[nudge_row][frstletr] &&
-			   con_align2D[nudge_row-1][frstletr-1]==blnk &&
-			   con_align2D[nudge_row-1][frstletr+1]==slip.sym) {
-			--nudge_row;
-		}
-	}
-
-	if (col_isclear(con_align2D, frstletr, nudge_row,-1)<0) {
-		return(0);
-	}
-	/* ****************************************************************** */
-
-	/* NUDGE IT! */
-	for (m=nudge_row; con_align2D[m][0] != '\0'; m++) {
-		for (n = n_end+2; n > 0; n--) {
-			con_align2D[m][n] = con_align2D[m][n-1];
-		}
-		con_align2D[m][0] = blnk;
-	}
-
-	/* ASSIGN CONSENSUS ROW LETTERS BUT VERIFY POST-NUDGE */
-	for (n = n_end+2; n>=nudge_col+nudge_span; n--) {
-		con_align2D[MAXROW][n] = consensus_ar[1][n];
-	}
-	con_align2D[MAXROW][n] = blnk;
-
-	for (n=nudge_span; n<=n_end; n++) {
-		if (isalpha(con_align2D[nudge_row][n]) && !isalpha(con_align2D[nudge_row][n-1]) && con_align2D[nudge_row-1][n]==slip.sym) {
-			printf("\n Nudgelizing and merging row %d with previous row at column %d.\n", nudge_row, n);
-			int i, j;
-			for (j=n; j<n_end+2; j++)
-				con_align2D[nudge_row-1][j] = con_align2D[nudge_row][j];
-			for (i= nudge_row; con_align2D[i+1][0] != '\0'; i++) {
-				for (j=0; j<n_end+2; j++)
-					con_align2D[i][j] = con_align2D[i+1][j];
-			}
-			break;
-		}
-	}
-
-	++Current.pass_W;
-	if (checktransit) {
-		return(0);
-	}
-	else
-		return(1);				/* RETURN SUCCESS */
+	return(badsites);
 }
 /*****************************************************************************************/
 
@@ -847,7 +657,7 @@ int lcl_blocks2D;
 /*****************************************************************************************/
 unsigned int foam_2D(int n_start, int n_width)
 {
-int m=0, n=0, n_end; 
+int m=0, n=0, n_end;
 char letr;
 int foam_ar[3][MAXROW] = {{0}};	 	/* ROW m=0 FOR COLUMN LETR COUNTER 	*/
 									/* ROW m=1 FOR CONSENSUS 			*/
@@ -877,21 +687,21 @@ int foam_ar[3][MAXROW] = {{0}};	 	/* ROW m=0 FOR COLUMN LETR COUNTER 	*/
 		}
 	}
 
-	if (opt_f.bit) {	/* opt_f FOAM-FREE CONSENSUS ROW */	
+	if (opt_f.bit) {	/* opt_f FOAM-FREE CONSENSUS ROW */
 		line_end(BLOCKHEAD, 9, 9);
 		printf(" ");
 		for (n = n_start; n < n_end; n++) {
-			printf("%c", foam_ar[1][n]); 
+			printf("%c", foam_ar[1][n]);
 		}
-		printf(" = foam-free\n");		
-	} 
+		printf(" = foam-free\n");
+	}
 
 	return(0);
 }
 /*****************************************************************************************/
 
 /*****************************************************************************************/
-int next_foamfree(char check_array[][MAXROW], int row, int at_n) 
+int next_foamfree(char check_array[][MAXROW], int row, int at_n)
 {
 	int n = at_n;
 
@@ -900,21 +710,35 @@ int next_foamfree(char check_array[][MAXROW], int row, int at_n)
 			return(n);
 		else
 			n++;
-	}	
+	}
 
 	return(-1);
 
-}		
+}
 /*****************************************************************************************/
 
 /*****************************************************************************************/
-int col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short int updown) 
+int col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short int updown)
 {
 	/* INVOKE updown AS -1 OR 1 TO CHECK BELOW OR ABOVE row, RESPECTIVELY */
 	for (int m = row + updown; m >= 0; m += updown) {
 		if (isalpha(check_array[m][at_n]))
 			return(m);
 		else if (check_array[m][0]=='\0')
+			break;
+	}
+	return(-1);		/* RETURN NEGATIVE VALUE TO INDICATE COLUMN IS CLEAR IN DESIGNATED DIRECTION */
+}
+/*****************************************************************************************/
+
+/*****************************************************************************************/
+int col_isclear1D(char *check_array, unsigned int at_n, int row, short int updown)
+{
+	/* INVOKE updown AS -1 OR 1 TO CHECK BELOW OR ABOVE row, RESPECTIVELY */
+	for (int m = row + updown; m >= 0; m += updown) {
+		if (isalpha(check_array[mn1D(m,at_n)]))
+			return(m);
+		else if (check_array[mn1D(m,0)]=='\0')
 			break;
 	}
 	return(-1);		/* RETURN NEGATIVE VALUE TO INDICATE COLUMN IS CLEAR IN DESIGNATED DIRECTION */
@@ -939,7 +763,7 @@ void line_end(int type, int c, int lcl_width)
 	/* PATHBOXHEAD	type=4 */
 	/* BLOCKHEAD	type=5 */
 	/* SLIPRULER	type=6 */
-	
+
 	char *ruler = rule1;	/* USE TO CHANGE RULE STYLE */
 
 	if (type == 1)					/* FORMAT FOR LINE END. c IS CHAR. NUMBER */
@@ -949,7 +773,7 @@ void line_end(int type, int c, int lcl_width)
 		if (type == 0) {			/* FORMAT FOR LINE BEGINNING. c is LINE NUMBER (m+1) */
 			if (c == 1)
 				printf(" %4d. %c", c, Term->sym);
-			else 
+			else
 				printf(" %4d. %c", c, ZTick->sym);
 		}
 		else if (type == 2) {			/* FORMAT FOR RULER. */
@@ -970,7 +794,7 @@ void line_end(int type, int c, int lcl_width)
 		if (type == 0) {		   	/* FORMAT FOR LINE BEGINNING. c is LINE NUMBER (m+1) */
 			if (c == 1)
 				printf("   %c", Term->sym);
-			else           
+			else
 				printf("   %c", ZTick->sym);
 		}
 		else if (type == 2) {			/* FORMAT FOR RULER OR SLIPRULER. */
@@ -994,13 +818,13 @@ void line_end(int type, int c, int lcl_width)
 char mha_base62(int num)	/* TO REPRESENT NUMBERS UP TO 62 WITH A SINGLE CHAR. ******/
 {
 char c;
-	if (num < 10) 
-		c = '0' + num; 
-	else if (num >=10 && num < 36) 
+	if (num < 10)
+		c = '0' + num;
+	else if (num >=10 && num < 36)
 		c = 'A'+ num-10;
-	else if (num >=36 && num < 62) 
+	else if (num >=36 && num < 62)
 		c = 'A' + num-4;
-	else 
+	else
 		c = '!';
 	return(c);
 }
@@ -1068,13 +892,13 @@ int hr_len = max_len;					/* DEFAULT LENGTH OF HEADER BANNER */
 	else if (Current.pass_V == 0) {
 		printf("\nOriginal string (length = %d):\n", lcl_width);
 	}
-	else 
+	else
 		printf("%.*s\n", max_len, h_rule);
 }
 /*****************************************************************************************/
 
 /*****************************************************************************************/
-void mha_randomize1(char *input_seq) 
+void mha_randomize1(char *input_seq)
 {
     int i, rand_num;
 	int seqlen = Clean.pass_W;
@@ -1098,7 +922,7 @@ void mha_randomize1(char *input_seq)
 /*****************************************************************************************/
 
 /*****************************************************************************************/
-void mha_randomize2(char *input_seq, int rsize) 
+void mha_randomize2(char *input_seq, int rsize)
 {
 	int i, j, tmp;
 	int seqlen = Clean.pass_W;
@@ -1111,7 +935,7 @@ void mha_randomize2(char *input_seq, int rsize)
 	for (i = 0; i < rsize; i++) {
 		rnumbers[i]= i;
 	}
-  
+
 	for (i = rsize - 1; i > 0; i--) {
     	j = random_i(i + 1);
         tmp = rnumbers[j];
@@ -1121,12 +945,12 @@ void mha_randomize2(char *input_seq, int rsize)
 
 	for (i = 0; i < rsize; i++) {
 		random_seq[i] = input_seq[(rnumbers[i] % seqlen)];
-	}		
+	}
 
 	for (i = 0; i < rsize; i++) {
 		input_seq[i] = random_seq[i];
 	}
-	input_seq[i] = '\0';	/* B/C SOMETIMES input_seq > rsize */ 
+	input_seq[i] = '\0';	/* B/C SOMETIMES input_seq > rsize */
 
 	free(rnumbers);
 	free(random_seq);
@@ -1134,116 +958,134 @@ void mha_randomize2(char *input_seq, int rsize)
 /*****************************************************************************************/
 
 /*****************************************************************************************/
-void mha_writeback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW])
+void mha_writeback(char lcl_align2D[][MAXROW], char align2D[][MAXROW])
 {
 char letr;
 int lenseq = Clean.pass_W;
 int m=0, n=0, widest_n=0;
 
-	/* WRITE BACK TO align2D_prev */
-	clear_right(lcl_align2D); 
-	clear_2D_ar(align2D_prev);
+	/* WRITE BACK TO align2D */
+	clear_right(lcl_align2D);
+	clear_2D_ar(align2D);
 	for (m = 0; lcl_align2D[m][0] != '\0' && m <= lenseq; m++) {
 		for (n = 0; (letr=lcl_align2D[m][n]) != slip.sym && letr != Term->sym && letr != monoR.sym; n++) {
-			align2D_prev[m][n] = lcl_align2D[m][n];
-			if (letr == monoL.sym && lcl_align2D[m][n+opt_M.val+1] == monoR.sym) 
-				align2D_prev[m][n+opt_M.val+2] = '\0';
+			align2D[m][n] = letr;
+			if (letr == monoL.sym && lcl_align2D[m][n+opt_M.val+1] == monoR.sym)
+				align2D[m][n+opt_M.val+2] = '\0';
 		}
-		align2D_prev[m][n  ] = letr;	/* MHA-STANDARD TERMINATOR  */
+		align2D[m][n  ] = letr;	/* MHA-STANDARD TERMINATOR  */
 		if (n > widest_n)
 			widest_n = n;
-		if (letr == Term->sym) {				
+		if (letr == Term->sym) {
 			Current.pass_W = widest_n;	/* ASSIGN 2-D WIDTH  */
 			Current.pass_H = m+1;		/* ASSIGN 2-D HEIGHT */
 		}
 		for (int i=n+1; i<Clean.pass_W; i++)
-			align2D_prev[m][i] = '\0';
+			align2D[m][i] = '\0';
+	}
+}
+
+/************ FOR USE WITH cin2Dar *******************************************************/
+void mha_writeback_2Dto1D(char lcl_align2D[][MAXROW], char *cinch2D)
+{
+char letr;
+int lenseq = Clean.pass_W;
+int m=0, n=0, widest_n=0;
+
+	/* WRITE BACK TO cinch2D */
+	clear_right(lcl_align2D);
+	clear_cinch2D();
+	for (m = 0; lcl_align2D[m][0] != '\0' && m <= lenseq; m++) {
+		for (n = 0; (letr=lcl_align2D[m][n]) != slip.sym && letr != Term->sym && letr != monoR.sym; n++) {
+			cinch2D[mn1D(m,n)] = letr;
+			if (letr == monoL.sym && lcl_align2D[m][n+opt_M.val+1] == monoR.sym)
+				cinch2D[mn1D(m,n+opt_M.val+2)] = '\0';
+		}
+		cinch2D[mn1D(m,n)] = letr;	/* MHA-STANDARD TERMINATOR  */
+		if (n > widest_n)
+			widest_n = n;
+		if (letr == Term->sym) {
+			Current.pass_W = widest_n;	/* ASSIGN 2-D WIDTH  */
+			Current.pass_H = m+1;		/* ASSIGN 2-D HEIGHT */
+		}
+		for (int i=n+1; i<Clean.pass_W; i++)
+			cinch2D[mn1D(m,i)] = '\0';
+	}
+}
+
+/************ FOR USE WITH cin2Dar *******************************************************/
+void mha_writeback_1Dto2D(char *cinch2D, char align2D[][MAXROW])
+{
+char letr;
+int i=0, m=0, n=0, widest_n=0;
+
+	/* WRITE BACK TO align2D */
+	clear_2D_ar(align2D);
+	for (i = 0; (letr=cinch2D[i])!=Term->sym && i<=(Cinch_T.pass_W+1)*Clean.pass_W; i++) {
+		if (letr==Fill->sym || isalpha(letr) || letr==monoL.sym)
+			align2D[m  ][n++] = letr;
+		else if (letr==slip.sym || letr==monoR.sym)	{
+			if (n>widest_n)
+				widest_n = n;
+			align2D[m][n  ] = letr;
+			align2D[m][n+1] = '\0';
+			m++;
+			n = 0;
+			i = (Cinch_T.pass_W+1)*m - 1;
+		}
+		else if (letr == '\0') {
+			warnhead('?');
+			printf("Missing a line terminator of some sort? prev letr=%c, m=%2d, n=%2d (microhomology.h line %d)\n", cinch2D[i-1], m, n, __LINE__);
+		}
+	}
+	if (letr == Term->sym) {
+		if (n>widest_n)
+			widest_n = n;
+		align2D[m][n  ] = letr;
+		align2D[m][n+1] = '\0';
+		for (n=0; n<=Cinch_T.pass_W; n++)
+			align2D[m+1][n] = '\0';
+		Current.pass_W = widest_n;	/* ASSIGN 2-D WIDTH  */
+		Current.pass_H = m+1;		/* ASSIGN 2-D HEIGHT */
 	}
 }
 
 /*****************************************************************************************/
-void mha_writecons(char align2D_one[][MAXROW], char align2D_two[][MAXROW])
+void mha_writeconsensus1D(char *cinch2D, char consensus1D[MAXROW])
 {
-int i=0;
-
-	/* COPY CONSENSUS ROW FROM ARRAY ONE TO ARRAY TWO */
-	for (i = 0; i < Current.pass_W; i++) {
-		align2D_two[MAXROW][i] = align2D_one[MAXROW][i];
-	}
-}
-
-/*****************************************************************************************/
-void mha_writeconsensus(char align2D_one[][MAXROW], char consensus1D[MAXROW])
-{
-int i=0;
+	int i = 0;
+	int constart = Clean.pass_W * (Cinch_T.pass_W+1);
 
 	/* COPY CONSENSUS ROW FROM ARRAY ONE TO 1D CONSENSUS ARRAY */
-	for (i = 0; i < Current.pass_W; i++) {
-		consensus1D[i] = align2D_one[MAXROW][i];
+	for (i=0; i<=Cinch_T.pass_W+1; i++) {
+		consensus1D[i] = cinch2D[constart+i];
 	}
 	consensus1D[i] = '\0';
 }
 
-/*****************************************************************************************/
-void mha_UPPERback(char lcl_align2D[][MAXROW], char align2D_prev[][MAXROW])
+
+/** RETURN 1D POSITION FOR USE IN POST-CINCH-T CINCH 2D ARRAY POINTER **/
+int mn1D(int row, int col)
 {
-	char letr;
-	short unsigned int nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA, TWO IF RNA */
-	int lenseq = Clean.pass_W;
-	int i=0, m=0, n=0, widest_n=0;
-
-	/* WRITE BACK TO align2D_prev */
-	clear_right(lcl_align2D); 
-	clear_2D_ar(align2D_prev);		/* DOES NOT CLEAR MAXROW ROW */
-	for (m = 0; lcl_align2D[m][0] != '\0'; m++) {
-		for (n = 0; (letr=lcl_align2D[m][n]) != slip.sym && letr != Term->sym && letr != monoR.sym; n++) {
-			if (nuctype) { /* IF NON-ZERO LIKE DNA (1) OR RNA (2) */
-				if (islower(letr) && letr != ambig.sym)
-					align2D_prev[m][n] = toupper(letr);
-				else
-					align2D_prev[m][n] = letr;
-			}
-			else if (islower(letr))
-				align2D_prev[m][n] = toupper(letr);
-			else
-				align2D_prev[m][n] = letr;
-
-			if (letr == monoL.sym && lcl_align2D[m][n+opt_M.val+1] == monoR.sym ) 
-				align2D_prev[m][n+opt_M.val+2] = '\0';
-		}
-		align2D_prev[m][n  ] = letr;	/* MHA-STANDARD TERMINATOR  */
-		if (n > widest_n)
-			widest_n = n;
-		if (letr == Term->sym) {				/* ASSIGN CINCH-WIDTH TO CURRENT [32]	*/
-			Current.pass_W = widest_n;
-		}
-	}
-
-	/* FLUSH POST-TERMINATOR ENDS OF align2D WITH NULLS */
-	for (m = 0; lcl_align2D[m][0] != '\0'; m++) {
-		n = 0;
-		while ( (letr=lcl_align2D[m][n]) != slip.sym && letr != Term->sym && letr != monoR.sym) 
-			n++;	
-		for (i = 1; n+i <= lenseq; i++)
-			align2D_prev[m][n+i] = '\0';	
-	}
+	return(row*(Cinch_T.pass_W+1) + col);
 }
+
 
 /*****************************************************************************************/
 char *nmer_prefix(int p)
 {
-	static char *prefix[22] = { "X", 
-		"Mono", "Di", "Tri", "Tetra", 
-		"Penta", "Hexa", "Hepta", 
+	static char *prefix[22] = { "X",
+		"Mono", "Di", "Tri", "Tetra",
+		"Penta", "Hexa", "Hepta",
 		"Octa", "Nona", "Deca",
-		"11-", "12-", "13-", "14-", "15-", 
+		"11-", "12-", "13-", "14-", "15-",
 		"16-", "17-", "18-", "19-", "20-", "21-"
 	};
 
-	if (p == 0 || p > 21) 
+	if (p == 0 || p > 21)
 		return prefix[0];
 
-	else 
+	else
 		return prefix[p];
 }
 
@@ -1251,13 +1093,13 @@ char *nmer_prefix(int p)
 short unsigned int print_2Dseq(void)
 {
 unsigned int foam_2D(int n_start, int n_width);
-int all_clear;		/* COUNTER VARIABLE USED FOR CHECKING NEED TO PRINT BOTTOM ROWS */ 
+int all_clear;		/* COUNTER VARIABLE USED FOR CHECKING NEED TO PRINT BOTTOM ROWS */
 int blocks2D=0, b=0, c=0, carry_over=0, d=0, fudge=0, g, h, i, j, j_start=0, j_end, m, m_start=0, n;
 int mmsites=0, max_n=0;
 int linewrap = par_wrap.set;
 char letr, next;
 char blnk  = Fill->sym;			/* opt_B blank character */
-int cinchwidth = Current.pass_W;		
+int cinchwidth = Current.pass_W;
 int   lenseq = Clean.pass_W;
 int head_start;							/* USE TO PASS RULER O-F-F-SET TO line_end() */
 int scrimmageline;						/* USE TO INCREMENT AND TEST IF FILLER IS NEEDED, CAN BE OPTION TO DO SO */
@@ -1267,9 +1109,6 @@ short unsigned int lcl_opt_F = 0;
 	if (opt_B.val > 1)
 		tick = blnk;
 
-	if (cinchwidth > MAXROW && dev_print(LOGY,__LINE__)) 
-		printf("Bad news bears: Unexpectedly, cinchwidth > MAXROW. cinchwidth=%d", cinchwidth);
-	
 	mha_head(cinchwidth);
 
 	blocks2D = count_wrap_blocks(cinchwidth, linewrap);
@@ -1306,7 +1145,7 @@ short unsigned int lcl_opt_F = 0;
 				}
 			} /* END OF n SCAN LOOPS */
 			if (b+d > max_n)
-				max_n = b+d;	
+				max_n = b+d;
 
 			if (b == linewrap) {
 				all_clear = 1;
@@ -1316,19 +1155,19 @@ short unsigned int lcl_opt_F = 0;
 							all_clear = 0;
 					}
 				}
-				if (all_clear) 
+				if (all_clear)
 					break;
 			}
 
 			line_end(START, m+1, 0);
 
-			for (n = j_start; n < j_end  && (letr=align2D[m][n])!='\0' && letr!=Term->sym && letr!=monoR.sym; n++) {
+			for (n=j_start; n<j_end && (letr=align2D[m][n])!='\0' && letr!=Term->sym && letr!=monoR.sym; n++) {
 				if (d+b == 0) {		/* HANDLES BLOCK CONTINUATION LINES THAT HAVE ZERO CHARACTERS B/C OF ITS TUCK & LENGTH */
 					break;
 				}
-				else if ((letr=align2D[m][n]) == blnk && (n+1) % 10 == 0 && opt_B.val < 2)		
+				else if ((letr=align2D[m][n]) == blnk && (n+1) % 10 == 0 && opt_B.val < 2)
 					printf("%c", tick);		/* PRINT TICK MARKS AT 10 bp INTERVALS IF NOT BLANK SPACE */
-				else if (Fill->sym == 32)		/* opt_B BLANK = SPACE ' ' */	
+				else if (Fill->sym == 32)		/* opt_B BLANK = SPACE ' ' */
 					printf("%c", letr);
 				else					/* opt_B BLANK = FULLSTOP '.' */
 					printf("%c", letr);
@@ -1349,7 +1188,7 @@ short unsigned int lcl_opt_F = 0;
 				}
 			} /* END OF n PRINTING LOOPS */
 
-			next = align2D[m][n];	/* TERMINAL CHARACTERS WILL ALSO PRINT AT END OF BLOCK IF...	*/ 
+			next = align2D[m][n];		/* TERMINAL CHARACTERS WILL ALSO PRINT AT END OF BLOCK IF...	*/
 										/* ...THEY ARE FIRST CHARACTER OF NEXT BLOCK					*/
 
 			if (next == slip.sym || next == monoR.sym) 		/* TO INDICATE ADJACENCY TO SLIP, WHICH ALSO WILL SHOW IN NEXT BLOCK */
@@ -1386,7 +1225,6 @@ short unsigned int lcl_opt_F = 0;
 		else {
 			line_end(RULER, head_start, (linewrap=max_n));
 		}
-		/* *********** */
 
 		/* PRINT NUMBERS FOR CONSENSUS RULER */
 		if (opt_B.val < 4) {
@@ -1405,19 +1243,19 @@ short unsigned int lcl_opt_F = 0;
 		/* ADD TO COUNT OF MISMATCHED SITES */
 		mmsites = mmsites + consensus_2D(j_start, linewrap);
 
-		if (opt_f.bit && Current.pass_V > 6 && mmsites == 0) {	
+		if (opt_f.bit && Current.pass_V > 6 && mmsites == 0) {
 			foam_2D(j_start, linewrap);
 		}
 	} /* END OF FOR j PRINTING LOOP */
 
 	if (c == lenseq) {
 		if (!mmsites) {
-			Current.pass_Q = 1000;	
+			Current.pass_Q = 1000;
 			print_section_spacer();
 			return(0);
 		}
 		else {
-			Current.pass_Q = round((1000*(cinchwidth-mmsites))/cinchwidth);	
+			Current.pass_Q = round((1000*(cinchwidth-mmsites))/cinchwidth);
 			print_section_spacer();
 			return(Current.pass_Q);
 		}
@@ -1425,12 +1263,12 @@ short unsigned int lcl_opt_F = 0;
 	else if (c < lenseq) {
 		Current.pass_Q = round((1000*(cinchwidth-mmsites-(lenseq-c)))/cinchwidth);
 		warnhead(gap.sym);
-		printf("2-D auto-alignment is missing %d %s(s)!\n\n", lenseq-c, letr_unit); 
+		printf("2-D auto-alignment is missing %d %s(s)!\n\n", lenseq-c, letr_unit);
 		print_section_spacer();
 		return(0);
 	}
 	else {
-		Current.pass_Q = round((1000*(cinchwidth-mmsites-(c-lenseq)))/cinchwidth);	
+		Current.pass_Q = round((1000*(cinchwidth-mmsites-(c-lenseq)))/cinchwidth);
 		warnhead('+');
 		printf("2-D auto-alignment contains an extra %d %s(s)!", c-lenseq, letr_unit);
 		print_section_spacer();
@@ -1470,7 +1308,7 @@ void print_blockhead(int numbl, int totbl)      		/**/
 /**********************************************************/
 
 /*****************************************************************************************/
-short unsigned int recoverlen(void) 
+short unsigned int recoverlen(void)
 {
 int m=0, n=0;
 int alpha_count=0;
@@ -1484,7 +1322,7 @@ char letr;
 			while (align2D[m][n]==blnk) {
 				n++;
 			}
-			if (align2D[m][n]==monoL.sym) 
+			if (align2D[m][n]==monoL.sym)
 				n++;
 
 			while(isalpha(align2D[m][n])) {
@@ -1508,11 +1346,11 @@ char letr;
 				}
 				return(alpha_count);
 			}
-			else if (align2D[m][n] == Term->sym) 
+			else if (align2D[m][n] == Term->sym)
 				return(alpha_count);
-			else 
+			else
 				break;
-		} 
+		}
 	}
 	return(alpha_count);
 }
@@ -1543,10 +1381,10 @@ void usage(char *usage_version)
 
 /*****************************************************************************************/
 void warnhead(char l)
-{ 
+{
 /*	printf("%c", 7); */	/* BELL CHARACTER */
 	printf("\n  * Notice (%c): ", l);
-} 
+}
 
 /*************************************************************************************************/
 short int pushdown(char pusharray[][MAXROW], int push_m, int push_n)
@@ -1593,7 +1431,7 @@ void print1D(void)
 
 	for (j = 0; j < blocks; j++) {
 		if (Clean.pass_V==1 && opt_v.val) { /* IF DNA AND VERBOSITY */
-			line_end(SLIPS, j+1, 0);	
+			line_end(SLIPS, j+1, 0);
    			for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && tela[n].c!=Term->sym && tela[n].c!='\0'; n++) {
 				if ((ch=tela[n].t)=='R' || ch=='Y')
 					printf("%c", ch);
@@ -1602,22 +1440,22 @@ void print1D(void)
 			}
 			printf("\n");
 		}
-		line_end(START, j+1, 0);	
+		line_end(START, j+1, 0);
    		for (n = j * par_wrap.set; n < (j+1) * par_wrap.set && tela[n].c!=Term->sym && tela[n].c!='\0'; n++) {
 			printf("%1c", tela[n].c);
 		}
 		if (tela[n].c == Term->sym) {
 			printf("%1c", tela[n].c);  /* PRINTS TERMINAL CHARACTER */
-			if (opt_L.bit) 
+			if (opt_L.bit)
 				line_end(END, n, 0);
 			else
 				printf("\n");
 		}
 		else {
 			printf(" ");
-			if (opt_L.bit) 
+			if (opt_L.bit)
 				line_end(END, n, 0);
-			else 
+			else
 				printf("\n");
 		}
 
@@ -1662,10 +1500,10 @@ void print1D(void)
 				line_end(SLIPRULER, head_start, par_wrap.set);
 				printf("\n");
 			}
-			else 
+			else
 				line_end(SLIPRULER, head_start, lenseq-par_wrap.set*(blocks-1));
 			/**********************************************/
-		}   /* END OF opt_l PRINT MODULE */ 
+		}   /* END OF opt_l PRINT MODULE */
 
 	} /* END OF FOR j LOOP */
 	print_section_spacer();
@@ -1697,7 +1535,7 @@ void free_2D(int **p2D, int lenseq)
 }
 
 /**************************************************************/
-short unsigned int checkfractals_in_imperfect(int kmer, int n) 
+short unsigned int checkfractals_in_imperfect(int kmer, int n)
 {
 	int lenseq = Clean.pass_W;
 	int allowed_transits(int k);
@@ -1719,7 +1557,7 @@ short unsigned int checkfractals_in_imperfect(int kmer, int n)
 						break;
 					else if (tela[m+i].c == tela[m+k+i].c && tela[n+i].c == tela[n+k+i].c)
 						;
-					else if (transits<=max_transits) 
+					else if (transits<=max_transits)
 						transits++;
 					else if (transits > max_transits)
 						break;

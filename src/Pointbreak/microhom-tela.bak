@@ -427,25 +427,12 @@ void push_tela_or(int n)
 /* Return k-mer repeat size smaller than k if it exists, otherwise return 0 */
 int next_k(int n, int k1, short unsigned int seqtype) 
 {
-	int i=0, m=0, k=0, runs;
+	int i=0, m=0, k=0;
+	int runs_at_m=0, runs_at_n=0;
 
 	for (k=k1-1; k>1; k--) {
 		m = n-k;
-
-		/* CHECK MONO-CHARACTER RUNS */
-		runs = 0;
-		for (i=0; i<k; i++) {
-			if (tela[m+i].c!=tela[n+i].c)
-				break;
-			if (i && tela[n+i].c == tela[n+i-1].c) {
-				if (!runs)
-					runs=2;
-				else
-					runs++;
-			}
-		}
-		if (runs==k)
-			return(0);
+		runs_at_m = runs_at_n = 0;
 
 		if (seqtype==1) {
 			int transits=0;
@@ -454,6 +441,11 @@ int next_k(int n, int k1, short unsigned int seqtype)
 			pur = pyr = 0;
 
 			for (i=0; i<k; i++) {
+				if (tela[m+i].c == tela[m+i+1].c)
+					runs_at_m++;
+				if (tela[n+i].c == tela[n+i-1].c)
+					runs_at_n++;
+
 				if (tela[m+i].c=='n'||tela[n+i].c=='n')
 					break;
 				if (tela[m+i].c != tela[n+i].c) {
@@ -490,7 +482,9 @@ int next_k(int n, int k1, short unsigned int seqtype)
 				else if (tela[n+i].c=='T')
 					pyr++;
 			}
-			if (i==k) {
+			if (runs_at_m==k || runs_at_n==k)
+				return(0);
+			else if (i==k) {
 				if (transits && ((pur && !pyr) || (pyr && !pur)) && !next_k(n,k,seqtype)) {
 					tela[n].k0 = k;		/* SAVE k-MER FOR CINCH-K; STORING FOR DE-BUGGING ONLY, NOT NEEDED */
 					return(0);
@@ -501,22 +495,43 @@ int next_k(int n, int k1, short unsigned int seqtype)
 					return(k);
 			}
 		}
-		else if (seqtype==3 && !opt_x.bit) {	/* PROTEIN */
+		else if (seqtype==3 && !opt_x.bit) {
 			for (i=0; i<k; i++) {
+				if (i<k-1 && tela[m+i].c == tela[m+i+1].c) {
+					if (!runs_at_m)
+						runs_at_m=2;
+					else
+						runs_at_m++;
+				}
+				if (i     && tela[n+i].c == tela[n+i-1].c) {
+					if (!runs_at_n)
+						runs_at_n=2;
+					else
+						runs_at_n++;
+				}
 				if (tela[m+i].e != tela[n+i].e)
 					break;
 			}
-			if (i==k && k<k1)
+
+			if (runs_at_m==k || runs_at_n==k)
+				return(0);
+			else if (i && i==k && k<k1)
 				return(k);
 		}
-		else {									/* ELSE IF RNA (2) OR NON-BIOLOGICAL (0), OR opt_x */
+		else {
 			for (i=0; i<k; i++) {
+				if (tela[m+i].c == tela[m+i+1].c)
+					runs_at_m++;
+				if (tela[n+i].c == tela[n+i-1].c)
+					runs_at_n++;
 				if (seqtype==2 && (tela[m+i].c=='n'||tela[n+i].c=='n'))
-					break;
+					return(0);
 				if (tela[m+i].c != tela[n+i].c) 
 					break;
 			}
-			if (i==k && k<k1)
+			if (runs_at_m==k || runs_at_n==k)
+				return(0);
+			if (i && i==k && k<k1)
 				return(k);
 		}
 	}

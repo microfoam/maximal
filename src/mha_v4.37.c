@@ -763,39 +763,6 @@ int main(int argc, char *argv[])
 			} 
 		} /**********************************************************************************/
 	
-		/**********************************************/
-		/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
-		if (opt_P.bit) {	/* opt_P */
-			blocks = count_wrap_blocks(lenseq, par_wrap.set);
-			int mn;
-			printf("\nPATHBOX FILL-IN PASS (length = width = %d)\n\n", lenseq);
-			for (j = 0; j < blocks; j++) {
-				if (blocks != 1)
-					print_blockhead(j+1, blocks);
-				line_end(PATHBOXHEAD, 9, 9);	
-				for(n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != Term->sym; n++) 
-					printf("%2c", tela[n].c);
-				printf("\n");
-				for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != Term->sym; m++) {
-					printf("%4d. %c ", m+1, tela[m].c);
-						for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != Term->sym; n++) {
-							mn = m*WIDTH + n-m+1;
-							if (m > n) {
-								if (cinchbox[mn])
-									printf("%2d", cinchbox[mn]);
-								else 
-									printf("%2c", blank);
-							}
-							else if (n-m <= WIDTH)
-								printf("%2d", cinchbox[mn]);
-							else 
-								printf("%2c", blank);
-					}
-					printf("\n");
-		   		 }
-			}
-		} /* END OF OPTION TO PRINT PATHBOX */
-	
 		/*********************************************************/
 		/*        USE PATHBOX TO BUILD FIRST 2-D ALIGNMENT       */
 		/*        	          [cinch_t BEGINS]                   */
@@ -1449,27 +1416,23 @@ int main(int argc, char *argv[])
 	
 		/**********************************************/
 		/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
-	
 		if (opt_P.bit) {
-			blocks = count_wrap_blocks(lenseq, par_wrap.set);
-	
 			printf("\n\nPATHBOX CINCH PASS (length = width = %d)\n\n", lenseq);
-			for (j = 0; j < blocks; j++) {
+			blocks = count_wrap_blocks(lenseq, par_wrap.set);
+			int mn;
+			for (j = 0; j < blocks; j++) { /* DEVCOMPARE - DELETE ME WHEN DONE USING */
 				if (blocks != 1)
 					print_blockhead(j+1, blocks);
 				line_end(PATHBOXHEAD, 9, 9);	
 				for(n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != Term->sym; n++) 
 					printf("%2c", tela[n].c);
 				printf("\n");
-
-				int mn;
 				for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != Term->sym; m++) {
 					printf("%4d. %c ", m+1, tela[m].c);
 						for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != Term->sym; n++) {
 							mn = m*WIDTH + n-m+1;
-							if (m > n) {
+							if (m > n)
 								printf("%2c", blank);
-							}
 							else if (n-m <= WIDTH)
 								printf("%2d", cinchbox[mn]);
 							else 
@@ -1479,6 +1442,7 @@ int main(int argc, char *argv[])
 		   		 }
 			}
 		} /* END OF OPTION TO PRINT PATHBOX */
+
  		align2D[row][citwidth+1] = '\0';
 		Cinch_T.pass_W = Current.pass_W = citwidth;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT */
 		clear_right(align2D);
@@ -1496,6 +1460,8 @@ int main(int argc, char *argv[])
 
 	if (recoverlen()==lenseq)
 		update_tela();
+
+	cinch2D = calloc((Cinch_T.pass_W+1)*lenseq, sizeof(char *));	/* +1 for Terminal character '>' */
 
 	if (opt_D.val==2)
 		dev_prompt(MAIN,__LINE__,file_name); 
@@ -1530,7 +1496,7 @@ int main(int argc, char *argv[])
 		++Nudge.pass_R;
 		Nudge.pass_W = Current.pass_W;
 
-		while (nudgelize() && Nudge.pass_R < CYCMAX) {	
+		while (nudgelize() && Nudge.pass_R<CYCMAX) {
 			++Nudge.pass_R;
 			++Nudge.pass_W;
 		}
@@ -1724,6 +1690,8 @@ int main(int argc, char *argv[])
 		}
 		print_section_spacer();
 	} /* END of opt_R */
+
+	free(cinch2D);
 
 	/* PRINT OPTION FOR K-MER REPORT AFTER cinch_t **********************/
 	if (opt_k.bit) {

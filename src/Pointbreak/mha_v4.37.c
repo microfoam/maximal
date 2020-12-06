@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	int match      = MATCH;
 	int transition = TRANSITION;			
 	int mismatch   = MISMATCH;
-	char version[] = "4.36";				/* current development version number */
+	char version[] = "4.37";				/* current development version number */
 
 	int c=0, f=0, i=0; 
 	short unsigned int pairwise = 0;	
@@ -635,6 +635,9 @@ int main(int argc, char *argv[])
 	Seq[lenseq] = tela[lenseq].t = tela[lenseq].c = Term->sym;
 	citwidth = lenseq;	
 
+	int * cinchbox;
+	cinchbox = calloc((lenseq+1)*(WIDTH+1), sizeof (int *));
+
 	for (i = 0; i <= lenseq; i++) {
 		push_gPnt(XDIR,i,i);
 		tela[i].x = tela[i].X = i;
@@ -686,53 +689,56 @@ int main(int argc, char *argv[])
 	
 		homopoly_flag = 1;								/* FOR LONG HOMOPOLYMERIC RUN CASE **/
 		homopolyend_flag = 0;
-	
+		int mn;
+
 		for (n = 0; tela[n].c != '\0'; n++)				/* SET IDENTITY LINE ****************/
-			pathbox[n][n] = MATCH;
-	
-		for (n = 0; tela[n].c != '\0'; n++) {
+			cinchbox[n*WIDTH+1] = MATCH;
+
+		for (n = 0; n<=lenseq; n++) {
 			if  (n <= WIDTH) {							/* SET VALUES FOR 1ST WIDTH COLS ****/
 					for (m = 0; m < n; m++){
+						mn = m*WIDTH + n-m+1;
 						if (seqtype && tela[n].c == ambig.sym)			 
-							pathbox[m][n] = mismatch;   /* SPECIAL TREATMENT FOR 'n' IN DNA**/
+							cinchbox[mn] = mismatch;   /* SPECIAL TREATMENT FOR 'n' IN DNA**/
 						else if (tela[n].c == tela[m].c)
-							pathbox[m][n] = MATCH;		/* MATCH ****************************/
+							cinchbox[mn] = MATCH;		/* MATCH ****************************/
 						else if (nuctransit) {			/* IF DNA AND CHECKING FOR TRANSITIONS */
 							if      (tela[n].c == 'A' && tela[m].c == 'G')
-								pathbox[m][n] = transition;  
+								cinchbox[mn] = transition;
 							else if (tela[n].c == 'G' && tela[m].c == 'A')
-								pathbox[m][n] = transition;   
+								cinchbox[mn] = transition;
 							else if (tela[n].c == 'C' && tela[m].c == 'T')
-								pathbox[m][n] = transition;   
+								cinchbox[mn] = transition;
 							else if (tela[n].c == 'T' && tela[m].c == 'C')
-								pathbox[m][n] = transition;   
+								cinchbox[mn] = transition;
 							else
-								pathbox[m][n] = mismatch;   /* MISMATCH IF NO TRANSITION ****/
+								cinchbox[mn] = mismatch;   /* MISMATCH IF NO TRANSITION ****/
 						}	
 						else 
-							pathbox[m][n] = mismatch;   /* MISMATCH *************************/
+							cinchbox[mn] = mismatch;   /* MISMATCH *************************/
 					}
 			}
 			else {										/* SET VALUES FOR REST OF COLUMNS ***/
 					for (m = n-WIDTH; m < n+1; m++){	/*  WITHIN BAND WIDTH ***************/
+						mn = m*WIDTH + n-m+1;
 						if (seqtype && tela[n].c == ambig.sym)			  
-							pathbox[m][n] = mismatch;   /* DUE TO NUCLEOTIDE AMBIGUITY ******/
+							cinchbox[mn] = mismatch;   /* DUE TO NUCLEOTIDE AMBIGUITY ******/
 						else if (tela[n].c == tela[m].c)
-							pathbox[m][n] = MATCH;		/* MATCH ****************************/
+							cinchbox[mn] = MATCH;		/* MATCH ****************************/
 						else if (nuctransit) {			/* IF DNA AND CHECKING FOR TRANSITIONS */
 							if      (tela[n].c == 'A' && tela[m].c == 'G')
-								pathbox[m][n] = transition;  
+								cinchbox[mn] = transition;
 							else if (tela[n].c == 'G' && tela[m].c == 'A')
-								pathbox[m][n] = transition;   
+								cinchbox[mn] = transition;
 							else if (tela[n].c == 'C' && tela[m].c == 'T')
-								pathbox[m][n] = transition;   
+								cinchbox[mn] = transition;
 							else if (tela[n].c == 'T' && tela[m].c == 'C')
-								pathbox[m][n] = transition;   
+								cinchbox[mn] = transition;
 							else
-								pathbox[m][n] = mismatch;   /* MISMATCH IF NO TRANSITION ****/
+								cinchbox[mn] = mismatch;   /* MISMATCH IF NO TRANSITION ****/
 						}	
 						else 
-							pathbox[m][n] = mismatch;   /* MISMATCH *************************/
+							cinchbox[mn] = mismatch;   /* MISMATCH *************************/
 					}
 			}
 	
@@ -741,7 +747,7 @@ int main(int argc, char *argv[])
 				if (homopolyend_flag == 1) {			/* TREAT LAST COL OF HOMOPOLY. RUN **/
 					homopolyend_flag = 0;
 					for (i = n - WIDTH + 1; i < n; i++)
-						pathbox[i][n] = mismatch;
+						cinchbox[i*WIDTH+n-i+1] = mismatch;
 				}
 			}
 			else
@@ -750,44 +756,12 @@ int main(int argc, char *argv[])
 			if (homopoly_flag > WIDTH) {
 				for (j = n-WIDTH+1; j < n+1 ; j++) {
 					for (i = n-WIDTH+1; i < j; i++) {
-						pathbox[i][j] = mismatch;
+						cinchbox[i*WIDTH+j-i+1] = mismatch;
 					}
 				}
 				homopolyend_flag = 1;
 			} 
 		} /**********************************************************************************/
-	
-		/**********************************************/
-		/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
-		if (opt_P.bit) {	/* opt_P */
-			blocks = count_wrap_blocks(lenseq, par_wrap.set);
-	
-			printf("\nPATHBOX FILL-IN PASS (length = width = %d)\n\n", lenseq);
-			for (j = 0; j < blocks; j++) {
-				if (blocks != 1)
-					print_blockhead(j+1, blocks);
-				line_end(PATHBOXHEAD, 9, 9);	
-				for(n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != Term->sym; n++) 
-					printf("%2c", tela[n].c);
-				printf("\n");
-				for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != Term->sym; m++) {
-					printf("%4d. %c ", m+1, tela[m].c);
-						for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != Term->sym; n++) {
-							if (m > n) {
-								if (pathbox[m][n])
-									printf("%2d", pathbox[m][n]);
-								else 
-									printf("%2c", blank);
-							}
-							else if (n-m <= WIDTH)
-								printf("%2d", pathbox[m][n]);
-							else 
-								printf("%2c", blank);
-					}
-					printf("\n");
-		   		 }
-			}
-		} /* END OF OPTION TO PRINT PATHBOX */
 	
 		/*********************************************************/
 		/*        USE PATHBOX TO BUILD FIRST 2-D ALIGNMENT       */
@@ -865,18 +839,20 @@ int main(int argc, char *argv[])
 					homopoly_flag = 0;
 	
 				/* FOR ROW m LOOP 6/6: START COUNTING SCORE IF PATHBOX POSITION HAS VALUE > MISMATCH */
-				if (pathbox[m][n] > mismatch && n+k <= lenseq) {
+				if (cinchbox[m*WIDTH + n-m+1] > mismatch && n+k <= lenseq) {
 					Dtr = 0;
 	
 					/* IF SUMMING PATHBOX DIAGONAL 1/: COMPUTE SCORES OF IDENTITY LINE AND 1st REPEAT DIAGONAL*/
 					Did = k*MATCH;
+					int mn;
 					for (i = m; i < n; i++) {
-						if (pathbox[i][i+k] == mismatch) {	/* STOP SHORT IF MISMATCH IS FOUND 		 		*/
-							Dtr =  0;						/* B/C CURRENTLY ONLY CONSIDERING TRANSITIONS 	*/
+						mn = i*WIDTH + k+1;
+						if (cinchbox[mn] == mismatch) {	/* STOP SHORT IF MISMATCH IS FOUND */
+							Dtr =  0;						/* B/C CURRENTLY ONLY CONSIDERING TRANSITIONS */
 							break;							
 						}
 						else
-							Dtr = Dtr + pathbox[i][i+k];	/* COMPUTE SUM OF TANDEM REPEAT UNIT LINE */
+							Dtr = Dtr + cinchbox[mn];		/* COMPUTE SUM OF TANDEM REPEAT UNIT LINE */
 	
 						/* SET HOMOPOLYMERIC RUN BIT TO FALSE IF NOT A POSSIBILITY */
 						if (homopoly_flag && i > m && tela[i].c != tela[i-1].c)
@@ -1040,9 +1016,6 @@ int main(int argc, char *argv[])
 	
 						++Cinch_T.pass_R;
 	
-						for (i=0; i<k; i++)
-							pathbox[n+i][m+i] = 114; 	/* "r" LOWER-LEFT */
-	
 						r = 1;
 						tela[n].r = reps;
 						tela[n].k = k = n-m;
@@ -1055,7 +1028,7 @@ int main(int argc, char *argv[])
 							if (r<reps) {
 								if (nuctransit) { 
 									for (i=m; i<n; i++) 
-										Atr = Atr + pathbox[i][(i+(r+1)*k)];
+										Atr = Atr + cinchbox[i*WIDTH + (r+1)*k+1];
 									if (k>opt_b.val && Atr!=Did && (100*Atr)/Did > DTHR) 
 										imperfect_TR = 1;
 								} 
@@ -1067,11 +1040,6 @@ int main(int argc, char *argv[])
 								p = r*k;
 								push_tela(n+p, m+p, THREE);
 
-								if (imperfect_TR) {
-									for (i=0; i<k; i++)
-										pathbox[n+p+i][m+i] = 82; 	/* "R" LOWER-LEFT */
-								}
-	
 								r++;
 								Atr = 0;
 							}
@@ -1448,12 +1416,11 @@ int main(int argc, char *argv[])
 	
 		/**********************************************/
 		/* PRINT VALUES OF PATH BOX IF OPTION SET *****/
-	
 		if (opt_P.bit) {
-			blocks = count_wrap_blocks(lenseq, par_wrap.set);
-	
 			printf("\n\nPATHBOX CINCH PASS (length = width = %d)\n\n", lenseq);
-			for (j = 0; j < blocks; j++) {
+			blocks = count_wrap_blocks(lenseq, par_wrap.set);
+			int mn;
+			for (j = 0; j < blocks; j++) { /* DEVCOMPARE - DELETE ME WHEN DONE USING */
 				if (blocks != 1)
 					print_blockhead(j+1, blocks);
 				line_end(PATHBOXHEAD, 9, 9);	
@@ -1463,14 +1430,11 @@ int main(int argc, char *argv[])
 				for(m = j * par_wrap.set; (m < (j+1) * par_wrap.set) && (tela[m].c != '\0') && tela[m].c != Term->sym; m++) {
 					printf("%4d. %c ", m+1, tela[m].c);
 						for (n = j * par_wrap.set; (n < (j+1) * par_wrap.set) && (tela[n].c != '\0') && tela[n].c != Term->sym; n++) {
-							if (m > n) {
-								if (pathbox[m][n])
-									printf("%2c", (char) pathbox[m][n]);
-								else 
-									printf("%2c", blank);
-							}
+							mn = m*WIDTH + n-m+1;
+							if (m > n)
+								printf("%2c", blank);
 							else if (n-m <= WIDTH)
-								printf("%2d", pathbox[m][n]);
+								printf("%2d", cinchbox[mn]);
 							else 
 								printf("%2c", blank);
 					}
@@ -1478,11 +1442,12 @@ int main(int argc, char *argv[])
 		   		 }
 			}
 		} /* END OF OPTION TO PRINT PATHBOX */
+
  		align2D[row][citwidth+1] = '\0';
 		Cinch_T.pass_W = Current.pass_W = citwidth;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT */
 		clear_right(align2D);
 	}
-
+	free(cinchbox);
 	print1D();
 
 	/********* 2. cinch_t MODULE: WRAPS LARGEST EXACT k-mers, IGNORES INTRA-TR TRs *****************/
@@ -1495,6 +1460,8 @@ int main(int argc, char *argv[])
 
 	if (recoverlen()==lenseq)
 		update_tela();
+
+	cinch2D = calloc((Cinch_T.pass_W+1)*lenseq, sizeof(char *));	/* +1 for Terminal character '>' */
 
 	if (opt_D.val==2)
 		dev_prompt(MAIN,__LINE__,file_name); 
@@ -1529,7 +1496,7 @@ int main(int argc, char *argv[])
 		++Nudge.pass_R;
 		Nudge.pass_W = Current.pass_W;
 
-		while (nudgelize() && Nudge.pass_R < CYCMAX) {	
+		while (nudgelize() && Nudge.pass_R<CYCMAX) {
 			++Nudge.pass_R;
 			++Nudge.pass_W;
 		}
@@ -1723,6 +1690,8 @@ int main(int argc, char *argv[])
 		}
 		print_section_spacer();
 	} /* END of opt_R */
+
+	free(cinch2D);
 
 	/* PRINT OPTION FOR K-MER REPORT AFTER cinch_t **********************/
 	if (opt_k.bit) {
