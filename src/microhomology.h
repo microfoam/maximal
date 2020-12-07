@@ -7,7 +7,7 @@
 
 #define TEMP		2		/* SETS MAGIC MELT TEMP; SETS LOWER BOUND FOR MELTAGE opt_m; UNELECTED, DEFAULT ACTS AS TEMP=1 */
 #define CYCMAX     60       /* SEMI-MAGIC NUMBER; SEARCH MAGIC TO FIND OTHER EMBEDDED DECISIONS */
-#define MAXROW   2800       /* maximum input line size; TAGGED: <MAGIC> BASED ON WHAT MY 'PUTERS CAN DO AS CURRENTLY WRITTEN */
+#define MAXROW  20000       /* maximum input line size; TAGGED: <MAGIC> BASED ON WHAT MY 'PUTERS CAN DO AS CURRENTLY WRITTEN */
 #define WIDTH      72       /* BANDWIDTH: MAX WIDTH OF HEMIDIAGONAL OF PATHBOX; MAX TR UNIT SIZE */
 #define MEMROWS    20       /* NUMBER OF mem[MEMROWS] ROWS IN STRUCT COORD ARRAY TELA */
 							/* USE 1: BIT (0/1) VALUES FOR MARK_TELA MARKS ASSOCIATED WITH A SINGLE LOOP OF CLEAR_ALL PRECEDENCE */
@@ -89,7 +89,7 @@ struct {
 }	*Options[53] = {},
                            /*.........|.........|.........|.........|.........|.........|...X*/
 	opt_a = {0, 2, 'a', 	"Cinch-k mode 2: all k (default); 1: k=1 only; 0: skip all k.*3 "},
-	opt_b = {0, 6, 'b', 	"Change default k-floor; starts transition matching above this.*"},
+	opt_b = {0, 3, 'b', 	"Change default k-floor; starts transition matching above this.*"},
 	opt_c = {0, 0, 'c', 	"Show base 62 single character code used for k-size and number. "},
 	opt_d = {0, 0, 'd', 	"Skip cinch-d module. Also automatically skips relax-2D module. "},
 	opt_e = {0, 0, 'e', {0}},
@@ -229,7 +229,7 @@ struct segment {
 
 char align2D[MAXROW+1][MAXROW] = {{0}};
 char * cinch2D = NULL;
-char consensus[MAXROW] = {0};
+char * consensus = NULL;
 char file_name[255] = "internal_default";
 char dev_notes[32] = " ";      		    /* STRING WRITTEN AS LAST FIELD IN OUTPUT FILE */
 short unsigned int cinchled=0;			/* BIT FLAG FOR CINCH-L WRAPS */
@@ -253,6 +253,7 @@ void 				mha_writeback_1Dto2D(char *cinch2D, char align2D[][MAXROW]);
 void 				mha_writeback_2Dto1D(char lcl_align2D[][MAXROW], char *cinch2D);
 void 				mha_writeconsensus1D(char *align2D_one, char consensus1D[MAXROW]);
 int 				mn1D(int row, int col);
+int 				mn1Dbig(int row, int col);
 void 				print1D(void);
 short unsigned int	print_2Dseq(void);
 void 				print_blockhead(int numbl, int totbl);
@@ -1063,6 +1064,12 @@ void mha_writeconsensus1D(char *cinch2D, char consensus1D[MAXROW])
 	consensus1D[i] = '\0';
 }
 
+
+/** RETURN 1D POSITION FOR USE IN CINCH-T 2D ARRAY POINTER **/
+int mn1Dbig(int row, int col)
+{
+	return(row*MAXROW + col);
+}
 
 /** RETURN 1D POSITION FOR USE IN POST-CINCH-T CINCH 2D ARRAY POINTER **/
 int mn1D(int row, int col)

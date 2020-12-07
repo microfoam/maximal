@@ -82,9 +82,11 @@ int main(int argc, char *argv[])
 	char cycle[WIDTH+1];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
 	char Seq_head[100] = {0};	/* FASTA HEADER */
 	char Seq_i[MAXROW] = "TGTGTGAGTGAnnnnnnTGTGTGAGTGAGnnnnnTGTGTGAGTGAGTGAnnTGTGTGAGTGAGTGAGT"; 	/* INPUT SEQUENCE W/ DEFAULT */
-	char *Seq_r = NULL; 	 	/* RANDOMIZED SEQUENCE */
+	char Seq_r[MAXROW] = {0}; 	/* RANDOMIZED SEQUENCE */
 	char *Seq = Seq_i;			/* POINTER TO INPUT SEQUENCE */
-	char *ralign2D = NULL;		/* 'R'EAD ALIGN2D FROM PREVIOUS AUTO-MHA */
+	char *ralign2D = NULL;		/* 'R'EAD ALIGN2D FROM PREVIOUS AUTO-MHA */ 	
+/* 	char ralign2D[MAXROW+1][MAXROW] = {{0}};
+*/
 	
 	FILE *file_ptr;
 	FILE *fp_cons;							/* FILE FOR CONSENSUS STRING TUBES.barrels */
@@ -94,6 +96,7 @@ int main(int argc, char *argv[])
 	time_t lcl_time = time(NULL);			/* START TIME */
 	char time0[26];							/* START TIME STRING */
 	strcpy(time0,ctime(&lcl_time));			/* TEXT-READABLE START TIME */
+	char recovered[MAXROW] = {0};
 
 	signal(SIGINT, signal_callback_handler);	/*  2 */
 	signal(SIGFPE, signal_callback_handler);	/*  8 */
@@ -184,26 +187,25 @@ int main(int argc, char *argv[])
 
 					int scrimmage = 0;
 					short unsigned int lastrow=0;
-					ralign2D = calloc(MAXROW*MAXROW, sizeof(char *));		/* TEMPORARY/CHANGE ME: THIS WILL NORMALLY BE MORE THAN IS NEEDED */
-																			/* TO DO: SCAN FILE TO FIND LONGEST LINE */
+
 					for (m=0; m<MAXROW && !lastrow; m++) {
 					    for (n=0; n<MAXROW; n++) {
 					        fscanf(file_ptr, "%c", &ch);
-					        ralign2D[mn1Dbig(m,n)] = ch;
+					        ralign2D[m][n] = ch;
 							if (n>scrimmage && (ch==Term->sym || ch==monoR.sym)) {
 								scrimmage = n;
-								ralign2D[mn1Dbig(m,n+1)] = '\0';
+								ralign2D[m][n+1] = '\0';
 								if (ch==Term->sym)
 									lastrow = 1;
 								break;
 							}
-							else if (ch=='\r' && ralign2D[mn1Dbig(m,n+1)]=='\n') {		/* MS-DOS LINE ENDINGS */
-								ralign2D[mn1Dbig(m,n  )] = '\0';
-								ralign2D[mn1Dbig(m,n+1)] = '\0';
+							else if (ch=='\r' && ralign2D[m][n+1]=='\n') {		/* MS-DOS LINE ENDINGS */
+								ralign2D[m][n  ] = '\0';
+								ralign2D[m][n+1] = '\0';
 								break;
 							}
 							else if (ch=='\r' || ch=='\n') {				/* macOS OR UNIX LINE ENDINGS */
-								ralign2D[mn1Dbig(m,n)] = '\0';
+								ralign2D[m][n] = '\0';
 								break;
 							}
 					    }
@@ -220,9 +222,9 @@ int main(int argc, char *argv[])
 	
 					printf("\n %2d. Read file 'TUBES.mha' into ralign2D array (height %d, width %d) as follows:\n", 
 								j+2, ralign_height, ralign_width-1);
-					for (m=0; ralign2D[mn1Dbig(m,0)]!='\0'; m++)	{
+					for (m=0; ralign2D[m][0]!='\0'; m++)	{
 						printf("\n\t");
-						printf("%s", &ralign2D[mn1Dbig(m,0)]);
+						printf("%s", ralign2D[m]);
 					}
 				}
 			}
@@ -574,9 +576,6 @@ int main(int argc, char *argv[])
 	else if (seqtype == 0)
 		strcpy(letr_unit, "ch");	/* OTHER */
 
-	if (opt_C.bit || opt_X.bit)
-		Seq_r = calloc(lenseq+1, sizeof(char *));
-
 	if (opt_C.bit) {					/* opt_C USE REVERSE COMPLEMENT (nucleotides), REVERSE (other) */
 		Strand = &R_str;				/* SET STRAND POINTER TO REVERSE STRAND CHARACTER */
 		if (seqtype==1 || seqtype==2) {
@@ -631,9 +630,6 @@ int main(int argc, char *argv[])
 		printf("\"\n");
 		strcpy(Seq, Seq_r);
 	}
-
-	if (opt_C.bit || opt_X.bit)
-		free(Seq_r);
 
 	Start.pass_Q = 1000;
 
@@ -1572,7 +1568,6 @@ int main(int argc, char *argv[])
 		char dashed_string[MAXROW+WIDTH] = {0};
 		strcpy(dashed_string,Seq);
 
-		char *recovered = calloc(lenseq, sizeof(char *));
 		recover_1D(recovered);
 		r = (int) strlen(recovered) - 1;
 		m = max(lenseq,r);
@@ -1686,8 +1681,6 @@ int main(int argc, char *argv[])
 					printf("\n");
 			}
 		} /* END OF FOR j LOOP */
-
-		free(recovered);
 
 		Recover.pass_W = recover_char;			/* STORE NUMBER OF RECOVERED CHARACTERS */
 
@@ -1846,8 +1839,8 @@ int main(int argc, char *argv[])
 		if (opt_v.val > 2) {
 			printf("\n ralign2D height = %2d, width = %2d", ralign_height, ralign_width);
 			printf("\n align2D  height = %2d, width = %2d\n", Current.pass_H, Current.pass_W);
-			for (m=0; ralign2D[mn1Dbig(m,0)]!='\0'; m++)	{
-				printf("\n%s", &ralign2D[mn1Dbig(m,0)]);
+			for (m=0; ralign2D[m][0]!='\0'; m++)	{
+				printf("\n%s", ralign2D[m]);
 			}
 			printf("  ralign2D");
 			printf("\n%c%s", Term->sym, align2D[0]);
@@ -1863,7 +1856,7 @@ int main(int argc, char *argv[])
 			printf("  align2D\n\n");
 		}
 		
-		struct segment *snake1 = makesnake(&ralign2D[0], ralign_height, ralign_width, whole_snake, 0);
+		struct segment *snake1 = makesnake(ralign2D[0], ralign_height, ralign_width, whole_snake, 0);
 		struct segment *snake2 = makesnake(align2D[0], Current.pass_H, Current.pass_W, whole_snake, 1);
 		int snakestart[whole_snake+2];
 		int snakebuffer = 1;
@@ -1915,31 +1908,32 @@ int main(int argc, char *argv[])
 		}
 
 		/* SUPERIMPOSE SECOND 2D ARRAY OVER FIRST FOR COMPARISON */
-		ralign2D[mn1Dbig(tuck,0)] = Term->sym;
+		ralign2D[tuck][0] = Term->sym;
 		for (i=0; align2D[i][0]!='\0'; i++) {
 			if (i>0)
-				ralign2D[mn1Dbig(tuck+i,0)]= Margin->sym;
+				ralign2D[tuck+i][0]= Margin->sym;
 			for (j=1; (ch=align2D[i][j-1])!=slip.sym && ch!=monoR.sym && ch!=Term->sym; j++) {
-				ralign2D[mn1Dbig(tuck+i,j)] = ch;
+				ralign2D[tuck+i][j] = ch;
 			}
-			ralign2D[mn1Dbig(tuck+i,j)] = ch;
+			ralign2D[tuck+i][j] = ch;
 
 			/* ADD FILL CHARACTERS BETWEEN THE SNAKE TO THE FULL RATTLE */
 			while (j <= min_width) {	/* whole snake includes start and end terminators */
-				if (!isalpha(ralign2D[mn1Dbig(tuck+i,++j)]))
-					ralign2D[mn1Dbig(tuck+i,j)] = Fill->sym;
+				if (!isalpha(ralign2D[tuck+i][++j]))
+					ralign2D[tuck+i][j] = Fill->sym;
 				else
 					break;
 			}
 		}
 
 		fp_pairwise = fopen("TUBES.mha", "w");
-			fprintf(fp_pairwise, "%s\n", &ralign2D[0]);
-		for (m = 1; ralign2D[mn1Dbig(m,1)] != '\0'; m++) {
-			fprintf(fp_pairwise, "%s\n", &ralign2D[mn1Dbig(m,0)]);
+			fprintf(fp_pairwise, "%s\n", ralign2D[0]);
+		for (m = 1; ralign2D[m][1] != '\0'; m++) {
+			fprintf(fp_pairwise, "%s\n", ralign2D[m]);
 		}
 
-		free(snake1); free(snake2); free(ralign2D);
+		free(snake1);
+		free(snake2);
 		fclose(fp_pairwise);
 	}
 	else if (opt_O.val==2) {
