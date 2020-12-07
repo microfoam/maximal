@@ -237,7 +237,7 @@ int main(int argc, char *argv[])
 
 	/**************************************/
 	/* SET OPTIONS FROM ARGUMENTS  ********/
-	const char* optstring = "a::b::cdfg::hklm::noprstu::v::xzB::CD::FHKLM::O::PRS::TX::Y:";
+	const char* optstring = "a::b::cd::fg::hklm::noprstu::v::xzB::CD::FHKLM::O::PRS::TX::Y:";
 	opterr=0;
 	int opt_count=0;	/* INDEX TO COUNT NUMBER OF OPTIONS */
 
@@ -253,15 +253,16 @@ int main(int argc, char *argv[])
 		case 'b':						/* OPTION TO CHANGE DEFAULT THRESHOLD FLOOR (k-SIZE) ABOVE WHICH BEGINS TRANSITION MATCHING */
 				opt_b.bit = 1;
 				numarg = atoi(optarg);
-				opt_b.val = numarg;		/* DEFAULT opt_b.val = 6 */
+				opt_b.val = numarg;		/* CURRENT DEFAULT opt_b.val = 3 */
 				break;
 		case 'c':						/* SHOW BASE 62 CODE */
 				opt_c.bit = 1;
 				print_base62_table();
 				return(EXIT_EARLY);
 				break;
-		case 'd':						/* OPTION TO SKIP CINCH-D CINCHING */
-				opt_d.bit = 1;
+		case 'd':						/* OPTION TO SKIP CINCH-D CINCHING (0) OR REVERSE CINCH-D k LOOP (2, DEFAULT HIGH-TO-LOW > LOW-TO-HIGH)*/
+				numarg = atoi(optarg);
+				opt_d.bit = opt_d.val = numarg;		/* DEFAULT opt_b (bit & val) = 1 */
 				break;
 		case 'f':						/* OPTION TO SHOW FOAM-FREE SEGMENTS BELOW CONSENSUS ROW*/
 				opt_f.bit = 1;
@@ -463,7 +464,7 @@ int main(int argc, char *argv[])
 	}
 
 	/* IF CERTAIN OPTIONS ARE ON, SKIP RELAX-2D */
-	if (opt_d.bit || opt_O.bit) {
+	if (!opt_d.bit || opt_O.bit) {
 		opt_n.bit = 1;		/* opt_n NO RELAX 2-D */
 	}
 
@@ -1530,9 +1531,9 @@ int main(int argc, char *argv[])
 
 	if (intraTR_reps) {
 		int d_width = Current.pass_W;
-		while (intraTR_reps > 0) {
+		while (intraTR_reps) {
 			intraTR_reps = cinch_d(1);
-			if (Current.pass_W==d_width)
+			if (d_width==Current.pass_W)
 				break;
 			else
 				d_width = Current.pass_W;
@@ -1732,10 +1733,10 @@ int main(int argc, char *argv[])
 		printf("%s (protein sequence)", Seq_head);
 	else if (seqtype==0)
 		printf("%s (non-biological sequence)", Seq_head);
-	printf(":\n\n PASS QUAL.      2-D WIDTH\n");
+	printf(":\n\n PASS QUAL.    2-D WIDTH\n");
 
 	for (i = 0; i<8 && Cinches[i]->pass_W != '\0'; i++) {
-		printf("  %5d       => %4d ", Cinches[i]->pass_Q, Cinches[i]->pass_W);
+		printf("  %5d      => %8d ", Cinches[i]->pass_Q, Cinches[i]->pass_W);
 		switch (i) {
 		case 0:
 			if (!opt_X.bit)
@@ -1793,10 +1794,12 @@ int main(int argc, char *argv[])
 				else
 					printf("%s post cinch-d   [pass #6: %d cinches]\n", letr_unit, Cinch_D.pass_R);
 			}
-			else if (opt_d.bit)
+			else if (!opt_d.bit)
 				printf("%s post cinch-d   [pass #6: SKIPPED BY REQUEST]\n", letr_unit);
+			else if (opt_d.val==2)
+				printf("%s post cinch-d   [pass #6: LOW-TO-HIGH k]\n", letr_unit);
 			else
-				printf("%s post cinch-d   [pass #6]\n", letr_unit);
+				printf("%s post cinch-d   [pass #6: HIGH-TO-LOW k]\n", letr_unit);
 			break;
 		case 7:	
 			if (!Relax.pass_R)

@@ -91,7 +91,7 @@ struct {
 	opt_a = {0, 2, 'a', 	"Cinch-k mode 2: all k (default); 1: k=1 only; 0: skip all k.*3 "},
 	opt_b = {0, 3, 'b', 	"Change default k-floor; starts transition matching above this.*"},
 	opt_c = {0, 0, 'c', 	"Show base 62 single character code used for k-size and number. "},
-	opt_d = {0, 0, 'd', 	"Skip cinch-d module. Also automatically skips relax-2D module. "},
+	opt_d = {1, 1, 'd', 	"Cinch-d ON (1, default), OFF (0), or w/ reversed k-loop (2).*2 "},
 	opt_e = {0, 0, 'e', {0}},
 	opt_f = {0, 0, 'f', 	"Show foam-free segments (requires allowing default relax-2D.   "},
 	opt_g = {0, 0, 'g', 	"Gel-up (counteract base level melt setting in cinch-d).*       "},
@@ -249,7 +249,7 @@ void 				line_end(int type, int c, int lcl_width);
 char 				mha_base62(int num);
 void 				mha_head(int lcl_width);
 void 				mha_writeback(char lcl_align2D[][MAXROW], char align2D[][MAXROW]);
-void 				mha_writeback_1Dto2D(char *cinch2D, char align2D[][MAXROW]);
+void				mha_writeback_1Dto2D(char *cinch2D, char align2D[][MAXROW]);
 void 				mha_writeback_2Dto1D(char lcl_align2D[][MAXROW], char *cinch2D);
 void 				mha_writeconsensus1D(char *align2D_one, char consensus1D[MAXROW]);
 int 				mn1D(int row, int col);
@@ -1019,10 +1019,11 @@ void mha_writeback_1Dto2D(char *cinch2D, char align2D[][MAXROW])
 {
 char letr;
 int i=0, m=0, n=0, widest_n=0;
+int bound = (Cinch_T.pass_W+1)*Clean.pass_W;
 
 	/* WRITE BACK TO align2D */
 	clear_2D_ar(align2D);
-	for (i = 0; (letr=cinch2D[i])!=Term->sym && i<=(Cinch_T.pass_W+1)*Clean.pass_W; i++) {
+	for (i=0; (letr=cinch2D[i])!=Term->sym && i<=bound; i++) {
 		if (letr==Fill->sym || isalpha(letr) || letr==monoL.sym)
 			align2D[m  ][n++] = letr;
 		else if (letr==slip.sym || letr==monoR.sym)	{
@@ -1036,7 +1037,7 @@ int i=0, m=0, n=0, widest_n=0;
 		}
 		else if (letr == '\0') {
 			warnhead('?');
-			printf("Missing a line terminator of some sort? prev letr=%c, m=%2d, n=%2d (microhomology.h line %d)\n", cinch2D[i-1], m, n, __LINE__);
+			printf("Missing a line terminator of some sort? prev letr=%c, m=%2d, n=%2d (microhomology.h line %d)\n", cinch2D[i-1], m,n,__LINE__);
 		}
 	}
 	if (letr == Term->sym) {

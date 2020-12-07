@@ -1004,24 +1004,36 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 /******************************************************************/
 unsigned int cinch_d(short unsigned int cinch_d_opt)
 {
-int delta_mrow=0, delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, w=0, x=0, tot_repeats=0, uniq_TRs=0, num_transits=0;
-int height = Current.pass_H;
-int translimit = 0;
-int kstart = 12;	/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2 */
-unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;
-unsigned short int nuctransit=0;
-unsigned short int imperfect_TR=0;
-char letr, ltr2;
-char blnk = Fill->sym;
-int lenseq = Clean.pass_W;
+	int delta_mrow=0, delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, w=0, x=0, tot_repeats=0, uniq_TRs=0, num_transits=0;
+	int height = Current.pass_H;
+	int translimit = 0;
+	int kstart = 12;	/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2 */
+	int kend   =  1;	/* FOR k LOOP QUITS AT kend */
+	int kbit   = -1;	/* SETS POLARITY OF INCREMENTS IN FOR k LOOP */
+	unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;
+	unsigned short int nuctransit=0;
+	unsigned short int imperfect_TR=0;
+	char letr, ltr2;
+	char blnk = Fill->sym;
+	int lenseq = Clean.pass_W;
 
 	clear_cinch2D();
 	nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA, TWO IF RNA */
 	if (nuctype == 1)			/* IF DNA */
 		nuctransit = 1;
 
+	short unsigned int devcinchd = 0;	/* TEMPORARY - DELETE ME WHEN DONE */
+	static int dcount = 0;
+	dcount++;
+
+	if (opt_d.val==2) {
+		kstart =  2;
+		kend   = 13;
+		kbit   =  1;
+	}
+
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
-	for (k=kstart; k>1; k--) {
+	for (k=kstart; k!=kend; k+=kbit) {
 		if (nuctransit) {
 			if (k > opt_b.val) {
 				if (opt_m.bit || opt_g.bit)				/* opt_m OR opt_g ELECTED MAGIC MELTAGE OR GELLING */
@@ -1033,7 +1045,8 @@ int lenseq = Clean.pass_W;
 				translimit = 0;
 		}
 
-		for (n=0; n<=Current.pass_W-2*k; n++) {
+		int end = Current.pass_W - 2*k + 1;
+		for (n=0; n<end; n++) {
 			mono_flag = 1;			/* MONOMER RUN FLAG IS SET TO 0, WHEN NO LONGER POSSIBLE (ANY n != n+1) */
 	
 			if (!TR_check) 			/* RE-SET COUNTER FOR NUM (number of repeats, Albert-style +1 though ) */
@@ -1045,55 +1058,44 @@ int lenseq = Clean.pass_W;
 			for (l=0; l<k; l++) {
 				letr=consensus[n  +l];
 				ltr2=consensus[n+k+l];
-				if (isalpha(letr=consensus[n+l]) && isalpha(ltr2=consensus[n+k+l])) {
-					if (l+1<k && letr!=consensus[n+l+1])
+				if (isalpha(letr) && isalpha(ltr2)) {
+					if (letr!=consensus[n+l+1])
 						mono_flag = 0;		/* CAN NO LONGER BE A HOMOPOLYMER RUN OF FOR THIS k-MER */
 
 					if (letr==ambig.sym || ltr2==ambig.sym)
 						break;
-					else if (num_transits > translimit)
-						break;
-					else if (nuctransit && k>2 && letr!=ltr2) {
-						if (     (letr == 'A' || letr == 'G') && (ltr2 == 'C' || ltr2 == 'T'))
+					else if (nuctransit && k>opt_b.val) {
+						if (letr!=ltr2) {
+							if (     (letr == 'A' || letr == 'G') && (ltr2 == 'C' || ltr2 == 'T'))
+								break;
+							else if ((letr == 'C' || letr == 'T') && (ltr2 == 'A' || ltr2 == 'G'))
+								break;
+							else if ((letr == 'R') && (ltr2 == 'C' || ltr2 == 'T' || ltr2 == 'Y'))
+								break;
+							else if ((letr == 'Y') && (ltr2 == 'A' || ltr2 == 'G' || ltr2 == 'R'))
+								break;
+							else if ((ltr2 == 'R') && (letr == 'C' || letr == 'T' || letr == 'Y'))
+								break;
+							else if ((ltr2 == 'Y') && (letr == 'A' || letr == 'G' || letr == 'R'))
+								break;
+							else {
+								imperfect_TR = 1;
+								++num_transits;
+							}
+						}
+						if (num_transits > translimit) {
+							imperfect_TR = 0;
 							break;
-						else if ((letr == 'C' || letr == 'T') && (ltr2 == 'A' || ltr2 == 'G'))
-							break;
-						else if ((letr == 'R') && (ltr2 == 'C' || ltr2 == 'T' || ltr2 == 'Y'))
-							break;
-						else if ((letr == 'Y') && (ltr2 == 'A' || ltr2 == 'G' || ltr2 == 'R'))
-							break;
-						else if ((ltr2 == 'R') && (letr == 'C' || letr == 'T' || letr == 'Y'))
-							break;
-						else if ((ltr2 == 'Y') && (letr == 'A' || letr == 'G' || letr == 'R'))
-							break;
-						else {
-							imperfect_TR = 1;
-							++num_transits;
 						}
 					}
 					else if (letr!=ltr2)
 						break; 	
 				}
-				else if (letr==Term->sym || ltr2==Term->sym) {
-					break;
-				}
-				else if (!cinch_d_opt && !isalpha(letr) && isalpha(consensus[n+l+1])) {
-					for (i=0; align2D[i][0]!='\0'; i++) {
-						for (j=n+l; (letr=align2D[i][j+1])!='\0'; j++) {
-							align2D[i][j] = letr;
-						}
-					}
-					for (j=n+l; (letr=consensus[j+1])!='\0'; j++) {
-						consensus[j] = letr;
-					}
-					break; 
-				}
-				else if (letr!=ltr2) {
+				else if (letr!=ltr2)
 					break; 	
-				}
 			} /* END OF FOR l LOOP CHECK OF k-MER TR (2x) */
 
-			if (l==k && mono_flag==0) {
+			if (l==k && !mono_flag) {
 				if (nuctransit) {
 					if (opt_m.bit && num_transits > translimit) { 	/* opt_m (OR opt_g) ELECTED MAGIC MELTAGE OR GEL */
 						if (dev_print(CINCH,__LINE__)) {
@@ -1113,17 +1115,15 @@ int lenseq = Clean.pass_W;
 					num = 2;		/* THIS KEEPS COUNT OF HOW MANY REPEATS. WITH ONE RE-PEAT COUNTED, THERE ARE TWO */
 				}
 			}
-			else {
+			else
 				TR_check = 0;
-			}
 
-			/* CHECK FOR COMPLEX cinch_d REPEATS THAT SHOULD NOT BE COUNTED/WRITTEN. */
-			/*  THESE HAVE LETTERS IN NEXT ROW UNDERNEATH FIRST UNIT.                */
+			/* CHECK FOR CERTAIN COMPLEX KNOTS THAT SHOULD NOT BE CINCHED. */
+			/*  THESE HAVE LETTERS IN NEXT ROW UNDERNEATH FIRST UNIT.      */
 			if (TR_check) {
 				m = 0;
-				while (m<height && !isalpha(align2D[m][n+k])) {
+				while (m<height && !isalpha(align2D[m][n+k]))
 					m++;
-				}
 				for (w=1; m+w<height && TR_check; w++) {
 					for (x=0; x<n+k; x++) {
 						if (!x && align2D[m+w][0]=='\0') {
@@ -1138,7 +1138,9 @@ int lenseq = Clean.pass_W;
 					}
 				}
 			}
-	
+			if (devcinchd)
+				printf("\n %4d. Am here for k=%2d. cinch_d_opt=%d. n=%4d. lenseq=%d. TR_check=%d. tot_repeats=%2d.", dcount, k,cinch_d_opt,n,lenseq,TR_check,tot_repeats);
+
 			while (TR_check) {
 				++uniq_TRs;
 
@@ -1154,7 +1156,7 @@ int lenseq = Clean.pass_W;
 					}
 				} /* END OF FOR l LOOP */
 
-				if (cinch_d_opt && !opt_d.bit) {	/* CINCH-D ENGINE IF NOT opt_d (SKIP-CINCH-D CINCHING) */
+				if (cinch_d_opt && opt_d.bit) {	/* CINCH-D ENGINE IF NOT SKIPPING CINCH-D CINCHING) */
 					if (first_write) {
 						++Cinch_D.pass_R;
 
@@ -1248,7 +1250,6 @@ int lenseq = Clean.pass_W;
 						printf("%4d. TR: %3dx %2d-mer at consensus position %3d.", uniq_TRs, num, k, n);
 				}
 			} /* END OF WHILE TR_check */
-
 		} /* END OF FOR n LOOP */
 	} /* END OF FOR k LOOP */
 
@@ -1270,7 +1271,7 @@ int lenseq = Clean.pass_W;
 			consensus_2D(0, Current.pass_W);
 			opt_K.bit = 1;					/* REASSIGN SETTING */
 		}
-		else if (tot_repeats&& opt_v.bit) {
+		else if (tot_repeats && opt_v.bit) {
 			print_2Dseq();
 		}
 		else { 
