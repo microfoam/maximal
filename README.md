@@ -5,13 +5,13 @@ MHA methodology is philosophically-distinct from gapped alignment in embracing l
 As a prototype implementation of MHA, the current versions of maximal feature a rich set of run options in order to encourage a free, open-minded, heuristics-friendly development cycle.
 Program options can be seen by running ./maximal without any options specified.
 
-Version v4.36 is the current version and the first to be tested without any known issues on both macOS and Linux platforms. 
+Version v4.37 is the current version and the first to be tested without any known issues on both macOS and Linux platforms. 
 To compile for either platform, run the script './surfboard-Pop_Up', which will produce an executable named 'maximal'.
 For development and testing purposes, two executable binaries are included ('maximal-macOS-binary' and 'maximal-Linux-binary').
 To use either of these pre-compiled versions with any of the 'surfboard_lowercase_namespace' script, the appropriate binary can be copied or renamed to 'maximal'.
 
 Version numbers represent program development versions that increase in steps of 0.01.
-Version 4.00 is simply the 400th version in the development repository.
+Version 4.00, for example, is simply the 400th version in the development repository.
 We are 'pre-release' of the first official release, a little bit of the 'journey is the destination' with public access.
 Nonetheless, at this moment and this perspective, we can say that the construction work has moved up from the south-east and south-west and joined here,
 carried out by two great armies of workers, and some angels. 
@@ -83,4 +83,4 @@ If this file is present it has record of existing "tricksy" strings with problem
 Typically, this file is committed after a -XX Fischer-Yates run and is named with additional version and run information.
 _______________________________________________
 
-*Last updated*: 10/16/2020
+*Last updated*: 12/06/2020
