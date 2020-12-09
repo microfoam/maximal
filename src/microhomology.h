@@ -199,7 +199,6 @@ struct {
 	st_skip1 = {'-', 45},		/* MHA mark_tela() status mark                 */
 	st_skip2 = {'~',126};		/* MHA mark_tela() status mark                 */
 
-
 struct cinch {
 	int pass_Q;					/* Pass quality score                                               */
 	int pass_R;					/* Pass runs count; for Current this will hold cumulative bad slips */
@@ -226,6 +225,13 @@ struct segment {
 	int belly;		/* row positions of bottom-most buffer row, above which is the bottom most character in that column or adjacent column */
 	char topc;		/* character of spine position */
 };
+
+struct {
+	int		mfirst;             /* First row with character */
+	int		mlast;	            /* Last row with character */
+	int		chcount;			/* Character count per column */
+	int		stat;				/* Status information for column */
+} dConsensus[MAXROW];
 
 char align2D[MAXROW+1][MAXROW] = {{0}};
 char * cinch2D = NULL;

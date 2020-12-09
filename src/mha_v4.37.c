@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 	int relax_length=0;			/* FOR USE WITH relax_2D CALL */
 	char blank = Fill->sym;					/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
 
-	int intraTR_reps = 0;	 	/* STORES CURRENT RETURN VALUE FROM cinch-d() */
+	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
 	int ralign_height = 0;	
 	int ralign_width = 0;
 	char ch = blank;
@@ -76,7 +76,6 @@ int main(int argc, char *argv[])
 	float ratio2 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post relax-2D 				*/
 
 	int scooch = 0;
-	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
 
 	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
 	char cycle[WIDTH+1];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
@@ -1521,18 +1520,13 @@ int main(int argc, char *argv[])
 
 	/********* 6. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
 	++Current.pass_V;
-	if (dev_print(MAIN,__LINE__)) {
-		if (nuctransit)
-			printf("Pre-cinch_d report (p = perfect, i = imperfect tandem repeat):\n");
-		else
-			printf("Pre-cinch_d report:\n");
-	}
-	intraTR_reps = cinch_d(0);
+
+	int intraTR_reps = 1;	 	/* STORES RETURN VALUE FROM cinch-d() */
 
 	if (intraTR_reps) {
 		int d_width = Current.pass_W;
 		while (intraTR_reps) {
-			intraTR_reps = cinch_d(1);
+			intraTR_reps = cinch_d();
 			if (d_width==Current.pass_W)
 				break;
 			else
@@ -1540,7 +1534,11 @@ int main(int argc, char *argv[])
 		}
 		Cinch_D.pass_V = Cinch_D.pass_R;
 	}
+
+/*	free(dConsensus);
+*/
 	Cinch_D.pass_Q = Current.pass_Q;
+
 	if (opt_D.val==6)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
@@ -1724,6 +1722,8 @@ int main(int argc, char *argv[])
 	if (seqtype == 3 && opt_x.bit && opt_v.bit)
 		print_protein_waxes();
 
+	char arrow[] = "      ";
+
 	printf("\nWidth cinch history for ");
 	if (seqtype == 1)		
 		printf("%s (DNA sequence)", Seq_head);
@@ -1736,7 +1736,7 @@ int main(int argc, char *argv[])
 	printf(":\n\n PASS QUAL.    2-D WIDTH\n");
 
 	for (i = 0; i<8 && Cinches[i]->pass_W != '\0'; i++) {
-		printf("  %5d      => %8d ", Cinches[i]->pass_Q, Cinches[i]->pass_W);
+		printf("  %5d%s%8d ", Cinches[i]->pass_Q, arrow, Cinches[i]->pass_W);
 		switch (i) {
 		case 0:
 			if (!opt_X.bit)
@@ -1812,7 +1812,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	if (opt_R.bit) {
-		printf("  %5d       => %4d ", Recover.pass_Q, Recover.pass_W);
+		printf("  %5d%s%8d ", Recover.pass_Q, arrow, Recover.pass_W);
 			printf(    "%s recovered 1D   [final check pass]\n", letr_unit);
 	}
 

@@ -13,7 +13,7 @@ int 				cinch_l(void);
 int 				cinch_k(short unsigned int mode);
 unsigned int 		nudgelize(void);
 unsigned int 		connudge(char *nudcinch2D, int n_start, int n_width);
-unsigned int 		cinch_d(short unsigned int cinch_d_opt);
+unsigned int 		cinch_d(void);
 void 				relax_2D(void);
 int 				recover_1D(char *recovered_1D);
 
@@ -175,16 +175,18 @@ int cinch_l(void)
 			else
 				run=0;
 		}
-		if (!x)
+		if (!x) {
+			Cinch_L.pass_W = Current.pass_W;
 			return(0);
+		}
 		else {
 			printf("\n");
 			n = run = x = 0;
 		}
 	}
 
-	for (m = 0; align2D[m][0] != '\0'; m++) {
-		for (n = 0; align2D[m][n] != '\0'; n++) {
+	for (m=0; align2D[m][0]!='\0'; m++) {
+		for (n=0; align2D[m][n]!='\0'; n++) {
 			while (align2D[m][n] == blnk) {	/* MOVE WINDOW PAST BLANKS */
 				cinch2D[mn1D(m+cil_row,n-x)] = blnk;
 				n++;			  
@@ -238,11 +240,12 @@ int cinch_l(void)
 			}	/* END OF MONOMERIC RUN BLOCK WRITES */ 
 		}   /* END OF FOR n LOOPS */ 
 	}   /* END OF FOR m LOOPS */
+
 	Cinch_L.pass_W = Current.pass_W;
 
-	if (cinchled) {
+	if (cinchled)
 		mha_writeback_1Dto2D(cinch2D, align2D);
-	}
+
 	return(cinchled);
 }
 /******************************************************************/
@@ -1002,9 +1005,9 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 
 
 /******************************************************************/
-unsigned int cinch_d(short unsigned int cinch_d_opt)
+unsigned int cinch_d(void)
 {
-	int delta_mrow=0, delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, w=0, x=0, tot_repeats=0, uniq_TRs=0, num_transits=0;
+	int delta_mrow=0, delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, tot_repeats=0, uniq_TRs=0, num_transits=0;
 	int height = Current.pass_H;
 	int translimit = 0;
 	int kstart = 12;	/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2 */
@@ -1022,14 +1025,54 @@ unsigned int cinch_d(short unsigned int cinch_d_opt)
 	if (nuctype == 1)			/* IF DNA */
 		nuctransit = 1;
 
-	short unsigned int devcinchd = 0;	/* TEMPORARY - DELETE ME WHEN DONE */
-	static int dcount = 0;
-	dcount++;
-
 	if (opt_d.val==2) {
 		kstart =  2;
 		kend   = 13;
 		kbit   =  1;
+	}
+
+	for (j=0; j<Nudge.pass_W; j++) {
+		int charcount=0;
+		for (i=0; i<=height; i++) {
+			if (isalpha(align2D[i][j])) {
+				if (!charcount)
+					dConsensus[j].mfirst = i;
+				else
+					dConsensus[j].mlast = i;
+				charcount++;
+			}
+		}
+		dConsensus[j].chcount = charcount;
+		if (align2D[i][j]!=ambig.sym) {
+			if (charcount==1) {
+				dConsensus[j].stat = 1; 			/* FREE TO CINCH AT THIS COLUMN */
+				if (j<Current.pass_W-1)
+					dConsensus[j+1].stat = 1; 		/* ALSO FREE TO CINCH AT THIS COLUMN */
+			}
+			else if (charcount && dConsensus[j].mfirst==dConsensus[j-1].mlast)
+				dConsensus[j].stat = 1; 			/* FREE TO CINCH AT THIS COLUMN */
+		}
+	}
+	if (opt_v.val==2) {
+		printf("        ");
+		for (j=0; j<Current.pass_W; j++)
+			printf("%c", mha_base62(dConsensus[j].stat));
+		printf(" <= dConsensus[].stat (base 62)\n");
+
+		printf("        ");
+		for (j=0; j<Current.pass_W; j++)
+			printf("%c", mha_base62(dConsensus[j].mfirst));
+		printf(" <= dConsensus[].first\n");
+
+		printf("        ");
+		for (j=0; j<Current.pass_W; j++)
+			printf("%c", mha_base62(dConsensus[j].mlast));
+		printf(" <= dConsensus[].last\n");
+
+		printf("        ");
+		for (j=0; j<Current.pass_W; j++)
+			printf("%c", mha_base62(dConsensus[j].chcount));
+		printf(" <= dConsensus[].chcount\n");
 	}
 
 	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
@@ -1047,6 +1090,11 @@ unsigned int cinch_d(short unsigned int cinch_d_opt)
 
 		int end = Current.pass_W - 2*k + 1;
 		for (n=0; n<end; n++) {
+			while (!(dConsensus[n+k].stat))
+				n++;
+			if (n>=end)
+				break;
+
 			mono_flag = 1;			/* MONOMER RUN FLAG IS SET TO 0, WHEN NO LONGER POSSIBLE (ANY n != n+1) */
 	
 			if (!TR_check) 			/* RE-SET COUNTER FOR NUM (number of repeats, Albert-style +1 though ) */
@@ -1103,13 +1151,13 @@ unsigned int cinch_d(short unsigned int cinch_d_opt)
 										n+1, k, num_transits, translimit, opt_b.val);
 						}
 					}
-					else if (num_transits <= translimit) {
+					else if (num_transits<=translimit && dConsensus[n+k].stat) {
 						TR_check = 1;
 						++tot_repeats;
 						num = 2;		/* THIS KEEPS COUNT OF HOW MANY REPEATS. WITH ONE RE-PEAT COUNTED, THERE ARE TWO */
 					}
 				}
-				else {
+				else if (dConsensus[n+k].stat) {
 					TR_check = 1;
 					++tot_repeats;
 					num = 2;		/* THIS KEEPS COUNT OF HOW MANY REPEATS. WITH ONE RE-PEAT COUNTED, THERE ARE TWO */
@@ -1117,29 +1165,6 @@ unsigned int cinch_d(short unsigned int cinch_d_opt)
 			}
 			else
 				TR_check = 0;
-
-			/* CHECK FOR CERTAIN COMPLEX KNOTS THAT SHOULD NOT BE CINCHED. */
-			/*  THESE HAVE LETTERS IN NEXT ROW UNDERNEATH FIRST UNIT.      */
-			if (TR_check) {
-				m = 0;
-				while (m<height && !isalpha(align2D[m][n+k]))
-					m++;
-				for (w=1; m+w<height && TR_check; w++) {
-					for (x=0; x<n+k; x++) {
-						if (!x && align2D[m+w][0]=='\0') {
-							w = height;		/* TO BREAK FOR w LOOP */
-							break;			/* TO BREAK FOR x LOOP */
-						}
-						else if (isalpha(align2D[m+w][x])) {
-							--tot_repeats;	/* DECREMENT COUNTER  */
-							TR_check = 0;	/* RESET BACK TO ZERO AND BREAK OUT OF FOR w LOOP */
-							break;			/* BREAK OUT OF FOR x LOOP     */
-						}
-					}
-				}
-			}
-			if (devcinchd)
-				printf("\n %4d. Am here for k=%2d. cinch_d_opt=%d. n=%4d. lenseq=%d. TR_check=%d. tot_repeats=%2d.", dcount, k,cinch_d_opt,n,lenseq,TR_check,tot_repeats);
 
 			while (TR_check) {
 				++uniq_TRs;
@@ -1156,23 +1181,10 @@ unsigned int cinch_d(short unsigned int cinch_d_opt)
 					}
 				} /* END OF FOR l LOOP */
 
-				if (cinch_d_opt && opt_d.bit) {	/* CINCH-D ENGINE IF NOT SKIPPING CINCH-D CINCHING) */
+				if (opt_d.bit) {	/* CINCH-D ENGINE IF NOT SKIPPING CINCH-D CINCHING) */
 					if (first_write) {
 						++Cinch_D.pass_R;
-
-						m = 0;
-						while (!(isalpha(align2D[m][n+k]))) {
-							m++;
-						}
-
-						/* SCAN TELA STRUCT FOR COORDINATES */
-						for (l=0; l<lenseq; l++) {
-							if (tela[l].y==m && tela[l].x==n) {
-								break;
-							}
-						}
-						if (l!=lenseq && tela[l+k].echoes==cyc_skip.sym)
-							break;
+						m = dConsensus[n+k].mfirst;
 
 						if (dev_print(CINCH,__LINE__)) {
 							printf("%4d. Working on %2d-mer consensus TR (%dx) at position %4d, row %4d.", 
@@ -1226,19 +1238,29 @@ unsigned int cinch_d(short unsigned int cinch_d_opt)
 							}
 						}
 
-						if (nuctransit) {
-							/* SCOOCH CONSENSUS ROW TO THE LEFT TO REFLECT CINCHED WIDTH */
-							for (i=n+k; consensus[i+k]!='\0'; i++) {
-								consensus[i] = consensus[i+k];
-							}
-							consensus[i] = '\0';
-						} 
+						/* UPDATE CONSENSUS ROWS */
+						for (i=n; i<n+k; i++) {
+							dConsensus[i].mlast += dConsensus[i+k].mlast - dConsensus[i].mlast;
+							dConsensus[i].chcount += dConsensus[i+k].chcount;
+							dConsensus[i].stat = 0;
+						}
+						for (i=n+k; consensus[i+k]!='\0'; i++) {
+							consensus[i] = consensus[i+k];
+							dConsensus[i].mfirst = dConsensus[i+k].mfirst + 1;
+							dConsensus[i].mlast = dConsensus[i+k].mlast + 1;
+							dConsensus[i].chcount = dConsensus[i+k].chcount;
+							dConsensus[i].stat = dConsensus[i+k].stat;
+						}
+						consensus[i] = '\0';
+						dConsensus[i].mfirst = '\0';
+						dConsensus[i].mlast = '\0';
+						dConsensus[i].chcount = '\0';
+						dConsensus[i].stat = '\0';
 
 						if (letr == Term->sym) {
 							Current.pass_W = j-delta_ncol-1;
 							mha_writeback_1Dto2D(cinch2D, align2D);
 						}
-
 					} /* END OF IF first_write EQUALS ONE */
 				} /*********************************************************************************************/
 				else if (dev_print(CINCH,__LINE__)) {		/* ELSE IF PRE-CINCH-D AND DEV_PRINT OPTION */
@@ -1253,33 +1275,27 @@ unsigned int cinch_d(short unsigned int cinch_d_opt)
 		} /* END OF FOR n LOOP */
 	} /* END OF FOR k LOOP */
 
-	i = Current.pass_V;
-	if (!cinch_d_opt) {
-		if (!tot_repeats) {
-			Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
-		}
+	Cinches[Current.pass_V]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
+
+	if (!delta_ncol && !opt_v.bit) {
+		opt_K.bit = 1;						/* EVEN IF NOT OPTIONED, GOOD TO SHOW FOR LAST RUN */
+		print_2Dseq();
+		return(0);
+	}
+	else if (tot_repeats > 1 && opt_K.bit && !opt_v.bit) {
+		opt_K.bit = 0;					/* TMP ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
+		consensus_2D(0, Current.pass_W);
+		opt_K.bit = 1;					/* REASSIGN SETTING */
+	}
+	else if (tot_repeats && opt_v.bit) {
+		print_2Dseq();
 	}
 	else {
-		Cinches[i]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
-		if (!delta_ncol && !opt_v.bit) {
-			opt_K.bit = 1;						/* EVEN IF NOT OPTIONED, GOOD TO SHOW FOR LAST RUN */
-			print_2Dseq();
-			return(0);
-		}
-		else if (tot_repeats > 1 && opt_K.bit && !opt_v.bit) {
-			opt_K.bit = 0;					/* TMP ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
-			consensus_2D(0, Current.pass_W);
-			opt_K.bit = 1;					/* REASSIGN SETTING */
-		}
-		else if (tot_repeats && opt_v.bit) {
-			print_2Dseq();
-		}
-		else { 
-			opt_K.bit = 0;					/* TMP ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
-			consensus_2D(0, Current.pass_W);
-			opt_K.bit = 1;					/* REASSIGN SETTING */
-		}
+		opt_K.bit = 0;					/* TMP ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
+		consensus_2D(0, Current.pass_W);
+		opt_K.bit = 1;					/* REASSIGN SETTING */
 	}
+
 	return(tot_repeats);
 }
 /******************************************************************/
