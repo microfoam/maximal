@@ -1523,6 +1523,17 @@ int main(int argc, char *argv[])
 
 	int intraTR_reps = 1;	 	/* STORES RETURN VALUE FROM cinch-d() */
 
+	dConsensus = malloc(Cinch_K.pass_W * sizeof(*dConsensus));
+	struct cindstruct **pcind = malloc(Cinch_K.pass_W * sizeof(*pcind));
+
+	for (i=0; i<Cinch_K.pass_W; i++)
+		pcind[i] = dConsensus+i;		/* SO NOW CAN USE EITHER dConsensus[i].FIELD or pcind[i]->FIELD */
+
+	if (dConsensus==NULL || pcind==NULL) {
+		printf("\n Memory allocation error. See line %d in main().\n", __LINE__);
+		exit(3);
+	}
+
 	if (intraTR_reps) {
 		int d_width = Current.pass_W;
 		while (intraTR_reps) {
@@ -1535,9 +1546,9 @@ int main(int argc, char *argv[])
 		Cinch_D.pass_V = Cinch_D.pass_R;
 	}
 
-/*	free(dConsensus);
-*/
 	Cinch_D.pass_Q = Current.pass_Q;
+	free(pcind);
+	free(dConsensus);
 
 	if (opt_D.val==6)
 		dev_prompt(MAIN,__LINE__,file_name); 

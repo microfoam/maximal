@@ -1031,9 +1031,12 @@ unsigned int cinch_d(void)
 		kbit   =  1;
 	}
 
-	for (j=0; j<Nudge.pass_W; j++) {
+	for (j=0; j<Current.pass_W; j++)
+		dConsensus[j].stat = 0;
+
+	for (j=0; j<Current.pass_W; j++) {
 		int charcount=0;
-		for (i=0; i<=height; i++) {
+		for (i=0; i<height; i++) {
 			if (isalpha(align2D[i][j])) {
 				if (!charcount)
 					dConsensus[j].mfirst = i;
@@ -1043,7 +1046,7 @@ unsigned int cinch_d(void)
 			}
 		}
 		dConsensus[j].chcount = charcount;
-		if (align2D[i][j]!=ambig.sym) {
+		if (j && align2D[i][j]!=ambig.sym) {
 			if (charcount==1) {
 				dConsensus[j].stat = 1; 			/* FREE TO CINCH AT THIS COLUMN */
 				if (j<Current.pass_W-1)
@@ -1053,6 +1056,7 @@ unsigned int cinch_d(void)
 				dConsensus[j].stat = 1; 			/* FREE TO CINCH AT THIS COLUMN */
 		}
 	}
+
 	if (opt_v.val==2) {
 		printf("        ");
 		for (j=0; j<Current.pass_W; j++)
@@ -1088,13 +1092,8 @@ unsigned int cinch_d(void)
 				translimit = 0;
 		}
 
-		int end = Current.pass_W - 2*k + 1;
-		for (n=0; n<end; n++) {
-			while (!(dConsensus[n+k].stat))
-				n++;
-			if (n>=end)
-				break;
-
+		int end = Current.pass_W - 2*k;
+		for (n=0; n<=end; n++) {
 			mono_flag = 1;			/* MONOMER RUN FLAG IS SET TO 0, WHEN NO LONGER POSSIBLE (ANY n != n+1) */
 	
 			if (!TR_check) 			/* RE-SET COUNTER FOR NUM (number of repeats, Albert-style +1 though ) */
@@ -1244,7 +1243,7 @@ unsigned int cinch_d(void)
 							dConsensus[i].chcount += dConsensus[i+k].chcount;
 							dConsensus[i].stat = 0;
 						}
-						for (i=n+k; consensus[i+k]!='\0'; i++) {
+						for (i=n+k; i<Current.pass_W-k; i++) {
 							consensus[i] = consensus[i+k];
 							dConsensus[i].mfirst = dConsensus[i+k].mfirst + 1;
 							dConsensus[i].mlast = dConsensus[i+k].mlast + 1;
@@ -1252,10 +1251,6 @@ unsigned int cinch_d(void)
 							dConsensus[i].stat = dConsensus[i+k].stat;
 						}
 						consensus[i] = '\0';
-						dConsensus[i].mfirst = '\0';
-						dConsensus[i].mlast = '\0';
-						dConsensus[i].chcount = '\0';
-						dConsensus[i].stat = '\0';
 
 						if (letr == Term->sym) {
 							Current.pass_W = j-delta_ncol-1;

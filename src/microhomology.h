@@ -226,12 +226,12 @@ struct segment {
 	char topc;		/* character of spine position */
 };
 
-struct {
+struct cindstruct {
 	int		mfirst;             /* First row with character */
 	int		mlast;	            /* Last row with character */
 	int		chcount;			/* Character count per column */
 	int		stat;				/* Status information for column */
-} dConsensus[MAXROW];
+} *dConsensus = NULL;
 
 char align2D[MAXROW+1][MAXROW] = {{0}};
 char * cinch2D = NULL;
@@ -284,6 +284,7 @@ void 				print_section_spacer(void);
 
 #include "microhom-devl.h"
 
+/*********************************************************************************************************/
 int count_unique_chars(char *string, int window)
 {
 	int i=0, j=0, l=0;
