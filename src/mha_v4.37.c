@@ -463,9 +463,8 @@ int main(int argc, char *argv[])
 	}
 
 	/* IF CERTAIN OPTIONS ARE ON, SKIP RELAX-2D */
-	if (!opt_d.bit || opt_O.bit) {
+	if (opt_O.bit)
 		opt_n.bit = 1;		/* opt_n NO RELAX 2-D */
-	}
 
 	/* OPTION TO APPEND TO GROWING 2-D MSA FILE */
 	if (opt_O.val >= 2) {
