@@ -1031,29 +1031,32 @@ unsigned int cinch_d(void)
 		kbit   =  1;
 	}
 
-	for (j=0; j<Current.pass_W; j++)
-		dConsensus[j].stat = 0;
-
-	for (j=0; j<Current.pass_W; j++) {
-		int charcount=0;
-		for (i=0; i<height; i++) {
-			if (isalpha(align2D[i][j])) {
-				if (!charcount)
-					dConsensus[j].mfirst = i;
-				else
-					dConsensus[j].mlast = i;
-				charcount++;
+	static short unsigned int oneflip = 0;
+	if (!oneflip) {
+		oneflip++;
+		for (j=0; j<Current.pass_W; j++)
+			dConsensus[j].stat = 0;
+		for (j=0; j<Current.pass_W; j++) {
+			int charcount=0;
+			for (i=0; i<height; i++) {
+				if (isalpha(align2D[i][j])) {
+					if (!charcount)
+						dConsensus[j].mfirst = i;
+					else
+						dConsensus[j].mlast = i;
+					charcount++;
+				}
 			}
-		}
-		dConsensus[j].chcount = charcount;
-		if (j && align2D[i][j]!=ambig.sym) {
-			if (charcount==1) {
-				dConsensus[j].stat = 1; 			/* FREE TO CINCH AT THIS COLUMN */
-				if (j<Current.pass_W-1)
-					dConsensus[j+1].stat = 1; 		/* ALSO FREE TO CINCH AT THIS COLUMN */
+			dConsensus[j].chcount = charcount;
+			if (j && align2D[i][j]!=ambig.sym) {
+				if (charcount==1) {
+					dConsensus[j].stat = 1; 			/* FREE TO CINCH AT THIS COLUMN */
+					if (j<Current.pass_W-1)
+						dConsensus[j+1].stat = 1; 		/* ALSO FREE TO CINCH AT THIS COLUMN */
+				}
+				else if (charcount && dConsensus[j].mfirst==dConsensus[j-1].mlast)
+					dConsensus[j].stat = 1; 			/* FREE TO CINCH AT THIS COLUMN */
 			}
-			else if (charcount && dConsensus[j].mfirst==dConsensus[j-1].mlast)
-				dConsensus[j].stat = 1; 			/* FREE TO CINCH AT THIS COLUMN */
 		}
 	}
 
@@ -1094,6 +1097,9 @@ unsigned int cinch_d(void)
 
 		int end = Current.pass_W - 2*k;
 		for (n=0; n<=end; n++) {
+			if (!dConsensus[n+k].stat)
+				n++;
+
 			mono_flag = 1;			/* MONOMER RUN FLAG IS SET TO 0, WHEN NO LONGER POSSIBLE (ANY n != n+1) */
 	
 			if (!TR_check) 			/* RE-SET COUNTER FOR NUM (number of repeats, Albert-style +1 though ) */
@@ -1241,7 +1247,8 @@ unsigned int cinch_d(void)
 						for (i=n; i<n+k; i++) {
 							dConsensus[i].mlast += dConsensus[i+k].mlast - dConsensus[i].mlast;
 							dConsensus[i].chcount += dConsensus[i+k].chcount;
-							dConsensus[i].stat = 0;
+							if (i>n)
+								dConsensus[i].stat = 0;
 						}
 						for (i=n+k; i<Current.pass_W-k; i++) {
 							consensus[i] = consensus[i+k];
