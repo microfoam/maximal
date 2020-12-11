@@ -8,8 +8,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Dec  9 17:10:48 2020	b6 x0	P:1000	R:1000	0.524	NDG: 0 	RND:	waves/seals/vnd_ex3_Dmela.txt (956 bp, +)	 
-v4.37	Dec  9 17:11:21 2020	b6 x1	P:1000	R:1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (44 bp, -)	 
+v4.37	Dec 10 18:28:19 2020	b6 x0	P:1000	R:1000	0.524	NDG: 0 	RND:	waves/seals/vnd_ex3_Dmela.txt (956 bp, +)	 
+v4.37	Dec 10 18:28:52 2020	b6 x1	P:1000	R:1000	0.477	NDG: 0 	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (44 bp, -)	 
 
 Number of tests initiated:         816
 Number of tests completed:         816
@@ -25,8 +25,8 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1999 src/mha_v4.37.c
-    1447 src/microhom-cinc.h
+    1998 src/mha_v4.37.c
+    1448 src/microhom-cinc.h
      109 src/microhom-devl.h
      112 src/microhom-skor.h
     2180 src/microhom-tela.h
@@ -47,8 +47,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Dec  9 17:11:59 2020	b6 x0	P:1000	R:1000	0.590	NDG: 0 	RND:	waves/tubespit/seq-017-variant.txt (39 bp, +)	 
-v4.37	Dec  9 17:12:00 2020	b6 x0	P:1000	R:1000	0.136	NDG: 0 	RND:	waves/chowder/abba_zabba_4.txt (22 ch, +)	 
+v4.37	Dec 10 18:29:15 2020	b6 x0	P:1000	R:1000	0.590	NDG: 0 	RND:	waves/tubespit/seq-017-variant.txt (39 bp, +)	 
+v4.37	Dec 10 18:29:15 2020	b6 x0	P:1000	R:1000	0.136	NDG: 0 	RND:	waves/chowder/abba_zabba_4.txt (22 ch, +)	 
 
 Number of tests initiated:         30
 Number of tests completed:         30
@@ -64,8 +64,8 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1999 src/mha_v4.37.c
-    1447 src/microhom-cinc.h
+    1998 src/mha_v4.37.c
+    1448 src/microhom-cinc.h
      109 src/microhom-devl.h
      112 src/microhom-skor.h
     2180 src/microhom-tela.h
@@ -84,8 +84,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Dec  9 17:12:02 2020	b6 x0	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
-v4.37	Dec  9 17:12:03 2020	b6 x0	P:1000	R:1000	0.590	NDG: 0 	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:25 2020	b6 x0	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:26 2020	b6 x0	P:1000	R:1000	0.590	NDG: 0 	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
 
 Number of tests initiated:         82
 Number of tests completed:         82
@@ -101,8 +101,8 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1999 src/mha_v4.37.c
-    1447 src/microhom-cinc.h
+    1998 src/mha_v4.37.c
+    1448 src/microhom-cinc.h
      109 src/microhom-devl.h
      112 src/microhom-skor.h
     2180 src/microhom-tela.h
@@ -123,8 +123,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Dec  9 17:12:06 2020	b6 x0	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
-v4.37	Dec  9 17:12:07 2020	b6 x0	P:1000	R:1000	0.570	NDG: 0 	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:28 2020	b6 x0	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:30 2020	b6 x0	P:1000	R:1000	0.570	NDG: 0 	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
 
 Number of tests initiated:         82
 Number of tests completed:         82
@@ -140,8 +140,8 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1999 src/mha_v4.37.c
-    1447 src/microhom-cinc.h
+    1998 src/mha_v4.37.c
+    1448 src/microhom-cinc.h
      109 src/microhom-devl.h
      112 src/microhom-skor.h
     2180 src/microhom-tela.h
@@ -162,8 +162,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Dec  9 17:12:09 2020	b6 x0	P:1000	R:1000	0.400	NDG: 0 	RND:	waves/chowder/nugget-42356.txt (100 bp, +)	 
-v4.37	Dec  9 17:12:10 2020	b6 x0	P:1000	R:1000	0.630	NDG: 0 	RND:	waves/chowder/churly-38.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:32 2020	b6 x0	P:1000	R:1000	0.400	NDG: 0 	RND:	waves/chowder/nugget-42356.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:33 2020	b6 x0	P:1000	R:1000	0.630	NDG: 0 	RND:	waves/chowder/churly-38.txt (100 bp, +)	 
 
 Number of tests initiated:         49
 Number of tests completed:         49
@@ -179,8 +179,8 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1999 src/mha_v4.37.c
-    1447 src/microhom-cinc.h
+    1998 src/mha_v4.37.c
+    1448 src/microhom-cinc.h
      109 src/microhom-devl.h
      112 src/microhom-skor.h
     2180 src/microhom-tela.h
@@ -201,8 +201,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Dec  9 17:12:13 2020	b6 x1	P:1000	R:1000	0.530	NDG: 0 	RND:	waves/squeegee/squee006.txt (100 bp, +)	 
-v4.37	Dec  9 17:12:14 2020	b6 x1	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/squeegee/squee282.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:35 2020	b6 x1	P:1000	R:1000	0.530	NDG: 0 	RND:	waves/squeegee/squee006.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:36 2020	b6 x1	P:1000	R:1000	0.480	NDG: 0 	RND:	waves/squeegee/squee282.txt (100 bp, +)	 
 
 Number of tests initiated:         58
 Number of tests completed:         58
@@ -218,8 +218,8 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1999 src/mha_v4.37.c
-    1447 src/microhom-cinc.h
+    1998 src/mha_v4.37.c
+    1448 src/microhom-cinc.h
      109 src/microhom-devl.h
      112 src/microhom-skor.h
     2180 src/microhom-tela.h
@@ -240,8 +240,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Dec  9 17:12:17 2020	b6 x1	P:1000	R:1000	0.570	NDG: 0 	RND:	waves/squeegee/squirt_40-b3.txt (100 bp, +)	 
-v4.37	Dec  9 17:12:18 2020	b6 x1	P:1000	R:1000	0.580	NDG: 0 	RND:	waves/squeegee/squid~24.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:39 2020	b6 x1	P:1000	R:1000	0.570	NDG: 0 	RND:	waves/squeegee/squirt_40-b3.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:40 2020	b6 x1	P:1000	R:1000	0.580	NDG: 0 	RND:	waves/squeegee/squid~24.txt (100 bp, +)	 
 
 Number of tests initiated:         67
 Number of tests completed:         67
@@ -257,8 +257,8 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1999 src/mha_v4.37.c
-    1447 src/microhom-cinc.h
+    1998 src/mha_v4.37.c
+    1448 src/microhom-cinc.h
      109 src/microhom-devl.h
      112 src/microhom-skor.h
     2180 src/microhom-tela.h
@@ -279,8 +279,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Dec  9 17:12:22 2020	b6 x1	P:1000	R:1000	0.490	NDG: 0 	RND:	waves/squeegee/squint_28-xb3_1a-20pcGC.txt (100 bp, +)	 
-v4.37	Dec  9 17:12:23 2020	b6 x1	P:1000	R:1000	0.450	NDG: 0 	RND:	waves/squeegee/squint_01-xb3.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:42 2020	b6 x1	P:1000	R:1000	0.490	NDG: 0 	RND:	waves/squeegee/squint_28-xb3_1a-20pcGC.txt (100 bp, +)	 
+v4.37	Dec 10 18:29:43 2020	b6 x1	P:1000	R:1000	0.450	NDG: 0 	RND:	waves/squeegee/squint_01-xb3.txt (100 bp, +)	 
 
 Number of tests initiated:         39
 Number of tests completed:         39
@@ -296,8 +296,8 @@ Tests with REC. < 1000 (if any):
 Tests with nudging (if any):
 
 Line counts:
-    1999 src/mha_v4.37.c
-    1447 src/microhom-cinc.h
+    1998 src/mha_v4.37.c
+    1448 src/microhom-cinc.h
      109 src/microhom-devl.h
      112 src/microhom-skor.h
     2180 src/microhom-tela.h

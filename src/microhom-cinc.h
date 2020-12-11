@@ -1009,27 +1009,32 @@ unsigned int cinch_d(void)
 {
 	int delta_mrow=0, delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, tot_repeats=0, uniq_TRs=0, num_transits=0;
 	int height = Current.pass_H;
+	int lenseq = Clean.pass_W;
 	int translimit = 0;
-	int kstart = 12;	/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2 */
-	int kend   =  1;	/* FOR k LOOP QUITS AT kend */
-	int kbit   = -1;	/* SETS POLARITY OF INCREMENTS IN FOR k LOOP */
+	int k_high   = 12;		/* UNLIKE kstart, k_high CANNOT BE CHANGED BY OPTIONS (opt_d.val).     */
+	int kstart = k_high;	/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2 */
+	int kend   =  1;		/* FOR k LOOP QUITS AT kend */
+	int kbit   = -1;		/* SETS POLARITY OF INCREMENTS IN FOR k LOOP */
 	unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;
 	unsigned short int nuctransit=0;
 	unsigned short int imperfect_TR=0;
 	char letr, ltr2;
 	char blnk = Fill->sym;
-	int lenseq = Clean.pass_W;
+
+	if (opt_d.val==2) {		/* OPTION TO REVERSE DIRECTION OF FOR k LOOP TO LOW-TO-HIGH */
+		kstart = kend + 1;
+		kend   = k_high + 1;
+		kbit   = -kbit;
+	}
+	else if (!opt_d.val) {
+		Cinch_D.pass_W = Current.pass_W;
+		return(0);
+	}
 
 	clear_cinch2D();
 	nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA, TWO IF RNA */
 	if (nuctype == 1)			/* IF DNA */
 		nuctransit = 1;
-
-	if (opt_d.val==2) {
-		kstart =  2;
-		kend   = 13;
-		kbit   =  1;
-	}
 
 	static short unsigned int oneflip = 0;
 	if (!oneflip) {
@@ -1082,7 +1087,6 @@ unsigned int cinch_d(void)
 		printf(" <= dConsensus[].chcount\n");
 	}
 
-	/* START AT BIGGEST k-MER POSSIBLE AT 2x */
 	for (k=kstart; k!=kend; k+=kbit) {
 		if (nuctransit) {
 			if (k > opt_b.val) {
@@ -1095,8 +1099,8 @@ unsigned int cinch_d(void)
 				translimit = 0;
 		}
 
-		int end = Current.pass_W - 2*k;
-		for (n=0; n<=end; n++) {
+		int n_end = Current.pass_W-2*k;
+		for (n=0; n<=n_end; n++) {
 			if (!dConsensus[n+k].stat)
 				n++;
 
@@ -1186,93 +1190,83 @@ unsigned int cinch_d(void)
 					}
 				} /* END OF FOR l LOOP */
 
-				if (opt_d.bit) {	/* CINCH-D ENGINE IF NOT SKIPPING CINCH-D CINCHING) */
-					if (first_write) {
-						++Cinch_D.pass_R;
-						m = dConsensus[n+k].mfirst;
+				if (first_write) {
+					++Cinch_D.pass_R;
+					m = dConsensus[n+k].mfirst;
 
-						if (dev_print(CINCH,__LINE__)) {
-							printf("%4d. Working on %2d-mer consensus TR (%dx) at position %4d, row %4d.", 
-									Cinch_D.pass_R, k, num, n, m);
+					if (dev_print(CINCH,__LINE__)) {
+						printf("%4d. Working on %2d-mer consensus TR (%dx) at position %4d, row %4d.", 
+								Cinch_D.pass_R, k, num, n, m);
+					}
+
+					if (imperfect_TR) {
+						for (l=0; l<k; l++) {
+							letr=consensus[n+l];
+							if (letr != consensus[n+k+l]) {
+								if (letr == 'A' || letr == 'G') 
+									consensus[n+l] = 'R';
+								else if (letr == 'C' || letr == 'T') 
+									consensus[n+l] = 'Y';
+							}
+						} 
+					}
+
+					mha_writeback_2Dto1D(align2D, cinch2D);
+					cinch2D[mn1D(m,n+k)] = slip.sym;
+
+					first_write = 0;	/* TURN O-F-F NEED TO WRITE REMAINING PART OF 2-D ALIGNMENT */
+
+					delta_ncol = k;
+					delta_mrow = 1;
+
+					/* DEAL WITH LOOSE SLIP CONNECTIONS PRODUCED BY NUDGELIZING */
+					for (j=0; j<n+k; j++) {
+						if (cinch2D[mn1D(m,j)] != blnk) {
+							break;
 						}
+					}
+					if (j == n+k) {
+						if (cinch2D[mn1D(m-1,n)] == slip.sym)
+							delta_mrow = -1;
+						else 
+							delta_mrow = 0;
+					}
 
-						if (imperfect_TR) {
-							for (l=0; l<k; l++) {
-								letr=consensus[n+l];
-								if (letr != consensus[n+k+l]) {
-									if (letr == 'A' || letr == 'G') 
-										consensus[n+l] = 'R';
-									else if (letr == 'C' || letr == 'T') 
-										consensus[n+l] = 'Y';
-								}
-							} 
-						}
-
-						mha_writeback_2Dto1D(align2D, cinch2D);
-						cinch2D[mn1D(m,n+k)] = slip.sym;
-
-						first_write = 0;	/* TURN O-F-F NEED TO WRITE REMAINING PART OF 2-D ALIGNMENT */
-
-						delta_ncol = k;
-						delta_mrow = 1;
-
-						/* DEAL WITH LOOSE SLIP CONNECTIONS PRODUCED BY NUDGELIZING */
-						for (j=0; j<n+k; j++) {
-							if (cinch2D[mn1D(m,j)] != blnk) {
+					for (i=m; i<lenseq; i++) {
+						for (j=n+k; j<=Current.pass_W+1; j++) {
+							letr = cinch2D[mn1D(i+delta_mrow,j-delta_ncol)] = align2D[i][j];
+							if (letr==slip.sym || letr==monoR.sym) 
+								cinch2D[mn1D(i+delta_mrow,j-delta_ncol+1)] = '\0';
+							else if (letr==Term->sym) {
+								for (h=0; h<n; h++)
+									cinch2D[mn1D(i+delta_mrow,h)] = blnk;
+								i = lenseq;
 								break;
 							}
 						}
-						if (j == n+k) {
-							if (cinch2D[mn1D(m-1,n)] == slip.sym)
-								delta_mrow = -1;
-							else 
-								delta_mrow = 0;
-						}
+					}
 
-						for (i=m; i<lenseq; i++) {
-							for (j=n+k; j<=Current.pass_W+1; j++) {
-								letr = cinch2D[mn1D(i+delta_mrow,j-delta_ncol)] = align2D[i][j];
-								if (letr==slip.sym || letr==monoR.sym) 
-									cinch2D[mn1D(i+delta_mrow,j-delta_ncol+1)] = '\0';
-								else if (letr==Term->sym) {
-									for (h=0; h<n; h++)
-										cinch2D[mn1D(i+delta_mrow,h)] = blnk;
-									i = lenseq;
-									break;
-								}
-							}
-						}
+					/* UPDATE CONSENSUS ROWS */
+					for (i=n; i<n+k; i++) {
+						dConsensus[i].mlast += dConsensus[i+k].mlast - dConsensus[i].mlast;
+						dConsensus[i].chcount += dConsensus[i+k].chcount;
+						if (i>n)
+							dConsensus[i].stat = 0;
+					}
+					for (i=n+k; i<Current.pass_W-k; i++) {
+						consensus[i] = consensus[i+k];
+						dConsensus[i].mfirst = dConsensus[i+k].mfirst + 1;
+						dConsensus[i].mlast = dConsensus[i+k].mlast + 1;
+						dConsensus[i].chcount = dConsensus[i+k].chcount;
+						dConsensus[i].stat = dConsensus[i+k].stat;
+					}
+					consensus[i] = '\0';
 
-						/* UPDATE CONSENSUS ROWS */
-						for (i=n; i<n+k; i++) {
-							dConsensus[i].mlast += dConsensus[i+k].mlast - dConsensus[i].mlast;
-							dConsensus[i].chcount += dConsensus[i+k].chcount;
-							if (i>n)
-								dConsensus[i].stat = 0;
-						}
-						for (i=n+k; i<Current.pass_W-k; i++) {
-							consensus[i] = consensus[i+k];
-							dConsensus[i].mfirst = dConsensus[i+k].mfirst + 1;
-							dConsensus[i].mlast = dConsensus[i+k].mlast + 1;
-							dConsensus[i].chcount = dConsensus[i+k].chcount;
-							dConsensus[i].stat = dConsensus[i+k].stat;
-						}
-						consensus[i] = '\0';
-
-						if (letr == Term->sym) {
-							Current.pass_W = j-delta_ncol-1;
-							mha_writeback_1Dto2D(cinch2D, align2D);
-						}
-					} /* END OF IF first_write EQUALS ONE */
-				} /*********************************************************************************************/
-				else if (dev_print(CINCH,__LINE__)) {		/* ELSE IF PRE-CINCH-D AND DEV_PRINT OPTION */
-					if (imperfect_TR) 
-						printf("%4d. i-TR: %3dx %2d-mer at consensus position %3d with %d transition(s).", uniq_TRs, num, k, n, num_transits);
-					else if (nuctransit) 
-						printf("%4d. p-TR: %3dx %2d-mer at consensus position %3d.", uniq_TRs, num, k, n);
-					else 
-						printf("%4d. TR: %3dx %2d-mer at consensus position %3d.", uniq_TRs, num, k, n);
-				}
+					if (letr == Term->sym) {
+						Current.pass_W = j-delta_ncol-1;
+						mha_writeback_1Dto2D(cinch2D, align2D);
+					}
+				} /* END OF IF first_write EQUALS ONE */
 			} /* END OF WHILE TR_check */
 		} /* END OF FOR n LOOP */
 	} /* END OF FOR k LOOP */
