@@ -1011,19 +1011,19 @@ unsigned int cinch_d(void)
 	int height = Current.pass_H;
 	int lenseq = Clean.pass_W;
 	int translimit = 0;
-	int k_high   = 12;		/* UNLIKE kstart, k_high CANNOT BE CHANGED BY OPTIONS (opt_d.val).     */
-	int kstart = k_high;	/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2 */
-	int kend   =  1;		/* FOR k LOOP QUITS AT kend */
-	int kbit   = -1;		/* SETS POLARITY OF INCREMENTS IN FOR k LOOP */
+	int kstart = 2;
+	int k_high   = 12;		/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2 */
+	int kend   =  k_high+1;	/* FOR k LOOP QUITS AT kend */
+	int kbit   =  1;		/* SETS POLARITY OF INCREMENTS IN FOR k LOOP */
 	unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;
 	unsigned short int nuctransit=0;
 	unsigned short int imperfect_TR=0;
 	char letr, ltr2;
 	char blnk = Fill->sym;
 
-	if (opt_d.val==2) {		/* OPTION TO REVERSE DIRECTION OF FOR k LOOP TO LOW-TO-HIGH */
-		kstart = kend + 1;
-		kend   = k_high + 1;
+	if (opt_d.val==2) {		/* OPTION TO REVERSE DIRECTION OF FOR k LOOP TO HIGH-TO-LOW */
+		kend   = kstart - 1;
+		kstart = k_high;
 		kbit   = -kbit;
 	}
 	else if (!opt_d.val) {
@@ -1105,10 +1105,8 @@ unsigned int cinch_d(void)
 				n++;
 
 			mono_flag = 1;			/* MONOMER RUN FLAG IS SET TO 0, WHEN NO LONGER POSSIBLE (ANY n != n+1) */
-	
 			if (!TR_check) 			/* RE-SET COUNTER FOR NUM (number of repeats, Albert-style +1 though ) */
 				num = 0;
-
 			if (nuctransit)			/* RE-SET COUNTER FOR NUMBER OF TRANSITIONS */
 				num_transits = imperfect_TR = 0;
 
@@ -1266,6 +1264,7 @@ unsigned int cinch_d(void)
 						Current.pass_W = j-delta_ncol-1;
 						mha_writeback_1Dto2D(cinch2D, align2D);
 					}
+					break;			/* WILL BREAK WHILE LOOP 	*/
 				} /* END OF IF first_write EQUALS ONE */
 			} /* END OF WHILE TR_check */
 		} /* END OF FOR n LOOP */

@@ -1804,12 +1804,12 @@ int main(int argc, char *argv[])
 				else
 					printf("%s post cinch-d   [pass #6: %d cinches]\n", letr_unit, Cinch_D.pass_R);
 			}
+			else if (opt_d.val==1 || opt_d.val>2)
+				printf("%s post cinch-d   [pass #6: no cinches at LOW-TO-HIGH k (default)]\n", letr_unit);
+			else if (opt_d.val==2)
+				printf("%s post cinch-d   [pass #6: no cinches at HIGH-TO-LOW k (optioned)]\n", letr_unit);
 			else if (!opt_d.bit)
 				printf("%s post cinch-d   [pass #6: SKIPPED BY REQUEST]\n", letr_unit);
-			else if (opt_d.val==2)
-				printf("%s post cinch-d   [pass #6: LOW-TO-HIGH k]\n", letr_unit);
-			else
-				printf("%s post cinch-d   [pass #6: HIGH-TO-LOW k]\n", letr_unit);
 			break;
 		case 7:	
 			if (!Relax.pass_R)
