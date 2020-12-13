@@ -1192,8 +1192,8 @@ unsigned int cinch_d(void)
 					++Cinch_D.pass_R;
 					m = dConsensus[n+k].mfirst;
 
-					if (dev_print(CINCH,__LINE__)) {
-						printf("%4d. Working on %2d-mer consensus TR (%dx) at position %4d, row %4d.", 
+					if (opt_v.bit) {
+						printf("\n %3d. Working on k = %2d consensus TR (%dx) at position %4d, row %4d.", 
 								Cinch_D.pass_R, k, num, n, m);
 					}
 
