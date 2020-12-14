@@ -1021,7 +1021,7 @@ unsigned int cinch_d(void)
 	char letr, ltr2;
 	char blnk = Fill->sym;
 
-	if (opt_d.val==2) {		/* OPTION TO REVERSE DIRECTION OF FOR k LOOP TO HIGH-TO-LOW */
+	if (opt_d.val==2) {			/* OPTION TO REVERSE DIRECTION OF FOR k LOOP TO HIGH-TO-LOW */
 		kend   = kstart - 1;
 		kstart = k_high;
 		kbit   = -kbit;
@@ -1065,7 +1065,7 @@ unsigned int cinch_d(void)
 		}
 	}
 
-	if (opt_v.val==2) {
+	if (opt_v.val==2) {			/* NEEDS TO BE FORMATTED TO PRINT IN FRIENDLY-BLOCKS */
 		printf("        ");
 		for (j=0; j<Current.pass_W; j++)
 			printf("%c", mha_base62(dConsensus[j].stat));
@@ -1264,8 +1264,7 @@ unsigned int cinch_d(void)
 						Current.pass_W = j-delta_ncol-1;
 						mha_writeback_1Dto2D(cinch2D, align2D);
 					}
-					break;			/* WILL BREAK WHILE LOOP 	*/
-				} /* END OF IF first_write EQUALS ONE */
+				}
 			} /* END OF WHILE TR_check */
 		} /* END OF FOR n LOOP */
 	} /* END OF FOR k LOOP */
