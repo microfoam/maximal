@@ -12,13 +12,13 @@
 #define MEMROWS    20       /* NUMBER OF mem[MEMROWS] ROWS IN STRUCT COORD ARRAY TELA */
 							/* USE 1: BIT (0/1) VALUES FOR MARK_TELA MARKS ASSOCIATED WITH A SINGLE LOOP OF CLEAR_ALL PRECEDENCE */
 							/* USE 2: NUMBER OF AVAILABLE ROWS FOR STORING OVERLAPPING REPEAT FRAMES; MULT. OF 4 - EXTRA */
-#define START       0       /* FOR USE WITH line_end() */
-#define END         1       /* FOR USE WITH line_end() */
-#define RULER       2       /* FOR USE WITH line_end() */
-#define SLIPS       3       /* FOR USE WITH line_end() */
-#define PATHBOXHEAD 4       /* FOR USE WITH line_end() */
-#define BLOCKHEAD   5       /* FOR USE WITH line_end() */
-#define SLIPRULER   6       /* FOR USE WITH line_end() */
+#define START       0       /* FOR USE WITH 1ine_end() */
+#define END         1       /* FOR USE WITH 1ine_end() */
+#define RULER       2       /* FOR USE WITH 1ine_end() */
+#define SLIPS       3       /* FOR USE WITH 1ine_end() */
+#define PATHBOXHEAD 4       /* FOR USE WITH 1ine_end() */
+#define BLOCKHEAD   5       /* FOR USE WITH 1ine_end() */
+#define SLIPRULER   6       /* FOR USE WITH 1ine_end() */
 #define XDIR        0		/* FOR USE WITH push_gPnt() */
 #define YDIR        1		/* FOR USE WITH push_gPnt() */
 #define SEQHEADS  160		/* Maximum size for sequence headers, FASTA */
@@ -775,7 +775,7 @@ void line_end(int type, int c, int lcl_width)
 	char *ruler = rule1;	/* USE TO CHANGE RULE STYLE */
 
 	if (type == 1)					/* FORMAT FOR LINE END. c IS CHAR. NUMBER */
-		printf("%5d\n", c);
+		printf("  %d\n", c);
 
 	if (opt_r.bit) {				/* FORMAT WITH LINE NUMBERING. DEFAULT */
 		if (type == 0) {			/* FORMAT FOR LINE BEGINNING. c is LINE NUMBER (m+1) */

@@ -1542,7 +1542,7 @@ int main(int argc, char *argv[])
 			else {
 				d_width = Current.pass_W;
 				if (lenseq>2000)	/* TAGGED: <MAGIC>, print statement for long sequences to avoid inducing feeling program has stalled. */
-					printf("\n Cinch-d working here; intraTR_reps = %d.", intraTR_reps);
+					printf(" Cinch-d intraTR_reps = %d.", intraTR_reps);
 			}
 		}
 		Cinch_D.pass_V = Cinch_D.pass_R;

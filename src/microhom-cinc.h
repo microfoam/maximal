@@ -1011,15 +1011,11 @@ unsigned int cinch_d(void)
 	int height = Current.pass_H;
 	int lenseq = Clean.pass_W;
 	int translimit = 0;
-	int kstart = 2;
-	int k_high   = 12;		/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2 */
+
+	int kstart = 2;			/* opt_d.val = 1 by default */
+	int k_high = 12;		/* TAGGED: <HEURISTIC MAGIC>, FORMERLY int kstart = Current.pass_W/2 */
 	int kend   =  k_high+1;	/* FOR k LOOP QUITS AT kend */
 	int kbit   =  1;		/* SETS POLARITY OF INCREMENTS IN FOR k LOOP */
-	unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;
-	unsigned short int nuctransit=0;
-	unsigned short int imperfect_TR=0;
-	char letr, ltr2;
-	char blnk = Fill->sym;
 
 	if (opt_d.val==2) {			/* OPTION TO REVERSE DIRECTION OF FOR k LOOP TO HIGH-TO-LOW */
 		kend   = kstart - 1;
@@ -1030,6 +1026,12 @@ unsigned int cinch_d(void)
 		Cinch_D.pass_W = Current.pass_W;
 		return(0);
 	}
+
+	unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;
+	unsigned short int nuctransit=0;
+	unsigned short int imperfect_TR=0;
+	char letr, ltr2;
+	char blnk = Fill->sym;
 
 	clear_cinch2D();
 	nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA, TWO IF RNA */
@@ -1192,9 +1194,9 @@ unsigned int cinch_d(void)
 					++Cinch_D.pass_R;
 					m = dConsensus[n+k].mfirst;
 
-					if (opt_v.bit) {
-						printf("\n %3d. Working on k = %2d consensus TR (%dx) at position %4d, row %4d.", 
-								Cinch_D.pass_R, k, num, n, m);
+					if (opt_v.bit || lenseq>2000) {
+						printf("\n %3d. Cinch-d working on k=%d consensus TR (%2dx) on row %4d (column %4d).",
+								Cinch_D.pass_R, 	k, 	num,	m+1, 	n+1);
 					}
 
 					if (imperfect_TR) {
