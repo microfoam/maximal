@@ -263,7 +263,6 @@ int cinch_k(short unsigned int mode)
 	int cik_row=0, i=0, k=0, l=0, m=0, n=0, scrimmage_line = -1, x=0, y=0;
 	int first_mwrap_start=0, last_mwrap=0;
 	unsigned short int first_mwrap=0, keep_checking=1;
-	unsigned short int nuctype = Clean.pass_V;			/* EQUALS ONE IF DNA STRING, TWO IF RNA, THREE IF PROTEIN */
 	unsigned short int nuctransit=0, check_imperf=0;	/* BIT FLAG FOR HANDLING NUCLEOTIDE TRANSITIONS SILENTLY (IGNORING) */
 	unsigned short int homopolyflag=0, imperfect_TR=0;
 	char letr, letr2, letr3;
@@ -280,7 +279,7 @@ int cinch_k(short unsigned int mode)
 	x_history = (int *)calloc(lenseq, sizeof(int));
 	clear_cinch2D();
 
-	if (nuctype == 1) {		/* IF DNA */
+	if (Clean.pass_V == 1) {		/* IF DNA */
 		nuctransit = 1;
 	}	
 	if (dev_print(CINCH,__LINE__)) {
@@ -443,8 +442,8 @@ int cinch_k(short unsigned int mode)
 							break;
 						}
 						else {
-							/* CHECK TO SEE IF THERE ARE n's */
-							if (nuctype && (align2D[m][n+i]==ambig.sym || align2D[m][n+i+k]==ambig.sym)) {
+							/* CHECK TO SEE IF THERE ARE n's; Clean.pass_V = 1 or 2 if DNA or RNA */
+							if (Clean.pass_V && (align2D[m][n+i]==ambig.sym || align2D[m][n+i+k]==ambig.sym)) {
 								keep_checking = 0;
 								break;
 							}
@@ -812,7 +811,6 @@ int badsites=0, m=0, n=0, n_end, x=1, nudge_row=0, nudge_col=0, nudge_span=0, fr
 int    lenseq = Clean.pass_W;
 int    height = Current.pass_H;
 int con_width = Current.pass_W;
-short unsigned int nuctype = Clean.pass_V;			/* FOR SEQ TYPE, DNA=1, RNA=2, OTHER (NON-NA)=0 */
 short unsigned int nuctransit = 0;					/* BIT FLAG FOR HANDLING NUCLEAR TRANSITIONS */
 short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
 short unsigned int checktransit=0;
@@ -825,7 +823,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 											/* ROWS m>1 FOR VARIANTS STORAGE */
 	n_end = n_start + n_width;
 
-	if (nuctype == 1)	/* IF DNA */
+	if (Clean.pass_V == 1)	/* IF DNA */
 		nuctransit = 1;
 
 	/* FILL CONSENSUS ARRAY WITH FIRST LETTER IN EACH COL */
@@ -1027,15 +1025,15 @@ unsigned int cinch_d(void)
 		return(0);
 	}
 
-	unsigned short int nuctype=0, TR_check=0, first_write=1, mono_flag=1;
+	unsigned short int TR_check=0, first_write=1, mono_flag=1;
 	unsigned short int nuctransit=0;
 	unsigned short int imperfect_TR=0;
 	char letr, ltr2;
 	char blnk = Fill->sym;
 
 	clear_cinch2D();
-	nuctype = Clean.pass_V;		/* EQUALS ONE IF DNA, TWO IF RNA */
-	if (nuctype == 1)			/* IF DNA */
+
+	if (Clean.pass_V == 1)	/* EQUALS ONE IF DNA, TWO IF RNA */
 		nuctransit = 1;
 
 	static short unsigned int oneflip = 0;
@@ -1304,10 +1302,9 @@ int height=0, i, j, m, n, rlx_col=0, v=0, w=0, z=0;
 int width = Current.pass_W; 
 char blnk = Fill->sym;
 char letr;
-unsigned short int nuctype = Clean.pass_V;
 unsigned short int nuctransit=0;
 
-	if (nuctype == 1)		/* IF DNA */
+	if (Clean.pass_V == 1)		/* IF DNA */
 		nuctransit = 1;
 
 	clear_cinch2D();
