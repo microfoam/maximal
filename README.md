@@ -11,7 +11,6 @@ For development and testing purposes, two executable binaries are included ('max
 To use either of these pre-compiled versions with any of the 'surfboard_lowercase_namespace' script, the appropriate binary can be copied or renamed to 'maximal'.
 
 Version numbers represent program development versions that increase in steps of 0.01.
-Version 4.00, for example, is simply the 400th version in the development repository.
 We are 'pre-release' of the first official release, a little bit of the 'journey is the destination' with public access.
 Nonetheless, at this moment and this perspective, we can say that the construction work has moved up from the south-east and south-west and joined here,
 carried out by two great armies of workers, and some angels. 
