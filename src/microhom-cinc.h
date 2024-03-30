@@ -1005,7 +1005,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 /******************************************************************/
 unsigned int cinch_d(void)
 {
-	int delta_mrow=0, delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, tot_repeats=0, uniq_TRs=0, num_transits=0;
+	int delta_mrow=0, delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, tot_repeats=0, num_transits=0;
 	int height = Current.pass_H;
 	int lenseq = Clean.pass_W;
 	int translimit = 0;
@@ -1174,8 +1174,6 @@ unsigned int cinch_d(void)
 				TR_check = 0;
 
 			while (TR_check) {
-				++uniq_TRs;
-
 				/* THIS PART JUST COUNTS REPEATS ADDITIONAL REPEATS, VAR num STARTS AT 2 */
 				for (l=0; l<k; l++) {
 					if (consensus[n+l] != consensus[n+num*k+l]) {
