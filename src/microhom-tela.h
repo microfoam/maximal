@@ -1874,19 +1874,6 @@ int lenseq = Clean.pass_W;
 		}
 	}
 
-	if (Clean.pass_Q==500) {
-		printf("\n\n    Jk");
-		for (i=0; i<13; i++)
-			printf("  \u2662");
-		for (i=0; i<13; i++)
-			printf("  \u2664");
-		for (i=0; i<13; i++)
-			printf("  \u2661");
-		for (i=0; i<13; i++)
-			printf("  \u2667");
-		printf("  Jk\n");
-	}
-
 	printf("\n");
 }
 

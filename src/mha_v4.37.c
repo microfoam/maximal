@@ -637,7 +637,7 @@ int main(int argc, char *argv[])
 	Start.pass_Q = 1000;
 
 	++Current.pass_V;
-	Clean.pass_Q = 500;	/* Nominal half-pass until mark_tela() is completed; used to count half a pass for print_tela() */
+	Clean.pass_Q = 500;	/* Nominal half-pass until mark_tela() is completed */
 
 	Seq[lenseq] = tela[lenseq].t = tela[lenseq].c = Term->sym;
 	citwidth = lenseq;	
@@ -683,7 +683,7 @@ int main(int argc, char *argv[])
 			tela[i].e = tela[i].c;
 	}
 	mark_tela();			/* WILL MARK ALL TRs WITHOUT CINCHING AND RECORD IN tela[].ok, or, all_S, all_L/R */
-	Clean.pass_Q = 1000;	/* mark_tela() is completed; used to count half a pass for print_tela() */
+	Clean.pass_Q = 1000;	/* mark_tela() is completed */
 	if (opt_D.val==1)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
