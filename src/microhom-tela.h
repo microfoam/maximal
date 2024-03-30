@@ -30,8 +30,9 @@ int					update_tela(void);
 
 /******************************************/
 void clearmem(void) {
-	for (int i=0; i<MEMROWS; i++) {
-		for (int j=0; j<=Clean.pass_W; j++)
+int i=0, j=0;
+	for (i=0; i<MEMROWS; i++) {
+		for (j=0; j<=Clean.pass_W; j++)
 			tela[j].mem[i] = '\0';
 	}
 }
@@ -66,13 +67,13 @@ int push_gPnt(short unsigned int ymode, int pos, int prev_par)
 int push_gPnt_kmer(int pos, int kmer, int reps)
 {
 	int top_left = push_gPnt(YDIR, pos, pos-kmer);
-	int top_right = 0;
+	int top_right = 0, r=0, i=0;
 
-	for (int r=0; r<reps; r++) {
+	for (r=0; r<reps; r++) {
 		if ( (top_right=push_gPnt(YDIR, pos+r*kmer, pos-kmer)) < 0 )
 			break;
 		
-		for (int i=1; i<kmer; i++) {
+		for (i=1; i<kmer; i++) {
 			if ( (top_right=push_gPnt(XDIR, pos+r*kmer+i, pos-kmer+i)) < 0 )
 				break;
 		}
@@ -552,8 +553,8 @@ int isfractal(int i, int n, int k) {
 			if (mfract>0)
 				return (candk);
 			else {								/* ELSE both are imperfect so check to see they are concordantly so */
-				int transits=0;
-				for (int j=i-candk; j<i+candk; j++) {
+				int transits=0, j=0;
+				for (j=i-candk; j<i+candk; j++) {
 					if (tela[j].c!=tela[j+k].c && tela[j].e==tela[j+k].e)
 						++transits;
 					if (transits>2)				/* APPROX. MOSTLY CORRECT. TAGGED: <MAGIC> */
@@ -1161,7 +1162,7 @@ void mark_tela(void)
 					else
 						break;
 				}
-				for (int l=i+1; l<j; l++) {
+				for (l=i+1; l<j; l++) {
 					if (tela[l].all_S == max_S) {
 						if (tela[l].stat != st_parent.sym)
 							tela[l].statl = '\0';
