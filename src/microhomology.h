@@ -430,7 +430,8 @@ char *aptr = aptr_start;
 /** INVOKE PRIOR TO RE-USING CINAR2D - CINCH ARRAY 2D **/
 void clear_cinch2D(void)
 {
-	for (int i=0; i<(Cinch_T.pass_W+1)*Clean.pass_W; i++)
+int i=0;
+	for (i=0; i<(Cinch_T.pass_W+1)*Clean.pass_W; i++)
 		cinch2D[i] = '\0';
 }
 
@@ -728,8 +729,9 @@ int next_foamfree(char check_array[][MAXROW], int row, int at_n)
 /*****************************************************************************************/
 int col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short int updown)
 {
+int m=0;
 	/* INVOKE updown AS -1 OR 1 TO CHECK BELOW OR ABOVE row, RESPECTIVELY */
-	for (int m = row + updown; m >= 0; m += updown) {
+	for (m = row + updown; m >= 0; m += updown) {
 		if (isalpha(check_array[m][at_n]))
 			return(m);
 		else if (check_array[m][0]=='\0')
@@ -742,8 +744,9 @@ int col_isclear(char check_array[][MAXROW], unsigned int at_n, int row, short in
 /*****************************************************************************************/
 int col_isclear1D(char *check_array, unsigned int at_n, int row, short int updown)
 {
+int m=0;
 	/* INVOKE updown AS -1 OR 1 TO CHECK BELOW OR ABOVE row, RESPECTIVELY */
-	for (int m = row + updown; m >= 0; m += updown) {
+	for (m = row + updown; m >= 0; m += updown) {
 		if (isalpha(check_array[mn1D(m,at_n)]))
 			return(m);
 		else if (check_array[mn1D(m,0)]=='\0')
@@ -970,7 +973,7 @@ void mha_writeback(char lcl_align2D[][MAXROW], char align2D[][MAXROW])
 {
 char letr;
 int lenseq = Clean.pass_W;
-int m=0, n=0, widest_n=0;
+int i=0, m=0, n=0, widest_n=0;
 
 	/* WRITE BACK TO align2D */
 	clear_right(lcl_align2D);
@@ -988,7 +991,7 @@ int m=0, n=0, widest_n=0;
 			Current.pass_W = widest_n;	/* ASSIGN 2-D WIDTH  */
 			Current.pass_H = m+1;		/* ASSIGN 2-D HEIGHT */
 		}
-		for (int i=n+1; i<Clean.pass_W; i++)
+		for (i=n+1; i<Clean.pass_W; i++)
 			align2D[m][i] = '\0';
 	}
 }
