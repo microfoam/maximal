@@ -1001,7 +1001,7 @@ void mha_writeback_2Dto1D(char lcl_align2D[][MAXROW], char *cinch2D)
 {
 char letr;
 int lenseq = Clean.pass_W;
-int m=0, n=0, widest_n=0;
+int i=0, m=0, n=0, widest_n=0;
 
 	/* WRITE BACK TO cinch2D */
 	clear_right(lcl_align2D);
@@ -1019,7 +1019,7 @@ int m=0, n=0, widest_n=0;
 			Current.pass_W = widest_n;	/* ASSIGN 2-D WIDTH  */
 			Current.pass_H = m+1;		/* ASSIGN 2-D HEIGHT */
 		}
-		for (int i=n+1; i<Clean.pass_W; i++)
+		for (i=n+1; i<Clean.pass_W; i++)
 			cinch2D[mn1D(m,i)] = '\0';
 	}
 }
