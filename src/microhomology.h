@@ -478,7 +478,7 @@ unsigned int consensus_2D(int n_start, int n_width)
 	short unsigned int plustransit=0;					/* BIT FLAG ADDENDUM FOR COUNTING BADSITES AT COL */
 	short unsigned int checktransit=0;					/* BIT FLAG FOR CHECKING GOOD TRANSITION MARK */
 	char blnk = Fill->sym;
-	char letr, ltr2, conletr;
+	char letr, ltr2, conletr=blnk;
 	char checktransletr=blnk;
 	int conrows = 26; 						/* COL   n=0 FOR BIT FLAG */
 	int consensus_ar[26][MAXROW] = {{0}};	/* ROW   m=0 FOR COUNTER */
