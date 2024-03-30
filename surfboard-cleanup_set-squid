@@ -19,79 +19,80 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
+DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=nudge; 6=cinch-d; 7=relax2D; 8= pause at end of run
 
 # solved: push new solved runs onto top of stack starting w/ solved-64 
-./maximal -KnxR waves/squeegee/squirt_40-b3.txt		# solved-96 Delete sub-block in mark_tela; add new block to trim imperfect cyc islands; -x b3-only chowder
-./maximal -KnxR waves/squeegee/squirt_39-b3.txt		# solved-95 Fixed bug in mark_tela (not setting Dtr to 0 in imperfect checks); b3--b6
-./maximal -KnxR waves/squeegee/squirt_38-b3.txt		# solved-94 Deletion of block in mark_tela(); b3--b6
-./maximal -KnxR waves/squeegee/squirt_37-b3.txt		# solved-93 Needed consensus row updating after cinch_l; -x b3-only
-./maximal -KnxR waves/squeegee/squirt_35-b4.txt		# solved-92 Cancel imperfect if adjacent column perfect; -x b4- & b5- only
-./maximal -KnxR waves/squeegee/squirt_36-b4.txt		# solved-92 Cancel imperfect if adjacent column perfect; -x b3--b5
-./maximal -KnxR waves/squeegee/squirt_34-b4.txt		# solved-91 Cancel imperfect islands if overlap w/ perfect column k-mer > k/2; -x chow at b3--b6
-./maximal -KnxR waves/squeegee/squirt_33-b4.txt		# solved-90 Generalizing framerow checking for cycle numbering in cinch_t; -x chow at b3- & b4- only
-./maximal -KnxR waves/squeegee/squirt_32-b4.txt		# solved-89 Generalizing k==1 block in cinch_k to k<=opt_b.val; b3--b5
-./maximal -KnxR waves/squeegee/squirt_31-b3.txt		# solved-88 Edit in next_k() call in mark_tela, imperfect mod k case; b3-only 
-./maximal -KnxR waves/squeegee/squirt_22-b3.txt		# solved-87 Fractals w/ fractals case, edits in mark_tela & cinch_k; b3--b6, chowder in prev versions
-./maximal -KnxR waves/squeegee/squirt_29-b6.txt		# solved-86 mark_tela(); -x b3--b6, chowder in prev versions
-./maximal -KnxR waves/squeegee/squirt_30-b6.txt		# solved-86 mark_tela(); -x b3--b6, chowder in prev versions; homologically related to _29
-./maximal -KnxR waves/squeegee/squirt_20-b3.txt		# solved-86 mark_tela(); b3- & b4- only
-./maximal -KnxR waves/squeegee/squirt_25-b3.txt		# solved-86 mark_tela(); b3- & b4- only
-./maximal -KnxR waves/squeegee/squirt_19-b3.txt		# solved-86 mark_tela(); b3-only
-./maximal -KnxR waves/squeegee/squirt_24-b3.txt		# solved-86 mark_tela(); b3-only
-./maximal -KnxR waves/squeegee/squirt_17-b3.txt		# solved-85 New mark_tela block in last position; b3--b6
-./maximal -KnxR waves/squeegee/squirt_23-b3.txt		# solved-84 Expanded mark_tela block to cancel imperfect_TR given perfect island peak; b3--b5
-./maximal -KnxR waves/squeegee/squirt_18-b3.txt		# solved-83 Fractal splitting entry edit so not dependent on Fractal cycling island extending to m; b3-only
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_40-b3.txt		# solved-96 Delete sub-block in mark_tela; add new block to trim imperfect cyc islands; -x b3-only chowder
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_39-b3.txt		# solved-95 Fixed bug in mark_tela (not setting Dtr to 0 in imperfect checks); b3--b6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_38-b3.txt		# solved-94 Deletion of block in mark_tela(); b3--b6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_37-b3.txt		# solved-93 Needed consensus row updating after cinch_l; -x b3-only
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_35-b4.txt		# solved-92 Cancel imperfect if adjacent column perfect; -x b4- & b5- only
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_36-b4.txt		# solved-92 Cancel imperfect if adjacent column perfect; -x b3--b5
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_34-b4.txt		# solved-91 Cancel imperfect islands if overlap w/ perfect column k-mer > k/2; -x chow at b3--b6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_33-b4.txt		# solved-90 Generalizing framerow checking for cycle numbering in cinch_t; -x chow at b3- & b4- only
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_32-b4.txt		# solved-89 Generalizing k==1 block in cinch_k to k<=opt_b.val; b3--b5
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_31-b3.txt		# solved-88 Edit in next_k() call in mark_tela, imperfect mod k case; b3-only 
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_22-b3.txt		# solved-87 Fractals w/ fractals case, edits in mark_tela & cinch_k; b3--b6, chowder in prev versions
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_29-b6.txt		# solved-86 mark_tela(); -x b3--b6, chowder in prev versions
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_30-b6.txt		# solved-86 mark_tela(); -x b3--b6, chowder in prev versions; homologically related to _29
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_20-b3.txt		# solved-86 mark_tela(); b3- & b4- only
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_25-b3.txt		# solved-86 mark_tela(); b3- & b4- only
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_19-b3.txt		# solved-86 mark_tela(); b3-only
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_24-b3.txt		# solved-86 mark_tela(); b3-only
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_17-b3.txt		# solved-85 New mark_tela block in last position; b3--b6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_23-b3.txt		# solved-84 Expanded mark_tela block to cancel imperfect_TR given perfect island peak; b3--b5
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_18-b3.txt		# solved-83 Fractal splitting entry edit so not dependent on Fractal cycling island extending to m; b3-only
 													# partial solution; will wait until this comes up again before generalizing to all columns prior to m.
-./maximal -KnxR waves/squeegee/squirt_28-b6.txt		# solved-82 Edit to mark_tela() mod-test case; b3--b6, chowder in previous versions 
-./maximal -KnxR waves/squeegee/squirt_27-b6.txt		# solved-81 Fractal splitting -> edit in TR numbering in cinch_t(); b3--b6, not chowder in previous versions
-./maximal -KnxR waves/squeegee/squirt_16-b3.txt		# solved-80 imperfect_TR canceling in mark_tela() given perfect k-mer at k1; b3-only REC<1000
-./maximal -KnxR waves/squeegee/squirt_26-b3.txt		# solved-80 imperfect_TR canceling in mark_tela() given perfect k-mer at k1; b3-only
-./maximal -KnxR waves/squeegee/squirt_21-b3.txt		# solved-79 Fractal splitting edit in mark_tela w/ imperfect parent; b3--b5
-./maximal -KnxR waves/squeegee/squirt_15-b6.txt		# solved-78 Adjustment to next_k() missing break or return w/ transit counting; -b4--6 -x chowder
-./maximal -KnxR waves/squeegee/squirt_14-b6.txt		# solved-77 Replace OFF w/ fract check for block 12 in mark_tela(); -b4--6 -x chowder
-./maximal -KnxR waves/squeegee/squirt_13-b6.txt		# solved-76 edits in mark_tela() next_k() call and in checkfractals_in_imperfect
-./maximal -KnxR waves/squeegee/squirt_12a-b6.txt	# solved-75 new fractstat check in cinch_k
-./maximal -KnxR waves/squeegee/squirt_12b-b6.txt	# solved-75 new fractstat check in cinch_k
-./maximal -KnxR waves/squeegee/squirt_12c-b6.txt	# solved-75 new fractstat check in cinch_k
-./maximal -KnxR waves/squeegee/squirt_11-b6.txt		# solved-74 single-line edit to mha.c; b6-only chowder with both v4.34-lcl-09 and v4.35
-./maximal -KnxR waves/squeegee/squirt_10-b6.txt		# solved-73b: edits in cinch_k() after removing deprecated (redundant) blocks
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_28-b6.txt		# solved-82 Edit to mark_tela() mod-test case; b3--b6, chowder in previous versions 
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_27-b6.txt		# solved-81 Fractal splitting -> edit in TR numbering in cinch_t(); b3--b6, not chowder in previous versions
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_16-b3.txt		# solved-80 imperfect_TR canceling in mark_tela() given perfect k-mer at k1; b3-only REC<1000
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_26-b3.txt		# solved-80 imperfect_TR canceling in mark_tela() given perfect k-mer at k1; b3-only
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_21-b3.txt		# solved-79 Fractal splitting edit in mark_tela w/ imperfect parent; b3--b5
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_15-b6.txt		# solved-78 Adjustment to next_k() missing break or return w/ transit counting; -b4--6 -x chowder
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_14-b6.txt		# solved-77 Replace OFF w/ fract check for block 12 in mark_tela(); -b4--6 -x chowder
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_13-b6.txt		# solved-76 edits in mark_tela() next_k() call and in checkfractals_in_imperfect
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_12a-b6.txt	# solved-75 new fractstat check in cinch_k
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_12b-b6.txt	# solved-75 new fractstat check in cinch_k
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_12c-b6.txt	# solved-75 new fractstat check in cinch_k
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_11-b6.txt		# solved-74 single-line edit to mha.c; b6-only chowder with both v4.34-lcl-09 and v4.35
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_10-b6.txt		# solved-73b: edits in cinch_k() after removing deprecated (redundant) blocks
 													# solved-73a: solved at b=6, but new chowder at b=3-only; b6 non-chowder with v4.34-lcl-09
-./maximal -KnxR waves/squeegee/squirt_09-b6.txt		# solved-72 mark_tela() edits; b3--6
-./maximal -KnxR waves/squeegee/squirt_08-b6.txt		# solved-71 hack mark_tela() edit w/ MAGIC # k-mer size condition; b3--6
-./maximal -KnxR waves/squeegee/squirt_07-b6.txt		# solved-70 muting deprecated code in mark_tela(); b3--6
-./maximal -KnxR waves/squeegee/squirt_06-b6.txt		# solved-69 sub-threshold fractals condition to skip if next parent column is perfect k; b3--6
-./maximal -KnxR waves/squeegee/squirt_05-b6.txt		# solved-68 mark_tela edits continued again; b4--6
-./maximal -KnxR waves/squeegee/squirt_04-b6.txt		# solved-67 mark_tela edits continued; b3--6
-./maximal -KnxR waves/squeegee/squirt_03-b6.txt		# solved-66 mark_tela edits; b4-6
-./maximal -KnxR waves/squeegee/squirt_02-b6.txt		# solved-65 delete all_S condition in split fractals module of mark_tela(); b3-6
-./maximal -KnxR waves/squeegee/squirt_01-b6.txt		# solved-64 new module in mark_tela concerning cycling islands w/ perfect and imperfect columns b3-6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_09-b6.txt		# solved-72 mark_tela() edits; b3--6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_08-b6.txt		# solved-71 hack mark_tela() edit w/ MAGIC # k-mer size condition; b3--6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_07-b6.txt		# solved-70 muting deprecated code in mark_tela(); b3--6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_06-b6.txt		# solved-69 sub-threshold fractals condition to skip if next parent column is perfect k; b3--6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_05-b6.txt		# solved-68 mark_tela edits continued again; b4--6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_04-b6.txt		# solved-67 mark_tela edits continued; b3--6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_03-b6.txt		# solved-66 mark_tela edits; b4-6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_02-b6.txt		# solved-65 delete all_S condition in split fractals module of mark_tela(); b3-6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_01-b6.txt		# solved-64 new module in mark_tela concerning cycling islands w/ perfect and imperfect columns b3-6
 
 # solved: push new solved runs onto top of stack starting w/ solved-55 coordinated with active squeegee solving
-./maximal -KnxR waves/squeegee/squid~44.txt	# solved-62 delete cyc_o condition w/in cyclelize_tela; P3-only
-./maximal -KnxR waves/squeegee/squid~46.txt	# solved-61 delete block in cinch_k; # P3/4/5/6
-./maximal -KnxR waves/squeegee/squid~20.txt	# solved-61 delete block in cinch_k; # P3/4
-./maximal -KnxR waves/squeegee/squid~42.txt	# solved-60 see below; P3/4/5/6 --> P3/P4-only w/ solved-58
-./maximal -KnxR waves/squeegee/squid~14.txt	# solved-60 see below; P3/4
-./maximal -KnxR waves/squeegee/squid~02.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
-./maximal -KnxR waves/squeegee/squid~06.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
-./maximal -KnxR waves/squeegee/squid~12.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
-./maximal -KnxR waves/squeegee/squid~16.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
-./maximal -KnxR waves/squeegee/squid~18.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
-./maximal -KnxR waves/squeegee/squid~26.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
-./maximal -KnxR waves/squeegee/squid~28.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
-./maximal -KnxR waves/squeegee/squid~30.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
-./maximal -KnxR waves/squeegee/squid~32.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
-./maximal -KnxR waves/squeegee/squid~48.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
-./maximal -KnxR waves/squeegee/squid~38.txt	# solved-59 another sub-in for isfractal(); 7397 lines <--prev. solved by max-04 max-05; P3-only
-./maximal -KnxR waves/squeegee/squid~10.txt	# solved-59 another sub-in for isfractal(); 7397 lines
-./maximal -KnxR waves/squeegee/squid~08.txt	# solved-58 new isfractal(); squid~08 P3-only chow w/ <1000 REC; 7387 lines
-./maximal -KnxR waves/squeegee/squid~36.txt	# P3/4/5/6; w/ solved-58
-./maximal -KnxR waves/squeegee/squid~40.txt	# w/ solved-58
-./maximal -KnxR waves/squeegee/squid~04.txt	# w/ solved-58
-./maximal -KnxR waves/snippets/snippet-P6-chow-01.txt	# solved-57, cinch_k module; 7346 lines
-./maximal -KnxR waves/squeegee/squid~22.txt	# solved-57, cinch_k_module; 7346 lines; previously solved by max-04; P3/4/5/6
-./maximal -KnxR waves/squeegee/squid~34.txt	# solved-56; mark_tela code for partially fractal cycling isl.; recently chowder P3/4/5/6; 7345 lines
-./maximal -KnxR waves/squeegee/squid~24.txt	# solved-55 7319 lines; previously solved by max-04 and max-05; mark_tela adjust
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~44.txt	# solved-62 delete cyc_o condition w/in cyclelize_tela; P3-only
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~46.txt	# solved-61 delete block in cinch_k; # P3/4/5/6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~20.txt	# solved-61 delete block in cinch_k; # P3/4
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~42.txt	# solved-60 see below; P3/4/5/6 --> P3/P4-only w/ solved-58
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~14.txt	# solved-60 see below; P3/4
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~02.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~06.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~12.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~16.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~18.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~26.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~28.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~30.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~32.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~48.txt	# solved-60 cinch-k k=1 avoiding paralogy columns, complexity function
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~38.txt	# solved-59 another sub-in for isfractal(); 7397 lines <--prev. solved by max-04 max-05; P3-only
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~10.txt	# solved-59 another sub-in for isfractal(); 7397 lines
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~08.txt	# solved-58 new isfractal(); squid~08 P3-only chow w/ <1000 REC; 7387 lines
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~36.txt	# P3/4/5/6; w/ solved-58
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~40.txt	# w/ solved-58
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~04.txt	# w/ solved-58
+./maximal -D$DEVPROMPT -KnxR waves/snippets/snippet-P6-chow-01.txt	# solved-57, cinch_k module; 7346 lines
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~22.txt	# solved-57, cinch_k_module; 7346 lines; previously solved by max-04; P3/4/5/6
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~34.txt	# solved-56; mark_tela code for partially fractal cycling isl.; recently chowder P3/4/5/6; 7345 lines
+./maximal -D$DEVPROMPT -KnxR waves/squeegee/squid~24.txt	# solved-55 7319 lines; previously solved by max-04 and max-05; mark_tela adjust
 
 echo
 echo

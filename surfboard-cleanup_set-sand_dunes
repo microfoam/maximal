@@ -19,41 +19,43 @@ if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
+DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=nudge; 6=cinch-d; 7=relax2D; 8= pause at end of run
+
 # DIAGNOSTIC TESTS. Ideally, these should be whittled knots for visual inspection w/ WCRs reflective of knot folding only
-./maximal -KRn  waves/tubespit/seq-017-variant.txt
-./maximal -KRn  waves/tubespit/seq-017-cycle5.txt
-./maximal -KRnC waves/tubespit/seq-017-cycle5.txt
-./maximal -KRn  waves/tubespit/seq-154-v427_cycABs.txt
-./maximal -KR   waves/tubespit/seq-000-orig_b.txt 
-./maximal -KRn  waves/tubespit/seq-000-orig_c.txt 
-./maximal -KR   waves/tubespit/seq-000-orig_d.txt 
-./maximal -KR   waves/tubespit/seq-000-orig_e.txt 
-./maximal -KR   waves/tubespit/seq-000-orig_f.txt 
-./maximal -KRx  waves/tubespit/seq-033-imprf1.txt 
-./maximal -KR   waves/tubespit/seq-100-v343_10.txt 
-./maximal -KRn  waves/chowder/seq6-koslip-snippet.txt 
-./maximal -KRn  waves/chowder/snippet-jetsam-01.txt 
-./maximal -KRn  waves/chowder/snippet-jetsam-03.txt 
-./maximal -KRnx waves/snippets/snippet-squirt_03-b6.alt1
-./maximal -KRnx waves/snippets/snippet-squirt_22-b3.txt
+./maximal -D$DEVPROMPT -KRn  waves/tubespit/seq-017-variant.txt
+./maximal -D$DEVPROMPT -KRn  waves/tubespit/seq-017-cycle5.txt
+./maximal -D$DEVPROMPT -KRnC waves/tubespit/seq-017-cycle5.txt
+./maximal -D$DEVPROMPT -KRn  waves/tubespit/seq-154-v427_cycABs.txt
+./maximal -D$DEVPROMPT -KR   waves/tubespit/seq-000-orig_b.txt 
+./maximal -D$DEVPROMPT -KRn  waves/tubespit/seq-000-orig_c.txt 
+./maximal -D$DEVPROMPT -KR   waves/tubespit/seq-000-orig_d.txt 
+./maximal -D$DEVPROMPT -KR   waves/tubespit/seq-000-orig_e.txt 
+./maximal -D$DEVPROMPT -KR   waves/tubespit/seq-000-orig_f.txt 
+./maximal -D$DEVPROMPT -KRx  waves/tubespit/seq-033-imprf1.txt 
+./maximal -D$DEVPROMPT -KR   waves/tubespit/seq-100-v343_10.txt 
+./maximal -D$DEVPROMPT -KRn  waves/chowder/seq6-koslip-snippet.txt 
+./maximal -D$DEVPROMPT -KRn  waves/chowder/snippet-jetsam-01.txt 
+./maximal -D$DEVPROMPT -KRn  waves/chowder/snippet-jetsam-03.txt 
+./maximal -D$DEVPROMPT -KRnx waves/snippets/snippet-squirt_03-b6.alt1
+./maximal -D$DEVPROMPT -KRnx waves/snippets/snippet-squirt_22-b3.txt
 
 # FRACTAL SPLITS SET
-./maximal -KnR waves/chowder/gal11-knot1.txt
-./maximal -KR  waves/snippets/snippet-gal11-knot1.txt
-./maximal -KnR waves/chowder/seq26-snippet.txt 
-./maximal -KnR waves/chowder/seq26-variations1.txt 
-./maximal -KnR waves/chowder/seq26-variations2.txt 
-./maximal -KR  waves/chowder/seq26-snippet.txt 
-./maximal -KR  waves/chowder/seq26-variations1.txt 
-./maximal -KR  waves/chowder/seq26-variations2.txt 
-./maximal -KnR waves/chowder/snippet-string02-t.txt
-./maximal -KnR waves/chowder/snippet-seq-014-cycle3.txt 
+./maximal -D$DEVPROMPT -KnR waves/chowder/gal11-knot1.txt
+./maximal -D$DEVPROMPT -KR  waves/snippets/snippet-gal11-knot1.txt
+./maximal -D$DEVPROMPT -KnR waves/chowder/seq26-snippet.txt 
+./maximal -D$DEVPROMPT -KnR waves/chowder/seq26-variations1.txt 
+./maximal -D$DEVPROMPT -KnR waves/chowder/seq26-variations2.txt 
+./maximal -D$DEVPROMPT -KR  waves/chowder/seq26-snippet.txt 
+./maximal -D$DEVPROMPT -KR  waves/chowder/seq26-variations1.txt 
+./maximal -D$DEVPROMPT -KR  waves/chowder/seq26-variations2.txt 
+./maximal -D$DEVPROMPT -KnR waves/chowder/snippet-string02-t.txt
+./maximal -D$DEVPROMPT -KnR waves/chowder/snippet-seq-014-cycle3.txt 
 
 # ABBA-ZABBA SERIES
-./maximal -KRn  waves/chowder/abba_zabba_1.txt 
-./maximal -KRn  waves/chowder/abba_zabba_2.txt 
-./maximal -KRn  waves/chowder/abba_zabba_3.txt 
-./maximal -KRn  waves/chowder/abba_zabba_4.txt 
+./maximal -D$DEVPROMPT -KRn  waves/chowder/abba_zabba_1.txt 
+./maximal -D$DEVPROMPT -KRn  waves/chowder/abba_zabba_2.txt 
+./maximal -D$DEVPROMPT -KRn  waves/chowder/abba_zabba_3.txt 
+./maximal -D$DEVPROMPT -KRn  waves/chowder/abba_zabba_4.txt 
 
 echo
 echo

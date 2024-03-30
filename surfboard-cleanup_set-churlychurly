@@ -18,55 +18,57 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
-./maximal -KR waves/chowder/nugget-42356.txt	# solved-13	
-./maximal -KR waves/chowder/nugget-47633.txt	# solved-14 cinch-k x_history propagation
-./maximal -KR waves/chowder/nugget-50546.txt	# solved-14 cinch-k x_history propagation
-./maximal -KR waves/chowder/nugget-00002.txt	# solved-15 delete unnecessary cinch-k block blocking needed cinch
-./maximal -KR waves/chowder/nugget-00001.txt	# solved-16 less strict entry into split fractal block in mark_tela
-./maximal -KR waves/chowder/nugget-00003.txt	# solved-16 less strict entry into split fractal block in mark_tela
-./maximal -KR waves/chowder/nugget-00004.txt	# solved-16 less strict entry into split fractal block in mark_tela
-./maximal -KR waves/chowder/nugget-00006.txt	# solved-17 new skip condition in mark_tela; simplified check in cinch_k
-./maximal -KR waves/chowder/nugget-00005.txt	# solved-18 adjustment to next_k() w.r.t. imperfect TRs
-./maximal -KR waves/chowder/nugget-00007.txt	# solved-19 new mark_tela() module to skip 1st of cycling isle if overlapping upstream parent w/ fractals
-./maximal -KR waves/chowder/nugget-00008.txt	# solved-20 strand symmetric module to new mark_tela() module of solved-19/previous nugget
-./maximal -KR waves/chowder/churly-01.txt	# solved-21 delete clear_mem module in mark_tela 
-./maximal -KR waves/chowder/churly-02.txt	# solved-21 delete clear_mem module in mark_tela 
-./maximal -KR waves/chowder/churly-03.txt	# solved-21 delete clear_mem module in mark_tela 
-./maximal -KR waves/chowder/churly-04.txt	# solved-21 delete clear_mem module in mark_tela 
-./maximal -KR waves/chowder/churly-06.txt	# solved-21 delete clear_mem module in mark_tela 
-./maximal -KR waves/chowder/churly-07.txt	# solved-21 delete clear_mem module in mark_tela 
-./maximal -KR waves/chowder/churly-05.txt	# solved-22 adjustment to cyclelize_tela()
-./maximal -KR waves/chowder/churly-09.txt	# solved-22 adjustment to cyclelize_tela()
-./maximal -KR waves/chowder/churly-08.txt	# solved-23 new cinch-k low-complexity block
-./maximal -KR waves/chowder/churly-10.txt	# solved-24 adjustment to new low-complexity block in cinch-k; # solved-25--26 -> b4 script (deprecated script)
-./maximal -KR waves/chowder/churly-11.txt	# solved-27 new cinch-k cluster-f*ck block
-./maximal -KR waves/chowder/churly-12.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
-./maximal -KR waves/chowder/churly-13.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
-./maximal -KR waves/chowder/churly-14.txt	# solved-29 new mark_tela() block for conflict marking
-./maximal -KR waves/chowder/churly-15.txt	# solved-29 new mark_tela() block for conflict marking
-./maximal -KR waves/chowder/churly-16.txt	# solved-30 adjustment for new cinch-k block of solved 27-28
-./maximal -KR waves/chowder/churly-17.txt	# solved-31 trivial lenseq boundary condition in cinch-t & mark_tela, > not >=
-./maximal -KR waves/chowder/churly-18.txt	# solved-32 push_mem 13/14 edits and deletions in mark_tela
-./maximal -KR waves/chowder/churly-19.txt	# solved-32 push_mem 13/14 edits and deletions in mark_tela 
-./maximal -KR waves/chowder/churly-20.txt	# solved-33 push_mem 13/14 continued w/ an add'l exclusion for push_mem 8 fractals
-./maximal -KR waves/chowder/churly-21.txt	# solved-33 push_mem 13/14 continued w/ an add'l exclusion for push_mem 8 fractals 
-./maximal -KR waves/chowder/churly-22.txt	# solved-34 simplification to cyclelize_tela(); related to solved-22 edits
-./maximal -KR waves/chowder/churly-23.txt	# solved-35 cinch-k module based on tela struct logic
-./maximal -KR waves/chowder/churly-24.txt	# solved-35 cinch-k module based on tela struct logic 
-./maximal -KR waves/chowder/churly-25.txt	# solved-36 cinch-k tela struct logic continued
-./maximal -KR waves/chowder/churly-26.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela
-./maximal -KR waves/chowder/churly-27.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
-./maximal -KR waves/chowder/churly-29.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
-./maximal -KR waves/chowder/churly-30.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
-./maximal -KR waves/chowder/churly-31.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
-./maximal -KR waves/chowder/churly-32.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
-./maximal -KR waves/chowder/churly-33.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
-./maximal -KR waves/chowder/churly-34.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
-./maximal -KR waves/chowder/churly-35.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
-./maximal -KR waves/chowder/churly-36.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
-./maximal -KR waves/chowder/churly-28.txt	# solved-38 new cinch-k module underlying conflict in fractal TR
-./maximal -KR waves/chowder/churly-37.txt	# solved-39 adding a check stat2 for fract (time to consolidate fract rows...)
-./maximal -KR waves/chowder/churly-38.txt	# solved-40 lines to convert prev. quasi "Fract" to true "fract" by checking k2
+DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=nudge; 6=cinch-d; 7=relax2D; 8= pause at end of run
+
+./maximal -D$DEVPROMPT -KR waves/chowder/nugget-42356.txt	# solved-13	
+./maximal -D$DEVPROMPT -KR waves/chowder/nugget-47633.txt	# solved-14 cinch-k x_history propagation
+./maximal -D$DEVPROMPT -KR waves/chowder/nugget-50546.txt	# solved-14 cinch-k x_history propagation
+./maximal -D$DEVPROMPT -KR waves/chowder/nugget-00002.txt	# solved-15 delete unnecessary cinch-k block blocking needed cinch
+./maximal -D$DEVPROMPT -KR waves/chowder/nugget-00001.txt	# solved-16 less strict entry into split fractal block in mark_tela
+./maximal -D$DEVPROMPT -KR waves/chowder/nugget-00003.txt	# solved-16 less strict entry into split fractal block in mark_tela
+./maximal -D$DEVPROMPT -KR waves/chowder/nugget-00004.txt	# solved-16 less strict entry into split fractal block in mark_tela
+./maximal -D$DEVPROMPT -KR waves/chowder/nugget-00006.txt	# solved-17 new skip condition in mark_tela; simplified check in cinch_k
+./maximal -D$DEVPROMPT -KR waves/chowder/nugget-00005.txt	# solved-18 adjustment to next_k() w.r.t. imperfect TRs
+./maximal -D$DEVPROMPT -KR waves/chowder/nugget-00007.txt	# solved-19 new mark_tela() module to skip 1st of cycling isle if overlapping upstream parent w/ fractals
+./maximal -D$DEVPROMPT -KR waves/chowder/nugget-00008.txt	# solved-20 strand symmetric module to new mark_tela() module of solved-19/previous nugget
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-01.txt	# solved-21 delete clear_mem module in mark_tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-02.txt	# solved-21 delete clear_mem module in mark_tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-03.txt	# solved-21 delete clear_mem module in mark_tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-04.txt	# solved-21 delete clear_mem module in mark_tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-06.txt	# solved-21 delete clear_mem module in mark_tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-07.txt	# solved-21 delete clear_mem module in mark_tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-05.txt	# solved-22 adjustment to cyclelize_tela()
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-09.txt	# solved-22 adjustment to cyclelize_tela()
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-08.txt	# solved-23 new cinch-k low-complexity block
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-10.txt	# solved-24 adjustment to new low-complexity block in cinch-k; # solved-25--26 -> b4 script (deprecated script)
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-11.txt	# solved-27 new cinch-k cluster-f*ck block
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-12.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-13.txt	# solved-28 slight adjustment to new cinch-k block of solved-27
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-14.txt	# solved-29 new mark_tela() block for conflict marking
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-15.txt	# solved-29 new mark_tela() block for conflict marking
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-16.txt	# solved-30 adjustment for new cinch-k block of solved 27-28
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-17.txt	# solved-31 trivial lenseq boundary condition in cinch-t & mark_tela, > not >=
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-18.txt	# solved-32 push_mem 13/14 edits and deletions in mark_tela
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-19.txt	# solved-32 push_mem 13/14 edits and deletions in mark_tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-20.txt	# solved-33 push_mem 13/14 continued w/ an add'l exclusion for push_mem 8 fractals
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-21.txt	# solved-33 push_mem 13/14 continued w/ an add'l exclusion for push_mem 8 fractals 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-22.txt	# solved-34 simplification to cyclelize_tela(); related to solved-22 edits
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-23.txt	# solved-35 cinch-k module based on tela struct logic
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-24.txt	# solved-35 cinch-k module based on tela struct logic 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-25.txt	# solved-36 cinch-k tela struct logic continued
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-26.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-27.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-29.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-30.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-31.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-32.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-33.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-34.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-35.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-36.txt	# solved-37 correction to recent cinch-k lines wrt location of parent in tela 
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-28.txt	# solved-38 new cinch-k module underlying conflict in fractal TR
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-37.txt	# solved-39 adding a check stat2 for fract (time to consolidate fract rows...)
+./maximal -D$DEVPROMPT -KR waves/chowder/churly-38.txt	# solved-40 lines to convert prev. quasi "Fract" to true "fract" by checking k2
 
 echo
 echo

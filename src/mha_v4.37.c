@@ -352,7 +352,7 @@ int main(int argc, char *argv[])
 				opt_D.bit = 1;
 				numarg = atoi(optarg);
 				if (numarg>8 || !numarg)
-					opt_D.val = 8;		/* PROMPT AT THE VERY END; USEFUL FOR INSPECTING EACH RUN IN A SERIES CALLED BY A SCRIPT */	
+					opt_D.val = 0;		/* PROMPT AT THE VERY END; USEFUL FOR INSPECTING EACH RUN IN A SERIES CALLED BY A SCRIPT */	
 				else
 					opt_D.val = numarg;
 				break;
