@@ -1,6 +1,6 @@
 /*******************************************************************************************************/
 /***** The program "maximal" is a micro homology alignment (MHA) program.                          *****/
-/***** Designed and written by Dr. Albert J. Erives. 2017-2020. AGPL-3.0.                          *****/
+/***** Designed and written by Dr. Albert J. Erives. 2017-2024. AGPL-3.0.                          *****/
 /***** Code repository located at https://github.com/microfoam/maximal. Licensed under AGPL-3.0.   *****/
 /***** This program renders a 1-D DNA sequence into a 2-D self-alignment to rescue micro-paralogy. *****/
 /*******************************************************************************************************/
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	int l=0, m=0, n=0; 
 	short unsigned int Aimperfect_TR=0; 
 
-	int o=0, p=0, q=0;
+	int o=0, p=0, q=0, t=0;
 	short unsigned int nuctransit=0; 
 
 	int reps=0, row=0;	
@@ -1217,7 +1217,7 @@ int main(int argc, char *argv[])
 											tela[n].y = tela[n-1].y;
 											tela[n].x = tela[n-1].x + 1;
 											assign_tela(n, row, a2D_n, ONE);
-											for (int t=n; t<l; t++)
+											for (t=n; t<l; t++)
 												assign_tela(n++, row, a2D_n++, TWO);
 
 											assign_transit(l,TWO); 			/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */

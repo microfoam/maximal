@@ -597,7 +597,7 @@ int get_unitk(int n)
 /**************** FUNCTION TO MARK ALL POSSIBLE k-MERs BEFORE LEGACY CINCH-T PASS ******************************/
 void mark_tela(void) 
 {
-	int i, j, l, m, n, k, reps, span, smallest_k; 
+	int i, j, l, m, n, k, p, reps, span, smallest_k; 
 	int threshold=0, max_score=0, max_count=0;
 	int projection=0, projector=0, proj_k=0, fract_k=0;
 	unsigned short int skip_break=0;
@@ -1445,7 +1445,7 @@ void mark_tela(void)
 							}
 							for (i=j-1; i>=n; i--) {
 								clearall_tela(i, j-n, -1, TWO);		/* O-F-F, ONE, OR TWO */
-								for (int p=i; p<=i+j-n; p++)
+								for (p=i; p<=i+j-n; p++)
 									push_mem(p, 10);
 							}
 							for (i=j+1; i<n+span; i++) {
