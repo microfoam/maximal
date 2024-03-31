@@ -792,7 +792,7 @@ int main(int argc, char *argv[])
 			}
 	
 			/* FOR COLUMN n LOOP 2/3: SKIP TR OVERLAPPING BIGGER RHS TR (NEW 2024) OR IF CAN CYCLE WITH SAME SCORE */
-			if ((i=tela[n].all_R) && tela[i].stat==st_parent.sym && tela[i].all_S>tela[n].all_S) {
+			if ((i=tela[n].all_R) && tela[i].stat==st_parent.sym && tela[i].all_S>tela[n].all_S && i-n>k) {
 				assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 			}
 			else if ((i=tela[n].all_L) && tela[n].all_S==tela[n+1].all_S && !tela[n+1].all_L && tela[i].cyc_o==cyc_take.sym) {
