@@ -3,7 +3,8 @@ Corduroy.log
 Surf_wavereport.log
 Surf_wavereport.mha
 maximal
-/PAT.txt
+PAT.txt
+.DS_Store
 
 # Prerequisites
 *.d
