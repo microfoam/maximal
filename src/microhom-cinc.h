@@ -868,6 +868,7 @@ int consensus_ar[26][MAXROW] = {{0}};	 	/* COL n=0 FOR BIT FLAG */
 				else if (letr != consensus_ar[1][n+1]) {
 					if (consensus_ar[0][n+1] == 1) {	/* IF THIS IS THE FIRST CONFLICT NOTED AT THIS POSITION */
 						++badsites;						/* COUNT ADDITIONAL BAD SITE COLUMN */
+						printf("\n badsites=%d", badsites);
 						badletr=letr;					/* THIS IS THE LETTER THAT GOES AGAINST THE TRANSITION LETTER */
 						++consensus_ar[0][n+1];			/* INCREMENT COUNTER FOR DIFFERENT LETTERS AT COLUMN */
 						consensus_ar[2][ 0 ] = 1;		/* TURN VARIANT ROW ON */

@@ -282,7 +282,6 @@ int cyclelize_tela(int cpos, int delta, int npos)
 	int    k = tela[cpos].k;
 	int reps = tela[cpos].r;
 	int i, j, m, n, r;
-	int z = cpos;
 	char blnk = Fill->sym;		/* opt_B blank character */
 	char c;
 	short int nuctype = Clean.pass_V;
@@ -311,7 +310,6 @@ int cyclelize_tela(int cpos, int delta, int npos)
 				tela[i].y = m;
 				tela[i].x = n;
 				align2D[m][n] = c;
-				z++;												/* VAR z is 1D cycling position */
 			}
 			if (r < reps - 1) {
 				align2D[m][n+1] = slip.sym;
@@ -1237,11 +1235,9 @@ void mark_tela(void)
 					break;
 				if (tela[i].ok) {
 					if (i>m && isfractal(i,n,k)) {
-						int recslips = 0;	/* COUNTS RECENT FRACTAL SLIPS IN UPSTREAM TR SHADOW */
 						makefract(n,k,i);
 						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;					/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-						recslips += span_ork(i);
 
 						if (tela[n].or>1) {					/* PROPAGATE FRACTAL STATUS TO REST OF REPEATS */
 							for (reps=1; reps<tela[n].or; reps++) {
