@@ -520,6 +520,7 @@ int cinch_k(short unsigned int mode)
 					keep_checking = imperfect_TR = 0;
 				}
 
+
 				/* CHECK TO MAKE SURE NO BAD SLIPS CREATED OUT OF PREVIOUS SLIPS */
 				/* 9/9/2020 mucho chowder in cleanup_set-all when this block is OFF; did not test rest */
 				if ((keep_checking || imperfect_TR) && k>1 && isalpha(letr=align2D[m-1][n+k])) {

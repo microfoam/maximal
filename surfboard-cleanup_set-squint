@@ -21,6 +21,7 @@ fi
 DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=nudge; 6=cinch-d; 7=relax2D; 8= pause at end of run
 
 # solved: push new solved runs onto top of stack starting w/ solved-97 
+./maximal -D$DEVPROMPT -KnxR waves/chowder/chowder-2024_string_001.txt  # solved by deleting code for one cinch_k case 
 ./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_28-xb3_1a-20pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
 ./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_29-xb3_1a-20pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
 ./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_30-xb3_1b-80pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
@@ -69,8 +70,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 39 (b=6): 0.41741  (opt_d=1 default) << 0.421026 (opt_d=2)' | tee -a Corduroy.log
-echo 'Commit WCR average of 39 (b=5): 0.419462 (opt_d=1 default) << 0.421923 (opt_d=2)' | tee -a Corduroy.log
-echo 'Commit WCR average of 39 (b=4): 0.407795 (opt_d=1 default) << 0.410436 (opt_d=2)' | tee -a Corduroy.log
-echo 'Commit WCR average of 39 (b=3): 0.39659  (opt_d=1 default) << 0.402308 (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 40 (b=6): 0.419875 (opt_d=1 default) << 0.4234   (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 40 (b=5): 0.421875 (opt_d=1 default) << 0.424275 (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 40 (b=4): 0.4105   (opt_d=1 default) << 0.413075 (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 40 (b=3): 0.399575 (opt_d=1 default) << 0.40515  (opt_d=2)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
