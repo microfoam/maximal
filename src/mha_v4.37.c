@@ -1496,26 +1496,10 @@ int main(int argc, char *argv[])
 	if (opt_D.val==4)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
-	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT *********************/
+	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT ****** DEPRECATED ***/
 	i = ++Current.pass_V;
-
-	if (Cinch_K.pass_Q!=1000 || align2D[0][0] == blank) {
-		++Nudge.pass_R;
-		Nudge.pass_W = Current.pass_W;
-
-		while (nudgelize() && Nudge.pass_R<CYCMAX) {
-			++Nudge.pass_R;
-			++Nudge.pass_W;
-		}
-		if (Nudge.pass_W==Cinch_K.pass_W && Nudge.pass_R==1)
-			Nudge.pass_R = 0;
-	}
-	else {	
-		Cinches[i]->pass_W = Cinches[i-1]->pass_W;
-	}
+	Cinches[i]->pass_W = Cinches[i-1]->pass_W;
 	Nudge.pass_Q = Current.pass_Q;
-	if (opt_D.val==5)
-		dev_prompt(MAIN,__LINE__,file_name); 
 
 	/********* 6. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
 	++Current.pass_V;
@@ -1787,18 +1771,7 @@ int main(int argc, char *argv[])
 				printf("%s post cinch-k   [pass #4: one row added]\n", letr_unit);
 			else if (Cinch_K.pass_V > 1)
 				printf("%s post cinch-k   [pass #4: %d rows added]\n", letr_unit, Cinch_K.pass_V);
-			break;
-		case 5:	
-			if (Nudge.pass_V == 0)
-				printf("%s post nudgelize [pass #5]\n", letr_unit);
-			else if (Nudge.pass_R == 1) {	
-				if (Nudge.pass_V == 3)
-					printf("%s post nudgelize [pass #5: one nudge was required at column %d]\n", letr_unit, nudgecolmem+1);
-			}
-			else {	/* IN WHICH CASE k WILL BE NON-ZERO */
-				if (Nudge.pass_V == 3)
-					printf("%s post nudgelize [pass #5: %d nudges were required at column %d]\n", letr_unit, Nudge.pass_R, nudgecolmem+1);
-			}
+			i++;	/* SKIP TO CASE 6 (CASE 5 WAS OLD NUDGELIZE, NOW DEPRECATED) */
 			break;
 		case 6:	
 			if (Cinch_D.pass_R) {
@@ -1970,16 +1943,16 @@ int main(int argc, char *argv[])
 	
 	if (!opt_s.bit) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\tb%d x%d\tP:%4d\tR:%4d\t%.3f\tNDG:%2d \tRND:%.*s\t%s (%d %s, %c)\t%s\n", 
-				version, time0+4, opt_b.val, opt_x.val, Current.pass_Q, Recover.pass_Q, ratio1, Nudge.pass_R, opt_X.val, "XX", 
+		fprintf(fp_out, "v%s\t%.20s\tb%d x%d\tP:%4d\tR:%4d\t%.3f\tRND:%.*s\t%s (%d %s, %c)\t%s\n", 
+				version, time0+4, opt_b.val, opt_x.val, Current.pass_Q, Recover.pass_Q, ratio1, opt_X.val, "XX", 
 				file_name, Clean.pass_W, letr_unit, Strand->sym, dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (Current.pass_Q != 1000 || (opt_R.bit && Recover.pass_Q != 1000) || Nudge.pass_R) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.20s\tb%d x%d\tP:%4d\tR:%4d\t%.3f\tNDG:%2d \tRND:%.*s\t%s (%d %s, %c)\t%s\n", 
-					version, time0+4, opt_b.val, opt_x.val, Current.pass_Q, Recover.pass_Q, ratio1, Nudge.pass_R, opt_X.val, "XX", 
+			fprintf(fp_tricksy, "v%s\t%.20s\tb%d x%d\tP:%4d\tR:%4d\t%.3f\tRND:%.*s\t%s (%d %s, %c)\t%s\n", 
+					version, time0+4, opt_b.val, opt_x.val, Current.pass_Q, Recover.pass_Q, ratio1, opt_X.val, "XX", 
 					file_name, Clean.pass_W, letr_unit, Strand->sym, dev_notes);
 			for(n = 0; n<lenseq; n++) {
 				fprintf(fp_tricksy, "%c", tela[n].c);
