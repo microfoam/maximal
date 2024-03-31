@@ -3,7 +3,12 @@ Corduroy.log
 Surf_wavereport.log
 Surf_wavereport.mha
 maximal
+
+# Local temporary files
+*.swp
 PAT.txt
+
+# Apple
 .DS_Store
 
 # Prerequisites
