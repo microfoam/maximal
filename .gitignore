@@ -6,6 +6,8 @@ maximal
 
 # Local temporary files
 *.swp
+*.tmp
+tmp.*
 PAT.txt
 
 # Apple
