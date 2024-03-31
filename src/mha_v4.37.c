@@ -1152,22 +1152,15 @@ int main(int argc, char *argv[])
 									} 
 	
 									/* SUM UP COMPATIBLE TR PRODUCTS IN WINDOW OF LENGTH SUMSPAN BEGINNING AT POSITION series OF TR B */
-									if (tela[n].all_L && sumspan > 0 && tela[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
-										for (j = 0; j < sumspan; j++) {
+									if (tela[n].all_L && sumspan>0 && tela[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
+										for (j=0; j<sumspan; j++) {
 											l=series+j-k;
-											for (f = tela[series+j].mem[0] - 1 - j; f > 0; f--) {
-												if (tela[l].mem[f] == 1) {
-													int backstop = 0;
-													/* backstop = tela[n].X - tela[(tela[n].X)].k;					 Why is this not best? */
-
-													while (tela[l].cyc_o != cyc_take.sym && tela[l].cyc_o != cyc_skip.sym && l>backstop) 
+											for (f = tela[series+j].mem[0] - 1 - j; f>0; f--) {
+												if (tela[l].mem[f]==1) {
+													while (tela[l].cyc_o != cyc_take.sym && tela[l].cyc_o != cyc_skip.sym && l>0) 
 														l--;
-													while (tela[l].mem[f] != 1 && l>backstop) 
+													while (tela[l].mem[f] != 1 && l>0) 
 														l--;
-													if (OFF && l == backstop) {									/* !!!!!!!!!!!!!!!!!!!!! */
-														while (tela[l].mem[f] != 1 || !tela[l].ok)
-															l++;
-													}
 
 													tela[series+j].cyc_S = tela[series+j].cyc_P + tela[l].cyc_P;	
 													tela[series+j].cyc_Lf = l;
@@ -1271,7 +1264,7 @@ int main(int argc, char *argv[])
 													tela[l+k].cyc_o = cyc_take.sym;
 													break;
 												}
-												else if (tela[l].mem[i] == 0) { 				/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */
+												else if (tela[l].mem[i] == 0) { 	/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */
 													tela[series+j].cyc_S = tela[series+j].cyc_P;
 													break;
 												}
