@@ -170,7 +170,7 @@ int main(int argc, char *argv[])
 						Seq_i[j] = '\0';	
 					}
 					else 
-						strcpy(Seq_head, "input sequence");
+						strcpy(Seq_head, "input");
 				}
 			}
 			else {
