@@ -7,26 +7,26 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Apr  1 10:55:58 2024	b3 x1	P:1000	R:1000	0.410	RND:XX	waves/experimental/pattern-1a-20pc_GC.txt (100 bp, +)	 
-v4.37	Apr  1 11:02:01 2024	b3 x1	P:1000	R:1000	0.300	RND:XX	waves/experimental/pattern-5a-92pc_Y.txt (80 bp, +)	 
+v4.37	Apr  1 16:52:17 2024	b3 x1	P:1000	R:1000	0.430	RND:XX	waves/experimental/pattern-1a-20pc_GC.txt (100 bp, +)	 
+v4.37	Apr  1 16:58:22 2024	b3 x1	P:1000	R:1000	0.375	RND:XX	waves/experimental/pattern-5a-92pc_Y.txt (80 bp, +)	 
 
 Number of tests initiated:         140000
 Number of tests completed:         140000
 Number of tests w/ PASS 1000:      140000
 Number of tests w/ REC. 1000:      140000
 
-WCR average: 0.436347
+WCR average: 0.436791
 
 Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
 Line counts:
-    1964 src/mha_v4.37.c
+    1967 src/mha_v4.37.c
     1103 src/microhom-cinc.h
-     109 src/microhom-devl.h
+     107 src/microhom-devl.h
      112 src/microhom-skor.h
     2155 src/microhom-tela.h
     1597 src/microhomology.h
-    7040 total
+    7041 total
 
