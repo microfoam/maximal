@@ -1,2 +1,2 @@
->XXpattern-2b-50pc_GC
+>XXpattern-2b-50pc_GC -x0 b3 chowder
 ATTCCCTGTCTCGTCTCCTCTCGTCTCCCTAC

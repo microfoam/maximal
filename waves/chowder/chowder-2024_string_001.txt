@@ -1,2 +1,2 @@
->XXpattern-1a-20pc_GC
+>XXpattern-1a-20pc_GC -x1 b3 chowder
 CATTAATATTAATAATATTAATACTAATGTG
