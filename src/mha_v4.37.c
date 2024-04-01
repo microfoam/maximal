@@ -1495,7 +1495,6 @@ int main(int argc, char *argv[])
 	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT ****** DEPRECATED ***/
 	i = ++Current.pass_V;
 	Cinches[i]->pass_W = Cinches[i-1]->pass_W;
-	Nudge.pass_Q = Current.pass_Q;
 
 	/********* 6. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
 	++Current.pass_V;

@@ -211,7 +211,7 @@ struct cinch {
 	Cinch_T = {0, 0, 0, 0, 0},		/* Pass to cinch Tandem repeats using a special traversal of the Pathbox grid */
 	Cinch_L = {0, 0, 0, 0, 0},		/* Pass to cinch Long monomeric tracts that are of size >= 2* mrwrap */
 	Cinch_K = {0, 0, 0, 0, 0},		/* Pass to cinch intra-repeat K-mers */
-	 Nudge  = {0, 0, 0, 0, 0},		/* Pass to nudge correct any mistakes in previous passes, a now rare event */
+	 Nudge  = {0, 0, 0, 0, 0},		/* DEPRECATED */
 	Cinch_D = {0, 0, 0, 0, 0},		/* Pass to cinch De novo repeat structures (fractal repeats) based on the consensus row */
 	 Relax  = {0, 0, 0, 0, 0},		/* Pass to relax monomeric tracts that did not aid cinch-D cinches */
 	Recover = {0, 0, 0, 0, 0},		/* Optional pass to recover and check a 1-D sequence from a 2-D alignment */
@@ -876,9 +876,7 @@ int hr_len = max_len;					/* DEFAULT LENGTH OF HEADER BANNER */
 		printf("%.*s\n", hr_len, h_rule);
 		printf(" 2-D pass #%d: cinch-d run %d (width = %d)\n\n", Current.pass_V, Cinch_D.pass_R, lcl_width);
 	}
-	else if (Current.pass_V == 5) {
-//		printf("%.*s\n", hr_len, h_rule);
-//		printf(" 2-D pass #%d: nudgelize run %d (width = %d)\n\n", Current.pass_V, Nudge.pass_R, lcl_width);
+	else if (Current.pass_V == 5) {			/* DEPRECATED nudge PASS */
 	}
 	else if (Current.pass_V == 4 || Current.pass_V == 6) {
 		printf("%.*s\n", hr_len, h_rule);
