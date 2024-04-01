@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
 	Options[26] = &opt_z; Options[52] = &opt_Z;
 
 	Cinches[0] = &Start; Cinches[1] = &Clean; Cinches[2] = &Cinch_T; Cinches[3] = &Cinch_L; Cinches[4] = &Cinch_K;
-	Cinches[5] = &Nudge; Cinches[6] = &Cinch_D; Cinches[7] = &Relax; Cinches[8] = &Recover; Cinches[9] = &Current;
+	Cinches[6] = &Cinch_D; Cinches[7] = &Relax; Cinches[8] = &Recover; Cinches[9] = &Current;
 
 	/* IS THERE A FILE NAME ARGUMENT? */
 	for (i = 1; i < argc; i++) {
@@ -1494,7 +1494,6 @@ int main(int argc, char *argv[])
 
 	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT ****** DEPRECATED ***/
 	i = ++Current.pass_V;
-	Cinches[i]->pass_W = Cinches[i-1]->pass_W;
 
 	/********* 6. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
 	++Current.pass_V;

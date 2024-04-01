@@ -211,7 +211,6 @@ struct cinch {
 	Cinch_T = {0, 0, 0, 0, 0},		/* Pass to cinch Tandem repeats using a special traversal of the Pathbox grid */
 	Cinch_L = {0, 0, 0, 0, 0},		/* Pass to cinch Long monomeric tracts that are of size >= 2* mrwrap */
 	Cinch_K = {0, 0, 0, 0, 0},		/* Pass to cinch intra-repeat K-mers */
-	 Nudge  = {0, 0, 0, 0, 0},		/* DEPRECATED */
 	Cinch_D = {0, 0, 0, 0, 0},		/* Pass to cinch De novo repeat structures (fractal repeats) based on the consensus row */
 	 Relax  = {0, 0, 0, 0, 0},		/* Pass to relax monomeric tracts that did not aid cinch-D cinches */
 	Recover = {0, 0, 0, 0, 0},		/* Optional pass to recover and check a 1-D sequence from a 2-D alignment */
