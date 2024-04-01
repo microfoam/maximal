@@ -117,7 +117,7 @@ struct {
 	opt_A = {0, 0, 'A', {0}},
 	opt_B = {0, 0, 'B', 	"Reset blank character (default '.') to space (' ').*4          "},
 	opt_C = {0, 0, 'C', 	"Use the reverse complement (- strand) or reverse as allowed.   "},
-	opt_D = {0, 0, 'D', 	"Turn on program development prompts (user-controlled pauses).*8"},
+	opt_D = {0, 0, 'D', 	"Turn on program development prompts (user-controlled pauses).*7"},
 	opt_E = {0, 0, 'E', {0}},
 	opt_F = {0, 0, 'F', 	"Fill recessed line ends with spacer marks as a visual aid.     "},
 	opt_G = {0, 0, 'G', {0}},

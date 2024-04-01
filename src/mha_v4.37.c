@@ -351,8 +351,8 @@ int main(int argc, char *argv[])
 		case 'D':						/* OPTION TO ENGAGE dev_prompt USER PAUSES AT STAGE SPECIFIED BY VAL ARG */
 				opt_D.bit = 1;
 				numarg = atoi(optarg);
-				if (numarg>8 || !numarg)
-					opt_D.val = 0;		/* PROMPT AT THE VERY END; USEFUL FOR INSPECTING EACH RUN IN A SERIES CALLED BY A SCRIPT */	
+				if (numarg>7 || !numarg)
+					opt_D.val = 0;		
 				else
 					opt_D.val = numarg;
 				break;
@@ -1527,7 +1527,7 @@ int main(int argc, char *argv[])
 	free(pcind);
 	free(dConsensus);
 
-	if (opt_D.val==6)
+	if (opt_D.val==5)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
 	/********* 7. relax_2D MODULE: DE-CINCHES HOMOPOLYMER RUNS IF THEY DID NOT AID CINCH-D *********/
@@ -1547,7 +1547,7 @@ int main(int argc, char *argv[])
 			print_2Dseq();
 		Relax.pass_Q = Current.pass_Q;
 	}	
-	if (opt_D.val==7)
+	if (opt_D.val==6)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
 	/********* 8. recover_1D: OPTIONAL MODULE TO PRINT VALUES OF RECOVERED 1-D ALIGN BOX ***********/
@@ -1951,7 +1951,7 @@ int main(int argc, char *argv[])
 			fclose(fp_tricksy);
 		}
 	}
-	if (opt_D.val==8)
+	if (opt_D.val==7)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
 	free(consensus);
