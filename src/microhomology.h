@@ -871,13 +871,11 @@ int hr_len = max_len;					/* DEFAULT LENGTH OF HEADER BANNER */
 	if (opt_X.bit)
 		h_rule = h2;
 
-	if (Current.pass_V == 6) {
+	if (Current.pass_V == 5) {
 		printf("%.*s\n", hr_len, h_rule);
 		printf(" 2-D pass #%d: cinch-d run %d (width = %d)\n\n", Current.pass_V, Cinch_D.pass_R, lcl_width);
 	}
-	else if (Current.pass_V == 5) {			/* DEPRECATED nudge PASS */
-	}
-	else if (Current.pass_V == 4 || Current.pass_V == 6) {
+	else if (Current.pass_V == 4) {
 		printf("%.*s\n", hr_len, h_rule);
 		printf(" 2-D pass #%d: cinch-k (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
@@ -892,7 +890,7 @@ int hr_len = max_len;					/* DEFAULT LENGTH OF HEADER BANNER */
 	else if (Current.pass_V == 1) {
 			printf("\n\n 1-D sequence:\n");
 	}
-	else if (Current.pass_V == 7) {
+	else if (Current.pass_V == 6) {
 		printf("%.*s\n", hr_len, h_rule);
 		printf(" 2-D pass #%d: relax-2D (width = %d)\n\n", Current.pass_V, lcl_width);
 	}
