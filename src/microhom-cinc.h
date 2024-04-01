@@ -11,8 +11,6 @@ short unsigned int 	cleanseq(char *s);
 /*					cinch_t() = main() */
 int 				cinch_l(void); 
 int 				cinch_k(short unsigned int mode);
-unsigned int 		nudgelize(void);
-unsigned int 		connudge(char *nudcinch2D, int n_start, int n_width);
 unsigned int 		cinch_d(void);
 void 				relax_2D(void);
 int 				recover_1D(char *recovered_1D);
