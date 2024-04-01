@@ -259,9 +259,12 @@ int main(int argc, char *argv[])
 				print_base62_table();
 				return(EXIT_EARLY);
 				break;
-		case 'd':						/* OPTION TO SKIP CINCH-D CINCHING (0) OR REVERSE CINCH-D k LOOP (2, DEFAULT HIGH-TO-LOW > LOW-TO-HIGH)*/
+		case 'd':						/* OPTION TO SKIP CINCH-D CINCHING (0) OR REVERSE CINCH-D k LOOP (2, HIGH-TO-LOW); 1 = DEFAULT (LOW-TO-HIGH) */
 				numarg = atoi(optarg);
-				opt_d.bit = opt_d.val = numarg;		/* DEFAULT opt_b (bit & val) = 1 */
+				if (numarg && numarg<3)
+					opt_d.val = numarg;	/* DEFAULT opt_d (bit & val) = 1 */
+				else if (!numarg)
+					opt_d.bit = opt_d.val = 0;
 				break;
 		case 'f':						/* OPTION TO SHOW FOAM-FREE SEGMENTS BELOW CONSENSUS ROW*/
 				opt_f.bit = 1;
@@ -1770,7 +1773,7 @@ int main(int argc, char *argv[])
 				else
 					printf("%s post cinch-d   [pass #5: %d cinches]\n", letr_unit, Cinch_D.pass_R);
 			}
-			else if (opt_d.val==1 || opt_d.val>2)
+			else if (opt_d.val==1)
 				printf("%s post cinch-d   [pass #5: no cinches at LOW-TO-HIGH k (default)]\n", letr_unit);
 			else if (opt_d.val==2)
 				printf("%s post cinch-d   [pass #5: no cinches at HIGH-TO-LOW k (optioned)]\n", letr_unit);
