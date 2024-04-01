@@ -123,7 +123,7 @@ void assign_transit(int n, int kr_src)
 		r = tela[n].cyc_r;
 	}
 	else {
-		k = tela[n].k;			/* kr_src = THREE (OR > TWO) */
+		k = tela[n].k;			/* kr_src = 3 (OR > 2) */
 		r = tela[n].r;
 	}
 
@@ -1411,7 +1411,7 @@ void mark_tela(void)
 				}
 			}
 			if (!checkconflict) {						/* MEANING CHECKCONFLICT FLAG WAS NEVER TURNED O-F-F, I.E., THERE IS CONFLICT */
-				/* CONFLICT SCENARIO TWO */
+				/* CONFLICT SCENARIO 2 */
 				if (span>1 && tela[n].stat!=st_parent.sym && tela[n].all_L && !(tela[n].all_R) && tela[n+1].ok < tela[n].ok &&
 							!(tela[n+1].all_L) && !(tela[n+1].all_R) && tela[n].ok % tela[n+1].ok==0) {
 					clearall_tela(n, 1, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
@@ -1422,7 +1422,7 @@ void mark_tela(void)
 								"and n+1 has smaller k that is a multiple of k-size at n with no conflicts.", n, span, tela[n].all_L);
 					}
 				}
-				/* CONFLICT SCENARIO THREE: FIRST TR CAN BE CYCLED BUT NOT THE SECOND, WHICH HAS HIGHER SCORE ANYWAYS */
+				/* CONFLICT SCENARIO 3: FIRST TR CAN BE CYCLED BUT NOT THE SECOND, WHICH HAS HIGHER SCORE ANYWAYS */
 				else if (span>1 && tela[(l=tela[n].all_R)].all_S > tela[n].all_S && !tela[l+1].all_S) {
 					k = tela[n].ok;
 					for (j=n+1; j<n+span; j++) {
