@@ -478,13 +478,16 @@ int cinch_k(short unsigned int mode)
 					homopolyflag = 0;		/* RESET */
 				} 
 
-				/* 3/31/2024 v4.37 extra chowder although dramatic drop in WCR avg's when OFF */
+				/* 3/31/2024 v4.37 dramatic drop in WCR avg's when k==1 OFF, with some chowder */
 				if (nuctransit && keep_checking) {
-					if (k>2 && count_unique_chars(align2D[m]+n,k)<3) /* HARSH BUT SAFER ATM 10/22/2020 */
+					if (k>2 && count_unique_chars(align2D[m]+n,k)<3) {	/* HARSH BUT SAFER ATM 10/22/2020 */
 						keep_checking = 0;
-					else if (k==1 && (col_isclear(align2D,n  ,m,1)>0 || col_isclear(align2D,n  ,m,-1)>=0) &&
-						             (col_isclear(align2D,n+1,m,1)>0 || col_isclear(align2D,n+1,m,-1)>=0)) {
-						keep_checking = 0;
+					}
+					else if (k==1) {
+						if      (col_isclear(align2D,n,m, 1)> 0 && col_isclear(align2D,n+1,m, 1)> 0) 
+							keep_checking = 0;
+						else if (col_isclear(align2D,n,m,-1)>=0 && col_isclear(align2D,n+1,m,-1)>=0) 
+							keep_checking = 0;
 					}
 				}
 

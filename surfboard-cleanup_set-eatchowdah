@@ -110,8 +110,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Current commit WCR average of 82, cinch-k k=1 only (b=6): 0.475768 (opt_d=1 default) << 0.481463 (opt_d=2)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 82, cinch-k k=1 only (b=5): 0.471378 (opt_d=1 default) << 0.477805 (opt_d=2)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 82, cinch-k k=1 only (b=4): 0.465402 (opt_d=1 default) << 0.474024 (opt_d=2)' | tee -a Corduroy.log
-echo 'Current commit WCR average of 82, cinch-k k=1 only (b=3): 0.44772  (opt_d=1 default) << 0.45939  (opt_d=2)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, cinch-k k=1 only (b=6): 0.474915 (opt_d=1 default) << 0.48061  (opt_d=2)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, cinch-k k=1 only (b=5): 0.471256 (opt_d=1 default) << 0.477683 (opt_d=2)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, cinch-k k=1 only (b=4): 0.464549 (opt_d=1 default) << 0.473293 (opt_d=2)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 82, cinch-k k=1 only (b=3): 0.447354 (opt_d=1 default) << 0.459146 (opt_d=2)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
