@@ -18,7 +18,7 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
-DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=nudge; 6=cinch-d; 7=relax2D; 8= pause at end of run
+DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
 	./maximal -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_06F.txt						# solved in the script commenting before-time
 	./maximal -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_09F.txt						# solved in the script commenting before-time

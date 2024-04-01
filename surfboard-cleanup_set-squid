@@ -19,7 +19,7 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
-DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=nudge; 6=cinch-d; 7=relax2D; 8= pause at end of run
+DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
 # solved: push new solved runs onto top of stack starting w/ solved-64 
 ./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_40-b3.txt		# solved-96 Delete sub-block in mark_tela; add new block to trim imperfect cyc islands; -x b3-only chowder
