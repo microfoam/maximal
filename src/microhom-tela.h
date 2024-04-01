@@ -827,7 +827,7 @@ void mark_tela(void)
 						tela[n-1].stat = st_Fract.sym;		/* st_Fract = orPHan Fractal */
 						push_mem(n,0);						/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 						push_mem(n,1);
-						if (k<3*prev_k) {	/* EMPIRICALLY DETERMINED THAT IF THEY ARE CLOSE IN SIZE BETTER TO SKIP LARGER k-MER. SEE ABBA-ZABBA */
+						if (k<9 && k<3*prev_k) {			/* HEURISTIC: IF SMALL ks ARE CLOSE IN SIZE BETTER TO SKIP LARGER k-MER. SEE ABBA-ZABBA */
 							n += k-1;
 							Dtr = 0;
 						}

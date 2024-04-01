@@ -103,6 +103,6 @@ echo
 ./surfboard-checkmha
 echo 'Commit WCR average of 67 (b=6): 0.501567 (opt_d=1 default) = 0.501119 (opt_d=2)' | tee -a Corduroy.log
 echo 'Commit WCR average of 67 (b=5): 0.497985 (opt_d=1 default) > 0.495896 (opt_d=2)' | tee -a Corduroy.log
-echo 'Commit WCR average of 67 (b=4): 0.495299 (opt_d=1 default) > 0.492291 (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 67 (b=4): 0.495299 (opt_d=1 default) > 0.49291  (opt_d=2)' | tee -a Corduroy.log
 echo 'Commit WCR average of 67 (b=3): 0.469328 (opt_d=1 default) > 0.469179 (opt_d=2)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

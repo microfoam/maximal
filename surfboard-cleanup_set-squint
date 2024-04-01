@@ -21,6 +21,7 @@ fi
 DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=nudge; 6=cinch-d; 7=relax2D; 8= pause at end of run
 
 # solved: push new solved runs onto top of stack starting w/ solved-97 
+./maximal -D$DEVPROMPT -KnR  waves/chowder/chowder-2024_string_003.txt  # solved w/ restriction of existing mark_tela heuristic to k<9
 ./maximal -D$DEVPROMPT -KnxR waves/chowder/chowder-2024_string_002.txt  # solved w/ new cinch_t case using tela marks 
 ./maximal -D$DEVPROMPT -KnxR waves/chowder/chowder-2024_string_001.txt  # solved by deleting code for one cinch_k case 
 ./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_28-xb3_1a-20pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
@@ -71,8 +72,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 41 (b=6): 0.419024 (opt_d=1 default) << 0.422463 (opt_d=2)' | tee -a Corduroy.log
-echo 'Commit WCR average of 41 (b=5): 0.420976 (opt_d=1 default) << 0.423317 (opt_d=2)' | tee -a Corduroy.log
-echo 'Commit WCR average of 41 (b=4): 0.409634 (opt_d=1 default) << 0.412878 (opt_d=2)' | tee -a Corduroy.log
-echo 'Commit WCR average of 41 (b=3): 0.398732 (opt_d=1 default) << 0.404902 (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 42 (b=6): 0.422333 (opt_d=1 default) << 0.42569  (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 42 (b=5): 0.424238 (opt_d=1 default) << 0.426524 (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 42 (b=4): 0.413167 (opt_d=1 default) << 0.416333 (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 42 (b=3): 0.402524 (opt_d=1 default) << 0.408548 (opt_d=2)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
