@@ -1,2 +1,2 @@
->XXpattern-1a-20pc_GC -x0 or -x1 b3 cinch_k chowder
+>XXpattern-1a-20pc_GC -x0 or -x1 b3 cinch_t mark_tela chowder
 ATGTGTACTTTAGTATAGATAGTATAGACTACAGTTTCTATAT
