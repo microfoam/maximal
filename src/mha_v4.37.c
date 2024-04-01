@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
 	Options[26] = &opt_z; Options[52] = &opt_Z;
 
 	Cinches[0] = &Start; Cinches[1] = &Clean; Cinches[2] = &Cinch_T; Cinches[3] = &Cinch_L; Cinches[4] = &Cinch_K;
-	Cinches[6] = &Cinch_D; Cinches[7] = &Relax; Cinches[8] = &Recover; Cinches[9] = &Current;
+	Cinches[5] = &Cinch_D; Cinches[6] = &Relax; Cinches[7] = &Recover; Cinches[8] = &Current;
 
 	/* IS THERE A FILE NAME ARGUMENT? */
 	for (i = 1; i < argc; i++) {
@@ -1492,10 +1492,7 @@ int main(int argc, char *argv[])
 	if (opt_D.val==4)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
-	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT ****** DEPRECATED ***/
-	i = ++Current.pass_V;
-
-	/********* 6. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
+	/********* 5. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
 	++Current.pass_V;
 
 	int intraTR_reps = 1;	 	/* STORES RETURN VALUE FROM cinch-d() */
@@ -1726,7 +1723,7 @@ int main(int argc, char *argv[])
 		printf("%s (non-biological sequence)", Seq_head);
 	printf(":\n\n PASS QUAL.    2-D WIDTH\n");
 
-	for (i = 0; i<8 && Cinches[i]->pass_W != '\0'; i++) {
+	for (i = 0; i<7 && Cinches[i]->pass_W != '\0'; i++) {
 		printf("  %5d%s%8d ", Cinches[i]->pass_Q, arrow, Cinches[i]->pass_W);
 		switch (i) {
 		case 0:
@@ -1765,29 +1762,28 @@ int main(int argc, char *argv[])
 				printf("%s post cinch-k   [pass #4: one row added]\n", letr_unit);
 			else if (Cinch_K.pass_V > 1)
 				printf("%s post cinch-k   [pass #4: %d rows added]\n", letr_unit, Cinch_K.pass_V);
-			i++;	/* SKIP TO CASE 6 (CASE 5 WAS OLD NUDGELIZE, NOW DEPRECATED) */
 			break;
-		case 6:	
+		case 5:	
 			if (Cinch_D.pass_R) {
 				if (Cinch_D.pass_R==1) 
-					printf("%s post cinch-d   [pass #6: one cinch]\n", letr_unit);
+					printf("%s post cinch-d   [pass #5: one cinch]\n", letr_unit);
 				else
-					printf("%s post cinch-d   [pass #6: %d cinches]\n", letr_unit, Cinch_D.pass_R);
+					printf("%s post cinch-d   [pass #5: %d cinches]\n", letr_unit, Cinch_D.pass_R);
 			}
 			else if (opt_d.val==1 || opt_d.val>2)
-				printf("%s post cinch-d   [pass #6: no cinches at LOW-TO-HIGH k (default)]\n", letr_unit);
+				printf("%s post cinch-d   [pass #5: no cinches at LOW-TO-HIGH k (default)]\n", letr_unit);
 			else if (opt_d.val==2)
-				printf("%s post cinch-d   [pass #6: no cinches at HIGH-TO-LOW k (optioned)]\n", letr_unit);
+				printf("%s post cinch-d   [pass #5: no cinches at HIGH-TO-LOW k (optioned)]\n", letr_unit);
 			else if (!opt_d.bit)
-				printf("%s post cinch-d   [pass #6: SKIPPED BY REQUEST]\n", letr_unit);
+				printf("%s post cinch-d   [pass #5: SKIPPED BY REQUEST]\n", letr_unit);
 			break;
-		case 7:	
+		case 6:	
 			if (!Relax.pass_R)
-				printf(    "%s post relax-2D  [pass #7]\n", letr_unit);
+				printf(    "%s post relax-2D  [pass #6]\n", letr_unit);
 			else if (Relax.pass_R == 1)
-				printf(    "%s post relax-2D  [pass #7: relaxed one run]\n", letr_unit);
+				printf(    "%s post relax-2D  [pass #6: relaxed one run]\n", letr_unit);
 			else
-				printf(    "%s post relax-2D  [pass #7: relaxed %d run(s)]\n", letr_unit, Relax.pass_R);
+				printf(    "%s post relax-2D  [pass #6: relaxed %d run(s)]\n", letr_unit, Relax.pass_R);
 			break;
 		}
 	}

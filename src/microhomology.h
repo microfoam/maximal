@@ -205,7 +205,7 @@ struct cinch {
 	int pass_V;					/* Pass runs value; pass counter                                    */
 	int pass_W;					/* Pass 2-D width                                                   */
 	int pass_H;					/* Pass 2-D height                                                  */
-} *Cinches[10],
+} *Cinches[9],
 	 Start  = {0, 0, 0, 0, 0},		/* Initial pass (stage) to read a raw input sequence */
 	 Clean  = {0, 0, 0, 0, 0},		/* Pass to format original input string into acceptable characters and determine sequence type */
 	Cinch_T = {0, 0, 0, 0, 0},		/* Pass to cinch Tandem repeats using a special traversal of the Pathbox grid */
