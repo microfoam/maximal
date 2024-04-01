@@ -679,7 +679,7 @@ int cinch_k(short unsigned int mode)
 /******************************************************************/
 unsigned int cinch_d(void)
 {
-	int delta_mrow=0, delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, tot_repeats=0, num_transits=0;
+	int delta_ncol=0, h=0, i=0, j=0, k=WIDTH, l=0, m=0, n=0, num=0, tot_repeats=0, num_transits=0;
 	int height = Current.pass_H;
 	int lenseq = Clean.pass_W;
 	int translimit = 0;
@@ -887,29 +887,15 @@ unsigned int cinch_d(void)
 					first_write = 0;	/* TURN O-F-F NEED TO WRITE REMAINING PART OF 2-D ALIGNMENT */
 
 					delta_ncol = k;
-					delta_mrow = 1;
-
-					/* DEAL WITH LOOSE SLIP CONNECTIONS PRODUCED BY NUDGELIZING */
-					for (j=0; j<n+k; j++) {
-						if (cinch2D[mn1D(m,j)] != blnk) {
-							break;
-						}
-					}
-					if (j == n+k) {
-						if (cinch2D[mn1D(m-1,n)] == slip.sym)
-							delta_mrow = -1;
-						else 
-							delta_mrow = 0;
-					}
 
 					for (i=m; i<lenseq; i++) {
 						for (j=n+k; j<=Current.pass_W+1; j++) {
-							letr = cinch2D[mn1D(i+delta_mrow,j-delta_ncol)] = align2D[i][j];
+							letr = cinch2D[mn1D(i+1,j-delta_ncol)] = align2D[i][j];
 							if (letr==slip.sym || letr==monoR.sym) 
-								cinch2D[mn1D(i+delta_mrow,j-delta_ncol+1)] = '\0';
+								cinch2D[mn1D(i+1,j-delta_ncol+1)] = '\0';
 							else if (letr==Term->sym) {
 								for (h=0; h<n; h++)
-									cinch2D[mn1D(i+delta_mrow,h)] = blnk;
+									cinch2D[mn1D(i+1,h)] = blnk;
 								i = lenseq;
 								break;
 							}
