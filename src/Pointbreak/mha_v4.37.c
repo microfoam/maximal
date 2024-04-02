@@ -1,6 +1,6 @@
 /*******************************************************************************************************/
 /***** The program "maximal" is a micro homology alignment (MHA) program.                          *****/
-/***** Designed and written by Dr. Albert J. Erives. 2017-2020. AGPL-3.0.                          *****/
+/***** Designed and written by Dr. Albert J. Erives. 2017-2024. AGPL-3.0.                          *****/
 /***** Code repository located at https://github.com/microfoam/maximal. Licensed under AGPL-3.0.   *****/
 /***** This program renders a 1-D DNA sequence into a 2-D self-alignment to rescue micro-paralogy. *****/
 /*******************************************************************************************************/
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	int match      = MATCH;
 	int transition = TRANSITION;			
 	int mismatch   = MISMATCH;
-	char version[] = "4.37";				/* current development version number */
+	char version[] = "5.00";				/* current 'mha.c' version number */
 
 	int c=0, f=0, i=0; 
 	short unsigned int pairwise = 0;	
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	int l=0, m=0, n=0; 
 	short unsigned int Aimperfect_TR=0; 
 
-	int o=0, p=0, q=0;
+	int o=0, p=0, q=0, t=0;
 	short unsigned int nuctransit=0; 
 
 	int reps=0, row=0;	
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 	int relax_length=0;			/* FOR USE WITH relax_2D CALL */
 	char blank = Fill->sym;					/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
 
-	int intraTR_reps = 0;	 	/* STORES CURRENT RETURN VALUE FROM cinch-d() */
+	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
 	int ralign_height = 0;	
 	int ralign_width = 0;
 	char ch = blank;
@@ -76,15 +76,14 @@ int main(int argc, char *argv[])
 	float ratio2 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post relax-2D 				*/
 
 	int scooch = 0;
-	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
 
 	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
 	char cycle[WIDTH+1];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
 	char Seq_head[100] = {0};	/* FASTA HEADER */
 	char Seq_i[MAXROW] = "TGTGTGAGTGAnnnnnnTGTGTGAGTGAGnnnnnTGTGTGAGTGAGTGAnnTGTGTGAGTGAGTGAGT"; 	/* INPUT SEQUENCE W/ DEFAULT */
-	char Seq_r[MAXROW] = {0}; 	/* RANDOMIZED SEQUENCE */
+	char *Seq_r = NULL; 	 	/* RANDOMIZED SEQUENCE */
 	char *Seq = Seq_i;			/* POINTER TO INPUT SEQUENCE */
- 	char ralign2D[MAXROW+1][MAXROW] = {{0}};	/* 'R'EAD ALIGN2D FROM PREVIOUS AUTO-MHA */ 	
+	char *ralign2D = NULL;		/* 'R'EAD ALIGN2D FROM PREVIOUS AUTO-MHA */
 	
 	FILE *file_ptr;
 	FILE *fp_cons;							/* FILE FOR CONSENSUS STRING TUBES.barrels */
@@ -94,7 +93,6 @@ int main(int argc, char *argv[])
 	time_t lcl_time = time(NULL);			/* START TIME */
 	char time0[26];							/* START TIME STRING */
 	strcpy(time0,ctime(&lcl_time));			/* TEXT-READABLE START TIME */
-	char recovered[MAXROW] = {0};
 
 	signal(SIGINT, signal_callback_handler);	/*  2 */
 	signal(SIGFPE, signal_callback_handler);	/*  8 */
@@ -130,7 +128,7 @@ int main(int argc, char *argv[])
 	Options[26] = &opt_z; Options[52] = &opt_Z;
 
 	Cinches[0] = &Start; Cinches[1] = &Clean; Cinches[2] = &Cinch_T; Cinches[3] = &Cinch_L; Cinches[4] = &Cinch_K;
-	Cinches[5] = &Nudge; Cinches[6] = &Cinch_D; Cinches[7] = &Relax; Cinches[8] = &Recover; Cinches[9] = &Current;
+	Cinches[5] = &Cinch_D; Cinches[6] = &Relax; Cinches[7] = &Recover; Cinches[8] = &Current;
 
 	/* IS THERE A FILE NAME ARGUMENT? */
 	for (i = 1; i < argc; i++) {
@@ -172,7 +170,7 @@ int main(int argc, char *argv[])
 						Seq_i[j] = '\0';	
 					}
 					else 
-						strcpy(Seq_head, "input sequence");
+						strcpy(Seq_head, "input");
 				}
 			}
 			else {
@@ -185,25 +183,26 @@ int main(int argc, char *argv[])
 
 					int scrimmage = 0;
 					short unsigned int lastrow=0;
-
+					ralign2D = calloc(MAXROW*MAXROW, sizeof(char *));		/* TEMPORARY/CHANGE ME: THIS WILL NORMALLY BE MORE THAN IS NEEDED */
+																			/* TO DO: SCAN FILE TO FIND LONGEST LINE */
 					for (m=0; m<MAXROW && !lastrow; m++) {
 					    for (n=0; n<MAXROW; n++) {
 					        fscanf(file_ptr, "%c", &ch);
-					        ralign2D[m][n] = ch;
+					        ralign2D[mn1Dbig(m,n)] = ch;
 							if (n>scrimmage && (ch==Term->sym || ch==monoR.sym)) {
 								scrimmage = n;
-								ralign2D[m][n+1] = '\0';
+								ralign2D[mn1Dbig(m,n+1)] = '\0';
 								if (ch==Term->sym)
 									lastrow = 1;
 								break;
 							}
-							else if (ch=='\r' && ralign2D[m][n+1]=='\n') {		/* MS-DOS LINE ENDINGS */
-								ralign2D[m][n  ] = '\0';
-								ralign2D[m][n+1] = '\0';
+							else if (ch=='\r' && ralign2D[mn1Dbig(m,n+1)]=='\n') {		/* MS-DOS LINE ENDINGS */
+								ralign2D[mn1Dbig(m,n  )] = '\0';
+								ralign2D[mn1Dbig(m,n+1)] = '\0';
 								break;
 							}
 							else if (ch=='\r' || ch=='\n') {				/* macOS OR UNIX LINE ENDINGS */
-								ralign2D[m][n] = '\0';
+								ralign2D[mn1Dbig(m,n)] = '\0';
 								break;
 							}
 					    }
@@ -220,9 +219,9 @@ int main(int argc, char *argv[])
 	
 					printf("\n %2d. Read file 'TUBES.mha' into ralign2D array (height %d, width %d) as follows:\n", 
 								j+2, ralign_height, ralign_width-1);
-					for (m=0; ralign2D[m][0]!='\0'; m++)	{
+					for (m=0; ralign2D[mn1Dbig(m,0)]!='\0'; m++)	{
 						printf("\n\t");
-						printf("%s", ralign2D[m]);
+						printf("%s", &ralign2D[mn1Dbig(m,0)]);
 					}
 				}
 			}
@@ -237,7 +236,7 @@ int main(int argc, char *argv[])
 
 	/**************************************/
 	/* SET OPTIONS FROM ARGUMENTS  ********/
-	const char* optstring = "a::b::cdfg::hklm::noprstu::v::xzB::CD::FHKLM::O::PRS::TX::Y:";
+	const char* optstring = "a::b::cd::fg::hklm::noprstu::v::xzB::CD::FHKLM::O::PRS::TX::Y:";
 	opterr=0;
 	int opt_count=0;	/* INDEX TO COUNT NUMBER OF OPTIONS */
 
@@ -253,15 +252,19 @@ int main(int argc, char *argv[])
 		case 'b':						/* OPTION TO CHANGE DEFAULT THRESHOLD FLOOR (k-SIZE) ABOVE WHICH BEGINS TRANSITION MATCHING */
 				opt_b.bit = 1;
 				numarg = atoi(optarg);
-				opt_b.val = numarg;		/* DEFAULT opt_b.val = 6 */
+				opt_b.val = numarg;		/* CURRENT DEFAULT opt_b.val = 3 */
 				break;
 		case 'c':						/* SHOW BASE 62 CODE */
 				opt_c.bit = 1;
 				print_base62_table();
 				return(EXIT_EARLY);
 				break;
-		case 'd':						/* OPTION TO SKIP CINCH-D CINCHING */
-				opt_d.bit = 1;
+		case 'd':						/* OPTION TO SKIP CINCH-D CINCHING (0) OR REVERSE CINCH-D k LOOP (2, HIGH-TO-LOW); 1 = DEFAULT (LOW-TO-HIGH) */
+				numarg = atoi(optarg);
+				if (numarg && numarg<3)
+					opt_d.val = numarg;	/* DEFAULT opt_d (bit & val) = 1 */
+				else if (!numarg)
+					opt_d.bit = opt_d.val = 0;
 				break;
 		case 'f':						/* OPTION TO SHOW FOAM-FREE SEGMENTS BELOW CONSENSUS ROW*/
 				opt_f.bit = 1;
@@ -351,8 +354,8 @@ int main(int argc, char *argv[])
 		case 'D':						/* OPTION TO ENGAGE dev_prompt USER PAUSES AT STAGE SPECIFIED BY VAL ARG */
 				opt_D.bit = 1;
 				numarg = atoi(optarg);
-				if (numarg>8 || !numarg)
-					opt_D.val = 8;		/* PROMPT AT THE VERY END; USEFUL FOR INSPECTING EACH RUN IN A SERIES CALLED BY A SCRIPT */	
+				if (numarg>7 || !numarg)
+					opt_D.val = 0;		
 				else
 					opt_D.val = numarg;
 				break;
@@ -463,9 +466,8 @@ int main(int argc, char *argv[])
 	}
 
 	/* IF CERTAIN OPTIONS ARE ON, SKIP RELAX-2D */
-	if (opt_d.bit || opt_O.bit) {
+	if (opt_O.bit)
 		opt_n.bit = 1;		/* opt_n NO RELAX 2-D */
-	}
 
 	/* OPTION TO APPEND TO GROWING 2-D MSA FILE */
 	if (opt_O.val >= 2) {
@@ -556,6 +558,8 @@ int main(int argc, char *argv[])
 	lenseq = strlen(Seq);
 	Clean.pass_W = Current.pass_W = lenseq;	/* ASSIGN CINCH-WIDTH TO HISTORY [0--9] AND CURRENT */
 
+	consensus = calloc(lenseq+1, sizeof(char *));	/* +1 for Terminal character '>' */
+
 	if (opt_T.bit) {			/* opt_T: SHOW DTHR VALUES */
 		show_DTHR_table();
 	}
@@ -571,6 +575,9 @@ int main(int argc, char *argv[])
 		strcpy(letr_unit, "aa");	/* AMINO ACIDS */
 	else if (seqtype == 0)
 		strcpy(letr_unit, "ch");	/* OTHER */
+
+	if (opt_C.bit || opt_X.bit)
+		Seq_r = calloc(lenseq+1, sizeof(char *));
 
 	if (opt_C.bit) {					/* opt_C USE REVERSE COMPLEMENT (nucleotides), REVERSE (other) */
 		Strand = &R_str;				/* SET STRAND POINTER TO REVERSE STRAND CHARACTER */
@@ -627,10 +634,13 @@ int main(int argc, char *argv[])
 		strcpy(Seq, Seq_r);
 	}
 
+	if (opt_C.bit || opt_X.bit)
+		free(Seq_r);
+
 	Start.pass_Q = 1000;
 
 	++Current.pass_V;
-	Clean.pass_Q = 500;	/* Nominal half-pass until mark_tela() is completed; used to count half a pass for print_tela() */
+	Clean.pass_Q = 500;	/* Nominal half-pass until mark_tela() is completed */
 
 	Seq[lenseq] = tela[lenseq].t = tela[lenseq].c = Term->sym;
 	citwidth = lenseq;	
@@ -676,7 +686,7 @@ int main(int argc, char *argv[])
 			tela[i].e = tela[i].c;
 	}
 	mark_tela();			/* WILL MARK ALL TRs WITHOUT CINCHING AND RECORD IN tela[].ok, or, all_S, all_L/R */
-	Clean.pass_Q = 1000;	/* mark_tela() is completed; used to count half a pass for print_tela() */
+	Clean.pass_Q = 1000;	/* mark_tela() is completed */
 	if (opt_D.val==1)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
@@ -784,8 +794,11 @@ int main(int argc, char *argv[])
 				break;
 			}
 	
-			/* FOR COLUMN n LOOP 2/3: SKIP PRESENT TR IF CONFLICT AND CAN CYCLE WITH SAME SCORE */
-			if (tela[n].all_L && tela[n].all_S == tela[n+1].all_S && !tela[n+1].all_L && tela[(tela[n].all_L)].cyc_o == cyc_take.sym) {
+			/* FOR COLUMN n LOOP 2/3: SKIP TR OVERLAPPING BIGGER RHS TR (NEW 2024) OR IF CAN CYCLE WITH SAME SCORE */
+			if ((i=tela[n].all_R) && tela[i].stat==st_parent.sym && tela[i].all_S>tela[n].all_S && i-n>k) {
+				assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
+			}
+			else if ((i=tela[n].all_L) && tela[n].all_S==tela[n+1].all_S && !tela[n+1].all_L && tela[i].cyc_o==cyc_take.sym) {
 				assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 			}
 	
@@ -1142,22 +1155,15 @@ int main(int argc, char *argv[])
 									} 
 	
 									/* SUM UP COMPATIBLE TR PRODUCTS IN WINDOW OF LENGTH SUMSPAN BEGINNING AT POSITION series OF TR B */
-									if (tela[n].all_L && sumspan > 0 && tela[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
-										for (j = 0; j < sumspan; j++) {
+									if (tela[n].all_L && sumspan>0 && tela[n].X != n) {	/* SUMSPAN IS LENGTH OF WINDOWS FOR WHICH SUMS OF PRODUCTS ARE RECORDED */
+										for (j=0; j<sumspan; j++) {
 											l=series+j-k;
-											for (f = tela[series+j].mem[0] - 1 - j; f > 0; f--) {
-												if (tela[l].mem[f] == 1) {
-													int backstop = 0;
-													/* backstop = tela[n].X - tela[(tela[n].X)].k;					 Why is this not best? */
-
-													while (tela[l].cyc_o != cyc_take.sym && tela[l].cyc_o != cyc_skip.sym && l>backstop) 
+											for (f = tela[series+j].mem[0] - 1 - j; f>0; f--) {
+												if (tela[l].mem[f]==1) {
+													while (tela[l].cyc_o != cyc_take.sym && tela[l].cyc_o != cyc_skip.sym && l>0) 
 														l--;
-													while (tela[l].mem[f] != 1 && l>backstop) 
+													while (tela[l].mem[f] != 1 && l>0) 
 														l--;
-													if (OFF && l == backstop) {									/* !!!!!!!!!!!!!!!!!!!!! */
-														while (tela[l].mem[f] != 1 || !tela[l].ok)
-															l++;
-													}
 
 													tela[series+j].cyc_S = tela[series+j].cyc_P + tela[l].cyc_P;	
 													tela[series+j].cyc_Lf = l;
@@ -1210,7 +1216,7 @@ int main(int argc, char *argv[])
 											tela[n].y = tela[n-1].y;
 											tela[n].x = tela[n-1].x + 1;
 											assign_tela(n, row, a2D_n, ONE);
-											for (int t=n; t<l; t++)
+											for (t=n; t<l; t++)
 												assign_tela(n++, row, a2D_n++, TWO);
 
 											assign_transit(l,TWO); 			/* O-F-F; ONE=ALL_K/R; TWO=CYC_K/R; THREE=K/R */
@@ -1261,7 +1267,7 @@ int main(int argc, char *argv[])
 													tela[l+k].cyc_o = cyc_take.sym;
 													break;
 												}
-												else if (tela[l].mem[i] == 0) { 				/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */
+												else if (tela[l].mem[i] == 0) { 	/* IF ZERO, THIS IS INCOMPATIBLE WITH ANY CYCLE OF B */
 													tela[series+j].cyc_S = tela[series+j].cyc_P;
 													break;
 												}
@@ -1489,50 +1495,42 @@ int main(int argc, char *argv[])
 	if (opt_D.val==4)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
-	/********* 5. nudgelize MODULE: "NUDGES" CONFLICT BY PUSHING COLS TO RIGHT *********************/
-	i = ++Current.pass_V;
-
-	if (Cinch_K.pass_Q!=1000 || align2D[0][0] == blank) {
-		++Nudge.pass_R;
-		Nudge.pass_W = Current.pass_W;
-
-		while (nudgelize() && Nudge.pass_R<CYCMAX) {
-			++Nudge.pass_R;
-			++Nudge.pass_W;
-		}
-		if (Nudge.pass_W==Cinch_K.pass_W && Nudge.pass_R==1)
-			Nudge.pass_R = 0;
-	}
-	else {	
-		Cinches[i]->pass_W = Cinches[i-1]->pass_W;
-	}
-	Nudge.pass_Q = Current.pass_Q;
-	if (opt_D.val==5)
-		dev_prompt(MAIN,__LINE__,file_name); 
-
-	/********* 6. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
+	/********* 5. cinch_d MODULE: HANDLES DE NOVO INTER-TR REPEATS *********************************/
 	++Current.pass_V;
-	if (dev_print(MAIN,__LINE__)) {
-		if (nuctransit)
-			printf("Pre-cinch_d report (p = perfect, i = imperfect tandem repeat):\n");
-		else
-			printf("Pre-cinch_d report:\n");
+
+	int intraTR_reps = 1;	 	/* STORES RETURN VALUE FROM cinch-d() */
+
+	dConsensus = malloc(Cinch_K.pass_W * sizeof(*dConsensus));
+	struct cindstruct **pcind = malloc(Cinch_K.pass_W * sizeof(*pcind));
+
+	for (i=0; i<Cinch_K.pass_W; i++)
+		pcind[i] = dConsensus+i;		/* SO NOW CAN USE EITHER dConsensus[i].FIELD or pcind[i]->FIELD */
+
+	if (dConsensus==NULL || pcind==NULL) {
+		printf("\n Memory allocation error. See line %d in main().\n", __LINE__);
+		exit(3);
 	}
-	intraTR_reps = cinch_d(0);
 
 	if (intraTR_reps) {
 		int d_width = Current.pass_W;
-		while (intraTR_reps > 0) {
-			intraTR_reps = cinch_d(1);
-			if (Current.pass_W==d_width)
+		while (intraTR_reps) {
+			intraTR_reps = cinch_d();
+			if (d_width==Current.pass_W)
 				break;
-			else
+			else {
 				d_width = Current.pass_W;
+				if (lenseq>2000)	/* TAGGED: <MAGIC>, print statement for long sequences to avoid inducing feeling program has stalled. */
+					printf(" Cinch-d intraTR_reps = %d.", intraTR_reps);
+			}
 		}
 		Cinch_D.pass_V = Cinch_D.pass_R;
 	}
+
 	Cinch_D.pass_Q = Current.pass_Q;
-	if (opt_D.val==6)
+	free(pcind);
+	free(dConsensus);
+
+	if (opt_D.val==5)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
 	/********* 7. relax_2D MODULE: DE-CINCHES HOMOPOLYMER RUNS IF THEY DID NOT AID CINCH-D *********/
@@ -1552,7 +1550,7 @@ int main(int argc, char *argv[])
 			print_2Dseq();
 		Relax.pass_Q = Current.pass_Q;
 	}	
-	if (opt_D.val==7)
+	if (opt_D.val==6)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
 	/********* 8. recover_1D: OPTIONAL MODULE TO PRINT VALUES OF RECOVERED 1-D ALIGN BOX ***********/
@@ -1564,6 +1562,7 @@ int main(int argc, char *argv[])
 		char dashed_string[MAXROW+WIDTH] = {0};
 		strcpy(dashed_string,Seq);
 
+		char *recovered = calloc(lenseq, sizeof(char *));
 		recover_1D(recovered);
 		r = (int) strlen(recovered) - 1;
 		m = max(lenseq,r);
@@ -1678,6 +1677,8 @@ int main(int argc, char *argv[])
 			}
 		} /* END OF FOR j LOOP */
 
+		free(recovered);
+
 		Recover.pass_W = recover_char;			/* STORE NUMBER OF RECOVERED CHARACTERS */
 
 		if (recovery_flag) {		/* LAST ROW OF array2D WILL STORE CONSENSUS, SO NEED TO KEEP CLEAR */
@@ -1712,7 +1713,9 @@ int main(int argc, char *argv[])
 	if (seqtype == 3 && opt_x.bit && opt_v.bit)
 		print_protein_waxes();
 
-	printf("\nWidth cinch history for ");
+	char arrow[] = "      ";
+
+	printf("\nCinch history for ");
 	if (seqtype == 1)		
 		printf("%s (DNA sequence)", Seq_head);
 	else if (seqtype==2)	
@@ -1721,21 +1724,23 @@ int main(int argc, char *argv[])
 		printf("%s (protein sequence)", Seq_head);
 	else if (seqtype==0)
 		printf("%s (non-biological sequence)", Seq_head);
-	printf(":\n\n PASS QUAL.      2-D WIDTH\n");
+	printf(":\n\n PASS QUAL.    2-D WIDTH\n");
 
-	for (i = 0; i<8 && Cinches[i]->pass_W != '\0'; i++) {
-		printf("  %5d       => %4d ", Cinches[i]->pass_Q, Cinches[i]->pass_W);
+	for (i = 1-opt_v.bit; i<7 && Cinches[i]->pass_W != '\0'; i++) {
+		printf("  %5d%s%8d ", Cinches[i]->pass_Q, arrow, Cinches[i]->pass_W);
 		switch (i) {
 		case 0:
-			if (!opt_X.bit)
-				printf("characters in original string\n");
-			else if (opt_X.val == 1)
-				printf("characters in original string => RANDOMIZED\n");
-			else
-				printf("characters in original string => FISHER-YATES RANDOMIZED TO FILL %d\n", FY_size);
+			printf("characters in original string\n");
 			break;
 		case 1:
-			printf("%s post cleanseq  [pass #1]\n", letr_unit);
+			if (opt_C.bit && !opt_X.bit) 	/* Reverse-complement option */
+				printf("%s pre-cinching   [pass #1: reverse-complement of input]\n", letr_unit);
+			else if (opt_X.val == 2)
+				printf("%s pre-cinching   [pass #1: FISHER-YATES RANDOMIZED TO FILL %d %s]\n", letr_unit, FY_size, letr_unit);
+			else if (opt_X.val == 1)
+				printf("%s pre-cinching   [pass #1: RANDOMIZED]\n", letr_unit);
+			else
+				printf("%s pre-cinching   [pass #1]\n", letr_unit);
 			break;
 		case 2:
 			if (Cinch_T.pass_R > 1)
@@ -1745,7 +1750,7 @@ int main(int argc, char *argv[])
 			else if (opt_t.bit) 
 				printf("%s post cinch-t   [pass #2: SKIPPED BY REQUEST]\n", letr_unit);
 			else 
-				printf("No effective cinch-t cinches taken.\n");
+				printf("%s post cinch-t   [pass #2]\n", letr_unit);
 			break;
 		case 3:	
 			if (!Cinch_L.pass_R)
@@ -1764,41 +1769,31 @@ int main(int argc, char *argv[])
 				printf("%s post cinch-k   [pass #4: %d rows added]\n", letr_unit, Cinch_K.pass_V);
 			break;
 		case 5:	
-			if (Nudge.pass_V == 0)
-				printf("%s post nudgelize [pass #5]\n", letr_unit);
-			else if (Nudge.pass_R == 1) {	
-				if (Nudge.pass_V == 3)
-					printf("%s post nudgelize [pass #5: one nudge was required at column %d]\n", letr_unit, nudgecolmem+1);
-			}
-			else {	/* IN WHICH CASE k WILL BE NON-ZERO */
-				if (Nudge.pass_V == 3)
-					printf("%s post nudgelize [pass #5: %d nudges were required at column %d]\n", letr_unit, Nudge.pass_R, nudgecolmem+1);
-			}
-			break;
-		case 6:	
 			if (Cinch_D.pass_R) {
 				if (Cinch_D.pass_R==1) 
-					printf("%s post cinch-d   [pass #6: one cinch]\n", letr_unit);
+					printf("%s post cinch-d   [pass #5: one cinch]\n", letr_unit);
 				else
-					printf("%s post cinch-d   [pass #6: %d cinches]\n", letr_unit, Cinch_D.pass_R);
+					printf("%s post cinch-d   [pass #5: %d cinches]\n", letr_unit, Cinch_D.pass_R);
 			}
-			else if (opt_d.bit)
-				printf("%s post cinch-d   [pass #6: SKIPPED BY REQUEST]\n", letr_unit);
-			else
-				printf("%s post cinch-d   [pass #6]\n", letr_unit);
+			else if (opt_d.val==1)
+				printf("%s post cinch-d   [pass #5: no cinches at LOW-TO-HIGH k (default)]\n", letr_unit);
+			else if (opt_d.val==2)
+				printf("%s post cinch-d   [pass #5: no cinches at HIGH-TO-LOW k (optioned)]\n", letr_unit);
+			else if (!opt_d.bit)
+				printf("%s post cinch-d   [pass #5: SKIPPED BY REQUEST]\n", letr_unit);
 			break;
-		case 7:	
+		case 6:	
 			if (!Relax.pass_R)
-				printf(    "%s post relax-2D  [pass #7]\n", letr_unit);
+				printf(    "%s post relax-2D  [pass #6]\n", letr_unit);
 			else if (Relax.pass_R == 1)
-				printf(    "%s post relax-2D  [pass #7: relaxed one run]\n", letr_unit);
+				printf(    "%s post relax-2D  [pass #6: relaxed one run]\n", letr_unit);
 			else
-				printf(    "%s post relax-2D  [pass #7: relaxed %d run(s)]\n", letr_unit, Relax.pass_R);
+				printf(    "%s post relax-2D  [pass #6: relaxed %d run(s)]\n", letr_unit, Relax.pass_R);
 			break;
 		}
 	}
 	if (opt_R.bit) {
-		printf("  %5d       => %4d ", Recover.pass_Q, Recover.pass_W);
+		printf("  %5d%s%8d ", Recover.pass_Q, arrow, Recover.pass_W);
 			printf(    "%s recovered 1D   [final check pass]\n", letr_unit);
 	}
 
@@ -1835,8 +1830,8 @@ int main(int argc, char *argv[])
 		if (opt_v.val > 2) {
 			printf("\n ralign2D height = %2d, width = %2d", ralign_height, ralign_width);
 			printf("\n align2D  height = %2d, width = %2d\n", Current.pass_H, Current.pass_W);
-			for (m=0; ralign2D[m][0]!='\0'; m++)	{
-				printf("\n%s", ralign2D[m]);
+			for (m=0; ralign2D[mn1Dbig(m,0)]!='\0'; m++)	{
+				printf("\n%s", &ralign2D[mn1Dbig(m,0)]);
 			}
 			printf("  ralign2D");
 			printf("\n%c%s", Term->sym, align2D[0]);
@@ -1852,7 +1847,7 @@ int main(int argc, char *argv[])
 			printf("  align2D\n\n");
 		}
 		
-		struct segment *snake1 = makesnake(ralign2D[0], ralign_height, ralign_width, whole_snake, 0);
+		struct segment *snake1 = makesnake(&ralign2D[0], ralign_height, ralign_width, whole_snake, 0);
 		struct segment *snake2 = makesnake(align2D[0], Current.pass_H, Current.pass_W, whole_snake, 1);
 		int snakestart[whole_snake+2];
 		int snakebuffer = 1;
@@ -1904,32 +1899,31 @@ int main(int argc, char *argv[])
 		}
 
 		/* SUPERIMPOSE SECOND 2D ARRAY OVER FIRST FOR COMPARISON */
-		ralign2D[tuck][0] = Term->sym;
+		ralign2D[mn1Dbig(tuck,0)] = Term->sym;
 		for (i=0; align2D[i][0]!='\0'; i++) {
 			if (i>0)
-				ralign2D[tuck+i][0]= Margin->sym;
+				ralign2D[mn1Dbig(tuck+i,0)]= Margin->sym;
 			for (j=1; (ch=align2D[i][j-1])!=slip.sym && ch!=monoR.sym && ch!=Term->sym; j++) {
-				ralign2D[tuck+i][j] = ch;
+				ralign2D[mn1Dbig(tuck+i,j)] = ch;
 			}
-			ralign2D[tuck+i][j] = ch;
+			ralign2D[mn1Dbig(tuck+i,j)] = ch;
 
 			/* ADD FILL CHARACTERS BETWEEN THE SNAKE TO THE FULL RATTLE */
 			while (j <= min_width) {	/* whole snake includes start and end terminators */
-				if (!isalpha(ralign2D[tuck+i][++j]))
-					ralign2D[tuck+i][j] = Fill->sym;
+				if (!isalpha(ralign2D[mn1Dbig(tuck+i,++j)]))
+					ralign2D[mn1Dbig(tuck+i,j)] = Fill->sym;
 				else
 					break;
 			}
 		}
 
 		fp_pairwise = fopen("TUBES.mha", "w");
-			fprintf(fp_pairwise, "%s\n", ralign2D[0]);
-		for (m = 1; ralign2D[m][1] != '\0'; m++) {
-			fprintf(fp_pairwise, "%s\n", ralign2D[m]);
+			fprintf(fp_pairwise, "%s\n", &ralign2D[0]);
+		for (m = 1; ralign2D[mn1Dbig(m,1)] != '\0'; m++) {
+			fprintf(fp_pairwise, "%s\n", &ralign2D[mn1Dbig(m,0)]);
 		}
 
-		free(snake1);
-		free(snake2);
+		free(snake1); free(snake2); free(ralign2D);
 		fclose(fp_pairwise);
 	}
 	else if (opt_O.val==2) {
@@ -1944,16 +1938,16 @@ int main(int argc, char *argv[])
 	
 	if (!opt_s.bit) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\tb%d x%d\tP:%4d\tR:%4d\t%.3f\tNDG:%2d \tRND:%.*s\t%s (%d %s, %c)\t%s\n", 
-				version, time0+4, opt_b.val, opt_x.val, Current.pass_Q, Recover.pass_Q, ratio1, Nudge.pass_R, opt_X.val, "XX", 
+		fprintf(fp_out, "v%s\t%.20s\tb%d x%d\tP:%4d\tR:%4d\t%.3f\tRND:%.*s\t%s (%d %s, %c)\t%s\n", 
+				version, time0+4, opt_b.val, opt_x.val, Current.pass_Q, Recover.pass_Q, ratio1, opt_X.val, "XX", 
 				file_name, Clean.pass_W, letr_unit, Strand->sym, dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
-		if (Current.pass_Q != 1000 || (opt_R.bit && Recover.pass_Q != 1000) || Nudge.pass_R) {
+		if (Current.pass_Q != 1000 || (opt_R.bit && Recover.pass_Q != 1000)) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.20s\tb%d x%d\tP:%4d\tR:%4d\t%.3f\tNDG:%2d \tRND:%.*s\t%s (%d %s, %c)\t%s\n", 
-					version, time0+4, opt_b.val, opt_x.val, Current.pass_Q, Recover.pass_Q, ratio1, Nudge.pass_R, opt_X.val, "XX", 
+			fprintf(fp_tricksy, "v%s\t%.20s\tb%d x%d\tP:%4d\tR:%4d\t%.3f\tRND:%.*s\t%s (%d %s, %c)\t%s\n", 
+					version, time0+4, opt_b.val, opt_x.val, Current.pass_Q, Recover.pass_Q, ratio1, opt_X.val, "XX", 
 					file_name, Clean.pass_W, letr_unit, Strand->sym, dev_notes);
 			for(n = 0; n<lenseq; n++) {
 				fprintf(fp_tricksy, "%c", tela[n].c);
@@ -1962,9 +1956,10 @@ int main(int argc, char *argv[])
 			fclose(fp_tricksy);
 		}
 	}
-	if (opt_D.val==8)
+	if (opt_D.val==7)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
+	free(consensus);
 	return(EXIT_GOOD);	/* Exit main(). */
 } 
 
