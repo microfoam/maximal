@@ -1,9 +1,12 @@
 #!/bin/bash
-#
 
 echo '                                               < ragdoll washing machine >' >> Corduroy.log
-
-uname -rmps >> Corduroy.log
+echo
+echo 'System:'               >> Corduroy.log
+uname -rmps                  >> Corduroy.log
+echo 'Codebase line counts:' >> Corduroy.log
+wc -l src/*.c src/*.h        >> Corduroy.log
+echo                         >> Corduroy.log
 
 while getopts c option
 do
@@ -25,7 +28,7 @@ if [ -f waves/foam_and_chowder.mha ]; then
         rm waves/foam_and_chowder.mha
 fi
 
-for i in {1..20000}
+for i in {1..20000}  # to 20000 historically, for 140 k total tests
 do
 	echo "                                                                                                                                                $i"
 	./maximal -Rnx -X2 -S$i waves/experimental/pattern-1a-20pc_GC.txt

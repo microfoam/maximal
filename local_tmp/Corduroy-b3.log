@@ -1,4 +1,12 @@
 
+Codebase line counts:
+    1969 src/mha_v4.37.c
+    1103 src/microhom-cinc.h
+     107 src/microhom-devl.h
+     112 src/microhom-skor.h
+    2141 src/microhom-tela.h
+    1597 src/microhomology.h
+    7029 total
 
                                                < cleanup_set_all >
 Surf wave report summary: 
@@ -8,8 +16,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Apr  2 00:05:57 2024	b3 x0	P:1000	R:1000	0.479	RND:	waves/seals/vnd_ex3_Dmela.txt (956 bp, +)	 
-v4.37	Apr  2 00:06:07 2024	b3 x1	P:1000	R:1000	0.477	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (44 bp, -)	 
+v4.37	Apr  2 08:47:03 2024	b3 x0	P:1000	R:1000	0.479	RND:	waves/seals/vnd_ex3_Dmela.txt (956 bp, +)	 
+v4.37	Apr  2 08:47:13 2024	b3 x1	P:1000	R:1000	0.477	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (44 bp, -)	 
 
 Number of tests initiated:         816
 Number of tests completed:         816
@@ -22,15 +30,6 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Line counts:
-    1969 src/mha_v4.37.c
-    1103 src/microhom-cinc.h
-     107 src/microhom-devl.h
-     112 src/microhom-skor.h
-    2141 src/microhom-tela.h
-    1597 src/microhomology.h
-    7029 total
-
 Commit WCR average of 816 tests at b=3: 0.48982 (opt_d=1 default)
 
 
@@ -42,8 +41,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Apr  2 00:06:29 2024	b3 x0	P:1000	R:1000	0.590	RND:	waves/tubespit/seq-017-variant.txt (39 bp, +)	 
-v4.37	Apr  2 00:06:29 2024	b3 x0	P:1000	R:1000	0.136	RND:	waves/chowder/abba_zabba_4.txt (22 ch, +)	 
+v4.37	Apr  2 08:47:16 2024	b3 x0	P:1000	R:1000	0.590	RND:	waves/tubespit/seq-017-variant.txt (39 bp, +)	 
+v4.37	Apr  2 08:47:16 2024	b3 x0	P:1000	R:1000	0.136	RND:	waves/chowder/abba_zabba_4.txt (22 ch, +)	 
 
 Number of tests initiated:         30
 Number of tests completed:         30
@@ -56,15 +55,6 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Line counts:
-    1969 src/mha_v4.37.c
-    1103 src/microhom-cinc.h
-     107 src/microhom-devl.h
-     112 src/microhom-skor.h
-    2141 src/microhom-tela.h
-    1597 src/microhomology.h
-    7029 total
-
 Current commit WCR average of 30 tests at b=3: 0.396733 (opt_d=1 default)
 
 
@@ -76,8 +66,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Apr  2 00:06:33 2024	b3 x0	P:1000	R:1000	0.480	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
-v4.37	Apr  2 00:06:33 2024	b3 x0	P:1000	R:1000	0.450	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
+v4.37	Apr  2 08:47:17 2024	b3 x0	P:1000	R:1000	0.480	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
+v4.37	Apr  2 08:47:17 2024	b3 x0	P:1000	R:1000	0.450	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
 
 Number of tests initiated:         82
 Number of tests completed:         82
@@ -90,15 +80,6 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Line counts:
-    1969 src/mha_v4.37.c
-    1103 src/microhom-cinc.h
-     107 src/microhom-devl.h
-     112 src/microhom-skor.h
-    2141 src/microhom-tela.h
-    1597 src/microhomology.h
-    7029 total
-
 Current commit WCR average of 82 tests, cinch-k k=1 only (b=3): 0.446012 (opt_d=1 default)
 
 
@@ -110,8 +91,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Apr  2 00:06:37 2024	b3 x0	P:1000	R:1000	0.480	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
-v4.37	Apr  2 00:06:37 2024	b3 x0	P:1000	R:1000	0.510	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
+v4.37	Apr  2 08:47:23 2024	b3 x0	P:1000	R:1000	0.480	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
+v4.37	Apr  2 08:47:23 2024	b3 x0	P:1000	R:1000	0.510	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
 
 Number of tests initiated:         82
 Number of tests completed:         82
@@ -124,15 +105,6 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Line counts:
-    1969 src/mha_v4.37.c
-    1103 src/microhom-cinc.h
-     107 src/microhom-devl.h
-     112 src/microhom-skor.h
-    2141 src/microhom-tela.h
-    1597 src/microhomology.h
-    7029 total
-
 Current commit WCR average of 82 tests (b=3): 0.447232 (opt_d=1 default)
 
 
@@ -144,8 +116,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Apr  2 00:06:41 2024	b3 x0	P:1000	R:1000	0.340	RND:	waves/chowder/nugget-42356.txt (100 bp, +)	 
-v4.37	Apr  2 00:06:42 2024	b3 x0	P:1000	R:1000	0.450	RND:	waves/chowder/churly-38.txt (100 bp, +)	 
+v4.37	Apr  2 08:47:24 2024	b3 x0	P:1000	R:1000	0.340	RND:	waves/chowder/nugget-42356.txt (100 bp, +)	 
+v4.37	Apr  2 08:47:24 2024	b3 x0	P:1000	R:1000	0.450	RND:	waves/chowder/churly-38.txt (100 bp, +)	 
 
 Number of tests initiated:         49
 Number of tests completed:         49
@@ -158,15 +130,6 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Line counts:
-    1969 src/mha_v4.37.c
-    1103 src/microhom-cinc.h
-     107 src/microhom-devl.h
-     112 src/microhom-skor.h
-    2141 src/microhom-tela.h
-    1597 src/microhomology.h
-    7029 total
-
 Commit WCR average of 49 tests (b=3): 0.460816 (opt_d=1 default)
 
 
@@ -178,8 +141,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Apr  2 00:06:45 2024	b3 x1	P:1000	R:1000	0.540	RND:	waves/squeegee/squee006.txt (100 bp, +)	 
-v4.37	Apr  2 00:06:45 2024	b3 x1	P:1000	R:1000	0.480	RND:	waves/squeegee/squee282.txt (100 bp, +)	 
+v4.37	Apr  2 08:47:25 2024	b3 x1	P:1000	R:1000	0.540	RND:	waves/squeegee/squee006.txt (100 bp, +)	 
+v4.37	Apr  2 08:47:25 2024	b3 x1	P:1000	R:1000	0.480	RND:	waves/squeegee/squee282.txt (100 bp, +)	 
 
 Number of tests initiated:         58
 Number of tests completed:         58
@@ -192,15 +155,6 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Line counts:
-    1969 src/mha_v4.37.c
-    1103 src/microhom-cinc.h
-     107 src/microhom-devl.h
-     112 src/microhom-skor.h
-    2141 src/microhom-tela.h
-    1597 src/microhomology.h
-    7029 total
-
 Commit WCR average of 58 tests (b=3): 0.485345 (opt_d=1 default)
 
 
@@ -212,8 +166,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Apr  2 00:06:49 2024	b3 x1	P:1000	R:1000	0.570	RND:	waves/squeegee/squirt_40-b3.txt (100 bp, +)	 
-v4.37	Apr  2 00:06:49 2024	b3 x1	P:1000	R:1000	0.570	RND:	waves/squeegee/squid~24.txt (100 bp, +)	 
+v4.37	Apr  2 08:47:36 2024	b3 x1	P:1000	R:1000	0.570	RND:	waves/squeegee/squirt_40-b3.txt (100 bp, +)	 
+v4.37	Apr  2 08:47:36 2024	b3 x1	P:1000	R:1000	0.570	RND:	waves/squeegee/squid~24.txt (100 bp, +)	 
 
 Number of tests initiated:         67
 Number of tests completed:         67
@@ -226,15 +180,6 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Line counts:
-    1969 src/mha_v4.37.c
-    1103 src/microhom-cinc.h
-     107 src/microhom-devl.h
-     112 src/microhom-skor.h
-    2141 src/microhom-tela.h
-    1597 src/microhomology.h
-    7029 total
-
 Commit WCR average of 67 tests (b=3): 0.46903 (opt_d=1 default)
 
 
@@ -246,8 +191,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v4.37	Apr  2 00:06:57 2024	b3 x0	P:1000	R:1000	0.558	RND:	waves/chowder/chowder-2024_string_003.txt (43 bp, +)	 
-v4.37	Apr  2 00:06:57 2024	b3 x1	P:1000	R:1000	0.410	RND:	waves/squeegee/squint_01-xb3.txt (100 bp, +)	 
+v4.37	Apr  2 08:47:37 2024	b3 x0	P:1000	R:1000	0.558	RND:	waves/chowder/chowder-2024_string_003.txt (43 bp, +)	 
+v4.37	Apr  2 08:47:37 2024	b3 x1	P:1000	R:1000	0.410	RND:	waves/squeegee/squint_01-xb3.txt (100 bp, +)	 
 
 Number of tests initiated:         42
 Number of tests completed:         42
@@ -259,15 +204,6 @@ WCR average: 0.39331
 Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
-
-Line counts:
-    1969 src/mha_v4.37.c
-    1103 src/microhom-cinc.h
-     107 src/microhom-devl.h
-     112 src/microhom-skor.h
-    2141 src/microhom-tela.h
-    1597 src/microhomology.h
-    7029 total
 
 Commit WCR average of 42 tests (b=3): 0.39331 (opt_d=1 default)
 

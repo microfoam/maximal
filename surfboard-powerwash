@@ -28,6 +28,10 @@ read -s -n1 answer
 if [ "$answer" == "q" ] || [ "$answer" == "Q" ]; then
     exit 1
 else
+    echo 'Codebase line counts:' >> Corduroy.log
+    wc -l src/*.c src/*.h >> Corduroy.log
+    echo
+
 	./surfboard-cleanup_set-all 
 
 	echo "$0: Hit <enter> to start cleanup_set-sand_dunes (2/8)."
