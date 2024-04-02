@@ -1,0 +1,37 @@
+#!/bin/bash
+echo >> Corduroy.log
+echo '                                               < demo cinches >' >> Corduroy.log
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	./surfboard-Pop_Up
+	;;
+esac
+done
+
+if [ ! -f maximal ]; then
+	./surfboard-Pop_Up
+fi
+if [ -f Surf_wavereport.mha ]; then
+	    rm Surf_wavereport.mha
+fi
+
+# -D# 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
+
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_001.txt
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_002.txt
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_003.txt
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_004.txt
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_001.txt -C
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_002.txt -C
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_003.txt -C
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_004.txt -C
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_005.txt
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_006.txt
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_007.txt
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_008.txt
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_009.txt
+./maximal -Kn -D7 -b8 waves/demo_corpus/demo_010.txt
+

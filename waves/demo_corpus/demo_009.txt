@@ -1,0 +1,6 @@
+>demo_009 example uncinchable sequence + 2x tandem repeat, 1 w/ internal fractal TRs
+nnnnnnnn
+ACTGTGACGT
+actgTGacgt
+actgTGacgt
+nnnnnnnn

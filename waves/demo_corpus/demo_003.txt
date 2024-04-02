@@ -1,0 +1,8 @@
+>demo_003 example uncinchable sequence + 2x tandem repeats
+ATCG
+ATGC
+ACTGACGT
+actgacgt
+actgacgt
+AGTC
+AGCT
