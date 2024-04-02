@@ -1715,7 +1715,7 @@ int main(int argc, char *argv[])
 
 	char arrow[] = "      ";
 
-	printf("\nWidth cinch history for ");
+	printf("\nCinch history for ");
 	if (seqtype == 1)		
 		printf("%s (DNA sequence)", Seq_head);
 	else if (seqtype==2)	
