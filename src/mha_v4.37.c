@@ -1726,19 +1726,21 @@ int main(int argc, char *argv[])
 		printf("%s (non-biological sequence)", Seq_head);
 	printf(":\n\n PASS QUAL.    2-D WIDTH\n");
 
-	for (i = 0; i<7 && Cinches[i]->pass_W != '\0'; i++) {
+	for (i = 1-opt_v.bit; i<7 && Cinches[i]->pass_W != '\0'; i++) {
 		printf("  %5d%s%8d ", Cinches[i]->pass_Q, arrow, Cinches[i]->pass_W);
 		switch (i) {
 		case 0:
-			if (!opt_X.bit)
-				printf("characters in original string\n");
-			else if (opt_X.val == 1)
-				printf("characters in original string => RANDOMIZED\n");
-			else
-				printf("characters in original string => FISHER-YATES RANDOMIZED TO FILL %d\n", FY_size);
+			printf("characters in original string\n");
 			break;
 		case 1:
-			printf("%s post cleanseq  [pass #1]\n", letr_unit);
+			if (opt_C.bit && !opt_X.bit) 	/* Reverse-complement option */
+				printf("%s pre-cinching   [pass #1: reverse-complement of input]\n", letr_unit);
+			else if (opt_X.val == 2)
+				printf("%s pre-cinching   [pass #1: FISHER-YATES RANDOMIZED TO FILL %d %s]\n", letr_unit, FY_size, letr_unit);
+			else if (opt_X.val == 1)
+				printf("%s pre-cinching   [pass #1: RANDOMIZED]\n", letr_unit);
+			else
+				printf("%s pre-cinching   [pass #1]\n", letr_unit);
 			break;
 		case 2:
 			if (Cinch_T.pass_R > 1)
@@ -1748,7 +1750,7 @@ int main(int argc, char *argv[])
 			else if (opt_t.bit) 
 				printf("%s post cinch-t   [pass #2: SKIPPED BY REQUEST]\n", letr_unit);
 			else 
-				printf("No effective cinch-t cinches taken.\n");
+				printf("%s post cinch-t   [pass #2]\n", letr_unit);
 			break;
 		case 3:	
 			if (!Cinch_L.pass_R)
