@@ -173,7 +173,7 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 		int lenseq = Clean.pass_W;
 	
 		if (eM>=eN) {
-			if (dev_print(TELA,__LINE__)) {
+			if (dev_print(TWO,__LINE__)) {
 				printf("Need to call Check_tela explicitly with %d-D positions eN > eM.", mode_dim);
 			}
 			return(0);
@@ -209,7 +209,7 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 		}
 		if (i==eN)
 			axioms = 1;
-		else if (dev_count<dev_limit && dev_print(TELA,__LINE__)) {
+		else if (dev_count<dev_limit && dev_print(TWO,__LINE__)) {
 			printf("Check_tela(mode_dim=%d): Problem of continuity at 1D positions %d-->%d (columns %d and %d)",mode_dim,i,i+1,tela[i].x,tela[i+1].x);
 			dev_count++;
 		}
@@ -228,7 +228,7 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 		}
 		if (!badflag) 
 			axioms+=2;
-		else if (dev_count < dev_limit && dev_print(TELA,__LINE__)) {
+		else if (dev_count < dev_limit && dev_print(TWO,__LINE__)) {
 			printf("Check_tela(mode_dim=%d): Problem of equivalence at 1-D positions %d and %d (both in column %d)", 
 								mode_dim, i, j, tela[i].x);
 			dev_count++;
@@ -390,7 +390,7 @@ void flatline_after_TR(int pos)
 		tela[i].gPnt.rel_xy = 0;
 		tela[i].gPnt.prevPar = tela[i].gPnt.topPar = i;
 	}
-	if (dev_print(TELA,__LINE__)) {
+	if (dev_print(TWO,__LINE__)) {
 		printf("Function cyclelize_tela() finished by flat-lining tela at position=%d with coordinates (x,y) = (%d,%d).", i,x,y);
 	}
 }
@@ -1057,7 +1057,7 @@ void mark_tela(void)
 					}
 				}
 				if (gapcheck) {
-					if (dev_print(TELA,__LINE__)) {
+					if (dev_print(TWO,__LINE__)) {
 						printf("         mark_tela filling in gap between %d and %d, inclusive of these points, for k-mer=%d.", i-1,n-1,k);
 					}
 					for (j=i-1; j>n; j--) {
@@ -1406,7 +1406,7 @@ void mark_tela(void)
 					clearall_tela(n, 1, tela[n+1].all_S, TWO);		/* O-F-F, ONE, OR TWO */
 					push_mem(n, 10);
 					/* POSSIBLE THIS CASE COULD BE GENERALIZED...FOR A RAINY DAY */
-					if (dev_print(TELA,__LINE__)) {
+					if (dev_print(TWO,__LINE__)) {
 						printf("mark_tela at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
 								"and n+1 has smaller k that is a multiple of k-size at n with no conflicts.", n, span, tela[n].all_L);
 					}
@@ -1416,7 +1416,7 @@ void mark_tela(void)
 					k = tela[n].ok;
 					for (j=n+1; j<n+span; j++) {
 						if (tela[j].ok == k && !tela[j].all_R && !tela[j].all_L) {
-							if (dev_print(TELA,__LINE__)) {
+							if (dev_print(TWO,__LINE__)) {
 								printf("mark_tela at n=%d, scenario three", n);
 							}
 							for (i=j-1; i>=n; i--) {
@@ -1501,7 +1501,7 @@ void mark_tela(void)
 	}
 	Cinch_T.pass_V = max_k;  
 
-	if (opt_D.val==1 || dev_print(TELA,__LINE__)) {
+	if (opt_D.val==1 || dev_print(TWO,__LINE__)) {
 		printf("\n\nPre-marking of tela completed as shown below. (To shift output window, change O-F-F-SET definition in 'src/microhom-devl.h'.)\n");
 		print_tela(prtela_A, prtela_B);
 	}
@@ -1899,7 +1899,7 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 			else {
 				violation = 1;
 				sprintf(dev_notes, "viol1 tela-%d", __LINE__);
-				if (dev_print(TELA,__LINE__)) {
+				if (dev_print(TWO,__LINE__)) {
 					printf("push_tela() viol-1 for n2=%d, n1=%d, k=%d (i=%d): A_x=%d, A_y=%d, B_x=%d, B_y=%d. axioms=%d",
 												n2, n1, k, i, coord_A_x, coord_A_y, coord_B_x, coord_B_y, axioms);
 				}
@@ -1920,7 +1920,7 @@ int push_tela(int n2, int n1, short unsigned int axioms)
 			else {
 				violation += 2;
 				sprintf(dev_notes, "viol2 tela-%d", __LINE__);
-				if (dev_print(TELA,__LINE__)) {
+				if (dev_print(TWO,__LINE__)) {
 					printf("push_tela() viol-2 at %d and %d for k=%d.", n1+i, n2+i, k);
 				}
 				break;	

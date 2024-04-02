@@ -16,7 +16,6 @@
 #define TWO			2		/* USE ONLY FOR FUNCTIONS THAT CAN BE TURNED OFF WITH MODE OFF */
 #define THREE		3		/* USE ONLY FOR FUNCTIONS THAT CAN BE TURNED OFF WITH MODE OFF */
 #define MAIN		1		/* FOR USE WITH dev_print() */
-#define TELA		2		/* FOR USE WITH dev_print() */
 #define CINCH		3		/* FOR USE WITH dev_print() */
 #define LOGY		4		/* FOR USE WITH dev_print() */
 #define EXIT_GOOD	0		/* FOR STANDARD EXIT ERRORS */
