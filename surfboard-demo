@@ -1,6 +1,4 @@
 #!/bin/bash
-echo >> Corduroy.log
-echo '                                               < demo cinches >' >> Corduroy.log
 
 while getopts c option
 do
@@ -34,4 +32,5 @@ fi
 ./maximal -Kn -D7 -b8 waves/demo_corpus/demo_008.txt
 ./maximal -Kn -D7 -b8 waves/demo_corpus/demo_009.txt
 ./maximal -Kn -D7 -b8 waves/demo_corpus/demo_010.txt
+./maximal -KRn  waves/tubespit/seq-154-v427_cycABs.txt
 
