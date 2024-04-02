@@ -64,5 +64,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Current commit WCR average of 30 tests at b=3: 0.396733 (opt_d=1 default)' | tee -a Corduroy.log
+echo 'Current commit WCR average of 30 tests at b=3: 0.396733 -> 0.3912' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
