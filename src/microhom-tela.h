@@ -169,8 +169,7 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 	if (!mode_dim)		/* Check_tela called in O-F-F mode; will return 1+2 = success */
 		return(3);
 	else {
-		int i=0, j=0, lineM=0, lineN=0, axioms=0, badflag=0;
-		int lenseq = Clean.pass_W;
+		int i=0, j=0, axioms=0, badflag=0;
 	
 		if (eM>=eN) {
 			if (dev_print(TWO,__LINE__)) {
@@ -179,17 +178,19 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 			return(0);
 		}
 	
-		if (mode_dim==2) {
+		if (mode_dim==2) {					/* Check_tela called with 2D row and column coordinates */ 
 			/* SAVE 2-D COORDINATES */
-			lineM = eM;	
-			lineN = eN;	
+			int rowM = eM;	
+			int colN = eN;	
+			int lenseq = Clean.pass_W;
+
 			/* TRANSLATE 2-D COORDINATES INTO 1-D COORDINATES */
-			while (tela[i].y != lineM && i<lenseq)
+			while (tela[i].y != rowM && i<lenseq)
 				i++;
 			eM = i;
 	
 			j=lenseq;
-			while (tela[j].x != lineN && j>0)
+			while (tela[j].x != colN && j)
 				j--;
 			eN = j;
 		}
@@ -209,9 +210,8 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 		}
 		if (i==eN)
 			axioms = 1;
-		else if (dev_count<dev_limit && dev_print(TWO,__LINE__)) {
+		else if (dev_print(TWO,__LINE__)) {
 			printf("Check_tela(mode_dim=%d): Problem of continuity at 1D positions %d-->%d (columns %d and %d)",mode_dim,i,i+1,tela[i].x,tela[i+1].x);
-			dev_count++;
 		}
 
 		/* AXIOM TWO: EQUIVALENCE */
@@ -228,10 +228,9 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 		}
 		if (!badflag) 
 			axioms+=2;
-		else if (dev_count < dev_limit && dev_print(TWO,__LINE__)) {
+		else if (dev_print(TWO,__LINE__)) {
 			printf("Check_tela(mode_dim=%d): Problem of equivalence at 1-D positions %d and %d (both in column %d)", 
 								mode_dim, i, j, tela[i].x);
-			dev_count++;
 		}
 
 		return(axioms);	/* 0 IF BOTH FAIL; +1 IF ONLY ONE PASSES; +2 IF ONLY TWO PASSES; +3 IF BOTH PASS */ 
