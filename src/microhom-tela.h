@@ -163,7 +163,10 @@ void assign_transit(int n, int kr_src)
 /****** TELA: A FABRIC, UNDER AXIOMATIC LAWS **********************/
 int check_tela(int eM, int eN, short unsigned int mode_dim) 
 {
-	if (!mode_dim || mode_dim >2)	/* check_tela called in O-F-F or nonsense mode, but will return 1+2 = success */
+	if (mode_dim > 2)
+		mode_dim = 2;	/* Unspecified non-zero modes --> reset to 2 */
+
+	if (!mode_dim)		/* Check_tela called in O-F-F mode; will return 1+2 = success */
 		return(3);
 	else {
 		int i=0, j=0, lineM=0, lineN=0, axioms=0, badflag=0;
@@ -171,7 +174,7 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 	
 		if (eM>=eN) {
 			if (dev_print(TELA,__LINE__)) {
-				printf("Need to call check_tela explicitly with %d-D positions eN > eM.", mode_dim);
+				printf("Need to call Check_tela explicitly with %d-D positions eN > eM.", mode_dim);
 			}
 			return(0);
 		}
@@ -207,7 +210,7 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 		if (i==eN)
 			axioms = 1;
 		else if (dev_count<dev_limit && dev_print(TELA,__LINE__)) {
-			printf("check_tela(mode_dim=%d): Problem of continuity at 1D positions %d-->%d (columns %d and %d)",mode_dim,i,i+1,tela[i].x,tela[i+1].x);
+			printf("Check_tela(mode_dim=%d): Problem of continuity at 1D positions %d-->%d (columns %d and %d)",mode_dim,i,i+1,tela[i].x,tela[i+1].x);
 			dev_count++;
 		}
 
@@ -226,7 +229,7 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 		if (!badflag) 
 			axioms+=2;
 		else if (dev_count < dev_limit && dev_print(TELA,__LINE__)) {
-			printf("check_tela(mode_dim=%d): Problem of equivalence at 1-D positions %d and %d (both in column %d)", 
+			printf("Check_tela(mode_dim=%d): Problem of equivalence at 1-D positions %d and %d (both in column %d)", 
 								mode_dim, i, j, tela[i].x);
 			dev_count++;
 		}

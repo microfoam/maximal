@@ -1000,7 +1000,7 @@ int main(int argc, char *argv[])
 					if (tela[n].all_L && check_tela(tela[n].all_L, j, ONE)!=3) {
 						Dtr = imperfect_TR = 0;
 						if (dev_print(MAIN,__LINE__))
-							printf("check_tela() induced cinch cancel.");
+							printf("Check_tela() induced cinch cancel.");
 					}
 					else if (check_tela(m, j, ONE)!=3)
 						Dtr = imperfect_TR = 0;
@@ -1403,8 +1403,8 @@ int main(int argc, char *argv[])
 	
 						if (dev_print(MAIN,__LINE__)) {
 							p = (int) a2D_n; q = lenseq;
-							printf("| via 2-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,p, TWO));
-							printf("\n               | via 1-D check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,q, ONE));
+							printf("| via 2-D Check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,p, TWO));
+							printf("\n               | via 1-D Check_tela() = %d (+1 CONTINUITY, +2 EQUIVALENCE).", check_tela(0,q, ONE));
 							printf("\n               | print_tela for k=%d and r=%d at n=%d.", k, r, n);
 							print_tela(prtela_A, prtela_B);
 						}
