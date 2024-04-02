@@ -30,3 +30,36 @@ Line counts:
     1597 src/microhomology.h
     7041 total
 
+                                               < ragdoll washing machine >
+System:
+Linux 6.7.9-100.fc38.x86_64 x86_64 unknown
+Codebase line counts:
+  1969 src/mha_v5.00.c
+  1103 src/microhom-cinc.h
+   107 src/microhom-devl.h
+  1597 src/microhomology.h
+   112 src/microhom-skor.h
+  2141 src/microhom-tela.h
+  7029 total
+
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v5.00	Apr  2 11:28:15 2024	b3 x1	P:1000	R:1000	0.470	RND:XX	waves/experimental/pattern-1a-20pc_GC.txt (100 bp, +)	 
+v5.00	Apr  2 11:48:29 2024	b3 x1	P:1000	R:1000	0.338	RND:XX	waves/experimental/pattern-5a-92pc_Y.txt (80 bp, +)	 
+
+Number of tests initiated:         140000
+Number of tests completed:         140000
+Number of tests w/ PASS 1000:      140000
+Number of tests w/ REC. 1000:      140000
+
+WCR average: 0.436334
+
+Tests canceled (if any, w/ preceding run for context):
+Tests with PASS < 1000 (if any):
+Tests with REC. < 1000 (if any):
+
