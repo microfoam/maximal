@@ -1383,7 +1383,7 @@ void usage(char *usage_version)
 	printf("  *   This option takes an optional number argument with a monotonically-increasing effect.\n");
 	printf("  *x  This option takes an optional number argument specifying which mode to use among a set of size x.\n");
 	printf("\n Usage examples: ./maximal -v1 sequence_file.txt            [Run in verbose user mode]");
-	printf("\n                 ./maximal -Kn sequence_file.txt -X2 -Y800  [Show consensus row; no relax-2D; Fisher-Yates scrambled to length 800 bp]\n");
+	printf("\n                 ./maximal -Kn sequence_file.txt -X2 -Y800  [Show consensus; skip relax-2D; use Fisher-Yates to generate 800 bp]\n");
 	printf("\n Citations:");
 	printf("\n  (1) Erives, A. J. (2018) Genetic sequences are two-dimensional. bioRxiv 2018.");
 	printf("\n      https://doi.org/10.1101/299867. CC-BY 4.0 International license.");
