@@ -710,7 +710,7 @@ void mark_tela(void)
 		}
 	}
 
-	tela[0].isl = 0;	/* WILL STORE NUMBER OF INDEPENDENT ISLANDS OF OVERLAPPING TR's HERE. */
+	tela[0].isl = 0;	/* WILL STORE NUMBER OF INDEPENDENT ISLANDS OF OVERLAPPING TR's. */
 
 	for (n = 1; n<=lenseq; n++) {
 		for (m = 0; m < n; m++) {
@@ -1225,26 +1225,12 @@ void mark_tela(void)
 				if (!tela[i].isl || tela[i].isl!=tela[n].isl)
 					break;
 				if (tela[i].ok) {
-					if (i>m && isfractal(i,n,k)) {
-						makefract(n,k,i);
-						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
-						tela[i].all_R = n;					/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-
-						if (tela[n].or>1) {					/* PROPAGATE FRACTAL STATUS TO REST OF REPEATS */
-							for (reps=1; reps<tela[n].or; reps++) {
-								for (l=0; l<tela[n].ok; l++) {
-									if (tela[n+l].statf==st_fract.sym)
-										tela[n+l+k*reps].statf = st_fract.sym;
-								}
-							}
-						}
-					}
-					else if (i + tela[i].ok*(tela[i].or-1) > m || (tela[n].statf!=st_fract.sym && i+tela[i].ok>n)) {
+					if (i + tela[i].ok*(tela[i].or-1) > m || (tela[n].statf!=st_fract.sym && i+tela[i].ok>n)) {
 						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;					/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 						/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
 						if ((!tela[i].k1 || tela[i].k2) && tela[i].all_S<tela[n].all_S) {
-							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
+							clearall_tela(i, k, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							push_mem(i, 12);
 						}
 					}
