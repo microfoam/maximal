@@ -846,8 +846,8 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR avgs of 816 tests at b=6: 0.519887 (opt_d=1 default) > 0.518933 (opt_d=2)' | tee -a Corduroy.log
-echo 'Commit WCR avgs of 816 tests at b=5: 0.516477 (opt_d=1 default) > 0.515472 (opt_d=2)' | tee -a Corduroy.log
-echo 'Commit WCR avgs of 816 tests at b=4: 0.507341 (opt_d=1 default) < 0.507539 (opt_d=2)' | tee -a Corduroy.log
-echo 'Commit WCR avgs of 816 tests at b=3: 0.490326 (opt_d=1 default) < 0.490956 (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 816 tests at b=6: 0.519887 (opt_d=1 default) > 0.518933 (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 816 tests at b=5: 0.516477 (opt_d=1 default) > 0.515472 (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 816 tests at b=4: 0.507341 (opt_d=1 default) < 0.507539 (opt_d=2)' | tee -a Corduroy.log
+echo 'Commit WCR average of 816 tests at b=3: 0.490326 (opt_d=1 default) < 0.490956 (opt_d=2)' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
