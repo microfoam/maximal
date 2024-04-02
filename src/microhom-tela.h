@@ -180,17 +180,15 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 	
 		if (mode_dim==2) {					/* Check_tela called with 2D row and column coordinates */ 
 			/* SAVE 2-D COORDINATES */
-			int rowM = eM;	
-			int colN = eN;	
 			int lenseq = Clean.pass_W;
 
 			/* TRANSLATE 2-D COORDINATES INTO 1-D COORDINATES */
-			while (tela[i].y != rowM && i<lenseq)
+			while (tela[i].y != eM && i<lenseq)
 				i++;
 			eM = i;
 	
 			j=lenseq;
-			while (tela[j].x != colN && j)
+			while (tela[j].x != eN && j)
 				j--;
 			eN = j;
 		}
