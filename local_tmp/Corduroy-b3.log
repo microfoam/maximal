@@ -4,9 +4,9 @@ Codebase line counts:
     1103 src/microhom-cinc.h
      104 src/microhom-devl.h
      112 src/microhom-skor.h
-    2164 src/microhom-tela.h
+    2152 src/microhom-tela.h
     1597 src/microhomology.h
-    7049 total
+    7037 total
 
                                                < cleanup_set_all >
 Surf wave report summary: 
@@ -16,21 +16,21 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr  2 17:54:53 2024	b3 x0	P:1000	R:1000	0.479	RND:	waves/seals/vnd_ex3_Dmela.txt (956 bp, +)	 
-v5.00	Apr  2 17:55:03 2024	b3 x1	P:1000	R:1000	0.477	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (44 bp, -)	 
+v5.00	Apr  2 19:52:23 2024	b3 x0	P:1000	R:1000	0.479	RND:	waves/seals/vnd_ex3_Dmela.txt (956 bp, +)	 
+v5.00	Apr  2 19:52:33 2024	b3 x1	P:1000	R:1000	0.477	RND:	waves/tubespit/seq-161-wuhCor1-03-synth2.txt (44 bp, -)	 
 
 Number of tests initiated:         816
 Number of tests completed:         816
 Number of tests w/ PASS 1000:      816
 Number of tests w/ REC. 1000:      816
 
-WCR average: 0.490326
+WCR average: 0.490163
 
 Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Commit WCR average of 816 tests at b=3: 0.489820 -> 0.490326
+Commit WCR average of 816 tests at b=3: 0.489820 -> 0.490326 -> 0.490163
 
 
                                                < sand_dunes >
@@ -41,21 +41,21 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr  2 17:55:06 2024	b3 x0	P:1000	R:1000	0.590	RND:	waves/tubespit/seq-017-variant.txt (39 bp, +)	 
-v5.00	Apr  2 17:55:06 2024	b3 x0	P:1000	R:1000	0.136	RND:	waves/chowder/abba_zabba_4.txt (22 ch, +)	 
+v5.00	Apr  2 19:52:36 2024	b3 x0	P:1000	R:1000	0.590	RND:	waves/tubespit/seq-017-variant.txt (39 bp, +)	 
+v5.00	Apr  2 19:52:36 2024	b3 x0	P:1000	R:1000	0.136	RND:	waves/chowder/abba_zabba_4.txt (22 ch, +)	 
 
 Number of tests initiated:         30
 Number of tests completed:         30
 Number of tests w/ PASS 1000:      30
 Number of tests w/ REC. 1000:      30
 
-WCR average: 0.3912
+WCR average: 0.397333
 
 Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Current commit WCR average of 30 tests at b=3: 0.396733 -> 0.3912
+Current commit WCR average of 30 tests at b=3: 0.396733 -> 0.3912 -> 0.397333
 
 
                                                < eat chowdah: cinch-k k=1 only >
@@ -66,8 +66,33 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr  2 17:55:09 2024	b3 x0	P:1000	R:1000	0.480	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
-v5.00	Apr  2 17:55:09 2024	b3 x0	P:1000	R:1000	0.450	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
+v5.00	Apr  2 19:52:39 2024	b3 x0	P:1000	R:1000	0.480	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
+v5.00	Apr  2 19:52:39 2024	b3 x0	P:1000	R:1000	0.450	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
+
+Number of tests initiated:         82
+Number of tests completed:         82
+Number of tests w/ PASS 1000:      82
+Number of tests w/ REC. 1000:      82
+
+WCR average: 0.445646
+
+Tests canceled (if any, w/ preceding run for context):
+Tests with PASS < 1000 (if any):
+Tests with REC. < 1000 (if any):
+
+Current commit WCR average of 82 tests, cinch-k k=1 only (b=3): 0.446012 -> 0.447354 -> 0.445646
+
+
+                                               < eat chowder >
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v5.00	Apr  2 19:52:41 2024	b3 x0	P:1000	R:1000	0.480	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
+v5.00	Apr  2 19:52:41 2024	b3 x0	P:1000	R:1000	0.510	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
 
 Number of tests initiated:         82
 Number of tests completed:         82
@@ -80,32 +105,7 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Current commit WCR average of 82 tests, cinch-k k=1 only (b=3): 0.446012 -> 0.447354
-
-
-                                               < eat chowder >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  2 17:55:13 2024	b3 x0	P:1000	R:1000	0.480	RND:	waves/chowder/flotsam_06F.txt (100 bp, +)	 
-v5.00	Apr  2 17:55:13 2024	b3 x0	P:1000	R:1000	0.510	RND:	waves/chowder/stringA-40-k.txt (100 bp, +)	 
-
-Number of tests initiated:         82
-Number of tests completed:         82
-Number of tests w/ PASS 1000:      82
-Number of tests w/ REC. 1000:      82
-
-WCR average: 0.448207
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-Current commit WCR average of 82 tests (b=3): 0.447232 -> 0.448207
+Current commit WCR average of 82 tests (b=3): 0.447232 -> 0.448207 -> 0.447354
 
 
                                                < churly churly >
@@ -116,21 +116,21 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr  2 17:55:18 2024	b3 x0	P:1000	R:1000	0.310	RND:	waves/chowder/nugget-42356.txt (100 bp, +)	 
-v5.00	Apr  2 17:55:18 2024	b3 x0	P:1000	R:1000	0.450	RND:	waves/chowder/churly-38.txt (100 bp, +)	 
+v5.00	Apr  2 19:52:43 2024	b3 x0	P:1000	R:1000	0.310	RND:	waves/chowder/nugget-42356.txt (100 bp, +)	 
+v5.00	Apr  2 19:52:43 2024	b3 x0	P:1000	R:1000	0.450	RND:	waves/chowder/churly-38.txt (100 bp, +)	 
 
 Number of tests initiated:         49
 Number of tests completed:         49
 Number of tests w/ PASS 1000:      49
 Number of tests w/ REC. 1000:      49
 
-WCR average: 0.460204
+WCR average: 0.46102
 
 Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Commit WCR average of 49 tests (b=3): 0.460816 -> 0.460204
+Commit WCR average of 49 tests (b=3): 0.460816 -> 0.460204 -> 0.46102
 
 
                                                < squeegee: -xb3 chowder >
@@ -141,8 +141,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr  2 17:55:20 2024	b3 x1	P:1000	R:1000	0.540	RND:	waves/squeegee/squee006.txt (100 bp, +)	 
-v5.00	Apr  2 17:55:21 2024	b3 x1	P:1000	R:1000	0.480	RND:	waves/squeegee/squee282.txt (100 bp, +)	 
+v5.00	Apr  2 19:52:45 2024	b3 x1	P:1000	R:1000	0.540	RND:	waves/squeegee/squee006.txt (100 bp, +)	 
+v5.00	Apr  2 19:52:45 2024	b3 x1	P:1000	R:1000	0.480	RND:	waves/squeegee/squee282.txt (100 bp, +)	 
 
 Number of tests initiated:         58
 Number of tests completed:         58
@@ -155,7 +155,7 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Commit WCR average of 58 tests (b=3): 0.485345 -> 0.483621
+Commit WCR average of 58 tests (b=3): 0.485345 -> 0.483621 -> 0.483621
 
 
                                                < squid: -xb3 chowder >
@@ -166,21 +166,21 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr  2 17:55:23 2024	b3 x1	P:1000	R:1000	0.570	RND:	waves/squeegee/squirt_40-b3.txt (100 bp, +)	 
-v5.00	Apr  2 17:55:23 2024	b3 x1	P:1000	R:1000	0.570	RND:	waves/squeegee/squid~24.txt (100 bp, +)	 
+v5.00	Apr  2 19:52:47 2024	b3 x1	P:1000	R:1000	0.570	RND:	waves/squeegee/squirt_40-b3.txt (100 bp, +)	 
+v5.00	Apr  2 19:52:47 2024	b3 x1	P:1000	R:1000	0.570	RND:	waves/squeegee/squid~24.txt (100 bp, +)	 
 
 Number of tests initiated:         67
 Number of tests completed:         67
 Number of tests w/ PASS 1000:      67
 Number of tests w/ REC. 1000:      67
 
-WCR average: 0.469328
+WCR average: 0.470522
 
 Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Commit WCR average of 67 tests (b=3): 0.469030 -> 0.469328
+Commit WCR average of 67 tests (b=3): 0.469030 -> 0.469328 -> 0.470522
 
 
                                                < squint -- -xb3 chowder >
@@ -191,19 +191,19 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr  2 17:55:26 2024	b3 x1	P:1000	R:1000	0.514	RND:	waves/chowder/chowder-2024_string_004.txt (37 bp, +)	 
-v5.00	Apr  2 17:55:26 2024	b3 x1	P:1000	R:1000	0.410	RND:	waves/squeegee/squint_01-xb3.txt (100 bp, +)	 
+v5.00	Apr  2 19:52:49 2024	b3 x1	P:1000	R:1000	0.568	RND:	waves/chowder/chowder-2024_string_004.txt (37 bp, +)	 
+v5.00	Apr  2 19:52:49 2024	b3 x1	P:1000	R:1000	0.410	RND:	waves/squeegee/squint_01-xb3.txt (100 bp, +)	 
 
 Number of tests initiated:         43
 Number of tests completed:         43
 Number of tests w/ PASS 1000:      43
 Number of tests w/ REC. 1000:      43
 
-WCR average: 0.405116
+WCR average: 0.40614
 
 Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-Commit WCR average of 43 tests (b=3): 0.405116 -> 0.405116
+Commit WCR average of 43 tests (b=3): 0.405116 -> 0.405116 -> 0.40614
 

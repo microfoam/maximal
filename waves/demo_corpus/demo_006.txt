@@ -1,4 +1,4 @@
->demo_006 example uncinchable sequence + 1x tandem repeat
+>demo_006 uncinchable sequence + 1x tandem repeat
 nnnnnnnn
 ACTGACGT
 actgacgt

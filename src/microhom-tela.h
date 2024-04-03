@@ -879,8 +879,9 @@ void mark_tela(void)
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPELGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
 				if (Dtr && imperfect_TR) {
 					for (i=m+min_k; i<n; i++) {
-						if (isfractal(i,n,k))
+						if (isfractal(i,n,k)) {
 							makefract(n,k,i);
+						}
                         else if (OFF && tela[i].statf!=st_fract.sym && (fract_k=tela[i].k1) && fract_k<=opt_b.val && !tela[i+k].k1 && i
                                     && tela[n].stat!=st_parent.sym && tela[n+1].k1!=k) {
                             push_mem(n,0);
@@ -1027,8 +1028,9 @@ void mark_tela(void)
 					if (n>=2*min_k) {
 						for (i=m+1; i<n; i++) {	
 							if ((fract_k=tela[i].ok) && tela[n].all_S > tela[i].all_S && i+span_ork(i)<=n && tela[i].ok!=k)  {
-										if (i>=n+fract_k && tela[i].all_S==tela[i+k].all_S)
+										if (i>=n+fract_k && tela[i].all_S==tela[i+k].all_S) {
 											makefract(n,k,i);
+										}
 										else {
 											tela[i].stat = st_Fract.sym;
 											push_mem(i, 4);			/* MARKING IN CLEARALL ROW BUT NOT CLEARING */
@@ -1234,21 +1236,7 @@ void mark_tela(void)
 				if (!tela[i].isl || tela[i].isl!=tela[n].isl)
 					break;
 				if (tela[i].ok) {
-                    if (i>m && isfractal(i,n,k)) {
-                        makefract(n,k,i);
-                        tela[n].all_L = i;                  /* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
-                        tela[i].all_R = n;                  /* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
-
-                        if (tela[n].or>1) {                 /* PROPAGATE FRACTAL STATUS TO REST OF REPEATS */
-                            for (reps=1; reps<tela[n].or; reps++) {
-                                for (l=0; l<tela[n].ok; l++) {
-                                    if (tela[n+l].statf==st_fract.sym)
-                                        tela[n+l+k*reps].statf = st_fract.sym;
-                                }    
-                            }    
-                        }    
-                    }   
-					else if (i + tela[i].ok*(tela[i].or-1) > m || (tela[n].statf!=st_fract.sym && i+tela[i].ok>n)) {
+					if (i + tela[i].ok*(tela[i].or-1) > m || (tela[n].statf!=st_fract.sym && i+tela[i].ok>n)) {
 						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
 						tela[i].all_R = n;					/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 						/* CASE OF NON-CONFLICTING FRACTAL REPEATS */

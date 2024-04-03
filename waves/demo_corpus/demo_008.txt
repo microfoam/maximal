@@ -1,4 +1,4 @@
->demo_008 example uncinchable sequence + 2x tandem repeat, 1 w/ fractal TR
+>demo_008 uncinchable sequence + 2x tandem repeat, 1 w/ fractal TR
 nnnnnnnn
 ACTGACGT
 actgacgt

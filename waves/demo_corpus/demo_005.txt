@@ -1,4 +1,4 @@
->demo_005 example uncinchable sequence
+>demo_005 uncinchable sequence
 nnnn
 nnnn
 ACTG
