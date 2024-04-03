@@ -784,8 +784,10 @@ int main(int argc, char *argv[])
 		for (n = 1; n<=lenseq; ) {
 			/* FOR COLUMN n LOOP 1/3 */
 			if (!opt_t.bit) {			/* SKIP TO NEXT MARKED TR */	
-				while ((!(tela[n].all_S) || (tela[n].statf==st_fract.sym && (tela[n].stat!=st_parent.sym || tela[n].impk)) || 
-						tela[n].stat==st_Fract.sym || tela[n].statl==st_lowcm.sym) && n!=lenseq) {
+				while ((!(tela[n].all_S) || 
+					   (tela[n].statf==st_fract.sym && ((tela[n].stat!=st_parent.sym && tela[n].stat!=st_cycle.sym) || tela[n].impk)) || 
+						tela[n].stat ==st_Fract.sym || 
+						tela[n].statl==st_lowcm.sym) && n!=lenseq) {
 					assign_tela(n++, row, a2D_n++, ONE);	/* MODES ZERO O-F-F, NON-ZERO ASSIGN  */
 				}
 			}
@@ -871,7 +873,7 @@ int main(int argc, char *argv[])
 						if (homopoly_flag && i > m && tela[i].c != tela[i-1].c)
 							homopoly_flag = 0;
 					}
-	
+
 					/* IF SUMMING PATHBOX DIAGONAL 2/: SET HOMOPOLYMERIC RUN BIT TO TRUE IF DETECTED 	*/
 					if (homopoly_flag && i == n) {
 						homopoly_flag = 1;				/* BIT IS THERE IF NEEDED BEYOND BREAK. 		*/

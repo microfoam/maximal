@@ -38,6 +38,5 @@ fi
 ./maximal -Knx -D7     waves/demo_corpus/demo_03c.txt
 ./maximal -Knx -D7     waves/demo_corpus/demo_03d.txt
 ./maximal -Knx -D7     waves/demo_corpus/demo_03e.txt
-./maximal -Kn  -D7     waves/demo_corpus/demo_03f.txt
 ./maximal -Knx -D7     waves/demo_corpus/demo_03f.txt
 
