@@ -26,7 +26,7 @@ fi
 ./maximal -Kn -D7 -b5 waves/demo_corpus/demo_01b.txt -C
 ./maximal -Kn -D7 -b5 waves/demo_corpus/demo_01c.txt -C
 ./maximal -Kn -D7 -b5 waves/demo_corpus/demo_01d.txt -C
-./maximal -Kn -D7     waves/demo_corpus/demo_011.txt
+./maximal -Kn -D7     waves/demo_corpus/demo_04.txt
 ./maximal -Kn -D7 -b5 waves/demo_corpus/demo_02a.txt
 ./maximal -Kn -D7 -b5 waves/demo_corpus/demo_02b.txt
 ./maximal -Kn -D7 -b5 waves/demo_corpus/demo_02c.txt
