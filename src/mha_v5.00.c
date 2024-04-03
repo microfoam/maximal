@@ -1687,7 +1687,7 @@ int main(int argc, char *argv[])
 		else {
 			line_end(SLIPS, 0, 0);
 			Recover.pass_Q = 1000; 
-			printf("\n   Perfect recovery of 1-D sequence.");
+			printf("\n   Perfect recovery of 1-D sequence.\n");
 		}
 		print_section_spacer();
 	} /* END of opt_R */
@@ -1715,7 +1715,7 @@ int main(int argc, char *argv[])
 
 	char arrow[] = "      ";
 
-	printf("\nCinch history for ");
+	printf("Cinch history for ");
 	if (seqtype == 1)		
 		printf("%s (DNA sequence)", Seq_head);
 	else if (seqtype==2)	
