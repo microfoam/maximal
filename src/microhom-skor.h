@@ -42,7 +42,6 @@ int allowed_transits(int k)
 int score_DTHR(int kmer)
 {	/* RETURNS SCORE THRESHOLDS FOR K-MER FOR ALLOWED TRANSITIONS) */
 	int k=0, numtransit = 0, threshold = 0;
-	int squeeze = opt_x.val;
 
 	if (!thr_table[0]) {
 		for (k=0; k<=opt_b.val; k++)
@@ -50,7 +49,7 @@ int score_DTHR(int kmer)
 	
 	    for (k = opt_b.val+1; k <= WIDTH; k++) {
 			numtransit = allowed_transits(k);
-	        thr_table[k] = 100*((k-numtransit)*MATCH + numtransit*TRANSITION)/(k*MATCH) - squeeze;
+	        thr_table[k] = 100*((k-numtransit)*MATCH + numtransit*TRANSITION)/(k*MATCH) - opt_x.bit;
 	    }
 	}    
 	threshold = thr_table[kmer];	
