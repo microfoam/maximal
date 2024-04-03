@@ -1,7 +1,0 @@
->demo_005 uncinchable sequence
-nnnn
-nnnn
-ACTG
-ACGT
-nnnn
-nnnn

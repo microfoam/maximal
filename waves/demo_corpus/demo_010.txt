@@ -1,6 +1,0 @@
->demo_010 uncinchable sequence + 2x tandem repeat, w/ divergent fractal TRs, target-0.500
-nnnnnnnn
-ACTGTGACGT
-actgTGacgt
-actgTGtgacgt
-nnnnnnnn

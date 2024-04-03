@@ -1,6 +1,0 @@
->demo_007 uncinchable sequence + 2x tandem repeats
-nnnnnnnn
-ACTGACGT
-actgacgt
-actgacgt
-nnnnnnnn

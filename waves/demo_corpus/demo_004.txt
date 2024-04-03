@@ -1,8 +1,0 @@
->demo_004 uncinchable sequence + 2x tandem repeat, 1 w/ fractal TR
-ATCG
-ATGC
-ACTGACGT
-actgacgt
-actgTGacgt
-AGTC
-AGCT

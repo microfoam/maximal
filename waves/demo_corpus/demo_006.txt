@@ -1,5 +1,0 @@
->demo_006 uncinchable sequence + 1x tandem repeat
-nnnnnnnn
-ACTGACGT
-actgacgt
-nnnnnnnn

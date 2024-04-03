@@ -1,7 +1,0 @@
->demo_002 uncinchable sequence + 1x tandem repeat
-ATCG
-ATGC
-ACTGACGT
-actgacgt
-AGTC
-AGCT

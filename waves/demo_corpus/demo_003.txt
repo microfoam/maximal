@@ -1,8 +1,0 @@
->demo_003 uncinchable sequence + 2x tandem repeats
-ATCG
-ATGC
-ACTGACGT
-actgacgt
-actgacgt
-AGTC
-AGCT
