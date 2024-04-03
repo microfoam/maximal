@@ -1,0 +1,7 @@
+>demo_01a uncinchable sequence
+ATCG
+ATGC
+ACTG
+ACGT
+AGTC
+AGCT

@@ -1,0 +1,6 @@
+>demo_02f uncinchable sequence + 2x TRs + divergent fractal copy #, target-0.500
+nnnnnnnn
+ACTGTGACGT
+actgTGacgt
+actgTGtgacgt
+nnnnnnnn

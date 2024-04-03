@@ -1,0 +1,5 @@
+>demo_02b uncinchable sequence + 1x TR
+nnnnnnnn
+ACTGACGT
+actgacgt
+nnnnnnnn

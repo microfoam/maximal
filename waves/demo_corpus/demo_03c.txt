@@ -1,0 +1,6 @@
+>demo_03c uncinchable sequence + 2x TRs w/ transition
+nnnnnnnn
+ACTGACGT
+actgatgt
+actgacgt
+nnnnnnnn

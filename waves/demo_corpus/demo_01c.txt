@@ -1,0 +1,8 @@
+>demo_01c uncinchable sequence + 2x TRs
+ATCG
+ATGC
+ACTGACGT
+actgacgt
+actgacgt
+AGTC
+AGCT

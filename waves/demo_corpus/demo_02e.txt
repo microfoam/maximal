@@ -1,0 +1,6 @@
+>demo_02e uncinchable sequence + 2x TRs + internal fractal TRs
+nnnnnnnn
+ACTGTGACGT
+actgTGacgt
+actgTGacgt
+nnnnnnnn

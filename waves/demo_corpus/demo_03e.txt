@@ -1,0 +1,6 @@
+>demo_03e uncinchable sequence + 2x TRs + fractal TRs and 1 transition
+nnnnnnnn
+ACTGTGACGT
+actgTGatgt
+actgTGacgt
+nnnnnnnn
