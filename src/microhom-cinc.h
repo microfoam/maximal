@@ -717,7 +717,7 @@ unsigned int cinch_d(void)
 	if (!oneflip) {
 		oneflip++;
 		for (j=0; j<Current.pass_W; j++)
-			dConsensus[j].stat = 0;
+			dConsensus[j].stat = dConsensus[j].chcount = 0;
 		for (j=0; j<Current.pass_W; j++) {
 			int charcount=0;
 			for (i=0; i<height; i++) {
@@ -730,6 +730,7 @@ unsigned int cinch_d(void)
 				}
 			}
 			dConsensus[j].chcount = charcount;
+
 			if (j && align2D[i][j]!=ambig.sym) {
 				if (charcount==1) {
 					dConsensus[j].stat = 1; 			/* FREE TO CINCH AT THIS COLUMN */
@@ -907,7 +908,7 @@ unsigned int cinch_d(void)
 
 					/* UPDATE CONSENSUS ROWS */
 					for (i=n; i<n+k; i++) {
-						dConsensus[i].mlast += dConsensus[i+k].mlast - dConsensus[i].mlast;
+						dConsensus[i].mlast = dConsensus[i+k].mlast + 1;
 						dConsensus[i].chcount += dConsensus[i+k].chcount;
 						if (i>n)
 							dConsensus[i].stat = 0;
