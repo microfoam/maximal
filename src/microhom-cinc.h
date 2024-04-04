@@ -723,7 +723,7 @@ unsigned int cinch_d(void)
 			for (i=0; i<height; i++) {
 				if (isalpha(align2D[i][j])) {
 					if (!charcount)
-						dConsensus[j].mfirst = i;
+						dConsensus[j].mfirst = dConsensus[j].mlast = i;
 					else
 						dConsensus[j].mlast = i;
 					charcount++;
