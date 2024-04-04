@@ -244,7 +244,6 @@ int check_tela(int eM, int eN, short unsigned int mode_dim)
 void clearall_tela(int n, int span, int keep_score, int mode)
 {
 	int i;
-
 	if (!mode)		/* MODE 0 = O-F-F; 1=CLEAR S ONLY; 2=CLEAR ALL; 3=CLEAR ALL & SHIFT k-mers ok<- k2 ->k1->k0 */
 		return;
 
@@ -1298,7 +1297,7 @@ void mark_tela(void)
 	/* IDENTIFY CYCLING MARKS FOR PERFECT REPEATS LAID OVER INTERNAL REPEATS WITH r>1 */
 	/* CAN CLEAN UP HOW THESE LOOK AND PERHAPS ACT ON THEM PRIOR TO CINCH-K */
 	for (n = 1; n<=lenseq; n++) {
-		if (tela[n].or > 1 && (!nuctransit || tela[n].all_S == tela[n].ok * tela[n].or)) {
+		if (tela[n].or > 1 && (tela[n].all_S == tela[n].ok * tela[n].or)) {
 			k    = tela[n].ok;
 			reps = tela[n].or;
 			m = n-k;
