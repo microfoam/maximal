@@ -1548,7 +1548,7 @@ int main(int argc, char *argv[])
 		}
 		while (relax_length > 0);
 
-		if (Relax.pass_R)
+		if (Relax.pass_R || opt_f.bit)
 			print_2Dseq();
 		Relax.pass_Q = Current.pass_Q;
 	}	

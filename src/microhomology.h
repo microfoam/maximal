@@ -1254,7 +1254,7 @@ short unsigned int lcl_opt_F = 0;
 		/* ADD TO COUNT OF MISMATCHED SITES */
 		mmsites = mmsites + consensus_2D(j_start, linewrap);
 
-		if (opt_f.bit && Current.pass_V > 6 && mmsites == 0) {
+		if (opt_f.bit && Current.pass_V > 5 && mmsites == 0) {
 			foam_2D(j_start, linewrap);
 		}
 	} /* END OF FOR j PRINTING LOOP */
