@@ -1,4 +1,4 @@
->demo_011 overlapping TRs w/ cycling choices - target: 0.471
+>demo_04 overlapping TRs w/ cycling choices - target: 0.471
 TGTGTGAGTGAnnnnnn
 TGTGTGAGTGAGnnnnn
 TGTGTGAGTGAGTGAnn
