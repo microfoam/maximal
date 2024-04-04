@@ -717,7 +717,7 @@ unsigned int cinch_d(void)
 	if (!oneflip) {
 		oneflip++;
 		for (j=0; j<Current.pass_W; j++)
-			dConsensus[j].stat = dConsensus[j].chcount = 0;
+			dConsensus[j].stat = 0;
 		for (j=0; j<Current.pass_W; j++) {
 			int charcount=0;
 			for (i=0; i<height; i++) {
@@ -737,7 +737,7 @@ unsigned int cinch_d(void)
 					if (j<Current.pass_W-1)
 						dConsensus[j+1].stat = 1; 		/* ALSO FREE TO CINCH AT THIS COLUMN */
 				}
-				else if (charcount && dConsensus[j].mfirst==dConsensus[j-1].mlast)
+				else if (dConsensus[j].mfirst==dConsensus[j-1].mlast)
 					dConsensus[j].stat = 1; 			/* FREE TO CINCH AT THIS COLUMN */
 			}
 		}
@@ -779,7 +779,7 @@ unsigned int cinch_d(void)
 
 		int n_end = Current.pass_W-2*k;
 		for (n=0; n<=n_end; n++) {
-			if (!dConsensus[n+k].stat)
+			while (!dConsensus[n+k].stat && n<=n_end)
 				n++;
 
 			mono_flag = 1;			/* MONOMER RUN FLAG IS SET TO 0, WHEN NO LONGER POSSIBLE (ANY n != n+1) */
