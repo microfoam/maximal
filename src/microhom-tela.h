@@ -1066,7 +1066,7 @@ void mark_tela(void)
 				}
 				if (gapcheck) {
 					if (dev_print(TWO,__LINE__)) {
-						printf("         mark_tela filling in gap between %d and %d, inclusive of these points, for k-mer=%d.", i-1,n-1,k);
+						printf("         Mark_tela filling in gap between %d and %d, inclusive of these points, for k-mer=%d.", i-1,n-1,k);
 					}
 					for (j=i-1; j>n; j--) {
 						tela[j].ok = k;
@@ -1415,7 +1415,7 @@ void mark_tela(void)
 					push_mem(n, 10);
 					/* POSSIBLE THIS CASE COULD BE GENERALIZED...FOR A RAINY DAY */
 					if (dev_print(TWO,__LINE__)) {
-						printf("mark_tela at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
+						printf("Mark_tela at n=%d, span=%d with left-conflict=%d, and no right_conflict, " 
 								"and n+1 has smaller k that is a multiple of k-size at n with no conflicts.", n, span, tela[n].all_L);
 					}
 				}
@@ -1425,7 +1425,7 @@ void mark_tela(void)
 					for (j=n+1; j<n+span; j++) {
 						if (tela[j].ok == k && !tela[j].all_R && !tela[j].all_L) {
 							if (dev_print(TWO,__LINE__)) {
-								printf("mark_tela at n=%d, scenario three", n);
+								printf("Mark_tela at n=%d, scenario three", n);
 							}
 							for (i=j-1; i>=n; i--) {
 								clearall_tela(i, j-n, -1, TWO);		/* O-F-F, ONE, OR TWO */
@@ -1580,7 +1580,7 @@ int lenseq = Clean.pass_W;
 		b = lenseq+1;
 
 	/************* BEGIN PRINTING LINES *******************/
-	if (Clean.pass_Q==1000) {	/* post-mark_tela() */
+	if (Clean.pass_Q==1000) {	/* post-Mark_tela() */
 		printf("\nxy:");
 		for (i=a; i<b; i++)
 			printf("%3d", tela[i].gPnt.rel_xy);
