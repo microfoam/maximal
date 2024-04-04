@@ -1845,7 +1845,7 @@ int lenseq = Clean.pass_W;
 	for (i=a; i<b; i++)
 		printf(" --");
 
-	/* PRINT TOP MEM ROWS: mark_tela mem OR frame rows in cinch-t */
+	/* PRINT TOP MEM ROWS: Mark_tela mem OR frame rows in cinch-t */
 	for (f=0; f<MEMROWS; f++) {
 		if (tela[0].mem[f]) {
 			printf("\nm%c:", mha_base62(f));
