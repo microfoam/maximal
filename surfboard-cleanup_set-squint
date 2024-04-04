@@ -21,6 +21,9 @@ fi
 DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
 # solved: push new solved runs onto top of stack starting w/ solved-97 
+./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_005.txt  # solution to string 006 also solved 005 +/- -x
+./maximal -D$DEVPROMPT -KR   waves/chowder/chowder-2024_string_005.txt  # solution to string 006 also solved 005 +/- -x
+./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_006.txt  # solved w/ slight adjustment of cinch_k st_Fract exception
 ./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_004.txt  # solved by bringing back deleted code in mark_tela
 ./maximal -D$DEVPROMPT -KnR  waves/chowder/chowder-2024_string_003.txt  # solved w/ restriction of existing mark_tela heuristic to k<9
 ./maximal -D$DEVPROMPT -KnxR waves/chowder/chowder-2024_string_002.txt  # solved w/ new cinch_t case using tela marks 
@@ -73,5 +76,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'Commit WCR average of 43 tests (b=3): 0.405116 -> 0.405116 -> 0.40614 -> 0.404884' | tee -a Corduroy.log
+echo 'Commit WCR average of 46 tests (b=3): 0.394739' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

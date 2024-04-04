@@ -314,7 +314,7 @@ int cinch_k(short unsigned int mode)
 			for (n = 0; align2D[m][n] != '\0'; n++) { 
 				keep_checking = 1;			/* THIS FLAG HANDLES THE CONTINUED NEED TO CHECK FOR INTRA-TR REPEATS   */
 				imperfect_TR = 0;			/* THIS FLAG IS TURNED ON (SET TO ONE) WHEN TR W/ TRANSITION MISMATCHES IS FOUND */
-				tela_n = tela_m + k;	/* SHORTER AND AVOIDS HAVING TO DO THIS SUM MANY TIMES */
+				tela_n = tela_m + k;		/* SHORTER AND AVOIDS HAVING TO DO THIS SUM MANY TIMES */
 
 				if (!n && isalpha(align2D[m][0])) {
 					x = 0;												/* x-VAR INITIALIZED, TOP OF FOR n LOOP */
@@ -509,7 +509,10 @@ int cinch_k(short unsigned int mode)
 
 				/* 9/09/2020 v4.35 expansion of WCR avg's for b=3 benchmarks w/o chowder when OFF */
 				/* 9/17/2020 v4.35 same about expansion but not squirt_17 is dependent on this, plus this is main mechanism to squash things in cinch-k */
-				if ((keep_checking || check_imperf) && k>1 && tela[tela_n].echoes==cyc_skip.sym && tela[tela_n].statf!=st_fract.sym) {
+				if ((keep_checking || check_imperf) && k>1 
+						&& tela[tela_n].echoes==cyc_skip.sym 
+						&& tela[tela_n].stat !=st_Fract.sym
+						&& tela[tela_n].statf!=st_fract.sym) {
 					keep_checking = check_imperf = 0;
 				}
 
