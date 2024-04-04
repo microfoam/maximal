@@ -97,3 +97,36 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
+                                               < ragdoll washing machine >
+System:
+Darwin 22.6.0 arm64 arm
+Codebase line counts:
+    1971 src/mha_v5.00.c
+    1106 src/microhom-cinc.h
+     104 src/microhom-devl.h
+     111 src/microhom-skor.h
+    2152 src/microhom-tela.h
+    1596 src/microhomology.h
+    7040 total
+
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v5.00	Apr  4 06:31:52 2024	b3 x1	P:1000	R:1000	0.470	RND:XX	waves/experimental/pattern-1a-20pc_GC.txt (100 bp, +)	 
+v5.00	Apr  4 06:37:53 2024	b3 x1	P:1000	R:1000	0.412	RND:XX	waves/experimental/pattern-5a-92pc_Y.txt (80 bp, +)	 
+
+Number of tests initiated:         140000
+Number of tests completed:         140000
+Number of tests w/ PASS 1000:      140000
+Number of tests w/ REC. 1000:      140000
+
+WCR average: 0.436621
+
+Tests canceled (if any, w/ preceding run for context):
+Tests with PASS < 1000 (if any):
+Tests with REC. < 1000 (if any):
+
