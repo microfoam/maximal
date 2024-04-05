@@ -746,11 +746,6 @@ unsigned int cinch_d(void)
 	if (opt_v.val==2) {			/* NEEDS TO BE FORMATTED TO PRINT IN FRIENDLY-BLOCKS */
 		printf("        ");
 		for (j=0; j<Current.pass_W; j++)
-			printf("%c", mha_base62(dConsensus[j].stat));
-		printf(" <= dConsensus[].stat (base 62)\n");
-
-		printf("        ");
-		for (j=0; j<Current.pass_W; j++)
 			printf("%c", mha_base62(dConsensus[j].mfirst));
 		printf(" <= dConsensus[].first\n");
 
@@ -763,6 +758,13 @@ unsigned int cinch_d(void)
 		for (j=0; j<Current.pass_W; j++)
 			printf("%c", mha_base62(dConsensus[j].chcount));
 		printf(" <= dConsensus[].chcount\n");
+
+		if (opt_D.val==5) {
+			printf("        ");
+			for (j=0; j<Current.pass_W; j++)
+				printf("%c", mha_base62(dConsensus[j].stat));
+			printf(" <= dConsensus[].stat\n");
+		}
 	}
 
 	for (k=kstart; k!=kend; k+=kbit) {
@@ -925,6 +927,30 @@ unsigned int cinch_d(void)
 					if (letr == Term->sym) {
 						Current.pass_W = j-delta_ncol-1;
 						mha_writeback_1Dto2D(cinch2D, align2D);
+
+						/* THIS IS MEANT TO BE AN AESTHETIC MODULE FOR COMPACT MICROPARALOGY BLOCKS */
+						for (i=1; i<Current.pass_W-1; i++) {
+							if (dConsensus[i].chcount==2 && dConsensus[i-1].chcount==1 && dConsensus[i+1].chcount>1) {
+								j=i;
+								while (dConsensus[j+1].chcount>1 && j+1<Current.pass_W)
+									j++;
+								if (j-i>3 && dConsensus[j].chcount==2 && consensus[i]==consensus[j] && 
+									dConsensus[i].mlast==dConsensus[j].mfirst &&
+									align2D[dConsensus[j].mfirst  ][j  ]==(letr=align2D[dConsensus[i].mlast][i]) &&
+									align2D[dConsensus[j].mfirst-1][j  ]==slip.sym &&
+									align2D[dConsensus[j].mfirst+1][j-1]!=blnk) {
+
+									dConsensus[i].stat = 2;  /* 2 means this position will be cycled up */
+									align2D[dConsensus[i].mlast   ][i  ] = blnk;
+									align2D[dConsensus[j].mfirst-1][j  ] = letr;
+									align2D[dConsensus[j].mfirst-1][j+1] = slip.sym;
+									dConsensus[i].chcount -= 1;
+									dConsensus[j].chcount += 1;
+									dConsensus[i].mlast = dConsensus[i].mfirst;
+									dConsensus[j].mfirst -= 1;
+								}
+							}
+						}
 					}
 				}
 			} /* END OF WHILE TR_check */
