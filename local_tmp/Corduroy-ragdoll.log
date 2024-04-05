@@ -213,3 +213,25 @@ WCR average: 0.500059
 
 WCR avg history (150k tests @ b=3): ~0.499--0.500
 
+
+Recent ragdoll run times
+v5.00	Apr  3 19:25:09 2024	b3 x1	P:1000	R:1000	0.520	RND:XX	waves/sharks/vnd_NEE_Dsuzu.txt (100 bp, -)	 
+v5.00	Apr  3 19:18:24 2024	b3 x1	P:1000	R:1000	0.450	RND:XX	waves/seals/vnd_ex3_Dmela.txt (100 bp, +)	 
+                   6:45
+
+v5.00	Apr  4 21:06:59 2024	b3 x1	P:1000	R:1000	0.590	RND:XX	waves/sharks/vnd_NEE_Dsuzu.txt (100 bp, -)	 
+v5.00	Apr  4 21:00:15 2024	b3 x1	P:1000	R:1000	0.470	RND:XX	waves/seals/vnd_ex3_Dmela.txt (100 bp, +)	 
+                   6:44
+
+v5.00	Apr  5 12:00:42 2024	b3 x1	0.510	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
+v5.00	Apr  5 11:53:59 2024	b3 x1	0.520	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
+                   6:43
+
+v5.00	Apr  5 14:43:40 2024	b3 x1	0.460	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
+v5.00	Apr  5 14:36:58 2024	b3 x1	0.430	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
+                   6:42
+
+v5.00	Apr  5 16:27:18 2024	b3 x1	0.450	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
+v5.00	Apr  5 16:20:39 2024	b3 x1	0.510	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
+                   6:39
+
