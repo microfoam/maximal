@@ -20,6 +20,8 @@ if [ -f $FILE ]; then
 	grep -cE 'P:1000' $FILE
 	echo 'Number of tests w/ REC. 1000:      ' | tr -d "\n"
 	grep -cE 'R:1000' $FILE 
+	echo 'Number of tests w/ cycling: ' | tr -d "\n"
+	grep -cE 'cyc:[1-9]' $FILE 
 	echo
 	echo 'Tests canceled (if any, w/ preceding run for context):'
 	grep -B1 Canceled $FILE | sed '/^--$/d'

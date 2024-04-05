@@ -1023,9 +1023,10 @@ unsigned short int nuctransit=0;
 			m++;
 		}
 
-		while (isalpha(letr=align2D[m][n]) && isalpha(align2D[m][n+1])) {
+		while (isalpha(align2D[m][n]) && isalpha(align2D[m][n+1])) {
 			n++;
 		}
+		letr = align2D[m][n];
 
 		if (align2D[m][n+1] == slip.sym) {		/* EDGE DETECTED */
 			while (isalpha(align2D[m+v][n-1]) && 

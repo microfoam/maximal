@@ -1529,8 +1529,6 @@ int main(int argc, char *argv[])
 	}
 
 	Cinch_D.pass_Q = Current.pass_Q;
-	free(pcind);
-	free(dConsensus);
 
 	if (opt_D.val==5)
 		dev_prompt(MAIN,__LINE__,file_name); 
@@ -1552,6 +1550,10 @@ int main(int argc, char *argv[])
 			print_2Dseq();
 		Relax.pass_Q = Current.pass_Q;
 	}	
+
+	free(pcind);
+	free(dConsensus);
+
 	if (opt_D.val==6)
 		dev_prompt(MAIN,__LINE__,file_name); 
 
