@@ -29,11 +29,6 @@ fi
 ./maximal -Kx -D7 waves/seals/vnd_ex3_Dsimu.txt
 ./maximal -Kx -D7 waves/seals/vnd_ex3_Dsuzu.txt
 ./maximal -Kx -D7 waves/seals/vnd_ex3_Dyaku.txt
-./maximal -Kx -D7 waves/sharks/nab_DWME_Dmela.txt
-./maximal -Kx -D7 waves/sharks/vnd_edgeNEE_Dmaur.txt
-./maximal -Kx -D7 waves/sharks/vnd_edgeNEE_Dsimu.txt
-./maximal -Kx -D7 waves/sharks/vnd_longNEE_Dbiar.txt
-./maximal -Kx -D7 waves/sharks/vnd_longNEE_Dsuzu.txt
 ./maximal -Kx -D7 waves/sharks/vnd_NEE_Dbiar.txt
 ./maximal -Kx -D7 waves/sharks/vnd_NEE_Derec.txt
 ./maximal -Kx -D7 waves/sharks/vnd_NEE_Dmaur.txt
