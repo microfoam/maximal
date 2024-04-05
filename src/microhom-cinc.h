@@ -871,7 +871,7 @@ unsigned int cinch_d(void)
 					++Cinch_D.pass_R;
 					m = dConsensus[n+k].mfirst;
 
-					if (opt_v.bit || lenseq>2000) {
+					if (opt_v.bit) {
 						printf("\n %3d. Cinch-d working on k=%d consensus TR (%2dx) on row %4d (column %4d).",
 								Cinch_D.pass_R, 	k, 	num,	m+1, 	n+1);
 					}
@@ -1019,7 +1019,7 @@ unsigned short int nuctransit=0;
 	for (n=0; n < width; n++) {
 		v = w = z = m = 0;
 
-		while (align2D[m][n] == '\0') {
+		while (align2D[m][n]=='\0' || align2D[m][n]==slip.sym) {
 			m++;
 		}
 
