@@ -21,7 +21,7 @@ if [ -f $FILE ]; then
 	echo 'Number of tests w/ REC. 1000:      ' | tr -d "\n"
 	grep -cE 'R:1000' $FILE 
 	echo
-	awk -F'[\t]' '{sum+=$6} END {print "WCR average: " sum/NR}' $FILE 
+	awk -F'[\t]' '{sum+=$4} END {print "WCR average: " sum/NR}' $FILE 
 	echo
 	echo 'Tests canceled (if any, w/ preceding run for context):'
 	grep -B1 Canceled $FILE | sed '/^--$/d'

@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 	int a2D_n = 0;				/* NUMBER INDEX OF n FOR a2D_n */
 	int recslips= 0;			/* Counter of recent slips in region of first TR unit, derived from tela[].r */
 	int relax_length=0;			/* FOR USE WITH relax_2D CALL */
-	char blank = Fill->sym;					/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
+	char blank = Fill->sym;		/* DEFAULT BLANK CHARACTER FOR 2-D MHA. FULLSTOP = 46 */
 
 	int opt;					/* opt IS CASE OPTION VARIABLE FOR SETTING Options STRUCT */
 	int ralign_height = 0;	
@@ -1940,17 +1940,17 @@ int main(int argc, char *argv[])
 	
 	if (!opt_s.bit) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\tb%d x%d\tP:%4d\tR:%4d\t%.3f\tRND:%.*s\t%s (%d %s, %c)\t%s\n", 
-				version, time0+4, opt_b.val, opt_x.val, Current.pass_Q, Recover.pass_Q, ratio1, opt_X.val, "XX", 
-				file_name, Clean.pass_W, letr_unit, Strand->sym, dev_notes);
+		fprintf(fp_out, "v%s\t%.20s\tb%d x%d\t%.3f\tP:%4d R:%4d RND:%.*s cyc:%d %s (%c%d %s)\t%s\n", 
+				version, time0+4, opt_b.val, opt_x.val, ratio1, Current.pass_Q, Recover.pass_Q, opt_X.val, "XX", 
+				cyc_count, file_name, Strand->sym, Clean.pass_W, letr_unit, dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (Current.pass_Q != 1000 || (opt_R.bit && Recover.pass_Q != 1000)) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.20s\tb%d x%d\tP:%4d\tR:%4d\t%.3f\tRND:%.*s\t%s (%d %s, %c)\t%s\n", 
-					version, time0+4, opt_b.val, opt_x.val, Current.pass_Q, Recover.pass_Q, ratio1, opt_X.val, "XX", 
-					file_name, Clean.pass_W, letr_unit, Strand->sym, dev_notes);
+			fprintf(fp_tricksy, "v%s\t%.20s\tb%d x%d\t%.3f\tP:%4d R:%4d RND:%.*s cyc:%d %s (%c%d %s)\t%s\n", 
+					version, time0+4, opt_b.val, opt_x.val, ratio1, Current.pass_Q, Recover.pass_Q, opt_X.val, "XX", 
+					cyc_count, file_name, Strand->sym, Clean.pass_W, letr_unit, dev_notes);
 			for(n = 0; n<lenseq; n++) {
 				fprintf(fp_tricksy, "%c", tela[n].c);
 			}

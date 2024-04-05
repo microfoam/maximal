@@ -12,6 +12,7 @@ short unsigned int 	cleanseq(char *s);
 int 				cinch_l(void); 
 int 				cinch_k(short unsigned int mode);
 unsigned int 		cinch_d(void);
+unsigned int 		cyclelize2D(void);
 void 				relax_2D(void);
 int 				recover_1D(char *recovered_1D);
 
@@ -927,30 +928,7 @@ unsigned int cinch_d(void)
 					if (letr == Term->sym) {
 						Current.pass_W = j-delta_ncol-1;
 						mha_writeback_1Dto2D(cinch2D, align2D);
-
-						/* THIS IS MEANT TO BE AN AESTHETIC MODULE FOR COMPACT MICROPARALOGY BLOCKS */
-						for (i=1; i<Current.pass_W-1; i++) {
-							if (dConsensus[i].chcount==2 && dConsensus[i-1].chcount==1 && dConsensus[i+1].chcount>1) {
-								j=i;
-								while (dConsensus[j+1].chcount>1 && j+1<Current.pass_W)
-									j++;
-								if (j-i>3 && dConsensus[j].chcount==2 && consensus[i]==consensus[j] && 
-									dConsensus[i].mlast==dConsensus[j].mfirst &&
-									align2D[dConsensus[j].mfirst  ][j  ]==(letr=align2D[dConsensus[i].mlast][i]) &&
-									align2D[dConsensus[j].mfirst-1][j  ]==slip.sym &&
-									align2D[dConsensus[j].mfirst+1][j-1]!=blnk) {
-
-									dConsensus[i].stat = 2;  /* 2 means this position will be cycled up */
-									align2D[dConsensus[i].mlast   ][i  ] = blnk;
-									align2D[dConsensus[j].mfirst-1][j  ] = letr;
-									align2D[dConsensus[j].mfirst-1][j+1] = slip.sym;
-									dConsensus[i].chcount -= 1;
-									dConsensus[j].chcount += 1;
-									dConsensus[i].mlast = dConsensus[i].mfirst;
-									dConsensus[j].mfirst -= 1;
-								}
-							}
-						}
+						cyclelize2D();	/* MAKE PRETTY, IF POSSIBLE */
 					}
 				}
 			} /* END OF WHILE TR_check */
@@ -979,6 +957,41 @@ unsigned int cinch_d(void)
 	}
 
 	return(tot_repeats);
+}
+/******************************************************************/
+
+/******************************************************************/
+/** MEANT AS AN AESTHETIC MODULE FOR COMPACT MICROPARALOGY BLOCKS */
+unsigned int cyclelize2D(void)
+{
+	int i=0, j=0;
+	char letr=0;
+	char blnk = Fill->sym;
+
+	for (i=1; i<Current.pass_W-1; i++) {
+		if (dConsensus[i].chcount==2 && dConsensus[i-1].chcount==1 && dConsensus[i+1].chcount>1) {
+			j=i;
+			while (dConsensus[j+1].chcount>1 && j+1<Current.pass_W)
+				j++;
+			if (j-i>3 && dConsensus[j].chcount==2 && consensus[i]==consensus[j] && 
+				dConsensus[i].mlast==dConsensus[j].mfirst &&
+				align2D[dConsensus[j].mfirst  ][j  ]==(letr=align2D[dConsensus[i].mlast][i]) &&
+				align2D[dConsensus[j].mfirst-1][j  ]==slip.sym &&
+				align2D[dConsensus[j].mfirst+1][j-1]!=blnk) {
+
+				++cyc_count;
+				dConsensus[i].stat = 2;  /* 2 means this position will be cycled up */
+				align2D[dConsensus[i].mlast   ][i  ] = blnk;
+				align2D[dConsensus[j].mfirst-1][j  ] = letr;
+				align2D[dConsensus[j].mfirst-1][j+1] = slip.sym;
+				dConsensus[i].chcount -= 1;
+				dConsensus[j].chcount += 1;
+				dConsensus[i].mlast = dConsensus[i].mfirst;
+				dConsensus[j].mfirst -= 1;
+			}
+		}
+	}
+	return(cyc_count);
 }
 /******************************************************************/
 

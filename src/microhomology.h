@@ -215,7 +215,7 @@ struct cinch {
 	Recover = {0, 0, 0, 0, 0},		/* Optional pass to recover and check a 1-D sequence from a 2-D alignment */
 	Current = {0, 0,-1, 0, 0};		/* Current holds the values from the latest pass, so that generic functions can simply look here */
 									/* Current.pass_V is pass counter, initialized to -1 so that it is incremented to 0 for Start pass */
-
+int cyc_count=0;
 
 /* The segment struct type organizes the spine and belly row positions of the 2-D 'snake' for computing MSA tucks */
 struct segment {
