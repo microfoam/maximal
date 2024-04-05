@@ -1023,8 +1023,10 @@ unsigned short int nuctransit=0;
 			m++;
 		}
 
-		while (isalpha(align2D[m][n]) && isalpha(align2D[m][n+1])) {
-			n++;
+		if (isalpha(align2D[m][n])) {
+			while (isalpha(align2D[m][n+1])) {
+				n++;
+			}
 		}
 		letr = align2D[m][n];
 
