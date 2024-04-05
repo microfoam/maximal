@@ -1062,6 +1062,7 @@ unsigned short int nuctransit=0;
 						z++;	
 				}
 				if (m+v+w+z == height) {		/* WRITE TO LOCAL 2D ARRAY */
+					++Relax.pass_R;
 					for (j = 0; j < height; j++) 
 						cinch2D[mn1D(m+v  -rlx_col+j,n  +rlx_col  )] = blnk;	
 					for (i = 0; i < w; i++) {
