@@ -145,7 +145,7 @@ void print_protein_waxes(void)
 		printf(" U = [EDQ] \t Polar, negative or structure-friendly carboxymide (Q)\n");
 		printf(" Z = [RK]  \t Polar, positive\n");
 		printf(" B = [ST]  \t Small -OH\n");
-		printf(" J = [GA]  \t Small\n");
+		printf(" J = [GA]  \t Small\n\n");
 }
 
 
@@ -654,10 +654,17 @@ int cinch_k(short unsigned int mode)
 			}   /* END OF FOR n LOOPS */ 
 		}   /* END OF FOR m LOOPS */
 
-		if (cik_row > 0) {
-			printf("\n Next: cinch-k for k = %d...\n", k);
+		if (cik_row) {
 			mha_writeback_1Dto2D(cinch2D, align2D);
-			print_2Dseq();
+			Cinch_K.pass_W = Current.pass_W;
+			Cinch_K.pass_H = Current.pass_H;
+			if (Current.pass_W<=par_wrap.set || opt_v.bit) {
+				printf("\n Next: cinch-k for k = %d...\n", k);
+				print_2Dseq();
+			}
+			else {
+				consensus_2D(0,Current.pass_W, OFF);
+			}
 		}
 
 		Cinch_K.pass_V += cik_row;			/* STORE ROWS ADDED */
@@ -671,8 +678,9 @@ int cinch_k(short unsigned int mode)
 	} /* END OF FOR k LOOPS */ 
 
 	mha_writeback_1Dto2D(cinch2D, align2D); 	/* THIS ALSO SAVES 2D-WIDTH in Current.pass_W */
-
 	Cinch_K.pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS i WIDTH HISTORY */
+	Cinch_K.pass_H = Current.pass_H;
+
 	free(x_history);
 
 	return (Cinch_K.pass_V);
@@ -937,23 +945,19 @@ unsigned int cinch_d(void)
 
 	Cinches[Current.pass_V]->pass_W = Current.pass_W;	/* ASSIGN CURRENT WIDTH and PASS WIDTH HISTORY */
 
-	if (!delta_ncol && !opt_v.bit) {
-		opt_K.bit = 1;						/* EVEN IF NOT OPTIONED, GOOD TO SHOW FOR LAST RUN */
+	if (!delta_ncol && !opt_v.bit && (opt_n.bit || Current.pass_W<par_wrap.set)) {
+		opt_K.bit = 1;		/* IF NOT OPTIONED SHOW CONSENSUS FOR LAST RUN, GIVEN opt_n NO RELAX RUN */
 		print_2Dseq();
 		return(0);
 	}
 	else if (tot_repeats > 1 && opt_K.bit && !opt_v.bit) {
-		opt_K.bit = 0;					/* TMP ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
-		consensus_2D(0, Current.pass_W);
-		opt_K.bit = 1;					/* REASSIGN SETTING */
+		consensus_2D(0, Current.pass_W, OFF);
 	}
 	else if (tot_repeats && opt_v.bit) {
 		print_2Dseq();
 	}
 	else {
-		opt_K.bit = 0;					/* TMP ASSIGNMENT TO PREVENT PRINTING OF CONSENSUS ROW */
-		consensus_2D(0, Current.pass_W);
-		opt_K.bit = 1;					/* REASSIGN SETTING */
+		consensus_2D(0, Current.pass_W, OFF);
 	}
 
 	return(tot_repeats);

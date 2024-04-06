@@ -205,16 +205,16 @@ struct cinch {
 	int pass_W;					/* Pass 2-D width                                                   */
 	int pass_H;					/* Pass 2-D height                                                  */
 } *Cinches[9],
-	 Start  = {0, 0, 0, 0, 0},		/* Initial pass (stage) to read a raw input sequence */
-	 Clean  = {0, 0, 0, 0, 0},		/* Pass to format original input string into acceptable characters and determine sequence type */
-	Cinch_T = {0, 0, 0, 0, 0},		/* Pass to cinch Tandem repeats using a special traversal of the Pathbox grid */
-	Cinch_L = {0, 0, 0, 0, 0},		/* Pass to cinch Long monomeric tracts that are of size >= 2* mrwrap */
-	Cinch_K = {0, 0, 0, 0, 0},		/* Pass to cinch intra-repeat K-mers */
-	Cinch_D = {0, 0, 0, 0, 0},		/* Pass to cinch De novo repeat structures (fractal repeats) based on the consensus row */
-	 Relax  = {0, 0, 0, 0, 0},		/* Pass to relax monomeric tracts that did not aid cinch-D cinches */
-	Recover = {0, 0, 0, 0, 0},		/* Optional pass to recover and check a 1-D sequence from a 2-D alignment */
-	Current = {0, 0,-1, 0, 0};		/* Current holds the values from the latest pass, so that generic functions can simply look here */
-									/* Current.pass_V is pass counter, initialized to -1 so that it is incremented to 0 for Start pass */
+	 Start  = {0, 0, 0, 0, 0},	/* Initial pass (stage) to read a raw input sequence */
+	 Clean  = {0, 0, 0, 0, 0},	/* Pass to format original input string into acceptable characters and determine sequence type */
+	Cinch_T = {0, 0, 0, 0, 0},	/* Pass to cinch Tandem repeats using a special traversal of the Pathbox grid */
+	Cinch_L = {0, 0, 0, 0, 0},	/* Pass to cinch Long monomeric tracts that are of size >= 2* mrwrap */
+	Cinch_K = {0, 0, 0, 0, 0},	/* Pass to cinch intra-repeat K-mers */
+	Cinch_D = {0, 0, 0, 0, 0},	/* Pass to cinch De novo repeat structures (fractal repeats) based on the consensus row */
+	 Relax  = {0, 0, 0, 0, 0},	/* Pass to relax monomeric tracts that did not aid cinch-D cinches */
+	Recover = {0, 0, 0, 0, 0},	/* Optional pass to recover and check a 1-D sequence from a 2-D alignment */
+	Current = {0, 0,-1, 0, 0};	/* Current holds the values from the latest pass, so that generic functions can simply look here */
+								/* Current.pass_V is pass counter, initialized to -1 so that it is incremented to 0 for Start pass */
 int cyc_count=0;
 
 /* The segment struct type organizes the spine and belly row positions of the 2-D 'snake' for computing MSA tucks */
@@ -245,7 +245,7 @@ void 				clear_cinch2D(void);
 void 				clear_right(char swipe_align2D[][MAXROW]);
 int 				col_isclear(  char  check_array[][MAXROW], unsigned int at_n, int row, short int updown);
 int 				col_isclear1D(char *check_array          , unsigned int at_n, int row, short int updown);
-unsigned int 		consensus_2D(int n_start, int n_width);
+unsigned int 		consensus_2D(int n_start, int n_width, short unsigned int print);
 int 				count_wrap_blocks(int lcl_width, int lcl_opt_w);	/* lcl_width IS WIDTH OF 2-D MHA ARRAY */
 int 				get_1Dz(int x, int y, int ignoreCheck);
 void 				line_end(int type, int c, int lcl_width);
@@ -467,7 +467,7 @@ char *aptr = aptr_start;
 
 
 /*****************************************************************************************/
-unsigned int consensus_2D(int n_start, int n_width)
+unsigned int consensus_2D(int n_start, int n_width, short unsigned int print)
 {
 	int badsites=0, m=0, n=0, n_end, x=1;
 	int con_width = Current.pass_W;
@@ -587,14 +587,14 @@ unsigned int consensus_2D(int n_start, int n_width)
 			if (Current.pass_V) { /* IF PASS NUMBER */
 				consensus_ar[25][0]=1;
 				consensus_ar[25][n+1]=checktransletr;
-/*				sprintf(dev_notes, "checktransit=%d at n=%d", checktransit, n);
-*/			}
+				sprintf(dev_notes, "checktransit=%d at n=%d", checktransit, n);
+			}
 		}
 		else if (plustransit)
 			++consensus_ar[0][n+1];
 	} /* END OF FOR n LOOP */
 
-	if (opt_K.bit) {							/* opt_K SHOW CONSENSUS ROW */
+	if (print && opt_K.bit) {							/* opt_K SHOW CONSENSUS ROW */
 		/* PRINT CONSENSUS ROWS */
 		for (m = 1; consensus_ar[m][0] != '\0' && m<conrows-1; m++) {
 			line_end(BLOCKHEAD, 9, 9);
@@ -641,6 +641,12 @@ unsigned int consensus_2D(int n_start, int n_width)
 		consensus[n] = consensus_ar[1][n+1];
 	}
 	consensus[con_width] = '\0';
+	if (!print) {
+		if (!badsites) 
+			Current.pass_Q = 1000;
+		else
+			Current.pass_Q = round((1000*(con_width-badsites))/con_width);
+	}
 	return(badsites);
 }
 /*****************************************************************************************/
@@ -1225,9 +1231,6 @@ short unsigned int lcl_opt_F = 0;
 
 		} /* END OF m=m_start FOR LOOP */
 
-		i = Current.pass_V;							/* GET PASS NUMBER */
-		Cinches[i]->pass_H = Current.pass_H = m+1;	/* ASSIGN COUNTED HEIGHT (# OF ROWS) TO HEIGHT SLOT */
-
 		/* PRINT RULER */
 		head_start = (j * linewrap) % 10;
 		if (j+1 < blocks2D) {
@@ -1252,9 +1255,9 @@ short unsigned int lcl_opt_F = 0;
 		/* *********************** */
 
 		/* ADD TO COUNT OF MISMATCHED SITES */
-		mmsites = mmsites + consensus_2D(j_start, linewrap);
+		mmsites = mmsites + consensus_2D(j_start, linewrap, ON);
 
-		if (opt_f.bit && Current.pass_V > 5 && mmsites == 0) {
+		if (opt_f.bit && Current.pass_V > 5 && !mmsites) {
 			foam_2D(j_start, linewrap);
 		}
 	} /* END OF FOR j PRINTING LOOP */
