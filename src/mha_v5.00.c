@@ -553,6 +553,9 @@ int main(int argc, char *argv[])
 				printf("\"\n");
 		}
 	}
+	else if (strlen(Seq_head) > 0)
+		printf("\n Processing: %s\n", Seq_head);
+
 	/***************************************************************************/
 	Clean.pass_V = seqtype = cleanseq(Seq);	/* SEQTYPE: 1=DNA, 2=RNA, 3=PROTEIN, 0=OTHER */
 	lenseq = strlen(Seq);
@@ -1465,7 +1468,11 @@ int main(int argc, char *argv[])
 	if (opt_B.val==2)
 		ZTick = &tick;		/* reset pointer of zero tick character */
 
-	print_2Dseq();
+	if (opt_v.bit || Current.pass_W < par_wrap.set)
+		print_2Dseq();
+	else
+		consensus_2D(0, Current.pass_W, OFF);
+
 	Cinch_T.pass_Q = Current.pass_Q;
 
 	if (recoverlen()==lenseq)
@@ -1544,8 +1551,10 @@ int main(int argc, char *argv[])
 		}
 		while (relax_length);
 
-		if (Relax.pass_R || opt_f.bit)
+		if (Relax.pass_R || opt_f.bit) {
+			opt_K.bit = 1;
 			print_2Dseq();
+		}
 		Relax.pass_Q = Current.pass_Q;
 	}	
 
