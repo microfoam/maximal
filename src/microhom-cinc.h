@@ -1035,17 +1035,17 @@ unsigned short int nuctransit=0;
 		letr = align2D[m][n];
 
 		if (align2D[m][n+1] == slip.sym) {		/* EDGE DETECTED */
-			while (isalpha(align2D[m+v][n-1]) && 
+			while ((!n || isalpha(align2D[m+v][n-1])) && 
 				   isalpha(align2D[m+v][ n ]) &&
 						   align2D[m+v][n+1] == slip.sym   ) {
 				v++;
 			}
-			while (align2D[m+v+w][n-1] == blnk && 
+			while ((!n || align2D[m+v+w][n-1]==blnk) && 
 				   align2D[m+v+w][ n ] == letr && 
 				   align2D[m+v+w][n+1] == slip.sym     ) {
 				w++;
 			}
-			if (align2D[m+v+w][n-1] == blnk && align2D[m+v+w][n] == letr) 
+			if ((!n || align2D[m+v+w][n-1]==blnk) && align2D[m+v+w][n]==letr) 
 				w++;		/* TOTAL w EQUALS LENGTH OF HOMOPOLYMER TO RELAX */
 
 			for (i = m+v+w; i < height; i++) {
