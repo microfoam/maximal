@@ -1456,7 +1456,9 @@ int main(int argc, char *argv[])
 		clear_right(align2D);
 	}
 	free(cinchbox);
-	print1D();
+
+	if (opt_v.bit)
+		print1D();
 
 	/********* 2. cinch_t MODULE: WRAPS LARGEST EXACT k-mers, IGNORES INTRA-TR TRs *****************/
 	++Current.pass_V;
@@ -1522,10 +1524,11 @@ int main(int argc, char *argv[])
 			else
 				d_width = Current.pass_W;
 		}
-		Cinch_D.pass_V = Cinch_D.pass_R;
 	}
 
 	Cinch_D.pass_Q = Current.pass_Q;
+	free(pcind);
+	free(dConsensus);
 
 	if (opt_D.val==5)
 		dev_prompt(MAIN,__LINE__,file_name); 
@@ -1539,15 +1542,12 @@ int main(int argc, char *argv[])
 			relax_2D();
 			relax_length = Current.pass_W - relax_length;
 		}
-		while (relax_length > 0);
+		while (relax_length);
 
 		if (Relax.pass_R || opt_f.bit)
 			print_2Dseq();
 		Relax.pass_Q = Current.pass_Q;
 	}	
-
-	free(pcind);
-	free(dConsensus);
 
 	if (opt_D.val==6)
 		dev_prompt(MAIN,__LINE__,file_name); 
