@@ -18,28 +18,28 @@ fi
 
 # -D# 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
-./maximal -Kx -D7 waves/seals/vnd_ex3_Danan.txt
-./maximal -Kx -D7 waves/seals/vnd_ex3_Dbiar.txt
-./maximal -Kx -D7 waves/seals/vnd_ex3_Dbipe.txt
-./maximal -Kx -D7 waves/seals/vnd_ex3_Derec.txt
-./maximal -Kx -D7 waves/seals/vnd_ex3_Dmaur.txt
-./maximal -Kx -D7 waves/seals/vnd_ex3_Dmela.txt
-./maximal -Kx -D7 waves/seals/vnd_ex3_Dsant.txt
-./maximal -Kx -D7 waves/seals/vnd_ex3_Dsech.txt
-./maximal -Kx -D7 waves/seals/vnd_ex3_Dsimu.txt
-./maximal -Kx -D7 waves/seals/vnd_ex3_Dsuzu.txt
-./maximal -Kx -D7 waves/seals/vnd_ex3_Dyaku.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dbiar.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Derec.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dmaur.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dmela.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dmira.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dpers.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dpseu.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dsant.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dsech.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dsimu.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dsuzu.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dwill.txt
-./maximal -Kx -D7 waves/sharks/vnd_NEE_Dyaku.txt
+./maximal -x -D0 waves/seals/vnd_ex3_Danan.txt
+./maximal -x -D0 waves/seals/vnd_ex3_Dbiar.txt
+./maximal -x -D0 waves/seals/vnd_ex3_Dbipe.txt
+./maximal -x -D0 waves/seals/vnd_ex3_Derec.txt
+./maximal -x -D0 waves/seals/vnd_ex3_Dmaur.txt
+./maximal -x -D0 waves/seals/vnd_ex3_Dmela.txt
+./maximal -x -D0 waves/seals/vnd_ex3_Dsant.txt
+./maximal -x -D0 waves/seals/vnd_ex3_Dsech.txt
+./maximal -x -D0 waves/seals/vnd_ex3_Dsimu.txt
+./maximal -x -D0 waves/seals/vnd_ex3_Dsuzu.txt
+./maximal -x -D0 waves/seals/vnd_ex3_Dyaku.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dbiar.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Derec.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dmaur.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dmela.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dmira.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dpers.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dpseu.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dsant.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dsech.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dsimu.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dsuzu.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dwill.txt
+./maximal -x -D0 waves/sharks/vnd_NEE_Dyaku.txt
 
