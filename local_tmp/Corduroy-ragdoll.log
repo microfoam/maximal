@@ -214,6 +214,33 @@ WCR average: 0.500059
 WCR avg history (150k tests @ b=3): ~0.499--0.500
 
 
+                                               < vnd_getworked_ragdoll >
+Darwin 22.6.0 arm64 arm
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v5.00	Apr  6 09:59:24 2024	b3 x1	0.610	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
+v5.00	Apr  6 10:06:08 2024	b3 x1	0.590	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
+
+Number of tests initiated:         150000
+Number of tests completed:         150000
+Number of tests w/ PASS 1000:      150000
+Number of tests w/ REC. 1000:      150000
+Number of tests w/ cycling: 299
+
+Tests canceled (if any, w/ preceding run for context):
+Tests with PASS < 1000 (if any):
+Tests with REC. < 1000 (if any):
+
+WCR average: 0.500137
+
+WCR avg history (150k tests @ b=3): ~0.4998--0.5002
+
+
 Recent ragdoll run times
 v5.00	Apr  3 19:25:09 2024	b3 x1	P:1000	R:1000	0.520	RND:XX	waves/sharks/vnd_NEE_Dsuzu.txt (100 bp, -)	 
 v5.00	Apr  3 19:18:24 2024	b3 x1	P:1000	R:1000	0.450	RND:XX	waves/seals/vnd_ex3_Dmela.txt (100 bp, +)	 
@@ -234,4 +261,8 @@ v5.00	Apr  5 14:36:58 2024	b3 x1	0.430	P:1000 R:1000 RND:XX cyc:0 waves/seals/vn
 v5.00	Apr  5 16:27:18 2024	b3 x1	0.450	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
 v5.00	Apr  5 16:20:39 2024	b3 x1	0.510	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
                    6:39
+
+v5.00	Apr  6 10:06:08 2024	b3 x1	0.590	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
+v5.00	Apr  6 09:59:24 2024	b3 x1	0.610	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
+                   6:44
 
