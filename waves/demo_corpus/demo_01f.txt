@@ -1,0 +1,8 @@
+>demo_01f uncinchable sequence + 2x TRs, 1 w/ fractal TR + long homopolymeric run
+AaTCG
+ATGC
+ACTGACGT
+actgacgt
+actgGacgt
+AGggggggggggggggggggggggggTC
+AGCT
