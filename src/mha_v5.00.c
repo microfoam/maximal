@@ -1764,17 +1764,17 @@ int main(int argc, char *argv[])
 			if (!Cinch_L.pass_R)
 				printf("%s post cinch-l   [pass #3]\n", letr_unit);
 			else if (Cinch_L.pass_R == 1)
-				printf("%s post cinch-l   [pass #3: one run]\n", letr_unit);
+				printf("%s post cinch-l   [pass #3: one run cinched]\n", letr_unit);
 			else if (Cinch_L.pass_R > 1)
-				printf("%s post cinch-l   [pass #3: %d runs]\n", letr_unit, Cinch_L.pass_R);
+				printf("%s post cinch-l   [pass #3: %d runs cinched]\n", letr_unit, Cinch_L.pass_R);
 			break;
 		case 4:	
 			if (!Cinch_K.pass_V)
 				printf("%s post cinch-k   [pass #4]\n", letr_unit);
 			else if (Cinch_K.pass_V == 1)
-				printf("%s post cinch-k   [pass #4: one row added]\n", letr_unit);
+				printf("%s post cinch-k   [pass #4: one cinch]\n", letr_unit);
 			else if (Cinch_K.pass_V > 1)
-				printf("%s post cinch-k   [pass #4: %d rows added]\n", letr_unit, Cinch_K.pass_V);
+				printf("%s post cinch-k   [pass #4: %d cinches]\n", letr_unit, Cinch_K.pass_V);
 			break;
 		case 5:	
 			if (Cinch_D.pass_R) {
@@ -1783,12 +1783,10 @@ int main(int argc, char *argv[])
 				else
 					printf("%s post cinch-d   [pass #5: %d cinches]\n", letr_unit, Cinch_D.pass_R);
 			}
-			else if (opt_d.val==1)
-				printf("%s post cinch-d   [pass #5: no cinches at LOW-TO-HIGH k (default)]\n", letr_unit);
-			else if (opt_d.val==2)
-				printf("%s post cinch-d   [pass #5: no cinches at HIGH-TO-LOW k (optioned)]\n", letr_unit);
 			else if (!opt_d.bit)
 				printf("%s post cinch-d   [pass #5: SKIPPED BY REQUEST]\n", letr_unit);
+			else
+				printf("%s post cinch-d   [pass #5]\n", letr_unit);
 			break;
 		case 6:	
 			if (Relax.pass_R > 1)
