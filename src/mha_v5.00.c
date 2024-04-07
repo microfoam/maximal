@@ -1705,12 +1705,18 @@ int main(int argc, char *argv[])
 	/* PRINT OPTION FOR K-MER REPORT AFTER cinch_t **********************/
 	if (opt_k.bit) {
 
-		printf(" Unique cinch-t slips: %4d\n", Cinch_T.pass_R);
+		int sum_mod3s = 0;
+
+		printf(" Unique cinch-t n-mers: %4d\n", Cinch_T.pass_R);
 
 		for (i = 2; i <= WIDTH; i++) {
-			if (slips[i])
-				printf(" %2d-mers:%2d\n", i, slips[i]);
+			if (slips[i]) {
+				printf(" %16d-mers:%5d\n", i, slips[i]);
+				if (!(i%3))
+					sum_mod3s += slips[i];
+			}
 		}
+		printf(" Proportion of mod 3 n-mers: %.4f\n", (float) sum_mod3s / Cinch_T.pass_R);
 
 		print_section_spacer();
 	}
