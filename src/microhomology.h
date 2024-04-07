@@ -272,7 +272,6 @@ void 				mha_randomize2(char *input_seq, int rsize);
 void 				print_base62_table(void);
 void 				shuffle(int *array, int n);
 void 				usage(char *usage_version);	/* FOR PRINTING UNIFORM USAGE INFO */
-char 				*nmer_prefix(int i);		/* SWITCHES INTEGER TO N-MER PREFIX WRITTEN NAME */
 void 				free_2D(int **p2D, int lenseq);
 struct segment 		makesegment(int top, int bottom);
 struct segment * 	makesnake(char *array, int height, int width, int w_plus_rattle, short unsigned int zcol);
@@ -1087,24 +1086,6 @@ int mn1D(int row, int col)
 	return(row*(Cinch_T.pass_W+1) + col);
 }
 
-
-/*****************************************************************************************/
-char *nmer_prefix(int p)
-{
-	static char *prefix[22] = { "X",
-		"Mono", "Di", "Tri", "Tetra",
-		"Penta", "Hexa", "Hepta",
-		"Octa", "Nona", "Deca",
-		"11-", "12-", "13-", "14-", "15-",
-		"16-", "17-", "18-", "19-", "20-", "21-"
-	};
-
-	if (p == 0 || p > 21)
-		return prefix[0];
-
-	else
-		return prefix[p];
-}
 
 /*****************************************************************************************/
 short unsigned int print_2Dseq(void)

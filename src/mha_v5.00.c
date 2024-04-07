@@ -1705,14 +1705,12 @@ int main(int argc, char *argv[])
 	/* PRINT OPTION FOR K-MER REPORT AFTER cinch_t **********************/
 	if (opt_k.bit) {
 
-		int k_start=2;
+		printf(" Unique cinch-t slips: %4d\n", Cinch_T.pass_R);
 
-		printf("\n Unique slips: %4d\n", Cinch_T.pass_R);
-
-		for (i = k_start; i <= 10; i++)
-			printf(" %smers:%3d \n", nmer_prefix(i), slips[i]);
-		for (i = 11; i <= WIDTH; i++)
-			printf(" %d-mers:%2d\n", i, slips[i]);
+		for (i = 2; i <= WIDTH; i++) {
+			if (slips[i])
+				printf(" %2d-mers:%2d\n", i, slips[i]);
+		}
 
 		print_section_spacer();
 	}
