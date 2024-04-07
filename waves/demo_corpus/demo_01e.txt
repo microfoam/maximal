@@ -4,5 +4,5 @@ ATGC
 ACTGACGT
 actgacgt
 actgGacgt
-AGgggggTC
+AGtttttTC
 AGCT
