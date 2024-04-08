@@ -25,5 +25,5 @@ fi
 	./maximal -Rn waves/sharks/nab_DWME_Dmela.txt
 
 ./surfboard-checkmha
-echo 'WCR avg history (15 tests @ b=3): 0.4794' | tee -a Corduroy.log
+echo 'WCR avg history (15 tests @ b=3): 0.4794 -> 0.471133' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
