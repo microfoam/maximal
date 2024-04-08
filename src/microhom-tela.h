@@ -852,29 +852,6 @@ void mark_tela(void)
 					}
 				}
 
-				/* CHECK TO SEE IF THERE ARE CYCLING ISLANDS THAT ARE PARTIALLY FRACTAL TO A PARENT & CANCEL NON-FRACTAL PART IF SIMPLE. squid~34 */
-				if (Dtr) {
-					for (i=n+k-1; i>=n+min_k; i--) {
-						if (tela[i].k1) {
-							if ((fract_k=tela[i].k1)<k && i-fract_k>=n && tela[i-k].ok==fract_k && i-k+tela[i-k].k1<=n) {
-								makefract(n,k,i-k);
-								if (tela[i-k-1].ok==fract_k) {
-									j = 1;
-									while (tela[i-k - j].ok == fract_k) {
-										push_mem(i-k - j,12);
-										clearall_tela(i-k - j++,1,-1,TWO);
-									}
-									j = 1;
-									while (tela[n+j].k1==k && i-fract_k<n+j) {
-										push_mem(n + j,13);
-										tela[n + j++].k1 = '\0';
-									}
-								}
-							}
-						}
-					}
-				}
-
 				/* CHECK TO SEE IF THERE ARE FRACTAL REPEATS WITH BELOW THRESHOLD DOPPELGANGERS. EXAMPLE: GTGT IN ONE UNIT, GCGT IN THE ADJACENT UNIT */
 				if (Dtr && imperfect_TR) {
 					for (i=m+min_k; i<n; i++) {
@@ -1241,7 +1218,7 @@ void mark_tela(void)
 						/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
 						if ((!tela[i].k1 || tela[i].k2) && tela[i].all_S<tela[n].all_S) {
 							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
-							push_mem(i, 12);
+							push_mem(i, 13);
 						}
 					}
 				}
@@ -1469,7 +1446,7 @@ void mark_tela(void)
 
 			if (tela[n].statf!=st_fract.sym && tela[n-1].c==tela[n].c && tela[n].or==1) {
 				tela[n].echoes = cyc_skip.sym;
-				push_mem(n, 12);
+				push_mem(n, 14);
 			}
 
 			int p,q;
@@ -1478,7 +1455,7 @@ void mark_tela(void)
 					if (tela[(p=m+i*k+j)].ok != tela[(q=n+i*k+j)].ok && tela[n].statl != st_lowcm.sym && !tela[p].k2) {
 						if (tela[p].ok && tela[p].statf!=st_fract.sym) {
 							clearall_tela(p,1,-1, TWO);
-							push_mem(p, 12);
+							push_mem(p, 15);
 						}
 						if (tela[q].ok) {
 							clearall_tela(q,1,-1, TWO);

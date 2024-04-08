@@ -21,7 +21,7 @@ fi
 DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
 # solved: push new solved runs onto top of stack starting w/ solved-97 
-./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_005.txt  # solution to string 006 also solved 005 +/- -x
+./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_007.txt  # solved by turning OFF mark_tela submodule treating partial fractals
 ./maximal -D$DEVPROMPT -KR   waves/chowder/chowder-2024_string_005.txt  # solution to string 006 also solved 005 +/- -x
 ./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_006.txt  # solved w/ slight adjustment of cinch_k st_Fract exception
 ./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_004.txt  # solved by bringing back deleted code in mark_tela
@@ -76,5 +76,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'WCR avg history (46 tests @ b=3): 0.394739' | tee -a Corduroy.log
+echo 'WCR avg history (46 tests @ b=3): 0.397609' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

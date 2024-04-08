@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo >> Corduroy.log
+echo '                                               < demo_real >' >> Corduroy.log
+
+
 while getopts c option
 do
 case "${option}"
@@ -18,40 +22,48 @@ fi
 
 # -D# 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
-./maximal -kx -D0 waves/seals/vnd_ex3_Dmela.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dsimu.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dsech.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dmaur.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Derec.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dyaku.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dsant.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dbiar.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dsuzu.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Danan.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dbipe.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dmira.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dpers.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dpseu.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dwill.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dmoja.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dviri.txt
-./maximal -kx -D0 waves/seals/vnd_ex3_Dgrim.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dmela.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dsimu.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dsech.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dmaur.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Derec.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dyaku.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dsant.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dbiar.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dsuzu.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Danan.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dbipe.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dmira.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dpers.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dpseu.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dwill.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dmoja.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dviri.txt
-./maximal -kx -D0 waves/sharks/vnd_NEE_Dgrim.txt
-
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dmela.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dsimu.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dsech.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dmaur.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Derec.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dyaku.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dsant.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dbiar.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dsuzu.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Danan.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dbipe.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dmira.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dpers.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dpseu.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dwill.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dmoja.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dviri.txt
+./maximal -Rkx -D0 waves/seals/vnd_ex3_Dgrim.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dmela.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dsimu.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dsech.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dmaur.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Derec.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dyaku.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dsant.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dbiar.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dsuzu.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Danan.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dbipe.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dmira.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dpers.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dpseu.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dwill.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dmoja.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dviri.txt
+./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dgrim.txt
+echo
+echo
+echo
+echo "$0"
+echo
+echo
+./surfboard-checkmha
+echo 'WCR avg history (36 tests @ b=3): 0.475889' | tee -a Corduroy.log
+echo | tee -a Corduroy.log
