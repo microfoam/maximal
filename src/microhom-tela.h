@@ -853,14 +853,14 @@ void mark_tela(void)
 				}
 
 				/* CHECK TO SEE IF THERE ARE CYCLING ISLANDS THAT ARE PARTIALLY FRACTAL TO A PARENT & CANCEL NON-FRACTAL PART IF SIMPLE. squid~34 */
-				if (OFF && Dtr) {
+				if (Dtr) {
 					for (i=n+k-1; i>=n+min_k; i--) {
 						if (tela[i].k1) {
 							if ((fract_k=tela[i].k1)<k && i-fract_k>=n && tela[i-k].ok==fract_k && i-k+tela[i-k].k1<=n) {
 								makefract(n,k,i-k);
 								if (tela[i-k-1].ok==fract_k) {
 									j = 1;
-									while (tela[i-k - j].ok == fract_k) {
+									while (OFF && tela[i-k - j].ok == fract_k) {
 										push_mem(i-k - j,12);
 										clearall_tela(i-k - j++,1,-1,TWO);
 									}

@@ -7,8 +7,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr  8 13:25:25 2024	b3 x1	0.491	P:1000 R:1000 RND: cyc:0 waves/seals/vnd_ex3_Dmela.txt (+956 bp)	 
-v5.00	Apr  8 13:25:38 2024	b3 x1	0.463	P:1000 R:1000 RND: cyc:0 waves/sharks/vnd_NEE_Dgrim.txt (+1910 bp)	 
+v5.00	Apr  8 22:52:07 2024	b3 x1	0.491	P:1000 R:1000 RND: cyc:0 waves/seals/vnd_ex3_Dmela.txt (+956 bp)	 
+v5.00	Apr  8 22:52:15 2024	b3 x1	0.463	P:1000 R:1000 RND: cyc:0 waves/sharks/vnd_NEE_Dgrim.txt (+1910 bp)	 
 
 Number of tests initiated:         36
 Number of tests completed:         36
@@ -20,7 +20,7 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-WCR average: 0.475889
+WCR average: 0.475389
 
-WCR avg history (36 tests @ b=3): 0.475889
+WCR avg history (36 tests @ b=3): 0.475889 -> 0.475389
 
