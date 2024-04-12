@@ -1232,8 +1232,6 @@ void mark_tela(void)
 				j--;
 			}
 			for (i=j; i>0; i--) {
-				if (!tela[i].isl || tela[i].isl!=tela[n].isl)
-					break;
 				if (tela[i].ok) {
 					if (i + tela[i].ok*(tela[i].or-1) > m || (tela[n].statf!=st_fract.sym && i+tela[i].ok>n)) {
 						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
@@ -1331,7 +1329,7 @@ void mark_tela(void)
 		}
 	}
 
-	/* IDENTIFY IRREDEMABLE CONFLICT ISLANDS IN THE SHADOW OF DOWNSTREAM CYCLING ISLANDS */
+	/* IDENTIFY IRREDEEMABLE CONFLICT ISLANDS IN THE SHADOW OF DOWNSTREAM CYCLING ISLANDS */
 	for (n=0; n<=lenseq; n++) {
 		if (tela[n].all_L && (k=tela[n].ok) && !tela[n-1].ok) {
 			m = n-k;
