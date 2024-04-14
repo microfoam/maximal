@@ -1,8 +1,8 @@
 /*******************************************************************************************************/
-/***** The program "lineup" is a micro homology alignment (MHA) program.                           *****/
+/***** The program "lineup" is a prototype tool for exploring micro-homology alignment (MHA).      *****/
 /***** Designed and written by Dr. Albert J. Erives. 2017-2024. AGPL-3.0.                          *****/
 /***** Code repository located at https://github.com/microfoam/maximal. Licensed under AGPL-3.0.   *****/
-/***** This program renders a 1-D DNA sequence into a 2-D self-alignment to rescue micro-paralogy. *****/
+/***** This program renders a 1-D DNA sequence into a 2-D self-alignment to align micro-paralogy.  *****/
 /*******************************************************************************************************/
 
 #include <stdio.h>			/********************/
@@ -17,8 +17,8 @@
 #include "microhomology.h"	/* lineup header: main header file                                         */
 #include "microhom-devl.h"	/* lineup header: program development code, testing, and evaluation        */
 #include "microhom-skor.h"	/* lineup header: alignment scoring definitions and functions              */
-#include "microhom-tela.h"	/* lineup header: verb_tela() functions and coord struct-related           */
-#include "microhom-cinc.h"	/* lineup header: original cinch modules except for cinch-t (in main)      */
+#include "microhom-tela.h"	/* lineup header: VERB_tela() functions and coord struct-related functions */
+#include "microhom-cinc.h"	/* lineup header: cinch-k/l/d modules except for cinch-t (in main, below)  */
 /*******************************************************************************************************/
 
 int main(int argc, char *argv[])
@@ -78,6 +78,7 @@ int main(int argc, char *argv[])
 	int scooch = 0;
 
 	int slips[WIDTH+1] = {0};	/* Array of counters for unique slips of WIDTH x	*/
+	int slipskrmod3[WIDTH+1]={0};	/* Array of counters for k*r mod(3) slips 	*/
 	char cycle[WIDTH+1];		/* THIS ARRAY HOLDS THE CYCLIC PATTERN OF TRs W/ >2 UNITS */
 	char Seq_head[100] = {0};	/* FASTA HEADER */
 	char Seq_i[MAXROW] = "TGTGTGAGTGAnnnnnnTGTGTGAGTGAGnnnnnTGTGTGAGTGAGTGAnnTGTGTGAGTGAGTGAGT"; 	/* INPUT SEQUENCE W/ DEFAULT */
@@ -1417,6 +1418,8 @@ int main(int argc, char *argv[])
 						n = n + reps*k;
 						a2D_n = a2D_n + overslip;
 						r = 0;
+						if ((k*reps)%3 == 0)
+							++slipskrmod3[k];
 						break;
 					}
 					else 				/* CASE WHEN Dtr != Did AND NOT IMPERFECT-TYPE TR */
@@ -1705,18 +1708,21 @@ int main(int argc, char *argv[])
 	/* PRINT OPTION FOR K-MER REPORT AFTER cinch_t **********************/
 	if (opt_k.bit) {
 
-		int sum_mod3s = 0;
+		int sum_k_mod3s = 0, sum_kr_mod3s = 0;
 
-		printf(" Unique cinch-t n-mers: %4d\n", Cinch_T.pass_R);
+		printf(" Unique cinch-t k-mers: %4d\n", Cinch_T.pass_R);
 
 		for (i = 2; i <= WIDTH; i++) {
 			if (slips[i]) {
-				printf(" %16d-mers:%5d\n", i, slips[i]);
-				if (!(i%3))
-					sum_mod3s += slips[i];
+				printf(" %16d-mers:%5d (%5d)\n", i, slips[i], slipskrmod3[i]);
+				if (!(i%3)) {
+					sum_k_mod3s += slips[i];
+				}
+				sum_kr_mod3s += slipskrmod3[i];
 			}
 		}
-		printf(" Proportion of mod 3 n-mers: %.4f\n", (float) sum_mod3s / Cinch_T.pass_R);
+		printf(" Proportion of mod 3   k-mers: %.4f\n", (float) sum_k_mod3s / Cinch_T.pass_R);
+		printf(" Proportion of mod 3 r*k-mers: %.4f\n", (float) sum_kr_mod3s / Cinch_T.pass_R);
 
 		print_section_spacer();
 	}
@@ -1756,9 +1762,9 @@ int main(int argc, char *argv[])
 			break;
 		case 2:
 			if (Cinch_T.pass_R > 1)
-				printf("%s post cinch-t   [pass #2: %d cinches]\n", letr_unit, Cinch_T.pass_R);	
+				printf("%s post cinch-t   [pass #2: %3d cinches]\n", letr_unit, Cinch_T.pass_R);
 			else if (Cinch_T.pass_R)
-				printf("%s post cinch-t   [pass #2: %d cinch]\n", letr_unit, Cinch_T.pass_R);
+				printf("%s post cinch-t   [pass #2: %3d cinch]\n", letr_unit, Cinch_T.pass_R);
 			else if (opt_t.bit) 
 				printf("%s post cinch-t   [pass #2: SKIPPED BY REQUEST]\n", letr_unit);
 			else 
@@ -1770,7 +1776,7 @@ int main(int argc, char *argv[])
 			else if (Cinch_L.pass_R == 1)
 				printf("%s post cinch-l   [pass #3: one run cinched]\n", letr_unit);
 			else if (Cinch_L.pass_R > 1)
-				printf("%s post cinch-l   [pass #3: %d runs cinched]\n", letr_unit, Cinch_L.pass_R);
+				printf("%s post cinch-l   [pass #3: %3d runs cinched]\n", letr_unit, Cinch_L.pass_R);
 			break;
 		case 4:	
 			if (!Cinch_K.pass_V)
@@ -1778,14 +1784,14 @@ int main(int argc, char *argv[])
 			else if (Cinch_K.pass_V == 1)
 				printf("%s post cinch-k   [pass #4: one cinch]\n", letr_unit);
 			else if (Cinch_K.pass_V > 1)
-				printf("%s post cinch-k   [pass #4: %d cinches]\n", letr_unit, Cinch_K.pass_V);
+				printf("%s post cinch-k   [pass #4: %3d cinches]\n", letr_unit, Cinch_K.pass_V);
 			break;
 		case 5:	
 			if (Cinch_D.pass_R) {
 				if (Cinch_D.pass_R==1) 
 					printf("%s post cinch-d   [pass #5: one cinch]\n", letr_unit);
 				else
-					printf("%s post cinch-d   [pass #5: %d cinches]\n", letr_unit, Cinch_D.pass_R);
+					printf("%s post cinch-d   [pass #5: %3d cinches]\n", letr_unit, Cinch_D.pass_R);
 			}
 			else if (!opt_d.bit)
 				printf("%s post cinch-d   [pass #5: SKIPPED BY REQUEST]\n", letr_unit);
@@ -1794,9 +1800,9 @@ int main(int argc, char *argv[])
 			break;
 		case 6:	
 			if (Relax.pass_R > 1)
-				printf(    "%s post relax-2D  [pass #6: relaxed %d runs]\n", letr_unit, Relax.pass_R);
+				printf(    "%s post relax-2D  [pass #6: %3d runs relaxed]\n", letr_unit, Relax.pass_R);
 			else if (Relax.pass_R)
-				printf(    "%s post relax-2D  [pass #6: relaxed one run]\n", letr_unit);
+				printf(    "%s post relax-2D  [pass #6: one run relaxed]\n", letr_unit);
 			else if (!Relax.pass_R)
 				printf(    "%s post relax-2D  [pass #6]\n", letr_unit);
 			break;
