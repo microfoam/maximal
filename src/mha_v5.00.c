@@ -72,8 +72,8 @@ int main(int argc, char *argv[])
 	int Dtr = 0;				/* Counter for tandem repeat (tr) diagonal */
 	int Atr = 0;				/* Counter for additional repeats on the same diagonal */
 
-	float ratio1 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post cinch-d, pre relax-2D 	*/
-	float ratio2 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post relax-2D 				*/
+	float ratio1 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post Cinch-d, pre Relax-2D 	*/
+	float ratio2 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post Relax-2D 				*/
 
 	int scooch = 0;
 
@@ -1468,7 +1468,7 @@ int main(int argc, char *argv[])
 	if (opt_B.val==2)
 		ZTick = &tick;		/* reset pointer of zero tick character */
 
-	if (opt_v.bit || Current.pass_W < par_wrap.set)
+	if (opt_v.bit || opt_k.bit || Current.pass_W < par_wrap.set)
 		print_2Dseq();
 	else
 		consensus_2D(0, Current.pass_W, OFF);
