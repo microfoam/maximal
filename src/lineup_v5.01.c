@@ -477,7 +477,7 @@ int main(int argc, char *argv[])
 
 	printf("\n");	
 	mha_head(par_wrap.set+8);
-	printf("micro-homology alignment (MHA) ");
+	printf("lineup ");
 	if (opt_count) {
 		printf("-");
 		for (i = 1; i < 53; i++) {			/* UPPER-CASE LETTER OPTIONS */
