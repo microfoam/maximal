@@ -22,42 +22,47 @@ fi
 
 # -D# 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dmela.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dsimu.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dsech.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dmaur.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Derec.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dyaku.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dsant.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dbiar.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dsuzu.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Danan.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dbipe.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dmira.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dpers.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dpseu.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dwill.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dmoja.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dviri.txt
-./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dgrim.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dmela.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dsimu.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dsech.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dmaur.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Derec.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dyaku.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dsant.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dbiar.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dsuzu.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Danan.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dbipe.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dmira.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dpers.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dpseu.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dwill.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dmoja.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dviri.txt
-# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dgrim.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dmela.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dsimu.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dsech.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dmaur.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Derec.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dyaku.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dsant.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dbiar.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dsuzu.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Danan.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dbipe.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dmira.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dpers.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dpseu.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dwill.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dmoja.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dviri.txt
+./lineup -RKkx -D7 waves/sharks/vnd_NEE_Dgrim.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dmela.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dsimu.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dsech.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dmaur.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Derec.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dyaku.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dsant.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dbiar.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dsuzu.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Danan.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dbipe.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dmira.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dpers.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dpseu.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dwill.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dmoja.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dviri.txt
+./lineup -RKkx -D7 waves/seals/vnd_ex3_Dgrim.txt
+./lineup -RKkx -D7 waves/seals/gapdh_Dmela.txt
+./lineup -RKkx -D7 waves/seals/gapdh_Mdome.txt
+./lineup -RKkx -D7 waves/seals/Med15_C_elegans_mdt-15.txt
+./lineup -RKkx -D7 waves/seals/Med15_S_cerevisiae_gal11.txt
+
 echo
 echo
 echo
@@ -65,5 +70,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'WCR avg history (36 tests @ b=3): 0.475889 -> 0.475389' | tee -a Corduroy.log
+echo 'WCR avg history (40 tests @ b=3): 0.4756' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
