@@ -1723,7 +1723,7 @@ int main(int argc, char *argv[])
 		}
 		printf(" Proportion of zero mod 3   k-mers: %.4f\n", (float) sum_k_mod3s / Cinch_T.pass_R);
 		printf(" Proportion of zero mod 3 r*k-mers: %.4f\n", (float) sum_kr_mod3s / Cinch_T.pass_R);
-
+		printf(" Cinch-t cinching rate per bp: %.4f\n", (float) Cinch_T.pass_R / lenseq);
 		print_section_spacer();
 	}
 	/***************************************************************************/
