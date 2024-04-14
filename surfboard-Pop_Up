@@ -9,7 +9,7 @@ echo '.~.                                                                       
 echo '///_M                                                                                                       '
 echo '/////_H                    _     _     _     _     _     _     _     _     _     _     _     _     _     _  '
 echo '///////_A__________.~._~.~.) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `'
-echo '```````^:^`````````          l           i           n           e           u           p                  '
+echo '```````^:^`````````                l           i           n           e           u           p            '
 
 gcc -o lineup -Wall -Wextra -Wstrict-prototypes -O2 src/lineup_v5.01.c -lm
 
