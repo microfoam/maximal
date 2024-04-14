@@ -42,5 +42,5 @@ fi
 ./lineup -Kx -D7     waves/demo_corpus/demo_03d.txt
 ./lineup -Kx -D7     waves/demo_corpus/demo_03e.txt
 ./lineup -Kx -D7     waves/demo_corpus/demo_03f.txt
-./lineup -Kx         waves/demo_corpus/demo_04.txt
-
+./lineup -Kx -D7     waves/demo_corpus/demo_04.txt
+./lineup -Kxk        waves/demo_corpus/kmer_mod3_counting.txt
