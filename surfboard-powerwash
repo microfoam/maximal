@@ -10,7 +10,7 @@ c)  echo 'with fresh compile (-c)' >> Corduroy.log
 esac
 done
 
-if [ ! -f maximal ]; then
+if [ ! -f lineup ]; then
 	./surfboard-Pop_Up
 fi
 if [ -f Corduroy.log ]; then

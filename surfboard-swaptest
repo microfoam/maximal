@@ -1,7 +1,7 @@
 #!/bin/bash
 # This is a script to demonstrate equivalence mappings under MHA.
 
-if [ ! -f maximal ]; then
+if [ ! -f lineup ]; then
 	./surfboard-Pop_Up
 fi
 if [ -f Surf_wavereport.mha ]; then
@@ -12,47 +12,47 @@ answer="n"
 
     echo "$0: Hit <enter> to start main equivalent swap series without -x option."
     read -s -n1 answer
-	./maximal -Kn  -D8 waves/experimental/Dmel-nab_DWME-Identity.txt
-	./maximal -Kn  -D8 waves/experimental/Dmel-nab_DWME-onlyR.txt
-	./maximal -Kn  -D8 waves/experimental/Dmel-nab_DWME-onlyY.txt
-	./maximal -Kn  -D8 waves/experimental/Dmel-nab_DWME-bothRY.txt
-	./maximal -Kn  -D8 waves/experimental/Dmel-nab_DWME-KM.txt
-	./maximal -Kn  -D8 waves/experimental/Dmel-nab_DWME-SW.txt
+	./lineup -Kn  -D8 waves/experimental/Dmel-nab_DWME-Identity.txt
+	./lineup -Kn  -D8 waves/experimental/Dmel-nab_DWME-onlyR.txt
+	./lineup -Kn  -D8 waves/experimental/Dmel-nab_DWME-onlyY.txt
+	./lineup -Kn  -D8 waves/experimental/Dmel-nab_DWME-bothRY.txt
+	./lineup -Kn  -D8 waves/experimental/Dmel-nab_DWME-KM.txt
+	./lineup -Kn  -D8 waves/experimental/Dmel-nab_DWME-SW.txt
 	echo >> Surf_wavereport.mha
 	
     echo "$0: Hit <enter> to start minor equivalent swap series 1 without -x option."
     read -s -n1 answer
-	./maximal -Kn  -D8 waves/experimental/Dmel-nab_DWME-OnlyK.txt
-	./maximal -Kn  -D8 waves/experimental/Dmel-nab_DWME-OnlyM.txt
+	./lineup -Kn  -D8 waves/experimental/Dmel-nab_DWME-OnlyK.txt
+	./lineup -Kn  -D8 waves/experimental/Dmel-nab_DWME-OnlyM.txt
 	echo >> Surf_wavereport.mha
 	
     echo "$0: Hit <enter> to start minor equivalent swap series 2 without -x option."
     read -s -n1 answer
-	./maximal -Kn  -D8 waves/experimental/Dmel-nab_DWME-OnlyS.txt
-	./maximal -Kn  -D8 waves/experimental/Dmel-nab_DWME-OnlyW.txt
+	./lineup -Kn  -D8 waves/experimental/Dmel-nab_DWME-OnlyS.txt
+	./lineup -Kn  -D8 waves/experimental/Dmel-nab_DWME-OnlyW.txt
 	echo >> Surf_wavereport.mha
 	echo >> Surf_wavereport.mha
 	
     echo "$0: Hit <enter> to start main equivalent swap series WITH -x option."
     read -s -n1 answer
-	./maximal -Knx -D8 waves/experimental/Dmel-nab_DWME-Identity.txt
-	./maximal -Knx -D8 waves/experimental/Dmel-nab_DWME-onlyR.txt
-	./maximal -Knx -D8 waves/experimental/Dmel-nab_DWME-onlyY.txt
-	./maximal -Knx -D8 waves/experimental/Dmel-nab_DWME-bothRY.txt
-	./maximal -Knx -D8 waves/experimental/Dmel-nab_DWME-KM.txt
-	./maximal -Knx -D8 waves/experimental/Dmel-nab_DWME-SW.txt
+	./lineup -Knx -D8 waves/experimental/Dmel-nab_DWME-Identity.txt
+	./lineup -Knx -D8 waves/experimental/Dmel-nab_DWME-onlyR.txt
+	./lineup -Knx -D8 waves/experimental/Dmel-nab_DWME-onlyY.txt
+	./lineup -Knx -D8 waves/experimental/Dmel-nab_DWME-bothRY.txt
+	./lineup -Knx -D8 waves/experimental/Dmel-nab_DWME-KM.txt
+	./lineup -Knx -D8 waves/experimental/Dmel-nab_DWME-SW.txt
 	echo >> Surf_wavereport.mha
 	
     echo "$0: Hit <enter> to start minor equivalent swap series 1 WITH -x option."
     read -s -n1 answer
-	./maximal -Knx -D8 waves/experimental/Dmel-nab_DWME-OnlyK.txt
-	./maximal -Knx -D8 waves/experimental/Dmel-nab_DWME-OnlyM.txt
+	./lineup -Knx -D8 waves/experimental/Dmel-nab_DWME-OnlyK.txt
+	./lineup -Knx -D8 waves/experimental/Dmel-nab_DWME-OnlyM.txt
 	echo >> Surf_wavereport.mha
 	
     echo "$0: Hit <enter> to start minor equivalent swap series 2 WITH -x option."
     read -s -n1 answer
-	./maximal -Knx -D8 waves/experimental/Dmel-nab_DWME-OnlyS.txt
-	./maximal -Knx -D8 waves/experimental/Dmel-nab_DWME-OnlyW.txt
+	./lineup -Knx -D8 waves/experimental/Dmel-nab_DWME-OnlyS.txt
+	./lineup -Knx -D8 waves/experimental/Dmel-nab_DWME-OnlyW.txt
 	echo >> Surf_wavereport.mha
 
 clear

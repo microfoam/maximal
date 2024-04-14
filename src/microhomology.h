@@ -1,5 +1,5 @@
 /******************************************************************/
-/* maximal's microhomology.h: header file since mha_v3.97.c       */
+/* lineup's microhomology.h: header file since mha_v3.97.c       */
 /******************************************************************/
 
 #ifndef FILE_LOGY_SEEN
@@ -157,7 +157,7 @@ struct {
 
 
 /* This unnamed struct type organizes a set of pointers and names for mha's 2-D alignment character set.               */
-/* Note that much of maximal's legacy code relies on isalpha(), so many symbols cannot be changed to alpha characters. */
+/* Note that much of lineup's legacy code relies on isalpha(), so many symbols cannot be changed to alpha characters. */
 struct {
 	char	sym;	/* character symbol      */
 	int		cod;	/* decimal unicode value */
@@ -1356,8 +1356,8 @@ void usage(char *usage_version)
 {
 	int i;
 
-	printf("Running maximal version %s, a program for micro-homology alignment (MHA).\n", usage_version);
-	printf("\nUsage: ./maximal -[OPTIONS] sequence.txt");
+	printf("Running lineup version %s, a program for micro-homology alignment (MHA).\n", usage_version);
+	printf("\nUsage: ./lineup -[OPTIONS] sequence.txt");
 	for (i=1; i<53; i++) {
 		if (*Options[i]->description)
 			printf("\n\t\t -%c\t%s",Options[i]->sym, Options[i]->description);
@@ -1365,8 +1365,8 @@ void usage(char *usage_version)
 	printf("\n\n");
 	printf("  *   This option takes an optional number argument with a monotonically-increasing effect.\n");
 	printf("  *x  This option takes an optional number argument specifying which mode to use among a set of size x.\n");
-	printf("\n Usage examples: ./maximal -v1 sequence_file.txt            [Run in verbose user mode]");
-	printf("\n                 ./maximal -Kn sequence_file.txt -X2 -Y800  [Show consensus; skip relax-2D; use Fisher-Yates to generate 800 bp]\n");
+	printf("\n Usage examples: ./lineup -v1 sequence_file.txt            [Run in verbose user mode]");
+	printf("\n                 ./lineup -Kn sequence_file.txt -X2 -Y800  [Show consensus; skip relax-2D; use Fisher-Yates to generate 800 bp]\n");
 	printf("\n Citations:");
 	printf("\n  (1) Erives, A. J. (2018) Genetic sequences are two-dimensional. bioRxiv 2018.");
 	printf("\n      https://doi.org/10.1101/299867. CC-BY 4.0 International license.");

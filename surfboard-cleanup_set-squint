@@ -11,7 +11,7 @@ c) 	./surfboard-Pop_Up
 esac
 done
 
-if [ ! -f maximal ]; then
+if [ ! -f lineup ]; then
 	./surfboard-Pop_Up
 fi
 if [ -f Surf_wavereport.mha ]; then
@@ -21,56 +21,56 @@ fi
 DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
 # solved: push new solved runs onto top of stack starting w/ solved-97 
-./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_010.txt  # solved by deleting break condition in mark_tela loop based on island continuity
-./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_009.txt  # cinch-k chowder after turning off mark_tela module
-./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_008.txt  # cinch-k chowder after turning off mark_tela module
-./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_007.txt  # solved by turning OFF mark_tela submodule treating partial fractals
-./maximal -D$DEVPROMPT -KR   waves/chowder/chowder-2024_string_005.txt  # solution to string 006 also solved 005 +/- -x
-./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_006.txt  # solved w/ slight adjustment of cinch_k st_Fract exception
-./maximal -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_004.txt  # solved by bringing back deleted code in mark_tela
-./maximal -D$DEVPROMPT -KnR  waves/chowder/chowder-2024_string_003.txt  # solved w/ restriction of existing mark_tela heuristic to k<9
-./maximal -D$DEVPROMPT -KnxR waves/chowder/chowder-2024_string_002.txt  # solved w/ new cinch_t case using tela marks 
-./maximal -D$DEVPROMPT -KnxR waves/chowder/chowder-2024_string_001.txt  # solved by deleting code for one cinch_k case 
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_28-xb3_1a-20pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_29-xb3_1a-20pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_30-xb3_1b-80pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_31-xb3_1b-80pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_32-xb3_1b-80pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_33-xb3_2a-50pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_34-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_35-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_36-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_37-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_27-xb3.txt	# solved-116 Plus cinch_t() condition on k2; b3-b6 washmach chowder (+/- x)
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_26-xb3.txt	# solved-115 Removal of two clearall modules in mark_tela; -x b3/4 washmach chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_25-xb3.txt	# solved-114 Removal of a clearall conflict module in mark_tela; xb3-only washmach chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_24-xb3.txt	# solved-113 Additional low-complexity trigger in mark_tela(); xb3-only washmach chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_23-xb3.txt	# solved-112 Adjustment to clearall module in mark_tela; washmach chowder b3--b6 
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_22-xb3.txt	# solved-111 Bug fix in mark_tela(); -x washmach crash string 
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_19-xb3.txt 	# solved-110 Edits in cinch_t; unsolved after solved-109, xb3-chowder only (after solved-108)
+./lineup -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_010.txt  # solved by deleting break condition in mark_tela loop based on island continuity
+./lineup -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_009.txt  # cinch-k chowder after turning off mark_tela module
+./lineup -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_008.txt  # cinch-k chowder after turning off mark_tela module
+./lineup -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_007.txt  # solved by turning OFF mark_tela submodule treating partial fractals
+./lineup -D$DEVPROMPT -KR   waves/chowder/chowder-2024_string_005.txt  # solution to string 006 also solved 005 +/- -x
+./lineup -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_006.txt  # solved w/ slight adjustment of cinch_k st_Fract exception
+./lineup -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_004.txt  # solved by bringing back deleted code in mark_tela
+./lineup -D$DEVPROMPT -KnR  waves/chowder/chowder-2024_string_003.txt  # solved w/ restriction of existing mark_tela heuristic to k<9
+./lineup -D$DEVPROMPT -KnxR waves/chowder/chowder-2024_string_002.txt  # solved w/ new cinch_t case using tela marks 
+./lineup -D$DEVPROMPT -KnxR waves/chowder/chowder-2024_string_001.txt  # solved by deleting code for one cinch_k case 
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_28-xb3_1a-20pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_29-xb3_1a-20pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_30-xb3_1b-80pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_31-xb3_1b-80pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_32-xb3_1b-80pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_33-xb3_2a-50pcGC.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_34-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_35-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_36-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_37-xb3_5a-92pcY.txt	# solved-117 by code reversion; cinch_k washmach chowder at -xb3
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_27-xb3.txt	# solved-116 Plus cinch_t() condition on k2; b3-b6 washmach chowder (+/- x)
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_26-xb3.txt	# solved-115 Removal of two clearall modules in mark_tela; -x b3/4 washmach chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_25-xb3.txt	# solved-114 Removal of a clearall conflict module in mark_tela; xb3-only washmach chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_24-xb3.txt	# solved-113 Additional low-complexity trigger in mark_tela(); xb3-only washmach chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_23-xb3.txt	# solved-112 Adjustment to clearall module in mark_tela; washmach chowder b3--b6 
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_22-xb3.txt	# solved-111 Bug fix in mark_tela(); -x washmach crash string 
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_19-xb3.txt 	# solved-110 Edits in cinch_t; unsolved after solved-109, xb3-chowder only (after solved-108)
 													# solved-108 Coordinated changes in next_k() and cinch_t (main); b3-only chowder (+/- x)
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_20-xb3.txt 	# solved-109 Redaction/edits of solved-108; cinch-t tela discontinuities, washmach chowder (1a 20% GC source) 
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_21-xb3.txt 	# solved-109 Redaction/edits of solved-108; cinch-t tela discontinuities, xb3-only washmach chowder (5a 92% Y source)
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_18-xb3.txt 	# solved-107 edit to solved-106 additions; washmach chowder (2a 50% GC source), -xb3-only
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_17-xb3.txt	# solved-106 imperfect final unit overlapping dwnstr bigger k-mer; -xb3-only washmach chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_15-xb3.txt	# solved-105 Conflict calling in mark_tela(); washmach chowder (1a 20% GC source) -b--6
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_16-xb3.txt	# solved-105 Conflict calling in mark_tela(); washmach chowder (2a 50% GC source) -b--6; split-sec to squint_15
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_14-xb3.txt 	# solved-104 Conditioning entry into cyclelize from cinch_t; -x b3- & b4- only washing_machine chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_13-xb3.txt	# solved-103 Edits in fractal splitting w/ reorganization; -x b3-only chowder (mined at 1/240k b=3)
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_41-b3.txt 	# solved-102 New cinch_t block of some future cinch_k in last unit; -b3--6 vnd_ragdoll chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squirt_42-b3.txt 	# solved-102 New cinch_t block of some future cinch_k in last unit; -x, -b3--6 vnd_ragdoll chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_12-xb3.txt	# solved-102 New cinch_t block of some future cinch_k in last unit; -b3--6 washing_machine chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_10-xb3.txt	# solved-101 another conflict calling case in mark_tela(); b3-only chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_07-xb3.txt	# solved-100 conflict calling in mark_tela(); b3- and b4- chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_11-xb3.txt	# solved-100 conflict calling in mark_tela(); b3-only chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_08-xb3.txt	# solved-99 Simple edit on entry into fractal splitting block; b3--b6 chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_09-xb3.txt	# solved-99 Simple edit on entry into fractal splitting block; b3--b6 chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_02-xb3.txt	# solved-98 next_k() related; previously not chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_03-xb3.txt	# solved-98 next_k() related; previously not chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_05-xb3.txt	# solved-98 next_k() related; previously not chowder
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_04-xb3.txt	# solved-98 next_k() related;
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_06-xb3.txt 	# solved-97 New split fractal case; previously not chowder but for unsatisfying reason
-./maximal -D$DEVPROMPT -KnxR waves/squeegee/squint_01-xb3.txt 	# solved-97 New split fractal case;
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_20-xb3.txt 	# solved-109 Redaction/edits of solved-108; cinch-t tela discontinuities, washmach chowder (1a 20% GC source) 
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_21-xb3.txt 	# solved-109 Redaction/edits of solved-108; cinch-t tela discontinuities, xb3-only washmach chowder (5a 92% Y source)
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_18-xb3.txt 	# solved-107 edit to solved-106 additions; washmach chowder (2a 50% GC source), -xb3-only
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_17-xb3.txt	# solved-106 imperfect final unit overlapping dwnstr bigger k-mer; -xb3-only washmach chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_15-xb3.txt	# solved-105 Conflict calling in mark_tela(); washmach chowder (1a 20% GC source) -b--6
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_16-xb3.txt	# solved-105 Conflict calling in mark_tela(); washmach chowder (2a 50% GC source) -b--6; split-sec to squint_15
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_14-xb3.txt 	# solved-104 Conditioning entry into cyclelize from cinch_t; -x b3- & b4- only washing_machine chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_13-xb3.txt	# solved-103 Edits in fractal splitting w/ reorganization; -x b3-only chowder (mined at 1/240k b=3)
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squirt_41-b3.txt 	# solved-102 New cinch_t block of some future cinch_k in last unit; -b3--6 vnd_ragdoll chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squirt_42-b3.txt 	# solved-102 New cinch_t block of some future cinch_k in last unit; -x, -b3--6 vnd_ragdoll chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_12-xb3.txt	# solved-102 New cinch_t block of some future cinch_k in last unit; -b3--6 washing_machine chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_10-xb3.txt	# solved-101 another conflict calling case in mark_tela(); b3-only chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_07-xb3.txt	# solved-100 conflict calling in mark_tela(); b3- and b4- chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_11-xb3.txt	# solved-100 conflict calling in mark_tela(); b3-only chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_08-xb3.txt	# solved-99 Simple edit on entry into fractal splitting block; b3--b6 chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_09-xb3.txt	# solved-99 Simple edit on entry into fractal splitting block; b3--b6 chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_02-xb3.txt	# solved-98 next_k() related; previously not chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_03-xb3.txt	# solved-98 next_k() related; previously not chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_05-xb3.txt	# solved-98 next_k() related; previously not chowder
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_04-xb3.txt	# solved-98 next_k() related;
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_06-xb3.txt 	# solved-97 New split fractal case; previously not chowder but for unsatisfying reason
+./lineup -D$DEVPROMPT -KnxR waves/squeegee/squint_01-xb3.txt 	# solved-97 New split fractal case;
 
 echo
 echo

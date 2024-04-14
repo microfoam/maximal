@@ -2,16 +2,16 @@
 
 #clear
 echo "$(date)" | tee -a Corduroy.log
-echo 'Tri-fin dawn patrol: Compiling maximal v5.00.' | tee -a Corduroy.log
+echo 'Tri-fin dawn patrol: Compiling lineup v5.01.' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
 echo '                                                                                                            '
 echo '.~.                                                                                                         '
 echo '///_M                                                                                                       '
 echo '/////_H                    _     _     _     _     _     _     _     _     _     _     _     _     _     _  '
 echo '///////_A__________.~._~.~.) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `'
-echo '```````^:^`````````          m           a           x           i           m           a           l      '
+echo '```````^:^`````````          l           i           n           e           u           p                  '
 
-gcc -o maximal -Wall -Wextra -Wstrict-prototypes -O2 src/mha_v5.00.c -lm
+gcc -o lineup -Wall -Wextra -Wstrict-prototypes -O2 src/lineup_v5.01.c -lm
 
 echo
 echo 'Tri-fin dawn patrol: Surfs up!'

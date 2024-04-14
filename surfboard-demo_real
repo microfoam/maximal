@@ -13,7 +13,7 @@ c) 	./surfboard-Pop_Up
 esac
 done
 
-if [ ! -f maximal ]; then
+if [ ! -f lineup ]; then
 	./surfboard-Pop_Up
 fi
 if [ -f Surf_wavereport.mha ]; then
@@ -22,42 +22,42 @@ fi
 
 # -D# 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dmela.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dsimu.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dsech.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dmaur.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Derec.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dyaku.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dsant.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dbiar.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dsuzu.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Danan.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dbipe.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dmira.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dpers.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dpseu.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dwill.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dmoja.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dviri.txt
-./maximal -Rkx -D0 waves/seals/vnd_ex3_Dgrim.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dmela.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dsimu.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dsech.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dmaur.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Derec.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dyaku.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dsant.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dbiar.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dsuzu.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Danan.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dbipe.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dmira.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dpers.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dpseu.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dwill.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dmoja.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dviri.txt
-./maximal -Rkx -D0 waves/sharks/vnd_NEE_Dgrim.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dmela.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dsimu.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dsech.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dmaur.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Derec.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dyaku.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dsant.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dbiar.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dsuzu.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Danan.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dbipe.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dmira.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dpers.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dpseu.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dwill.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dmoja.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dviri.txt
+./lineup -Lkxv3 -D2 waves/seals/vnd_ex3_Dgrim.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dmela.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dsimu.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dsech.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dmaur.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Derec.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dyaku.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dsant.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dbiar.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dsuzu.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Danan.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dbipe.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dmira.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dpers.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dpseu.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dwill.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dmoja.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dviri.txt
+# ./lineup -Lkxv3 -D2 waves/sharks/vnd_NEE_Dgrim.txt
 echo
 echo
 echo

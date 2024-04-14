@@ -1,14 +1,14 @@
-# maximal
-maximal is a prototype program designed to explore the world of micro-homology alignment (MHA), created and written by Albert Erives (albert-erives@uiowa.edu).
+# lineup
+lineup (pre-v5.01 versions were called 'maximal') is a prototype program designed to explore the world of micro-homology alignment (MHA), created and written by Albert Erives (albert-erives@uiowa.edu).
 MHA methodology is philosophically-distinct from gapped alignment in embracing local microparalogy as a fundamental feature of biological sequence.
 
-As a prototype implementation of MHA, the current versions of maximal feature a rich set of run options in order to encourage a free, open-minded, heuristics-friendly development cycle.
-Program options can be seen by running ./maximal without any options specified.
+As a prototype, sketch implementation of MHA, the current versions of lineup feature a rich set of run options in order to encourage a free, open-minded, heuristics-friendly development cycle.
+Program options can be seen by running ./lineup without any options specified.
 
 Version v4.37 is the current version and the first to be tested without any known issues on both macOS and Linux platforms. 
-To compile for either platform, run the script './surfboard-Pop_Up', which will produce an executable named 'maximal'.
-For development and testing purposes, two executable binaries are included ('maximal-macOS-binary' and 'maximal-Linux-binary').
-To use either of these pre-compiled versions with any of the 'surfboard_lowercase_namespace' script, the appropriate binary can be copied or renamed to 'maximal'.
+To compile for either platform, run the script './surfboard-Pop_Up', which will produce an executable named 'lineup'.
+For development and testing purposes, two executable binaries are included ('lineup-macOS-binary' and 'lineup-Linux-binary').
+To use either of these pre-compiled versions with any of the 'surfboard_lowercase_namespace' script, the appropriate binary can be copied or renamed to 'lineup'.
 
 Version numbers represent program development versions that increase in steps of 0.01.
 We are 'pre-release' of the first official release, a little bit of the 'journey is the destination' with public access.
@@ -42,8 +42,8 @@ It has also been useful as a control comparison group with biological sequences.
 _______________________________________________
 FILE: Surf_wavereport.(log|mha), Corduroy.log
 
-This is the standard ouput report to which maximal writes. 
-Every run of maximal appends run data to the end of this file and is a log of run-time information and performance.
+This is the standard ouput report to which lineup writes. 
+Every run of lineup appends run data to the end of this file and is a log of run-time information and performance.
 Files that end in *.mha are typically temporary files.
 
 Corduroy.log is a summary report based on information extracted from Surf_wavereport.log.
@@ -53,9 +53,9 @@ _______________________________________________
 FILE: waves/solved-##-DESCRP_tricksy.txt ("##-DESCRP" provides a historical index number and a short 6 letter description of the originating issue)
 
 Files named in this format represent short sequence text files with a tricksy microfoam nature. 
-Typically, tricsky strings were at one point problem strings that were problematically cinched by maximal. 
+Typically, tricsky strings were at one point problem strings that were problematically cinched by lineup. 
 After developing the code to conduct MHA successfully on a new tricksy string it is renamed as "solved", given a number, and a description. 
-These file names and sequences should never be modified because they are used for historical comparisons of different versions of maximal. 
+These file names and sequences should never be modified because they are used for historical comparisons of different versions of lineup. 
 These files are now stored in waves/ subdirectory.
 
 UPDATE #1 FOR RECENT VERSIONS (surf-themed): Solved synthetic sequences in the example corpus are saved in the waves/tubespit/ sub-directory. 
@@ -71,15 +71,15 @@ FILE: waves/Dxxxx_ex3.txt, Dxxxx_NEE.txt ("xxxx" is a Drosophila species name)
 
 Files named in this format represent gene sequences from the Drosophila vnd locus. 
 Sequences correspond either to a conserved protein-coding region (exon 3) or an intronic enhancer (the neurogenic ectoderm enhancer, or NEE) from several species. 
-These file names and sequences should never be modified because they are used for historical comparisons of different developmenal versions of maximal. 
+These file names and sequences should never be modified because they are used for historical comparisons of different developmenal versions of lineup. 
 
 UPDATE #1: These files now live either in 'waves/seals' (protein-coding sequences) or 'waves/sharks' (non-protein-coding enhancer sequences). 
 
 _______________________________________________
 FILE: waves/foam_and_chowder.log
 
-If this file is present it has record of existing "tricksy" strings with problematic cinching as identified by the associated version of maximal. 
+If this file is present it has record of existing "tricksy" strings with problematic cinching as identified by the associated version of lineup. 
 Typically, this file is committed after a -XX Fischer-Yates run and is named with additional version and run information.
 _______________________________________________
 
-*Last updated*: 12/06/2020
+*Last updated*: 04/14/2024

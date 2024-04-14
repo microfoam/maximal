@@ -2,7 +2,7 @@
 
 echo '                                               < Fisher-Yates D. mel. vnd NEE core >' >> Corduroy.log
 
-if [ ! -f maximal ]; then
+if [ ! -f lineup ]; then
 	./surfboard-Pop_Up
 fi
 if [ -f Surf_wavereport.mha ]; then
@@ -11,7 +11,7 @@ fi
 
 for i in {1..1000}
 do
-	./maximal -Rn -X 2 -Y 640 waves/2019a/vnd_intronic-func_Dmel.txt
+	./lineup -Rn -X 2 -Y 640 waves/2019a/vnd_intronic-func_Dmel.txt
 done
 
 ./surfboard-checkmha
