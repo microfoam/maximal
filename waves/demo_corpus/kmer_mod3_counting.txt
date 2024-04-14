@@ -1,0 +1,2 @@
+>example string for counting zero mod3 k-mers
+nnnnnnTATATAnnnnnnnCGCGCGCGnnnnnTATATATATATATAnnnnnnn

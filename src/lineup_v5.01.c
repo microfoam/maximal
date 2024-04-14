@@ -1710,7 +1710,7 @@ int main(int argc, char *argv[])
 
 		int sum_k_mod3s = 0, sum_kr_mod3s = 0;
 
-		printf(" Unique cinch-t k-mers: %4d\n", Cinch_T.pass_R);
+		printf(" Unique cinch-t k-mers: %4d (# r*k mod 3 = 0)\n", Cinch_T.pass_R);
 
 		for (i = 2; i <= WIDTH; i++) {
 			if (slips[i]) {
@@ -1721,8 +1721,8 @@ int main(int argc, char *argv[])
 				sum_kr_mod3s += slipskrmod3[i];
 			}
 		}
-		printf(" Proportion of mod 3   k-mers: %.4f\n", (float) sum_k_mod3s / Cinch_T.pass_R);
-		printf(" Proportion of mod 3 r*k-mers: %.4f\n", (float) sum_kr_mod3s / Cinch_T.pass_R);
+		printf(" Proportion of zero mod 3   k-mers: %.4f\n", (float) sum_k_mod3s / Cinch_T.pass_R);
+		printf(" Proportion of zero mod 3 r*k-mers: %.4f\n", (float) sum_kr_mod3s / Cinch_T.pass_R);
 
 		print_section_spacer();
 	}
