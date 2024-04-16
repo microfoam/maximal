@@ -374,3 +374,30 @@ WCR average: 0.48841
 
 WCR avg history (150k tests @ b=3): ~0.4998--0.5002
 
+
+                                               < vnd_getworked_ragdoll >
+Darwin 23.4.0 arm64 arm
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v5.01	Apr 15 20:08:42 2024	b3 x1	0.499	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+1000 bp)	 
+v5.01	Apr 15 23:14:47 2024	b3 x1	0.552	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-1000 bp)	 
+
+Number of tests initiated:         150000
+Number of tests completed:         150000
+Number of tests w/ PASS 1000:      150000
+Number of tests w/ REC. 1000:      150000
+Number of tests w/ cycling: 3475
+
+Tests canceled (if any, w/ preceding run for context):
+Tests with PASS < 1000 (if any):
+Tests with REC. < 1000 (if any):
+
+WCR average: 0.500039
+
+WCR avg history (150k tests @ b=3): ~0.4998--0.5002
+
