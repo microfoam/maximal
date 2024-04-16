@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
 	int Atr = 0;				/* Counter for additional repeats on the same diagonal */
 
 	float ratio1 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post Cinch-d, pre Relax-2D 	*/
-	float ratio2 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post Relax-2D 				*/
+	float ratio2 = 1;			/* CINCH-D TO CINCH-T CINCHING RATIO        				*/
 
 	int scooch = 0;
 
@@ -246,14 +246,24 @@ int main(int argc, char *argv[])
 		++opt_count;
 		switch (opt) {
 		case 'a':						/* OPTION TO CINCH ALL K-MERS IN CINCH-K; DEFAULT IS ALL K */
-				opt_a.bit = 1;
-				numarg = atoi(optarg);
-				opt_a.val = numarg;		/* DEFAULT opt_a.val = 2 */
+				opt_a.bit = 1;			/* 	MODES 	0: SKIP/OFF; 	1: k=1 ONLY; 	>1: all k 	*/
+				if (optarg == NULL)		/* DEFAULT opt_a.val = 2 */
+					numarg = opt_a.val;
+				else
+					numarg = atoi(optarg);
+
+				if (numarg < 2)
+					opt_a.val = numarg;
 				break;
 		case 'b':						/* OPTION TO CHANGE DEFAULT THRESHOLD FLOOR (k-SIZE) ABOVE WHICH BEGINS TRANSITION MATCHING */
-				opt_b.bit = 1;
-				numarg = atoi(optarg);
-				opt_b.val = numarg;		/* CURRENT DEFAULT opt_b.val = 3 */
+				opt_b.bit = 1;			/* CURRENT DEFAULT opt_b.val = 3 */
+				if (optarg == NULL)
+					numarg = opt_b.val;
+				else
+					numarg = atoi(optarg);
+
+				if (numarg > opt_b.val)
+					opt_b.val = numarg;		
 				break;
 		case 'c':						/* SHOW BASE 62 CODE */
 				opt_c.bit = 1;
@@ -261,7 +271,11 @@ int main(int argc, char *argv[])
 				return(EXIT_EARLY);
 				break;
 		case 'd':						/* OPTION TO SKIP CINCH-D CINCHING (0) OR REVERSE CINCH-D k LOOP (2, HIGH-TO-LOW); 1 = DEFAULT (LOW-TO-HIGH) */
-				numarg = atoi(optarg);
+				if (optarg == NULL)
+					numarg = 1;
+				else
+					numarg = atoi(optarg);
+
 				if (numarg && numarg<3)
 					opt_d.val = numarg;	/* DEFAULT opt_d (bit & val) = 1 */
 				else if (!numarg)
@@ -272,7 +286,11 @@ int main(int argc, char *argv[])
 				break;
 		case 'g':						/* opt_g GEL-UP, COUNTERACT STARTING MELTAGE */
 				opt_g.bit = 1;
-				numarg = atoi(optarg);
+				if (optarg == NULL)
+					numarg = 1;
+				else
+					numarg = atoi(optarg);
+
 				if (numarg<2)
 					opt_g.val = 1;	
 				else
@@ -289,7 +307,11 @@ int main(int argc, char *argv[])
 				break;
 		case 'm':						/* OPTION TO SPLIT, OPEN, AND MELT */
 				opt_m.bit = 1;
-				numarg = atoi(optarg);
+				if (optarg == NULL)
+					numarg = 1;
+				else
+					numarg = atoi(optarg);
+
 				if (numarg<2)
 					opt_m.val = 1;	
 				else
@@ -315,17 +337,25 @@ int main(int argc, char *argv[])
 				break;
 		case 'u':						/* OPTION TO PRINT 'UNWRAP' SCREEN WRAP; SET TO INCREASE BY 10 bp */
 				opt_u.bit = 1;			/* HISTORICALLY THIS USED TO UNWRAP 2-D DISPLAY BUT IS IMPRACTICAL ON SCREEN */
-				numarg = atoi(optarg);
+				if (optarg == NULL)
+					numarg = 1;
+				else
+					numarg = atoi(optarg);
+
 				if (numarg<2)
 					opt_u.val = 1;	
 				else
 					opt_u.val = numarg;
 				par_wrap.set += 10 * opt_u.val;
 				break;
-		case 'v':						/* OPTION FOR VERBOSITY */
-				opt_v.bit = 1;			/*   1=EXTRA INFO; 2=BUFFER; 3=DEV-ACTIVE; 4=DEV-LEGACY */
+		case 'v':						/* OPTION LEVEL FOR VERBOSITY (-v w/ no arg = -v1) */
+				opt_v.bit = 1;			/* 1=EXTRA INFO; 2=BUFFER; 3=DEV-ACTIVE; 4=DEV-LEGACY */
 				opt_l.bit = opt_o.bit = opt_p.bit = opt_r.bit = opt_F.bit = opt_L.bit = 1;
-				numarg = atoi(optarg);
+				if (optarg == NULL)
+					numarg = 1;
+				else
+					numarg = atoi(optarg);
+
 				if (numarg<2)
 					opt_v.val = 1;	
 				else
@@ -341,7 +371,11 @@ int main(int argc, char *argv[])
 				break;
 		case 'B':						/* USE SPACE FOR BLANK CHARACTER IN MHA's */
 				opt_B.bit = 1;
-				numarg = atoi(optarg);
+				if (optarg == NULL)
+					numarg = 1;
+				else
+					numarg = atoi(optarg);
+
 				if (numarg<2)
 					opt_B.val = 1;	
 				else
@@ -354,10 +388,12 @@ int main(int argc, char *argv[])
 				break;
 		case 'D':						/* OPTION TO ENGAGE dev_prompt USER PAUSES AT STAGE SPECIFIED BY VAL ARG */
 				opt_D.bit = 1;
-				numarg = atoi(optarg);
-				if (numarg>7 || !numarg)
-					opt_D.val = 0;		
+				if (optarg == NULL)
+					numarg = 0;
 				else
+					numarg = atoi(optarg);
+
+				if (numarg && numarg<8)
 					opt_D.val = numarg;
 				break;
 		case 'F':						/* OPTION TO USE BLANK FILL CHAR W/ SCRIMMAGELINE */
@@ -373,7 +409,11 @@ int main(int argc, char *argv[])
 				opt_L.bit = 1;
 				break;
 		case 'M':						/* OPTION TO DOUBLE LONG HOMOMONO WRAP */
-				numarg = atoi(optarg);
+				if (optarg == NULL)
+					numarg = 1;
+				else
+					numarg = atoi(optarg);
+
 				if (numarg<2) {
 					opt_M.bit = 1;	
 					opt_M.val *= 2;		/* MULTIPLY opt_M  mwrap BY NUMBER */
@@ -385,7 +425,11 @@ int main(int argc, char *argv[])
 				break;
 		case 'O':						/* OPTION TO OUTPUT CONSENSUS FILE */
 				opt_O.bit = 1;
-				numarg = atoi(optarg);
+				if (optarg == NULL)
+					numarg = 1;
+				else
+					numarg = atoi(optarg);
+
 				if (numarg<2)
 					opt_O.val = 1;	
 				else {
@@ -407,16 +451,25 @@ int main(int argc, char *argv[])
 				opt_T.bit = 1;
 				break;
 		case 'X':						/* OPTION TO SCRAMBLE SEQUENCE                      */
-				opt_X.bit = 1;			/*  X = 1 for rand() cheese, X = 2 for Fisher-Yates */
-				numarg = atoi(optarg);
-				if (numarg<2 && !(opt_X.val))
+				opt_X.bit = 1;			/* VAL=1 for rand() cheese, VAL=2 for Fisher-Yates */
+				if (optarg == NULL)
+					numarg = 1;
+				else
+					numarg = atoi(optarg);
+
+				if (numarg==2) 
+					opt_X.val = 2;
+				else if (numarg)
 					opt_X.val = 1;
 				else 
-					opt_X.val = 2;
+					opt_X.val = opt_X.bit = 0;
 				break;
 		case 'Y':						/* OPTION TO SPECIFY FY_size	*/
 				opt_Y.bit = 1;
-				numarg = atoi(optarg);
+				if (optarg == NULL)
+					numarg = FY_size;
+				else
+					numarg = atoi(optarg);
 				if (numarg) {
 					if (numarg < MAXROW) {
 						FY_size = numarg;
@@ -1774,7 +1827,7 @@ int main(int argc, char *argv[])
 			if (!Cinch_L.pass_R)
 				printf("%s post cinch-l   [pass #3]\n", letr_unit);
 			else if (Cinch_L.pass_R == 1)
-				printf("%s post cinch-l   [pass #3: one run cinched]\n", letr_unit);
+				printf("%s post cinch-l   [pass #3: %3d run cinched]\n", letr_unit, Cinch_L.pass_R);
 			else if (Cinch_L.pass_R > 1)
 				printf("%s post cinch-l   [pass #3: %3d runs cinched]\n", letr_unit, Cinch_L.pass_R);
 			break;
@@ -1782,14 +1835,14 @@ int main(int argc, char *argv[])
 			if (!Cinch_K.pass_V)
 				printf("%s post cinch-k   [pass #4]\n", letr_unit);
 			else if (Cinch_K.pass_V == 1)
-				printf("%s post cinch-k   [pass #4: one cinch]\n", letr_unit);
+				printf("%s post cinch-k   [pass #4: %3d cinch]\n", letr_unit, Cinch_K.pass_V);
 			else if (Cinch_K.pass_V > 1)
 				printf("%s post cinch-k   [pass #4: %3d cinches]\n", letr_unit, Cinch_K.pass_V);
 			break;
 		case 5:	
 			if (Cinch_D.pass_R) {
 				if (Cinch_D.pass_R==1) 
-					printf("%s post cinch-d   [pass #5: one cinch]\n", letr_unit);
+					printf("%s post cinch-d   [pass #5: %3d cinch]\n", letr_unit, Cinch_D.pass_R);
 				else
 					printf("%s post cinch-d   [pass #5: %3d cinches]\n", letr_unit, Cinch_D.pass_R);
 			}
@@ -1813,9 +1866,11 @@ int main(int argc, char *argv[])
 			printf(    "%s recovered 1D   [final check pass]\n", letr_unit);
 	}
 
+	if (Cinch_D.pass_R)
+		printf("\n Cinching ratio (cinch-t/cinch-d):  %2.3f", ratio2=(float)Cinch_T.pass_R/Cinch_D.pass_R);
 	printf("\n Width cinch ratio (post cinch-d):  %2.3f", ratio1=(float)Cinch_D.pass_W/lenseq);
 	if (!opt_n.bit)
-		printf("\n Width cinch ratio (post relax-2D): %.3f\n\n", ratio2=(float)Current.pass_W/lenseq);
+		printf("\n Width cinch ratio (post relax-2D): %.3f\n\n", (float)Current.pass_W/lenseq);
 	else
 		printf("\n\n");
 
@@ -1954,7 +2009,7 @@ int main(int argc, char *argv[])
 	
 	if (!opt_s.bit) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\tb%d x%d\t%.3f\tP:%4d R:%4d RND:%.*s cyc:%d %s (%c%d %s)\t%s\n", 
+		fprintf(fp_out, "v%s\t%.20s\tb%d x%d\t%.3f\tP:%4d R:%4d RND:%2.*s cyc:%d %s (%c%d %s)\t%s\n", 
 				version, time0+4, opt_b.val, opt_x.val, ratio1, Current.pass_Q, Recover.pass_Q, opt_X.val, "XX", 
 				cyc_count, file_name, Strand->sym, Clean.pass_W, letr_unit, dev_notes);
 		fclose(fp_out);
@@ -1962,7 +2017,7 @@ int main(int argc, char *argv[])
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (Current.pass_Q != 1000 || (opt_R.bit && Recover.pass_Q != 1000)) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.20s\tb%d x%d\t%.3f\tP:%4d R:%4d RND:%.*s cyc:%d %s (%c%d %s)\t%s\n", 
+			fprintf(fp_tricksy, "v%s\t%.20s\tb%d x%d\t%.3f\tP:%4d R:%4d RND:%2.*s cyc:%d %s (%c%d %s)\t%s\n", 
 					version, time0+4, opt_b.val, opt_x.val, ratio1, Current.pass_Q, Recover.pass_Q, opt_X.val, "XX", 
 					cyc_count, file_name, Strand->sym, Clean.pass_W, letr_unit, dev_notes);
 			for(n = 0; n<lenseq; n++) {
