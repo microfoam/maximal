@@ -1763,20 +1763,21 @@ int main(int argc, char *argv[])
 
 		int sum_k_mod3s = 0, sum_kr_mod3s = 0;
 
-		printf(" Unique cinch-t k-mers: %4d (# r*k mod 3 = 0)\n", Cinch_T.pass_R);
+		printf(" Unique cinch-t k-mers: %4d\t(r*k mod3 = 0)\n", Cinch_T.pass_R);
 
 		for (i = 2; i <= WIDTH; i++) {
 			if (slips[i]) {
-				printf(" %16d-mers:%5d (%5d)\n", i, slips[i], slipskrmod3[i]);
+				printf(" %16d-mers:%5d\t(%5d)\n", i, slips[i], slipskrmod3[i]);
 				if (!(i%3)) {
 					sum_k_mod3s += slips[i];
 				}
 				sum_kr_mod3s += slipskrmod3[i];
 			}
 		}
+		printf("\n");
 		printf(" Proportion of zero mod 3   k-mers: %.4f\n", (float) sum_k_mod3s / Cinch_T.pass_R);
 		printf(" Proportion of zero mod 3 r*k-mers: %.4f\n", (float) sum_kr_mod3s / Cinch_T.pass_R);
-		printf(" Cinch-t cinching rate per bp: %.4f\n", (float) Cinch_T.pass_R / lenseq);
+		printf(" Cinch-t cinching rate: %.4f / %s\n", (float) Cinch_T.pass_R / lenseq, letr_unit);
 		print_section_spacer();
 	}
 	/***************************************************************************/
