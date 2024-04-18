@@ -58,7 +58,7 @@ fi
 ./lineup -RKkx -D0 waves/seals/vnd_ex3_Dmoja.txt
 ./lineup -RKkx -D0 waves/seals/vnd_ex3_Dviri.txt
 ./lineup -RKkx -D0 waves/seals/vnd_ex3_Dgrim.txt
-./lineup -RKkx -D0 waves/seals/gapdh_Dmela.txt
+./lineup -RKkx -D0 waves/seals/gapdh_Dmela1.txt
 ./lineup -RKkx -D0 waves/seals/gapdh_Mdome.txt
 ./lineup -RKkx -D0 waves/seals/Med15_C_elegans_mdt-15.txt
 ./lineup -RKkx -D0 waves/seals/Med15_S_cerevisiae_gal11.txt
