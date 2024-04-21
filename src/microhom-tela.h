@@ -1465,9 +1465,13 @@ void mark_tela(void)
 			k = tela[n].ok;
 			m = n - k;
 
-			if (tela[n].statf!=st_fract.sym && tela[n-1].c==tela[n].c && tela[n].or==1) {
-				tela[n].echoes = cyc_skip.sym;
-				push_mem(n, 14);
+			if (tela[n].or==1 && tela[n].c==tela[n-1].c && tela[n].statf!=st_fract.sym) { 
+				if (k==3 && !tela[m+1].ok && !tela[n+2].ok) {
+				}
+				else {
+					tela[n].echoes = cyc_skip.sym;
+					push_mem(n, 14);
+				}
 			}
 
 			int p,q;

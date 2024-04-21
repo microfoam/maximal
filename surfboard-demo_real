@@ -71,5 +71,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'WCR avg history (41 tests @ b=3): 0.474683' | tee -a Corduroy.log
+echo 'WCR avg history (41 tests @ b=3): 0.474683 -> 0.474829' | tee -a Corduroy.log
 echo | tee -a Corduroy.log

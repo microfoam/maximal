@@ -19,43 +19,43 @@ if [ -f Surf_wavereport.mha ]; then
         rm Surf_wavereport.mha
 fi
 
-DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
+# 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
 # DIAGNOSTIC TESTS. Ideally, these should be whittled knots for visual inspection w/ WCRs reflective of knot folding only
-./lineup -D$DEVPROMPT -KRn  waves/tubespit/seq-017-variant.txt
-./lineup -D$DEVPROMPT -KRn  waves/tubespit/seq-017-cycle5.txt
-./lineup -D$DEVPROMPT -KRnC waves/tubespit/seq-017-cycle5.txt
-./lineup -D$DEVPROMPT -KRn  waves/tubespit/seq-154-v427_cycABs.txt
-./lineup -D$DEVPROMPT -KR   waves/tubespit/seq-000-orig_b.txt 
-./lineup -D$DEVPROMPT -KRn  waves/tubespit/seq-000-orig_c.txt 
-./lineup -D$DEVPROMPT -KR   waves/tubespit/seq-000-orig_d.txt 
-./lineup -D$DEVPROMPT -KR   waves/tubespit/seq-000-orig_e.txt 
-./lineup -D$DEVPROMPT -KR   waves/tubespit/seq-000-orig_f.txt 
-./lineup -D$DEVPROMPT -KRx  waves/tubespit/seq-033-imprf1.txt 
-./lineup -D$DEVPROMPT -KR   waves/tubespit/seq-100-v343_10.txt 
-./lineup -D$DEVPROMPT -KRn  waves/chowder/seq6-koslip-snippet.txt 
-./lineup -D$DEVPROMPT -KRn  waves/chowder/snippet-jetsam-01.txt 
-./lineup -D$DEVPROMPT -KRn  waves/chowder/snippet-jetsam-03.txt 
-./lineup -D$DEVPROMPT -KRnx waves/snippets/snippet-squirt_03-b6.alt1
-./lineup -D$DEVPROMPT -KRnx waves/snippets/snippet-squirt_22-b3.txt
+./lineup -D0 -KRn  waves/tubespit/seq-017-variant.txt
+./lineup -D0 -KRn  waves/tubespit/seq-017-cycle5.txt
+./lineup -D0 -KRnC waves/tubespit/seq-017-cycle5.txt
+./lineup -D0 -KRn  waves/tubespit/seq-154-v427_cycABs.txt
+./lineup -D0 -KR   waves/tubespit/seq-000-orig_b.txt 
+./lineup -D0 -KRn  waves/tubespit/seq-000-orig_c.txt 
+./lineup -D0 -KR   waves/tubespit/seq-000-orig_d.txt 
+./lineup -D0 -KR   waves/tubespit/seq-000-orig_e.txt 
+./lineup -D0 -KR   waves/tubespit/seq-000-orig_f.txt 
+./lineup -D0 -KRx  waves/tubespit/seq-033-imprf1.txt 
+./lineup -D0 -KR   waves/tubespit/seq-100-v343_10.txt 
+./lineup -D0 -KRn  waves/chowder/seq6-koslip-snippet.txt 
+./lineup -D0 -KRn  waves/chowder/snippet-jetsam-01.txt 
+./lineup -D0 -KRn  waves/chowder/snippet-jetsam-03.txt 
+./lineup -D0 -KRnx waves/snippets/snippet-squirt_03-b6.alt1
+./lineup -D0 -KRnx waves/snippets/snippet-squirt_22-b3.txt
 
 # FRACTAL SPLITS SET
-./lineup -D$DEVPROMPT -KnR waves/chowder/gal11-knot1.txt
-./lineup -D$DEVPROMPT -KR  waves/snippets/snippet-gal11-knot1.txt
-./lineup -D$DEVPROMPT -KnR waves/chowder/seq26-snippet.txt 
-./lineup -D$DEVPROMPT -KnR waves/chowder/seq26-variations1.txt 
-./lineup -D$DEVPROMPT -KnR waves/chowder/seq26-variations2.txt 
-./lineup -D$DEVPROMPT -KR  waves/chowder/seq26-snippet.txt 
-./lineup -D$DEVPROMPT -KR  waves/chowder/seq26-variations1.txt 
-./lineup -D$DEVPROMPT -KR  waves/chowder/seq26-variations2.txt 
-./lineup -D$DEVPROMPT -KnR waves/chowder/snippet-string02-t.txt
-./lineup -D$DEVPROMPT -KnR waves/chowder/snippet-seq-014-cycle3.txt 
+./lineup -D0 -KnR waves/chowder/gal11-knot1.txt
+./lineup -D0 -KR  waves/snippets/snippet-gal11-knot1.txt
+./lineup -D0 -KnR waves/chowder/seq26-snippet.txt 
+./lineup -D0 -KnR waves/chowder/seq26-variations1.txt 
+./lineup -D0 -KnR waves/chowder/seq26-variations2.txt 
+./lineup -D0 -KR  waves/chowder/seq26-snippet.txt 
+./lineup -D0 -KR  waves/chowder/seq26-variations1.txt 
+./lineup -D0 -KR  waves/chowder/seq26-variations2.txt 
+./lineup -D0 -KnR waves/chowder/snippet-string02-t.txt
+./lineup -D0 -KnR waves/chowder/snippet-seq-014-cycle3.txt 
 
 # ABBA-ZABBA SERIES
-./lineup -D$DEVPROMPT -KRn  waves/chowder/abba_zabba_1.txt 
-./lineup -D$DEVPROMPT -KRn  waves/chowder/abba_zabba_2.txt 
-./lineup -D$DEVPROMPT -KRn  waves/chowder/abba_zabba_3.txt 
-./lineup -D$DEVPROMPT -KRn  waves/chowder/abba_zabba_4.txt 
+./lineup -D0 -KRn  waves/chowder/abba_zabba_1.txt 
+./lineup -D0 -KRn  waves/chowder/abba_zabba_2.txt 
+./lineup -D0 -KRn  waves/chowder/abba_zabba_3.txt 
+./lineup -D0 -KRn  waves/chowder/abba_zabba_4.txt 
 
 echo
 echo

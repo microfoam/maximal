@@ -1,12 +1,12 @@
 
 Codebase line counts:
-  1979 src/mha_v5.00.c
-  1154 src/microhom-cinc.h
-   104 src/microhom-devl.h
-  1580 src/microhomology.h
-   111 src/microhom-skor.h
-  2149 src/microhom-tela.h
-  7077 total
+    2041 src/lineup_v5.01.c
+    1154 src/microhom-cinc.h
+     104 src/microhom-devl.h
+     111 src/microhom-skor.h
+    2153 src/microhom-tela.h
+    1580 src/microhomology.h
+    7143 total
 
                                                < cleanup_set_all >
 Surf wave report summary: 
@@ -16,8 +16,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr 12 14:05:35 2024	b3 x0	0.479	P:1000 R:1000 RND: cyc:0 waves/seals/vnd_ex3_Dmela.txt (+956 bp)	 
-v5.00	Apr 12 14:06:19 2024	b3 x1	0.477	P:1000 R:1000 RND: cyc:0 waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-44 bp)	 
+v5.01	Apr 21 12:32:35 2024	b3 x0	0.479	P:1000 R:1000 RND:   cyc:0 waves/seals/vnd_ex3_Dmela.txt (+956 bp)	 
+v5.01	Apr 21 12:32:56 2024	b3 x1	0.477	P:1000 R:1000 RND:   cyc:0 waves/tubespit/seq-161-wuhCor1-03-synth2.txt (-44 bp)	 
 
 Number of tests initiated:         816
 Number of tests completed:         816
@@ -29,9 +29,9 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-WCR average: 0.489701
+WCR average: 0.489882
 
-WCR avg history (816 tests @ b=3): 0.489727 -> 0.489701
+WCR avg history (816 tests @ b=3): 0.489727 ->0.489701 ->0.489882
 
 
                                                < sand_dunes >
@@ -42,8 +42,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr 12 14:06:30 2024	b3 x0	0.590	P:1000 R:1000 RND: cyc:0 waves/tubespit/seq-017-variant.txt (+39 bp)	 
-v5.00	Apr 12 14:06:30 2024	b3 x0	0.136	P:1000 R:1000 RND: cyc:0 waves/chowder/abba_zabba_4.txt (+22 ch)	 
+v5.01	Apr 21 12:35:09 2024	b3 x0	0.590	P:1000 R:1000 RND:   cyc:0 waves/tubespit/seq-017-variant.txt (+39 bp)	 
+v5.01	Apr 21 12:35:09 2024	b3 x0	0.136	P:1000 R:1000 RND:   cyc:0 waves/chowder/abba_zabba_4.txt (+22 ch)	 
 
 Number of tests initiated:         30
 Number of tests completed:         30
@@ -68,8 +68,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr 12 14:06:35 2024	b3 x0	0.480	P:1000 R:1000 RND: cyc:0 waves/chowder/flotsam_06F.txt (+100 bp)	 
-v5.00	Apr 12 14:06:37 2024	b3 x0	0.450	P:1000 R:1000 RND: cyc:0 waves/chowder/stringA-40-k.txt (+100 bp)	 
+v5.01	Apr 21 12:35:32 2024	b3 x0	0.480	P:1000 R:1000 RND:   cyc:0 waves/chowder/flotsam_06F.txt (+100 bp)	 
+v5.01	Apr 21 12:35:32 2024	b3 x0	0.450	P:1000 R:1000 RND:   cyc:0 waves/chowder/stringA-40-k.txt (+100 bp)	 
 
 Number of tests initiated:         82
 Number of tests completed:         82
@@ -81,9 +81,9 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-WCR average: 0.444671
+WCR average: 0.44528
 
-WCR avg history (82 tests @ b=3, cinch-k k=1 only): 0.446012 ->0.447354 ->0.445646 ->0.451012 ->0.444671
+WCR avg history (82 tests @ b=3, cinch-k k=1 only): 0.446012 ->0.447354 ->0.445646 ->0.451012 ->0.444671 ->0.44528
 
 
                                                < eat chowder >
@@ -94,8 +94,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr 12 14:06:38 2024	b3 x0	0.480	P:1000 R:1000 RND: cyc:0 waves/chowder/flotsam_06F.txt (+100 bp)	 
-v5.00	Apr 12 14:06:40 2024	b3 x0	0.510	P:1000 R:1000 RND: cyc:0 waves/chowder/stringA-40-k.txt (+100 bp)	 
+v5.01	Apr 21 12:35:39 2024	b3 x0	0.480	P:1000 R:1000 RND:   cyc:0 waves/chowder/flotsam_06F.txt (+100 bp)	 
+v5.01	Apr 21 12:35:40 2024	b3 x0	0.510	P:1000 R:1000 RND:   cyc:0 waves/chowder/stringA-40-k.txt (+100 bp)	 
 
 Number of tests initiated:         82
 Number of tests completed:         82
@@ -107,9 +107,9 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-WCR average: 0.446378
+WCR average: 0.446988
 
-WCR avg history (82 tests b=3): 0.447232 ->0.448207 ->0.447354 ->0.44711 ->0.448695 ->0.446378
+WCR avg history (82 tests b=3): 0.447232 ->0.448207 ->0.447354 ->0.44711 ->0.448695 ->0.446378 ->0.446988
 
 
                                                < churly churly >
@@ -120,8 +120,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr 12 14:06:42 2024	b3 x0	0.310	P:1000 R:1000 RND: cyc:0 waves/chowder/nugget-42356.txt (+100 bp)	 
-v5.00	Apr 12 14:06:43 2024	b3 x0	0.450	P:1000 R:1000 RND: cyc:0 waves/chowder/churly-38.txt (+100 bp)	 
+v5.01	Apr 21 12:35:47 2024	b3 x0	0.310	P:1000 R:1000 RND:   cyc:0 waves/chowder/nugget-42356.txt (+100 bp)	 
+v5.01	Apr 21 12:35:47 2024	b3 x0	0.450	P:1000 R:1000 RND:   cyc:0 waves/chowder/churly-38.txt (+100 bp)	 
 
 Number of tests initiated:         49
 Number of tests completed:         49
@@ -133,9 +133,9 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-WCR average: 0.46102
+WCR average: 0.463061
 
-WCR avg history (49 tests @ b=3): 0.460816 ->0.460204 ->0.46102 ->0.459796 ->0.46102
+WCR avg history (49 tests @ b=3): 0.460816 ->0.460204 ->0.46102 ->0.459796 ->0.46102 ->0.463061
 
 
                                                < squeegee: -xb3 chowder >
@@ -146,8 +146,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr 12 14:06:45 2024	b3 x1	0.540	P:1000 R:1000 RND: cyc:1 waves/squeegee/squee006.txt (+100 bp)	 
-v5.00	Apr 12 14:06:46 2024	b3 x1	0.480	P:1000 R:1000 RND: cyc:0 waves/squeegee/squee282.txt (+100 bp)	 
+v5.01	Apr 21 12:35:52 2024	b3 x1	0.540	P:1000 R:1000 RND:   cyc:1 waves/squeegee/squee006.txt (+100 bp)	 
+v5.01	Apr 21 12:35:52 2024	b3 x1	0.480	P:1000 R:1000 RND:   cyc:0 waves/squeegee/squee282.txt (+100 bp)	 
 
 Number of tests initiated:         58
 Number of tests completed:         58
@@ -159,9 +159,9 @@ Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-WCR average: 0.483621
+WCR average: 0.48431
 
-WCR avg history (58 tests @ b=3): 0.485345 ->0.483621 ->0.483448 ->0.483621
+WCR avg history (58 tests @ b=3): 0.485345 ->0.483621 ->0.483448 ->0.483621 -> 0.48431
 
 
                                                < squid: -xb3 chowder >
@@ -172,8 +172,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr 12 14:06:48 2024	b3 x1	0.570	P:1000 R:1000 RND: cyc:0 waves/squeegee/squirt_40-b3.txt (+100 bp)	 
-v5.00	Apr 12 14:06:49 2024	b3 x1	0.570	P:1000 R:1000 RND: cyc:0 waves/squeegee/squid~24.txt (+100 bp)	 
+v5.01	Apr 21 12:35:55 2024	b3 x1	0.570	P:1000 R:1000 RND:   cyc:0 waves/squeegee/squirt_40-b3.txt (+100 bp)	 
+v5.01	Apr 21 12:35:55 2024	b3 x1	0.570	P:1000 R:1000 RND:   cyc:0 waves/squeegee/squid~24.txt (+100 bp)	 
 
 Number of tests initiated:         67
 Number of tests completed:         67
@@ -198,8 +198,8 @@ Surf wave report summary:
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr 12 14:06:51 2024	b3 x1	0.540	P:1000 R:1000 RND: cyc:0 waves/chowder/chowder-2024_string_010.txt (+100 bp)	 
-v5.00	Apr 12 14:06:52 2024	b3 x1	0.410	P:1000 R:1000 RND: cyc:0 waves/squeegee/squint_01-xb3.txt (+100 bp)	 
+v5.01	Apr 21 12:36:12 2024	b3 x1	0.540	P:1000 R:1000 RND:   cyc:0 waves/chowder/chowder-2024_string_010.txt (+100 bp)	 
+v5.01	Apr 21 12:36:12 2024	b3 x1	0.410	P:1000 R:1000 RND:   cyc:0 waves/squeegee/squint_01-xb3.txt (+100 bp)	 
 
 Number of tests initiated:         49
 Number of tests completed:         49

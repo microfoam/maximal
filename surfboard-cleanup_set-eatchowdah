@@ -18,90 +18,90 @@ if [ -f Surf_wavereport.mha ]; then
 	    rm Surf_wavereport.mha
 fi
 
-DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
+# 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_06F.txt						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_09F.txt						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_15F.txt						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_16F.txt						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_22R.txt						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_26R.txt						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_27R.txt						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_32R.txt						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_33F.txt						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_38F.txt						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/jetsam-05-Dana_vnd_ex3_FY-100mer.txt 	# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/snippet-jetsam-05.txt					# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_03F.txt 						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_08F.txt 						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_17F.txt 						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_20R.txt 						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_37F.txt 						# solved in the script commenting before-time
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt 	# solved-1
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_42F.txt						# solved-2
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_47R.txt						# solved-2
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_24R.txt						# solved-3 
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_30R.txt 						# solved-3
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_02F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_11F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_13F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_18F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_19F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_34R.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_39F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-08-k.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-18-k.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-34-k.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringB-04-k.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringB-06-k.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_04F.txt	# solved-5 generalization of #4
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_05F.txt	# solved-5 generalization of #4
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_07F.txt	# solved-5 generalization of #4
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringB-02-k.txt	# solved-5 generalization of #4
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_43R.txt	# solved-6 generalization of #4, loosening condition 2
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-20-k.txt	# solved-7 generalization oy #4, loosening condition 1
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-22-k.txt	# solved-7 generalization oy #4, loosening condition 1
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-24-k.txt	# solved-7 generalization oy #4, loosening condition 1
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_01F.txt 	# solved-8 explicit test of fractality in mark_tela block invoking get_k2
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_23R.txt 	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-30-t.txt	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringF-02-t.txt 	# solved-10 after code review of split fractal cases in mark_tela
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_10F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_14F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_21R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_28F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_31R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_35R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_36R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_40R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_41R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_44R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_45F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/flotsam_46R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-06-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-10-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-14-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-26-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-28-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-36-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-38-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-46-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-48-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-50-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringB-08-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringB-10-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringC-02-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringC-04-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringD-02-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringD-08-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringD-10-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringD-12-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringE-02-k.txt 	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-32-k.txt	# solved-12 multi-line conflict at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-42-k.txt	# solved-12 multi-line conflict at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringC-06-k.txt	# solved-12 multi-line conflict at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringD-04-k.txt	# solved-12 multi-line conflict at nexus of overlapping TRs
-	./lineup -D$DEVPROMPT -a1 -KR waves/chowder/stringA-40-k.txt	# solved-13 cinch-k mini-block
+./lineup -D0 -a1 -KR waves/chowder/flotsam_06F.txt						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_09F.txt						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_15F.txt						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_16F.txt						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_22R.txt						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_26R.txt						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_27R.txt						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_32R.txt						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_33F.txt						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_38F.txt						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/jetsam-05-Dana_vnd_ex3_FY-100mer.txt 	# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/snippet-jetsam-05.txt					# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_03F.txt 						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_08F.txt 						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_17F.txt 						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_20R.txt 						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/flotsam_37F.txt 						# solved in the script commenting before-time
+./lineup -D0 -a1 -KR waves/chowder/jetsam-04-Dsuz_vnd_NEE_FY-100mer.txt 	# solved-1
+./lineup -D0 -a1 -KR waves/chowder/flotsam_42F.txt						# solved-2
+./lineup -D0 -a1 -KR waves/chowder/flotsam_47R.txt						# solved-2
+./lineup -D0 -a1 -KR waves/chowder/flotsam_24R.txt						# solved-3 
+./lineup -D0 -a1 -KR waves/chowder/flotsam_30R.txt 						# solved-3
+./lineup -D0 -a1 -KR waves/chowder/flotsam_02F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/flotsam_11F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/flotsam_13F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/flotsam_18F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/flotsam_19F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/flotsam_34R.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/flotsam_39F.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/stringA-08-k.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/stringA-18-k.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/stringA-34-k.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/stringB-04-k.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/stringB-06-k.txt	# solved-4 new cinch-k block to match non-fractal knot spanning overlapping TRs above txt below
+./lineup -D0 -a1 -KR waves/chowder/flotsam_04F.txt	# solved-5 generalization of #4
+./lineup -D0 -a1 -KR waves/chowder/flotsam_05F.txt	# solved-5 generalization of #4
+./lineup -D0 -a1 -KR waves/chowder/flotsam_07F.txt	# solved-5 generalization of #4
+./lineup -D0 -a1 -KR waves/chowder/stringB-02-k.txt	# solved-5 generalization of #4
+./lineup -D0 -a1 -KR waves/chowder/flotsam_43R.txt	# solved-6 generalization of #4, loosening condition 2
+./lineup -D0 -a1 -KR waves/chowder/stringA-20-k.txt	# solved-7 generalization oy #4, loosening condition 1
+./lineup -D0 -a1 -KR waves/chowder/stringA-22-k.txt	# solved-7 generalization oy #4, loosening condition 1
+./lineup -D0 -a1 -KR waves/chowder/stringA-24-k.txt	# solved-7 generalization oy #4, loosening condition 1
+./lineup -D0 -a1 -KR waves/chowder/flotsam_01F.txt 	# solved-8 explicit test of fractality in mark_tela block invoking get_k2
+./lineup -D0 -a1 -KR waves/chowder/flotsam_23R.txt 	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
+./lineup -D0 -a1 -KR waves/chowder/stringA-30-t.txt	# solved-9 new split fractal variety, cinch-t type; mark_tela fix
+./lineup -D0 -a1 -KR waves/chowder/stringF-02-t.txt 	# solved-10 after code review of split fractal cases in mark_tela
+./lineup -D0 -a1 -KR waves/chowder/flotsam_10F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/flotsam_14F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/flotsam_21R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/flotsam_28F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/flotsam_31R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/flotsam_35R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/flotsam_36R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/flotsam_40R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/flotsam_41R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/flotsam_44R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/flotsam_45F.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/flotsam_46R.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-06-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-10-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-14-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-26-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-28-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-36-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-38-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-46-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-48-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-50-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringB-08-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringB-10-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringC-02-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringC-04-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringD-02-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringD-08-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringD-10-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringD-12-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringE-02-k.txt	# solved-11 multi-line partially-fractal TR at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-32-k.txt	# solved-12 multi-line conflict at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-42-k.txt	# solved-12 multi-line conflict at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringC-06-k.txt	# solved-12 multi-line conflict at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringD-04-k.txt	# solved-12 multi-line conflict at nexus of overlapping TRs
+./lineup -D0 -a1 -KR waves/chowder/stringA-40-k.txt	# solved-13 cinch-k mini-block
 
 echo
 echo
@@ -110,5 +110,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'WCR avg history (82 tests @ b=3, cinch-k k=1 only): 0.446012 ->0.447354 ->0.445646 ->0.451012 ->0.444671' | tee -a Corduroy.log
+echo 'WCR avg history (82 tests @ b=3, cinch-k k=1 only): 0.446012 ->0.447354 ->0.445646 ->0.451012 ->0.444671 ->0.44528' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
