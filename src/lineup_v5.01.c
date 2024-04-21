@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
 	int Atr = 0;				/* Counter for additional repeats on the same diagonal */
 
 	float ratio1 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post Cinch-d, pre Relax-2D 	*/
-	float ratio2 = 1;			/* CINCH-D TO CINCH-T CINCHING RATIO        				*/
+//	float ratio2 = 1;			/* CINCH-D TO CINCH-T CINCHING RATIO        				*/
 
 	int scooch = 0;
 
@@ -1867,8 +1867,8 @@ int main(int argc, char *argv[])
 			printf(    "%s recovered 1D   [final check pass]\n", letr_unit);
 	}
 
-	if (Cinch_D.pass_R)
-		printf("\n Cinching ratio (cinch-t/cinch-d):  %2.3f", ratio2=(float)Cinch_T.pass_R/Cinch_D.pass_R);
+//	if (Cinch_D.pass_R)
+//		printf("\n Cinching ratio (cinch-t/cinch-d):  %2.3f", ratio2=(float)Cinch_T.pass_R/Cinch_D.pass_R);
 	printf("\n Width cinch ratio (post cinch-d):  %2.3f", ratio1=(float)Cinch_D.pass_W/lenseq);
 	if (!opt_n.bit)
 		printf("\n Width cinch ratio (post relax-2D): %.3f\n\n", (float)Current.pass_W/lenseq);
