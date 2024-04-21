@@ -401,3 +401,5 @@ WCR average: 0.500039
 
 WCR avg history (150k tests @ b=3): ~0.4998--0.5002
 
+Note: Above run w/ 1kb shuffled sequences shows that WCR average is not dependent on length (tests normally run at 100 bp).
+
