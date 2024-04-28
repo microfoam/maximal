@@ -72,8 +72,9 @@ int main(int argc, char *argv[])
 	int Dtr = 0;				/* Counter for tandem repeat (tr) diagonal */
 	int Atr = 0;				/* Counter for additional repeats on the same diagonal */
 
-	float ratio0 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post Cinch-t               	*/
-	float ratio1 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post Cinch-d, pre Relax-2D 	*/
+	float ratio1 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post Cinch-t               	*/
+	float ratio2 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post Cinch-k               	*/
+	float ratio3 = 1;			/* WIDTH CINCH RATIO (W.C.R.) post Cinch-d, pre Relax-2D 	*/
 
 	int scooch = 0;
 
@@ -1867,13 +1868,15 @@ int main(int argc, char *argv[])
 			printf(    "%s recovered 1D   [final check pass]\n", letr_unit);
 	}
 
-	ratio0 = (float) Cinch_T.pass_W/lenseq;
-	ratio1 = (float) Cinch_D.pass_W/lenseq;
+	ratio1 = (float) Cinch_T.pass_W/lenseq;
+	ratio2 = (float) Cinch_K.pass_W/lenseq;
+	ratio3 = (float) Cinch_D.pass_W/lenseq;
 
-	printf("\n Width cinch ratio (post cinch-t):  %2.3f", ratio0);
-	printf("\n Width cinch ratio (post cinch-d):  %2.3f", ratio1);
+	printf("\n Width cinch ratio post cinch-t:  %2.3f", ratio1);
+	printf("\n Width cinch ratio post cinch-k:  %2.3f", ratio2);
+	printf("\n Width cinch ratio post cinch-d:  %2.3f", ratio3);
 	if (!opt_n.bit)
-		printf("\n Width cinch ratio (post relax-2D): %.3f\n\n", (float)Current.pass_W/lenseq);
+		printf("\n Width cinch ratio post relax-2D: %.3f\n\n", (float)Current.pass_W/lenseq);
 	else
 		printf("\n\n");
 
@@ -2012,17 +2015,17 @@ int main(int argc, char *argv[])
 	
 	if (!opt_s.bit) {			/* ONLY IF opt_s OPTION TO SILENCE OUTPUT IS NOT ON */
 		fp_out = fopen("Surf_wavereport.mha", "a");
-		fprintf(fp_out, "v%s\t%.20s\tb%d x%d\t%.3f\tP:%4d R:%4d RND:%2.*s cyc:%d %s (%c%d %s)\t%s\n", 
-				version, time0+4, opt_b.val, opt_x.val, ratio1, Current.pass_Q, Recover.pass_Q, opt_X.val, "XX", 
-				cyc_count, file_name, Strand->sym, Clean.pass_W, letr_unit, dev_notes);
+		fprintf(fp_out, "v%s\t%.20s\tb%d x%d\t%.3f\t%.3f\t%.3f\tP:%4d R:%4d %s (%c%d %s)\t%s\n", 
+				version, time0+4, opt_b.val, opt_x.val, ratio1, ratio2, ratio3, Current.pass_Q, Recover.pass_Q, 
+				file_name, Strand->sym, Clean.pass_W, letr_unit, dev_notes);
 		fclose(fp_out);
 
 		/* IF IMPERFECT CONSENSUS OR IF CYCLELIZE REVERTED */
 		if (Current.pass_Q != 1000 || (opt_R.bit && Recover.pass_Q != 1000)) {
 			fp_tricksy = fopen("waves/foam_and_chowder.mha", "a");
-			fprintf(fp_tricksy, "v%s\t%.20s\tb%d x%d\t%.3f\tP:%4d R:%4d RND:%2.*s cyc:%d %s (%c%d %s)\t%s\n", 
-					version, time0+4, opt_b.val, opt_x.val, ratio1, Current.pass_Q, Recover.pass_Q, opt_X.val, "XX", 
-					cyc_count, file_name, Strand->sym, Clean.pass_W, letr_unit, dev_notes);
+			fprintf(fp_tricksy, "v%s\t%.20s\tb%d x%d\t%.3f\t%.3f\t%.3f\tP:%4d R:%4d %s (%c%d %s)\t%s\n", 
+					version, time0+4, opt_b.val, opt_x.val, ratio1, ratio2, ratio3, Current.pass_Q, Recover.pass_Q, 
+					file_name, Strand->sym, Clean.pass_W, letr_unit, dev_notes);
 			for(n = 0; n<lenseq; n++) {
 				fprintf(fp_tricksy, "%c", tela[n].c);
 			}

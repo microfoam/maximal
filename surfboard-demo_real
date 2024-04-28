@@ -40,35 +40,35 @@ fi
 ./lineup -RKk -D0 waves/sharks/vnd_NEE_Dmoja.txt
 ./lineup -RKk -D0 waves/sharks/vnd_NEE_Dviri.txt
 ./lineup -RKk -D0 waves/sharks/vnd_NEE_Dgrim.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dmela.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dsimu.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dsech.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dmaur.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Derec.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dyaku.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dsant.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dbiar.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dsuzu.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Danan.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dbipe.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dmira.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dpers.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dpseu.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dwill.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dmoja.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dviri.txt
-./lineup -RKk -D0 waves/seals/vnd_ex3_Dgrim.txt
-./lineup -RKk -D0 waves/seals/gapdh_Dmela1.txt
-./lineup -RKk -D0 waves/seals/gapdh_Dmela2.txt
-./lineup -RKk -D0 waves/seals/gapdh_Mdome.txt
-./lineup -RKk -D0 waves/seals/gapdh_Scalc.txt
-./lineup -RKk -D0 waves/seals/gapdh_Agamb.txt
-./lineup -RKk -D0 waves/seals/gapdh_Bmori.txt
-./lineup -RKk -D0 waves/seals/gapdh_Aglab.txt
-./lineup -RKk -D0 waves/seals/Med15_D_melanogaster_MED15.txt
-./lineup -RKk -D0 waves/seals/Med15_C_elegans_mdt-15.txt
-./lineup -RKk -D0 waves/seals/Med15_S_cerevisiae_gal11.txt
-./lineup -RKk -D0 waves/seals/Med15_A_gossypii_gal11.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dmela.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dsimu.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dsech.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dmaur.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Derec.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dyaku.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dsant.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dbiar.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dsuzu.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Danan.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dbipe.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dmira.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dpers.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dpseu.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dwill.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dmoja.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dviri.txt
+# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dgrim.txt
+# ./lineup -RKk -D0 waves/seals/gapdh_Dmela1.txt
+# ./lineup -RKk -D0 waves/seals/gapdh_Dmela2.txt
+# ./lineup -RKk -D0 waves/seals/gapdh_Mdome.txt
+# ./lineup -RKk -D0 waves/seals/gapdh_Scalc.txt
+# ./lineup -RKk -D0 waves/seals/gapdh_Agamb.txt
+# ./lineup -RKk -D0 waves/seals/gapdh_Bmori.txt
+# ./lineup -RKk -D0 waves/seals/gapdh_Aglab.txt
+# ./lineup -RKk -D0 waves/seals/Med15_D_melanogaster_MED15.txt
+# ./lineup -RKk -D0 waves/seals/Med15_C_elegans_mdt-15.txt
+# ./lineup -RKk -D0 waves/seals/Med15_S_cerevisiae_gal11.txt
+# ./lineup -RKk -D0 waves/seals/Med15_A_gossypii_gal11.txt
 
 echo
 echo

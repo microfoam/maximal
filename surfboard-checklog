@@ -20,8 +20,6 @@ if [ -f $FILE ]; then
 	grep -cE 'P:1000' $FILE
 	echo 'Number of tests w/ REC. 1000:      ' | tr -d "\n"
 	grep -cE 'R:1000' $FILE 
-	echo 'Number of tests w/ cycling: ' | tr -d "\n"
-	grep -cE 'cyc:[1-9]' $FILE 
 	echo
 	echo 'Tests canceled (if any, w/ preceding run for context):'
 	grep -B1 Canceled $FILE | sed '/^--$/d'
@@ -30,7 +28,9 @@ if [ -f $FILE ]; then
 	echo 'Tests with REC. < 1000 (if any):'
 	grep ^v $FILE | grep -vE 'R:1000' 
 	echo
-	awk -F'[\t]' '{sum+=$4} END {print "WCR average: " sum/NR}' $FILE 
+	awk -F'[\t]' '{sum+=$4} END {print "WCR-t average: " sum/NR}' $FILE 
+	awk -F'[\t]' '{sum+=$5} END {print "WCR-k average: " sum/NR}' $FILE 
+	awk -F'[\t]' '{sum+=$6} END {print "WCR-d average: " sum/NR}' $FILE 
 	echo
 else
 	echo

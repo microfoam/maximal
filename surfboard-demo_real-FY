@@ -1,0 +1,84 @@
+#!/bin/bash
+
+echo >> Corduroy.log
+echo '                                               < demo_real >' >> Corduroy.log
+
+
+while getopts c option
+do
+case "${option}"
+in
+c) 	./surfboard-Pop_Up
+	;;
+esac
+done
+
+if [ ! -f lineup ]; then
+	./surfboard-Pop_Up
+fi
+if [ -f Surf_wavereport.mha ]; then
+	    rm Surf_wavereport.mha
+fi
+
+# -D# 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
+
+for i in {1..10}  
+do
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dmela.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dsimu.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dsech.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dmaur.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Derec.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dyaku.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dsant.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dbiar.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dsuzu.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Danan.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dbipe.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dmira.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dpers.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dpseu.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dwill.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dmoja.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dviri.txt -X2 -Y999
+#	./lineup -RKk -S$i waves/sharks/vnd_NEE_Dgrim.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dmela.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dsimu.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dsech.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dmaur.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Derec.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dyaku.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dsant.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dbiar.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dsuzu.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Danan.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dbipe.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dmira.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dpers.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dpseu.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dwill.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dmoja.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dviri.txt -X2 -Y999
+  	./lineup -RKk -S$i waves/seals/vnd_ex3_Dgrim.txt -X2 -Y999
+# 	./lineup -RKk -S$i waves/seals/gapdh_Dmela1.txt -X2 -Y999
+# 	./lineup -RKk -S$i waves/seals/gapdh_Dmela2.txt -X2 -Y999
+# 	./lineup -RKk -S$i waves/seals/gapdh_Mdome.txt -X2 -Y999
+# 	./lineup -RKk -S$i waves/seals/gapdh_Scalc.txt -X2 -Y999
+# 	./lineup -RKk -S$i waves/seals/gapdh_Agamb.txt -X2 -Y999
+# 	./lineup -RKk -S$i waves/seals/gapdh_Bmori.txt -X2 -Y999
+# 	./lineup -RKk -S$i waves/seals/gapdh_Aglab.txt -X2 -Y999
+# 	./lineup -RKk -S$i waves/seals/Med15_D_melanogaster_MED15.txt -X2 -Y999
+# 	./lineup -RKk -S$i waves/seals/Med15_C_elegans_mdt-15.txt -X2 -Y999
+# 	./lineup -RKk -S$i waves/seals/Med15_S_cerevisiae_gal11.txt -X2 -Y999
+# 	./lineup -RKk -S$i waves/seals/Med15_A_gossypii_gal11.txt -X2 -Y999
+done
+
+echo
+echo
+echo
+echo "$0"
+echo
+echo
+./surfboard-checkmha
+echo 'WCR avg history (47 tests @ b=3): 0.467404' | tee -a Corduroy.log
+echo | tee -a Corduroy.log
