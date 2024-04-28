@@ -1,0 +1,381 @@
+WIDTH = 72 (default)
+                                               < big_O FY >
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v5.01	Apr 28 10:51:17 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 10:52:06 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+
+Number of tests initiated:         23
+Number of tests completed:         23
+Number of tests w/ PASS 1000:      23
+Number of tests w/ REC. 1000:      0
+
+Tests canceled (if any, w/ preceding run for context):
+Tests with PASS < 1000 (if any):
+Tests with REC. < 1000 (if any):
+v5.01	Apr 28 10:51:17 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 10:51:17 2024	b3 x0	0.874	0.635	0.493	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+2000 bp)	 
+v5.01	Apr 28 10:51:17 2024	b3 x0	0.887	0.647	0.516	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+2000 bp)	 
+v5.01	Apr 28 10:51:18 2024	b3 x0	0.900	0.640	0.467	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+2000 bp)	 
+v5.01	Apr 28 10:51:18 2024	b3 x0	0.896	0.650	0.512	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+2000 bp)	 
+v5.01	Apr 28 10:51:19 2024	b3 x0	0.881	0.654	0.488	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+2000 bp)	 
+v5.01	Apr 28 10:51:20 2024	b3 x0	0.873	0.625	0.489	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+2000 bp)	 
+v5.01	Apr 28 10:51:20 2024	b3 x0	0.873	0.609	0.477	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+2000 bp)	 
+v5.01	Apr 28 10:51:21 2024	b3 x0	0.867	0.640	0.529	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+2000 bp)	 
+v5.01	Apr 28 10:51:21 2024	b3 x0	0.887	0.626	0.486	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+2000 bp)	 
+v5.01	Apr 28 10:51:22 2024	b3 x0	0.862	0.613	0.472	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+2000 bp)	 
+v5.01	Apr 28 10:51:22 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 10:51:22 2024	b3 x0	0.893	0.647	0.514	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+4000 bp)	 
+v5.01	Apr 28 10:51:27 2024	b3 x0	0.881	0.649	0.518	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+4000 bp)	 
+v5.01	Apr 28 10:51:31 2024	b3 x0	0.874	0.637	0.508	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+4000 bp)	 
+v5.01	Apr 28 10:51:35 2024	b3 x0	0.878	0.646	0.493	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+4000 bp)	 
+v5.01	Apr 28 10:51:39 2024	b3 x0	0.881	0.633	0.493	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+4000 bp)	 
+v5.01	Apr 28 10:51:44 2024	b3 x0	0.873	0.624	0.481	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+4000 bp)	 
+v5.01	Apr 28 10:51:48 2024	b3 x0	0.870	0.616	0.467	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+4000 bp)	 
+v5.01	Apr 28 10:51:53 2024	b3 x0	0.893	0.654	0.523	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+4000 bp)	 
+v5.01	Apr 28 10:51:57 2024	b3 x0	0.877	0.635	0.493	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+4000 bp)	 
+v5.01	Apr 28 10:52:01 2024	b3 x0	0.890	0.632	0.485	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+4000 bp)	 
+v5.01	Apr 28 10:52:06 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+
+WCR-t average: 0.806348
+WCR-k average: 0.588304
+WCR-d average: 0.466217
+
+WCR avg history (xx tests @ b=3): 0.xxxxxx
+
+
+                                               < big_O FY >
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v5.01	Apr 28 11:05:27 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 11:29:37 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+
+Number of tests initiated:         56
+Number of tests completed:         56
+Number of tests w/ PASS 1000:      56
+Number of tests w/ REC. 1000:      0
+
+Tests canceled (if any, w/ preceding run for context):
+Tests with PASS < 1000 (if any):
+Tests with REC. < 1000 (if any):
+v5.01	Apr 28 11:05:27 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 11:05:27 2024	b3 x0	0.877	0.649	0.495	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+2000 bp)	 
+v5.01	Apr 28 11:05:28 2024	b3 x0	0.895	0.648	0.512	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+2000 bp)	 
+v5.01	Apr 28 11:05:28 2024	b3 x0	0.897	0.643	0.495	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+2000 bp)	 
+v5.01	Apr 28 11:05:29 2024	b3 x0	0.890	0.646	0.539	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+2000 bp)	 
+v5.01	Apr 28 11:05:29 2024	b3 x0	0.874	0.627	0.468	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+2000 bp)	 
+v5.01	Apr 28 11:05:30 2024	b3 x0	0.857	0.614	0.473	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+2000 bp)	 
+v5.01	Apr 28 11:05:30 2024	b3 x0	0.876	0.643	0.494	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+2000 bp)	 
+v5.01	Apr 28 11:05:31 2024	b3 x0	0.891	0.636	0.502	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+2000 bp)	 
+v5.01	Apr 28 11:05:32 2024	b3 x0	0.879	0.620	0.474	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+2000 bp)	 
+v5.01	Apr 28 11:05:32 2024	b3 x0	0.874	0.626	0.498	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+2000 bp)	 
+v5.01	Apr 28 11:05:33 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 11:05:33 2024	b3 x0	0.881	0.633	0.486	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+4000 bp)	 
+v5.01	Apr 28 11:05:37 2024	b3 x0	0.865	0.622	0.492	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+4000 bp)	 
+v5.01	Apr 28 11:05:41 2024	b3 x0	0.882	0.632	0.488	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+4000 bp)	 
+v5.01	Apr 28 11:05:46 2024	b3 x0	0.887	0.643	0.506	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+4000 bp)	 
+v5.01	Apr 28 11:05:50 2024	b3 x0	0.877	0.636	0.498	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+4000 bp)	 
+v5.01	Apr 28 11:05:55 2024	b3 x0	0.890	0.629	0.476	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+4000 bp)	 
+v5.01	Apr 28 11:05:59 2024	b3 x0	0.865	0.611	0.471	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+4000 bp)	 
+v5.01	Apr 28 11:06:04 2024	b3 x0	0.895	0.659	0.533	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+4000 bp)	 
+v5.01	Apr 28 11:06:08 2024	b3 x0	0.878	0.623	0.481	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+4000 bp)	 
+v5.01	Apr 28 11:06:12 2024	b3 x0	0.879	0.636	0.504	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+4000 bp)	 
+v5.01	Apr 28 11:06:16 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 11:06:16 2024	b3 x0	0.879	0.642	0.508	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+6000 bp)	 
+v5.01	Apr 28 11:06:30 2024	b3 x0	0.882	0.644	0.513	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+6000 bp)	 
+v5.01	Apr 28 11:06:44 2024	b3 x0	0.888	0.642	0.498	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+6000 bp)	 
+v5.01	Apr 28 11:06:59 2024	b3 x0	0.878	0.641	0.503	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+6000 bp)	 
+v5.01	Apr 28 11:07:13 2024	b3 x0	0.883	0.640	0.502	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+6000 bp)	 
+v5.01	Apr 28 11:07:27 2024	b3 x0	0.883	0.637	0.499	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+6000 bp)	 
+v5.01	Apr 28 11:07:42 2024	b3 x0	0.872	0.621	0.469	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+6000 bp)	 
+v5.01	Apr 28 11:07:58 2024	b3 x0	0.885	0.647	0.506	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+6000 bp)	 
+v5.01	Apr 28 11:08:12 2024	b3 x0	0.877	0.630	0.488	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+6000 bp)	 
+v5.01	Apr 28 11:08:27 2024	b3 x0	0.876	0.627	0.479	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+6000 bp)	 
+v5.01	Apr 28 11:08:42 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 11:08:42 2024	b3 x0	0.872	0.641	0.508	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+8000 bp)	 
+v5.01	Apr 28 11:09:16 2024	b3 x0	0.886	0.643	0.502	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+8000 bp)	 
+v5.01	Apr 28 11:09:54 2024	b3 x0	0.883	0.633	0.494	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+8000 bp)	 
+v5.01	Apr 28 11:10:30 2024	b3 x0	0.891	0.652	0.518	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+8000 bp)	 
+v5.01	Apr 28 11:11:04 2024	b3 x0	0.874	0.630	0.492	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+8000 bp)	 
+v5.01	Apr 28 11:11:39 2024	b3 x0	0.873	0.624	0.481	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+8000 bp)	 
+v5.01	Apr 28 11:12:17 2024	b3 x0	0.867	0.618	0.479	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+8000 bp)	 
+v5.01	Apr 28 11:12:55 2024	b3 x0	0.882	0.634	0.493	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+8000 bp)	 
+v5.01	Apr 28 11:13:34 2024	b3 x0	0.881	0.637	0.479	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+8000 bp)	 
+v5.01	Apr 28 11:14:15 2024	b3 x0	0.877	0.627	0.489	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+8000 bp)	 
+v5.01	Apr 28 11:14:53 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 11:14:53 2024	b3 x0	0.875	0.638	0.499	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+10000 bp)	 
+v5.01	Apr 28 11:16:20 2024	b3 x0	0.884	0.647	0.516	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+10000 bp)	 
+v5.01	Apr 28 11:17:45 2024	b3 x0	0.890	0.646	0.508	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+10000 bp)	 
+v5.01	Apr 28 11:19:10 2024	b3 x0	0.888	0.652	0.522	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+10000 bp)	 
+v5.01	Apr 28 11:20:33 2024	b3 x0	0.887	0.650	0.512	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+10000 bp)	 
+v5.01	Apr 28 11:21:57 2024	b3 x0	0.878	0.624	0.481	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+10000 bp)	 
+v5.01	Apr 28 11:23:32 2024	b3 x0	0.871	0.619	0.482	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+10000 bp)	 
+v5.01	Apr 28 11:25:03 2024	b3 x0	0.880	0.641	0.506	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+10000 bp)	 
+v5.01	Apr 28 11:26:26 2024	b3 x0	0.875	0.626	0.477	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+10000 bp)	 
+v5.01	Apr 28 11:28:03 2024	b3 x0	0.883	0.639	0.501	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+10000 bp)	 
+v5.01	Apr 28 11:29:37 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+
+WCR-t average: 0.819304
+WCR-k average: 0.596536
+WCR-d average: 0.471911
+
+WCR avg history (xx tests @ b=3): 0.xxxxxx
+
+
+                                               < big_O FY >
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v5.01	Apr 28 11:48:30 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 12:12:50 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+
+Number of tests initiated:         55
+Number of tests completed:         55
+Number of tests w/ PASS 1000:      55
+Number of tests w/ REC. 1000:      0
+
+Tests canceled (if any, w/ preceding run for context):
+Tests with PASS < 1000 (if any):
+Tests with REC. < 1000 (if any):
+v5.01	Apr 28 11:48:30 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 11:48:30 2024	b3 x0	0.868	0.641	0.517	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+2000 bp)	 
+v5.01	Apr 28 11:48:31 2024	b3 x0	0.891	0.637	0.494	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+2000 bp)	 
+v5.01	Apr 28 11:48:31 2024	b3 x0	0.877	0.649	0.506	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+2000 bp)	 
+v5.01	Apr 28 11:48:32 2024	b3 x0	0.876	0.636	0.502	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+2000 bp)	 
+v5.01	Apr 28 11:48:32 2024	b3 x0	0.897	0.650	0.480	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+2000 bp)	 
+v5.01	Apr 28 11:48:33 2024	b3 x0	0.879	0.617	0.492	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+2000 bp)	 
+v5.01	Apr 28 11:48:34 2024	b3 x0	0.865	0.610	0.474	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+2000 bp)	 
+v5.01	Apr 28 11:48:34 2024	b3 x0	0.899	0.646	0.500	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+2000 bp)	 
+v5.01	Apr 28 11:48:35 2024	b3 x0	0.877	0.636	0.479	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+2000 bp)	 
+v5.01	Apr 28 11:48:35 2024	b3 x0	0.873	0.632	0.504	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+2000 bp)	 
+v5.01	Apr 28 11:48:36 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 11:48:36 2024	b3 x0	0.881	0.645	0.508	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+4000 bp)	 
+v5.01	Apr 28 11:48:40 2024	b3 x0	0.895	0.666	0.533	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+4000 bp)	 
+v5.01	Apr 28 11:48:44 2024	b3 x0	0.890	0.657	0.529	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+4000 bp)	 
+v5.01	Apr 28 11:48:48 2024	b3 x0	0.901	0.654	0.512	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+4000 bp)	 
+v5.01	Apr 28 11:48:52 2024	b3 x0	0.877	0.630	0.486	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+4000 bp)	 
+v5.01	Apr 28 11:48:57 2024	b3 x0	0.873	0.631	0.494	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+4000 bp)	 
+v5.01	Apr 28 11:49:01 2024	b3 x0	0.873	0.622	0.472	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+4000 bp)	 
+v5.01	Apr 28 11:49:06 2024	b3 x0	0.884	0.654	0.521	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+4000 bp)	 
+v5.01	Apr 28 11:49:10 2024	b3 x0	0.867	0.617	0.478	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+4000 bp)	 
+v5.01	Apr 28 11:49:14 2024	b3 x0	0.872	0.627	0.475	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+4000 bp)	 
+v5.01	Apr 28 11:49:19 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 11:49:19 2024	b3 x0	0.868	0.635	0.507	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+6000 bp)	 
+v5.01	Apr 28 11:49:33 2024	b3 x0	0.888	0.651	0.523	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+6000 bp)	 
+v5.01	Apr 28 11:49:46 2024	b3 x0	0.887	0.648	0.517	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+6000 bp)	 
+v5.01	Apr 28 11:50:00 2024	b3 x0	0.882	0.645	0.495	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+6000 bp)	 
+v5.01	Apr 28 11:50:15 2024	b3 x0	0.885	0.645	0.511	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+6000 bp)	 
+v5.01	Apr 28 11:50:29 2024	b3 x0	0.872	0.630	0.496	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+6000 bp)	 
+v5.01	Apr 28 11:50:43 2024	b3 x0	0.887	0.626	0.487	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+6000 bp)	 
+v5.01	Apr 28 11:50:59 2024	b3 x0	0.884	0.644	0.500	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+6000 bp)	 
+v5.01	Apr 28 11:51:14 2024	b3 x0	0.874	0.625	0.471	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+6000 bp)	 
+v5.01	Apr 28 11:51:30 2024	b3 x0	0.871	0.630	0.488	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+6000 bp)	 
+v5.01	Apr 28 11:51:44 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 11:51:44 2024	b3 x0	0.881	0.645	0.498	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+8000 bp)	 
+v5.01	Apr 28 11:52:21 2024	b3 x0	0.884	0.651	0.507	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+8000 bp)	 
+v5.01	Apr 28 11:52:57 2024	b3 x0	0.880	0.635	0.500	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+8000 bp)	 
+v5.01	Apr 28 11:53:33 2024	b3 x0	0.882	0.635	0.504	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+8000 bp)	 
+v5.01	Apr 28 11:54:07 2024	b3 x0	0.880	0.640	0.504	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+8000 bp)	 
+v5.01	Apr 28 11:54:43 2024	b3 x0	0.874	0.629	0.487	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+8000 bp)	 
+v5.01	Apr 28 11:55:20 2024	b3 x0	0.867	0.627	0.490	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+8000 bp)	 
+v5.01	Apr 28 11:55:56 2024	b3 x0	0.888	0.641	0.515	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+8000 bp)	 
+v5.01	Apr 28 11:56:30 2024	b3 x0	0.879	0.630	0.475	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+8000 bp)	 
+v5.01	Apr 28 11:57:12 2024	b3 x0	0.875	0.629	0.488	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+8000 bp)	 
+v5.01	Apr 28 11:57:48 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 11:57:48 2024	b3 x0	0.885	0.650	0.513	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+10000 bp)	 
+v5.01	Apr 28 11:59:15 2024	b3 x0	0.879	0.646	0.517	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+10000 bp)	 
+v5.01	Apr 28 12:00:37 2024	b3 x0	0.880	0.641	0.495	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+10000 bp)	 
+v5.01	Apr 28 12:02:09 2024	b3 x0	0.874	0.639	0.506	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+10000 bp)	 
+v5.01	Apr 28 12:03:33 2024	b3 x0	0.876	0.633	0.499	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+10000 bp)	 
+v5.01	Apr 28 12:06:32 2024	b3 x0	0.874	0.619	0.479	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+10000 bp)	 
+v5.01	Apr 28 12:08:05 2024	b3 x0	0.891	0.648	0.501	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+10000 bp)	 
+v5.01	Apr 28 12:09:39 2024	b3 x0	0.869	0.619	0.469	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+10000 bp)	 
+v5.01	Apr 28 12:11:11 2024	b3 x0	0.878	0.634	0.479	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+10000 bp)	 
+v5.01	Apr 28 12:12:50 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+
+WCR-t average: 0.817836
+WCR-k average: 0.597545
+WCR-d average: 0.473
+
+WCR avg history (56 tests): ~0.472
+
+Sun Apr 28 13:31:27 CDT 2024
+Tri-fin dawn patrol: Compiling lineup v5.01.
+
+****** WIDTH = 36 (1/2 of default) *******
+                                               < big_O FY >
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v5.01	Apr 28 13:31:42 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 13:55:38 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+
+Number of tests initiated:         56
+Number of tests completed:         56
+Number of tests w/ PASS 1000:      56
+Number of tests w/ REC. 1000:      0
+
+Tests canceled (if any, w/ preceding run for context):
+Tests with PASS < 1000 (if any):
+Tests with REC. < 1000 (if any):
+v5.01	Apr 28 13:31:42 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 13:31:42 2024	b3 x0	0.871	0.633	0.501	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+2000 bp)	 
+v5.01	Apr 28 13:31:43 2024	b3 x0	0.884	0.641	0.497	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+2000 bp)	 
+v5.01	Apr 28 13:31:44 2024	b3 x0	0.878	0.637	0.486	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+2000 bp)	 
+v5.01	Apr 28 13:31:44 2024	b3 x0	0.877	0.646	0.506	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+2000 bp)	 
+v5.01	Apr 28 13:31:45 2024	b3 x0	0.873	0.631	0.498	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+2000 bp)	 
+v5.01	Apr 28 13:31:45 2024	b3 x0	0.878	0.647	0.499	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+2000 bp)	 
+v5.01	Apr 28 13:31:46 2024	b3 x0	0.844	0.585	0.445	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+2000 bp)	 
+v5.01	Apr 28 13:31:46 2024	b3 x0	0.869	0.632	0.498	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+2000 bp)	 
+v5.01	Apr 28 13:31:47 2024	b3 x0	0.869	0.605	0.467	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+2000 bp)	 
+v5.01	Apr 28 13:31:47 2024	b3 x0	0.866	0.621	0.496	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+2000 bp)	 
+v5.01	Apr 28 13:31:48 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 13:31:48 2024	b3 x0	0.882	0.641	0.511	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+4000 bp)	 
+v5.01	Apr 28 13:31:52 2024	b3 x0	0.873	0.635	0.514	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+4000 bp)	 
+v5.01	Apr 28 13:31:56 2024	b3 x0	0.878	0.629	0.509	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+4000 bp)	 
+v5.01	Apr 28 13:32:00 2024	b3 x0	0.890	0.650	0.506	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+4000 bp)	 
+v5.01	Apr 28 13:32:04 2024	b3 x0	0.882	0.642	0.520	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+4000 bp)	 
+v5.01	Apr 28 13:32:08 2024	b3 x0	0.867	0.631	0.498	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+4000 bp)	 
+v5.01	Apr 28 13:32:12 2024	b3 x0	0.862	0.621	0.477	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+4000 bp)	 
+v5.01	Apr 28 13:32:16 2024	b3 x0	0.876	0.633	0.488	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+4000 bp)	 
+v5.01	Apr 28 13:32:21 2024	b3 x0	0.884	0.643	0.495	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+4000 bp)	 
+v5.01	Apr 28 13:32:25 2024	b3 x0	0.877	0.617	0.481	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+4000 bp)	 
+v5.01	Apr 28 13:32:29 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 13:32:29 2024	b3 x0	0.875	0.649	0.512	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+6000 bp)	 
+v5.01	Apr 28 13:32:43 2024	b3 x0	0.894	0.652	0.510	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+6000 bp)	 
+v5.01	Apr 28 13:32:58 2024	b3 x0	0.870	0.629	0.483	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+6000 bp)	 
+v5.01	Apr 28 13:33:12 2024	b3 x0	0.872	0.636	0.502	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+6000 bp)	 
+v5.01	Apr 28 13:33:26 2024	b3 x0	0.867	0.630	0.489	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+6000 bp)	 
+v5.01	Apr 28 13:33:40 2024	b3 x0	0.872	0.625	0.488	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+6000 bp)	 
+v5.01	Apr 28 13:33:54 2024	b3 x0	0.868	0.622	0.462	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+6000 bp)	 
+v5.01	Apr 28 13:34:10 2024	b3 x0	0.885	0.648	0.512	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+6000 bp)	 
+v5.01	Apr 28 13:34:24 2024	b3 x0	0.877	0.627	0.491	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+6000 bp)	 
+v5.01	Apr 28 13:34:39 2024	b3 x0	0.881	0.640	0.489	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+6000 bp)	 
+v5.01	Apr 28 13:34:54 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 13:34:54 2024	b3 x0	0.876	0.642	0.513	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+8000 bp)	 
+v5.01	Apr 28 13:35:27 2024	b3 x0	0.890	0.652	0.510	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+8000 bp)	 
+v5.01	Apr 28 13:36:02 2024	b3 x0	0.888	0.650	0.510	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+8000 bp)	 
+v5.01	Apr 28 13:36:37 2024	b3 x0	0.889	0.649	0.502	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+8000 bp)	 
+v5.01	Apr 28 13:37:14 2024	b3 x0	0.882	0.649	0.516	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+8000 bp)	 
+v5.01	Apr 28 13:37:47 2024	b3 x0	0.871	0.623	0.482	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+8000 bp)	 
+v5.01	Apr 28 13:38:23 2024	b3 x0	0.877	0.611	0.462	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+8000 bp)	 
+v5.01	Apr 28 13:39:07 2024	b3 x0	0.884	0.644	0.504	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+8000 bp)	 
+v5.01	Apr 28 13:39:42 2024	b3 x0	0.871	0.625	0.471	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+8000 bp)	 
+v5.01	Apr 28 13:40:23 2024	b3 x0	0.885	0.633	0.489	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+8000 bp)	 
+v5.01	Apr 28 13:41:02 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 13:41:02 2024	b3 x0	0.883	0.640	0.504	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+10000 bp)	 
+v5.01	Apr 28 13:42:29 2024	b3 x0	0.882	0.648	0.511	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+10000 bp)	 
+v5.01	Apr 28 13:43:50 2024	b3 x0	0.878	0.641	0.505	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+10000 bp)	 
+v5.01	Apr 28 13:45:13 2024	b3 x0	0.885	0.648	0.508	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+10000 bp)	 
+v5.01	Apr 28 13:46:39 2024	b3 x0	0.887	0.652	0.503	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+10000 bp)	 
+v5.01	Apr 28 13:48:08 2024	b3 x0	0.875	0.624	0.487	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+10000 bp)	 
+v5.01	Apr 28 13:49:35 2024	b3 x0	0.870	0.617	0.479	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+10000 bp)	 
+v5.01	Apr 28 13:51:04 2024	b3 x0	0.888	0.636	0.499	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+10000 bp)	 
+v5.01	Apr 28 13:52:34 2024	b3 x0	0.877	0.628	0.485	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+10000 bp)	 
+v5.01	Apr 28 13:54:08 2024	b3 x0	0.878	0.628	0.491	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+10000 bp)	 
+v5.01	Apr 28 13:55:38 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+
+WCR-t average: 0.816589
+WCR-k average: 0.595643
+WCR-d average: 0.471411
+
+WCR avg history (56 tests): ~0.472
+
+
+****** WIDTH = 36 (1/2 of default) *******
+                                               < big_O FY >
+Surf wave report summary: 
+._                                                                                                                            
+\\\_M                                                                                                                         
+\\\\\_H                                                                                            \v/                        
+\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
+```````^:^````````                                                                                 /|\                        
+First and last runs:
+v5.01	Apr 28 14:12:26 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 14:35:57 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+
+Number of tests initiated:         52
+Number of tests completed:         52
+Number of tests w/ PASS 1000:      52
+Number of tests w/ REC. 1000:      0
+
+Tests canceled (if any, w/ preceding run for context):
+Tests with PASS < 1000 (if any):
+Tests with REC. < 1000 (if any):
+v5.01	Apr 28 14:12:26 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 14:12:26 2024	b3 x0	0.899	0.650	0.495	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+2000 bp)	 
+v5.01	Apr 28 14:12:27 2024	b3 x0	0.886	0.631	0.498	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+2000 bp)	 
+v5.01	Apr 28 14:12:28 2024	b3 x0	0.888	0.642	0.516	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+2000 bp)	 
+v5.01	Apr 28 14:12:28 2024	b3 x0	0.869	0.632	0.506	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+2000 bp)	 
+v5.01	Apr 28 14:12:29 2024	b3 x0	0.901	0.638	0.484	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+2000 bp)	 
+v5.01	Apr 28 14:12:29 2024	b3 x0	0.873	0.631	0.498	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+2000 bp)	 
+v5.01	Apr 28 14:12:30 2024	b3 x0	0.871	0.621	0.458	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+2000 bp)	 
+v5.01	Apr 28 14:12:30 2024	b3 x0	0.878	0.636	0.516	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+2000 bp)	 
+v5.01	Apr 28 14:12:31 2024	b3 x0	0.869	0.647	0.484	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+2000 bp)	 
+v5.01	Apr 28 14:12:31 2024	b3 x0	0.877	0.643	0.502	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+2000 bp)	 
+v5.01	Apr 28 14:12:32 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 14:12:32 2024	b3 x0	0.866	0.631	0.500	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+4000 bp)	 
+v5.01	Apr 28 14:12:36 2024	b3 x0	0.891	0.648	0.497	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+4000 bp)	 
+v5.01	Apr 28 14:12:41 2024	b3 x0	0.875	0.646	0.517	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+4000 bp)	 
+v5.01	Apr 28 14:12:45 2024	b3 x0	0.882	0.642	0.502	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+4000 bp)	 
+v5.01	Apr 28 14:12:49 2024	b3 x0	0.875	0.629	0.502	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+4000 bp)	 
+v5.01	Apr 28 14:12:53 2024	b3 x0	0.878	0.644	0.507	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+4000 bp)	 
+v5.01	Apr 28 14:12:57 2024	b3 x0	0.868	0.627	0.480	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+4000 bp)	 
+v5.01	Apr 28 14:13:01 2024	b3 x0	0.896	0.652	0.509	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+4000 bp)	 
+v5.01	Apr 28 14:13:06 2024	b3 x0	0.871	0.627	0.478	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+4000 bp)	 
+v5.01	Apr 28 14:13:10 2024	b3 x0	0.882	0.648	0.488	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+4000 bp)	 
+v5.01	Apr 28 14:13:15 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 14:13:15 2024	b3 x0	0.878	0.647	0.508	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+6000 bp)	 
+v5.01	Apr 28 14:13:28 2024	b3 x0	0.882	0.644	0.508	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+6000 bp)	 
+v5.01	Apr 28 14:13:42 2024	b3 x0	0.884	0.647	0.508	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+6000 bp)	 
+v5.01	Apr 28 14:13:56 2024	b3 x0	0.877	0.644	0.503	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+6000 bp)	 
+v5.01	Apr 28 14:14:10 2024	b3 x0	0.882	0.647	0.499	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+6000 bp)	 
+v5.01	Apr 28 14:14:25 2024	b3 x0	0.881	0.631	0.485	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+6000 bp)	 
+v5.01	Apr 28 14:14:40 2024	b3 x0	0.862	0.607	0.475	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+6000 bp)	 
+v5.01	Apr 28 14:14:54 2024	b3 x0	0.878	0.637	0.493	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+6000 bp)	 
+v5.01	Apr 28 14:15:09 2024	b3 x0	0.879	0.636	0.490	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+6000 bp)	 
+v5.01	Apr 28 14:15:24 2024	b3 x0	0.882	0.631	0.483	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+6000 bp)	 
+v5.01	Apr 28 14:15:39 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 14:15:39 2024	b3 x0	0.882	0.656	0.518	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+8000 bp)	 
+v5.01	Apr 28 14:16:12 2024	b3 x0	0.888	0.642	0.520	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+8000 bp)	 
+v5.01	Apr 28 14:16:45 2024	b3 x0	0.883	0.642	0.507	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+8000 bp)	 
+v5.01	Apr 28 14:17:20 2024	b3 x0	0.887	0.646	0.509	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+8000 bp)	 
+v5.01	Apr 28 14:17:54 2024	b3 x0	0.885	0.635	0.488	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+8000 bp)	 
+v5.01	Apr 28 14:18:32 2024	b3 x0	0.878	0.631	0.491	P:1000 R:   0 waves/seals/vnd_ex3_Dmela.txt (+8000 bp)	 
+v5.01	Apr 28 14:19:09 2024	b3 x0	0.881	0.629	0.491	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+8000 bp)	 
+v5.01	Apr 28 14:19:46 2024	b3 x0	0.885	0.638	0.505	P:1000 R:   0 waves/seals/vnd_ex3_Dwill.txt (+8000 bp)	 
+v5.01	Apr 28 14:21:33 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+v5.01	Apr 28 14:21:33 2024	b3 x0	0.875	0.639	0.512	P:1000 R:   0 waves/sharks/vnd_NEE_Dmela.txt (+10000 bp)	 
+v5.01	Apr 28 14:22:51 2024	b3 x0	0.884	0.652	0.516	P:1000 R:   0 waves/sharks/vnd_NEE_Dpseu.txt (+10000 bp)	 
+v5.01	Apr 28 14:24:14 2024	b3 x0	0.871	0.640	0.507	P:1000 R:   0 waves/sharks/vnd_NEE_Dwill.txt (+10000 bp)	 
+v5.01	Apr 28 14:25:33 2024	b3 x0	0.883	0.650	0.515	P:1000 R:   0 waves/sharks/vnd_NEE_Dviri.txt (+10000 bp)	 
+v5.01	Apr 28 14:26:53 2024	b3 x0	0.877	0.639	0.503	P:1000 R:   0 waves/sharks/vnd_NEE_Dgrim.txt (+10000 bp)	 
+v5.01	Apr 28 14:29:51 2024	b3 x0	0.875	0.628	0.471	P:1000 R:   0 waves/seals/vnd_ex3_Dpseu.txt (+10000 bp)	 
+v5.01	Apr 28 14:32:52 2024	b3 x0	0.879	0.631	0.474	P:1000 R:   0 waves/seals/vnd_ex3_Dviri.txt (+10000 bp)	 
+v5.01	Apr 28 14:34:29 2024	b3 x0	0.868	0.631	0.487	P:1000 R:   0 waves/seals/vnd_ex3_Dgrim.txt (+10000 bp)	 
+v5.01	Apr 28 14:35:57 2024	b3 x0	0.312	0.273	0.273	P:1000 R:   0 waves/snippets/snippet-gal11-knot1.txt (+77 bp)	 
+
+WCR-t average: 0.814096
+WCR-k average: 0.596212
+WCR-d average: 0.471942
+
+WCR avg history (56 tests): ~0.472
+
