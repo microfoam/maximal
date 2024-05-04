@@ -473,7 +473,7 @@ int main(int argc, char *argv[])
 					numarg = atoi(optarg);
 				if (numarg) {
 					if (numarg < MAXROW) {
-						FY_size = numarg;
+						FY_size = opt_Y.val = numarg;
 					}
 					else {
 						warnhead('Y');
@@ -535,11 +535,15 @@ int main(int argc, char *argv[])
 	printf("lineup ");
 	if (opt_count) {
 		printf("-");
-		for (i = 1; i < 53; i++) {			/* UPPER-CASE LETTER OPTIONS */
+		for (i = 6; i < 50; i++) {			/* UPPER-CASE LETTER OPTIONS */
 			if (Options[i]->bit)
 				printf("%c", Options[i]->sym);
 		}
+		if (opt_a.bit) 
+			printf(" -a%d", opt_a.val);
 			printf(" -b%d", opt_b.val);
+		if (opt_d.bit) 
+			printf(" -d%d", opt_d.val);
 		if (opt_m.bit) 
 			printf(" -m%d", opt_m.val);
 		if (opt_u.bit) 
@@ -548,12 +552,10 @@ int main(int argc, char *argv[])
 			printf(" -B%d", opt_B.val);
 		if (opt_M.bit) 
 			printf(" -M%d", opt_M.bit);	/* opt_M.val is a multiple of opt_M.bit, which is command arg */
-		if (opt_X.bit) {
-			if (opt_X.val==1) 
-				printf(" -X1 (using pseudo-random shuffling)");
-			else 
-				printf(" -X2 (using Fisher-Yates shuffling)");
-		}
+		if (opt_X.bit) 
+			printf(" -X%d", opt_X.val);
+		if (opt_Y.bit) 
+			printf(" -Y%d", opt_Y.val);
 	}
 	else 
 		printf("-b%d (default)", opt_b.val);
