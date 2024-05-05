@@ -3,9 +3,9 @@
 FILE="Surf_wavereport.log"     
 if [ -f $FILE ]; then
 	echo 'Surf wave report summary: '
-	echo '._                                                                                                                            '
-	echo '\\\_M                                                                                                                         '
-	echo '\\\\\_H                                                                                            \v/                        '
+	echo '._M                                                                                                                           '
+	echo '\\\_P                                                                                                                         '
+	echo '\\\\\_G                                                                                            \v/                        '
 	echo '\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._'
 	echo '```````^:^````````                                                                                 /|\                        '
 	echo 'First and last runs:'
