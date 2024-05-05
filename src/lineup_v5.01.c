@@ -1049,9 +1049,9 @@ int main(int argc, char *argv[])
 										Dtr = imperfect_TR = 0; /* SKIP PRESENT SLIP */
 										break;
 									}
-								}    
+								} 
 							}
-						}    
+						}
 					}
 					
 					if (nuctransit && Dtr && tela[n].all_S != tela[n].or *k*match) {
