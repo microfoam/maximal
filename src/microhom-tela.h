@@ -1234,8 +1234,9 @@ void mark_tela(void)
 			for (i=j; i>0; i--) {
 				if (tela[i].ok) {
 					if (i + tela[i].ok*(tela[i].or-1) > m || (tela[n].statf!=st_fract.sym && i+tela[i].ok>n)) {
-						tela[n].all_L = i;					/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
-						tela[i].all_R = n;					/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
+						tela[n].all_L = i;				/* UPDATE LEFT-MOST OVERLAPPING & CONFLICTING TR */
+						if (!tela[i].all_R)
+							tela[i].all_R = n;			/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 						/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
 						if ((!tela[i].k1 || tela[i].k2) && tela[i].all_S<tela[n].all_S) {
 							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
@@ -1244,6 +1245,7 @@ void mark_tela(void)
 					}
 				}
 			}
+			/* CANDIDATE FOR DELETION? */
 			if (tela[m].or && tela[m].all_S < tela[n].all_S && m+tela[m].or*(tela[m].ok)>n) {
 				clearall_tela(m, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 				push_mem(m, 9);
@@ -1313,7 +1315,7 @@ void mark_tela(void)
 					tela[n+j].or = tela[m+j].or;
 					tela[n+j].all_S = tela[m+j].all_S;
 					tela[n+j].all_Z = tela[m+j].all_Z;
-					tela[n+j].all_L = tela[m+j].all_L;
+//					tela[n+j].all_L = tela[m+j].all_L;			/* 2024.05.05 APPEARS UNNECESSARY */
 				}
 				for (j=0; j<k; j++) {
 					for (i=1; i<reps; i++) {
@@ -1321,7 +1323,7 @@ void mark_tela(void)
 						tela[n+i*k+j].or = tela[m+j].or;
 						tela[n+i*k+j].all_S = tela[m+j].all_S;
 						tela[n+i*k+j].all_Z = tela[m+j].all_Z;
-						tela[n+i*k+j].all_L = tela[m+j].all_L;
+//						tela[n+i*k+j].all_L = tela[m+j].all_L;	/* 2024.05.05 APPEARS UNNECESSARY */
 					}
 				}
 				n = n + k*reps - 1; 	/* NEED TO ADVANCE BEYOND CONFLICT-FREE LAST UNIT */
@@ -1498,6 +1500,18 @@ void mark_tela(void)
 			i = 1;
 			while (tela[n+i].ok==k)
 				tela[n + i++].stat = st_Fract.sym;
+		}
+	}
+
+	/* CLEAR OUT FRACTALS OF m UNIT OF PARENT k-MERS */
+	for (n=lenseq; n>0; n--) {
+		if ((k=tela[n].ok) && !tela[(m=n-k)].ok) {
+			for (i=n-1; i>n-k; i--) {
+				if (tela[i].ok && tela[i].ok<k && i-tela[i].ok>m && (tela[i].all_S<tela[n].all_S || tela[i].impk)) {
+					clearall_tela(i,1,-1, TWO);
+					push_mem(i, 17);
+				}
+			}
 		}
 	}
 

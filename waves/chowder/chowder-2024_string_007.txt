@@ -1,2 +1,2 @@
->D. suzukii vnd intron 1 chowder snippet, -x target: 0.291
+>D. suzukii vnd intron 1 chowder snippet, -x target: 0.337 (k=8), not 0.291 (k=4) 
 ATCTAGCCATGTCCGTCTGTCCGTCTGTCCGTCTGTCCGTCTGTCCGTCTGTCCGTCTGTCTGTCCGTCCGGATGAACGCTGAGAT

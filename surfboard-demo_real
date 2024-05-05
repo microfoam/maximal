@@ -21,54 +21,54 @@ if [ -f Surf_wavereport.mha ]; then
 fi
 
 # -D# 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
-
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dmela.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dsimu.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dsech.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dmaur.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Derec.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dyaku.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dsant.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dbiar.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dsuzu.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Danan.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dbipe.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dmira.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dpers.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dpseu.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dwill.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dmoja.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dviri.txt
-./lineup -RKk -D0 waves/sharks/vnd_NEE_Dgrim.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dmela.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dsimu.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dsech.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dmaur.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Derec.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dyaku.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dsant.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dbiar.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dsuzu.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Danan.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dbipe.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dmira.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dpers.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dpseu.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dwill.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dmoja.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dviri.txt
-# ./lineup -RKk -D0 waves/seals/vnd_ex3_Dgrim.txt
-# ./lineup -RKk -D0 waves/seals/gapdh_Dmela1.txt
-# ./lineup -RKk -D0 waves/seals/gapdh_Dmela2.txt
-# ./lineup -RKk -D0 waves/seals/gapdh_Mdome.txt
-# ./lineup -RKk -D0 waves/seals/gapdh_Scalc.txt
-# ./lineup -RKk -D0 waves/seals/gapdh_Agamb.txt
-# ./lineup -RKk -D0 waves/seals/gapdh_Bmori.txt
-# ./lineup -RKk -D0 waves/seals/gapdh_Aglab.txt
-# ./lineup -RKk -D0 waves/seals/Med15_D_melanogaster_MED15.txt
-# ./lineup -RKk -D0 waves/seals/Med15_C_elegans_mdt-15.txt
-# ./lineup -RKk -D0 waves/seals/Med15_S_cerevisiae_gal11.txt
-# ./lineup -RKk -D0 waves/seals/Med15_A_gossypii_gal11.txt
+#                                                -a 2, -d 1 = DEFAULT
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dmela.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dsimu.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dsech.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dmaur.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Derec.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dyaku.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dsant.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dbiar.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dsuzu.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Danan.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dbipe.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dmira.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dpers.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dpseu.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dwill.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dmoja.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dviri.txt -a2 -d1
+./lineup -RKk -D0 waves/sharks/vnd_NEE_Dgrim.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dmela.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dsimu.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dsech.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dmaur.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Derec.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dyaku.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dsant.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dbiar.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dsuzu.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Danan.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dbipe.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dmira.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dpers.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dpseu.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dwill.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dmoja.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dviri.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/vnd_ex3_Dgrim.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/gapdh_Dmela1.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/gapdh_Dmela2.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/gapdh_Mdome.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/gapdh_Scalc.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/gapdh_Agamb.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/gapdh_Bmori.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/gapdh_Aglab.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/Med15_D_melanogaster_MED15.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/Med15_C_elegans_mdt-15.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/Med15_S_cerevisiae_gal11.txt -a2 -d1
+./lineup -RKk -D0 waves/seals/Med15_A_gossypii_gal11.txt -a2 -d1
 
 echo
 echo
@@ -77,5 +77,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'WCR avg history (47 tests @ b=3): 0.467404' | tee -a Corduroy.log
+echo 'WCR avg history (47 tests @ b=3): 0.467404 ->0.467574' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
