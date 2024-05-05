@@ -606,6 +606,7 @@ void mark_tela(void)
 	int prev_k;
 	int k1=0, k2=0, k_tmp=0;
 	short unsigned int min_k=2; 		/* MINIMUM LIMIT k-MER SIZE MARKED; ALWAYS USE THIS INSTEAD OF VALUE */
+	int first_imp=0, last_imp=0;
 
 	if (nuctype == 1) {		/* IF DNA */
 		nuctransit = 1;
@@ -909,6 +910,11 @@ void mark_tela(void)
 					tela[n].ok = k;
 					tela[n].or = reps = 1;
 					tela[n].all_S = Dtr;	/* SAVE INITIAL UNIT SCORE */
+					first_imp = last_imp = 0;
+
+					if (imperfect_TR)
+						first_imp = last_imp = reps;
+
 					while (TRcheck) {
 						Atr = 0;
 						if (m + (reps+1)*k > lenseq) { 
@@ -952,12 +958,28 @@ void mark_tela(void)
 							if (test_k>0) {
 								reps++;
 								tela[n].all_S += Atr;
+								if (!first_imp)
+									first_imp = last_imp = reps;
+								else
+									last_imp=reps;
 							}
 							else
 								Aimperfect_TR = TRcheck = 0;
 						}
 						else {		/* ELSE FINAL NUMBER OF REPEATS (REPS) IS NOW KNOWN *****************/
 							if (tela[n].all_S) {
+
+								/* CANCEL SINGLE IMPERFECT REP AT BEGINING OR END OF MULTIPLE PERFECT REPEATS */
+								if (nuctransit && reps>2 && first_imp && first_imp==last_imp) {
+									if (first_imp==reps) {
+										reps--; 
+									}
+									else if (first_imp==1) {
+										tela[n].or = tela[n].ok = tela[n].all_S = 0;
+										break;
+									}
+								}
+
 								tela[n].or = reps;
 								push_mem(n,0);		/* ROW ZERO IS FOR ALL MARKS, NOT JUST THOSE SLATED FOR CLEARALL */
 
@@ -1238,7 +1260,7 @@ void mark_tela(void)
 						if (!tela[i].all_R)
 							tela[i].all_R = n;			/* UPDATE RIGHT-MOST OVERLAPPING & CONFLICTING TR */
 						/* CASE OF NON-CONFLICTING FRACTAL REPEATS */
-						if ((!tela[i].k1 || tela[i].k2) && tela[i].all_S<tela[n].all_S) {
+						if (tela[i].all_S<tela[n].all_S && (!tela[i].k1 || tela[i].k2)) {
 							clearall_tela(i, 1, -1, TWO);		/* O-F-F, ONE, OR TWO */
 							push_mem(i, 13);
 						}
@@ -1988,7 +2010,7 @@ int score_kmer(int n, int k, short unsigned int mode)
 		int match = MATCH;
 		int transition = TRANSITION;
 
-		if (mode == 2) {
+		if (mode == 2) { /* SCORE TRANSITIONS */
 			for (i=0; i<k; i++) {
 				if      (tela[n+i].c == tela[n-k+i].c)
 					score += match;

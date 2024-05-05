@@ -21,6 +21,8 @@ fi
 DEVPROMPT=0  # 0=default; 1=1D; 2=cinch-t; 3=cinch-l; 4=cinch-k; 5=cinch-d; 6=relax2D; 7= pause at end of run
 
 # solved: push new solved runs onto top of stack starting w/ solved-97 
+./lineup -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_011b.txt # solved by cancelling first or last single imperfect unit if reps > 2
+./lineup -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_011a.txt # solved by cancelling first or last single imperfect unit if reps > 2
 ./lineup -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_010.txt  # solved by deleting break condition in mark_tela loop based on island continuity
 ./lineup -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_009.txt  # cinch-k chowder after turning off mark_tela module
 ./lineup -D$DEVPROMPT -KxR  waves/chowder/chowder-2024_string_008.txt  # cinch-k chowder after turning off mark_tela module
@@ -79,5 +81,5 @@ echo "$0"
 echo
 echo
 ./surfboard-checkmha
-echo 'WCR avg history (49 tests @ b=3): 0.395583 ->0.399143 ->0.400082' | tee -a Corduroy.log
+echo 'WCR avg history (51 tests @ b=3): 0.395583 ->0.399143 ->0.400082 ->0.400796 ->0.401882' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
