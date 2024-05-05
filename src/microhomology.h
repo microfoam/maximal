@@ -192,11 +192,11 @@ struct {
 	st_fract = {'f',102},		/* MHA mark_tela() status mark, confirmed fr.  */
 	st_Fract = {'F', 70},		/* MHA mark_tela() status mark, orphan Fractal */
 	st_lowcm = {'L', 76},		/* MHA mark_tela() status mark, low-complexity */
-	st_cycle = {'c', 99},		/* MHA mark_tela() status mark                 */
-	st_clash = {'!', 33},		/* MHA mark_tela() status mark                 */
-	st_skip0 = {'_', 95},		/* MHA mark_tela() status mark                 */
-	st_skip1 = {'-', 45},		/* MHA mark_tela() status mark                 */
-	st_skip2 = {'~',126};		/* MHA mark_tela() status mark                 */
+	st_cycle = {'c', 99};		/* MHA mark_tela() status mark                 */
+//	st_clash = {'!', 33},		/* MHA mark_tela() status mark                 */
+//	st_skip0 = {'_', 95},		/* MHA mark_tela() status mark                 */
+//	st_skip1 = {'-', 45},		/* MHA mark_tela() status mark                 */
+//	st_skip2 = {'~',126};		/* MHA mark_tela() status mark                 */
 
 struct cinch {
 	int pass_Q;					/* Pass quality score                                               */
