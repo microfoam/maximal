@@ -539,8 +539,9 @@ int main(int argc, char *argv[])
 			if (Options[i]->bit)
 				printf("%c", Options[i]->sym);
 		}
-		if (opt_a.bit) 
+		if (opt_a.bit) {
 			printf(" -a%d", opt_a.val);
+		}
 			printf(" -b%d", opt_b.val);
 		if (opt_d.bit) 
 			printf(" -d%d", opt_d.val);
