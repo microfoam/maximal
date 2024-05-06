@@ -1356,7 +1356,7 @@ void usage(char *usage_version)
 {
 	int i;
 
-	printf("Running lineup version %s, a program for micro-homology alignment (MHA).\n", usage_version);
+	printf("Running lineup version %s, a program for micro-paralogy self-alignment.\n", usage_version);
 	printf("\nUsage: ./lineup -[OPTIONS] sequence.txt");
 	for (i=1; i<53; i++) {
 		if (*Options[i]->description)

@@ -2,7 +2,7 @@
 
 #clear
 echo "$(date)" | tee -a Corduroy.log
-echo 'Tri-fin dawn patrol: Compiling lineup v5.01.' | tee -a Corduroy.log
+echo 'Tri-fin dawn patrol: Compiling lineup v5.02.' | tee -a Corduroy.log
 echo | tee -a Corduroy.log
 echo '                                                                                                            '
 echo '.~.                                                                                                         '
@@ -11,7 +11,7 @@ echo '/////_H                    _     _     _     _     _     _     _     _    
 echo '///////_A__________.~._~.~.) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `-._) `'
 echo '```````^:^`````````                l           i           n           e           u           p            '
 
-gcc -o lineup -Wall -Wextra -Wstrict-prototypes -O2 src/lineup_v5.01.c -lm
+gcc -o lineup -Wall -Wextra -Wstrict-prototypes -O2 src/lineup_v5.02.c -lm
 
 echo
 echo 'Tri-fin dawn patrol: Surfs up!'
