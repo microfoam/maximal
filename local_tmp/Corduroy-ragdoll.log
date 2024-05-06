@@ -1,405 +1,80 @@
                                                < vnd_getworked_clean >
 Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
+._M                                                                                                                           
+\\\_P                                                                                                                         
+\\\\\_G                                                                                            \v/                        
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr  3 19:17:19 2024	b3 x0	P:1000	R:1000	0.479	RND:	waves/seals/vnd_ex3_Dmela.txt (956 bp, +)	 
-v5.00	Apr  3 19:17:20 2024	b3 x0	P:1000	R:1000	0.459	RND:	waves/sharks/nab_DWME_Dmela.txt (764 bp, +)	 
+v5.02	May  6 09:54:06 2024	b3 x0	0.876	0.645	0.479	P:1000 R:1000 waves/seals/vnd_ex3_Dmela.txt (+956 bp)	 
+v5.02	May  6 09:54:10 2024	b3 x0	0.869	0.616	0.459	P:1000 R:1000 waves/sharks/nab_DWME_Dmela.txt (+764 bp)	 
 
 Number of tests initiated:         15
 Number of tests completed:         15
 Number of tests w/ PASS 1000:      15
 Number of tests w/ REC. 1000:      15
 
-WCR average: 0.4794
-
 Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-                                               < vnd_getworked_ragdoll >
-Darwin 22.6.0 arm64 arm
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  3 19:18:24 2024	b3 x1	P:1000	R:1000	0.450	RND:XX	waves/seals/vnd_ex3_Dmela.txt (100 bp, +)	 
-v5.00	Apr  3 19:25:09 2024	b3 x1	P:1000	R:1000	0.520	RND:XX	waves/sharks/vnd_NEE_Dsuzu.txt (100 bp, -)	 
+WCR-t average: 0.862933
+WCR-k average: 0.6212
+WCR-d average: 0.4722
 
-Number of tests initiated:         150000
-Number of tests completed:         150000
-Number of tests w/ PASS 1000:      150000
-Number of tests w/ REC. 1000:      150000
-
-WCR average: 0.500213
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-                                               < vnd_getworked_ragdoll >
-Darwin 22.6.0 arm64 arm
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  4 21:00:15 2024	b3 x1	P:1000	R:1000	0.470	RND:XX	waves/seals/vnd_ex3_Dmela.txt (100 bp, +)	 
-v5.00	Apr  4 21:06:59 2024	b3 x1	P:1000	R:1000	0.590	RND:XX	waves/sharks/vnd_NEE_Dsuzu.txt (100 bp, -)	 
-
-Number of tests initiated:         150000
-Number of tests completed:         150000
-Number of tests w/ PASS 1000:      150000
-Number of tests w/ REC. 1000:      150000
-
-WCR average: 0.499862
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-                                               < vnd_getworked_clean >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  5 11:53:49 2024	b3 x0	0.479	P:1000 R:1000 RND: cyc:0 waves/seals/vnd_ex3_Dmela.txt (+956 bp)	 
-v5.00	Apr  5 11:53:50 2024	b3 x0	0.459	P:1000 R:1000 RND: cyc:0 waves/sharks/nab_DWME_Dmela.txt (+764 bp)	 
-
-Number of tests initiated:         15
-Number of tests completed:         15
-Number of tests w/ PASS 1000:      15
-Number of tests w/ REC. 1000:      15
-
-WCR average: 0.4794
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-                                               < vnd_getworked_ragdoll >
-Darwin 22.6.0 arm64 arm
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  5 11:53:59 2024	b3 x1	0.520	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
-v5.00	Apr  5 12:00:42 2024	b3 x1	0.510	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
-
-Number of tests initiated:         150000
-Number of tests completed:         150000
-Number of tests w/ PASS 1000:      150000
-Number of tests w/ REC. 1000:      150000
-
-WCR average: 0.49983
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-                                               < vnd_getworked_clean >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  5 14:36:44 2024	b3 x0	0.479	P:1000 R:1000 RND: cyc:0 waves/seals/vnd_ex3_Dmela.txt (+956 bp)	 
-v5.00	Apr  5 14:36:45 2024	b3 x0	0.459	P:1000 R:1000 RND: cyc:0 waves/sharks/nab_DWME_Dmela.txt (+764 bp)	 
-
-Number of tests initiated:         15
-Number of tests completed:         15
-Number of tests w/ PASS 1000:      15
-Number of tests w/ REC. 1000:      15
-Number of tests w/ cycling: 0
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-WCR average: 0.4794
-
-WCR avg history (15 tests @ b=3): 0.4794
-
-                                               < vnd_getworked_ragdoll >
-Darwin 22.6.0 arm64 arm
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  5 14:36:58 2024	b3 x1	0.430	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
-v5.00	Apr  5 14:43:40 2024	b3 x1	0.460	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
-
-Number of tests initiated:         150000
-Number of tests completed:         150000
-Number of tests w/ PASS 1000:      150000
-Number of tests w/ REC. 1000:      150000
-Number of tests w/ cycling: 259
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-WCR average: 0.499981
-
-WCR avg history (150k tests @ b=3): ~0.499--0.500
-
-                                               < vnd_getworked_clean >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  5 16:20:31 2024	b3 x0	0.479	P:1000 R:1000 RND: cyc:0 waves/seals/vnd_ex3_Dmela.txt (+956 bp)	 
-v5.00	Apr  5 16:20:32 2024	b3 x0	0.459	P:1000 R:1000 RND: cyc:0 waves/sharks/nab_DWME_Dmela.txt (+764 bp)	 
-
-Number of tests initiated:         15
-Number of tests completed:         15
-Number of tests w/ PASS 1000:      15
-Number of tests w/ REC. 1000:      15
-Number of tests w/ cycling: 0
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-WCR average: 0.4794
-
-WCR avg history (15 tests @ b=3): 0.4794
-
-                                               < vnd_getworked_ragdoll >
-Darwin 22.6.0 arm64 arm
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  5 16:20:39 2024	b3 x1	0.510	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
-v5.00	Apr  5 16:27:18 2024	b3 x1	0.450	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
-
-Number of tests initiated:         150000
-Number of tests completed:         150000
-Number of tests w/ PASS 1000:      150000
-Number of tests w/ REC. 1000:      150000
-Number of tests w/ cycling: 284
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-WCR average: 0.500059
-
-WCR avg history (150k tests @ b=3): ~0.499--0.500
-
-
-                                               < vnd_getworked_ragdoll >
-Darwin 22.6.0 arm64 arm
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  6 09:59:24 2024	b3 x1	0.610	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
-v5.00	Apr  6 10:06:08 2024	b3 x1	0.590	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
-
-Number of tests initiated:         150000
-Number of tests completed:         150000
-Number of tests w/ PASS 1000:      150000
-Number of tests w/ REC. 1000:      150000
-Number of tests w/ cycling: 299
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-WCR average: 0.500137
-
-WCR avg history (150k tests @ b=3): ~0.4998--0.5002
-
-
-                                               < vnd_getworked_clean >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  8 14:15:48 2024	b3 x0	0.479	P:1000 R:1000 RND: cyc:0 waves/seals/vnd_ex3_Dmela.txt (+956 bp)	 
-v5.00	Apr  8 14:15:52 2024	b3 x0	0.459	P:1000 R:1000 RND: cyc:0 waves/sharks/nab_DWME_Dmela.txt (+764 bp)	 
-
-Number of tests initiated:         15
-Number of tests completed:         15
-Number of tests w/ PASS 1000:      15
-Number of tests w/ REC. 1000:      15
-Number of tests w/ cycling: 0
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-WCR average: 0.471133
-
-WCR avg history (15 tests @ b=3): 0.4794 -> 0.471133
+WCR avg history (15 tests @ b=3): 0.4794 ->0.471133 ->0.471933 ->0.4722
 
                                                < vnd_getworked_ragdoll >
 Darwin 23.4.0 arm64 arm
 Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
+._M                                                                                                                           
+\\\_P                                                                                                                         
+\\\\\_G                                                                                            \v/                        
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr  8 14:16:20 2024	b3 x1	0.520	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
-v5.00	Apr  8 14:22:43 2024	b3 x1	0.520	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
+v5.02	May  6 09:54:52 2024	b3 x1	0.870	0.630	0.540	P:1000 R:1000 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
+v5.02	May  6 10:01:17 2024	b3 x1	0.900	0.630	0.450	P:1000 R:1000 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
 
 Number of tests initiated:         150000
 Number of tests completed:         150000
 Number of tests w/ PASS 1000:      150000
 Number of tests w/ REC. 1000:      150000
-Number of tests w/ cycling: 256
 
 Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-WCR average: 0.488533
+WCR-t average: 0.834012
+WCR-k average: 0.594161
+WCR-d average: 0.488144
 
 WCR avg history (150k tests @ b=3): ~0.4998--0.5002
-
-Recent ragdoll run times
-v5.00	Apr  3 19:25:09 2024	b3 x1	P:1000	R:1000	0.520	RND:XX	waves/sharks/vnd_NEE_Dsuzu.txt (100 bp, -)	 
-v5.00	Apr  3 19:18:24 2024	b3 x1	P:1000	R:1000	0.450	RND:XX	waves/seals/vnd_ex3_Dmela.txt (100 bp, +)	 
-                   6:45
-
-v5.00	Apr  4 21:06:59 2024	b3 x1	P:1000	R:1000	0.590	RND:XX	waves/sharks/vnd_NEE_Dsuzu.txt (100 bp, -)	 
-v5.00	Apr  4 21:00:15 2024	b3 x1	P:1000	R:1000	0.470	RND:XX	waves/seals/vnd_ex3_Dmela.txt (100 bp, +)	 
-                   6:44
-
-v5.00	Apr  5 12:00:42 2024	b3 x1	0.510	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
-v5.00	Apr  5 11:53:59 2024	b3 x1	0.520	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
-                   6:43
-
-v5.00	Apr  5 14:43:40 2024	b3 x1	0.460	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
-v5.00	Apr  5 14:36:58 2024	b3 x1	0.430	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
-                   6:42
-
-v5.00	Apr  5 16:27:18 2024	b3 x1	0.450	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
-v5.00	Apr  5 16:20:39 2024	b3 x1	0.510	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
-                   6:39
-
-v5.00	Apr  6 10:06:08 2024	b3 x1	0.590	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
-v5.00	Apr  6 09:59:24 2024	b3 x1	0.610	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
-                   6:44
-
-Major change in mark_tela (one less submodule)
-v5.00	Apr  8 14:22:43 2024	b3 x1	0.520	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
-v5.00	Apr  8 14:16:20 2024	b3 x1	0.520	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
-                   6:23 (-21 seconds!)
-
-                                               < vnd_getworked_clean >
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.00	Apr  8 22:53:58 2024	b3 x0	0.479	P:1000 R:1000 RND: cyc:0 waves/seals/vnd_ex3_Dmela.txt (+956 bp)	 
-v5.00	Apr  8 22:54:01 2024	b3 x0	0.459	P:1000 R:1000 RND: cyc:0 waves/sharks/nab_DWME_Dmela.txt (+764 bp)	 
-
-Number of tests initiated:         15
-Number of tests completed:         15
-Number of tests w/ PASS 1000:      15
-Number of tests w/ REC. 1000:      15
-Number of tests w/ cycling: 0
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-Tests with REC. < 1000 (if any):
-
-WCR average: 0.471933
-
-WCR avg history (15 tests @ b=3): 0.4794 ->0.471133 ->0.471933
 
                                                < vnd_getworked_ragdoll >
 Darwin 23.4.0 arm64 arm
 Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
+._M                                                                                                                           
+\\\_P                                                                                                                         
+\\\\\_G                                                                                            \v/                        
 \\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
 ```````^:^````````                                                                                 /|\                        
 First and last runs:
-v5.00	Apr  8 22:54:12 2024	b3 x1	0.550	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
-v5.00	Apr  8 23:00:36 2024	b3 x1	0.510	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
-
-Number of tests initiated:         150000
-Number of tests completed:         150000
-Number of tests w/ PASS 1000:      149999
-Number of tests w/ REC. 1000:      150000
-Number of tests w/ cycling: 318
-
-Tests canceled (if any, w/ preceding run for context):
-Tests with PASS < 1000 (if any):
-v5.00	Apr  8 22:55:02 2024	b3 x1	0.520	P: 983 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Derec.txt (+100 bp)	 
-Tests with REC. < 1000 (if any):
-
-WCR average: 0.48841
-
-WCR avg history (150k tests @ b=3): ~0.4998--0.5002
-
-
-                                               < vnd_getworked_ragdoll >
-Darwin 23.4.0 arm64 arm
-Surf wave report summary: 
-._                                                                                                                            
-\\\_M                                                                                                                         
-\\\\\_H                                                                                            \v/                        
-\\\\\\\_A_________.~~.o.~"~._.~`"~._.~"~._.~"~._.~"~._.~`"~._.~"~._.~"~._^_.~"~._.~"~._.~"~._.~`"~.-0-.~"~._.~"~._.~"~._.~"~._
-```````^:^````````                                                                                 /|\                        
-First and last runs:
-v5.01	Apr 15 20:08:42 2024	b3 x1	0.499	P:1000 R:1000 RND:XX cyc:0 waves/seals/vnd_ex3_Dmela.txt (+1000 bp)	 
-v5.01	Apr 15 23:14:47 2024	b3 x1	0.552	P:1000 R:1000 RND:XX cyc:0 waves/sharks/vnd_NEE_Dsuzu.txt (-1000 bp)	 
+v5.02	May  6 10:10:23 2024	b3 x1	0.880	0.670	0.500	P:1000 R:1000 waves/seals/vnd_ex3_Dmela.txt (+100 bp)	 
+v5.02	May  6 10:16:47 2024	b3 x1	0.750	0.500	0.430	P:1000 R:1000 waves/sharks/vnd_NEE_Dsuzu.txt (-100 bp)	 
 
 Number of tests initiated:         150000
 Number of tests completed:         150000
 Number of tests w/ PASS 1000:      150000
 Number of tests w/ REC. 1000:      150000
-Number of tests w/ cycling: 3475
 
 Tests canceled (if any, w/ preceding run for context):
 Tests with PASS < 1000 (if any):
 Tests with REC. < 1000 (if any):
 
-WCR average: 0.500039
+WCR-t average: 0.834035
+WCR-k average: 0.594259
+WCR-d average: 0.4881
 
-WCR avg history (150k tests @ b=3): ~0.4998--0.5002
-
-Note: Above run w/ 1kb shuffled sequences shows that WCR average is not dependent on length (tests normally run at 100 bp).
+WCR avg history (150k tests @ b=3): ~0.4998--0.5002 -> ~0.490 (v5.02)
 
