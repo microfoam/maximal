@@ -165,9 +165,9 @@ int main(int argc, char *argv[])
 						}
 
 						/* SCOOCH STRING INTO FASTA HEADER SPACE (ERASING IT) */
-						i = (int) strlen(Seq_head) + 2;
-						for (j = 0; Seq_i[j+i] != '\0'; j++)
-							Seq_i[j] = Seq_i[j+i];
+						k = (int) strlen(Seq_head) + 2;
+						for (j = 0; Seq_i[j+k] != '\0'; j++)
+							Seq_i[j] = Seq_i[j+k];
 	
 						Seq_i[j] = '\0';	
 					}
