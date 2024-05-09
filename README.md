@@ -1,4 +1,6 @@
 # lineup
+This GitHub project (github.com/microfoam/maximal) is a legacy beta project superseded by github.com/microfoam/lineup. Please go to https://github.com/microfoam/lineup for the most recent version of lineup.
+
 lineup (pre-v5.01 versions were called 'maximal') is a prototype program designed to explore the world of micro-homology alignment (MHA), created and written by Albert Erives (albert-erives@uiowa.edu).
 MHA methodology is philosophically-distinct from gapped alignment in embracing local microparalogy as a fundamental feature of biological sequence.
 
